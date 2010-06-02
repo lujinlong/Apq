@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Menu Width="200" Height="600" backgroundColor="Menu" style="" backgroundImage="" Icon="" PupOutIcon="" IconWidth="">
+	<Item Text="Item0" Height="20" onclick="" disabled="1" Icon="" title="Item0" ContextMenu="" Separator="1"></Item>
+	<Item Text="Item1" Height="20" onclick="" disabled="0" Icon="" title="Item1" ContextMenu="">
+		<Menu Width="150" Height="300" style="" ChildIcon="">
+			<Item Text="Item0" Height="20" onclick="" disabled="0" Icon="" title="Item0" ContextMenu=""></Item>
+			<Item Text="Item1" Height="20" onclick="" disabled="1" Icon="" title="Item1" ContextMenu=""></Item>
+		</Menu>
+	</Item>
+</Menu>

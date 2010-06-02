@@ -1,0 +1,64 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+using System.Data;
+using System.Data.Common;
+
+namespace Apq.DB
+{
+	/// <summary>
+	/// 字符串表
+	/// </summary>
+	public class Apq_String
+	{
+		/// <summary>
+		/// 该表所在的数据库
+		/// </summary>
+		public Microsoft.Practices.EnterpriseLibrary.Data.Database DB;
+
+		/// <summary>
+		/// ID
+		/// </summary>
+		public long ID;
+		/// <summary>
+		/// lang
+		/// </summary>
+		public string lang;
+		/// <summary>
+		/// str
+		/// </summary>
+		public string str;
+
+		/// <summary>
+		/// 保存字符串
+		/// </summary>
+		/// <returns></returns>
+		public long Save()
+		{
+			DbCommand Command = DB.GetStoredProcCommand("Apq_String_Save");
+
+			DbParameter ParameterID = Command.CreateParameter();
+			Command.Parameters.Add(ParameterID);
+			ParameterID.ParameterName = "ID";
+			ParameterID.DbType = DbType.Int64;
+			ParameterID.Direction = ParameterDirection.InputOutput;
+			ParameterID.Value = ID;
+
+			DbParameter ParameterLang = Command.CreateParameter();
+			Command.Parameters.Add(ParameterLang);
+			ParameterLang.ParameterName = "lang";
+			ParameterLang.Value = lang;
+
+			DbParameter ParameterStr = Command.CreateParameter();
+			Command.Parameters.Add(ParameterStr);
+			ParameterStr.ParameterName = "str";
+			ParameterStr.Value = str;
+
+			DB.ExecuteNonQuery(Command);
+
+			ID = System.Convert.ToInt64(Command.Parameters["ID"].Value);
+
+			return ID;
+		}
+	}
+}

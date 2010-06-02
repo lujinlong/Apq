@@ -1,0 +1,379 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html lang="en">
+<head>
+	<title>RSA In JavaScript</title>
+	<meta name="Author" content="Dave Shapiro">
+	<meta name="The thing I used to write this" content="VIM 6.2">
+	<meta name="Keywords" content="RSA; JavaScript; Cryptography; Encryption; Public Key; Infinite Precision; Multiple Precision; Arbitrary Precision; Barrett; Dave Shapiro; David Shapiro; Number Theory">
+	<link href="/main.css" rel="stylesheet" type="text/css">
+	<style>
+input {
+	font-family: verdana, arial, helvetica, sans-serif;
+	font-size: 10px;
+	color: #333333;
+}
+select {
+	font-family: verdana, arial, helvetica, sans-serif;
+	font-size: 10px;
+	color: #333333;
+}
+textarea {
+	font-family: verdana, arial, helvetica, sans-serif;
+	font-size: 10px;
+	color: #333333;
+}
+	</style>
+
+	<script language="JavaScript" src="util.js"></script>
+
+	<script language="JavaScript" src="../BigInt.js"></script>
+
+	<script language="JavaScript" src="../Barrett.js"></script>
+
+	<script language="JavaScript" src="../RSA.js"></script>
+
+	<script language="JavaScript">
+<!--
+
+var key;
+
+function createKey()
+{
+	var f = document.frm;
+	var index = f.selKeySize.selectedIndex;
+	var keySize = Number(f.selKeySize.options[index].value);
+	if (keySize == 128) {
+		setMaxDigits(19);
+		key = new RSAKeyPair(
+		 "10001",
+		 "202700adbd85e2d7182720c3a0ee19c1",
+		 "30db31542ace0f7d37a629ee5eba28cb"
+		);
+	}
+	else if (keySize == 256) {
+		setMaxDigits(38);
+		key = new RSAKeyPair(
+		 "10001",
+		 "8064edb1f26944f6bec2b68789db7ffd08b074d0953b76feca71dc8265c60e9",
+		 "2687f5ac6c70f9cab32fcbded7059502f4c7cc95fc3e09a560c68975ac4bf5e3"
+		);
+	}
+	else if (keySize == 512) {
+		setMaxDigits(76);
+		key = new RSAKeyPair(
+		 "10001",
+		 "59fed719f8959a468de367f77a33a7536d53b8e4d25ed49ccc89a94cd6899da90415623fb73386e9635034fb65ad5f248445a1c66703f760d64a8271ad342b1",
+		 "8de7066f67be16fcacd05d319b6729cd85fe698c07cec504776146eb7a041d9e3cacbf0fcd86441981c0083eed1f8f1b18393f0b186e47ce1b7b4981417b491"
+		);
+	}
+	else if (keySize == 1024) {
+		setMaxDigits(130);
+		key = new RSAKeyPair(
+		 "10001",
+		 "12e8da920d4599458e84ec5ef1656161807f427d05eb79182b7418259d6f6c14364d1f5caf9130c8d9d9d6ea71d1bdbc87781a46a16bcb9e672814fed3b9c96ddffe0a1b0955ae68055c8f92fef518a04fc32a2ea8390e617cc5556a251f9ae9eee70a32e579cb3e9f298848a9b3aaf634f5930ffbf74473f7cb6c0cefee1751",
+		 "130ebebd67b16a9ab2c53a437badbf8f01a80c750095a7fcfe95742c3d5ed1abb318babc5cb5d9350fee4da65ee074f65e1758117e6945f0fcfc8137528053ce9d1da8618890dee24e5e0bf8c87795bb1d09eddd544640824ee0dd0ea9fd908d27b0f8a1ae5c37f3647fbf2f5795500ad76c195b3387d0458a8f51b701472301"
+		);
+	}
+	else if (keySize == 2048) {
+		setMaxDigits(259);
+		// Put this statement in your code to create a new RSA key with these parameters
+		key = new RSAKeyPair(
+		 "10001",
+		 "1fa341faf590e7545f7aec2f8dc6d1e055935bfed9e7bebb7d3f85722bcbe43c21d95cc2d436873712d5a30e4fdbfc89a135cdab7dbbe2608f6de4c7de1c3bc3e0209fac022c762e0d673f3177b81763ad36bb95885b84422a512327e711318701febe576476f80fde807e82936cd84c96c4066bf0f67bd38b9756fea4a30976e05f55e72b678ed0b44cef9d7f1bac1362b29227b81d23cb9c6519e738bd33730fd3ff3e13ed64f7dcf0532c901391b9f197806e6ea1252b1cc2c0e5010bee2134679a19e50000e100e1a273ac35110c280975ab95ec576db927558c2c6e03004a33733530f0b8898b510658d554d2437334140ea5ef5a27e4be58af51050001",
+		 "54264025d03f78135a970fbc1d28399759a36c92d88140dd61b190cea438056720ce1d8ccf6406754c997eb60e67319894464e24b09dec58f42e6c472d97358745884f422e227f472f6e82958416c3c7874196671b1b64b6ad156afb73a0813fb441d5025b3eccdefcd867c303270540529fe33dbfdbe4d7841a4ab37cb15a0a3cb387dc85a388bc48e591c85f0ec37e7b92be13dd859482bcb696ef736799816e45c799a76951da739d3273be32b38db8951d7243c6de957dc511a6253aee2f46a86fcda34936821f73c23b54eec228c114d344aa4c85913ab35751ac4dfe1c8c6f0f246ed43aae9547fc1cc738b791712204eb0c02e24d98f8e0bd9f617bc7"
+		);
+	}
+}
+
+function bodyLoad()
+{
+	createKey();
+	key = new RSAKeyPair("5ABB", "01146BD07F0B74C086DF00B37C602A0B",
+	                     "01D7777C38863AEC21BA2D91EE0FAF51");
+	var f = document.frm;
+	f.selRadix.selectedIndex = key.radix - 2;
+}
+
+function cmdShowKeyClick()
+{
+	var m = biToString(key.m, key.radix);
+	var e = biToString(key.e, key.radix);
+	var d = biToString(key.d, key.radix);
+	document.frm.txtMessages.value = "Key:\n" +
+	                                 "m = " + m + "\n" +
+	                                 "e = " + e + "\n" +
+	                                 "d = " + d;
+}
+
+function cmdEncryptClick()
+{
+	with (document.frm) {
+		txtMessages.value = "Encrypting. Please wait...";
+		txtCiphertext.value = "";
+		txtVerification.value = "";
+		var t1 = new Date().getTime();
+		txtCiphertext.value = encryptedString(key, txtPlaintext.value);
+		var t2 = new Date().getTime();
+		txtMessages.value = "Done. Encryption took " + (t2 - t1) + " milliseconds.";
+	}
+}
+
+function cmdVerifyClick()
+{
+	with (document.frm) {
+		txtMessages.value = "Decrypting. Please wait...";
+		txtVerification.value = "";
+		var t1 = new Date().getTime();
+		txtVerification.value = decryptedString(key, txtCiphertext.value);
+		var t2 = new Date().getTime();
+		txtMessages.value = "Done. Decryption took " + (t2 - t1) + " milliseconds.";
+	}
+}
+
+function changeCiphertextRadix(oldRadix, newRadix)
+{
+	var f = document.frm;
+	var oldBlocks = f.txtCiphertext.value.split(" ");
+	var newBlocks = "";
+	for (var i = 0; i < oldBlocks.length; ++i) {
+		var oldBlock = oldBlocks[i];
+		var bi;
+		if (oldRadix == 16) {
+			bi = biFromHex(oldBlock);
+		}
+		else {
+			bi = biFromString(oldBlock, oldRadix);
+		}
+		var newBlock;
+		if (newRadix == 16) {
+			newBlock = biToHex(bi);
+		}
+		else {
+			newBlock = biToString(bi, newRadix);
+		}
+		newBlocks += newBlock + " ";
+	}
+	newBlocks =  newBlocks.substring(0, newBlocks.length - 1);
+	f.txtCiphertext.value = newBlocks;
+}
+
+function selKeySizeChange()
+{
+	var f = document.frm;
+	f.txtCiphertext.value = "";
+	createKey();
+}
+
+function selRadixChange()
+{
+	var f = document.frm;
+	var index = f.selRadix.selectedIndex;
+	var newRadix = Number(f.selRadix.options[index].value);
+	if (f.txtCiphertext.value != "") {
+		changeCiphertextRadix(key.radix, newRadix);
+	}
+	key.radix = newRadix;
+}
+
+// -->
+	</script>
+
+</head>
+<body bgcolor="white" onload="bodyLoad()">
+	<div align="center">
+		<!-- Banner section. -->
+		<table width="600" cellpadding="0" cellspacing="0" border="0">
+			<!-- Top line. -->
+			<tr>
+				<td colspan="5" height="1" bgcolor="black">
+				</td>
+			</tr>
+			<tr>
+				<!-- Left vertical line. -->
+				<td width="1" bgcolor="black">
+				</td>
+				<!-- Banner and header. -->
+				<td align="right" width="424" bgcolor="#ffd642" valign="middle">
+					<strong>RSA In JavaScript</strong></td>
+				<td width="10" bgcolor="#ffd642">
+					&nbsp;</td>
+				<!-- Right vertical line. -->
+				<td width="1" bgcolor="black">
+				</td>
+			</tr>
+		</table>
+		<!-- Main section. -->
+		<table width="600" cellpadding="0" cellspacing="0" border="0">
+			<tr>
+				<!-- Left vertical line. -->
+				<td width="1" bgcolor="black">
+				</td>
+				<!-- Contents section. -->
+				<td width="10">
+					&nbsp;</td>
+				<td>
+					<small>
+						<p>
+							请使用RSAKeyGenerator.exe计算公钥私钥对</p>
+						<p>
+							<i>Note:</i> The RSA key generator application is written in Delphi 4, which is
+							Object Pascal. This includes a re-implementation of the multiple-precision library
+							and the Miller-Rabin test for primality. Keys are generated using Algorithm 8.1
+							from the <a target="_new" href="http://www.cacr.math.uwaterloo.ca/hac">Handbook of Applied
+								Cryptography</a>. <i>However</i>, the actual random-number generation is not
+							particularly robust. I just use the built-in functions in Delphi, seeded from the
+							system clock. If you want to get fancy, you should write a better random-number
+							generator.
+						</p>
+						<p>
+						</p>
+						<div>
+							<font>Hey, remember rainbow animated horizontal rules?</font></div>
+						<form name="frm">
+							<font>Key size:</font>
+							<select name="selKeySize" onchange="selKeySizeChange()">
+								<option value="128">
+								128
+								<option value="256">
+								256
+								<option value="512">
+								512
+								<option value="1024">
+								1024
+								<option value="2048">
+								2048
+							</select>
+							<font>bits</font> &nbsp; &nbsp; <font>Display radix:</font>
+							<select name="selRadix" onchange="selRadixChange()">
+								<option value="2">
+								2
+								<option value="3">
+								3
+								<option value="4">
+								4
+								<option value="5">
+								5
+								<option value="6">
+								6
+								<option value="7">
+								7
+								<option value="8">
+								8
+								<option value="9">
+								9
+								<option value="10">
+								10
+								<option value="11">
+								11
+								<option value="12">
+								12
+								<option value="13">
+								13
+								<option value="14">
+								14
+								<option value="15">
+								15
+								<option value="16">
+								16
+								<option value="17">
+								17
+								<option value="18">
+								18
+								<option value="19">
+								19
+								<option value="20">
+								20
+								<option value="21">
+								21
+								<option value="22">
+								22
+								<option value="23">
+								23
+								<option value="24">
+								24
+								<option value="25">
+								25
+								<option value="26">
+								26
+								<option value="27">
+								27
+								<option value="28">
+								28
+								<option value="29">
+								29
+								<option value="30">
+								30
+								<option value="31">
+								31
+								<option value="32">
+								32
+								<option value="33">
+								33
+								<option value="34">
+								34
+								<option value="35">
+								35
+								<option value="36">
+								36
+							</select>
+							&nbsp; &nbsp;
+							<input type="button" value="Show Key" name="cmdShowKey" onclick="cmdShowKeyClick()">
+							<table width="100%" border="0" cellspacing="0" cellpadding="0">
+								<tr height="10">
+									<td>
+										&nbsp;</td>
+								</tr>
+								<tr width="100%">
+									<td width="50%">
+										<div>
+											<font>Plaintext</font></div>
+										<textarea rows="3" style="width: 100%" name="txtPlaintext">Type your plaintext here. Then click "Encrypt" to encrypt it.</textarea>
+										<div align="right">
+											<input type="button" value="Encrypt" name="cmdEncrypt" onclick="cmdEncryptClick()">
+										</div>
+									</td>
+									<td width="10">
+										&nbsp;
+									</td>
+									<td width="50%">
+										<div>
+											<font>Ciphertext</font></div>
+										<textarea rows="3" style="width: 100%" name="txtCiphertext" readonly></textarea>
+										<div align="right">
+											<input type="button" value="Verify" name="cmdVerify" onclick="cmdVerifyClick()">
+										</div>
+									</td>
+								</tr>
+								<tr height="8">
+									<td>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<div>
+											<font>Verification</font></div>
+										<textarea rows="3" style="width: 100%" name="txtVerification" readonly></textarea>
+									</td>
+									<td>
+									</td>
+									<td>
+										<div>
+											<font>Messages</font></div>
+										<textarea rows="3" style="width: 100%" name="txtMessages" readonly></textarea>
+									</td>
+								</tr>
+							</table>
+						</form>
+					</small>
+				</td>
+				<td width="10">
+					&nbsp;</td>
+				<!-- Right vertical line. -->
+				<td width="1" bgcolor="black">
+				</td>
+			</tr>
+		</table>
+		<!-- Footer main nav bar. -->
+	</div>
+</body>
+</html>

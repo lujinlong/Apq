@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="Explorer" targetNamespace="http://tempuri.org/Explorer.xsd" xmlns:mstns="http://tempuri.org/Explorer.xsd" xmlns="http://tempuri.org/Explorer.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="Explorer" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="Explorer" msprop:Generator_DataSetName="Explorer" msprop:EnableTableAdapterManager="true">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="dtExplorer" msprop:Generator_UserTableName="dtExplorer" msprop:Generator_RowDeletedName="dtExplorerRowDeleted" msprop:Generator_RowChangedName="dtExplorerRowChanged" msprop:Generator_RowClassName="dtExplorerRow" msprop:Generator_RowChangingName="dtExplorerRowChanging" msprop:Generator_RowEvArgName="dtExplorerRowChangeEvent" msprop:Generator_RowEvHandlerName="dtExplorerRowChangeEventHandler" msprop:Generator_TableClassName="dtExplorerDataTable" msprop:Generator_TableVarName="tabledtExplorer" msprop:Generator_RowDeletingName="dtExplorerRowDeleting" msprop:Generator_TablePropName="dtExplorer">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="HasChildren" msprop:Generator_UserColumnName="HasChildren" msprop:Generator_ColumnPropNameInRow="HasChildren" msprop:Generator_ColumnVarNameInTable="columnHasChildren" msprop:Generator_ColumnPropNameInTable="HasChildrenColumn" type="xs:boolean" minOccurs="0" />
+              <xs:element name="SelectImageIndex" msprop:Generator_UserColumnName="SelectImageIndex" msprop:Generator_ColumnPropNameInRow="SelectImageIndex" msprop:Generator_ColumnVarNameInTable="columnSelectImageIndex" msprop:Generator_ColumnPropNameInTable="SelectImageIndexColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="CheckState" msprop:Generator_UserColumnName="CheckState" msprop:Generator_ColumnPropNameInRow="CheckState" msprop:Generator_ColumnVarNameInTable="columnCheckState" msprop:Generator_ColumnPropNameInTable="CheckStateColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="ID" msprop:Generator_UserColumnName="ID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInTable="IDColumn" type="xs:long" />
+              <xs:element name="ParentID" msprop:Generator_UserColumnName="ParentID" msprop:Generator_ColumnPropNameInRow="ParentID" msprop:Generator_ColumnVarNameInTable="columnParentID" msprop:Generator_ColumnPropNameInTable="ParentIDColumn" type="xs:long" minOccurs="0" />
+              <xs:element name="FullName" msprop:Generator_UserColumnName="FullName" msprop:Generator_ColumnPropNameInRow="FullName" msprop:Generator_ColumnVarNameInTable="columnFullName" msprop:Generator_ColumnPropNameInTable="FullNameColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="FileName" msprop:Generator_UserColumnName="FileName" msprop:Generator_ColumnPropNameInRow="FileName" msprop:Generator_ColumnVarNameInTable="columnFileName" msprop:Generator_ColumnPropNameInTable="FileNameColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="Type" msprop:Generator_UserColumnName="Type" msprop:Generator_ColumnPropNameInRow="Type" msprop:Generator_ColumnVarNameInTable="columnType" msprop:Generator_ColumnPropNameInTable="TypeColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="Size" msprop:Generator_UserColumnName="Size" msprop:Generator_ColumnPropNameInRow="Size" msprop:Generator_ColumnVarNameInTable="columnSize" msprop:Generator_ColumnPropNameInTable="SizeColumn" type="xs:long" minOccurs="0" />
+              <xs:element name="Loaded" msprop:Generator_UserColumnName="Loaded" msprop:Generator_ColumnPropNameInRow="Loaded" msprop:Generator_ColumnVarNameInTable="columnLoaded" msprop:Generator_ColumnPropNameInTable="LoadedColumn" type="xs:boolean" minOccurs="0" />
+              <xs:element name="bFile" msprop:Generator_UserColumnName="bFile" msprop:Generator_ColumnPropNameInRow="bFile" msprop:Generator_ColumnVarNameInTable="columnbFile" msprop:Generator_ColumnPropNameInTable="bFileColumn" type="xs:base64Binary" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="luType" msprop:Generator_UserTableName="luType" msprop:Generator_RowDeletedName="luTypeRowDeleted" msprop:Generator_TableClassName="luTypeDataTable" msprop:Generator_RowChangedName="luTypeRowChanged" msprop:Generator_RowClassName="luTypeRow" msprop:Generator_RowChangingName="luTypeRowChanging" msprop:Generator_RowEvArgName="luTypeRowChangeEvent" msprop:Generator_RowEvHandlerName="luTypeRowChangeEventHandler" msprop:Generator_TablePropName="luType" msprop:Generator_TableVarName="tableluType" msprop:Generator_RowDeletingName="luTypeRowDeleting">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Type" msprop:Generator_UserColumnName="Type" msprop:Generator_ColumnPropNameInRow="Type" msprop:Generator_ColumnVarNameInTable="columnType" msprop:Generator_ColumnPropNameInTable="TypeColumn" type="xs:int" />
+              <xs:element name="TypeCaption" msprop:Generator_UserColumnName="TypeCaption" msprop:Generator_ColumnPropNameInRow="TypeCaption" msprop:Generator_ColumnVarNameInTable="columnTypeCaption" msprop:Generator_ColumnPropNameInTable="TypeCaptionColumn" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:dtExplorer" />
+      <xs:field xpath="mstns:ID" />
+    </xs:unique>
+    <xs:unique name="luType_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:luType" />
+      <xs:field xpath="mstns:Type" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>
