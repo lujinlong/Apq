@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Root>
+	<Apq.Windows.Forms.NotifyIconForm>
+		<!-- 透明图标(闪动时切换使用) -->
+		<IconClarity>Res\ico\clarity.ico</IconClarity>
+	</Apq.Windows.Forms.NotifyIconForm>
+</Root>

@@ -1,0 +1,185 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="SrvsMgr" targetNamespace="http://tempuri.org/SrvsMgr.xsd" xmlns:mstns="http://tempuri.org/SrvsMgr.xsd" xmlns="http://tempuri.org/SrvsMgr.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="Apq_DBAConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="Apq_DBAConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.ApqDBManager.XSD.Properties.Settings.GlobalReference.Default.Apq_DBAConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="SrvsMgr" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_DataSetName="SrvsMgr" msprop:Generator_UserDSName="SrvsMgr" msprop:EnableTableAdapterManager="true">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="RSrvConfig" msprop:Generator_UserTableName="RSrvConfig" msprop:Generator_RowDeletedName="RSrvConfigRowDeleted" msprop:Generator_TableClassName="RSrvConfigDataTable" msprop:Generator_RowChangedName="RSrvConfigRowChanged" msprop:Generator_RowClassName="RSrvConfigRow" msprop:Generator_RowChangingName="RSrvConfigRowChanging" msprop:Generator_RowEvArgName="RSrvConfigRowChangeEvent" msprop:Generator_RowEvHandlerName="RSrvConfigRowChangeEventHandler" msprop:Generator_TablePropName="RSrvConfig" msprop:Generator_TableVarName="tableRSrvConfig" msprop:Generator_RowDeletingName="RSrvConfigRowDeleting">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ID" msprop:Generator_UserColumnName="ID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInTable="IDColumn" type="xs:int" />
+              <xs:element name="ParentID" msprop:Generator_UserColumnName="ParentID" msprop:Generator_ColumnPropNameInRow="ParentID" msprop:Generator_ColumnVarNameInTable="columnParentID" msprop:Generator_ColumnPropNameInTable="ParentIDColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="Name" msprop:Generator_UserColumnName="Name" msprop:Generator_ColumnPropNameInRow="Name" msprop:Generator_ColumnVarNameInTable="columnName" msprop:Generator_ColumnPropNameInTable="NameColumn">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="256" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="SrvName" msprop:Generator_UserColumnName="SrvName" msprop:Generator_ColumnPropNameInRow="SrvName" msprop:Generator_ColumnVarNameInTable="columnSrvName" msprop:Generator_ColumnPropNameInTable="SrvNameColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="256" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="UID" msprop:Generator_UserColumnName="UID" msprop:Generator_ColumnPropNameInRow="UID" msprop:Generator_ColumnVarNameInTable="columnUID" msprop:Generator_ColumnPropNameInTable="UIDColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="256" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="PwdC" msprop:Generator_UserColumnName="PwdC" msprop:Generator_ColumnPropNameInRow="PwdC" msprop:Generator_ColumnVarNameInTable="columnPwdC" msprop:Generator_ColumnPropNameInTable="PwdCColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Type" msprop:Generator_UserColumnName="Type" msprop:Generator_ColumnPropNameInRow="Type" msprop:Generator_ColumnVarNameInTable="columnType" msprop:Generator_ColumnPropNameInTable="TypeColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="LSMaxTimes" msprop:Generator_UserColumnName="LSMaxTimes" msprop:Generator_ColumnPropNameInRow="LSMaxTimes" msprop:Generator_ColumnVarNameInTable="columnLSMaxTimes" msprop:Generator_ColumnPropNameInTable="LSMaxTimesColumn" type="xs:int" />
+              <xs:element name="LSErrTimes" msprop:Generator_UserColumnName="LSErrTimes" msprop:Generator_ColumnPropNameInRow="LSErrTimes" msprop:Generator_ColumnVarNameInTable="columnLSErrTimes" msprop:Generator_ColumnPropNameInTable="LSErrTimesColumn" type="xs:int" />
+              <xs:element name="LSState" msprop:Generator_UserColumnName="LSState" msprop:Generator_ColumnPropNameInRow="LSState" msprop:Generator_ColumnVarNameInTable="columnLSState" msprop:Generator_ColumnPropNameInTable="LSStateColumn" type="xs:int" />
+              <xs:element name="IPLan" msprop:Generator_UserColumnName="IPLan" msprop:Generator_ColumnPropNameInRow="IPLan" msprop:Generator_ColumnVarNameInTable="columnIPLan" msprop:Generator_ColumnPropNameInTable="IPLanColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="500" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="IPWan1" msprop:Generator_UserColumnName="IPWan1" msprop:Generator_ColumnPropNameInRow="IPWan1" msprop:Generator_ColumnVarNameInTable="columnIPWan1" msprop:Generator_ColumnPropNameInTable="IPWan1Column" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="500" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="IPWan2" msprop:Generator_UserColumnName="IPWan2" msprop:Generator_ColumnPropNameInRow="IPWan2" msprop:Generator_ColumnVarNameInTable="columnIPWan2" msprop:Generator_ColumnPropNameInTable="IPWan2Column" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="500" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="RDBUser" msprop:Generator_UserTableName="RDBUser" msprop:Generator_RowDeletedName="RDBUserRowDeleted" msprop:Generator_TableClassName="RDBUserDataTable" msprop:Generator_RowChangedName="RDBUserRowChanged" msprop:Generator_RowClassName="RDBUserRow" msprop:Generator_RowChangingName="RDBUserRowChanging" msprop:Generator_RowEvArgName="RDBUserRowChangeEvent" msprop:Generator_RowEvHandlerName="RDBUserRowChangeEventHandler" msprop:Generator_TablePropName="RDBUser" msprop:Generator_TableVarName="tableRDBUser" msprop:Generator_RowDeletingName="RDBUserRowDeleting">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="RDBUserID" msprop:Generator_UserColumnName="RDBUserID" msprop:Generator_ColumnPropNameInRow="RDBUserID" msprop:Generator_ColumnVarNameInTable="columnRDBUserID" msprop:Generator_ColumnPropNameInTable="RDBUserIDColumn" type="xs:long" />
+              <xs:element name="RDBID" msprop:Generator_UserColumnName="RDBID" msprop:Generator_ColumnPropNameInRow="RDBID" msprop:Generator_ColumnVarNameInTable="columnRDBID" msprop:Generator_ColumnPropNameInTable="RDBIDColumn" type="xs:long" minOccurs="0" />
+              <xs:element name="DBUserName" msprop:Generator_UserColumnName="DBUserName" msprop:Generator_ColumnPropNameInRow="DBUserName" msprop:Generator_ColumnVarNameInTable="columnDBUserName" msprop:Generator_ColumnPropNameInTable="DBUserNameColumn">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="256" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DBUserDesc" msprop:Generator_UserColumnName="DBUserDesc" msprop:Generator_ColumnPropNameInRow="DBUserDesc" msprop:Generator_ColumnVarNameInTable="columnDBUserDesc" msprop:Generator_ColumnPropNameInTable="DBUserDescColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="RDBLoginID" msprop:Generator_UserColumnName="RDBLoginID" msprop:Generator_ColumnPropNameInRow="RDBLoginID" msprop:Generator_ColumnVarNameInTable="columnRDBLoginID" msprop:Generator_ColumnPropNameInTable="RDBLoginIDColumn" type="xs:long" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="RDBLogin" msprop:Generator_UserTableName="RDBLogin" msprop:Generator_RowDeletedName="RDBLoginRowDeleted" msprop:Generator_TableClassName="RDBLoginDataTable" msprop:Generator_RowChangedName="RDBLoginRowChanged" msprop:Generator_RowClassName="RDBLoginRow" msprop:Generator_RowChangingName="RDBLoginRowChanging" msprop:Generator_RowEvArgName="RDBLoginRowChangeEvent" msprop:Generator_RowEvHandlerName="RDBLoginRowChangeEventHandler" msprop:Generator_TablePropName="RDBLogin" msprop:Generator_TableVarName="tableRDBLogin" msprop:Generator_RowDeletingName="RDBLoginRowDeleting">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="RDBLoginID" msprop:Generator_UserColumnName="RDBLoginID" msprop:Generator_ColumnPropNameInRow="RDBLoginID" msprop:Generator_ColumnVarNameInTable="columnRDBLoginID" msprop:Generator_ColumnPropNameInTable="RDBLoginIDColumn" type="xs:long" />
+              <xs:element name="RSrvID" msprop:Generator_UserColumnName="RSrvID" msprop:Generator_ColumnPropNameInRow="RSrvID" msprop:Generator_ColumnVarNameInTable="columnRSrvID" msprop:Generator_ColumnPropNameInTable="RSrvIDColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="DBLoginName" msprop:Generator_UserColumnName="DBLoginName" msprop:Generator_ColumnPropNameInRow="DBLoginName" msprop:Generator_ColumnVarNameInTable="columnDBLoginName" msprop:Generator_ColumnPropNameInTable="DBLoginNameColumn">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="256" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DBLoginDesc" msprop:Generator_UserColumnName="DBLoginDesc" msprop:Generator_ColumnPropNameInRow="DBLoginDesc" msprop:Generator_ColumnVarNameInTable="columnDBLoginDesc" msprop:Generator_ColumnPropNameInTable="DBLoginDescColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="SID" msprop:Generator_UserColumnName="SID" msprop:Generator_ColumnPropNameInRow="SID" msprop:Generator_ColumnVarNameInTable="columnSID" msprop:Generator_ColumnPropNameInTable="SIDColumn" type="xs:base64Binary" minOccurs="0" />
+              <xs:element name="LoginPwdC" msprop:Generator_UserColumnName="LoginPwdC" msprop:Generator_ColumnPropNameInRow="LoginPwdC" msprop:Generator_ColumnVarNameInTable="columnLoginPwdC" msprop:Generator_ColumnPropNameInTable="LoginPwdCColumn">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="LoginPwdD" msprop:Generator_UserColumnName="LoginPwdD" msprop:Generator_ColumnPropNameInRow="LoginPwdD" msprop:Generator_ColumnVarNameInTable="columnLoginPwdD" msprop:Generator_ColumnPropNameInTable="LoginPwdDColumn" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="RDBConfig" msprop:Generator_UserTableName="RDBConfig" msprop:Generator_RowDeletedName="RDBConfigRowDeleted" msprop:Generator_TableClassName="RDBConfigDataTable" msprop:Generator_RowChangedName="RDBConfigRowChanged" msprop:Generator_RowClassName="RDBConfigRow" msprop:Generator_RowChangingName="RDBConfigRowChanging" msprop:Generator_RowEvArgName="RDBConfigRowChangeEvent" msprop:Generator_RowEvHandlerName="RDBConfigRowChangeEventHandler" msprop:Generator_TablePropName="RDBConfig" msprop:Generator_TableVarName="tableRDBConfig" msprop:Generator_RowDeletingName="RDBConfigRowDeleting">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="RDBID" msprop:Generator_UserColumnName="RDBID" msprop:Generator_ColumnPropNameInRow="RDBID" msprop:Generator_ColumnVarNameInTable="columnRDBID" msprop:Generator_ColumnPropNameInTable="RDBIDColumn" type="xs:long" />
+              <xs:element name="DBName" msprop:Generator_UserColumnName="DBName" msprop:Generator_ColumnPropNameInRow="DBName" msprop:Generator_ColumnVarNameInTable="columnDBName" msprop:Generator_ColumnPropNameInTable="DBNameColumn">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="256" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="RDBDesc" msprop:Generator_UserColumnName="RDBDesc" msprop:Generator_ColumnPropNameInRow="RDBDesc" msprop:Generator_ColumnVarNameInTable="columnRDBDesc" msprop:Generator_ColumnPropNameInTable="RDBDescColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="RDBType" msprop:Generator_UserColumnName="RDBType" msprop:Generator_ColumnPropNameInRow="RDBType" msprop:Generator_ColumnVarNameInTable="columnRDBType" msprop:Generator_ColumnPropNameInTable="RDBTypeColumn" type="xs:int" />
+              <xs:element name="PLevel" msprop:Generator_UserColumnName="PLevel" msprop:Generator_ColumnPropNameInRow="PLevel" msprop:Generator_ColumnVarNameInTable="columnPLevel" msprop:Generator_ColumnPropNameInTable="PLevelColumn" type="xs:int" />
+              <xs:element name="GLevel" msprop:Generator_UserColumnName="GLevel" msprop:Generator_ColumnPropNameInRow="GLevel" msprop:Generator_ColumnVarNameInTable="columnGLevel" msprop:Generator_ColumnPropNameInTable="GLevelColumn" type="xs:int" />
+              <xs:element name="SrvID" msprop:Generator_UserColumnName="SrvID" msprop:Generator_ColumnPropNameInRow="SrvID" msprop:Generator_ColumnVarNameInTable="columnSrvID" msprop:Generator_ColumnPropNameInTable="SrvIDColumn" type="xs:int" />
+              <xs:element name="GameID" msprop:Generator_UserColumnName="GameID" msprop:Generator_ColumnPropNameInRow="GameID" msprop:Generator_ColumnVarNameInTable="columnGameID" msprop:Generator_ColumnPropNameInTable="GameIDColumn" type="xs:int" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:RSrvConfig" />
+      <xs:field xpath="mstns:ID" />
+    </xs:unique>
+    <xs:unique name="RDBUser_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:RDBUser" />
+      <xs:field xpath="mstns:RDBUserID" />
+    </xs:unique>
+    <xs:unique name="RDBLogin_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:RDBLogin" />
+      <xs:field xpath="mstns:RDBLoginID" />
+    </xs:unique>
+    <xs:unique name="RDBConfig_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:RDBConfig" />
+      <xs:field xpath="mstns:RDBID" />
+    </xs:unique>
+  </xs:element>
+  <xs:annotation>
+    <xs:appinfo>
+      <msdata:Relationship name="RSrvConfig_RDBConfig" msdata:parent="RSrvConfig" msdata:child="RDBConfig" msdata:parentkey="ID" msdata:childkey="SrvID" msprop:Generator_UserRelationName="RSrvConfig_RDBConfig" msprop:Generator_RelationVarName="relationRSrvConfig_RDBConfig" msprop:Generator_UserChildTable="RDBConfig" msprop:Generator_UserParentTable="RSrvConfig" msprop:Generator_ParentPropName="RSrvConfigRow" msprop:Generator_ChildPropName="GetRDBConfigRows" />
+      <msdata:Relationship name="RSrvConfig_RDBLogin" msdata:parent="RSrvConfig" msdata:child="RDBLogin" msdata:parentkey="ID" msdata:childkey="RSrvID" msprop:Generator_UserRelationName="RSrvConfig_RDBLogin" msprop:Generator_RelationVarName="relationRSrvConfig_RDBLogin" msprop:Generator_UserChildTable="RDBLogin" msprop:Generator_UserParentTable="RSrvConfig" msprop:Generator_ParentPropName="RSrvConfigRow" msprop:Generator_ChildPropName="GetRDBLoginRows" />
+      <msdata:Relationship name="RDBLogin_RDBUser" msdata:parent="RDBLogin" msdata:child="RDBUser" msdata:parentkey="RDBLoginID" msdata:childkey="RDBLoginID" msprop:Generator_UserRelationName="RDBLogin_RDBUser" msprop:Generator_RelationVarName="relationRDBLogin_RDBUser" msprop:Generator_UserChildTable="RDBUser" msprop:Generator_UserParentTable="RDBLogin" msprop:Generator_ParentPropName="RDBLoginRow" msprop:Generator_ChildPropName="GetRDBUserRows" />
+      <msdata:Relationship name="RDBConfig_RDBUser" msdata:parent="RDBConfig" msdata:child="RDBUser" msdata:parentkey="RDBID" msdata:childkey="RDBID" msprop:Generator_UserRelationName="RDBConfig_RDBUser" msprop:Generator_RelationVarName="relationRDBConfig_RDBUser" msprop:Generator_UserChildTable="RDBUser" msprop:Generator_UserParentTable="RDBConfig" msprop:Generator_ParentPropName="RDBConfigRow" msprop:Generator_ChildPropName="GetRDBUserRows" />
+    </xs:appinfo>
+  </xs:annotation>
+</xs:schema>
