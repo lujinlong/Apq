@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>szDomain.Win</name>
+    </assembly>
+    <members>
+        <member name="T:szDomain.Win.GlobalObject">
+            <summary>
+            全局对象
+            </summary>
+        </member>
+        <member name="P:szDomain.Win.GlobalObject.TheAssembly">
+            <summary>
+            该程序集配置文件(程序集名.后缀.xml)
+            </summary>
+        </member>
+        <member name="P:szDomain.Win.GlobalObject.XmlAsmConfig">
+            <summary>
+            该程序集配置文件(程序集名.后缀.xml)
+            </summary>
+        </member>
+        <member name="P:szDomain.Win.GlobalObject.XmlUserConfig">
+            <summary>
+            该程序集用户配置文件(程序集名.后缀.xml)
+            </summary>
+        </member>
+        <member name="P:szDomain.Win.GlobalObject.XmlConfigChain">
+            <summary>
+            该程序集配置文件链
+            </summary>
+        </member>
+    </members>
+</doc>

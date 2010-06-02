@@ -1,0 +1,177 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{F86BE2F0-1A8F-4C53-A601-496D219B959B}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Reference</RootNamespace>
+    <AssemblyName>Reference</AssemblyName>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>2.0</OldToolsVersion>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <PublishUrl>http://localhost/Reference/</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Web</InstallFrom>
+    <UpdateEnabled>true</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>true</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="CuteEditor\CuteEditor.dll" />
+    <Content Include="CuteEditor\CuteEditor.ImageEditor.dll" />
+    <Content Include="CuteEditor\NetSpell.SpellChecker.dll" />
+    <Content Include="FCKEditor\FredCK.FCKeditorV2.dll" />
+    <Content Include="ICSharpCode\SharpZLib\ICSharpCode.SharpZipLib.dll" />
+    <Content Include="ICSharpCode\SharpZLib\ICSharpCode.SharpZipLib.xml" />
+    <Content Include="log4net-1.2.10\log4net.dll" />
+    <Content Include="log4net-1.2.10\log4net.Ext.EventID.dll" />
+    <Content Include="log4net-1.2.10\log4net.Ext.EventID.XML" />
+    <Content Include="log4net-1.2.10\log4net.Ext.MarshalByRef.dll" />
+    <Content Include="log4net-1.2.10\log4net.Ext.MarshalByRef.XML" />
+    <Content Include="log4net-1.2.10\log4net.Ext.Trace.dll" />
+    <Content Include="log4net-1.2.10\log4net.Ext.Trace.XML" />
+    <Content Include="log4net-1.2.10\log4net.xml" />
+    <Content Include="DockPanel\WeifenLuo.WinFormsUI.Docking.dll" />
+    <Content Include="Res\Apq.Win\ico\clarity.ico" />
+    <Content Include="Res\Apq.Win\Pic\Logo.png" />
+    <Content Include="Res\Apq\Pic\Logo.png" />
+    <Content Include="Res\szDomain_TestWin\ico\1.ico" />
+    <Content Include="Res\szDomain_TestWin\ico\4.ico" />
+    <Content Include="Res\szDomain_TestWin\ico\8.ico" />
+    <Content Include="Res\szDomain_TestWin\ico\9.ico" />
+    <Content Include="Res\szDomain_TestWin\ico\Notify\mycomp01.ico" />
+    <Content Include="Res\szDomain_TestWin\ico\Notify\mycomp03.ico" />
+    <Content Include="Res\szDomain_TestWin\ico\Notify\WAPPER.ICO" />
+    <Content Include="_Doc\说明.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="CuteEditor\Bin\cuteeditor.lic" />
+    <None Include="CuteEditor\Bin\cuteeditor.lic.bak" />
+    <None Include="CuteEditor\Bin\de-DE.dic" />
+    <None Include="CuteEditor\Bin\en-AU.dic" />
+    <None Include="CuteEditor\Bin\en-CA.dic" />
+    <None Include="CuteEditor\Bin\en-GB.dic" />
+    <None Include="CuteEditor\Bin\en-UK.dic" />
+    <None Include="CuteEditor\Bin\en-US.dic" />
+    <None Include="CuteEditor\Bin\es-ES.dic" />
+    <None Include="CuteEditor\Bin\es-MX.dic" />
+    <None Include="CuteEditor\Bin\fr-FR.dic" />
+    <None Include="CuteEditor\Bin\it-IT.dic" />
+    <Content Include="DockPanel\V2.2.txt" />
+    <Content Include="ICSharpCode\TextEditor_2.2\ICSharpCode.TextEditor.dll" />
+    <Content Include="ICSharpCode\TextEditor_2.2\ICSharpCode.TextEditor.XML" />
+    <Content Include="My97DatePicker4.2\My97DatePicker\calendar.js" />
+    <Content Include="My97DatePicker4.2\My97DatePicker\config.js" />
+    <Content Include="My97DatePicker4.2\My97DatePicker\lang\en.js" />
+    <Content Include="My97DatePicker4.2\My97DatePicker\lang\zh-cn.js" />
+    <Content Include="My97DatePicker4.2\My97DatePicker\lang\zh-tw.js" />
+    <Content Include="My97DatePicker4.2\My97DatePicker\My97DatePicker.htm" />
+    <Content Include="My97DatePicker4.2\My97DatePicker\skin\datePicker.gif" />
+    <Content Include="My97DatePicker4.2\My97DatePicker\skin\default\datepicker.css" />
+    <Content Include="My97DatePicker4.2\My97DatePicker\skin\default\img.gif" />
+    <Content Include="My97DatePicker4.2\My97DatePicker\skin\WdatePicker.css" />
+    <Content Include="My97DatePicker4.2\My97DatePicker\skin\whyGreen\bg.jpg" />
+    <Content Include="My97DatePicker4.2\My97DatePicker\skin\whyGreen\datepicker.css" />
+    <Content Include="My97DatePicker4.2\My97DatePicker\skin\whyGreen\img.gif" />
+    <Content Include="My97DatePicker4.2\My97DatePicker\WdatePicker.js" />
+    <Content Include="My97DatePicker4.2\readme.txt" />
+    <Content Include="Res\Common\png\CheckBox\UnChecked.png" />
+    <Content Include="Res\Common\png\CheckBox\Checked.png" />
+    <Content Include="Res\Common\png\CheckBox\Indeterminate.png" />
+    <Content Include="Res\Common\png\Editor\Copy.png" />
+    <Content Include="Res\Common\png\Editor\Cut.png" />
+    <Content Include="Res\Common\png\Help.png" />
+    <Content Include="Res\Common\png\File\New.png" />
+    <Content Include="Res\Common\png\File\Open.png" />
+    <Content Include="Res\Common\png\Editor\Paste.png" />
+    <Content Include="Res\Common\png\Editor\Redo.png" />
+    <Content Include="Res\Common\png\File\Save.png" />
+    <Content Include="Res\Common\png\Search.png" />
+    <Content Include="Res\Common\png\Editor\Undo.png" />
+    <Content Include="环境变量.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Apq_Web\Config\" />
+    <Folder Include="Apq_Win\Config\" />
+    <Folder Include="Debug\Config\" />
+    <Folder Include="Debug_Home\Config\" />
+    <Folder Include="Release\Config\" />
+    <Folder Include="Res\Apq.DB\" />
+    <Folder Include="Res\Apq.Web\" />
+    <Folder Include="Res\Apq.WorkFlow\" />
+    <Folder Include="Res\szDomain.Win\" />
+    <Folder Include="Res\szDomain\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

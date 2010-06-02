@@ -1,0 +1,66 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title></title>
+	<!-- 自有QueryString说明:
+	a:是否打开管理员首页
+	 -->
+
+	<script src="Script/Apq.js" type="text/jscript"></script>
+
+	<script type="text/javascript">
+		function window_onload(e) {
+			// 取消本处理
+			window.detachEvent("onload", window_onload);
+
+			top.document.getElementById("ifCenter").attachEvent("onload", ifCenter_onload);
+			ifCenter_onload(e);
+		}
+		window.attachEvent("onload", window_onload);
+
+		function ifCenter_onload(e) {
+			try {
+				document.title = document.getElementById('ifCenter').contentWindow.document.title;
+			} catch (e) { }
+		}
+	</script>
+
+</head>
+<body style="margin: 0">
+	<div>
+		<iframe id="ifTop" src="User/ifTop.aspx" width="100%" frameborder="0"></iframe>
+		<div id="divMid" style="width: 100%">
+			<!--宽度可设为固定数值-->
+			<div id="divLeft" style="float: left; width: 20%">
+				<iframe id="ifMenu" src="User/ifMenu.aspx" width="100%" frameborder="0"></iframe>
+			</div>
+			<%--<!--宽度可设为固定数值-->
+			<div id="divRight" style="float: right; width: 20%">
+				Right
+			</div>--%>
+			<!--divCenter放在最后-->
+			<div id="divCenter" style="width: expression(document.getElementById('divMid').offsetWidth - document.getElementById('divLeft').offsetWidth)">
+				<iframe id="ifCenter" name="ifCenter" src="User/ifDefault.aspx" width="100%" frameborder="0">
+				</iframe>
+			</div>
+		</div>
+		<div id="divFooter" align="center" style="width: 100%">
+			<p>
+				Copyright &copy; 2008-2010 dtxc.cn All rights reserved. 帖网 版权所有<br />
+				QQ：243640801 Email：<a href="mailto:effect@163.com">effect@163.com</a>
+				<%--<script language="javascript" src="http://count17.51yes.com/click.aspx?id=174527474&logo=12"></script>--%>
+				<br />
+			</p>
+		</div>
+
+		<script type="text/javascript">
+			if (ApqJS.location.QueryString["a"]) {
+				ApqJS.$("ifTop").src = "Admin/ifTop.aspx";
+				ApqJS.$("ifMenu").src = "Admin/ifMenu.aspx";
+				ApqJS.$("ifCenter").src = "Admin/ifDefault.aspx";
+			}
+		</script>
+
+	</div>
+</body>
+</html>

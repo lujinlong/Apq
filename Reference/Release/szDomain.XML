@@ -1,0 +1,131 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>szDomain</name>
+    </assembly>
+    <members>
+        <member name="T:szDomain.ServerCenter.Structs.Kick">
+            <summary>
+            T人结构
+            </summary>
+        </member>
+        <member name="T:szDomain.ServerCenter.Structs.ServerStruct">
+            <summary>
+            服务器结构抽象基类
+            </summary>
+        </member>
+        <member name="P:szDomain.ServerCenter.Structs.ServerStruct.RequestID">
+            <summary>
+            请求号
+            </summary>
+        </member>
+        <member name="P:szDomain.ServerCenter.Structs.ServerStruct.STEncoding">
+            <summary>
+            获取编码格式
+            </summary>
+        </member>
+        <member name="T:szDomain.ServerCenter.Structs.IServerStruct">
+            <summary>
+            服务器结构体
+            </summary>
+        </member>
+        <member name="M:szDomain.ServerCenter.Structs.IServerStruct.Serialize">
+            <summary>
+            序列化,用于Socket发送数据
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:szDomain.ServerCenter.Structs.Kick.#ctor">
+            <summary>
+            Kick
+            </summary>
+        </member>
+        <member name="F:szDomain.ServerCenter.Structs.Kick.MaxCount">
+            <summary>
+            最多请求项个数
+            </summary>
+        </member>
+        <member name="F:szDomain.ServerCenter.Structs.Kick.Items">
+            <summary>
+            请求数组
+            </summary>
+        </member>
+        <member name="M:szDomain.ServerCenter.Structs.Kick.Serialize">
+            <summary>
+            序列化,用于Socket发送数据
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:szDomain.ServerCenter.Structs.Kick.Item">
+            <summary>
+            请求项结构
+            </summary>
+        </member>
+        <member name="F:szDomain.ServerCenter.Structs.Kick.Item.Length">
+            <summary>
+            单项长度
+            </summary>
+        </member>
+        <member name="F:szDomain.ServerCenter.Structs.Kick.Item.ActorName">
+            <summary>
+            ActorName
+            </summary>
+        </member>
+        <member name="T:szDomain.ServerCenter.IManager">
+            <summary>
+            管理接口
+            </summary>
+        </member>
+        <member name="M:szDomain.ServerCenter.IManager.T(System.String,System.Int32,szDomain.ServerCenter.Structs.Kick)">
+            <summary>
+            T人
+            </summary>
+            <param name="IP">IP</param>
+            <param name="Port">Port</param>
+            <param name="strct"></param>
+        </member>
+        <member name="T:szDomain.GlobalObject">
+            <summary>
+            全局对象
+            </summary>
+        </member>
+        <member name="P:szDomain.GlobalObject.TheAssembly">
+            <summary>
+            该程序集配置文件(程序集名.后缀.xml)
+            </summary>
+        </member>
+        <member name="P:szDomain.GlobalObject.XmlAsmConfig">
+            <summary>
+            该程序集配置文件(程序集名.后缀.xml)
+            </summary>
+        </member>
+        <member name="P:szDomain.GlobalObject.XmlUserConfig">
+            <summary>
+            该程序集用户配置文件(程序集名.后缀.xml)
+            </summary>
+        </member>
+        <member name="P:szDomain.GlobalObject.XmlConfigChain">
+            <summary>
+            该程序集配置文件链
+            </summary>
+        </member>
+        <member name="T:szDomain.ServerCenter.Structs.Common">
+            <summary>
+            提供结构体公用功能
+            </summary>
+        </member>
+        <member name="T:szDomain.ServerCenter.SocketClient">
+            <summary>
+            客户端
+            </summary>
+        </member>
+        <member name="M:szDomain.ServerCenter.SocketClient.T(System.String,System.Int32,szDomain.ServerCenter.Structs.Kick)">
+            <summary>
+            T人
+            </summary>
+            <param name="IP">IP</param>
+            <param name="Port">Port</param>
+            <param name="strct"></param>
+        </member>
+    </members>
+</doc>

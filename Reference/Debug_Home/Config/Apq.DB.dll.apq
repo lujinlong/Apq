@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Root>
+	<!-- 类配置文档 -->
+
+	<!-- SqlConnectionString:含数据库名 -->
+	<Apq.DB.GlobalObject SqlConnectionString="Data Source=127.0.0.1;Initial Catalog=Apq;User Id=sa;Password=f;">
+		<SqlConnectionStrings>
+			<SqlConnectionString name="SqlConnectionString1">Data Source=127.0.0.1;Initial Catalog=Apq;User Id=sa;Password=f;</SqlConnectionString>
+			<SqlConnectionString name="SqlConnectionString2">Data Source=127.0.0.1;Initial Catalog=dtxc;User Id=sa;Password=f;</SqlConnectionString>
+		</SqlConnectionStrings>
+	</Apq.DB.GlobalObject>
+</Root>

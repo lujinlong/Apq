@@ -1,0 +1,513 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>log4net.Ext.MarshalByRef</name>
+    </assembly>
+    <members>
+        <member name="T:log4net.Ext.MarshalByRef.MarshalByRefLogImpl">
+            <summary>
+            Marshal By Reference implementation of <see cref="T:log4net.ILog"/>
+            </summary>
+            <remarks>
+            <para>
+            Logger wrapper that is <see cref="T:System.MarshalByRefObject"/>. These objects
+            can be passed by reference across a remoting boundary.
+            </para>
+            </remarks>
+        </member>
+        <member name="M:log4net.Ext.MarshalByRef.MarshalByRefLogImpl.#ctor(log4net.Core.ILogger)">
+            <summary>
+            MarshalByRefLogImpl
+            </summary>
+            <param name="logger"></param>
+        </member>
+        <member name="M:log4net.Ext.MarshalByRef.MarshalByRefLogImpl.Debug(System.Object)">
+            <summary>
+            Debug
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="M:log4net.Ext.MarshalByRef.MarshalByRefLogImpl.Debug(System.Object,System.Exception)">
+            <summary>
+            Debug
+            </summary>
+            <param name="message"></param>
+            <param name="t"></param>
+        </member>
+        <member name="M:log4net.Ext.MarshalByRef.MarshalByRefLogImpl.DebugFormat(System.String,System.Object[])">
+            <summary>
+            DebugFormat
+            </summary>
+            <param name="format"></param>
+            <param name="args"></param>
+        </member>
+        <member name="M:log4net.Ext.MarshalByRef.MarshalByRefLogImpl.DebugFormat(System.String,System.Object)">
+            <summary>
+            DebugFormat
+            </summary>
+            <param name="format"></param>
+            <param name="arg0"></param>
+        </member>
+        <member name="M:log4net.Ext.MarshalByRef.MarshalByRefLogImpl.DebugFormat(System.String,System.Object,System.Object)">
+            <summary>
+            DebugFormat
+            </summary>
+            <param name="format"></param>
+            <param name="arg0"></param>
+            <param name="arg1"></param>
+        </member>
+        <member name="M:log4net.Ext.MarshalByRef.MarshalByRefLogImpl.DebugFormat(System.String,System.Object,System.Object,System.Object)">
+            <summary>
+            DebugFormat
+            </summary>
+            <param name="format"></param>
+            <param name="arg0"></param>
+            <param name="arg1"></param>
+            <param name="arg2"></param>
+        </member>
+        <member name="M:log4net.Ext.MarshalByRef.MarshalByRefLogImpl.DebugFormat(System.IFormatProvider,System.String,System.Object[])">
+            <summary>
+            DebugFormat
+            </summary>
+            <param name="provider"></param>
+            <param name="format"></param>
+            <param name="args"></param>
+        </member>
+        <member name="M:log4net.Ext.MarshalByRef.MarshalByRefLogImpl.Info(System.Object)">
+            <summary>
+            Info
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="M:log4net.Ext.MarshalByRef.MarshalByRefLogImpl.Info(System.Object,System.Exception)">
+            <summary>
+            Info
+            </summary>
+            <param name="message"></param>
+            <param name="t"></param>
+        </member>
+        <member name="M:log4net.Ext.MarshalByRef.MarshalByRefLogImpl.InfoFormat(System.String,System.Object[])">
+            <summary>
+            InfoFormat
+            </summary>
+            <param name="format"></param>
+            <param name="args"></param>
+        </member>
+        <member name="M:log4net.Ext.MarshalByRef.MarshalByRefLogImpl.InfoFormat(System.String,System.Object)">
+            <summary>
+            InfoFormat
+            </summary>
+            <param name="format"></param>
+            <param name="arg0"></param>
+        </member>
+        <member name="M:log4net.Ext.MarshalByRef.MarshalByRefLogImpl.InfoFormat(System.String,System.Object,System.Object)">
+            <summary>
+            InfoFormat
+            </summary>
+            <param name="format"></param>
+            <param name="arg0"></param>
+            <param name="arg1"></param>
+        </member>
+        <member name="M:log4net.Ext.MarshalByRef.MarshalByRefLogImpl.InfoFormat(System.String,System.Object,System.Object,System.Object)">
+            <summary>
+            InfoFormat
+            </summary>
+            <param name="format"></param>
+            <param name="arg0"></param>
+            <param name="arg1"></param>
+            <param name="arg2"></param>
+        </member>
+        <member name="M:log4net.Ext.MarshalByRef.MarshalByRefLogImpl.InfoFormat(System.IFormatProvider,System.String,System.Object[])">
+            <summary>
+            InfoFormat
+            </summary>
+            <param name="provider"></param>
+            <param name="format"></param>
+            <param name="args"></param>
+        </member>
+        <member name="M:log4net.Ext.MarshalByRef.MarshalByRefLogImpl.Warn(System.Object)">
+            <summary>
+            Warn
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="M:log4net.Ext.MarshalByRef.MarshalByRefLogImpl.Warn(System.Object,System.Exception)">
+            <summary>
+            Warn
+            </summary>
+            <param name="message"></param>
+            <param name="t"></param>
+        </member>
+        <member name="M:log4net.Ext.MarshalByRef.MarshalByRefLogImpl.WarnFormat(System.String,System.Object[])">
+            <summary>
+            WarnFormat
+            </summary>
+            <param name="format"></param>
+            <param name="args"></param>
+        </member>
+        <member name="M:log4net.Ext.MarshalByRef.MarshalByRefLogImpl.WarnFormat(System.String,System.Object)">
+            <summary>
+            WarnFormat
+            </summary>
+            <param name="format"></param>
+            <param name="arg0"></param>
+        </member>
+        <member name="M:log4net.Ext.MarshalByRef.MarshalByRefLogImpl.WarnFormat(System.String,System.Object,System.Object)">
+            <summary>
+            WarnFormat
+            </summary>
+            <param name="format"></param>
+            <param name="arg0"></param>
+            <param name="arg1"></param>
+        </member>
+        <member name="M:log4net.Ext.MarshalByRef.MarshalByRefLogImpl.WarnFormat(System.String,System.Object,System.Object,System.Object)">
+            <summary>
+            WarnFormat
+            </summary>
+            <param name="format"></param>
+            <param name="arg0"></param>
+            <param name="arg1"></param>
+            <param name="arg2"></param>
+        </member>
+        <member name="M:log4net.Ext.MarshalByRef.MarshalByRefLogImpl.WarnFormat(System.IFormatProvider,System.String,System.Object[])">
+            <summary>
+            WarnFormat
+            </summary>
+            <param name="provider"></param>
+            <param name="format"></param>
+            <param name="args"></param>
+        </member>
+        <member name="M:log4net.Ext.MarshalByRef.MarshalByRefLogImpl.Error(System.Object)">
+            <summary>
+            Error
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="M:log4net.Ext.MarshalByRef.MarshalByRefLogImpl.Error(System.Object,System.Exception)">
+            <summary>
+            Error
+            </summary>
+            <param name="message"></param>
+            <param name="t"></param>
+        </member>
+        <member name="M:log4net.Ext.MarshalByRef.MarshalByRefLogImpl.ErrorFormat(System.String,System.Object[])">
+            <summary>
+            ErrorFormat
+            </summary>
+            <param name="format"></param>
+            <param name="args"></param>
+        </member>
+        <member name="M:log4net.Ext.MarshalByRef.MarshalByRefLogImpl.ErrorFormat(System.String,System.Object)">
+            <summary>
+            ErrorFormat
+            </summary>
+            <param name="format"></param>
+            <param name="arg0"></param>
+        </member>
+        <member name="M:log4net.Ext.MarshalByRef.MarshalByRefLogImpl.ErrorFormat(System.String,System.Object,System.Object)">
+            <summary>
+            ErrorFormat
+            </summary>
+            <param name="format"></param>
+            <param name="arg0"></param>
+            <param name="arg1"></param>
+        </member>
+        <member name="M:log4net.Ext.MarshalByRef.MarshalByRefLogImpl.ErrorFormat(System.String,System.Object,System.Object,System.Object)">
+            <summary>
+            ErrorFormat
+            </summary>
+            <param name="format"></param>
+            <param name="arg0"></param>
+            <param name="arg1"></param>
+            <param name="arg2"></param>
+        </member>
+        <member name="M:log4net.Ext.MarshalByRef.MarshalByRefLogImpl.ErrorFormat(System.IFormatProvider,System.String,System.Object[])">
+            <summary>
+            ErrorFormat
+            </summary>
+            <param name="provider"></param>
+            <param name="format"></param>
+            <param name="args"></param>
+        </member>
+        <member name="M:log4net.Ext.MarshalByRef.MarshalByRefLogImpl.Fatal(System.Object)">
+            <summary>
+            Fatal
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="M:log4net.Ext.MarshalByRef.MarshalByRefLogImpl.Fatal(System.Object,System.Exception)">
+            <summary>
+            Fatal
+            </summary>
+            <param name="message"></param>
+            <param name="t"></param>
+        </member>
+        <member name="M:log4net.Ext.MarshalByRef.MarshalByRefLogImpl.FatalFormat(System.String,System.Object[])">
+            <summary>
+            FatalFormat
+            </summary>
+            <param name="format"></param>
+            <param name="args"></param>
+        </member>
+        <member name="M:log4net.Ext.MarshalByRef.MarshalByRefLogImpl.FatalFormat(System.String,System.Object)">
+            <summary>
+            FatalFormat
+            </summary>
+            <param name="format"></param>
+            <param name="arg0"></param>
+        </member>
+        <member name="M:log4net.Ext.MarshalByRef.MarshalByRefLogImpl.FatalFormat(System.String,System.Object,System.Object)">
+            <summary>
+            FatalFormat
+            </summary>
+            <param name="format"></param>
+            <param name="arg0"></param>
+            <param name="arg1"></param>
+        </member>
+        <member name="M:log4net.Ext.MarshalByRef.MarshalByRefLogImpl.FatalFormat(System.String,System.Object,System.Object,System.Object)">
+            <summary>
+            FatalFormat
+            </summary>
+            <param name="format"></param>
+            <param name="arg0"></param>
+            <param name="arg1"></param>
+            <param name="arg2"></param>
+        </member>
+        <member name="M:log4net.Ext.MarshalByRef.MarshalByRefLogImpl.FatalFormat(System.IFormatProvider,System.String,System.Object[])">
+            <summary>
+            FatalFormat
+            </summary>
+            <param name="provider"></param>
+            <param name="format"></param>
+            <param name="args"></param>
+        </member>
+        <member name="M:log4net.Ext.MarshalByRef.MarshalByRefLogImpl.InitializeLifetimeService">
+            <summary>
+            Live forever
+            </summary>
+            <returns><c>null</c></returns>
+        </member>
+        <member name="P:log4net.Ext.MarshalByRef.MarshalByRefLogImpl.IsDebugEnabled">
+            <summary>
+            IsDebugEnabled
+            </summary>
+        </member>
+        <member name="P:log4net.Ext.MarshalByRef.MarshalByRefLogImpl.IsInfoEnabled">
+            <summary>
+            IsInfoEnabled
+            </summary>
+        </member>
+        <member name="P:log4net.Ext.MarshalByRef.MarshalByRefLogImpl.IsWarnEnabled">
+            <summary>
+            IsWarnEnabled
+            </summary>
+        </member>
+        <member name="P:log4net.Ext.MarshalByRef.MarshalByRefLogImpl.IsErrorEnabled">
+            <summary>
+            IsErrorEnabled
+            </summary>
+        </member>
+        <member name="P:log4net.Ext.MarshalByRef.MarshalByRefLogImpl.IsFatalEnabled">
+            <summary>
+            IsFatalEnabled
+            </summary>
+        </member>
+        <member name="P:log4net.Ext.MarshalByRef.MarshalByRefLogImpl.Logger">
+            <summary>
+            Logger
+            </summary>
+        </member>
+        <member name="T:log4net.Ext.MarshalByRef.MarshalByRefLogManager">
+            <summary>
+            LogManager that returns <see cref="T:log4net.Ext.MarshalByRef.MarshalByRefLogImpl"/> loggers.
+            </summary>
+        </member>
+        <member name="F:log4net.Ext.MarshalByRef.MarshalByRefLogManager.s_wrapperMap">
+            <summary>
+            The wrapper map to use to hold the "EventIDLogImpl" objects
+            </summary>
+        </member>
+        <member name="M:log4net.Ext.MarshalByRef.MarshalByRefLogManager.#ctor">
+            <summary>
+            Private constructor to prevent object creation
+            </summary>
+        </member>
+        <member name="M:log4net.Ext.MarshalByRef.MarshalByRefLogManager.Exists(System.String)">
+            <summary>
+            Returns the named logger if it exists
+            </summary>
+            <remarks>
+            <para>If the named logger exists (in the default hierarchy) then it
+            returns a reference to the logger, otherwise it returns
+            <c>null</c>.</para>
+            </remarks>
+            <param name="name">The fully qualified logger name to look for</param>
+            <returns>The logger found, or null</returns>
+        </member>
+        <member name="M:log4net.Ext.MarshalByRef.MarshalByRefLogManager.Exists(System.String,System.String)">
+            <summary>
+            Returns the named logger if it exists
+            </summary>
+            <remarks>
+            <para>If the named logger exists (in the specified domain) then it
+            returns a reference to the logger, otherwise it returns
+            <c>null</c>.</para>
+            </remarks>
+            <param name="domain">the domain to lookup in</param>
+            <param name="name">The fully qualified logger name to look for</param>
+            <returns>The logger found, or null</returns>
+        </member>
+        <member name="M:log4net.Ext.MarshalByRef.MarshalByRefLogManager.Exists(System.Reflection.Assembly,System.String)">
+            <summary>
+            Returns the named logger if it exists
+            </summary>
+            <remarks>
+            <para>If the named logger exists (in the specified assembly's domain) then it
+            returns a reference to the logger, otherwise it returns
+            <c>null</c>.</para>
+            </remarks>
+            <param name="assembly">the assembly to use to lookup the domain</param>
+            <param name="name">The fully qualified logger name to look for</param>
+            <returns>The logger found, or null</returns>
+        </member>
+        <member name="M:log4net.Ext.MarshalByRef.MarshalByRefLogManager.GetCurrentLoggers">
+            <summary>
+            Returns all the currently defined loggers in the default domain.
+            </summary>
+            <remarks>
+            <para>The root logger is <b>not</b> included in the returned array.</para>
+            </remarks>
+            <returns>All the defined loggers</returns>
+        </member>
+        <member name="M:log4net.Ext.MarshalByRef.MarshalByRefLogManager.GetCurrentLoggers(System.String)">
+            <summary>
+            Returns all the currently defined loggers in the specified domain.
+            </summary>
+            <param name="domain">the domain to lookup in</param>
+            <remarks>
+            The root logger is <b>not</b> included in the returned array.
+            </remarks>
+            <returns>All the defined loggers</returns>
+        </member>
+        <member name="M:log4net.Ext.MarshalByRef.MarshalByRefLogManager.GetCurrentLoggers(System.Reflection.Assembly)">
+            <summary>
+            Returns all the currently defined loggers in the specified assembly's domain.
+            </summary>
+            <param name="assembly">the assembly to use to lookup the domain</param>
+            <remarks>
+            The root logger is <b>not</b> included in the returned array.
+            </remarks>
+            <returns>All the defined loggers</returns>
+        </member>
+        <member name="M:log4net.Ext.MarshalByRef.MarshalByRefLogManager.GetLogger(System.String)">
+            <summary>
+            Retrieve or create a named logger.
+            </summary>
+            <remarks>
+            <para>Retrieve a logger named as the <paramref name="name"/>
+            parameter. If the named logger already exists, then the
+            existing instance will be returned. Otherwise, a new instance is
+            created.</para>
+            
+            <para>By default, loggers do not have a set level but inherit
+            it from the hierarchy. This is one of the central features of
+            log4net.</para>
+            </remarks>
+            <param name="name">The name of the logger to retrieve.</param>
+            <returns>the logger with the name specified</returns>
+        </member>
+        <member name="M:log4net.Ext.MarshalByRef.MarshalByRefLogManager.GetLogger(System.String,System.String)">
+            <summary>
+            Retrieve or create a named logger.
+            </summary>
+            <remarks>
+            <para>Retrieve a logger named as the <paramref name="name"/>
+            parameter. If the named logger already exists, then the
+            existing instance will be returned. Otherwise, a new instance is
+            created.</para>
+            
+            <para>By default, loggers do not have a set level but inherit
+            it from the hierarchy. This is one of the central features of
+            log4net.</para>
+            </remarks>
+            <param name="domain">the domain to lookup in</param>
+            <param name="name">The name of the logger to retrieve.</param>
+            <returns>the logger with the name specified</returns>
+        </member>
+        <member name="M:log4net.Ext.MarshalByRef.MarshalByRefLogManager.GetLogger(System.Reflection.Assembly,System.String)">
+            <summary>
+            Retrieve or create a named logger.
+            </summary>
+            <remarks>
+            <para>Retrieve a logger named as the <paramref name="name"/>
+            parameter. If the named logger already exists, then the
+            existing instance will be returned. Otherwise, a new instance is
+            created.</para>
+            
+            <para>By default, loggers do not have a set level but inherit
+            it from the hierarchy. This is one of the central features of
+            log4net.</para>
+            </remarks>
+            <param name="assembly">the assembly to use to lookup the domain</param>
+            <param name="name">The name of the logger to retrieve.</param>
+            <returns>the logger with the name specified</returns>
+        </member>
+        <member name="M:log4net.Ext.MarshalByRef.MarshalByRefLogManager.GetLogger(System.Type)">
+            <summary>
+            Shorthand for <see cref="M:log4net.LogManager.GetLogger(System.String)"/>.
+            </summary>
+            <remarks>
+            Get the logger for the fully qualified name of the type specified.
+            </remarks>
+            <param name="type">The full name of <paramref name="type"/> will 
+            be used as the name of the logger to retrieve.</param>
+            <returns>the logger with the name specified</returns>
+        </member>
+        <member name="M:log4net.Ext.MarshalByRef.MarshalByRefLogManager.GetLogger(System.String,System.Type)">
+            <summary>
+            Shorthand for <see cref="M:log4net.LogManager.GetLogger(System.String)"/>.
+            </summary>
+            <remarks>
+            Get the logger for the fully qualified name of the type specified.
+            </remarks>
+            <param name="domain">the domain to lookup in</param>
+            <param name="type">The full name of <paramref name="type"/> will 
+            be used as the name of the logger to retrieve.</param>
+            <returns>the logger with the name specified</returns>
+        </member>
+        <member name="M:log4net.Ext.MarshalByRef.MarshalByRefLogManager.GetLogger(System.Reflection.Assembly,System.Type)">
+            <summary>
+            Shorthand for <see cref="M:log4net.LogManager.GetLogger(System.String)"/>.
+            </summary>
+            <remarks>
+            Get the logger for the fully qualified name of the type specified.
+            </remarks>
+            <param name="assembly">the assembly to use to lookup the domain</param>
+            <param name="type">The full name of <paramref name="type"/> will 
+            be used as the name of the logger to retrieve.</param>
+            <returns>the logger with the name specified</returns>
+        </member>
+        <member name="M:log4net.Ext.MarshalByRef.MarshalByRefLogManager.WrapLogger(log4net.Core.ILogger)">
+            <summary>
+            Lookup the wrapper object for the logger specified
+            </summary>
+            <param name="logger">the logger to get the wrapper for</param>
+            <returns>the wrapper for the logger specified</returns>
+        </member>
+        <member name="M:log4net.Ext.MarshalByRef.MarshalByRefLogManager.WrapLoggers(log4net.Core.ILogger[])">
+            <summary>
+            Lookup the wrapper objects for the loggers specified
+            </summary>
+            <param name="loggers">the loggers to get the wrappers for</param>
+            <returns>Lookup the wrapper objects for the loggers specified</returns>
+        </member>
+        <member name="M:log4net.Ext.MarshalByRef.MarshalByRefLogManager.WrapperCreationHandler(log4net.Core.ILogger)">
+            <summary>
+            Method to create the <see cref="T:log4net.Core.ILoggerWrapper"/> objects used by
+            this manager.
+            </summary>
+            <param name="logger">The logger to wrap</param>
+            <returns>The wrapper for the logger specified</returns>
+        </member>
+    </members>
+</doc>

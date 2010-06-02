@@ -1,0 +1,65 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Dlls", "Dlls", "{90F5FACD-55C7-442A-9199-20AB33392C47}"
+	ProjectSection(SolutionItems) = preProject
+		Dlls\Components.dll = Dlls\Components.dll
+		Dlls\ConnKeyManagerlib.dll = Dlls\ConnKeyManagerlib.dll
+		Dlls\DAL.dll = Dlls\DAL.dll
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "szDomain.Win", "szDomain.Win\szDomain.Win.csproj", "{5DB41917-3D5D-403F-B552-02B452C07C5D}"
+	ProjectSection(ProjectDependencies) = postProject
+		{1F06AC75-B79A-45BC-9937-6FFE3D5B16AE} = {1F06AC75-B79A-45BC-9937-6FFE3D5B16AE}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "szDomain", "szDomain\szDomain.csproj", "{1F06AC75-B79A-45BC-9937-6FFE3D5B16AE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "szDomain.ResConvert", "szDomain.ResConvert\szDomain.ResConvert.csproj", "{E48380FB-8DA1-4C47-9BD7-A9E6A9186ACE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Apq_Web|Any CPU = Apq_Web|Any CPU
+		Apq_Win|Any CPU = Apq_Win|Any CPU
+		Debug_Home|Any CPU = Debug_Home|Any CPU
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5DB41917-3D5D-403F-B552-02B452C07C5D}.Apq_Web|Any CPU.ActiveCfg = Apq_Web|Any CPU
+		{5DB41917-3D5D-403F-B552-02B452C07C5D}.Apq_Win|Any CPU.ActiveCfg = Apq_Win|Any CPU
+		{5DB41917-3D5D-403F-B552-02B452C07C5D}.Apq_Win|Any CPU.Build.0 = Apq_Win|Any CPU
+		{5DB41917-3D5D-403F-B552-02B452C07C5D}.Debug_Home|Any CPU.ActiveCfg = Debug_Home|Any CPU
+		{5DB41917-3D5D-403F-B552-02B452C07C5D}.Debug_Home|Any CPU.Build.0 = Debug_Home|Any CPU
+		{5DB41917-3D5D-403F-B552-02B452C07C5D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5DB41917-3D5D-403F-B552-02B452C07C5D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5DB41917-3D5D-403F-B552-02B452C07C5D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5DB41917-3D5D-403F-B552-02B452C07C5D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1F06AC75-B79A-45BC-9937-6FFE3D5B16AE}.Apq_Web|Any CPU.ActiveCfg = Apq_Web|Any CPU
+		{1F06AC75-B79A-45BC-9937-6FFE3D5B16AE}.Apq_Web|Any CPU.Build.0 = Apq_Web|Any CPU
+		{1F06AC75-B79A-45BC-9937-6FFE3D5B16AE}.Apq_Win|Any CPU.ActiveCfg = Apq_Win|Any CPU
+		{1F06AC75-B79A-45BC-9937-6FFE3D5B16AE}.Apq_Win|Any CPU.Build.0 = Apq_Win|Any CPU
+		{1F06AC75-B79A-45BC-9937-6FFE3D5B16AE}.Debug_Home|Any CPU.ActiveCfg = Debug_Home|Any CPU
+		{1F06AC75-B79A-45BC-9937-6FFE3D5B16AE}.Debug_Home|Any CPU.Build.0 = Debug_Home|Any CPU
+		{1F06AC75-B79A-45BC-9937-6FFE3D5B16AE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1F06AC75-B79A-45BC-9937-6FFE3D5B16AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1F06AC75-B79A-45BC-9937-6FFE3D5B16AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1F06AC75-B79A-45BC-9937-6FFE3D5B16AE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E48380FB-8DA1-4C47-9BD7-A9E6A9186ACE}.Apq_Web|Any CPU.ActiveCfg = Apq_Web|Any CPU
+		{E48380FB-8DA1-4C47-9BD7-A9E6A9186ACE}.Apq_Web|Any CPU.Build.0 = Apq_Web|Any CPU
+		{E48380FB-8DA1-4C47-9BD7-A9E6A9186ACE}.Apq_Win|Any CPU.ActiveCfg = Apq_Win|Any CPU
+		{E48380FB-8DA1-4C47-9BD7-A9E6A9186ACE}.Apq_Win|Any CPU.Build.0 = Apq_Win|Any CPU
+		{E48380FB-8DA1-4C47-9BD7-A9E6A9186ACE}.Debug_Home|Any CPU.ActiveCfg = Debug_Home|Any CPU
+		{E48380FB-8DA1-4C47-9BD7-A9E6A9186ACE}.Debug_Home|Any CPU.Build.0 = Debug_Home|Any CPU
+		{E48380FB-8DA1-4C47-9BD7-A9E6A9186ACE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E48380FB-8DA1-4C47-9BD7-A9E6A9186ACE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E48380FB-8DA1-4C47-9BD7-A9E6A9186ACE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E48380FB-8DA1-4C47-9BD7-A9E6A9186ACE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		VisualSVNWorkingCopyRoot = .
+	EndGlobalSection
+EndGlobal

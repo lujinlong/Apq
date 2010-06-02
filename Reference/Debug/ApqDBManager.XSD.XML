@@ -1,0 +1,93 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ApqDBManager.XSD</name>
+    </assembly>
+    <members>
+        <member name="T:ApqDBManager.XSD.Servers">
+             <summary>
+            Represents a strongly typed in-memory cache of data.
+            </summary>
+        </member>
+        <member name="T:ApqDBManager.XSD.Servers.ServersDataTable">
+             <summary>
+            Represents the strongly named DataTable class.
+            </summary>
+        </member>
+        <member name="T:ApqDBManager.XSD.Servers.ServersRow">
+             <summary>
+            Represents strongly named DataRow class.
+            </summary>
+        </member>
+        <member name="T:ApqDBManager.XSD.Servers.ServersRowChangeEvent">
+             <summary>
+            Row event argument class
+            </summary>
+        </member>
+        <member name="T:ApqDBManager.XSD.SrvsMgr">
+             <summary>
+            Represents a strongly typed in-memory cache of data.
+            </summary>
+        </member>
+        <member name="T:ApqDBManager.XSD.SrvsMgr.RSrvConfigDataTable">
+             <summary>
+            Represents the strongly named DataTable class.
+            </summary>
+        </member>
+        <member name="T:ApqDBManager.XSD.SrvsMgr.RDBUserDataTable">
+             <summary>
+            Represents the strongly named DataTable class.
+            </summary>
+        </member>
+        <member name="T:ApqDBManager.XSD.SrvsMgr.RDBLoginDataTable">
+             <summary>
+            Represents the strongly named DataTable class.
+            </summary>
+        </member>
+        <member name="T:ApqDBManager.XSD.SrvsMgr.RDBConfigDataTable">
+             <summary>
+            Represents the strongly named DataTable class.
+            </summary>
+        </member>
+        <member name="T:ApqDBManager.XSD.SrvsMgr.RSrvConfigRow">
+             <summary>
+            Represents strongly named DataRow class.
+            </summary>
+        </member>
+        <member name="T:ApqDBManager.XSD.SrvsMgr.RDBUserRow">
+             <summary>
+            Represents strongly named DataRow class.
+            </summary>
+        </member>
+        <member name="T:ApqDBManager.XSD.SrvsMgr.RDBLoginRow">
+             <summary>
+            Represents strongly named DataRow class.
+            </summary>
+        </member>
+        <member name="T:ApqDBManager.XSD.SrvsMgr.RDBConfigRow">
+             <summary>
+            Represents strongly named DataRow class.
+            </summary>
+        </member>
+        <member name="T:ApqDBManager.XSD.SrvsMgr.RSrvConfigRowChangeEvent">
+             <summary>
+            Row event argument class
+            </summary>
+        </member>
+        <member name="T:ApqDBManager.XSD.SrvsMgr.RDBUserRowChangeEvent">
+             <summary>
+            Row event argument class
+            </summary>
+        </member>
+        <member name="T:ApqDBManager.XSD.SrvsMgr.RDBLoginRowChangeEvent">
+             <summary>
+            Row event argument class
+            </summary>
+        </member>
+        <member name="T:ApqDBManager.XSD.SrvsMgr.RDBConfigRowChangeEvent">
+             <summary>
+            Row event argument class
+            </summary>
+        </member>
+    </members>
+</doc>

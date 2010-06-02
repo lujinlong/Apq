@@ -1,0 +1,166 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Apq.Web</name>
+    </assembly>
+    <members>
+        <member name="T:Apq.Web.SessionState.HttpSessionState">
+            <summary>
+            HttpSessionState 统一管理
+            </summary>
+        </member>
+        <member name="M:Apq.Web.SessionState.HttpSessionState.#ctor(System.Web.SessionState.HttpSessionState)">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Apq.Web.SessionState.HttpSessionState.Session">
+            <summary>
+            获取/*或设置*/ Session
+            </summary>
+        </member>
+        <member name="P:Apq.Web.SessionState.HttpSessionState.User">
+            <summary>
+            在 Session 中获取或设置已登录用户表
+            </summary>
+        </member>
+        <member name="P:Apq.Web.SessionState.HttpSessionState.UserID">
+            <summary>
+            获取 UserID
+            </summary>
+        </member>
+        <member name="P:Apq.Web.SessionState.HttpSessionState.LoginName">
+            <summary>
+            在 Session 中获取或设置登录用户名
+            </summary>
+        </member>
+        <member name="P:Apq.Web.SessionState.HttpSessionState.LoginTime">
+            <summary>
+            在 Session 中获取或设置登录时间
+            </summary>
+        </member>
+        <member name="T:Apq.Web.Compilation.SqlResourceProviderFactory">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Apq.Web.Compilation.SqlResourceProviderFactory.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Apq.Web.Compilation.SqlResourceProviderFactory.CreateGlobalResourceProvider(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="classKey"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Apq.Web.Compilation.SqlResourceProviderFactory.CreateLocalResourceProvider(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="virtualPath"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Apq.Web.ExtJS.state">
+            <summary>
+            提供对Ext.state的Helper
+            </summary>
+        </member>
+        <member name="M:Apq.Web.ExtJS.state.DecodeValue(System.String)">
+            <summary>
+            解析stateValue,最多返回两部分字符串
+            </summary>
+            <param name="val"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Apq.Web.UI.WebControls.Pager">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Apq.Web.UI.WebControls.Pager.#ctor">
+            <summary>
+            分页界面
+            </summary>
+        </member>
+        <member name="M:Apq.Web.UI.WebControls.Pager.RenderBeginTag(System.Web.UI.HtmlTextWriter)">
+            <summary>
+            
+            </summary>
+            <param name="writer"></param>
+        </member>
+        <member name="M:Apq.Web.UI.WebControls.Pager.RenderContents(System.Web.UI.HtmlTextWriter)">
+            <summary>
+            将控件的内容呈现到指定的编写器中。
+            </summary>
+            <param name="output"></param>
+        </member>
+        <member name="P:Apq.Web.UI.WebControls.Pager.Text">
+            <summary>
+            获取或设置控件内容
+            </summary>
+        </member>
+        <member name="P:Apq.Web.UI.WebControls.Pager.Total">
+            <summary>
+            获取或设置总行数
+            </summary>
+        </member>
+        <member name="T:Apq.Web.Compilation.SqlResourceHelper">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Apq.Web.Compilation.SqlResourceHelper.GetResources(System.String,System.String,System.String,System.Boolean,System.IServiceProvider)">
+            <summary>
+            
+            </summary>
+            <param name="virtualPath"></param>
+            <param name="className"></param>
+            <param name="cultureName"></param>
+            <param name="designMode"></param>
+            <param name="serviceProvider"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Apq.Web.Compilation.SqlResourceHelper.AddResource(System.String,System.String,System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="resource_name"></param>
+            <param name="virtualPath"></param>
+            <param name="className"></param>
+            <param name="cultureName"></param>
+        </member>
+        <member name="T:Apq.Web.SiteMapNode">
+            <summary>
+            SiteMapNode
+            </summary>
+        </member>
+        <member name="T:Apq.Web.GlobalObject">
+            <summary>
+            全局对象
+            </summary>
+        </member>
+        <member name="P:Apq.Web.GlobalObject.TheAssembly">
+            <summary>
+            该程序集配置文件(程序集名.后缀.xml)
+            </summary>
+        </member>
+        <member name="P:Apq.Web.GlobalObject.XmlAsmConfig">
+            <summary>
+            该程序集配置文件(程序集名.后缀.xml)
+            </summary>
+        </member>
+        <member name="P:Apq.Web.GlobalObject.XmlUserConfig">
+            <summary>
+            该程序集用户配置文件(程序集名.后缀.xml)
+            </summary>
+        </member>
+        <member name="P:Apq.Web.GlobalObject.XmlConfigChain">
+            <summary>
+            该程序集配置文件链
+            </summary>
+        </member>
+    </members>
+</doc>

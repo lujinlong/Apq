@@ -1,0 +1,179 @@
+﻿A:active {
+	COLOR: #333333;TEXT-DECORATION: none
+}
+.BarCaption {
+	FONT-WEIGHT: bold; FONT-SIZE: 12px; COLOR: #333333; FONT-FAMILY: "Arial", "Helvetica", "sans-serif"
+}
+.BarText {
+	FONT-SIZE: 12px; COLOR: #666666; FONT-FAMILY: "Arial", "Helvetica", "sans-serif"
+}
+A.BarText:link {
+	COLOR: #666666
+}
+A.BarText:hover {
+	TEXT-DECORATION: none
+}
+A.BarText:visited {
+	COLOR: #666666
+}
+A.BarCaption:link {
+	BORDER-RIGHT: medium none; BORDER-TOP: medium none; BORDER-LEFT: medium none; COLOR: #333333; BORDER-BOTTOM: medium none; TEXT-DECORATION: none
+}
+A.BarCaption:hover {
+	BORDER-RIGHT: medium none; BORDER-TOP: medium none; BORDER-LEFT: medium none; BORDER-BOTTOM: medium none; TEXT-DECORATION: underline
+}
+A.BarCaption:visited {
+	COLOR: #588FCF; TEXT-DECORATION: none
+}
+
+A:visited {
+	COLOR: #588FCF; FONT-FAMILY: "Arial", "Helvetica", "sans-serif"; TEXT-DECORATION: none
+}
+TD {
+	FONT-SIZE: 12px; COLOR: #666666; FONT-FAMILY: "Arial", "Helvetica", "sans-serif"; TEXT-DECORATION: none
+}
+.Text {
+	FONT-SIZE: 12px; LINE-HEIGHT: 25px; FONT-FAMILY: "Arial", "Helvetica", "sans-serif"; TEXT-DECORATION: none
+}
+.TextCap {
+	FONT-WEIGHT: bold; FONT-SIZE: 24px; COLOR: #000000; FONT-FAMILY: "Arial", "Helvetica", "sans-serif"; TEXT-DECORATION: none
+}
+
+INPUT {
+	BORDER-TOP-WIDTH: 1px; PADDING-RIGHT: 1px; PADDING-LEFT: 1px; BORDER-LEFT-WIDTH: 1px; FONT-SIZE: 11px; BORDER-LEFT-COLOR: #444444; BORDER-BOTTOM-WIDTH: 1px; BORDER-BOTTOM-COLOR: #999999; PADDING-BOTTOM: 1px; BORDER-TOP-COLOR: #444444; PADDING-TOP: 1px; FONT-FAMILY: tahoma; BORDER-RIGHT-WIDTH: 1px; BORDER-RIGHT-COLOR: #999999
+}
+BODY {MARGIN-TOP: 0px;FONT-SIZE: 12px;;MARGIN-BOTTOM: 0px;COLOR: #333333;TEXT-ALIGN: center;background-position:  center;}
+TD {FONT-SIZE: 12px}
+INPUT {BORDER-TOP-WIDTH: 1px; BORDER-LEFT-WIDTH: 1px; FONT-SIZE: 12px; BORDER-BOTTOM-WIDTH: 1px; BORDER-RIGHT-WIDTH: 1px}
+.botoff {BORDER-RIGHT: 0px solid; BORDER-TOP: 0px solid; FONT-SIZE: 9pt; FILTER: chroma(color=#f7f7f7); BACKGROUND-IMAGE: url(images/bota1.gif); BORDER-LEFT: 0px solid; WIDTH: 40px; CURSOR: hand; PADDING-TOP: 3px; BORDER-BOTTOM: 0px solid; BACKGROUND-REPEAT: no-repeat; HEIGHT: 20px; BACKGROUND-COLOR: #f7f7f7}
+.boton {BORDER-RIGHT: 0px solid; BORDER-TOP: 0px solid; FONT-SIZE: 9pt; FILTER: chroma(color=#f7f7f7); BACKGROUND-IMAGE: url(images/bota2.gif); BORDER-LEFT: 0px solid; WIDTH: 40px; CURSOR: hand; PADDING-TOP: 3px; BORDER-BOTTOM: 0px solid; BACKGROUND-REPEAT: no-repeat; HEIGHT: 20px; BACKGROUND-COLOR: #f7f7f7}
+TEXTAREA {BORDER-RIGHT: 1px solid; BORDER-TOP: 1px solid; FONT-SIZE: 12px; BORDER-LEFT: 1px solid; BORDER-BOTTOM: 1px solid}
+.JSTEXTAREA{width:700;height:300; font-size: 9pt; color: #333333;border: 1 solid #ff9000;}
+SELECT {BORDER-TOP-WIDTH: 1px; BORDER-LEFT-WIDTH: 1px; FONT-SIZE: 12px; BORDER-BOTTOM-WIDTH: 1px; BORDER-RIGHT-WIDTH: 1px}
+FORM {PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px}
+
+
+
+A:visited {COLOR: #000000; TEXT-DECORATION: none}
+.book {BORDER-RIGHT: #ff9000 1px solid; PADDING-RIGHT: 5px; BORDER-TOP: #ff9000 1px solid; PADDING-LEFT: 5px; PADDING-BOTTOM: 3px; BORDER-LEFT: #ff9000 1px solid; COLOR: green; TEXT-DECORATION: none;cursor:hand; PADDING-TOP: 5px; BORDER-BOTTOM: #ff9000 1px solid; width="74";HEIGHT: 18px; BACKGROUND-COLOR: #ffffff}
+.view {COLOR: red; TEXT-DECORATION: none}
+.title {COLOR: #ff6600; TEXT-DECORATION: none}
+.lanyubk {BORDER-RIGHT: #dddddd 0px solid; MARGIN-LEFT: auto; BORDER-LEFT: #dddddd 0px solid; WIDTH: 760px; MARGIN-RIGHT: auto}
+.lanyubg {BACKGROUND: #ff9000;}
+UL.nl {PADDING-RIGHT: 0px; LIST-STYLE: none none outside; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px}
+UL.nl LI {PADDING-LEFT: 15px; BACKGROUND: url(images/li.gif) no-repeat left 7px; PADDING-TOP: 3px; HEIGHT: 22px}
+UL LI.lanyu {PADDING-LEFT: 15px; BACKGROUND: url(images/b3.gif) no-repeat left 0px; PADDING-TOP: 5px; HEIGHT: 22px}
+UL LI.boy {PADDING-LEFT: 15px; BACKGROUND: url(images/bboy.gif) no-repeat left 0px; PADDING-TOP: 0px; HEIGHT: 14px}
+UL LI.girl {PADDING-LEFT: 15px; BACKGROUND: url(images/bgirl.gif) no-repeat left 0px; PADDING-TOP: 0px; HEIGHT: 14px}
+.lframe {WIDTH: 196px; TEXT-ALIGN: left}
+.lframe TABLE {WIDTH: 100%}
+.lframe TD.tm {BORDER-TOP: #dddddd 1px solid; BACKGROUND: #f6f6f6; BORDER-BOTTOM: #dddddd 1px solid; HEIGHT: 25px}
+.lframe TD.tm IMG {VERTICAL-ALIGN: middle}
+.lframe TD.tl {BACKGROUND: #ff9000; WIDTH: 5px}
+.lframe TD.tr {BACKGROUND: #dddddd; WIDTH: 1px}
+.lframe SPAN.tt {PADDING-LEFT: 10px; FONT-WEIGHT: bold; COLOR: #666666}
+.lframe TD.mm {PADDING-RIGHT: 3px; PADDING-LEFT: 3px; BACKGROUND: #ffffff; PADDING-BOTTOM: 3px; PADDING-TOP: 3px}
+.lframe TD.ml {BACKGROUND: #dddddd; WIDTH: 0px}
+.lframe TD.mr {BACKGROUND: #dddddd; WIDTH: 1px}
+.lframe TD.bm {BORDER-TOP: #e6e6e6 1px solid}
+
+.mframe {TEXT-ALIGN: left}
+.mframe TD.tm {BORDER-TOP: #ff9000 4px solid; BACKGROUND: #EEEEEE; HEIGHT: 25px}
+.mframe TD.tm IMG {VERTICAL-ALIGN: middle}
+.mframe TD.tl {BACKGROUND: url(images/c2.gif) no-repeat; WIDTH: 25px}
+.mframe TD.tr {WIDTH: 0px}
+.mframe SPAN.tt {PADDING-LEFT: 10px; FONT-WEIGHT: bold; COLOR: green}
+.mframe TD.mm {BACKGROUND: #fcfcfc}
+.mframe TD.ml {BACKGROUND: #e1e0e0; WIDTH: 0px}
+.mframe TD.mr {BACKGROUND: #e1e0e0; WIDTH: 0px}
+.mframe TD.bm {DISPLAY: none; FONT-SIZE: 1px; BACKGROUND: #e1e0e0; HEIGHT: 0px}
+.mframe TD.bl {DISPLAY: none; WIDTH: 18px}
+.mframe TD.br {DISPLAY: none; WIDTH: 22px}
+
+.member {WIDTH: 196px; TEXT-ALIGN: left}
+.member TABLE {WIDTH: 100%}
+.member TD.tm {BORDER-TOP: #dddddd 1px solid; PADDING-LEFT: 6px; BACKGROUND: #f6f6f6; BORDER-BOTTOM: #dddddd 1px solid; HEIGHT: 30px}
+.member TD.tm IMG {VERTICAL-ALIGN: middle}
+.member TD.tl {BACKGROUND: #ff9000; WIDTH: 5px}
+.member TD.tr {BACKGROUND: #dddddd; WIDTH: 1px}
+.member SPAN.tt {COLOR: #666666}
+.member TD.mm {PADDING-RIGHT: 3px; PADDING-LEFT: 3px; PADDING-BOTTOM: 3px; PADDING-TOP: 3px}
+.member TD.ml {BACKGROUND: #dddddd; WIDTH: 0px}
+.member TD.mr {BACKGROUND: #dddddd; WIDTH: 1px}
+.member TD.bm {BORDER-TOP: #ff9000 1px solid; HEIGHT: 1px}
+.member TD.bl {DISPLAY: none; WIDTH: 18px}
+.member TD.br {DISPLAY: none; WIDTH: 22px}
+#lanyuhead {WIDTH: 100%}
+#lanyuhead TD.m {}
+#lanyuhead TD.l {WIDTH: 0px}
+#lanyuhead TD.r {WIDTH: 0px}
+#navbar {WIDTH: 100%}
+#navbar TD.m {BACKGROUND: #ff9000;BACKGROUND: url(images/b1.gif); HEIGHT: 30px; TEXT-ALIGN: center}
+#navBar TD.m IMG {VERTICAL-ALIGN: middle}
+#navbar TD.l {BACKGROUND: url(no.gif); WIDTH: 10px}
+#navbar TD.r {BACKGROUND: url(no.gif); WIDTH: 10px}
+#navbar TD A:link {COLOR: #ffffff; TEXT-DECORATION: none}
+#navbar TD A:visited {COLOR: #ffffff; TEXT-DECORATION: none}
+#navbar TD A:hover {COLOR: #ffffff; TEXT-DECORATION: none}
+#navsub {WIDTH: 100%}
+#navsub TD.m {BACKGROUND: #fcfcfc; HEIGHT: 23px; TEXT-ALIGN: left}
+#navsub TD.l {DISPLAY: none; BACKGROUND: none transparent scroll repeat 0% 0%; WIDTH: 10px}
+#navsub TD.r {DISPLAY: none; WIDTH: 10px}
+#middle {WIDTH: 100%}
+#footer {BORDER-TOP: #eeeeee 1px solid; WIDTH: 100%; HEIGHT: 60px}
+TABLE.lanyuimg {BORDER-RIGHT: #f7f7f7 1px solid; BORDER-TOP: #f7f7f7 1px solid; BACKGROUND: #e5e5e5; BORDER-LEFT: #f7f7f7 1px solid; BORDER-BOTTOM: #f7f7f7 1px solid}
+TABLE.lanyuimg TD {BORDER-RIGHT: #b2b2b2 1px solid; PADDING-RIGHT: 4px; BORDER-TOP: #b2b2b2 1px solid; PADDING-LEFT: 4px; BACKGROUND: #ffffff; PADDING-BOTTOM: 4px; BORDER-LEFT: #b2b2b2 1px solid; PADDING-TOP: 4px; BORDER-BOTTOM: #b2b2b2 1px solid}
+TABLE.lanyuimg TD IMG {BORDER-RIGHT: #999999 1px solid; BORDER-TOP: #999999 1px solid; BORDER-LEFT: #999999 1px solid; BORDER-BOTTOM: #999999 1px solid}
+
+
+A:link {
+	 TEXT-DECORATION: none
+}
+a:hover{
+	 TEXT-DECORATION: none
+}
+
+
+
+BODY {
+	FONT: 11px Verdana, Arial, Helvetica
+}
+#navigation {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; FONT-SIZE: 11px; PADDING-BOTTOM: 0px; MARGIN: 6px 0px 0px 5px; WIDTH: 150px; PADDING-TOP: 0px; FONT-FAMILY: Verdana, Arial, Helvetica
+}
+#navigation UL {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; BORDER-TOP-STYLE: none; PADDING-TOP: 0px; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; LIST-STYLE-TYPE: none; BORDER-BOTTOM-STYLE: none
+}
+#navigation LI {
+	MARGIN: 0px
+}
+UNKNOWN {
+	MARGIN: 0px
+}
+#navigation LI IMG {
+	VERTICAL-ALIGN: -1px
+}
+#navigation LI IMG.l0 {
+	MARGIN: 0px 4px 0px 0px; WIDTH: 11px; HEIGHT: 16px
+}
+#navigation LI IMG.l1 {
+	MARGIN: 0px 4px 0px 14px; WIDTH: 11px; HEIGHT: 16px
+}
+#navigation LI #curnavpage {
+	BORDER-RIGHT: #4691d2 1px solid; PADDING-RIGHT: 3px; BORDER-TOP: #4691d2 1px solid; DISPLAY: block; PADDING-LEFT: 0px; PADDING-BOTTOM: 3px; BORDER-LEFT: #4691d2 1px solid; WIDTH: 100%; COLOR: #000000; PADDING-TOP: 2px; BORDER-BOTTOM: #4691d2 1px solid; BACKGROUND-COLOR: #aed7fc; TEXT-DECORATION: none
+}
+UNKNOWN {
+	WIDTH: auto
+}
+#navigation LI A {
+	PADDING-RIGHT: 4px; DISPLAY: block; PADDING-LEFT: 1px; PADDING-BOTTOM: 4px; WIDTH: 100%; COLOR: #000000; BORDER-TOP-STYLE: none; PADDING-TOP: 3px; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; TEXT-DECORATION: none; BORDER-BOTTOM-STYLE: none
+}
+UNKNOWN {
+	WIDTH: auto
+}
+#navigation LI A:hover {
+	BORDER-RIGHT: #B2B2B2 1px solid; PADDING-RIGHT: 3px; BORDER-TOP: #B2B2B2 1px solid; PADDING-LEFT: 0px; PADDING-BOTTOM: 3px; BORDER-LEFT: #B2B2B2 1px solid; PADDING-TOP: 2px; BORDER-BOTTOM: #B2B2B2 1px solid; BACKGROUND-COLOR: #f8f8f8
+}
+#navigation LI A:unknown {
+	BORDER-RIGHT: #a5a5a5 1px solid; PADDING-RIGHT: 3px; BORDER-TOP: #a5a5a5 1px solid; PADDING-LEFT: 0px; PADDING-BOTTOM: 3px; BORDER-LEFT: #a5a5a5 1px solid; PADDING-TOP: 2px; BORDER-BOTTOM: #a5a5a5 1px solid; BACKGROUND-COLOR: #e0e0e0
+}

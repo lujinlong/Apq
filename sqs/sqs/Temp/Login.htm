@@ -1,0 +1,197 @@
+﻿<html>
+<head>
+	<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+	<meta content="IE=EmulateIE7" http-equiv="X-UA-Compatible">
+
+	<script language="javascript">var g_begTime=new Date()</script>
+
+	<script language="javascript" src="http://mat1.qq.com/news/ptlogin2/js/comm.js"></script>
+
+	<script language="javascript" src="http://mat1.qq.com/news/ptlogin2/js/str_cn.js"></script>
+
+	<script language="javascript">
+//映射模板文件中的文字,第一列为字符串ID, 第二列为模板文件中的标签ID
+var g_labelMap = new Array([STR_UINTIP, "u"],
+						   [STR_UIN, "label_uin"],
+						   [STR_PWD, "label_pwd"],
+						   [STR_VCODE, "label_vcode"],
+						   [STR_VCODE_TIP, "label_vcode_tip"],
+						   [STR_CHANGE_VCODE, "changeimg_link"],
+						   [STR_REMEMBER_PWD, "label_remember_pwd"],
+						   [STR_FORGET_PWD, "label_forget_pwd"],
+						   [STR_LOGIN, "login_button"],
+						   [STR_SWITCH_QLOGIN, "label_switch_qlogin"],
+						   [STR_LOGIN_TITLE, "label_login_title"],
+						   [STR_QLOGIN_INTRO, "label_qlogin_intro"],
+						   [STR_QLOGINING, "label_qlogining"],
+						   [STR_QLOGIN_HELP, "label_qlogin_help"],
+						   [STR_SWITCH_NORMAL, "label_switch_normal"],
+						   [STR_QLOGIN, "loginbtn"],
+						   [STR_1_DAY, "label_1_day"],
+						   [STR_1_WEEK, "label_1_week"],
+						   [STR_1_MONTH, "label_1_month"],
+						   [STR_HALF_YEAR, "label_half_year"],
+						   [STR_1_YEAR, "label_1_year"] );					   
+document.domain="qq.com";
+
+	</script>
+
+	<link rel="stylesheet" type="text/css" href="http://imgcache.qq.com/campus/login/login.css">
+	<style type="text/css">
+		u
+		{
+			text-decoration: none;
+		}
+	</style>
+</head>
+<body onclick="" onload="onPageLoad()">
+	<div style="border-right-width: 0px; border-top-width: 0px; border-bottom-width: 0px;
+		border-left-width: 0px" id="login" class="main">
+		<div style="display: none" id="qlogin">
+			<br>
+			<br>
+			<p class="linecenter">
+				<u id="label_qlogin_intro">如果您已登录QQ，点击按钮即可快速登录。</u></p>
+			<br>
+			<div class="qlogin_button">
+				<input id="loginbtn" class="btnlong" onclick="onClickQLogin()" value="快速登录" type="button">
+			</div>
+			<div style="display: none" id="logintip" class="qlogin_button">
+				<img src="http://mat1.qq.com/news/ptlogin2/style/0/images/loading.gif">
+				<br>
+				<u id="label_qlogining">正在登录中，请稍候……</u></div>
+			<br>
+			<div class="linecenter">
+				<a id="label_qlogin_help" class="b" href="/help/help.html" target="_top">什么是快速登录？</a></div>
+			<br>
+			<br>
+			<div class="lineright">
+				<a id="label_switch_normal" href="javascript:switchPage(true, true)">切换到普通登录模式</a></div>
+		</div>
+		<div style="display: block" id="web_login">
+			<form style="margin: 0px" id="loginform" onsubmit="return ptui_onLoginEx(loginform, 'qq.com')"
+			method="post" onreset="return onFormReset(loginform)" name="loginform" action="http://ptlogin2.qq.com/login"
+			target="_self" autocomplete="off">
+			<ul>
+				<li><span><u id="label_uin">QQ帐号：</u></span><input onblur="ptui_onUserBlue('u', '#CCCCCC')"
+					style="ime-mode: disabled; color: #000000" id="u" class="inputstyle" onfocus="ptui_onUserFocus('u', '#000000')"
+					tabindex="1" value="12766385" name="u">
+				<li><span><u id="label_pwd">QQ密码：</u></span><input id="p" class="inputstyle" tabindex="2"
+					value="" maxlength="16" type="password" name="p">
+					<label>
+						<a id="label_forget_pwd" tabindex="7" href="https://account.qq.com/find_psw.shtml"
+							target="_top">忘了密码？</a></label>
+				<li><span for="code"><u id="label_vcode">验证码：</u></span><input style="ime-mode: disabled"
+					id="verifycode" class="inputstyle" tabindex="3" maxlength="4" name="verifycode">
+				<li id="verifytip"><span>&nbsp;</span> <u id="label_vcode_tip">输入下图中的字符，不区分大小写</u>
+				<li><span for="pic">&nbsp;</span>
+
+					<script type="text/javascript">document.write("<img id=imgVerify width='130' height='53'  src='http://ptlogin2.qq.com/getimage?aid=15000102&",Math.random(),"' onload='ptui_setSpeed(3)'>");</script>
+
+					<img id="imgVerify" src="http://ptlogin2.qq.com/getimage?aid=15000102&amp;0.7994316272041277"
+						width="130" onload="ptui_setSpeed(3)" height="53">
+					<label>
+						<a id="changeimg_link" tabindex="6" href="javascript:ptui_changeImg('qq.com', 15000102, true);">
+							看不清，换一张</a></label></li></ul>
+			<div class="login_button">
+				<input id="login_button" class="btn" tabindex="5" value="登 录" type="submit">
+			</div>
+			<div class="lineright">
+				<a id="label_switch_qlogin" href="javascript:switchPage(false, true)">切换到快速登录模式</a></div>
+			<input value="15000102" type="hidden" name="aid">
+			<input value="http://xiaoyou.qq.com/index.php?mod=login" type="hidden" name="u1">
+			<input type="hidden" name="fp">
+			<input value="1" type="hidden" name="h">
+			<input value="1" type="hidden" name="ptredirect">
+			<input value="0" type="hidden" name="ptlang">
+			<input type="hidden" name="dumy">
+			</form>
+		</div>
+	</div>
+
+	<script language="javascript">ptui_mapStr(g_labelMap)</script>
+
+	<script language="javascript" src="http://mat1.qq.com/news/ptlogin2/js/qlogin.js"></script>
+
+	<script language="javascript">
+function onPageLoad(){
+	ptui_setUinColor('u', '#000000', '#cccccc');
+	ptui_setSpeed(1);
+	ptui_reportSpeed(g_begTime);
+	document.getElementById("loginform").verifycode.value="";
+	try{ptui_initFocus(document.getElementById("loginform"))}catch(e){}
+}
+function switchPage(bWebLogin, bCookie){
+	if (bWebLogin) {		
+			ptui_showDiv("qlogin", false);
+		ptui_showDiv("web_login", true);
+	}
+	else
+	{
+		ptui_showDiv("web_login", false);				
+			ptui_showDiv("qlogin", true);
+	}	
+	
+	qlogin_notifyStatus(0);	
+			
+		
+	if (bCookie){
+		ptui_regDefLogin("qq.com", bWebLogin);					
+	}
+	ptui_notifySize('login');
+}
+function onPrePageLoad(){
+	var login_form = document.getElementById("loginform");
+	
+	document.getElementById("changeimg_link").href="javascript:ptui_changeImg('qq.com', 15000102, true);";
+	document.getElementById("login_button").disabled=false;
+	ptui_setDefUin(login_form, "");
+	switchPage(ptui_isDefWebLogin(), false);
+	
+	ptui_setSpeed(2);
+}
+function onPageClose()
+{
+		qlogin_notifyStatus(0);
+	ptui_notifyClose();
+}
+function onFormReset(form)
+{	
+	if (ptui_onReset(form))	{
+		form.u.style.color='#CCCCCC';		
+		return true;
+	}
+	return false;
+}
+
+function onQloginStatusChange(status)
+{
+	var btnObj = document.getElementById("loginbtn");
+	var tip = document.getElementById("logintip");	
+	if (0 == status)
+	{
+		if (btnObj)	 btnObj.disabled="";
+		if (tip) tip.style.display="none"
+	}
+	else if( 1== status) 
+	{
+		if (btnObj) btnObj.disabled="disabled";
+		if (tip) tip.style.display="block";
+	}
+	else if( 2 == status) 
+	{
+		if (btnObj)	 btnObj.disabled="";
+		if (tip) tip.style.display="none"
+	}	
+	ptui_notifySize('login');
+}
+function onClickQLogin()
+{
+	qlogin_click("qq.com", "xiaoyou_qlogin", "", "http://ui.ptlogin2.qq.com/cgi-bin/qlogin_err?appid=15000102&hide_title_bar=1&qlogin_jumpname=xiaoyou_qlogin&s_url=http://xiaoyou.qq.com/index.php%3Fmod%3Dlogin&css=http://imgcache.qq.com/campus/login/login.css");
+}
+
+onPrePageLoad();
+	</script>
+
+</body>
+</html>
