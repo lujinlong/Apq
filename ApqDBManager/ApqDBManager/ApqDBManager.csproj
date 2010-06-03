@@ -1,0 +1,671 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{9D89E72C-ACDD-47BE-84E3-270BACA7A8A4}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ApqDBManager</RootNamespace>
+    <AssemblyName>ApqDBManager</AssemblyName>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+    <RunPostBuildEvent>OnOutputUpdated</RunPostBuildEvent>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>2.0</OldToolsVersion>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <ApplicationIcon>Res\ico\sign125.ico</ApplicationIcon>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug_Home|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Debug_Home\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;Debug_Home</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug_Home|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug_Home\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;Debug_Home</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Apq, Version=0.0.0.2, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Dlls\Apq.dll</HintPath>
+    </Reference>
+    <Reference Include="Apq.Com, Version=0.1.3135.42102, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Dlls\Apq.Com.dll</HintPath>
+    </Reference>
+    <Reference Include="Apq.CryptKey, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Dlls\Apq.CryptKey.dll</HintPath>
+    </Reference>
+    <Reference Include="Apq.DB, Version=0.3.3742.37034, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Dlls\Apq.DB.dll</HintPath>
+    </Reference>
+    <Reference Include="Apq.Win, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Dlls\Apq.Win.dll</HintPath>
+    </Reference>
+    <Reference Include="Apq.WorkFlow, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Dlls\Apq.WorkFlow.dll</HintPath>
+    </Reference>
+    <Reference Include="ApqDBManager.XSD, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Dlls\ApqDBManager.XSD.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Data.v9.2, Version=9.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DevExpress.Utils.v9.2, Version=9.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Xpo.v9.2, Version=9.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraBars.v9.2, Version=9.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraEditors.v9.2, Version=9.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraGrid.v9.2, Version=9.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraNavBar.v9.2, Version=9.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraTreeList.v9.2, Version=9.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ICSharpCode.TextEditor, Version=2.0.0.922, Culture=neutral, PublicKeyToken=4d61825e8dd49f1a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Reference\ICSharpCode\TextEditor_2.2\ICSharpCode.TextEditor.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Reference\log4net-1.2.10\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="org.in2bits.MyXls, Version=0.6.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Reference\myxls-0.6.3\org.in2bits.MyXls.dll</HintPath>
+    </Reference>
+    <Reference Include="System">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.configuration">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Design">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Drawing">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Web">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Web.Services">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Windows.Forms">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Xml">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="WeifenLuo.WinFormsUI.Docking, Version=2.2.2864.18696, Culture=neutral, PublicKeyToken=d481317c817cec47, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Reference\DockPanel\WeifenLuo.WinFormsUI.Docking.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Controls\MainOption\Favorites.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\MainOption\Favorites.Designer.cs">
+      <DependentUpon>Favorites.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\MainOption\XmlServers.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\MainOption\XmlServers.Designer.cs">
+      <DependentUpon>XmlServers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ErrList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ErrList.Designer.cs">
+      <DependentUpon>ErrList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Export.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Export.Designer.cs">
+      <DependentUpon>Export.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Favorites.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Favorites.Designer.cs">
+      <DependentUpon>Favorites.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FileTrans.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FileTrans.Designer.cs">
+      <DependentUpon>FileTrans.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FileUp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FileUp.Designer.cs">
+      <DependentUpon>FileUp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\MainOption.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\MainOption.Designer.cs">
+      <DependentUpon>MainOption.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Output.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Output.Designer.cs">
+      <DependentUpon>Output.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SrvsMgr.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SrvsMgr.Designer.cs">
+      <DependentUpon>SrvsMgr.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FTPFileTrans.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FTPFileTrans.Designer.cs">
+      <DependentUpon>FTPFileTrans.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FTPFileUp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FTPFileUp.Designer.cs">
+      <DependentUpon>FTPFileUp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Controls\ResultTable.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\ResultTable.Designer.cs">
+      <DependentUpon>ResultTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Customization\DockHelper.cs" />
+    <Compile Include="Customization\Extender.cs" />
+    <Compile Include="Customization\InertButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Customization\VS2003AutoHideStrip.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Customization\VS2003DockPaneCaption.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Customization\VS2003DockPaneStrip.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Forms\DES.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\DES.Designer.cs">
+      <DependentUpon>DES.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GlobalObject.cs" />
+    <Compile Include="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Customization\Resources.Designer.cs">
+      <DependentUpon>Resources.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Customization\Strings.Designer.cs">
+      <DependentUpon>Strings.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Forms\Random.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Random.Designer.cs">
+      <DependentUpon>Random.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SolutionExplorer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SolutionExplorer.Designer.cs">
+      <DependentUpon>SolutionExplorer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SqlEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SqlEdit.Designer.cs">
+      <DependentUpon>SqlEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="xsd\Random.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Random.xsd</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\ArrowDown.bmp" />
+    <None Include="Images\ArrowUp.bmp" />
+    <None Include="Images\Bitmap.ico" />
+    <None Include="Images\BlankIcon.ico" />
+    <None Include="Images\ClosedFolder.ICO" />
+    <None Include="Images\CSFile.ico" />
+    <None Include="Images\CSProject.ico" />
+    <None Include="Images\File.ico" />
+    <None Include="Images\Form.ico" />
+    <None Include="Images\Mouse.bmp" />
+    <None Include="Images\msenv22.ico" />
+    <None Include="Images\New.ico" />
+    <None Include="Images\Open.ico" />
+    <None Include="Images\OpenFolder.ICO" />
+    <None Include="Images\OutputWindow.ico" />
+    <None Include="Images\PropertyWindow.ico" />
+    <None Include="Images\Reference.ico" />
+    <None Include="Images\References.ico" />
+    <None Include="Images\SolutionExplorer.ico" />
+    <None Include="Images\TaskListWindow.ico" />
+    <None Include="Images\ToolboxWindow.ico" />
+    <None Include="Images\XmlFile.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Controls\MainOption\Favorites.resx">
+      <DependentUpon>Favorites.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\MainOption\XmlServers.resx">
+      <DependentUpon>XmlServers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\ResultTable.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>ResultTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Customization\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DES.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>DES.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ErrList.resx">
+      <DependentUpon>ErrList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Export.resx">
+      <DependentUpon>Export.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Favorites.resx">
+      <DependentUpon>Favorites.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FileTrans.resx">
+      <DependentUpon>FileTrans.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FileUp.resx">
+      <DependentUpon>FileUp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\MainOption.resx">
+      <DependentUpon>MainOption.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SrvsMgr.resx">
+      <DependentUpon>SrvsMgr.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FTPFileTrans.resx">
+      <DependentUpon>FTPFileTrans.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FTPFileUp.resx">
+      <DependentUpon>FTPFileUp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="Customization\Strings.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Strings.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Random.resx">
+      <DependentUpon>Random.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SolutionExplorer.resx">
+      <DependentUpon>SolutionExplorer.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SqlEdit.resx">
+      <DependentUpon>SqlEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Customization\Resources\DockIndicator_PaneDiamond.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Customization\Resources\DockPaneStrip_ScrollRightEnabled.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Customization\Resources\DockIndicator_PaneDiamond_Bottom.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Customization\Resources\Dockindicator_PaneDiamond_Fill.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Customization\Resources\DockIndicator_PaneDiamond_Hotspot.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Customization\Resources\DockIndicator_PaneDiamond_HotspotIndex.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Customization\Resources\DockIndicator_PaneDiamond_Left.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Customization\Resources\DockIndicator_PaneDiamond_Right.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Customization\Resources\DockIndicator_PaneDiamond_Top.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Customization\Resources\DockIndicator_PanelBottom.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Customization\Resources\DockIndicator_PanelBottom_Active.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Customization\Resources\DockIndicator_PanelFill.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Customization\Resources\DockIndicator_PanelFill_Active.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Customization\Resources\DockIndicator_PanelLeft.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Customization\Resources\DockIndicator_PanelLeft_Active.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Customization\Resources\DockIndicator_PanelRight.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Customization\Resources\DockIndicator_PanelRight_Active.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Customization\Resources\DockIndicator_PanelTop.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Customization\Resources\DockIndicator_PanelTop_Active.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Customization\Resources\DockPaneCaption_AutoHideNo.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Customization\Resources\DockPaneCaption_AutoHideYes.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Customization\Resources\DockPaneCaption_CloseDisabled.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Customization\Resources\DockPaneCaption_CloseEnabled.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Customization\Resources\DockPaneStrip_CloseDisabled.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Customization\Resources\DockPaneStrip_CloseEnabled.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Customization\Resources\DockPaneStrip_ScrollLeftDisabled.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Customization\Resources\DockPaneStrip_ScrollLeftEnabled.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Customization\Resources\DockPaneStrip_ScrollRightDisabled.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="Apq.dll.apq">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Apq.dll.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Apq.dll.log4net">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Apq.Win.dll.apq">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Apq.Win.dll.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Apq.WorkFlow.dll.apq">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Apq.WorkFlow.dll.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="DockPanel.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="license.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ApqDBManager.exe.apq">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Res\ConnResourceSA.res">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="xsd\Random.xsc">
+      <DependentUpon>Random.xsd</DependentUpon>
+    </None>
+    <None Include="xsd\Random.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Random.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="xsd\Random.xss">
+      <DependentUpon>Random.xsd</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Res\ico\blockOS 43 System File.ico" />
+    <Content Include="Res\ico\Key.ico" />
+    <Content Include="Res\ico\sign125.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Res\ico\sign141.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Res\png\CheckBox\Checked.png" />
+    <Content Include="Res\png\CheckBox\Indeterminate.png" />
+    <Content Include="Res\png\CheckBox\UnChecked.png" />
+    <Content Include="Res\png\Editor\Copy.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Res\png\Editor\Cut.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Res\png\Editor\Paste.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Res\png\Editor\Redo.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Res\png\Editor\Undo.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Res\png\File\New.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Res\png\File\Open.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Res\png\File\Save.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Res\png\Help.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Res\png\Search.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Res\ico\Text.ico" />
+    <Content Include="XmlServers.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="_Doc\计划.txt" />
+    <Content Include="_Doc\说明.txt" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <PropertyGroup>
+    <PreBuildEvent>if "%25Reference%25" == "" goto End
+if "" == "" goto EndConfig
+xcopy "%25Reference%25\$(ConfigurationName)\Config\Apq.dll.config" "$(ProjectDir)" /c /q /g /h /r /k /y
+xcopy "%25Reference%25\$(ConfigurationName)\Config\Apq.dll.apq" "$(ProjectDir)" /c /q /g /h /r /k /y
+xcopy "%25Reference%25\$(ConfigurationName)\Config\Apq.dll.log4net" "$(ProjectDir)" /c /q /g /h /r /k /y
+
+xcopy "%25Reference%25\$(ConfigurationName)\Config\Apq.WorkFlow.dll.config" "$(ProjectDir)" /c /q /g /h /r /k /y
+xcopy "%25Reference%25\$(ConfigurationName)\Config\Apq.WorkFlow.dll.apq" "$(ProjectDir)" /c /q /g /h /r /k /y
+
+xcopy "%25Reference%25\Res\Common" "$(ProjectDir)Res\" /c /q /g /h /r /k /y /e
+xcopy "%25Reference%25\Res\$(ProjectName)" "$(ProjectDir)Res\" /c /q /g /h /r /k /y /e
+
+xcopy "%25Reference%25\$(ConfigurationName)\Config\Apq.Com.dll.config" "$(ProjectDir)" /c /q /g /h /r /k /y
+xcopy "%25Reference%25\$(ConfigurationName)\Config\Apq.Com.dll.apq" "$(ProjectDir)" /c /q /g /h /r /k /y
+
+xcopy "%25Reference%25\$(ConfigurationName)\Config\Apq.Win.dll.config" "$(ProjectDir)" /c /q /g /h /r /k /y
+xcopy "%25Reference%25\$(ConfigurationName)\Config\Apq.Win.dll.apq" "$(ProjectDir)" /c /q /g /h /r /k /y
+
+xcopy "%25Reference%25\$(ConfigurationName)\Config\szDomain.ResConvert.dll.config" "$(ProjectDir)" /c /q /g /h /r /k /y
+xcopy "%25Reference%25\$(ConfigurationName)\Config\szDomain.ResConvert.dll.apq" "$(ProjectDir)" /c /q /g /h /r /k /y
+:EndConfig
+
+xcopy "%25Reference%25\$(ConfigurationName)\Apq.dll" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+xcopy "%25Reference%25\$(ConfigurationName)\Apq.xml" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+xcopy "%25Reference%25\$(ConfigurationName)\Apq.pdb" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+
+xcopy "%25Reference%25\$(ConfigurationName)\Apq.WorkFlow.dll" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+xcopy "%25Reference%25\$(ConfigurationName)\Apq.WorkFlow.xml" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+xcopy "%25Reference%25\$(ConfigurationName)\Apq.WorkFlow.pdb" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+
+xcopy "%25Reference%25\$(ConfigurationName)\Apq.Com.dll" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+xcopy "%25Reference%25\$(ConfigurationName)\Apq.Com.xml" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+xcopy "%25Reference%25\$(ConfigurationName)\Apq.Com.pdb" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+
+xcopy "%25Reference%25\$(ConfigurationName)\Apq.DB.dll" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+xcopy "%25Reference%25\$(ConfigurationName)\Apq.DB.xml" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+xcopy "%25Reference%25\$(ConfigurationName)\Apq.DB.pdb" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+
+xcopy "%25Reference%25\$(ConfigurationName)\Apq.CryptKey.dll" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+xcopy "%25Reference%25\$(ConfigurationName)\Apq.CryptKey.xml" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+xcopy "%25Reference%25\$(ConfigurationName)\Apq.CryptKey.pdb" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+
+xcopy "%25Reference%25\$(ConfigurationName)\Apq.Win.dll" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+xcopy "%25Reference%25\$(ConfigurationName)\Apq.Win.xml" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+xcopy "%25Reference%25\$(ConfigurationName)\Apq.Win.pdb" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+
+xcopy "%25Reference%25\$(ConfigurationName)\ApqDBManager.XSD.dll" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+xcopy "%25Reference%25\$(ConfigurationName)\ApqDBManager.XSD.pdb" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+
+:xcopy "%25Reference%25\Release\szDomain.ResConvert.dll" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+:xcopy "%25Reference%25\Release\szDomain.ResConvert.xml" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+:xcopy "%25Reference%25\Release\szDomain.ResConvert.pdb" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+:End
+</PreBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+</Project>

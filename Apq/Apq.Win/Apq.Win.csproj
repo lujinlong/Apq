@@ -1,0 +1,443 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{5DB41917-3D5D-403F-B552-02B452C07C5D}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Apq</RootNamespace>
+    <AssemblyName>Apq.Win</AssemblyName>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+    <RunPostBuildEvent>OnOutputUpdated</RunPostBuildEvent>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>2.0</OldToolsVersion>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkSubset>
+    </TargetFrameworkSubset>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\Apq.Win.XML</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Release\Apq.Win.XML</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Apq_Win|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Apq_Win\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;Apq_Win</DefineConstants>
+    <DocumentationFile>bin\Apq_Win\Apq.Win.XML</DocumentationFile>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Apq_Web|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Apq_Web\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;Apq_Web</DefineConstants>
+    <DocumentationFile>bin\Apq_Web\Apq.Win.XML</DocumentationFile>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug_Home|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Debug_Home\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;Debug_Home</DefineConstants>
+    <DocumentationFile>bin\Debug_Home\Apq.Win.XML</DocumentationFile>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DocumentationFile>bin\Debug\Apq.Win.XML</DocumentationFile>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <DocumentationFile>bin\Release\Apq.Win.XML</DocumentationFile>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Apq_Win|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Apq_Win\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;Apq_Win</DefineConstants>
+    <DocumentationFile>bin\Apq_Win\Apq.Win.XML</DocumentationFile>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Apq_Web|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Apq_Web\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;Apq_Web</DefineConstants>
+    <DocumentationFile>bin\Apq_Web\Apq.Win.XML</DocumentationFile>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug_Home|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug_Home\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;Debug_Home</DefineConstants>
+    <DocumentationFile>bin\Debug_Home\Apq.Win.XML</DocumentationFile>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Apq, Version=0.0.0.1, Culture=neutral, PublicKeyToken=bf91134b3eaf752b, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Dlls\Apq.dll</HintPath>
+    </Reference>
+    <Reference Include="Apq.WorkFlow, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Dlls\Apq.WorkFlow.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Data.v9.2, Version=9.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DevExpress.Utils.v9.2, Version=9.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraBars.v9.2, Version=9.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraEditors.v9.2, Version=9.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraGrid.v9.2, Version=9.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraLayout.v9.2, Version=9.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraTreeList.v9.2, Version=9.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="ICSharpCode.TextEditor, Version=2.0.0.922, Culture=neutral, PublicKeyToken=4d61825e8dd49f1a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Reference\ICSharpCode\TextEditor_2.2\ICSharpCode.TextEditor.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Reference\log4net-1.2.10\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WeifenLuo.WinFormsUI.Docking, Version=2.2.2864.18696, Culture=neutral, PublicKeyToken=d481317c817cec47, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Reference\DockPanel\WeifenLuo.WinFormsUI.Docking.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AppSettingsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AppSettingsForm.Designer.cs">
+      <DependentUpon>AppSettingsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Apq.Win\GlobalObject.cs" />
+    <Compile Include="Diagnostics\Process.cs" />
+    <Compile Include="ICSharp\Common.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Controls\DataSetDTS\DTSColumnMappings.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Windows\Controls\DataSetDTS\DTSColumnMappings.Designer.cs">
+      <DependentUpon>DTSColumnMappings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Controls\DataSetDTS\FromDataSet.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Windows\Controls\DataSetDTS\FromDataSet.Designer.cs">
+      <DependentUpon>FromDataSet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Controls\DataSetDTS\Direction.cs" />
+    <Compile Include="Windows\Controls\DataSetDTS\ToExcel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Windows\Controls\DataSetDTS\ToExcel.Designer.cs">
+      <DependentUpon>ToExcel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Controls\DataSetDTS\ToText.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Windows\Controls\DataSetDTS\ToText.Designer.cs">
+      <DependentUpon>ToText.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Controls\DataSetDTS\DTSSelectOut.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Windows\Controls\DataSetDTS\DTSSelectOut.Designer.cs">
+      <DependentUpon>DTSSelectOut.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Controls\DataSetDTS\DTSRoot.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Windows\Controls\DataSetDTS\DTSRoot.Designer.cs">
+      <DependentUpon>DTSRoot.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Controls\Grid\DataSetEditor.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Windows\Controls\Grid\DataSetEditor.Designer.cs">
+      <DependentUpon>DataSetEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Controls\SaveFile.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Windows\Controls\SaveFile.Designer.cs">
+      <DependentUpon>SaveFile.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Controls\ControlExtension.cs" />
+    <Compile Include="Windows\Forms\DockForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows\Forms\DockForm.Designer.cs">
+      <DependentUpon>DockForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Xtra\Common.cs" />
+    <Compile Include="Xtra\Grid\Common.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Threading\Thread.cs" />
+    <Compile Include="Windows\Controls\Control.cs" />
+    <Compile Include="Windows\Controls\FolderBrowser.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Windows\Controls\FolderBrowser.Designer.cs">
+      <DependentUpon>FolderBrowser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Xtra\TreeList\Common.cs" />
+    <Compile Include="Windows\Controls\WizardStep.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Windows\Controls\WizardStep.Designer.cs">
+      <DependentUpon>WizardStep.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Delegates.cs" />
+    <Compile Include="Windows\Forms\AboutBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows\Forms\AboutBox.Designer.cs">
+      <DependentUpon>AboutBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Forms\Application.cs" />
+    <Compile Include="Windows\Forms\ImeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows\Forms\ImeForm.Designer.cs">
+      <DependentUpon>ImeForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Forms\Wizard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows\Forms\Wizard.Designer.cs">
+      <DependentUpon>Wizard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Forms\DelayConfirmBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows\Forms\DelayConfirmBox.Designer.cs">
+      <DependentUpon>DelayConfirmBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Forms\NotifyIconForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows\Forms\NotifyIconForm.Designer.cs">
+      <DependentUpon>NotifyIconForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Forms\SingletonForms.cs">
+    </Compile>
+    <Compile Include="Windows\Forms\WizardDataSet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows\Forms\WizardDataSet.Designer.cs">
+      <DependentUpon>WizardDataSet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Interfaces\IWizardStep.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AppSettingsForm.resx">
+      <DependentUpon>AppSettingsForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <SubType>Designer</SubType>
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Windows\Controls\DataSetDTS\FromDataSet.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FromDataSet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Windows\Controls\DataSetDTS\ToExcel.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>ToExcel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Windows\Controls\DataSetDTS\ToText.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>ToText.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Windows\Controls\DataSetDTS\DTSSelectOut.resx">
+      <DependentUpon>DTSSelectOut.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Windows\Controls\FolderBrowser.resx">
+      <DependentUpon>FolderBrowser.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Windows\Controls\Grid\DataSetEditor.resx">
+      <DependentUpon>DataSetEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Windows\Controls\WizardStep.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>WizardStep.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Windows\Controls\SaveFile.resx">
+      <DependentUpon>SaveFile.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Windows\Forms\AboutBox.resx">
+      <DependentUpon>AboutBox.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Windows\Forms\DockForm.resx">
+      <DependentUpon>DockForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Windows\Forms\ImeForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>ImeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Windows\Forms\Wizard.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>Wizard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Windows\Forms\DelayConfirmBox.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>DelayConfirmBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Windows\Forms\NotifyIconForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>NotifyIconForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Windows\Forms\WizardDataSet.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>WizardDataSet.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Apq.Win.dll.apq">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <Content Include="_Doc\Apq.Win.dll.apq.txt" />
+    <Content Include="_Doc\Apq.Win.dll.config.txt" />
+    <Content Include="_Doc\功能需求.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Win.XSD\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <PropertyGroup>
+    <PreBuildEvent>if "%25Reference%25" == "" goto End
+if "" == "" goto EndConfig
+xcopy "%25Reference%25\$(ConfigurationName)\Config\Apq.dll.config" "$(ProjectDir)" /c /q /g /h /r /k /y
+xcopy "%25Reference%25\$(ConfigurationName)\Config\Apq.dll.apq" "$(ProjectDir)" /c /q /g /h /r /k /y
+xcopy "%25Reference%25\$(ConfigurationName)\Config\Apq.dll.log4net" "$(ProjectDir)" /c /q /g /h /r /k /y
+
+:xcopy "%25Reference%25\$(ConfigurationName)\Config\Apq.WorkFlow.dll.config" "$(ProjectDir)" /c /q /g /h /r /k /y
+:xcopy "%25Reference%25\$(ConfigurationName)\Config\Apq.WorkFlow.dll.apq" "$(ProjectDir)" /c /q /g /h /r /k /y
+:EndConfig
+
+xcopy "%25Reference%25\$(ConfigurationName)\Apq.dll" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+xcopy "%25Reference%25\$(ConfigurationName)\Apq.xml" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+xcopy "%25Reference%25\$(ConfigurationName)\Apq.pdb" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+
+xcopy "%25Reference%25\$(ConfigurationName)\Apq.WorkFlow.dll" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+xcopy "%25Reference%25\$(ConfigurationName)\Apq.WorkFlow.xml" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+xcopy "%25Reference%25\$(ConfigurationName)\Apq.WorkFlow.pdb" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+:End
+</PreBuildEvent>
+    <PostBuildEvent>if "%25Reference%25" == "" goto End
+xcopy "%25Reference%25\Res\$(ProjectName)" "$(TargetDir)Res\" /c /q /g /h /r /k /y /e
+
+xcopy "$(TargetPath)" "%25Reference%25\$(ConfigurationName)\" /c /q /g /h /r /k /y
+xcopy "$(TargetDir)$(TargetName).xml" "%25Reference%25\$(ConfigurationName)\" /c /q /g /h /r /k /y
+xcopy "$(TargetDir)$(TargetName).pdb" "%25Reference%25\$(ConfigurationName)\" /c /q /g /h /r /k /y
+xcopy "$(TargetPath).config" "%25Reference%25\$(ConfigurationName)\Config\" /c /q /g /h /r /k /y
+xcopy "$(ProjectDir)$(TargetFileName).apq" "%25Reference%25\$(ConfigurationName)\Config\" /c /q /g /h /r /k /y
+:End</PostBuildEvent>
+  </PropertyGroup>
+</Project>

@@ -1,0 +1,308 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{2D48E4F1-34D9-4090-80F0-D7484885F786}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Apq</RootNamespace>
+    <AssemblyName>Apq</AssemblyName>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+    <RunPostBuildEvent>OnOutputUpdated</RunPostBuildEvent>
+    <SignAssembly>false</SignAssembly>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>2.0</OldToolsVersion>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkSubset>
+    </TargetFrameworkSubset>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\Apq.XML</DocumentationFile>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+    <CodeAnalysisRules>-Microsoft.Naming#CA1709;-Microsoft.Naming#CA1705;-Microsoft.Globalization#CA1303;-Microsoft.Globalization#CA1305;-Microsoft.Design#CA1020;-Microsoft.Design#CA1004;-Microsoft.Design#CA1014;-Microsoft.Design#CA1053;-Microsoft.Design#CA1062;-Microsoft.Performance#CA1820</CodeAnalysisRules>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Release\Apq.XML</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Apq_Win|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Apq_Win\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;Apq_Win</DefineConstants>
+    <DocumentationFile>bin\Apq_Win\Apq.XML</DocumentationFile>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisRules>-Microsoft.Naming#CA1709;-Microsoft.Naming#CA1705;-Microsoft.Globalization#CA1303;-Microsoft.Globalization#CA1305;-Microsoft.Design#CA1020;-Microsoft.Design#CA1004;-Microsoft.Design#CA1014;-Microsoft.Design#CA1053;-Microsoft.Design#CA1062;-Microsoft.Performance#CA1820</CodeAnalysisRules>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Apq_Web|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Apq_Web\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;Apq_Web</DefineConstants>
+    <DocumentationFile>bin\Apq_Web\Apq.XML</DocumentationFile>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisRules>-Microsoft.Naming#CA1709;-Microsoft.Naming#CA1705;-Microsoft.Globalization#CA1303;-Microsoft.Globalization#CA1305;-Microsoft.Design#CA1020;-Microsoft.Design#CA1004;-Microsoft.Design#CA1014;-Microsoft.Design#CA1053;-Microsoft.Design#CA1062;-Microsoft.Performance#CA1820</CodeAnalysisRules>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug_Home|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Debug_Home\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;Debug_Home</DefineConstants>
+    <DocumentationFile>bin\Debug_Home\Apq.XML</DocumentationFile>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisRules>-Microsoft.Naming#CA1709;-Microsoft.Naming#CA1705;-Microsoft.Globalization#CA1303;-Microsoft.Globalization#CA1305;-Microsoft.Design#CA1020;-Microsoft.Design#CA1004;-Microsoft.Design#CA1014;-Microsoft.Design#CA1053;-Microsoft.Design#CA1062;-Microsoft.Performance#CA1820</CodeAnalysisRules>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DocumentationFile>bin\Debug\Apq.XML</DocumentationFile>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisRules>-Microsoft.Naming#CA1709;-Microsoft.Naming#CA1705;-Microsoft.Globalization#CA1303;-Microsoft.Globalization#CA1305;-Microsoft.Design#CA1020;-Microsoft.Design#CA1004;-Microsoft.Design#CA1014;-Microsoft.Design#CA1053;-Microsoft.Design#CA1062;-Microsoft.Performance#CA1820</CodeAnalysisRules>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <DocumentationFile>bin\Release\Apq.XML</DocumentationFile>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Apq_Win|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Apq_Win\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;Apq_Win</DefineConstants>
+    <DocumentationFile>bin\Apq_Win\Apq.XML</DocumentationFile>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisRules>-Microsoft.Naming#CA1709;-Microsoft.Naming#CA1705;-Microsoft.Globalization#CA1303;-Microsoft.Globalization#CA1305;-Microsoft.Design#CA1020;-Microsoft.Design#CA1004;-Microsoft.Design#CA1014;-Microsoft.Design#CA1053;-Microsoft.Design#CA1062;-Microsoft.Performance#CA1820</CodeAnalysisRules>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Apq_Web|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Apq_Web\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;Apq_Web</DefineConstants>
+    <DocumentationFile>bin\Apq_Web\Apq.XML</DocumentationFile>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisRules>-Microsoft.Naming#CA1709;-Microsoft.Naming#CA1705;-Microsoft.Globalization#CA1303;-Microsoft.Globalization#CA1305;-Microsoft.Design#CA1020;-Microsoft.Design#CA1004;-Microsoft.Design#CA1014;-Microsoft.Design#CA1053;-Microsoft.Design#CA1062;-Microsoft.Performance#CA1820</CodeAnalysisRules>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug_Home|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug_Home\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;Debug_Home</DefineConstants>
+    <DocumentationFile>bin\Debug_Home\Apq.XML</DocumentationFile>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisRules>-Microsoft.Naming#CA1709;-Microsoft.Naming#CA1705;-Microsoft.Globalization#CA1303;-Microsoft.Globalization#CA1305;-Microsoft.Design#CA1020;-Microsoft.Design#CA1004;-Microsoft.Design#CA1014;-Microsoft.Design#CA1053;-Microsoft.Design#CA1062;-Microsoft.Performance#CA1820</CodeAnalysisRules>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Reference\log4net-1.2.10\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.XML" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Apq\Locks.cs" />
+    <Compile Include="Apq\STReturn.cs" />
+    <Compile Include="BigInteger.cs" />
+    <Compile Include="Apq\Common.cs" />
+    <Compile Include="Apq\Delegates.cs" />
+    <Compile Include="Apq\GlobalObject.cs" />
+    <Compile Include="Apq\SingletonInstances.cs" />
+    <Compile Include="ComponentModel\BackgroundWorker.cs" />
+    <Compile Include="Config\ConfigChain.cs" />
+    <Compile Include="ConnectionStrings\Access\OleDbConnection.cs" />
+    <Compile Include="ConnectionStrings\Excel2007\OleDbConnection.cs" />
+    <Compile Include="ConnectionStrings\Excel\OleDbConnection.cs" />
+    <Compile Include="ConnectionStrings\SQLServer\SqlConnection.cs" />
+    <Compile Include="ConnectionStrings\Textfile\OleDbConnection.cs" />
+    <Compile Include="Data\Common\DataColumnMappingCollectionHelper.cs" />
+    <Compile Include="Data\Common\SQLHelper.cs" />
+    <Compile Include="Data\DataSet.cs" />
+    <Compile Include="Data\DataView.cs" />
+    <Compile Include="Data\Dev\Sqls.cs" />
+    <Compile Include="Collections\IList.cs" />
+    <Compile Include="Configuration\Configs.cs" />
+    <Compile Include="Configuration\ConfigurationHelper.cs" />
+    <Compile Include="Configuration\ConfigurationManager.cs" />
+    <Compile Include="Config\clsConfig.cs" />
+    <Compile Include="Config\ApqConfigs.cs" />
+    <Compile Include="Config\IniConfig.cs" />
+    <Compile Include="Config\RegConfig.cs" />
+    <Content Include="DB\Apq_String.cs.txt" />
+    <Compile Include="Dos\Common.cs" />
+    <Compile Include="Editor\ITextEditor.cs" />
+    <Compile Include="Editor\IFileLoader.cs" />
+    <Compile Include="IO\FileSystem.cs" />
+    <Compile Include="Net\FtpClient.cs" />
+    <Compile Include="Net\HttpWebRequest.cs" />
+    <Compile Include="Net\ServicePointManager.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Runtime\Serialization\Formatters\Binary\BinaryFormatter.cs" />
+    <Compile Include="Security\Cryptography\DESHelper.cs" />
+    <Compile Include="Security\Cryptography\SymmetricAlgorithmHelper.cs" />
+    <Compile Include="Sim\Mouse.cs" />
+    <Compile Include="Utils\VirtKeys.cs" />
+    <Compile Include="Xml\XmlDocument.cs" />
+    <Compile Include="Apq\Char.cs" />
+    <Compile Include="Apq\Convert.cs" />
+    <Compile Include="Data\Common\Common.cs" />
+    <Compile Include="Data\Common\DbCommandHelper.cs" />
+    <Compile Include="Data\Common\DbConnectionHelper.cs" />
+    <Compile Include="Data\Common\DbParameterCollectionHelper.cs" />
+    <Compile Include="Data\DataRow.cs" />
+    <Compile Include="Data\DataTable.cs">
+    </Compile>
+    <Compile Include="Data\Dev\DataSet.cs" />
+    <Compile Include="Data\SqlClient\Common.cs" />
+    <None Include="Data\SqlType.cs" />
+    <Compile Include="Apq\String.cs" />
+    <Compile Include="DllImports\Imm32.cs" />
+    <Compile Include="DllImports\Kernel32.cs" />
+    <Compile Include="DllImports\User32.cs" />
+    <Compile Include="Apq\Exception.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <None Include="Shell\ParseResult.cs" />
+    <None Include="Shell\Char.cs" />
+    <None Include="Shell\Common.cs" />
+    <None Include="Shell\State.cs" />
+    <Compile Include="Text\StringBuilder.cs" />
+    <Compile Include="Utils\Win32.cs" />
+    <Compile Include="Config\XmlConfig.cs" />
+    <Compile Include="Xml\XmlElement.cs" />
+    <Compile Include="XSD\Explorer.cs">
+      <DependentUpon>Explorer.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="XSD\Explorer.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Explorer.xsd</DependentUpon>
+    </Compile>
+    <None Include="_参考\XChange.cs" />
+    <None Include="_参考\断点续传多线程下载.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Apq.dll.apq">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Apq.dll.log4net">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="XSD\Explorer.xsc">
+      <DependentUpon>Explorer.xsd</DependentUpon>
+    </None>
+    <None Include="XSD\Explorer.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Explorer.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="XSD\Explorer.xss">
+      <DependentUpon>Explorer.xsd</DependentUpon>
+    </None>
+    <Content Include="_Doc\Apq.dll.config.txt" />
+    <Content Include="_Doc\Apq.dll.apq.txt" />
+    <Content Include="_Doc\Apq.Shell.txt" />
+    <Content Include="_Doc\BigIntegerDoc.html" />
+    <Content Include="_Doc\_说明.txt" />
+    <Content Include="_Doc\功能需求.txt" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <PropertyGroup>
+    <PostBuildEvent>if "%25Reference%25" == "" goto End
+xcopy "%25Reference%25\Res\$(ProjectName)" "$(TargetDir)Res\" /c /q /g /h /r /k /y /e
+
+xcopy "$(TargetPath)" "%25Reference%25\$(ConfigurationName)\" /c /q /g /h /r /k /y
+xcopy "$(TargetDir)$(TargetName).xml" "%25Reference%25\$(ConfigurationName)\" /c /q /g /h /r /k /y
+xcopy "$(TargetDir)$(TargetName).pdb" "%25Reference%25\$(ConfigurationName)\" /c /q /g /h /r /k /y
+xcopy "$(TargetPath).config" "%25Reference%25\$(ConfigurationName)\Config\" /c /q /g /h /r /k /y
+xcopy "$(ProjectDir)$(TargetFileName).apq" "%25Reference%25\$(ConfigurationName)\Config\" /c /q /g /h /r /k /y
+xcopy "$(TargetPath).log4net" "%25Reference%25\$(ConfigurationName)\Config\" /c /q /g /h /r /k /y
+:End</PostBuildEvent>
+    <PreBuildEvent>if "%25Reference%25" == "" goto End
+:End</PreBuildEvent>
+  </PropertyGroup>
+</Project>
