@@ -265,5 +265,56 @@ namespace Apq.DB.Privilege
 			return stReturn;
 		}
 		#endregion
+
+		#region 列表权限
+		/// <summary>
+		/// 列表权限
+		/// </summary>
+		/// <param name="UserID"></param>
+		/// <param name="PID">{-1:所有权限项},判断权限时不能使用-1</param>
+		public static System.Data.DataSet ApqUser_ListPrivilege(long UserID, long PID)
+		{
+			System.Data.DataSet ds = new System.Data.DataSet();
+
+			using (SqlConnection SqlConn = new SqlConnection(Apq.DB.GlobalObject.SqlConnectionString))
+			{
+				SqlDataAdapter sda = new SqlDataAdapter("dbo.ApqUser_ListPrivilege", SqlConn);
+				sda.SelectCommand.CommandType = CommandType.StoredProcedure;
+				Apq.Data.Common.DbCommandHelper dch = new Apq.Data.Common.DbCommandHelper(sda.SelectCommand);
+				dch.AddParameter("rtn", 0, DbType.Int32);
+				dch.AddParameter("UserID", UserID, DbType.Int64);
+				dch.AddParameter("PID", PID, DbType.Int64);
+				sda.SelectCommand.Parameters["rtn"].Direction = ParameterDirection.ReturnValue;
+				SqlConn.Open();
+				sda.Fill(ds);
+				//stReturn.NReturn = System.Convert.ToInt32(sc.Parameters["rtn"].Value);
+
+				SqlConn.Close();
+			}
+
+			return ds;
+		}
+		#endregion
+
+		#region 判断权限
+		/// <summary>
+		/// 判断权限
+		/// </summary>
+		/// <param name="UserID">UserID(ApqUser)</param>
+		/// <param name="PID">权限项ID</param>
+		/// <returns>true:授予,false:拒绝</returns>
+		public bool ApqUser_HasPrivilege(long UserID, long PID)
+		{
+			if (PID == -1)
+			{
+				throw new ArgumentException("PID不能使用-1", "PID");
+			}
+
+			DataSet ds = ApqUser_ListPrivilege(UserID,PID);
+			if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
+				return !Apq.Convert.ChangeType<bool>(ds.Tables[0].Rows[0]["IsDeny"]);
+			return false;
+		}
+		#endregion
 	}
 }
