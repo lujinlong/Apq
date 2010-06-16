@@ -84,20 +84,12 @@ namespace Apq.DB
 		#endregion
 
 		#region SqlConnectionString
-		private static string _SqlConnectionString;
 		/// <summary>
 		/// 该程序集配置文件(程序集名.后缀.xml)
 		/// </summary>
 		public static string SqlConnectionString
 		{
-			get
-			{
-				if (_SqlConnectionString == null)
-				{
-					_SqlConnectionString = XmlConfigChain[typeof(GlobalObject), "SqlConnectionString"];
-				}
-				return _SqlConnectionString;
-			}
+			get { return XmlConfigChain[typeof(GlobalObject), "SqlConnectionString"]; }
 		}
 		#endregion
 	}

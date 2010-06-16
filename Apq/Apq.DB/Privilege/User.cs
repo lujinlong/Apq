@@ -74,10 +74,6 @@ namespace Apq.DB.Privilege
 		/// <summary>
 		/// 用户名登录
 		/// </summary>
-		/// <param name="NReturn">返回值</param>
-		/// <param name="ExMsg">返回信息</param>
-		/// <param name="UserName">用户名</param>
-		/// <returns></returns>
 		public static STReturn ApqUser_Login(int UserSrc, string UserName)
 		{
 			STReturn stReturn = new STReturn();
@@ -115,10 +111,6 @@ namespace Apq.DB.Privilege
 		/// <summary>
 		/// 列表用户
 		/// </summary>
-		/// <param name="NReturn">返回值</param>
-		/// <param name="ExMsg">返回信息</param>
-		/// <param name="UserName">用户名</param>
-		/// <returns></returns>
 		public static System.Data.DataSet ApqUser_ListPager(int pSize, int pNumber)
 		{
 			System.Data.DataSet ds = new System.Data.DataSet();
@@ -145,12 +137,8 @@ namespace Apq.DB.Privilege
 
 		#region 用户信息
 		/// <summary>
-		/// 列表用户1
+		/// 用户信息
 		/// </summary>
-		/// <param name="NReturn">返回值</param>
-		/// <param name="ExMsg">返回信息</param>
-		/// <param name="UserName">用户名</param>
-		/// <returns></returns>
 		public static System.Data.DataSet ApqUser_ListOne(long UserID)
 		{
 			System.Data.DataSet ds = new System.Data.DataSet();
@@ -178,8 +166,6 @@ namespace Apq.DB.Privilege
 		/// <summary>
 		/// 查找
 		/// </summary>
-		/// <param name="UserName">用户名</param>
-		/// <returns></returns>
 		public static STReturn ApqUser_FindOne(int UserSrc, string UserName)
 		{
 			STReturn stReturn = new STReturn();
@@ -214,8 +200,6 @@ namespace Apq.DB.Privilege
 		/// <summary>
 		/// 编辑
 		/// </summary>
-		/// <param name="UserName">用户名</param>
-		/// <returns></returns>
 		public static STReturn ApqUser_Edit(long UserID, int UserSrc, string UserName, short AllowLogin)
 		{
 			STReturn stReturn = new STReturn();
@@ -257,8 +241,6 @@ namespace Apq.DB.Privilege
 		/// <summary>
 		/// 删除
 		/// </summary>
-		/// <param name="UserName">用户名</param>
-		/// <returns></returns>
 		public static STReturn ApqUser_Delete(long UserID, int UserSrc)
 		{
 			STReturn stReturn = new STReturn();

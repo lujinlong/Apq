@@ -16,9 +16,7 @@ namespace Apq.DB.Privilege
 		/// <summary>
 		/// 列表权限项树
 		/// </summary>
-		/// <param name="NReturn">返回值</param>
-		/// <param name="ExMsg">返回信息</param>
-		/// <param name="UserName">用户名</param>
+		/// <param name="PID">根</param>
 		/// <returns></returns>
 		public static System.Data.DataSet ApqPrivilege_List(long PID)
 		{
@@ -47,10 +45,6 @@ namespace Apq.DB.Privilege
 		/// <summary>
 		/// 编辑
 		/// </summary>
-		/// <param name="NReturn">返回值</param>
-		/// <param name="ExMsg">返回信息</param>
-		/// <param name="UserName">用户名</param>
-		/// <returns></returns>
 		public static STReturn ApqPrivilege_Edit(long PID, long ParentID, string PName, string Remark)
 		{
 			STReturn stReturn = new STReturn();
@@ -93,8 +87,6 @@ namespace Apq.DB.Privilege
 		/// <summary>
 		/// 删除
 		/// </summary>
-		/// <param name="UserName">用户名</param>
-		/// <returns></returns>
 		public static STReturn ApqUser_Delete(long PID, long ParentID)
 		{
 			STReturn stReturn = new STReturn();
