@@ -150,9 +150,7 @@
     <Compile Include="Apq.DB\Common.cs" />
     <Compile Include="Apq.DB\GlobalObject.cs" />
     <Compile Include="Apq.DB\FileTrans.cs" />
-    <Compile Include="Privilege\Dept.cs" />
-    <Compile Include="Privilege\Elements.cs" />
-    <Compile Include="Privilege\Role.cs" />
+    <Compile Include="Privilege\Privilege.cs" />
     <Compile Include="Privilege\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -162,6 +160,7 @@
     </None>
     <Content Include="_Doc\Apq.DB.dll.apq.txt" />
     <Content Include="_Doc\Apq.DB.dll.config.txt" />
+    <Content Include="_Doc\权限管理.txt" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

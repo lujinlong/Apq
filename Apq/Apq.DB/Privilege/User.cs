@@ -76,35 +76,211 @@ namespace Apq.DB.Privilege
 		/// </summary>
 		/// <param name="NReturn">返回值</param>
 		/// <param name="ExMsg">返回信息</param>
-		/// <param name="LoginName">用户名</param>
-		/// <param name="binPwd">密码</param>
+		/// <param name="UserName">用户名</param>
 		/// <returns></returns>
-		public static DataSet Apq_Login_LoginName(ref int NReturn, ref string ExMsg, string LoginName, byte[] binPwd)
+		public static STReturn ApqUser_Login(int UserSrc, string UserName)
 		{
-			DataSet ds = new DataSet();
+			STReturn stReturn = new STReturn();
 
 			using (SqlConnection SqlConn = new SqlConnection(Apq.DB.GlobalObject.SqlConnectionString))
 			{
-				SqlDataAdapter sda = new SqlDataAdapter("Apq_User.Apq_Login_LoginName", SqlConn);
+				SqlCommand sc = new SqlCommand("dbo.ApqUser_Login", SqlConn);
+				sc.CommandType = CommandType.StoredProcedure;
+				Apq.Data.Common.DbCommandHelper dch = new Apq.Data.Common.DbCommandHelper(sc);
+				dch.AddParameter("rtn", 0, DbType.Int32);
+				dch.AddParameter("ExMsg", string.Empty, DbType.String, -1);
+				dch.AddParameter("UserSrc", UserSrc, DbType.Int32);
+				dch.AddParameter("UserName", UserName);
+				dch.AddParameter("UserID", 0, DbType.Int64);
+				sc.Parameters["rtn"].Direction = ParameterDirection.ReturnValue;
+				sc.Parameters["ExMsg"].Direction = ParameterDirection.InputOutput;
+				sc.Parameters["UserID"].Direction = ParameterDirection.InputOutput;
+				SqlConn.Open();
+				sc.ExecuteNonQuery();
+
+				stReturn.NReturn = System.Convert.ToInt32(sc.Parameters["rtn"].Value);
+				stReturn.POuts = new object[]{
+					sc.Parameters["UserID"].Value
+				};
+				stReturn.ExMsg = sc.Parameters["ExMsg"].Value.ToString();
+
+				SqlConn.Close();
+			}
+
+			return stReturn;
+		}
+		#endregion
+
+		#region 列表用户
+		/// <summary>
+		/// 列表用户
+		/// </summary>
+		/// <param name="NReturn">返回值</param>
+		/// <param name="ExMsg">返回信息</param>
+		/// <param name="UserName">用户名</param>
+		/// <returns></returns>
+		public static System.Data.DataSet ApqUser_ListPager(int pSize, int pNumber)
+		{
+			System.Data.DataSet ds = new System.Data.DataSet();
+
+			using (SqlConnection SqlConn = new SqlConnection(Apq.DB.GlobalObject.SqlConnectionString))
+			{
+				SqlDataAdapter sda = new SqlDataAdapter("dbo.ApqUser_ListPager", SqlConn);
 				sda.SelectCommand.CommandType = CommandType.StoredProcedure;
 				Apq.Data.Common.DbCommandHelper dch = new Apq.Data.Common.DbCommandHelper(sda.SelectCommand);
 				dch.AddParameter("rtn", 0, DbType.Int32);
-				dch.AddParameter("ExMsg", ExMsg, DbType.String, -1);
-				dch.AddParameter("LoginName", LoginName);
-				dch.AddParameter("binPwd", binPwd);
+				dch.AddParameter("pSize", pSize, DbType.Int32);
+				dch.AddParameter("pNumber", pNumber, DbType.Int32);
 				sda.SelectCommand.Parameters["rtn"].Direction = ParameterDirection.ReturnValue;
-				sda.SelectCommand.Parameters["ExMsg"].Direction = ParameterDirection.InputOutput;
 				SqlConn.Open();
 				sda.Fill(ds);
+				//stReturn.NReturn = System.Convert.ToInt32(sc.Parameters["rtn"].Value);
 
-				NReturn = System.Convert.ToInt32(sda.SelectCommand.Parameters["rtn"].Value);
-				ExMsg = sda.SelectCommand.Parameters["ExMsg"].Value.ToString();
-
-				sda.Dispose();
 				SqlConn.Close();
 			}
 
 			return ds;
+		}
+		#endregion
+
+		#region 用户信息
+		/// <summary>
+		/// 列表用户1
+		/// </summary>
+		/// <param name="NReturn">返回值</param>
+		/// <param name="ExMsg">返回信息</param>
+		/// <param name="UserName">用户名</param>
+		/// <returns></returns>
+		public static System.Data.DataSet ApqUser_ListOne(long UserID)
+		{
+			System.Data.DataSet ds = new System.Data.DataSet();
+
+			using (SqlConnection SqlConn = new SqlConnection(Apq.DB.GlobalObject.SqlConnectionString))
+			{
+				SqlDataAdapter sda = new SqlDataAdapter("dbo.ApqUser_ListOne", SqlConn);
+				sda.SelectCommand.CommandType = CommandType.StoredProcedure;
+				Apq.Data.Common.DbCommandHelper dch = new Apq.Data.Common.DbCommandHelper(sda.SelectCommand);
+				dch.AddParameter("rtn", 0, DbType.Int32);
+				dch.AddParameter("UserID", UserID, DbType.Int64);
+				sda.SelectCommand.Parameters["rtn"].Direction = ParameterDirection.ReturnValue;
+				SqlConn.Open();
+				sda.Fill(ds);
+				//stReturn.NReturn = System.Convert.ToInt32(sc.Parameters["rtn"].Value);
+
+				SqlConn.Close();
+			}
+
+			return ds;
+		}
+		#endregion
+
+		#region 查找
+		/// <summary>
+		/// 查找
+		/// </summary>
+		/// <param name="UserName">用户名</param>
+		/// <returns></returns>
+		public static STReturn ApqUser_FindOne(int UserSrc, string UserName)
+		{
+			STReturn stReturn = new STReturn();
+
+			using (SqlConnection SqlConn = new SqlConnection(Apq.DB.GlobalObject.SqlConnectionString))
+			{
+				SqlCommand sc = new SqlCommand("dbo.ApqUser_FindOne", SqlConn);
+				sc.CommandType = CommandType.StoredProcedure;
+				Apq.Data.Common.DbCommandHelper dch = new Apq.Data.Common.DbCommandHelper(sc);
+				dch.AddParameter("rtn", 0, DbType.Int32);
+				dch.AddParameter("UserSrc", UserSrc, DbType.Int32);
+				dch.AddParameter("UserName", UserName);
+				dch.AddParameter("UserID", 0, DbType.Int64);
+				sc.Parameters["rtn"].Direction = ParameterDirection.ReturnValue;
+				sc.Parameters["UserID"].Direction = ParameterDirection.InputOutput;
+				SqlConn.Open();
+				sc.ExecuteNonQuery();
+
+				stReturn.NReturn = System.Convert.ToInt32(sc.Parameters["rtn"].Value);
+				stReturn.POuts = new object[]{
+					sc.Parameters["UserID"].Value
+				};
+
+				SqlConn.Close();
+			}
+
+			return stReturn;
+		}
+		#endregion
+
+		#region 编辑
+		/// <summary>
+		/// 编辑
+		/// </summary>
+		/// <param name="UserName">用户名</param>
+		/// <returns></returns>
+		public static STReturn ApqUser_Edit(long UserID, int UserSrc, string UserName, short AllowLogin)
+		{
+			STReturn stReturn = new STReturn();
+
+			using (SqlConnection SqlConn = new SqlConnection(Apq.DB.GlobalObject.SqlConnectionString))
+			{
+				SqlCommand sc = new SqlCommand("dbo.ApqUser_Edit", SqlConn);
+				sc.CommandType = CommandType.StoredProcedure;
+				Apq.Data.Common.DbCommandHelper dch = new Apq.Data.Common.DbCommandHelper(sc);
+				dch.AddParameter("rtn", 0, DbType.Int32);
+				dch.AddParameter("UserID", UserID, DbType.Int64);
+				dch.AddParameter("UserSrc", UserSrc, DbType.Int32);
+				dch.AddParameter("UserName", UserName);
+				dch.AddParameter("AllowLogin", AllowLogin, DbType.Int16);
+				sc.Parameters["rtn"].Direction = ParameterDirection.ReturnValue;
+				sc.Parameters["UserID"].Direction = ParameterDirection.InputOutput;
+				sc.Parameters["UserSrc"].Direction = ParameterDirection.InputOutput;
+				sc.Parameters["UserName"].Direction = ParameterDirection.InputOutput;
+				sc.Parameters["AllowLogin"].Direction = ParameterDirection.InputOutput;
+				SqlConn.Open();
+				sc.ExecuteNonQuery();
+
+				stReturn.NReturn = System.Convert.ToInt32(sc.Parameters["rtn"].Value);
+				stReturn.POuts = new object[]{
+					sc.Parameters["UserID"].Value,
+					sc.Parameters["UserSrc"].Value,
+					sc.Parameters["UserName"].Value,
+					sc.Parameters["AllowLogin"].Value
+				};
+
+				SqlConn.Close();
+			}
+
+			return stReturn;
+		}
+		#endregion
+
+		#region 删除
+		/// <summary>
+		/// 删除
+		/// </summary>
+		/// <param name="UserName">用户名</param>
+		/// <returns></returns>
+		public static STReturn ApqUser_Delete(long UserID, int UserSrc)
+		{
+			STReturn stReturn = new STReturn();
+
+			using (SqlConnection SqlConn = new SqlConnection(Apq.DB.GlobalObject.SqlConnectionString))
+			{
+				SqlCommand sc = new SqlCommand("dbo.ApqUser_Delete", SqlConn);
+				sc.CommandType = CommandType.StoredProcedure;
+				Apq.Data.Common.DbCommandHelper dch = new Apq.Data.Common.DbCommandHelper(sc);
+				dch.AddParameter("rtn", 0, DbType.Int32);
+				dch.AddParameter("UserID", UserID, DbType.Int64);
+				dch.AddParameter("UserSrc", UserSrc, DbType.Int32);
+				sc.Parameters["rtn"].Direction = ParameterDirection.ReturnValue;
+				SqlConn.Open();
+				sc.ExecuteNonQuery();
+
+				stReturn.NReturn = System.Convert.ToInt32(sc.Parameters["rtn"].Value);
+
+				SqlConn.Close();
+			}
+
+			return stReturn;
 		}
 		#endregion
 	}
