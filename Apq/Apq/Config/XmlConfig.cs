@@ -182,7 +182,7 @@ namespace Apq.Config
 		}
 
 		/// <summary>
-		/// 获取或设置集合弄配置
+		/// 获取或设置集合型配置中的单项属性值
 		/// </summary>
 		/// <param name="ClassName">类名</param>
 		/// <param name="CollectionElementName">集合元素名</param>
@@ -254,5 +254,54 @@ namespace Apq.Config
 				xn1.Attributes[PropertyName].Value = value;
 			}
 		}
+
+		#region 表配置[尚未测试]
+		/// <summary>
+		/// 获取表类型配置
+		/// </summary>
+		/// <param name="ClassName">类名</param>
+		/// <param name="TableElementName">表元素名</param>
+		/// <returns></returns>
+		public System.Data.DataTable GetTableConfig(string ClassName, string TableElementName)
+		{
+			if (xn != null)
+			{
+				System.Xml.XmlNode xn1 = xn.SelectSingleNode(ClassName + "/" + TableElementName);
+				if (xn1 != null)
+				{
+					System.Data.DataTable dt = new System.Data.DataTable(TableElementName);
+					StringReader sr = new StringReader(xn1.OuterXml);
+					System.Xml.XmlReader xr = System.Xml.XmlReader.Create(sr);
+					dt.ReadXml(xr);
+					return dt;
+				}
+			}
+			return null;
+		}
+
+		/// <summary>
+		/// 设置表类型配置
+		/// </summary>
+		/// <param name="ClassName">类名</param>
+		/// <param name="TableElementName">表元素名</param>
+		/// <param name="dt">表配置</param>
+		public void SetTableConfig(string ClassName, string TableElementName, System.Data.DataTable dt)
+		{
+			if (xn == null)
+			{
+				throw new System.Exception("请先设置 Root!");
+			}
+
+			System.Xml.XmlNode xn1 = xn.SelectSingleNode(ClassName + "/" + TableElementName);
+			if (xn1 != null && xn1.ChildNodes.Count > 0)
+			{
+				xn1.InnerXml = string.Empty;
+			}
+
+			StringWriter sw = new StringWriter();
+			dt.WriteXml(sw);
+			xn1.InnerXml = sw.ToString();
+		}
+		#endregion
 	}
 }
