@@ -22,16 +22,5 @@ namespace Apq.Properties {
                 return defaultInstance;
             }
         }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=(local);Initial Catalog=pdbp;Persist Security Info=True;User ID=apq;P" +
-            "assword=f")]
-        public string pdbpConnectionString {
-            get {
-                return ((string)(this["pdbpConnectionString"]));
-            }
-        }
     }
 }
