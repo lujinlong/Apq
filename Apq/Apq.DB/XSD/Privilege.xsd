@@ -1,0 +1,146 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="Privilege" targetNamespace="http://tempuri.org/Privilege.xsd" xmlns:mstns="http://tempuri.org/Privilege.xsd" xmlns="http://tempuri.org/Privilege.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="pdbpConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="pdbpConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.Apq.Properties.Settings.GlobalReference.Default.pdbpConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="Privilege" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_DataSetName="Privilege" msprop:Generator_UserDSName="Privilege" msprop:EnableTableAdapterManager="true">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="ApqUser" msprop:Generator_UserTableName="ApqUser" msprop:Generator_RowDeletedName="ApqUserRowDeleted" msprop:Generator_TableClassName="ApqUserDataTable" msprop:Generator_RowChangedName="ApqUserRowChanged" msprop:Generator_RowClassName="ApqUserRow" msprop:Generator_RowChangingName="ApqUserRowChanging" msprop:Generator_RowEvArgName="ApqUserRowChangeEvent" msprop:Generator_RowEvHandlerName="ApqUserRowChangeEventHandler" msprop:Generator_TablePropName="ApqUser" msprop:Generator_TableVarName="tableApqUser" msprop:Generator_RowDeletingName="ApqUserRowDeleting">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="UserID" msprop:Generator_UserColumnName="UserID" msprop:Generator_ColumnPropNameInRow="UserID" msprop:Generator_ColumnVarNameInTable="columnUserID" msprop:Generator_ColumnPropNameInTable="UserIDColumn" type="xs:long" />
+              <xs:element name="UserSrc" msprop:Generator_UserColumnName="UserSrc" msprop:Generator_ColumnPropNameInRow="UserSrc" msprop:Generator_ColumnVarNameInTable="columnUserSrc" msprop:Generator_ColumnPropNameInTable="UserSrcColumn" type="xs:int" />
+              <xs:element name="UserName" msprop:Generator_UserColumnName="UserName" msprop:Generator_ColumnPropNameInRow="UserName" msprop:Generator_ColumnVarNameInTable="columnUserName" msprop:Generator_ColumnPropNameInTable="UserNameColumn">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="AllowLogin" msprop:Generator_UserColumnName="AllowLogin" msprop:Generator_ColumnPropNameInRow="AllowLogin" msprop:Generator_ColumnVarNameInTable="columnAllowLogin" msprop:Generator_ColumnPropNameInTable="AllowLoginColumn" type="xs:unsignedByte" />
+              <xs:element name="Remark" msprop:Generator_UserColumnName="Remark" msprop:Generator_ColumnPropNameInRow="Remark" msprop:Generator_ColumnVarNameInTable="columnRemark" msprop:Generator_ColumnPropNameInTable="RemarkColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="ApqUserP" msprop:Generator_UserTableName="ApqUserP" msprop:Generator_RowDeletedName="ApqUserPRowDeleted" msprop:Generator_TableClassName="ApqUserPDataTable" msprop:Generator_RowChangedName="ApqUserPRowChanged" msprop:Generator_RowClassName="ApqUserPRow" msprop:Generator_RowChangingName="ApqUserPRowChanging" msprop:Generator_RowEvArgName="ApqUserPRowChangeEvent" msprop:Generator_RowEvHandlerName="ApqUserPRowChangeEventHandler" msprop:Generator_TablePropName="ApqUserP" msprop:Generator_TableVarName="tableApqUserP" msprop:Generator_RowDeletingName="ApqUserPRowDeleting">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_UserColumnName="ID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInTable="IDColumn" type="xs:long" />
+              <xs:element name="UserID" msprop:Generator_UserColumnName="UserID" msprop:Generator_ColumnPropNameInRow="UserID" msprop:Generator_ColumnVarNameInTable="columnUserID" msprop:Generator_ColumnPropNameInTable="UserIDColumn" type="xs:long" />
+              <xs:element name="PID" msprop:Generator_UserColumnName="PID" msprop:Generator_ColumnPropNameInRow="PID" msprop:Generator_ColumnVarNameInTable="columnPID" msprop:Generator_ColumnPropNameInTable="PIDColumn" type="xs:long" />
+              <xs:element name="IsDeny" msprop:Generator_UserColumnName="IsDeny" msprop:Generator_ColumnPropNameInRow="IsDeny" msprop:Generator_ColumnVarNameInTable="columnIsDeny" msprop:Generator_ColumnPropNameInTable="IsDenyColumn" type="xs:short" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="ApqDep" msprop:Generator_UserTableName="ApqDep" msprop:Generator_RowDeletedName="ApqDepRowDeleted" msprop:Generator_TableClassName="ApqDepDataTable" msprop:Generator_RowChangedName="ApqDepRowChanged" msprop:Generator_RowClassName="ApqDepRow" msprop:Generator_RowChangingName="ApqDepRowChanging" msprop:Generator_RowEvArgName="ApqDepRowChangeEvent" msprop:Generator_RowEvHandlerName="ApqDepRowChangeEventHandler" msprop:Generator_TablePropName="ApqDep" msprop:Generator_TableVarName="tableApqDep" msprop:Generator_RowDeletingName="ApqDepRowDeleting">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="DepID" msprop:Generator_UserColumnName="DepID" msprop:Generator_ColumnPropNameInRow="DepID" msprop:Generator_ColumnVarNameInTable="columnDepID" msprop:Generator_ColumnPropNameInTable="DepIDColumn" type="xs:long" />
+              <xs:element name="ParentID" msprop:Generator_UserColumnName="ParentID" msprop:Generator_ColumnPropNameInRow="ParentID" msprop:Generator_ColumnVarNameInTable="columnParentID" msprop:Generator_ColumnPropNameInTable="ParentIDColumn" type="xs:long" minOccurs="0" />
+              <xs:element name="DepName" msprop:Generator_UserColumnName="DepName" msprop:Generator_ColumnPropNameInRow="DepName" msprop:Generator_ColumnVarNameInTable="columnDepName" msprop:Generator_ColumnPropNameInTable="DepNameColumn">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Remark" msprop:Generator_UserColumnName="Remark" msprop:Generator_ColumnPropNameInRow="Remark" msprop:Generator_ColumnVarNameInTable="columnRemark" msprop:Generator_ColumnPropNameInTable="RemarkColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DepLevel" msprop:Generator_UserColumnName="DepLevel" msprop:Generator_ColumnPropNameInRow="DepLevel" msprop:Generator_ColumnVarNameInTable="columnDepLevel" msprop:Generator_ColumnPropNameInTable="DepLevelColumn" type="xs:int" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="ApqPrivilege" msprop:Generator_UserTableName="ApqPrivilege" msprop:Generator_RowDeletedName="ApqPrivilegeRowDeleted" msprop:Generator_TableClassName="ApqPrivilegeDataTable" msprop:Generator_RowChangedName="ApqPrivilegeRowChanged" msprop:Generator_RowClassName="ApqPrivilegeRow" msprop:Generator_RowChangingName="ApqPrivilegeRowChanging" msprop:Generator_RowEvArgName="ApqPrivilegeRowChangeEvent" msprop:Generator_RowEvHandlerName="ApqPrivilegeRowChangeEventHandler" msprop:Generator_TablePropName="ApqPrivilege" msprop:Generator_TableVarName="tableApqPrivilege" msprop:Generator_RowDeletingName="ApqPrivilegeRowDeleting">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="PID" msprop:Generator_UserColumnName="PID" msprop:Generator_ColumnPropNameInRow="PID" msprop:Generator_ColumnVarNameInTable="columnPID" msprop:Generator_ColumnPropNameInTable="PIDColumn" type="xs:long" />
+              <xs:element name="ParentID" msprop:Generator_UserColumnName="ParentID" msprop:Generator_ColumnPropNameInRow="ParentID" msprop:Generator_ColumnVarNameInTable="columnParentID" msprop:Generator_ColumnPropNameInTable="ParentIDColumn" type="xs:long" minOccurs="0" />
+              <xs:element name="PName" msprop:Generator_UserColumnName="PName" msprop:Generator_ColumnPropNameInRow="PName" msprop:Generator_ColumnVarNameInTable="columnPName" msprop:Generator_ColumnPropNameInTable="PNameColumn">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Remark" msprop:Generator_UserColumnName="Remark" msprop:Generator_ColumnPropNameInRow="Remark" msprop:Generator_ColumnVarNameInTable="columnRemark" msprop:Generator_ColumnPropNameInTable="RemarkColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="PLevel" msprop:Generator_UserColumnName="PLevel" msprop:Generator_ColumnPropNameInRow="PLevel" msprop:Generator_ColumnVarNameInTable="columnPLevel" msprop:Generator_ColumnPropNameInTable="PLevelColumn" type="xs:int" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="ApqUserDep" msprop:Generator_UserTableName="ApqUserDep" msprop:Generator_RowDeletedName="ApqUserDepRowDeleted" msprop:Generator_TableClassName="ApqUserDepDataTable" msprop:Generator_RowChangedName="ApqUserDepRowChanged" msprop:Generator_RowClassName="ApqUserDepRow" msprop:Generator_RowChangingName="ApqUserDepRowChanging" msprop:Generator_RowEvArgName="ApqUserDepRowChangeEvent" msprop:Generator_RowEvHandlerName="ApqUserDepRowChangeEventHandler" msprop:Generator_TablePropName="ApqUserDep" msprop:Generator_TableVarName="tableApqUserDep" msprop:Generator_RowDeletingName="ApqUserDepRowDeleting">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_UserColumnName="ID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInTable="IDColumn" type="xs:long" />
+              <xs:element name="UserID" msprop:Generator_UserColumnName="UserID" msprop:Generator_ColumnPropNameInRow="UserID" msprop:Generator_ColumnVarNameInTable="columnUserID" msprop:Generator_ColumnPropNameInTable="UserIDColumn" type="xs:long" />
+              <xs:element name="DepID" msprop:Generator_UserColumnName="DepID" msprop:Generator_ColumnPropNameInRow="DepID" msprop:Generator_ColumnVarNameInTable="columnDepID" msprop:Generator_ColumnPropNameInTable="DepIDColumn" type="xs:long" />
+              <xs:element name="JobTitle" msprop:Generator_UserColumnName="JobTitle" msprop:Generator_ColumnPropNameInRow="JobTitle" msprop:Generator_ColumnVarNameInTable="columnJobTitle" msprop:Generator_ColumnPropNameInTable="JobTitleColumn">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="HasGrant" msprop:Generator_UserColumnName="HasGrant" msprop:Generator_ColumnPropNameInRow="HasGrant" msprop:Generator_ColumnVarNameInTable="columnHasGrant" msprop:Generator_ColumnPropNameInTable="HasGrantColumn" type="xs:unsignedByte" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="ApqUserRole" msprop:Generator_UserTableName="ApqUserRole" msprop:Generator_RowDeletedName="ApqUserRoleRowDeleted" msprop:Generator_TableClassName="ApqUserRoleDataTable" msprop:Generator_RowChangedName="ApqUserRoleRowChanged" msprop:Generator_RowClassName="ApqUserRoleRow" msprop:Generator_RowChangingName="ApqUserRoleRowChanging" msprop:Generator_RowEvArgName="ApqUserRoleRowChangeEvent" msprop:Generator_RowEvHandlerName="ApqUserRoleRowChangeEventHandler" msprop:Generator_TablePropName="ApqUserRole" msprop:Generator_TableVarName="tableApqUserRole" msprop:Generator_RowDeletingName="ApqUserRoleRowDeleting">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_UserColumnName="ID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInTable="IDColumn" type="xs:long" />
+              <xs:element name="UserID" msprop:Generator_UserColumnName="UserID" msprop:Generator_ColumnPropNameInRow="UserID" msprop:Generator_ColumnVarNameInTable="columnUserID" msprop:Generator_ColumnPropNameInTable="UserIDColumn" type="xs:long" />
+              <xs:element name="RoleID" msprop:Generator_UserColumnName="RoleID" msprop:Generator_ColumnPropNameInRow="RoleID" msprop:Generator_ColumnVarNameInTable="columnRoleID" msprop:Generator_ColumnPropNameInTable="RoleIDColumn" type="xs:long" />
+              <xs:element name="PRI" msprop:Generator_UserColumnName="PRI" msprop:Generator_ColumnPropNameInRow="PRI" msprop:Generator_ColumnVarNameInTable="columnPRI" msprop:Generator_ColumnPropNameInTable="PRIColumn" type="xs:int" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:ApqUser" />
+      <xs:field xpath="mstns:UserID" />
+    </xs:unique>
+    <xs:unique name="ApqUserP_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:ApqUserP" />
+      <xs:field xpath="mstns:ID" />
+    </xs:unique>
+    <xs:unique name="ApqDep_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:ApqDep" />
+      <xs:field xpath="mstns:DepID" />
+    </xs:unique>
+    <xs:unique name="ApqPrivilege_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:ApqPrivilege" />
+      <xs:field xpath="mstns:PID" />
+    </xs:unique>
+    <xs:unique name="ApqUserRole_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:ApqUserRole" />
+      <xs:field xpath="mstns:ID" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>
