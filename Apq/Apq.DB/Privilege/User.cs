@@ -7,7 +7,7 @@ using System.Data.SqlClient;
 namespace Apq.DB.Privilege
 {
 	/// <summary>
-	/// 用户
+	/// 用户(或角色)
 	/// </summary>
 	public class User
 	{
@@ -30,8 +30,8 @@ namespace Apq.DB.Privilege
 		/// <param name="Birthday">生日</param>
 		/// <param name="UserID">用户编号</param>
 		/// <returns></returns>
-		public static void Apq_Reg_LoginName(ref int NReturn, ref string ExMsg, string LoginName, byte[] binPwd, string IDCard, string IDCardName, short Sex
-			, string IDCardPhotoUrl, string Users_Name, string Users_PhotoUrl, DateTime Expire, short IsAdmin, DateTime Birthday, ref long UserID)
+		public static void Apq_Reg_LoginName(ref int NReturn, ref string ExMsg, string LoginName, byte[] binPwd, string IDCard, string IDCardName, byte Sex
+			, string IDCardPhotoUrl, string Users_Name, string Users_PhotoUrl, DateTime Expire, byte IsAdmin, DateTime Birthday, ref long UserID)
 		{
 			SqlCommand sc = new SqlCommand("Apq_User.Apq_Reg_LoginName");
 			sc.CommandType = CommandType.StoredProcedure;
@@ -42,12 +42,12 @@ namespace Apq.DB.Privilege
 			dch.AddParameter("binPwd", binPwd);
 			dch.AddParameter("IDCard", IDCard);
 			dch.AddParameter("IDCardName", IDCardName);
-			dch.AddParameter("Sex", Sex.ToString());
+			dch.AddParameter("Sex", Sex, DbType.Byte);
 			dch.AddParameter("IDCardPhotoUrl", IDCardPhotoUrl);
 			dch.AddParameter("Users_Name", Users_Name);
 			dch.AddParameter("Users_PhotoUrl", Users_PhotoUrl);
 			dch.AddParameter("Expire", Expire);
-			dch.AddParameter("IsAdmin", IsAdmin);
+			dch.AddParameter("IsAdmin", IsAdmin, DbType.Byte);
 			dch.AddParameter("Birthday", Birthday);
 			dch.AddParameter("UserID", UserID, DbType.Int64);
 			sc.Parameters["rtn"].Direction = ParameterDirection.ReturnValue;
@@ -200,7 +200,7 @@ namespace Apq.DB.Privilege
 		/// <summary>
 		/// 编辑
 		/// </summary>
-		public static STReturn ApqUser_Edit(long UserID, int UserSrc, string UserName, short AllowLogin)
+		public static STReturn ApqUser_Edit(long UserID, int UserSrc, string UserName, byte AllowLogin)
 		{
 			STReturn stReturn = new STReturn();
 
@@ -213,7 +213,7 @@ namespace Apq.DB.Privilege
 				dch.AddParameter("UserID", UserID, DbType.Int64);
 				dch.AddParameter("UserSrc", UserSrc, DbType.Int32);
 				dch.AddParameter("UserName", UserName);
-				dch.AddParameter("AllowLogin", AllowLogin, DbType.Int16);
+				dch.AddParameter("AllowLogin", AllowLogin, DbType.Byte);
 				sc.Parameters["rtn"].Direction = ParameterDirection.ReturnValue;
 				sc.Parameters["UserID"].Direction = ParameterDirection.InputOutput;
 				sc.Parameters["UserSrc"].Direction = ParameterDirection.InputOutput;
@@ -310,10 +310,41 @@ namespace Apq.DB.Privilege
 				throw new ArgumentException("PID不能使用-1", "PID");
 			}
 
-			DataSet ds = ApqUser_ListPrivilege(UserID,PID);
+			DataSet ds = ApqUser_ListPrivilege(UserID, PID);
 			if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
 				return !Apq.Convert.ChangeType<bool>(ds.Tables[0].Rows[0]["IsDeny"]);
 			return false;
+		}
+		#endregion
+
+		#region 设置权限
+		/// <summary>
+		/// 设置权限
+		/// </summary>
+		/// <param name="UserID"></param>
+		/// <param name="strUserP">权限串,格式:PID,IsDeny;...</param>
+		public static STReturn ApqUser_SetP(long UserID, string strUserP)
+		{
+			STReturn stReturn = new STReturn();
+
+			using (SqlConnection SqlConn = new SqlConnection(Apq.DB.GlobalObject.SqlConnectionString))
+			{
+				SqlCommand sc = new SqlCommand("dbo.ApqUser_SetP", SqlConn);
+				sc.CommandType = CommandType.StoredProcedure;
+				Apq.Data.Common.DbCommandHelper dch = new Apq.Data.Common.DbCommandHelper(sc);
+				dch.AddParameter("rtn", 0, DbType.Int32);
+				dch.AddParameter("UserID", UserID, DbType.Int64);
+				dch.AddParameter("strUserP", strUserP);
+				sc.Parameters["rtn"].Direction = ParameterDirection.ReturnValue;
+				SqlConn.Open();
+				sc.ExecuteNonQuery();
+
+				stReturn.NReturn = System.Convert.ToInt32(sc.Parameters["rtn"].Value);
+
+				SqlConn.Close();
+			}
+
+			return stReturn;
 		}
 		#endregion
 	}
