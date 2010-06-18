@@ -1,0 +1,135 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{EBA996C1-1015-4DCC-ADDB-CC2653F4D658}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Apq.Img</RootNamespace>
+    <AssemblyName>Apq.Img</AssemblyName>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>2.0</OldToolsVersion>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <PublishUrl>http://localhost/Apq.Img/</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Web</InstallFrom>
+    <UpdateEnabled>true</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>true</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ApqJS.Web.Client\bg_grid_fst_a0a219.200903240001.png" />
+    <Content Include="Web.UI.WebControls\Menu\%2801,10%29.png" />
+    <Content Include="Web.UI.WebControls\Menu\clarity.gif" />
+    <Content Include="Web.UI.WebControls\Menu\file.gif" />
+    <Content Include="Web.UI.WebControls\Menu\file1.gif" />
+    <Content Include="Web.UI.WebControls\Menu\file2.gif" />
+    <Content Include="Web.UI.WebControls\Menu\file3.gif" />
+    <Content Include="Web.UI.WebControls\Menu\file4.gif" />
+    <Content Include="Web.UI.WebControls\Menu\file_last.gif" />
+    <Content Include="Web.UI.WebControls\Menu\file_mid.gif" />
+    <Content Include="Web.UI.WebControls\Menu\folder.gif" />
+    <Content Include="Web.UI.WebControls\Menu\folder_exp.gif" />
+    <Content Include="Web.UI.WebControls\Menu\folder_last.gif" />
+    <Content Include="Web.UI.WebControls\Menu\folder_last_exp.gif" />
+    <Content Include="Web.UI.WebControls\Menu\folder_mid.gif" />
+    <Content Include="Web.UI.WebControls\Menu\folder_mid_exp.gif" />
+    <Content Include="Web.UI.WebControls\Menu\line.gif" />
+    <Content Include="Web.UI.WebControls\TreeView\clarity.gif" />
+    <Content Include="Web.UI.WebControls\TreeView\file.gif" />
+    <Content Include="Web.UI.WebControls\TreeView\file1.gif" />
+    <Content Include="Web.UI.WebControls\TreeView\file2.gif" />
+    <Content Include="Web.UI.WebControls\TreeView\file3.gif" />
+    <Content Include="Web.UI.WebControls\TreeView\file4.gif" />
+    <Content Include="Web.UI.WebControls\TreeView\file_last.gif" />
+    <Content Include="Web.UI.WebControls\TreeView\file_mid.gif" />
+    <Content Include="Web.UI.WebControls\TreeView\folder.gif" />
+    <Content Include="Web.UI.WebControls\TreeView\folder_exp.gif" />
+    <Content Include="Web.UI.WebControls\TreeView\folder_last.gif" />
+    <Content Include="Web.UI.WebControls\TreeView\folder_last_exp.gif" />
+    <Content Include="Web.UI.WebControls\TreeView\folder_mid.gif" />
+    <Content Include="Web.UI.WebControls\TreeView\folder_mid_exp.gif" />
+    <Content Include="Web.UI.WebControls\TreeView\line.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
