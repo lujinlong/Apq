@@ -17,12 +17,12 @@ namespace Apq.Privilege
 		/// <returns></returns>
 		public static string GetUserP(System.Data.DataTable dt)
 		{
-			StringBuilder sb = new StringBuilder();
+			List<string> lst = new List<string>(dt.Rows.Count);
 			foreach (System.Data.DataRow dr in dt.Rows)
 			{
-				sb.AppendFormat("{0},{1};", dr["PID"], dr["IsDeny"]);
+				lst.Add(string.Format("{0},{1}", dr["PID"], dr["IsDeny"]));
 			}
-			return sb.ToString();
+			return string.Join(";", lst.ToArray());
 		}
 	}
 }

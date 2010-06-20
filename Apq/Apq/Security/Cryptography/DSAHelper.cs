@@ -17,15 +17,16 @@ namespace Apq.Security.Cryptography
 		/// </summary>
 		public static int FileReadStep = 4194304;	// 4M
 
-		#region FormatKey
+		#region CreateKey
 		/// <summary>
-		/// 创建密钥对(XmlString)
+		/// 创建密钥对(XmlString),使用者应将结果保存到文件存档
 		/// </summary>
+		/// <param name="ContainsPKey">是否包含私钥</param>
 		/// <returns></returns>
-		public static string CreateKey()
+		public static string CreateKey(bool ContainsPKey)
 		{
 			DSACryptoServiceProvider dsa = new DSACryptoServiceProvider();
-			return dsa.ToXmlString(true);
+			return dsa.ToXmlString(ContainsPKey);
 		}
 		#endregion
 
@@ -97,7 +98,7 @@ namespace Apq.Security.Cryptography
 		/// </summary>
 		/// <param name="PlainText">原始字符串</param>
 		/// <param name="xmlString">密钥(至少含私钥)</param>
-		/// <returns>Base64编码后的字符串</returns>
+		/// <returns>Base64编码后的已签名字符串</returns>
 		public static string SignString(string PlainText, string xmlString)
 		{
 			DSACryptoServiceProvider dsa = new DSACryptoServiceProvider();
@@ -112,7 +113,7 @@ namespace Apq.Security.Cryptography
 		/// <summary>
 		/// DSA验证
 		/// </summary>
-		/// <param name="CypherText">加密后的Base64字符串</param>
+		/// <param name="CypherText">签名后的Base64字符串</param>
 		/// <param name="xmlString">密钥(公钥私钥俱有)</param>
 		/// <param name="signString">签名串</param>
 		public static bool VerifyString(string CypherText, string xmlString, string signString)

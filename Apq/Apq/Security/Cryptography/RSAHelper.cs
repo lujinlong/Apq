@@ -20,13 +20,14 @@ namespace Apq.Security.Cryptography
 
 		#region CreateKey
 		/// <summary>
-		/// 创建密钥对(XmlString)
+		/// 创建密钥对(XmlString),使用者应将结果保存到文件存档
 		/// </summary>
+		/// <param name="ContainsPKey">是否包含私钥</param>
 		/// <returns></returns>
-		public static string CreateKey()
+		public static string CreateKey(bool ContainsPKey)
 		{
 			RSACryptoServiceProvider rsa = new RSACryptoServiceProvider();
-			return rsa.ToXmlString(true);
+			return rsa.ToXmlString(ContainsPKey);
 		}
 		#endregion
 
@@ -104,7 +105,7 @@ namespace Apq.Security.Cryptography
 			RSACryptoServiceProvider rsa = new RSACryptoServiceProvider();
 			rsa.FromXmlString(xmlString);
 
-			byte[] bText = System.Text.Encoding.UTF8.GetBytes( PlainText.ToCharArray());
+			byte[] bText = System.Text.Encoding.UTF8.GetBytes(PlainText.ToCharArray());
 			byte[] bEnc = rsa.Encrypt(bText, false);
 
 			return System.Convert.ToBase64String(bEnc);
