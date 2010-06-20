@@ -207,8 +207,10 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="Runtime\Serialization\Formatters\Binary\BinaryFormatter.cs" />
+    <Compile Include="Security\Cryptography\RSAHelper.cs" />
     <Compile Include="Security\Cryptography\DESHelper.cs" />
     <Compile Include="Security\Cryptography\SymmetricAlgorithmHelper.cs" />
+    <Compile Include="Security\Cryptography\DSAHelper.cs" />
     <Compile Include="Sim\Mouse.cs" />
     <Compile Include="Utils\VirtKeys.cs" />
     <Compile Include="Xml\XmlDocument.cs" />

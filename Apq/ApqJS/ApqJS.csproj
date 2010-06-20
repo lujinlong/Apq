@@ -150,6 +150,7 @@
     <None Include="Help\ApqJS.Text.doc" />
     <None Include="Help\ApqJS.Threading.doc" />
     <None Include="Help\ApqJS.Xml.doc" />
+    <Content Include="Doc\开发进度.txt" />
     <Content Include="vswd-ext_2.2.js" />
     <Content Include="web.config" />
     <Content Include="ApqJS.js" />
