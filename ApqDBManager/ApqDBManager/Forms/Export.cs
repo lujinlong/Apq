@@ -21,6 +21,8 @@ namespace ApqDBManager
 			InitializeComponent();
 		}
 
+		public int ExcelMaxRowNumber = 65500;
+
 		/// <summary>
 		/// Export
 		/// </summary>
@@ -78,7 +80,7 @@ namespace ApqDBManager
 				cbRowSpliter.Text = cfgcbRowSpliter;
 			}
 
-			if (MaxRowCount > Apq.Com.Excel.MaxRowNumber)
+			if (MaxRowCount > ExcelMaxRowNumber)
 			{
 				MessageBox.Show("存在最大行数超过 Excel 所支持的最大行数的表,导出为 Excel 时将自动导出分割为多个 Sheet。\r\n建议导出为文本文件.", "提示", MessageBoxButtons.OK);
 			}
@@ -207,7 +209,7 @@ namespace ApqDBManager
 		private void ExportToExcel()
 		{
 			// 整理数据集
-			Apq.Data.DataSet.BuildupTabelForMaxrow(ds, Apq.Com.Excel.MaxRowNumber);
+			Apq.Data.DataSet.BuildupTabelForMaxrow(ds, ExcelMaxRowNumber);
 
 			DataSet dsExcel = new DataSet();
 			dsExcel.DataSetName = ds.DataSetName;

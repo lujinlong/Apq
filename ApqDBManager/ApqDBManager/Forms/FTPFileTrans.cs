@@ -55,6 +55,7 @@ namespace ApqDBManager.Forms
 			// 从ControlValues设置页面服务器列表,页面改变时,同时改变ControlValues里的值
 			Forms.SolutionExplorer.UIState UISolution = Apq.Windows.Controls.ControlExtension.GetControlValues(this, "UISolution") as Forms.SolutionExplorer.UIState;
 			GlobalObject.SolutionExplorer.SetServers(_Servers, UISolution);
+			GlobalObject.ErrList.Set_ErrList(_UI);
 		}
 
 		private void FileTrans_Deactivate(object sender, EventArgs e)
@@ -224,9 +225,19 @@ namespace ApqDBManager.Forms
 				return;
 			}
 
+			Apq.Windows.Delegates.Action_UI<BarStaticItem>(this, bsiState, delegate(BarStaticItem ctrl)
+			{
+				_UI.ErrList.Clear();
+				_UI.ErrList.AcceptChanges();
+			});
 			foreach (DataRow dr in _Servers.dtServers.Rows)
 			{
 				dr["Err"] = false;
+				dr["IsReadyToGo"] = false;
+			}
+			foreach (DataRowView drv in dv)
+			{
+				drv["IsReadyToGo"] = true;
 			}
 			_Servers.dtServers.AcceptChanges();
 
@@ -322,19 +333,27 @@ namespace ApqDBManager.Forms
 			catch (ThreadAbortException)
 			{
 			}
-			catch (DbException)
+			catch (Exception ex)
 			{
 				DataView dvErr = new DataView(_Servers.dtServers);
 				dvErr.RowFilter = "ID = " + nServerID;
 				// 标记本服执行出错
 				if (dvErr.Count > 0)
 				{
-					dvErr[0]["Err"] = true;
-					_Servers.dtServers.AcceptChanges();
+					lock (rtLock)
+					{
+						Apq.Windows.Delegates.Action_UI<BarStaticItem>(this, bsiState, delegate(BarStaticItem ctrl)
+						{
+							XSD.UI.ErrListRow drErrList = _UI.ErrList.NewErrListRow();
+							drErrList.RSrvID = nServerID;
+							drErrList["__ServerName"] = dvErr[0]["Name"];
+							drErrList.s = ex.Message;
+							_UI.ErrList.Rows.Add(drErrList);
+
+							dvErr[0]["Err"] = true;
+						});
+					}
 				}
-			}
-			catch (Exception ex)
-			{
 				Apq.GlobalObject.ApqLog.Warn(dr["Name"], ex);
 			}
 			finally
@@ -348,6 +367,8 @@ namespace ApqDBManager.Forms
 							beiPb1.EditValue = Apq.Convert.ChangeType<int>(beiPb1.EditValue) + 1;
 							if (Apq.Convert.ChangeType<int>(beiPb1.EditValue) == ripb.Properties.Maximum)
 							{
+								_Servers.dtServers.AcceptChanges();
+								_UI.ErrList.AcceptChanges();
 								bsiState.Caption = "已全部完成";
 								UIEnable(true);
 
@@ -391,9 +412,19 @@ namespace ApqDBManager.Forms
 				return;
 			}
 
+			Apq.Windows.Delegates.Action_UI<BarStaticItem>(this, bsiState, delegate(BarStaticItem ctrl)
+			{
+				_UI.ErrList.Clear();
+				_UI.ErrList.AcceptChanges();
+			});
 			foreach (DataRow dr in _Servers.dtServers.Rows)
 			{
 				dr["Err"] = false;
+				dr["IsReadyToGo"] = false;
+			}
+			foreach (DataRowView drv in dv)
+			{
+				drv["IsReadyToGo"] = true;
 			}
 			_Servers.dtServers.AcceptChanges();
 
@@ -492,19 +523,27 @@ namespace ApqDBManager.Forms
 			catch (ThreadAbortException)
 			{
 			}
-			catch (DbException)
+			catch (Exception ex)
 			{
 				DataView dvErr = new DataView(_Servers.dtServers);
 				dvErr.RowFilter = "ID = " + nServerID;
 				// 标记本服执行出错
 				if (dvErr.Count > 0)
 				{
-					dvErr[0]["Err"] = true;
-					_Servers.dtServers.AcceptChanges();
+					lock (rtLock)
+					{
+						Apq.Windows.Delegates.Action_UI<BarStaticItem>(this, bsiState, delegate(BarStaticItem ctrl)
+						{
+							XSD.UI.ErrListRow drErrList = _UI.ErrList.NewErrListRow();
+							drErrList.RSrvID = nServerID;
+							drErrList["__ServerName"] = dvErr[0]["Name"];
+							drErrList.s = ex.Message;
+							_UI.ErrList.Rows.Add(drErrList);
+
+							dvErr[0]["Err"] = true;
+						});
+					}
 				}
-			}
-			catch (Exception ex)
-			{
 				Apq.GlobalObject.ApqLog.Warn(dr["Name"], ex);
 			}
 			finally
@@ -518,6 +557,8 @@ namespace ApqDBManager.Forms
 							beiPb1.EditValue = Apq.Convert.ChangeType<int>(beiPb1.EditValue) + 1;
 							if (Apq.Convert.ChangeType<int>(beiPb1.EditValue) == ripb.Properties.Maximum)
 							{
+								_Servers.dtServers.AcceptChanges();
+								_UI.ErrList.AcceptChanges();
 								bsiState.Caption = "已全部完成";
 								UIEnable(true);
 

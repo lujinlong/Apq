@@ -88,10 +88,10 @@ namespace ApqDBManager
 			#endregion
 
 			txtSql.Document.HighlightingStrategy = HighlightingStrategyFactory.CreateHighlightingStrategy("TSQL");
+			txtSql.ShowEOLMarkers = false;
 			txtSql.ShowSpaces = false;
 			txtSql.ShowTabs = false;
 			txtSql.ShowVRuler = false;
-			txtSql.ShowEOLMarkers = false;
 			txtSql.Document.DocumentChanged += new DocumentEventHandler(txtSql_DocumentChanged);
 
 			#region ricbDBName.Items
@@ -740,7 +740,10 @@ UNION ALL SELECT 2,2;";
 			catch (ThreadAbortException)
 			{
 			}
-			catch (DbException ex)
+			//catch (DbException ex)
+			//{
+			//}
+			catch (Exception ex)
 			{
 				DataView dvErr = new DataView(_Servers.dtServers);
 				dvErr.RowFilter = "ID = " + nServerID;
@@ -761,9 +764,6 @@ UNION ALL SELECT 2,2;";
 						});
 					}
 				}
-			}
-			catch (Exception ex)
-			{
 				Apq.GlobalObject.ApqLog.Warn(dr["Name"], ex);
 			}
 			finally

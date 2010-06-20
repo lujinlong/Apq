@@ -122,6 +122,7 @@ namespace ApqDBManager.Forms
 			// 从ControlValues设置页面服务器列表,页面改变时,同时改变ControlValues里的值
 			Forms.SolutionExplorer.UIState UISolution = Apq.Windows.Controls.ControlExtension.GetControlValues(this, "UISolution") as Forms.SolutionExplorer.UIState;
 			GlobalObject.SolutionExplorer.SetServers(_Servers, UISolution);
+			GlobalObject.ErrList.Set_ErrList(_UI);
 		}
 
 		private void FileUp_Deactivate(object sender, EventArgs e)
@@ -529,7 +530,7 @@ namespace ApqDBManager.Forms
 			catch (ThreadAbortException)
 			{
 			}
-			catch (DbException ex)
+			catch (Exception ex)
 			{
 				DataView dvErr = new DataView(_Servers.dtServers);
 				dvErr.RowFilter = "ID = " + nServerID;
@@ -550,9 +551,6 @@ namespace ApqDBManager.Forms
 						});
 					}
 				}
-			}
-			catch (Exception ex)
-			{
 				Apq.GlobalObject.ApqLog.Warn(dr["Name"], ex);
 			}
 			finally

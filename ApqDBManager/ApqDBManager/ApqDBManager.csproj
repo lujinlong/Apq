@@ -133,6 +133,7 @@
     <Reference Include="DevExpress.XtraNavBar.v9.2, Version=9.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <Private>True</Private>
     </Reference>
+    <Reference Include="DevExpress.XtraRichEdit.v9.2, Version=9.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraTreeList.v9.2, Version=9.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <Private>True</Private>
     </Reference>
@@ -235,11 +236,11 @@
     <Compile Include="Forms\MainOption.Designer.cs">
       <DependentUpon>MainOption.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Output.cs">
+    <Compile Include="Forms\RSAKey.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Output.Designer.cs">
-      <DependentUpon>Output.cs</DependentUpon>
+    <Compile Include="Forms\RSAKey.Designer.cs">
+      <DependentUpon>RSAKey.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\SrvsMgr.cs">
       <SubType>Form</SubType>
@@ -389,6 +390,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\MainOption.resx">
       <DependentUpon>MainOption.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\RSAKey.resx">
+      <DependentUpon>RSAKey.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\SrvsMgr.resx">
       <DependentUpon>SrvsMgr.cs</DependentUpon>

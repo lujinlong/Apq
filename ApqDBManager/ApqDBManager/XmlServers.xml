@@ -12,6 +12,9 @@
     <FTPPort>48029</FTPPort>
     <FTPU>dba</FTPU>
     <FTPPC>EI6YSHwrFgU7ENqxi/Us4fWqpFcPZkq9</FTPPC>
+    <LSMaxTimes>10</LSMaxTimes>
+    <LSErrTimes>0</LSErrTimes>
+    <LSState>1</LSState>
   </dtServers>
   <dtServers>
     <CheckState>0</CheckState>
@@ -27,6 +30,9 @@
     <FTPPort>48029</FTPPort>
     <FTPU>dba</FTPU>
     <FTPPC>EI6YSHwrFgU7ENqxi/Us4fWqpFcPZkq9</FTPPC>
+    <LSMaxTimes>10</LSMaxTimes>
+    <LSErrTimes>0</LSErrTimes>
+    <LSState>1</LSState>
   </dtServers>
   <dtServers>
     <CheckState>0</CheckState>
@@ -37,13 +43,16 @@
     <Err>false</Err>
     <SqlPort>41033</SqlPort>
     <UID>apq</UID>
-    <PwdC>3ZZKMDyWriGerbwmAJWk2QEXqMyQy2nf</PwdC>
+    <PwdC>5Pf/hNAqNCbwrHfDv6EFytQjNNRtlqEo</PwdC>
     <IPWan1>121.9.245.162</IPWan1>
     <FTPPort>48029</FTPPort>
     <FTPU>dba</FTPU>
     <FTPPC>EI6YSHwrFgU7ENqxi/Us4fWqpFcPZkq9</FTPPC>
     <IPWan2>58.255.248.94</IPWan2>
     <IPLan>192.168.70.162</IPLan>
+    <LSMaxTimes>10</LSMaxTimes>
+    <LSErrTimes>0</LSErrTimes>
+    <LSState>1</LSState>
   </dtServers>
   <dtServers>
     <CheckState>0</CheckState>
@@ -60,12 +69,15 @@
     <FTPU>dba</FTPU>
     <FTPPC>EI6YSHwrFgU7ENqxi/Us4fWqpFcPZkq9</FTPPC>
     <IPLan>192.168.70.161</IPLan>
+    <LSMaxTimes>10</LSMaxTimes>
+    <LSErrTimes>0</LSErrTimes>
+    <LSState>1</LSState>
   </dtServers>
   <dtServers>
     <CheckState>0</CheckState>
     <ID>5</ID>
     <ParentID>1</ParentID>
-    <Name>fs_龙腾[备用]</Name>
+    <Name>fs_龙腾_备用</Name>
     <Type>0</Type>
     <Err>false</Err>
     <SqlPort>41033</SqlPort>
@@ -76,12 +88,15 @@
     <FTPU>dba</FTPU>
     <FTPPC>EI6YSHwrFgU7ENqxi/Us4fWqpFcPZkq9</FTPPC>
     <IPLan>192.168.73.181</IPLan>
+    <LSMaxTimes>10</LSMaxTimes>
+    <LSErrTimes>0</LSErrTimes>
+    <LSState>1</LSState>
   </dtServers>
   <dtServers>
     <CheckState>0</CheckState>
     <ID>6</ID>
     <ParentID>1</ParentID>
-    <Name>fs_天下[备用]</Name>
+    <Name>fs_天下_备用</Name>
     <Type>0</Type>
     <Err>false</Err>
     <SqlPort>41033</SqlPort>
@@ -92,12 +107,15 @@
     <FTPU>dba</FTPU>
     <FTPPC>EI6YSHwrFgU7ENqxi/Us4fWqpFcPZkq9</FTPPC>
     <IPLan>192.168.73.182</IPLan>
+    <LSMaxTimes>10</LSMaxTimes>
+    <LSErrTimes>0</LSErrTimes>
+    <LSState>1</LSState>
   </dtServers>
   <dtServers>
     <CheckState>0</CheckState>
     <ID>7</ID>
     <ParentID>1</ParentID>
-    <Name>Yz_传说[GameDB_Log]</Name>
+    <Name>Yz_传说_GameDBLog</Name>
     <Type>6</Type>
     <Err>false</Err>
     <SqlPort>41033</SqlPort>
@@ -108,12 +126,15 @@
     <FTPU>dba</FTPU>
     <FTPPC>EI6YSHwrFgU7ENqxi/Us4fWqpFcPZkq9</FTPPC>
     <IPLan>192.168.70.184</IPLan>
+    <LSMaxTimes>10</LSMaxTimes>
+    <LSErrTimes>0</LSErrTimes>
+    <LSState>1</LSState>
   </dtServers>
   <dtServers>
     <CheckState>0</CheckState>
     <ID>8</ID>
     <ParentID>1</ParentID>
-    <Name>Yz_传说[GameDB]</Name>
+    <Name>Yz_传说_GameDB</Name>
     <Type>5</Type>
     <Err>false</Err>
     <SqlPort>41033</SqlPort>
@@ -124,6 +145,9 @@
     <FTPU>dba</FTPU>
     <FTPPC>EI6YSHwrFgU7ENqxi/Us4fWqpFcPZkq9</FTPPC>
     <IPLan>192.168.70.183</IPLan>
+    <LSMaxTimes>10</LSMaxTimes>
+    <LSErrTimes>0</LSErrTimes>
+    <LSState>1</LSState>
   </dtServers>
   <dtServers>
     <CheckState>0</CheckState>
@@ -140,12 +164,15 @@
     <FTPU>dba</FTPU>
     <FTPPC>EI6YSHwrFgU7ENqxi/Us4fWqpFcPZkq9</FTPPC>
     <IPLan>192.168.72.231</IPLan>
+    <LSMaxTimes>10</LSMaxTimes>
+    <LSErrTimes>0</LSErrTimes>
+    <LSState>1</LSState>
   </dtServers>
   <dtServers>
     <CheckState>0</CheckState>
-    <ID>10</ID>
+    <ID>38</ID>
     <ParentID>1</ParentID>
-    <Name>Yz_统计</Name>
+    <Name>Yz_日志中心</Name>
     <Type>8</Type>
     <Err>false</Err>
     <SqlPort>41033</SqlPort>
@@ -156,28 +183,34 @@
     <FTPU>dba</FTPU>
     <FTPPC>EI6YSHwrFgU7ENqxi/Us4fWqpFcPZkq9</FTPPC>
     <IPLan>192.168.70.163</IPLan>
+    <LSMaxTimes>10</LSMaxTimes>
+    <LSErrTimes>0</LSErrTimes>
+    <LSState>1</LSState>
   </dtServers>
   <dtServers>
     <CheckState>0</CheckState>
     <ID>11</ID>
     <ParentID>1</ParentID>
-    <Name>Yz_压测[GameDB]</Name>
+    <Name>Yz_压测_GameDB</Name>
     <Type>5</Type>
     <Err>false</Err>
     <SqlPort>41033</SqlPort>
     <UID>apq</UID>
-    <PwdC>5Pf/hNAqNCbwrHfDv6EFytQjNNRtlqEo</PwdC>
+    <PwdC>3ZZKMDyWriGerbwmAJWk2QEXqMyQy2nf</PwdC>
     <IPWan1>121.9.213.112</IPWan1>
     <FTPPort>48029</FTPPort>
     <FTPU>dba</FTPU>
     <FTPPC>EI6YSHwrFgU7ENqxi/Us4fWqpFcPZkq9</FTPPC>
     <IPLan>192.168.72.112</IPLan>
+    <LSMaxTimes>10</LSMaxTimes>
+    <LSErrTimes>0</LSErrTimes>
+    <LSState>1</LSState>
   </dtServers>
   <dtServers>
     <CheckState>0</CheckState>
     <ID>12</ID>
     <ParentID>1</ParentID>
-    <Name>Yz_压测[GameDB_Log]</Name>
+    <Name>Yz_压测_GameDBLog</Name>
     <Type>6</Type>
     <Err>false</Err>
     <SqlPort>41033</SqlPort>
@@ -188,12 +221,15 @@
     <FTPU>dba</FTPU>
     <FTPPC>EI6YSHwrFgU7ENqxi/Us4fWqpFcPZkq9</FTPPC>
     <IPLan>192.168.72.232</IPLan>
+    <LSMaxTimes>10</LSMaxTimes>
+    <LSErrTimes>0</LSErrTimes>
+    <LSState>1</LSState>
   </dtServers>
   <dtServers>
     <CheckState>0</CheckState>
     <ID>13</ID>
     <ParentID>1</ParentID>
-    <Name>Yz_龙腾[GameDB_Log]</Name>
+    <Name>Yz_龙腾_GameDBLog</Name>
     <Type>6</Type>
     <Err>false</Err>
     <SqlPort>41033</SqlPort>
@@ -204,12 +240,15 @@
     <FTPU>dba</FTPU>
     <FTPPC>EI6YSHwrFgU7ENqxi/Us4fWqpFcPZkq9</FTPPC>
     <IPLan>192.168.73.176</IPLan>
+    <LSMaxTimes>10</LSMaxTimes>
+    <LSErrTimes>0</LSErrTimes>
+    <LSState>1</LSState>
   </dtServers>
   <dtServers>
     <CheckState>0</CheckState>
     <ID>14</ID>
     <ParentID>1</ParentID>
-    <Name>Yz_龙腾[GameDB]</Name>
+    <Name>Yz_龙腾_GameDB</Name>
     <Type>5</Type>
     <Err>false</Err>
     <SqlPort>41033</SqlPort>
@@ -220,12 +259,15 @@
     <FTPU>dba</FTPU>
     <FTPPC>EI6YSHwrFgU7ENqxi/Us4fWqpFcPZkq9</FTPPC>
     <IPLan>192.168.73.169</IPLan>
+    <LSMaxTimes>10</LSMaxTimes>
+    <LSErrTimes>0</LSErrTimes>
+    <LSState>1</LSState>
   </dtServers>
   <dtServers>
     <CheckState>0</CheckState>
     <ID>15</ID>
     <ParentID>1</ParentID>
-    <Name>Yz_天下[GameDB_Log]</Name>
+    <Name>Yz_天下_GameDBLog</Name>
     <Type>6</Type>
     <Err>false</Err>
     <SqlPort>41033</SqlPort>
@@ -236,12 +278,15 @@
     <FTPU>dba</FTPU>
     <FTPPC>EI6YSHwrFgU7ENqxi/Us4fWqpFcPZkq9</FTPPC>
     <IPLan>192.168.73.199</IPLan>
+    <LSMaxTimes>10</LSMaxTimes>
+    <LSErrTimes>0</LSErrTimes>
+    <LSState>1</LSState>
   </dtServers>
   <dtServers>
     <CheckState>0</CheckState>
     <ID>16</ID>
     <ParentID>1</ParentID>
-    <Name>Yz_天下[GameDB]</Name>
+    <Name>Yz_天下_GameDB</Name>
     <Type>5</Type>
     <Err>false</Err>
     <SqlPort>41033</SqlPort>
@@ -252,12 +297,15 @@
     <FTPU>dba</FTPU>
     <FTPPC>EI6YSHwrFgU7ENqxi/Us4fWqpFcPZkq9</FTPPC>
     <IPLan>192.168.73.179</IPLan>
+    <LSMaxTimes>10</LSMaxTimes>
+    <LSErrTimes>0</LSErrTimes>
+    <LSState>1</LSState>
   </dtServers>
   <dtServers>
     <CheckState>0</CheckState>
     <ID>17</ID>
     <ParentID>1</ParentID>
-    <Name>sy_传说[备用]</Name>
+    <Name>sy_传说_备用</Name>
     <Type>0</Type>
     <Err>false</Err>
     <SqlPort>41033</SqlPort>
@@ -268,12 +316,15 @@
     <FTPU>dba</FTPU>
     <FTPPC>EI6YSHwrFgU7ENqxi/Us4fWqpFcPZkq9</FTPPC>
     <IPLan>192.168.70.229</IPLan>
+    <LSMaxTimes>10</LSMaxTimes>
+    <LSErrTimes>0</LSErrTimes>
+    <LSState>1</LSState>
   </dtServers>
   <dtServers>
     <CheckState>0</CheckState>
-    <ID>18</ID>
+    <ID>33</ID>
     <ParentID>1</ParentID>
-    <Name>Yz_无双[GameDB]</Name>
+    <Name>Yz_浩然_GameDB</Name>
     <Type>5</Type>
     <Err>false</Err>
     <SqlPort>41033</SqlPort>
@@ -284,12 +335,15 @@
     <FTPU>dba</FTPU>
     <FTPPC>EI6YSHwrFgU7ENqxi/Us4fWqpFcPZkq9</FTPPC>
     <IPLan>192.168.74.207</IPLan>
+    <LSMaxTimes>10</LSMaxTimes>
+    <LSErrTimes>0</LSErrTimes>
+    <LSState>1</LSState>
   </dtServers>
   <dtServers>
     <CheckState>0</CheckState>
-    <ID>19</ID>
+    <ID>34</ID>
     <ParentID>1</ParentID>
-    <Name>Yz_无双[GameDB_Log]</Name>
+    <Name>Yz_浩然_GameDBLog</Name>
     <Type>6</Type>
     <Err>false</Err>
     <SqlPort>41033</SqlPort>
@@ -300,12 +354,15 @@
     <FTPU>dba</FTPU>
     <FTPPC>EI6YSHwrFgU7ENqxi/Us4fWqpFcPZkq9</FTPPC>
     <IPLan>192.168.74.208</IPLan>
+    <LSMaxTimes>10</LSMaxTimes>
+    <LSErrTimes>0</LSErrTimes>
+    <LSState>1</LSState>
   </dtServers>
   <dtServers>
     <CheckState>0</CheckState>
     <ID>20</ID>
     <ParentID>1</ParentID>
-    <Name>Yz_如意[GameDB]</Name>
+    <Name>Yz_如意_GameDB</Name>
     <Type>5</Type>
     <Err>false</Err>
     <SqlPort>41033</SqlPort>
@@ -316,12 +373,15 @@
     <FTPU>dba</FTPU>
     <FTPPC>EI6YSHwrFgU7ENqxi/Us4fWqpFcPZkq9</FTPPC>
     <IPLan>192.168.71.237</IPLan>
+    <LSMaxTimes>10</LSMaxTimes>
+    <LSErrTimes>0</LSErrTimes>
+    <LSState>1</LSState>
   </dtServers>
   <dtServers>
     <CheckState>0</CheckState>
     <ID>21</ID>
     <ParentID>1</ParentID>
-    <Name>Yz_如意[GameDB_Log]</Name>
+    <Name>Yz_如意_GameDBLog</Name>
     <Type>6</Type>
     <Err>false</Err>
     <SqlPort>41033</SqlPort>
@@ -332,12 +392,15 @@
     <FTPU>dba</FTPU>
     <FTPPC>EI6YSHwrFgU7ENqxi/Us4fWqpFcPZkq9</FTPPC>
     <IPLan>192.168.71.238</IPLan>
+    <LSMaxTimes>10</LSMaxTimes>
+    <LSErrTimes>0</LSErrTimes>
+    <LSState>1</LSState>
   </dtServers>
   <dtServers>
     <CheckState>0</CheckState>
     <ID>24</ID>
     <ParentID>1</ParentID>
-    <Name>Yz_北斗[GameDB]</Name>
+    <Name>Yz_北斗_GameDB</Name>
     <Type>5</Type>
     <Err>false</Err>
     <SqlPort>41033</SqlPort>
@@ -348,12 +411,15 @@
     <FTPU>dba</FTPU>
     <FTPPC>EI6YSHwrFgU7ENqxi/Us4fWqpFcPZkq9</FTPPC>
     <IPLan>192.168.76.74</IPLan>
+    <LSMaxTimes>10</LSMaxTimes>
+    <LSErrTimes>0</LSErrTimes>
+    <LSState>1</LSState>
   </dtServers>
   <dtServers>
     <CheckState>0</CheckState>
     <ID>25</ID>
     <ParentID>1</ParentID>
-    <Name>Yz_北斗[GameDB_Log]</Name>
+    <Name>Yz_北斗_GameDBLog</Name>
     <Type>6</Type>
     <Err>false</Err>
     <SqlPort>41033</SqlPort>
@@ -364,12 +430,15 @@
     <FTPU>dba</FTPU>
     <FTPPC>EI6YSHwrFgU7ENqxi/Us4fWqpFcPZkq9</FTPPC>
     <IPLan>192.168.76.75</IPLan>
+    <LSMaxTimes>10</LSMaxTimes>
+    <LSErrTimes>0</LSErrTimes>
+    <LSState>1</LSState>
   </dtServers>
   <dtServers>
     <CheckState>0</CheckState>
     <ID>26</ID>
     <ParentID>1</ParentID>
-    <Name>Yz_北斗[备用]</Name>
+    <Name>Yz_北斗_备用</Name>
     <Type>0</Type>
     <Err>false</Err>
     <SqlPort>41033</SqlPort>
@@ -380,44 +449,72 @@
     <FTPU>dba</FTPU>
     <FTPPC>EI6YSHwrFgU7ENqxi/Us4fWqpFcPZkq9</FTPPC>
     <IPLan>192.168.76.76</IPLan>
+    <LSMaxTimes>10</LSMaxTimes>
+    <LSErrTimes>0</LSErrTimes>
+    <LSState>1</LSState>
   </dtServers>
   <dtServers>
     <CheckState>0</CheckState>
-    <ID>22</ID>
+    <ID>36</ID>
     <ParentID>1</ParentID>
-    <Name>Yz_百战[GameDB]</Name>
+    <Name>Yz_玄武_GameDB</Name>
     <Type>5</Type>
     <Err>false</Err>
     <SqlPort>41033</SqlPort>
     <UID>apq</UID>
     <PwdC>4wHAVNI5sWhuegdtmJmtSsyR6u+LSOBc</PwdC>
-    <IPWan1>121.9.245.152</IPWan1>
+    <IPWan1>59.38.124.121</IPWan1>
     <FTPPort>48029</FTPPort>
     <FTPU>dba</FTPU>
     <FTPPC>EI6YSHwrFgU7ENqxi/Us4fWqpFcPZkq9</FTPPC>
-    <IPLan>192.168.75.152</IPLan>
+    <IPLan>192.168.80.121</IPLan>
+    <LSMaxTimes>10</LSMaxTimes>
+    <LSErrTimes>0</LSErrTimes>
+    <LSState>1</LSState>
   </dtServers>
   <dtServers>
     <CheckState>0</CheckState>
-    <ID>23</ID>
+    <ID>37</ID>
     <ParentID>1</ParentID>
-    <Name>Yz_百战[GameDB_Log]</Name>
+    <Name>Yz_玄武_GameDBLog</Name>
     <Type>6</Type>
     <Err>false</Err>
     <SqlPort>41033</SqlPort>
     <UID>apq</UID>
     <PwdC>1zj2yqMK/+j1NHLl3A49ntBEWWl1P4+l</PwdC>
-    <IPWan1>121.9.245.153</IPWan1>
+    <IPWan1>59.38.124.122</IPWan1>
     <FTPPort>48029</FTPPort>
     <FTPU>dba</FTPU>
     <FTPPC>EI6YSHwrFgU7ENqxi/Us4fWqpFcPZkq9</FTPPC>
-    <IPLan>192.168.75.153</IPLan>
+    <IPLan>192.168.80.122</IPLan>
+    <LSMaxTimes>10</LSMaxTimes>
+    <LSErrTimes>0</LSErrTimes>
+    <LSState>1</LSState>
+  </dtServers>
+  <dtServers>
+    <CheckState>0</CheckState>
+    <ID>18</ID>
+    <ParentID>1</ParentID>
+    <Name>Yz_无双_GameDB</Name>
+    <Type>5</Type>
+    <Err>false</Err>
+    <SqlPort>41033</SqlPort>
+    <UID>apq</UID>
+    <PwdC>Hs7ugdJYfnFXdl5k1SGRy9CBi79OLTCd</PwdC>
+    <IPWan1>59.38.124.90</IPWan1>
+    <FTPPort>48029</FTPPort>
+    <FTPU>dba</FTPU>
+    <FTPPC>EI6YSHwrFgU7ENqxi/Us4fWqpFcPZkq9</FTPPC>
+    <IPLan>192.168.80.90</IPLan>
+    <LSMaxTimes>10</LSMaxTimes>
+    <LSErrTimes>0</LSErrTimes>
+    <LSState>1</LSState>
   </dtServers>
   <dtServers>
     <CheckState>0</CheckState>
     <ID>27</ID>
     <ParentID>1</ParentID>
-    <Name>Yz_星辰[GameDB]</Name>
+    <Name>Yz_星辰_GameDB</Name>
     <Type>5</Type>
     <Err>false</Err>
     <SqlPort>41033</SqlPort>
@@ -428,12 +525,15 @@
     <FTPU>dba</FTPU>
     <FTPPC>EI6YSHwrFgU7ENqxi/Us4fWqpFcPZkq9</FTPPC>
     <IPLan>192.168.78.246</IPLan>
+    <LSMaxTimes>10</LSMaxTimes>
+    <LSErrTimes>0</LSErrTimes>
+    <LSState>1</LSState>
   </dtServers>
   <dtServers>
     <CheckState>0</CheckState>
     <ID>28</ID>
     <ParentID>1</ParentID>
-    <Name>Yz_星辰[GameDB_Log]</Name>
+    <Name>Yz_星辰_GameDBLog</Name>
     <Type>6</Type>
     <Err>false</Err>
     <SqlPort>41033</SqlPort>
@@ -444,6 +544,9 @@
     <FTPU>dba</FTPU>
     <FTPPC>EI6YSHwrFgU7ENqxi/Us4fWqpFcPZkq9</FTPPC>
     <IPLan>192.168.78.247</IPLan>
+    <LSMaxTimes>10</LSMaxTimes>
+    <LSErrTimes>0</LSErrTimes>
+    <LSState>1</LSState>
   </dtServers>
   <dtServers>
     <CheckState>0</CheckState>
@@ -461,12 +564,15 @@
     <FTPPC>EI6YSHwrFgU7ENqxi/Us4fWqpFcPZkq9</FTPPC>
     <IPWan2>218.240.15.180</IPWan2>
     <IPLan>192.168.77.179</IPLan>
+    <LSMaxTimes>10</LSMaxTimes>
+    <LSErrTimes>0</LSErrTimes>
+    <LSState>1</LSState>
   </dtServers>
   <dtServers>
     <CheckState>0</CheckState>
     <ID>30</ID>
     <ParentID>1</ParentID>
-    <Name>gla_通行证[备用]</Name>
+    <Name>gla_通行证_备用</Name>
     <Type>0</Type>
     <Err>false</Err>
     <SqlPort>41033</SqlPort>
@@ -477,5 +583,160 @@
     <FTPU>dba</FTPU>
     <FTPPC>EI6YSHwrFgU7ENqxi/Us4fWqpFcPZkq9</FTPPC>
     <IPLan>192.168.77.178</IPLan>
+    <LSMaxTimes>10</LSMaxTimes>
+    <LSErrTimes>0</LSErrTimes>
+    <LSState>1</LSState>
+  </dtServers>
+  <dtServers>
+    <CheckState>0</CheckState>
+    <ID>31</ID>
+    <ParentID>1</ParentID>
+    <Name>Yz_长生_GameDB</Name>
+    <Type>5</Type>
+    <Err>false</Err>
+    <SqlPort>41033</SqlPort>
+    <UID>apq</UID>
+    <PwdC>+NznvuWkcCnIvXzOKH2GfQxvRUNYSoAN</PwdC>
+    <IPWan1>121.9.245.156</IPWan1>
+    <FTPPort>48029</FTPPort>
+    <FTPU>dba</FTPU>
+    <FTPPC>EI6YSHwrFgU7ENqxi/Us4fWqpFcPZkq9</FTPPC>
+    <IPLan>192.168.79.156</IPLan>
+    <LSMaxTimes>10</LSMaxTimes>
+    <LSErrTimes>0</LSErrTimes>
+    <LSState>1</LSState>
+  </dtServers>
+  <dtServers>
+    <CheckState>0</CheckState>
+    <ID>32</ID>
+    <ParentID>1</ParentID>
+    <Name>Yz_长生_GameDBLog</Name>
+    <Type>6</Type>
+    <Err>false</Err>
+    <SqlPort>41033</SqlPort>
+    <UID>apq</UID>
+    <PwdC>Gv+/sigRlAysHT5pk2EpHhqFLu/2WCbM</PwdC>
+    <IPWan1>121.9.245.157</IPWan1>
+    <FTPPort>48029</FTPPort>
+    <FTPU>dba</FTPU>
+    <FTPPC>EI6YSHwrFgU7ENqxi/Us4fWqpFcPZkq9</FTPPC>
+    <IPLan>192.168.79.157</IPLan>
+    <LSMaxTimes>10</LSMaxTimes>
+    <LSErrTimes>0</LSErrTimes>
+    <LSState>1</LSState>
+  </dtServers>
+  <dtServers>
+    <CheckState>0</CheckState>
+    <ID>19</ID>
+    <ParentID>1</ParentID>
+    <Name>Yz_无双_GameDBLog</Name>
+    <Type>6</Type>
+    <Err>false</Err>
+    <SqlPort>41033</SqlPort>
+    <UID>apq</UID>
+    <PwdC>RW10AIoUU71Wqt1RaM48TykEeGdDo5DU</PwdC>
+    <IPWan1>59.38.124.91</IPWan1>
+    <FTPPort>48029</FTPPort>
+    <FTPU>dba</FTPU>
+    <FTPPC>EI6YSHwrFgU7ENqxi/Us4fWqpFcPZkq9</FTPPC>
+    <IPLan>192.168.80.91</IPLan>
+    <LSMaxTimes>10</LSMaxTimes>
+    <LSErrTimes>0</LSErrTimes>
+    <LSState>1</LSState>
+  </dtServers>
+  <dtServers>
+    <CheckState>0</CheckState>
+    <ID>35</ID>
+    <ParentID>1</ParentID>
+    <Name>Yz_无双_备用</Name>
+    <Type>0</Type>
+    <Err>false</Err>
+    <SqlPort>41033</SqlPort>
+    <UID>apq</UID>
+    <PwdC>N1KQvez49aTw2BNWEhhCh858HeXiiibe</PwdC>
+    <IPWan1>59.38.124.92</IPWan1>
+    <FTPPort>48029</FTPPort>
+    <FTPU>dba</FTPU>
+    <FTPPC>EI6YSHwrFgU7ENqxi/Us4fWqpFcPZkq9</FTPPC>
+    <IPLan>192.168.80.92</IPLan>
+    <LSMaxTimes>10</LSMaxTimes>
+    <LSErrTimes>0</LSErrTimes>
+    <LSState>1</LSState>
+  </dtServers>
+  <dtServers>
+    <CheckState>0</CheckState>
+    <ID>22</ID>
+    <ParentID>1</ParentID>
+    <Name>Yz_百战_GameDB</Name>
+    <Type>5</Type>
+    <Err>false</Err>
+    <SqlPort>41033</SqlPort>
+    <UID>apq</UID>
+    <PwdC>yIaw2fO69eXp/nEb+x/hFbL9VYpP6nOX</PwdC>
+    <IPWan1>59.38.124.98</IPWan1>
+    <FTPPort>48029</FTPPort>
+    <FTPU>dba</FTPU>
+    <FTPPC>EI6YSHwrFgU7ENqxi/Us4fWqpFcPZkq9</FTPPC>
+    <IPLan>192.168.80.98</IPLan>
+    <LSMaxTimes>10</LSMaxTimes>
+    <LSErrTimes>0</LSErrTimes>
+    <LSState>1</LSState>
+  </dtServers>
+  <dtServers>
+    <CheckState>0</CheckState>
+    <ID>23</ID>
+    <ParentID>1</ParentID>
+    <Name>Yz_百战_GameDBLog</Name>
+    <Type>6</Type>
+    <Err>false</Err>
+    <SqlPort>41033</SqlPort>
+    <UID>apq</UID>
+    <PwdC>zXyUJ+zWNv/vBX02Ya56HNUQdEgwTqXk</PwdC>
+    <IPWan1>59.38.124.99</IPWan1>
+    <FTPPort>48029</FTPPort>
+    <FTPU>dba</FTPU>
+    <FTPPC>EI6YSHwrFgU7ENqxi/Us4fWqpFcPZkq9</FTPPC>
+    <IPLan>192.168.80.99</IPLan>
+    <LSMaxTimes>10</LSMaxTimes>
+    <LSErrTimes>0</LSErrTimes>
+    <LSState>1</LSState>
+  </dtServers>
+  <dtServers>
+    <CheckState>0</CheckState>
+    <ID>10</ID>
+    <ParentID>1</ParentID>
+    <Name>Yz_统计</Name>
+    <Type>5</Type>
+    <Err>false</Err>
+    <SqlPort>41033</SqlPort>
+    <UID>apq</UID>
+    <PwdC>SDVctvaBC3zTQEliw7uFrJD2R9DPh8pk</PwdC>
+    <IPWan1>59.38.124.103</IPWan1>
+    <FTPPort>48029</FTPPort>
+    <FTPU>dba</FTPU>
+    <FTPPC>EI6YSHwrFgU7ENqxi/Us4fWqpFcPZkq9</FTPPC>
+    <IPLan>192.168.80.103</IPLan>
+    <LSMaxTimes>10</LSMaxTimes>
+    <LSErrTimes>0</LSErrTimes>
+    <LSState>1</LSState>
+  </dtServers>
+  <dtServers>
+    <CheckState>0</CheckState>
+    <ID>39</ID>
+    <ParentID>1</ParentID>
+    <Name>Yz_统计备用</Name>
+    <Type>6</Type>
+    <Err>false</Err>
+    <SqlPort>41033</SqlPort>
+    <UID>apq</UID>
+    <PwdC>8rc32Lrp4voy8tliJhNBAh0prD1Cx4eM</PwdC>
+    <IPWan1>59.38.124.104</IPWan1>
+    <FTPPort>48029</FTPPort>
+    <FTPU>dba</FTPU>
+    <FTPPC>EI6YSHwrFgU7ENqxi/Us4fWqpFcPZkq9</FTPPC>
+    <IPLan>192.168.80.104</IPLan>
+    <LSMaxTimes>10</LSMaxTimes>
+    <LSErrTimes>0</LSErrTimes>
+    <LSState>1</LSState>
   </dtServers>
 </Servers>

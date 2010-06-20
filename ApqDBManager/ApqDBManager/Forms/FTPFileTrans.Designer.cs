@@ -56,6 +56,7 @@
 			this.fbdCFTPFolder_Out = new System.Windows.Forms.FolderBrowserDialog();
 			this.fbdCFolder_In = new System.Windows.Forms.FolderBrowserDialog();
 			this._Servers = new ApqDBManager.XSD.Servers();
+			this._UI = new ApqDBManager.XSD.UI();
 			((System.ComponentModel.ISupportInitialize)(this.beDBFTPFolder_Out.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.beCFTPFolder_Out.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.beDBFTPFolder_In.Properties)).BeginInit();
@@ -67,6 +68,7 @@
 			((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.ripb)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this._Servers)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this._UI)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// beDBFTPFolder_Out
@@ -281,6 +283,11 @@
 			this._Servers.DataSetName = "Servers";
 			this._Servers.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
 			// 
+			// _UI
+			// 
+			this._UI.DataSetName = "UI";
+			this._UI.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+			// 
 			// FTPFileTrans
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -313,6 +320,7 @@
 			((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.ripb)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this._Servers)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this._UI)).EndInit();
 			this.ResumeLayout(false);
 
 		}
@@ -345,5 +353,6 @@
 		private DevExpress.XtraEditors.LabelControl labelControl5;
 		private DevExpress.XtraEditors.LabelControl labelControl6;
 		private ApqDBManager.XSD.Servers _Servers;
+		private ApqDBManager.XSD.UI _UI;
 	}
 }

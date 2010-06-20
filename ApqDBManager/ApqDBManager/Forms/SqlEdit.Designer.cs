@@ -292,13 +292,10 @@
 			// 
 			this.txtSql.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.txtSql.Encoding = ((System.Text.Encoding)(resources.GetObject("txtSql.Encoding")));
+			this.txtSql.IsIconBarVisible = false;
 			this.txtSql.Location = new System.Drawing.Point(0, 25);
 			this.txtSql.Name = "txtSql";
 			this.barManager1.SetPopupContextMenu(this.txtSql, this.popupMenu1);
-			this.txtSql.ShowEOLMarkers = true;
-			this.txtSql.ShowSpaces = true;
-			this.txtSql.ShowTabs = true;
-			this.txtSql.ShowVRuler = true;
 			this.txtSql.Size = new System.Drawing.Size(760, 68);
 			this.txtSql.TabIndex = 0;
 			// 

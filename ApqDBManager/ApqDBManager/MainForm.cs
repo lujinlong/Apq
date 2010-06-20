@@ -104,7 +104,7 @@ namespace ApqDBManager
 
 			menuSolution_CheckedChanged(sender, null);
 			menuFavorites_CheckedChanged(sender, null);
-			menuOutput_CheckedChanged(sender, null);
+			menuErrList_CheckedChanged(sender, null);
 
 			menuNew_ItemClick(menuNew, null);
 		}
@@ -261,14 +261,6 @@ namespace ApqDBManager
 				GlobalObject.Favorites.Hide();
 		}
 
-		private void menuOutput_CheckedChanged(object sender, DevExpress.XtraBars.ItemClickEventArgs e)//
-		{
-			if (menuOutput.Checked)
-				GlobalObject.SolutionExplorer.Show(dockPanel1);
-			else
-				GlobalObject.SolutionExplorer.Hide();
-		}
-
 		private void menuErrList_CheckedChanged(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
 		{
 			if (menuErrList.Checked)
@@ -317,6 +309,12 @@ namespace ApqDBManager
 		private void menuFTPFileUp_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
 		{
 			Forms.FTPFileUp win = new ApqDBManager.Forms.FTPFileUp();
+			win.Show(dockPanel1);
+		}
+
+		private void menuRSAKey_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+		{
+			Forms.RSAKey win = new ApqDBManager.Forms.RSAKey();
 			win.Show(dockPanel1);
 		}
 		#endregion

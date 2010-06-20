@@ -55,10 +55,10 @@
 			this.menuStatusBar = new DevExpress.XtraBars.BarCheckItem();
 			this.menuSolution = new DevExpress.XtraBars.BarCheckItem();
 			this.menuFavorites = new DevExpress.XtraBars.BarCheckItem();
-			this.menuOutput = new DevExpress.XtraBars.BarCheckItem();
 			this.menuErrList = new DevExpress.XtraBars.BarCheckItem();
 			this.bsiTool = new DevExpress.XtraBars.BarSubItem();
 			this.menuOption = new DevExpress.XtraBars.BarButtonItem();
+			this.menuRSAKey = new DevExpress.XtraBars.BarButtonItem();
 			this.menuDES = new DevExpress.XtraBars.BarButtonItem();
 			this.menuRandom = new DevExpress.XtraBars.BarButtonItem();
 			this.menuFileUp = new DevExpress.XtraBars.BarButtonItem();
@@ -131,11 +131,11 @@
             this.menuFavorites,
             this.menuSolution,
             this.menuFTP,
-            this.menuOutput,
             this.menuErrList,
-            this.menuFTPFileUp});
+            this.menuFTPFileUp,
+            this.menuRSAKey});
 			this.barManager1.MainMenu = this.bar2;
-			this.barManager1.MaxItemId = 12;
+			this.barManager1.MaxItemId = 13;
 			this.barManager1.StatusBar = this.bar3;
 			// 
 			// bar1
@@ -318,7 +318,6 @@
             new DevExpress.XtraBars.LinkPersistInfo(this.menuStatusBar),
             new DevExpress.XtraBars.LinkPersistInfo(this.menuSolution),
             new DevExpress.XtraBars.LinkPersistInfo(this.menuFavorites),
-            new DevExpress.XtraBars.LinkPersistInfo(this.menuOutput),
             new DevExpress.XtraBars.LinkPersistInfo(this.menuErrList)});
 			this.bsiView.Name = "bsiView";
 			// 
@@ -354,14 +353,6 @@
 			this.menuFavorites.Name = "menuFavorites";
 			this.menuFavorites.CheckedChanged += new DevExpress.XtraBars.ItemClickEventHandler(this.menuFavorites_CheckedChanged);
 			// 
-			// menuOutput
-			// 
-			this.menuOutput.Caption = "输出(&O)";
-			this.menuOutput.Checked = true;
-			this.menuOutput.Id = 9;
-			this.menuOutput.Name = "menuOutput";
-			this.menuOutput.CheckedChanged += new DevExpress.XtraBars.ItemClickEventHandler(this.menuOutput_CheckedChanged);
-			// 
 			// menuErrList
 			// 
 			this.menuErrList.Caption = "错误列表(&R)";
@@ -376,6 +367,7 @@
 			this.bsiTool.Id = 27;
 			this.bsiTool.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
             new DevExpress.XtraBars.LinkPersistInfo(this.menuOption),
+            new DevExpress.XtraBars.LinkPersistInfo(this.menuRSAKey),
             new DevExpress.XtraBars.LinkPersistInfo(this.menuDES),
             new DevExpress.XtraBars.LinkPersistInfo(this.menuRandom),
             new DevExpress.XtraBars.LinkPersistInfo(this.menuFileUp),
@@ -390,6 +382,13 @@
 			this.menuOption.Id = 28;
 			this.menuOption.Name = "menuOption";
 			this.menuOption.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.menuOption_ItemClick);
+			// 
+			// menuRSAKey
+			// 
+			this.menuRSAKey.Caption = "RSA密钥对(&R)";
+			this.menuRSAKey.Id = 12;
+			this.menuRSAKey.Name = "menuRSAKey";
+			this.menuRSAKey.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.menuRSAKey_ItemClick);
 			// 
 			// menuDES
 			// 
@@ -595,8 +594,8 @@
 		private DevExpress.XtraBars.BarCheckItem menuFavorites;
 		private DevExpress.XtraBars.BarCheckItem menuSolution;
 		private DevExpress.XtraBars.BarButtonItem menuFTP;
-		private DevExpress.XtraBars.BarCheckItem menuOutput;
 		private DevExpress.XtraBars.BarCheckItem menuErrList;
 		private DevExpress.XtraBars.BarButtonItem menuFTPFileUp;
+		private DevExpress.XtraBars.BarButtonItem menuRSAKey;
 	}
 }
