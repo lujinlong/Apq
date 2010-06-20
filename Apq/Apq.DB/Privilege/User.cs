@@ -95,10 +95,8 @@ namespace Apq.DB.Privilege
 				sc.ExecuteNonQuery();
 
 				stReturn.NReturn = System.Convert.ToInt32(sc.Parameters["rtn"].Value);
-				stReturn.POuts = new object[]{
-					sc.Parameters["UserID"].Value
-				};
-				stReturn.ExMsg = sc.Parameters["ExMsg"].Value.ToString();
+				stReturn.POuts.Add(sc.Parameters["UserID"].Value);
+				stReturn.ExMsg = Apq.Convert.ChangeType<string>(sc.Parameters["ExMsg"].Value);
 
 				SqlConn.Close();
 			}
@@ -185,9 +183,7 @@ namespace Apq.DB.Privilege
 				sc.ExecuteNonQuery();
 
 				stReturn.NReturn = System.Convert.ToInt32(sc.Parameters["rtn"].Value);
-				stReturn.POuts = new object[]{
-					sc.Parameters["UserID"].Value
-				};
+				stReturn.POuts.Add(sc.Parameters["UserID"].Value);
 
 				SqlConn.Close();
 			}
@@ -223,12 +219,10 @@ namespace Apq.DB.Privilege
 				sc.ExecuteNonQuery();
 
 				stReturn.NReturn = System.Convert.ToInt32(sc.Parameters["rtn"].Value);
-				stReturn.POuts = new object[]{
-					sc.Parameters["UserID"].Value,
-					sc.Parameters["UserSrc"].Value,
-					sc.Parameters["UserName"].Value,
-					sc.Parameters["AllowLogin"].Value
-				};
+				stReturn.POuts.Add(sc.Parameters["UserID"].Value);
+				stReturn.POuts.Add(sc.Parameters["UserSrc"].Value);
+				stReturn.POuts.Add(sc.Parameters["UserName"].Value);
+				stReturn.POuts.Add(sc.Parameters["AllowLogin"].Value);
 
 				SqlConn.Close();
 			}

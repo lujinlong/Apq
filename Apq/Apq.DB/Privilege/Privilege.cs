@@ -68,13 +68,11 @@ namespace Apq.DB.Privilege
 				sc.ExecuteNonQuery();
 
 				stReturn.NReturn = System.Convert.ToInt32(sc.Parameters["rtn"].Value);
-				stReturn.POuts = new object[]{
-					sc.Parameters["PID"].Value,
-					sc.Parameters["ParentID"].Value,
-					sc.Parameters["PName"].Value,
-					sc.Parameters["Remark"].Value
-				};
-				stReturn.ExMsg = sc.Parameters["ExMsg"].Value.ToString();
+				stReturn.POuts.Add(sc.Parameters["PID"].Value);
+				stReturn.POuts.Add(sc.Parameters["ParentID"].Value);
+				stReturn.POuts.Add(sc.Parameters["PName"].Value);
+				stReturn.POuts.Add(sc.Parameters["Remark"].Value);
+				stReturn.ExMsg = Apq.Convert.ChangeType<string>(sc.Parameters["ExMsg"].Value);
 
 				SqlConn.Close();
 			}

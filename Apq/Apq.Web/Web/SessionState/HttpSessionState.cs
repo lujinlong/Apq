@@ -15,6 +15,7 @@ namespace Apq.Web.SessionState
 		public HttpSessionState(System.Web.SessionState.HttpSessionState Session)
 		{
 			_Session = Session;
+			Session["ApqUser"] = new ApqUser();
 		}
 
 		private System.Web.SessionState.HttpSessionState _Session;
@@ -29,27 +30,12 @@ namespace Apq.Web.SessionState
 
 		#region User
 		/// <summary>
-		/// 在 Session 中获取或设置已登录用户表
-		/// </summary>
-		public System.Data.DataTable User
-		{
-			get { return Session["Apq_User.User"] as System.Data.DataTable; }
-			set { Session["Apq_User.User"] = value; }
-		}
-
-		/// <summary>
-		/// 获取 UserID
+		/// 获取或设置 UserID
 		/// </summary>
 		public long UserID
 		{
-			get
-			{
-				if (User != null && User.Rows.Count > 0)
-				{
-					return System.Convert.ToInt64(User.Rows[0]["UserID"]);
-				}
-				return -1;
-			}
+			get { return Apq.Convert.ChangeType<long>(Session["UserID"]); }
+			set { Session["UserID"] = value; }
 		}
 		#endregion
 
@@ -58,11 +44,8 @@ namespace Apq.Web.SessionState
 		/// </summary>
 		public string LoginName
 		{
-			get
-			{
-				return Session["Apq_User.LoginName"] != null ? Session["Apq_User.LoginName"].ToString() : string.Empty;
-			}
-			set { Session["Apq_User.LoginName"] = value; }
+			get { return Apq.Convert.ChangeType<string>(Session["LoginName"]); }
+			set { Session["LoginName"] = value; }
 		}
 
 		/// <summary>
@@ -70,16 +53,31 @@ namespace Apq.Web.SessionState
 		/// </summary>
 		public DateTime LoginTime
 		{
-			get
-			{
-				DateTime dt = DateTime.Now.AddYears(1);
-				if (Session["Apq_User.LoginTime"] != null)
-				{
-					dt = System.Convert.ToDateTime(Session["Apq_User.LoginTime"]);
-				}
-				return dt;
-			}
+			get { return Apq.Convert.ChangeType<DateTime>(Session["LoginTime"], DateTime.Now.AddYears(1)); }
 			set { Session["Apq_User.LoginTime"] = value; }
 		}
+
+		/// <summary>
+		/// 获取权限系统用户信息
+		/// </summary>
+		public ApqUser ApqUser
+		{
+			get { return Session["ApqUser"] as ApqUser; }
+		}
+	}
+
+	/// <summary>
+	/// 权限系统用户信息
+	/// </summary>
+	public class ApqUser
+	{
+		/// <summary>
+		/// UserID
+		/// </summary>
+		public long UserID;
+		/// <summary>
+		/// UserSrc
+		/// </summary>
+		public int UserSrc;
 	}
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Collections;
 
 namespace Apq
 {
@@ -36,14 +37,13 @@ namespace Apq
 			set { _FNReturn = value; }
 		}
 
-		private object[] _POuts;
+		private ArrayList _POuts = new ArrayList();
 		/// <summary>
 		/// 输出参数列表
 		/// </summary>
-		public object[] POuts
+		public ArrayList POuts
 		{
 			get { return _POuts; }
-			set { _POuts = value; }
 		}
 	}
 }
