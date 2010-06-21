@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Configuration;
 
 namespace Apq
 {
@@ -30,16 +31,12 @@ namespace Apq
 		#region XmlAsmConfig
 		private static Apq.Config.XmlConfig _XmlAsmConfig;
 		/// <summary>
-		/// 该程序集配置文件(程序集名.后缀.xml)
+		/// 该程序集配置文件(程序集名.后缀.apq)
 		/// </summary>
 		public static Apq.Config.XmlConfig XmlAsmConfig
 		{
 			get
 			{
-				if (Properties.Settings.Default.XmlAsmConfigFolder.Length > 2)
-				{
-					_XmlAsmConfig = Apq.Config.ApqConfigs.GetAsmConfig(Properties.Settings.Default.XmlAsmConfigFolder + "Apq.dll.apq") as Apq.Config.XmlConfig;
-				}
 				if (_XmlAsmConfig == null)
 				{
 					_XmlAsmConfig = Apq.Config.ApqConfigs.GetAsmConfig(TheAssembly) as Apq.Config.XmlConfig;
@@ -52,16 +49,12 @@ namespace Apq
 		#region XmlUserConfig
 		private static Apq.Config.XmlConfig _XmlUserConfig;
 		/// <summary>
-		/// 该程序集用户配置文件(程序集名.后缀.xml)
+		/// 该程序集用户配置文件(程序集名.后缀.apq)
 		/// </summary>
 		public static Apq.Config.XmlConfig XmlUserConfig
 		{
 			get
 			{
-				if (Properties.Settings.Default.XmlAsmConfigFolder.Length > 2)
-				{
-					_XmlUserConfig = Apq.Config.ApqConfigs.GetUserConfig(Properties.Settings.Default.XmlAsmConfigFolder + "Apq.dll." + Environment.UserName + ".apq") as Apq.Config.XmlConfig;
-				}
 				if (_XmlUserConfig == null)
 				{
 					_XmlUserConfig = Apq.Config.ApqConfigs.GetUserConfig(TheAssembly) as Apq.Config.XmlConfig;
