@@ -10,5 +10,8 @@
 &lt;/SerializableConnectionString&gt;</DesignTimeValue>
       <Value Profile="(Default)">Data Source=.;Initial Catalog=Apq;Persist Security Info=True;User ID=sa;Password=f</Value>
     </Setting>
+    <Setting Name="XmlAsmConfigFolder" Type="System.String" Scope="Application">
+      <Value Profile="(Default)" />
+    </Setting>
   </Settings>
 </SettingsFile>

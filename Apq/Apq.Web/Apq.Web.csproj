@@ -154,6 +154,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
     <Compile Include="Web\ExtJS\state.cs" />
     <Compile Include="Web\SessionState\HttpSessionState.cs" />
     <Compile Include="Web\UI\WebControls\Pager.cs" />
@@ -173,6 +178,10 @@
     <Content Include="_Doc\Apq.Web.dll.config.txt" />
     <None Include="Apq.Web.dll.apq">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <Content Include="_Doc\Apq.Web.dll.apq.txt" />
   </ItemGroup>

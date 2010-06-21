@@ -36,6 +36,10 @@ namespace Apq.Win
 		{
 			get
 			{
+				if (Properties.Settings.Default.XmlAsmConfigFolder.Length > 2)
+				{
+					_XmlAsmConfig = Apq.Config.ApqConfigs.GetAsmConfig(Properties.Settings.Default.XmlAsmConfigFolder + "Apq.Win.dll.apq") as Apq.Config.XmlConfig;
+				}
 				if (_XmlAsmConfig == null)
 				{
 					_XmlAsmConfig = Apq.Config.ApqConfigs.GetAsmConfig(TheAssembly) as Apq.Config.XmlConfig;
@@ -54,6 +58,10 @@ namespace Apq.Win
 		{
 			get
 			{
+				if (Properties.Settings.Default.XmlAsmConfigFolder.Length > 2)
+				{
+					_XmlUserConfig = Apq.Config.ApqConfigs.GetUserConfig(Properties.Settings.Default.XmlAsmConfigFolder + "Apq.Win.dll." + Environment.UserName + ".apq") as Apq.Config.XmlConfig;
+				}
 				if (_XmlUserConfig == null)
 				{
 					_XmlUserConfig = Apq.Config.ApqConfigs.GetUserConfig(TheAssembly) as Apq.Config.XmlConfig;
