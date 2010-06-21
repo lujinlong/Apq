@@ -14,7 +14,7 @@ namespace Apq.DB
 		#region TheAssembly
 		private static System.Reflection.Assembly _TheAssembly;
 		/// <summary>
-		/// 该程序集配置文件(程序集名.后缀.xml)
+		/// 该程序集配置文件(程序集名.后缀.apq)
 		/// </summary>
 		public static System.Reflection.Assembly TheAssembly
 		{
