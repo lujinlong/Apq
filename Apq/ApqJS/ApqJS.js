@@ -1,5 +1,6 @@
 ﻿///<reference path="vswd-ext_2.2.js" />
 ///<reference path="ExtJS.js" />
+///<reference path="Script/Apq.js" />
 /* ExtJS引用顺序
 /ext-path/adapter/ext/ext-base.js
 /ext-path/ext-all.js
