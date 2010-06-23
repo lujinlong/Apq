@@ -20,31 +20,33 @@
 	</asp:ScriptManager>
 	<div>
 		<div>
-			登录名:<asp:TextBox ID="txtUserName" runat="server"></asp:TextBox>
-		</div>
-		<div>
-			密码:<input type="password" id="txtLoginPwd" value="" />
-		</div>
-		<div>
-			密码确认:<input type="password" id="txtLoginPwd1" value="" />
-		</div>
-		<div>
-			会员名(页面显示):<asp:TextBox ID="txtName" runat="server"></asp:TextBox>
-			性别:<asp:DropDownList ID="ddlSex" runat="server">
-				<asp:ListItem Value="1" Text="男"></asp:ListItem>
-				<asp:ListItem Value="2" Text="女"></asp:ListItem>
-			</asp:DropDownList>
-		</div>
-		<div>
-			身份证:<asp:TextBox ID="txtIDCard" runat="server"></asp:TextBox>
-			姓名:<input type="text" id="txtIDCard_Name" />
-		</div>
-		<div>
-			支付宝帐号:<asp:TextBox ID="txtAlipay" runat="server"></asp:TextBox>
-			生日:<asp:TextBox ID="txtBirthday" runat="server" CssClass="Wdate" onclick="WdatePicker({startDate:'1982-04-12',maxDate:'%y-%M-%d'})">1982-04-12</asp:TextBox>
-		</div>
-		<div>
-			介绍人会员ID:<asp:TextBox ID="txtIntroUserID" runat="server" Enabled="false">0</asp:TextBox>
+			<div>
+				登录名:<asp:TextBox ID="txtUserName" runat="server"></asp:TextBox>
+			</div>
+			<div>
+				密码:<input type="password" id="txtLoginPwd" value="" />
+			</div>
+			<div>
+				密码确认:<input type="password" id="txtLoginPwd1" value="" />
+			</div>
+			<div>
+				会员名(页面显示):<asp:TextBox ID="txtName" runat="server"></asp:TextBox>
+				性别:<asp:DropDownList ID="ddlSex" runat="server">
+					<asp:ListItem Value="1" Text="男"></asp:ListItem>
+					<asp:ListItem Value="2" Text="女"></asp:ListItem>
+				</asp:DropDownList>
+			</div>
+			<div>
+				身份证:<asp:TextBox ID="txtIDCard" runat="server"></asp:TextBox>
+				姓名:<input type="text" id="txtIDCard_Name" />
+			</div>
+			<div>
+				支付宝帐号:<asp:TextBox ID="txtAlipay" runat="server"></asp:TextBox>
+				生日:<asp:TextBox ID="txtBirthday" runat="server" CssClass="Wdate" onclick="WdatePicker({startDate:'1982-04-12',maxDate:'%y-%M-%d'})">1982-04-12</asp:TextBox>
+			</div>
+			<div>
+				介绍人会员ID:<asp:TextBox ID="txtIntroUserID" runat="server" Enabled="false">0</asp:TextBox>
+			</div>
 		</div>
 		<div align="center">
 			<input type="button" id="btnReg" onclick="btnReg_Click()" value="注册" />
@@ -52,13 +54,6 @@
 	</div>
 
 	<script type="text/javascript">
-		if (window.attachEvent) {
-			window.attachEvent("onload", ApqJS.document.iframeAutoFit);
-		}
-		else if (window.addEventListener) {
-			window.addEventListener('load', ApqJS.document.iframeAutoFit, false);
-		}
-
 		function mdReg_Load() {
 		}
 		window.attachEvent("onload", mdReg_Load);
