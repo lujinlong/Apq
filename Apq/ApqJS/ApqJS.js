@@ -1,4 +1,5 @@
 ﻿///<reference path="vswd-ext_2.2.js" />
+///<reference path="ExtJS.js" />
 /* ExtJS引用顺序
 /ext-path/adapter/ext/ext-base.js
 /ext-path/ext-all.js
@@ -140,7 +141,7 @@ ApqJS.using = function(url, win) {
 			win.eval(p.responseText);
 		},
 		failure: function(p, opts) {
-			console.log('server-side failure with status code ' + p.status);
+			console.log('错误!状态码:' + p.status);
 		}
 	});
 };
@@ -218,7 +219,11 @@ ApqJS.document = {
 	}
 };
 
-Sys.Application.add_load(ApqJS.document.iframeAutoFit);
+if (window.attachEvent) {
+	window.attachEvent("onload", ApqJS.document.iframeAutoFit);
+} else if (window.addEventListener) {
+	window.addEventListener("load", ApqJS.document.iframeAutoFit, false);
+}
 
 /// location --------------------------------------------------------------------------------------
 ApqJS.location = {
@@ -258,3 +263,18 @@ ApqJS.location = {
 
 /// 计算当前 location 的 QueryString
 ApqJS.location.QueryString = ApqJS.location.getQueryString(location.search);
+
+/// CSS --------------------------------------------------------------------------------------------
+ApqJS.CSS = {
+	cssFileID: 1,
+	/// 按主题获取CSS文件
+	/// <cssPath>主题后的文件全路径</cssPath>
+	/// <App_Theme>主题目录</App_Theme>
+	/// <Theme>主题名:不传该参数则从cookie中读取"Apq_Theme",仍没设置则读取网站设置</Theme>
+	swapThemeStyleSheet: function(cssFile, App_Theme, Theme, id) {
+		id = id || ("ApqJS_CSS" + ApqJS.CSS.cssFileID++);
+		Theme = Theme || Ext.state.Cookies.get("Apq_Theme") || Apq_TopWindow.Apq_SiteConfig.Theme || Apq_TopWindow.Apq_GlobalConfig.Theme;
+
+		Ext.util.CSS.swapStyleSheet(id, App_Theme + '/' + Theme + '/' + cssFile);
+	}
+};

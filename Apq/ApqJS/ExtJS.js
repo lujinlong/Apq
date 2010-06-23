@@ -6,18 +6,21 @@
 // 改变:忽略execScript的异常
 Ext.Element.addMethods({
 	update: function(html, loadScripts, callback) {
+		if (!this.dom) {
+			return this;
+		}
 		html = html || "";
 
 		if (loadScripts !== true) {
 			this.dom.innerHTML = html;
-			if (Ext.isFunction(callback)) {
+			if (typeof callback == 'function') {
 				callback();
 			}
 			return this;
 		}
 
 		var id = Ext.id(),
-        	dom = this.dom;
+            dom = this.dom;
 
 		html += '<span id="' + id + '"></span>';
 
@@ -47,7 +50,7 @@ Ext.Element.addMethods({
 					hd.appendChild(s);
 				} else if (match[2] && match[2].length > 0) {
 					if (window.execScript) {
-						try { window.execScript(match[2]); } catch (err) { }//增加try
+						try { window.execScript(match[2]); } catch (err) { } //增加try
 					} else {
 						window.eval(match[2]);
 					}
@@ -55,7 +58,7 @@ Ext.Element.addMethods({
 			}
 			el = DOC.getElementById(id);
 			if (el) { Ext.removeNode(el); }
-			if (Ext.isFunction(callback)) {
+			if (typeof callback == 'function') {
 				callback();
 			}
 		});

@@ -20,27 +20,6 @@ window.Apq_InitConfig = {
 /// Apq_TopWindow
 window.Apq_TopWindow = parent.Apq_TopWindow || window;
 window.Apq_TopIFrameWindow = parent.Apq_TopIFrameWindow || window;
-window.Apq_JSXH = parent.Apq_JSXH;
-if (!window.Apq_JSXH) {
-	try {
-		try {
-			window.Apq_JSXH = new XMLHttpRequest();
-		}
-		catch (e) {
-			window.Apq_JSXH = new ActiveXObject("MsXml2.XMLHttp");
-		}
-	}
-	catch (e) { }
-}
-if (!window.Apq_JSXH && window.confirm('系统需要启用 ActiveX 运行权限,请检查安全设置.\n\n' +
-	'同时还需要安装Microsoft XML 分析器 MSXML 6.0\n' +
-	'如果你未安装,请点击"确定"打开下载\n' +
-	'注意:安装后可能需要重新打开IE')) {
-	window.open("http://download.microsoft.com/download/2/e/0/2e01308a-e17f-4bf9-bf48-161356cf9c81/msxml6.msi", "_blank");
-}
-
-// 初始化脚本容器
-window.Apq_JSContainer = parent.Apq_JSContainer || {};
 
 // 引入Apq_GlobalConfig.js
 document.write('<script type="text/javascript" src = "');

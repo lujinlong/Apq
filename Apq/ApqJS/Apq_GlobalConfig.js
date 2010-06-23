@@ -5,11 +5,11 @@ if (Apq_TopWindow && !Apq_TopWindow.Apq_GlobalConfig) {
 	Apq_TopWindow.Apq_GlobalConfig = {
 		//模拟弹出框初始值
 		Dialog_zIndex: 40000,
-		Dialog_bgPic: Apq_InitConfig.ApqJSFolder + "Img/ApqJS.Simulator/bg_Dialog.png"
+		Dialog_bgPic: Apq_InitConfig.ApqJSFolder + "Img/ApqJS.Simulator/bg_Dialog.png",
+		Theme: "default"
 	};
 }
 
 if (Apq_TopWindow && !Apq_TopWindow.Apq_SiteConfig) {
-	Apq_TopWindow.Apq_SiteConfig = {
-	};
+	Apq_TopWindow.Apq_SiteConfig = {};
 }
