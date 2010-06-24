@@ -280,7 +280,7 @@ ApqJS.CSS = {
 	}
 };
 
-// WebService错误提示框
-function Apq_WS_Faild(e, o, wsMethodName) {
-	Ext.Msg.alert("调用WS时返回错误", ApqJS.Common.HtmlEncode(e.get_message()));
+// 服务端异常提示框,用于调用PageMethod/WebService时的失败处理
+function Apq_Server_Faild(e, o, wsMethodName) {
+	Ext.Msg.alert("服务端异常", ApqJS.Common.HtmlEncode(e.get_message()));
 }

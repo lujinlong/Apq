@@ -117,13 +117,9 @@
     <Content Include="BigInt.js" />
     <Content Include="DIV布局\三行%28中间行分为多列%29.htm" />
     <Content Include="DIV布局\多列%28中间列分为多行%29.htm" />
-    <Content Include="Doc\history.txt" />
     <Content Include="Doc\任务.txt" />
     <Content Include="Doc\使用说明.txt" />
     <Content Include="Doc\名称使用情况.txt" />
-    <Content Include="Doc\命名规则.txt" />
-    <Content Include="Doc\已知问题.txt" />
-    <Content Include="Doc\开发环境配置说明.txt" />
     <Content Include="Doc\注释符号.txt" />
     <Content Include="JScript.Encode.js" />
     <Content Include="JS细节\Script解析顺序.js" />
