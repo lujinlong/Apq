@@ -28,7 +28,6 @@ namespace Apq.Web.SessionState
 			//set { _Session = value; }
 		}
 
-		#region User
 		/// <summary>
 		/// 获取或设置 UserID
 		/// </summary>
@@ -37,10 +36,18 @@ namespace Apq.Web.SessionState
 			get { return Apq.Convert.ChangeType<long>(Session["UserID"]); }
 			set { Session["UserID"] = value; }
 		}
-		#endregion
 
 		/// <summary>
-		/// 在 Session 中获取或设置登录用户名
+		/// 在 Session 中获取或设置用户昵称
+		/// </summary>
+		public string NickName
+		{
+			get { return Apq.Convert.ChangeType<string>(Session["NickName"]); }
+			set { Session["NickName"] = value; }
+		}
+
+		/// <summary>
+		/// 在 Session 中获取或设置登录名
 		/// </summary>
 		public string LoginName
 		{

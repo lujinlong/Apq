@@ -280,6 +280,19 @@ ApqJS.CSS = {
 	}
 };
 
+/// Img --------------------------------------------------------------------------------------------
+ApqJS.Img = {
+	/// 按主题获取图片文件路径
+	/// <cssPath>主题后的文件全路径</cssPath>
+	/// <App_Theme>主题目录</App_Theme>
+	/// <Theme>主题名:不传该参数则从cookie中读取"Apq_Theme",仍没设置则读取网站设置</Theme>
+	getThemeImgUrl: function(imgFile, App_Theme, Theme) {
+		Theme = Theme || Ext.state.Cookies.get("Apq_Theme") || Apq_TopWindow.Apq_SiteConfig.Theme || Apq_TopWindow.Apq_GlobalConfig.Theme;
+
+		return App_Theme + '/' + Theme + '/' + imgFile;
+	}
+};
+
 // 服务端异常提示框,用于调用PageMethod/WebService时的失败处理
 function Apq_Server_Faild(e, o, wsMethodName) {
 	Ext.Msg.alert("服务端异常", ApqJS.Common.HtmlEncode(e.get_message()));
