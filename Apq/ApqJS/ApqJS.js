@@ -206,14 +206,14 @@ ApqJS.document = {
 	},
 
 	//获取元素绝对位置Top
-	GetAbsTop: function getAbsTop(he) {
+	GetAbsTop: function(he) {
 		var offset = he.offsetTop;
 		if (he.offsetParent) offset += ApqJS.document.GetAbsTop(he.offsetParent);
 		return offset;
 	},
 
 	//获取元素绝对位置Left
-	GetAbsLeft: function getAbsTop(he) {
+	GetAbsLeft: function(he) {
 		var offset = he.offsetLeft;
 		if (he.offsetParent) offset += ApqJS.document.GetAbsLeft(he.offsetParent);
 		return offset;
@@ -235,9 +235,9 @@ ApqJS.location = {
 			var s = str.substr(index + 1);
 			var ary = s.split("&");
 			for (var i = 0; i < ary.length; i++) {
-				var index = ary[i].indexOf("=");
-				if (index != -1) {
-					QueryString[ary[i].substr(0, index)] = ary[i].substr(index + 1);
+				var j = ary[i].indexOf("=");
+				if (j != -1) {
+					QueryString[ary[i].substr(0, j)] = ary[i].substr(j + 1);
 				}
 			}
 		}

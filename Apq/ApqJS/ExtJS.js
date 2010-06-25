@@ -87,6 +87,13 @@ Ext.state.Cookies = new Ext.state.CookieProvider();
 	var _dtExpires = new Date();
 	_dtExpires.setFullYear(_dtExpires.getFullYear() + 1);
 	Ext.state.Cookies.expires = _dtExpires;
+
+	// 全局状态管理器
+	Ext.state.Manager.setProvider(
+		new Ext.state.CookieProvider({
+			expires: _dtExpires //一年后
+		})
+	);
 }
 
 /// Ext.data.JsonReader ---------------------------------------------------------------------------
