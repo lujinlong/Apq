@@ -195,6 +195,7 @@
     <Compile Include="Config\RegConfig.cs" />
     <Content Include="DB\Apq_String.cs.txt" />
     <Compile Include="Dos\Common.cs" />
+    <Compile Include="Drawing\GraphicsHelper.cs" />
     <Compile Include="Editor\ITextEditor.cs" />
     <Compile Include="Editor\IFileLoader.cs" />
     <Compile Include="IO\FileSystem.cs" />

@@ -29,6 +29,15 @@ namespace Apq.Web.SessionState
 		}
 
 		/// <summary>
+		/// 获取或设置 是否为管理员
+		/// </summary>
+		public bool IsAdmin
+		{
+			get { return Apq.Convert.ChangeType<bool>(Session["IsAdmin"]); }
+			set { Session["IsAdmin"] = value; }
+		}
+
+		/// <summary>
 		/// 获取或设置 UserID
 		/// </summary>
 		public long UserID
