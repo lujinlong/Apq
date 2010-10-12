@@ -1,0 +1,607 @@
+﻿<Dimension xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0" dwd:design-time-name="954361be-6a40-4265-b6d3-f6a36ca24352" xmlns="http://schemas.microsoft.com/analysisservices/2003/engine">
+  <ID>DimDate</ID>
+  <Name>DimDate</Name>
+  <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
+  <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
+  <Annotations>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramLayout</Name>
+      <Value>
+        <dds xmlns="">
+          <diagram fontclsid="{0BE35203-8F91-11CE-9DE3-00AA004BB851}" mouseiconclsid="{0BE35204-8F91-11CE-9DE3-00AA004BB851}" defaultlayout="MSDDS.Rectilinear" defaultlineroute="MSDDS.Rectilinear" version="7" nextobject="2" scale="100" pagebreakanchorx="0" pagebreakanchory="0" pagebreaksizex="0" pagebreaksizey="0" scrollleft="-2494" scrolltop="-4260" gridx="150" gridy="150" marginx="5000" marginy="5000" zoom="100" x="9578" y="13520" backcolor="15334399" defaultpersistence="2" PrintPageNumbersMode="3" PrintMarginTop="0" PrintMarginBottom="635" PrintMarginLeft="0" PrintMarginRight="0" marqueeselectionmode="0" mousepointer="0" snaptogrid="0" autotypeannotation="1" showscrollbars="0" viewpagebreaks="0" donotforceconnectorsbehindshapes="1" backpictureclsid="{00000000-0000-0000-0000-000000000000}">
+            <font>
+              <ddsxmlobjectstreamwrapper binary="018600009001905f010004cbcecce5" />
+            </font>
+            <mouseicon>
+              <ddsxmlobjectstreamwrapper binary="6c74000000000000" />
+            </mouseicon>
+          </diagram>
+          <layoutmanager>
+            <ddsxmlobj />
+          </layoutmanager>
+          <ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge.2" tooltip="DimDate" left="-2203" top="-3334" logicalid="1" controlid="1" masterid="0" hint1="0" hint2="0" width="4551" height="11879" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+            <control>
+              <ddsxmlobjectstreaminitwrapper binary="00080000c7110000672e0000" />
+            </control>
+            <layoutobject>
+              <ddsxmlobj>
+                <property name="LogicalObject" value="DimDate" vartype="8" />
+              </ddsxmlobj>
+            </layoutobject>
+            <shape groupshapeid="0" groupnode="0" />
+          </ddscontrol>
+        </dds>
+      </Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:ShowFriendlyNames</Name>
+      <Value>true</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:ShowRelationshipNames</Name>
+      <Value>false</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:UseDiagramDefaultLayout</Name>
+      <Value>true</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramViewPortLeft</Name>
+      <Value>-2494</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramViewPortTop</Name>
+      <Value>-4260</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramBoundingLeft</Name>
+      <Value>-2203</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramBoundingTop</Name>
+      <Value>-3334</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramZoom</Name>
+      <Value>100</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:Microsoft.DataWarehouse.TimeBinding</Name>
+      <Value>
+        <Microsoft.AnalysisServices.TimeBinding xmlns="">
+          <CalendarStartDate>2007-1-1 0:00:00</CalendarStartDate>
+          <CalendarEndDate>2051-1-1 0:00:00</CalendarEndDate>
+          <FirstDayOfWeek>1</FirstDayOfWeek>
+          <CalendarLanguage>1033</CalendarLanguage>
+          <FiscalFirstDayOfMonth>1</FiscalFirstDayOfMonth>
+          <FiscalFirstMonth>1</FiscalFirstMonth>
+          <FiscalYearName>NextCalendarYearName</FiscalYearName>
+          <ReportingFirstWeekOfMonth>1</ReportingFirstWeekOfMonth>
+          <ReportingFirstMonth>1</ReportingFirstMonth>
+          <ReportingWeekToMonthPattern>Weeks445</ReportingWeekToMonthPattern>
+          <ManufacturingFirstWeekOfMonth>1</ManufacturingFirstWeekOfMonth>
+          <ManufacturingFirstMonth>1</ManufacturingFirstMonth>
+          <ManufacturingExtraMonthQuarter>4</ManufacturingExtraMonthQuarter>
+        </Microsoft.AnalysisServices.TimeBinding>
+      </Value>
+    </Annotation>
+  </Annotations>
+  <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
+  <State>Unprocessed</State>
+  <Source xsi:type="DataSourceViewBinding" dwd:design-time-name="e66d1a5a-537a-4c4b-a3eb-9ecd4515e751">
+    <DataSourceViewID>Znly DW</DataSourceViewID>
+  </Source>
+  <Type>Time</Type>
+  <CurrentStorageMode>Molap</CurrentStorageMode>
+  <Attributes>
+    <Attribute dwd:design-time-name="689acc2b-c3eb-4a62-97e6-f2d3e6c22463">
+      <ID>日期</ID>
+      <Name>日期</Name>
+      <Type>Days</Type>
+      <Usage>Key</Usage>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="b3e0e8ad-e2b5-4c41-b9fe-769c349dac5e">
+          <DataType>Date</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="2048eda6-5a46-46ba-9ff0-0ae6d713dac7">
+            <TableID>DimDate</TableID>
+            <ColumnID>日期</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <NameColumn dwd:design-time-name="57c046ba-6863-4a3e-900d-d3ecac20d2fe">
+        <DataType>WChar</DataType>
+        <Source xsi:type="ColumnBinding" dwd:design-time-name="dd0e8e35-3acc-4e37-b096-c2c6ff443e76">
+          <TableID>DimDate</TableID>
+          <ColumnID>日期_名称</ColumnID>
+        </Source>
+      </NameColumn>
+      <AttributeRelationships>
+        <AttributeRelationship dwd:design-time-name="e66f6401-e07e-4bdb-a3bd-a1de277d78c5">
+          <AttributeID>月份</AttributeID>
+          <RelationshipType>Rigid</RelationshipType>
+          <Name>月份</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="3b2f3f53-0139-4700-b835-9ff4b5e3974a">
+          <AttributeID>每年的某一月</AttributeID>
+          <RelationshipType>Rigid</RelationshipType>
+          <Name>每年的某一月</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="b0c88dcc-2783-4553-85f7-2a95c135d4d4">
+          <AttributeID>每个季度的某一月</AttributeID>
+          <RelationshipType>Rigid</RelationshipType>
+          <Name>每个季度的某一月</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="da9b11b3-e09c-400e-989a-42c696d4b611">
+          <AttributeID>周</AttributeID>
+          <RelationshipType>Rigid</RelationshipType>
+          <Name>周</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="7d9efec5-bd93-4216-9091-e5cbe5b970c3">
+          <AttributeID>每年的某一周</AttributeID>
+          <RelationshipType>Rigid</RelationshipType>
+          <Name>每年的某一周</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="20050777-a9b5-4fc2-b610-6d29a37da9d3">
+          <AttributeID>每年的某一日</AttributeID>
+          <Name>每年的某一日</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="43052e4b-2df8-46a2-91f9-df31994534ba">
+          <AttributeID>每个季度的某一日</AttributeID>
+          <Name>每个季度的某一日</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="c854ade8-a8e3-46c9-ab3f-4171e59bae7d">
+          <AttributeID>每月的某一日</AttributeID>
+          <Name>每月的某一日</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="77cb8569-1c99-4809-9346-117f84e0f430">
+          <AttributeID>每周的某一日</AttributeID>
+          <Name>每周的某一日</Name>
+        </AttributeRelationship>
+      </AttributeRelationships>
+      <OrderBy>Key</OrderBy>
+      <ValueColumn dwd:design-time-name="15b8a78a-6e47-45fd-ae20-4180bef4d42c">
+        <DataType>Date</DataType>
+        <Source xsi:type="ColumnBinding" dwd:design-time-name="a4db9454-1551-4941-8199-0f431c80ee94">
+          <TableID>DimDate</TableID>
+          <ColumnID>日期</ColumnID>
+        </Source>
+      </ValueColumn>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="8058628e-5d80-483d-bac1-8022c1dffe10">
+      <ID>年</ID>
+      <Name>年</Name>
+      <Type>Years</Type>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="0365ac85-7e50-4593-afb3-7272f3d016f1">
+          <DataType>Date</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="b6e8f432-c8f9-4587-9d24-fd541d8ed420">
+            <TableID>DimDate</TableID>
+            <ColumnID>年</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <NameColumn dwd:design-time-name="f55d56de-c4b4-4233-8485-78781d7aa4fb">
+        <DataType>WChar</DataType>
+        <Source xsi:type="ColumnBinding" dwd:design-time-name="ee820121-fdfe-4dde-b408-aab114a9182c">
+          <TableID>DimDate</TableID>
+          <ColumnID>年_名称</ColumnID>
+        </Source>
+      </NameColumn>
+      <OrderBy>Key</OrderBy>
+      <ValueColumn dwd:design-time-name="89ab9cf2-b0fe-4c5b-b1c6-af0633f715d9">
+        <DataType>Date</DataType>
+        <Source xsi:type="ColumnBinding" dwd:design-time-name="f5932577-9942-458f-832d-f99074de42f4">
+          <TableID>DimDate</TableID>
+          <ColumnID>年</ColumnID>
+        </Source>
+      </ValueColumn>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="ee61d660-fdd0-4b2a-9b70-d0f0b2d8257e">
+      <ID>季度</ID>
+      <Name>季度</Name>
+      <Type>Quarters</Type>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="3ffb48d8-b0d6-4952-b144-f578d8af8e95">
+          <DataType>Date</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="4b817c04-08fb-4917-bc12-019a5746a56e">
+            <TableID>DimDate</TableID>
+            <ColumnID>季度</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <NameColumn dwd:design-time-name="bbb6bc5e-dec8-45aa-ae28-f7f9f04c599d">
+        <DataType>WChar</DataType>
+        <Source xsi:type="ColumnBinding" dwd:design-time-name="f8c94e6d-f8a0-42af-83ed-cda89b0a25bb">
+          <TableID>DimDate</TableID>
+          <ColumnID>季度_名称</ColumnID>
+        </Source>
+      </NameColumn>
+      <AttributeRelationships>
+        <AttributeRelationship dwd:design-time-name="0eebc7f0-e6b9-4ab4-838a-e4d0a5da17a3">
+          <AttributeID>年</AttributeID>
+          <RelationshipType>Rigid</RelationshipType>
+          <Name>年</Name>
+        </AttributeRelationship>
+      </AttributeRelationships>
+      <OrderBy>Key</OrderBy>
+      <ValueColumn dwd:design-time-name="422ec5f0-a70f-4eb9-ac34-c978820b5e95">
+        <DataType>Date</DataType>
+        <Source xsi:type="ColumnBinding" dwd:design-time-name="d2d19b8c-31f5-4e2e-90d8-6ac779eda7bf">
+          <TableID>DimDate</TableID>
+          <ColumnID>季度</ColumnID>
+        </Source>
+      </ValueColumn>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="bedb3f8a-baa5-4413-accf-a4a772396f42">
+      <ID>月份</ID>
+      <Name>月份</Name>
+      <Type>Months</Type>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="24bfee3d-e8dd-4bef-aab2-6deabe49675e">
+          <DataType>Date</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="8976dc7a-9f4f-45fd-a8f2-e9b8fc2487b8">
+            <TableID>DimDate</TableID>
+            <ColumnID>月份</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <NameColumn dwd:design-time-name="b177da35-2c26-478a-a2ae-d6b3c4f3b6cb">
+        <DataType>WChar</DataType>
+        <Source xsi:type="ColumnBinding" dwd:design-time-name="5fd358f1-92c5-4633-9ffc-951d897987d9">
+          <TableID>DimDate</TableID>
+          <ColumnID>月份_名称</ColumnID>
+        </Source>
+      </NameColumn>
+      <AttributeRelationships>
+        <AttributeRelationship dwd:design-time-name="bcbd1daa-a5f2-4ae0-8fb9-021da718ffc6">
+          <AttributeID>季度</AttributeID>
+          <RelationshipType>Rigid</RelationshipType>
+          <Name>季度</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="0d09518a-e4b3-48c5-8cee-904cd1fb0972">
+          <AttributeID>每年的某一季度</AttributeID>
+          <RelationshipType>Rigid</RelationshipType>
+          <Name>每年的某一季度</Name>
+        </AttributeRelationship>
+      </AttributeRelationships>
+      <OrderBy>Key</OrderBy>
+      <ValueColumn dwd:design-time-name="627ea379-cdb7-4580-90ca-c8f9e175f224">
+        <DataType>Date</DataType>
+        <Source xsi:type="ColumnBinding" dwd:design-time-name="7fed632e-ecb4-4eb1-8e97-ee72f9f9935c">
+          <TableID>DimDate</TableID>
+          <ColumnID>月份</ColumnID>
+        </Source>
+      </ValueColumn>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="31d203c7-7c26-4143-ab48-1a676cb6aaa5">
+      <ID>周</ID>
+      <Name>周</Name>
+      <Type>Weeks</Type>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="3d298339-a53b-4ca7-8aef-104ac65f87f6">
+          <DataType>Date</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="a1624703-9bed-4c1c-a14b-7692f155ee33">
+            <TableID>DimDate</TableID>
+            <ColumnID>周</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <NameColumn dwd:design-time-name="1310d30a-7f14-4dbe-bd70-46900f41f9d5">
+        <DataType>WChar</DataType>
+        <Source xsi:type="ColumnBinding" dwd:design-time-name="46430029-fb09-426c-ba90-4a3a5f31602d">
+          <TableID>DimDate</TableID>
+          <ColumnID>周_名称</ColumnID>
+        </Source>
+      </NameColumn>
+      <AttributeRelationships>
+        <AttributeRelationship dwd:design-time-name="41a1ce49-40ae-465a-a1f3-293d4bf5feb4">
+          <AttributeID>年</AttributeID>
+          <RelationshipType>Rigid</RelationshipType>
+          <Name>年</Name>
+        </AttributeRelationship>
+      </AttributeRelationships>
+      <OrderBy>Key</OrderBy>
+      <ValueColumn dwd:design-time-name="545d15cc-f388-4f75-b77b-263c4b709a24">
+        <DataType>Date</DataType>
+        <Source xsi:type="ColumnBinding" dwd:design-time-name="4cf5970a-8752-4a50-b6ea-c0dca3e2364c">
+          <TableID>DimDate</TableID>
+          <ColumnID>周</ColumnID>
+        </Source>
+      </ValueColumn>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="b4f255b7-cc39-4077-9ea3-16ad79b7262f">
+      <ID>每年的某一日</ID>
+      <Name>每年的某一日</Name>
+      <Type>DayOfYear</Type>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="7d089d77-2c92-4586-bf69-211460983a58">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="1a40e34d-c2fa-487f-8a0c-427526aab133">
+            <TableID>DimDate</TableID>
+            <ColumnID>每年的某一日</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <NameColumn dwd:design-time-name="fb9269ac-d225-4599-b36b-7069c83ae46a">
+        <DataType>WChar</DataType>
+        <Source xsi:type="ColumnBinding" dwd:design-time-name="59a6a36b-644a-4a43-acb5-631203fc028a">
+          <TableID>DimDate</TableID>
+          <ColumnID>每年的某一日_名称</ColumnID>
+        </Source>
+      </NameColumn>
+      <OrderBy>Key</OrderBy>
+      <ValueColumn dwd:design-time-name="95b9209d-2ae0-4107-8e76-a4c579f6456b">
+        <DataType>Integer</DataType>
+        <Source xsi:type="ColumnBinding" dwd:design-time-name="ce1fd0d2-6160-475f-8ec1-52e36b161163">
+          <TableID>DimDate</TableID>
+          <ColumnID>每年的某一日</ColumnID>
+        </Source>
+      </ValueColumn>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="4614228a-1b0c-47f8-ae8f-470041f920e6">
+      <ID>每个季度的某一日</ID>
+      <Name>每个季度的某一日</Name>
+      <Type>DayOfQuarter</Type>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="c7b85b83-edd1-49ee-9b70-922fbbd6b8dd">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="ebe5e9b7-0cad-4c08-9f95-0ad6de39c84a">
+            <TableID>DimDate</TableID>
+            <ColumnID>每个季度的某一日</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <NameColumn dwd:design-time-name="f62fc404-a4c6-4fd2-8884-fc196acc3065">
+        <DataType>WChar</DataType>
+        <Source xsi:type="ColumnBinding" dwd:design-time-name="d5e4cd14-54c6-4909-a313-15469ec9c145">
+          <TableID>DimDate</TableID>
+          <ColumnID>每个季度的某一日_名称</ColumnID>
+        </Source>
+      </NameColumn>
+      <OrderBy>Key</OrderBy>
+      <ValueColumn dwd:design-time-name="859b98c9-446b-40dc-b101-7de76be8e6d7">
+        <DataType>Integer</DataType>
+        <Source xsi:type="ColumnBinding" dwd:design-time-name="b2dead1f-694b-41a1-802e-e31b8dc80df2">
+          <TableID>DimDate</TableID>
+          <ColumnID>每个季度的某一日</ColumnID>
+        </Source>
+      </ValueColumn>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="a3b701ab-51ab-4238-82e1-df8d473fd4d2">
+      <ID>每月的某一日</ID>
+      <Name>每月的某一日</Name>
+      <Type>DayOfMonth</Type>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="103dffaf-1f47-4ff2-86c5-a4da3f50ef68">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="0edafe6e-10f7-4ad5-a72f-c4b2b441539f">
+            <TableID>DimDate</TableID>
+            <ColumnID>每月的某一日</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <NameColumn dwd:design-time-name="f81f75b6-70aa-4f3e-8c7e-62f9350e3a12">
+        <DataType>WChar</DataType>
+        <Source xsi:type="ColumnBinding" dwd:design-time-name="f10c936a-621e-4ca9-b505-fa186216a4fe">
+          <TableID>DimDate</TableID>
+          <ColumnID>每月的某一日_名称</ColumnID>
+        </Source>
+      </NameColumn>
+      <OrderBy>Key</OrderBy>
+      <ValueColumn dwd:design-time-name="9a5f36f0-05dc-4927-a657-9864749e6dfd">
+        <DataType>Integer</DataType>
+        <Source xsi:type="ColumnBinding" dwd:design-time-name="1679ae6d-4fb2-49a4-824a-f53222696aeb">
+          <TableID>DimDate</TableID>
+          <ColumnID>每月的某一日</ColumnID>
+        </Source>
+      </ValueColumn>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="92260411-b92e-4a50-afe1-1905c701a5e3">
+      <ID>每周的某一日</ID>
+      <Name>每周的某一日</Name>
+      <Type>DayOfWeek</Type>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="f7bfcc3c-5f31-4524-a722-d2917e07ae24">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="5878ecd7-c4ef-4364-bf14-1ae1470a93b5">
+            <TableID>DimDate</TableID>
+            <ColumnID>每周的某一日</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <NameColumn dwd:design-time-name="dd0fcf59-c13d-4334-bc99-0c80bb96a2d8">
+        <DataType>WChar</DataType>
+        <Source xsi:type="ColumnBinding" dwd:design-time-name="b9494187-6a4d-486b-b016-562abbba65fe">
+          <TableID>DimDate</TableID>
+          <ColumnID>每周的某一日_名称</ColumnID>
+        </Source>
+      </NameColumn>
+      <OrderBy>Key</OrderBy>
+      <ValueColumn dwd:design-time-name="9ce94284-efd0-46fc-bf15-9282162554fc">
+        <DataType>Integer</DataType>
+        <Source xsi:type="ColumnBinding" dwd:design-time-name="5c54124e-69e2-4c61-9ce5-63299f56b8ed">
+          <TableID>DimDate</TableID>
+          <ColumnID>每周的某一日</ColumnID>
+        </Source>
+      </ValueColumn>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="7baad9ee-28fc-4440-831c-55fcba923c4c">
+      <ID>每年的某一周</ID>
+      <Name>每年的某一周</Name>
+      <Type>WeekOfYear</Type>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="a2bc6081-39ba-4f10-bb9d-dd159b9f2a81">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="52d3bf0d-f5b5-4145-8d00-06382bf763d7">
+            <TableID>DimDate</TableID>
+            <ColumnID>每年的某一周</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <NameColumn dwd:design-time-name="c1be72bf-e6a2-4f49-9e75-92b677848b8b">
+        <DataType>WChar</DataType>
+        <Source xsi:type="ColumnBinding" dwd:design-time-name="551ff9c6-7026-47b3-8091-2ed280a5be79">
+          <TableID>DimDate</TableID>
+          <ColumnID>每年的某一周_名称</ColumnID>
+        </Source>
+      </NameColumn>
+      <OrderBy>Key</OrderBy>
+      <ValueColumn dwd:design-time-name="127a2bd6-c7d0-4e38-9252-adee83e34fb0">
+        <DataType>Integer</DataType>
+        <Source xsi:type="ColumnBinding" dwd:design-time-name="c42bbd75-79ad-47ea-a696-78a31226118c">
+          <TableID>DimDate</TableID>
+          <ColumnID>每年的某一周</ColumnID>
+        </Source>
+      </ValueColumn>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="77e78e6c-f696-4323-b2f5-a6f2819c750f">
+      <ID>每年的某一月</ID>
+      <Name>每年的某一月</Name>
+      <Type>MonthOfYear</Type>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="c864cbf5-dfa7-408f-a670-6ffb1f82a117">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="a4e53705-1c00-4931-a606-4a490328a1a6">
+            <TableID>DimDate</TableID>
+            <ColumnID>每年的某一月</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <NameColumn dwd:design-time-name="82b9c00a-b1fa-4d52-b071-3e45b1f67e64">
+        <DataType>WChar</DataType>
+        <Source xsi:type="ColumnBinding" dwd:design-time-name="b76f7f77-0835-4195-8845-6bd23ee1029c">
+          <TableID>DimDate</TableID>
+          <ColumnID>每年的某一月_名称</ColumnID>
+        </Source>
+      </NameColumn>
+      <OrderBy>Key</OrderBy>
+      <ValueColumn dwd:design-time-name="7e50be06-9bcb-4d2a-aed3-18b4148d6bd8">
+        <DataType>Integer</DataType>
+        <Source xsi:type="ColumnBinding" dwd:design-time-name="3f9e8a2b-d300-4685-a533-6d1d2352a1fa">
+          <TableID>DimDate</TableID>
+          <ColumnID>每年的某一月</ColumnID>
+        </Source>
+      </ValueColumn>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="df5a6e1a-9bce-4c7e-98ca-a06e4342d552">
+      <ID>每个季度的某一月</ID>
+      <Name>每个季度的某一月</Name>
+      <Type>MonthOfQuarter</Type>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="55ef7015-5d73-48d0-bc78-7340044a8649">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="0d61d46a-e947-42b6-9845-98755c4b1de9">
+            <TableID>DimDate</TableID>
+            <ColumnID>每个季度的某一月</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <NameColumn dwd:design-time-name="70cb2ac8-44d4-4777-aa32-c71fea117592">
+        <DataType>WChar</DataType>
+        <Source xsi:type="ColumnBinding" dwd:design-time-name="0d86d833-ee3b-4080-be06-298671018fbf">
+          <TableID>DimDate</TableID>
+          <ColumnID>每个季度的某一月_名称</ColumnID>
+        </Source>
+      </NameColumn>
+      <OrderBy>Key</OrderBy>
+      <ValueColumn dwd:design-time-name="0468e7f2-6dcb-44eb-95e4-3edc9333a696">
+        <DataType>Integer</DataType>
+        <Source xsi:type="ColumnBinding" dwd:design-time-name="9e368a6e-3d02-4265-9b2b-82b544bbab14">
+          <TableID>DimDate</TableID>
+          <ColumnID>每个季度的某一月</ColumnID>
+        </Source>
+      </ValueColumn>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="edd33e0c-374f-4305-b64d-653bcf8a6ac9">
+      <ID>每年的某一季度</ID>
+      <Name>每年的某一季度</Name>
+      <Type>QuarterOfYear</Type>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="bea0b347-03e6-4900-ae2a-1f54376b6698">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="f30a71c8-5172-4aed-a57d-92f80c2ed8b8">
+            <TableID>DimDate</TableID>
+            <ColumnID>每年的某一季度</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <NameColumn dwd:design-time-name="fee4f117-aa83-4f6f-915f-bd200a9dded2">
+        <DataType>WChar</DataType>
+        <Source xsi:type="ColumnBinding" dwd:design-time-name="b53038c2-10a4-49a0-89a2-7b82627748c9">
+          <TableID>DimDate</TableID>
+          <ColumnID>每年的某一季度_名称</ColumnID>
+        </Source>
+      </NameColumn>
+      <OrderBy>Key</OrderBy>
+      <ValueColumn dwd:design-time-name="b62a0d5d-a476-4af8-a3db-3a67f42293a0">
+        <DataType>Integer</DataType>
+        <Source xsi:type="ColumnBinding" dwd:design-time-name="1553c64c-7c6e-4af0-b18d-61cbff23d905">
+          <TableID>DimDate</TableID>
+          <ColumnID>每年的某一季度</ColumnID>
+        </Source>
+      </ValueColumn>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+    </Attribute>
+  </Attributes>
+  <Hierarchies>
+    <Hierarchy dwd:design-time-name="8c3bb13c-743e-47ef-83c5-28b61de6d56a">
+      <ID>年 -  季度 -  月份 -  日期</ID>
+      <Name>年 -  季度 -  月份 -  日期</Name>
+      <Levels>
+        <Level dwd:design-time-name="05adefa9-402c-47eb-af5c-67b7dcc2d14b">
+          <ID>年</ID>
+          <Name>年</Name>
+          <SourceAttributeID>年</SourceAttributeID>
+        </Level>
+        <Level dwd:design-time-name="fe6eff79-d37b-470f-ae8c-a9ac2e3e55b3">
+          <ID>季度</ID>
+          <Name>季度</Name>
+          <SourceAttributeID>季度</SourceAttributeID>
+        </Level>
+        <Level dwd:design-time-name="f78e7dc2-22dc-4993-80a5-3a1c8d446a61">
+          <ID>月份</ID>
+          <Name>月份</Name>
+          <SourceAttributeID>月份</SourceAttributeID>
+        </Level>
+        <Level dwd:design-time-name="fea5d709-2d6b-479b-a9e3-fadb30b302c7">
+          <ID>日期</ID>
+          <Name>日期</Name>
+          <SourceAttributeID>日期</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="3549ef00-7de6-4997-86b6-7aa61d3135f6">
+      <ID>年 -  周 -  日期</ID>
+      <Name>年 -  周 -  日期</Name>
+      <Levels>
+        <Level dwd:design-time-name="e34a4dcc-0d00-4ae0-a2ed-2fcdb5c1e00a">
+          <ID>年</ID>
+          <Name>年</Name>
+          <SourceAttributeID>年</SourceAttributeID>
+        </Level>
+        <Level dwd:design-time-name="d5087d49-745b-44a6-8c6f-4d4bdbd2e22a">
+          <ID>周</ID>
+          <Name>周</Name>
+          <SourceAttributeID>周</SourceAttributeID>
+        </Level>
+        <Level dwd:design-time-name="ffb01a2e-1694-4cc9-b993-1783c07a104e">
+          <ID>日期</ID>
+          <Name>日期</Name>
+          <SourceAttributeID>日期</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+  </Hierarchies>
+</Dimension>
