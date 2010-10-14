@@ -1,6 +1,6 @@
 USE [msdb]
 GO
-/****** 对象:  Job [[每日2:00]]chinamnetgamefeelog日志转移到历史表]    脚本日期: 10/11/2010 11:35:17 ******/
+/****** 对象:  Job [[每日3:00]]chinamnetgamefeelog日志转移到历史表]    脚本日期: 10/11/2010 11:35:17 ******/
 BEGIN TRANSACTION
 DECLARE @ReturnCode INT
 SELECT @ReturnCode = 0
@@ -13,7 +13,7 @@ IF (@@ERROR <> 0 OR @ReturnCode <> 0) GOTO QuitWithRollback
 END
 
 DECLARE @jobId BINARY(16)
-EXEC @ReturnCode =  msdb.dbo.sp_add_job @job_name=N'[每日2:00]chinamnetgamefeelog日志转移到历史表', 
+EXEC @ReturnCode =  msdb.dbo.sp_add_job @job_name=N'[每日3:00]chinamnetgamefeelog日志转移到历史表', 
 		@enabled=1, 
 		@notify_level_eventlog=0, 
 		@notify_level_email=0, 
@@ -66,7 +66,7 @@ EXEC @ReturnCode = msdb.dbo.sp_add_jobschedule @job_id=@jobId, @name=N'计划1',
 		@freq_recurrence_factor=0, 
 		@active_start_date=20101011, 
 		@active_end_date=99991231, 
-		@active_start_time=20000, 
+		@active_start_time=30000, 
 		@active_end_time=235959
 IF (@@ERROR <> 0 OR @ReturnCode <> 0) GOTO QuitWithRollback
 EXEC @ReturnCode = msdb.dbo.sp_add_jobserver @job_id = @jobId, @server_name = N'(local)'
