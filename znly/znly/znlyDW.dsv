@@ -31,7 +31,7 @@
             <Name>_ALL_TABLES_</Name>
             <DiagramLayout>
               <dds>
-                <diagram fontclsid="{0BE35203-8F91-11CE-9DE3-00AA004BB851}" mouseiconclsid="{0BE35204-8F91-11CE-9DE3-00AA004BB851}" defaultlayout="MSDDS.Rectilinear" defaultlineroute="MSDDS.Rectilinear" version="7" nextobject="2" scale="100" pagebreakanchorx="0" pagebreakanchory="0" pagebreaksizex="0" pagebreaksizey="0" scrollleft="-10960" scrolltop="-4948" gridx="150" gridy="150" marginx="5000" marginy="5000" zoom="100" x="26511" y="14896" backcolor="15334399" defaultpersistence="2" PrintPageNumbersMode="3" PrintMarginTop="0" PrintMarginBottom="635" PrintMarginLeft="0" PrintMarginRight="0" marqueeselectionmode="0" mousepointer="0" snaptogrid="0" autotypeannotation="1" showscrollbars="0" viewpagebreaks="0" donotforceconnectorsbehindshapes="1" backpictureclsid="{00000000-0000-0000-0000-000000000000}">
+                <diagram fontclsid="{0BE35203-8F91-11CE-9DE3-00AA004BB851}" mouseiconclsid="{0BE35204-8F91-11CE-9DE3-00AA004BB851}" defaultlayout="MSDDS.Rectilinear" defaultlineroute="MSDDS.Rectilinear" version="7" nextobject="4" scale="100" pagebreakanchorx="0" pagebreakanchory="0" pagebreaksizex="0" pagebreaksizey="0" scrollleft="-10960" scrolltop="-2329" gridx="150" gridy="150" marginx="5000" marginy="5000" zoom="100" x="26511" y="14896" backcolor="15334399" defaultpersistence="2" PrintPageNumbersMode="3" PrintMarginTop="0" PrintMarginBottom="635" PrintMarginLeft="0" PrintMarginRight="0" marqueeselectionmode="0" mousepointer="0" snaptogrid="0" autotypeannotation="1" showscrollbars="0" viewpagebreaks="0" donotforceconnectorsbehindshapes="1" backpictureclsid="{00000000-0000-0000-0000-000000000000}">
                   <font>
                     <ddsxmlobjectstreamwrapper binary="018600009001905f010004cbcecce5" />
                   </font>
@@ -42,23 +42,23 @@
                 <layoutmanager>
                   <ddsxmlobj />
                 </layoutmanager>
-                <ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge.2" tooltip="DimDate" left="-8843" top="-3254" logicalid="1" controlid="1" masterid="0" hint1="0" hint2="0" width="4551" height="11456" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+                <ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge.2" tooltip="DimDate" left="-8149" top="-1746" logicalid="3" controlid="2" masterid="0" hint1="0" hint2="0" width="4551" height="5000" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
                   <control>
-                    <ddsxmlobjectstreaminitwrapper binary="00080000c7110000c02c0000" />
+                    <ddsxmlobjectstreaminitwrapper binary="00080000c711000088130000" />
                   </control>
                   <layoutobject>
                     <ddsxmlobj>
-                      <property name="LogicalObject" value="dbo_DimDate" vartype="8" />
+                      <property name="LogicalObject" value="DimDate" vartype="8" />
                     </ddsxmlobj>
                   </layoutobject>
                   <shape groupshapeid="0" groupnode="0" />
                 </ddscontrol>
               </dds>
-            </DiagramLayout>
+</DiagramLayout>
             <ShowRelationshipNames>False</ShowRelationshipNames>
             <UseDiagramDefaultLayout>True</UseDiagramDefaultLayout>
             <DiagramViewPortLeft>-10960</DiagramViewPortLeft>
-            <DiagramViewPortTop>-4948</DiagramViewPortTop>
+            <DiagramViewPortTop>-2329</DiagramViewPortTop>
             <DiagramBoundingLeft>0</DiagramBoundingLeft>
             <DiagramBoundingTop>0</DiagramBoundingTop>
             <DiagramZoom>100</DiagramZoom>
@@ -73,109 +73,6 @@
       <xs:element name="Znly_x0020_DW" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:design-time-name="b88a42ba-fae0-42ff-8042-192e8a10e65d">
         <xs:complexType>
           <xs:choice minOccurs="0" maxOccurs="unbounded">
-            <xs:element name="dbo_DimDate" msprop:FriendlyName="DimDate" msprop:DbSchemaName="dbo" msprop:DbTableName="DimDate" msprop:design-time-name="fdea4e6f-23d6-4e33-808e-bdacde06e425" msprop:TableType="Table">
-              <xs:complexType>
-                <xs:sequence>
-                  <xs:element name="PK_日期" msprop:FriendlyName="PK_日期" msprop:DbColumnName="PK_日期" msprop:design-time-name="2a63c94b-292e-4dfe-b362-acd548462996" type="xs:dateTime" />
-                  <xs:element name="日期_名称" msprop:FriendlyName="日期_名称" msprop:DbColumnName="日期_名称" msprop:design-time-name="f64f80c3-0405-49a2-8614-5fe81507ccb7" minOccurs="0">
-                    <xs:simpleType>
-                      <xs:restriction base="xs:string">
-                        <xs:maxLength value="50" />
-                      </xs:restriction>
-                    </xs:simpleType>
-                  </xs:element>
-                  <xs:element name="年" msprop:FriendlyName="年" msprop:DbColumnName="年" msprop:design-time-name="adbb96c1-bcac-4edc-9e85-a42f61090223" type="xs:dateTime" minOccurs="0" />
-                  <xs:element name="年_名称" msprop:FriendlyName="年_名称" msprop:DbColumnName="年_名称" msprop:design-time-name="3d26a88e-43d7-4ad6-9d06-e1f804b4d5ea" minOccurs="0">
-                    <xs:simpleType>
-                      <xs:restriction base="xs:string">
-                        <xs:maxLength value="50" />
-                      </xs:restriction>
-                    </xs:simpleType>
-                  </xs:element>
-                  <xs:element name="月份" msprop:FriendlyName="月份" msprop:DbColumnName="月份" msprop:design-time-name="f994d140-16ae-4bee-97c8-c80764ef45b4" type="xs:dateTime" minOccurs="0" />
-                  <xs:element name="月份_名称" msprop:FriendlyName="月份_名称" msprop:DbColumnName="月份_名称" msprop:design-time-name="c421c36d-462e-4de1-a648-efe77a3e41eb" minOccurs="0">
-                    <xs:simpleType>
-                      <xs:restriction base="xs:string">
-                        <xs:maxLength value="50" />
-                      </xs:restriction>
-                    </xs:simpleType>
-                  </xs:element>
-                  <xs:element name="日" msprop:FriendlyName="日" msprop:DbColumnName="日" msprop:design-time-name="54889684-e8ca-4f1a-9241-d103290be52e" type="xs:int" minOccurs="0" />
-                  <xs:element name="季度" msprop:FriendlyName="季度" msprop:DbColumnName="季度" msprop:design-time-name="a7695123-faad-4ef2-9e12-05e49ef03078" type="xs:dateTime" minOccurs="0" />
-                  <xs:element name="季度_名称" msprop:FriendlyName="季度_名称" msprop:DbColumnName="季度_名称" msprop:design-time-name="0ce43913-ebf8-4536-80fa-1a57f1461e5f" minOccurs="0">
-                    <xs:simpleType>
-                      <xs:restriction base="xs:string">
-                        <xs:maxLength value="50" />
-                      </xs:restriction>
-                    </xs:simpleType>
-                  </xs:element>
-                  <xs:element name="周" msprop:FriendlyName="周" msprop:DbColumnName="周" msprop:design-time-name="c0032919-c12b-4c13-a18a-284d37017942" type="xs:dateTime" minOccurs="0" />
-                  <xs:element name="周_名称" msprop:FriendlyName="周_名称" msprop:DbColumnName="周_名称" msprop:design-time-name="6be46d11-3d5e-4331-90fd-4f9b8651384e" minOccurs="0">
-                    <xs:simpleType>
-                      <xs:restriction base="xs:string">
-                        <xs:maxLength value="50" />
-                      </xs:restriction>
-                    </xs:simpleType>
-                  </xs:element>
-                  <xs:element name="每年的某一日" msprop:FriendlyName="每年的某一日" msprop:DbColumnName="每年的某一日" msprop:design-time-name="64d5a72f-cb2b-41f0-942e-ac51246ca8c5" type="xs:int" minOccurs="0" />
-                  <xs:element name="每年的某一日_名称" msprop:FriendlyName="每年的某一日_名称" msprop:DbColumnName="每年的某一日_名称" msprop:design-time-name="9bf3debb-397b-49cc-8b4a-8267997b0f69" minOccurs="0">
-                    <xs:simpleType>
-                      <xs:restriction base="xs:string">
-                        <xs:maxLength value="50" />
-                      </xs:restriction>
-                    </xs:simpleType>
-                  </xs:element>
-                  <xs:element name="每个季度的某一日" msprop:FriendlyName="每个季度的某一日" msprop:DbColumnName="每个季度的某一日" msprop:design-time-name="383ea8dc-c503-4554-8e43-f9e7af440ec4" type="xs:int" minOccurs="0" />
-                  <xs:element name="每个季度的某一日_名称" msprop:FriendlyName="每个季度的某一日_名称" msprop:DbColumnName="每个季度的某一日_名称" msprop:design-time-name="e33767ba-0ac6-49a9-b179-c9f4dc5a9809" minOccurs="0">
-                    <xs:simpleType>
-                      <xs:restriction base="xs:string">
-                        <xs:maxLength value="50" />
-                      </xs:restriction>
-                    </xs:simpleType>
-                  </xs:element>
-                  <xs:element name="每周的某一日" msprop:FriendlyName="每周的某一日" msprop:DbColumnName="每周的某一日" msprop:design-time-name="4fae0b5b-4c24-4a00-bf4f-52348921e968" type="xs:int" minOccurs="0" />
-                  <xs:element name="每周的某一日_名称" msprop:FriendlyName="每周的某一日_名称" msprop:DbColumnName="每周的某一日_名称" msprop:design-time-name="9f6d2e88-7133-49c7-b5d3-e37a38b1fa58" minOccurs="0">
-                    <xs:simpleType>
-                      <xs:restriction base="xs:string">
-                        <xs:maxLength value="50" />
-                      </xs:restriction>
-                    </xs:simpleType>
-                  </xs:element>
-                  <xs:element name="每年的某一周" msprop:FriendlyName="每年的某一周" msprop:DbColumnName="每年的某一周" msprop:design-time-name="df824a74-3dad-4024-8df8-eda8591eb1aa" type="xs:int" minOccurs="0" />
-                  <xs:element name="每年的某一周_名称" msprop:FriendlyName="每年的某一周_名称" msprop:DbColumnName="每年的某一周_名称" msprop:design-time-name="e01beeb5-f3d9-4678-8113-92b84e411f37" minOccurs="0">
-                    <xs:simpleType>
-                      <xs:restriction base="xs:string">
-                        <xs:maxLength value="50" />
-                      </xs:restriction>
-                    </xs:simpleType>
-                  </xs:element>
-                  <xs:element name="每年的某一月" msprop:FriendlyName="每年的某一月" msprop:DbColumnName="每年的某一月" msprop:design-time-name="f5e832c3-22d1-48b7-9dd8-a459a651ecb1" type="xs:int" minOccurs="0" />
-                  <xs:element name="每年的某一月_名称" msprop:FriendlyName="每年的某一月_名称" msprop:DbColumnName="每年的某一月_名称" msprop:design-time-name="269754de-e670-4eed-b3b5-863d52bce9e3" minOccurs="0">
-                    <xs:simpleType>
-                      <xs:restriction base="xs:string">
-                        <xs:maxLength value="50" />
-                      </xs:restriction>
-                    </xs:simpleType>
-                  </xs:element>
-                  <xs:element name="每个季度的某一月" msprop:FriendlyName="每个季度的某一月" msprop:DbColumnName="每个季度的某一月" msprop:design-time-name="fea63757-b60d-4c54-8888-34b27649e841" type="xs:int" minOccurs="0" />
-                  <xs:element name="每个季度的某一月_名称" msprop:FriendlyName="每个季度的某一月_名称" msprop:DbColumnName="每个季度的某一月_名称" msprop:design-time-name="0c42e779-0cba-4620-a5e3-cf4bb4b59fad" minOccurs="0">
-                    <xs:simpleType>
-                      <xs:restriction base="xs:string">
-                        <xs:maxLength value="50" />
-                      </xs:restriction>
-                    </xs:simpleType>
-                  </xs:element>
-                  <xs:element name="每年的某一季度" msprop:FriendlyName="每年的某一季度" msprop:DbColumnName="每年的某一季度" msprop:design-time-name="91ab807c-6124-41ff-ba20-22641060849f" type="xs:int" minOccurs="0" />
-                  <xs:element name="每年的某一季度_名称" msprop:FriendlyName="每年的某一季度_名称" msprop:DbColumnName="每年的某一季度_名称" msprop:design-time-name="493b03d0-a361-4323-9fbd-98db2fd57843" minOccurs="0">
-                    <xs:simpleType>
-                      <xs:restriction base="xs:string">
-                        <xs:maxLength value="50" />
-                      </xs:restriction>
-                    </xs:simpleType>
-                  </xs:element>
-                </xs:sequence>
-              </xs:complexType>
-            </xs:element>
             <xs:element name="DimDate" msprop:FriendlyName="DimDate" msprop:DbSchemaName="dbo" msprop:DbTableName="DimDate" msprop:design-time-name="1e73bd76-e646-4fdf-b015-5a0fc3a1bab6" msprop:TableType="Table" msprop:AllowGen="True">
               <xs:complexType>
                 <xs:sequence>
@@ -288,10 +185,6 @@
             </xs:element>
           </xs:choice>
         </xs:complexType>
-        <xs:unique name="Constraint1" msdata:PrimaryKey="true">
-          <xs:selector xpath=".//dbo_DimDate" />
-          <xs:field xpath="PK_日期" />
-        </xs:unique>
         <xs:unique name="PK_DimDate" msprop:AllowGen="True" msdata:PrimaryKey="true">
           <xs:selector xpath=".//DimDate" />
           <xs:field xpath="日期" />
