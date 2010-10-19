@@ -1,35 +1,41 @@
 ﻿USE [Apq_DBA]
 GO
 ALTER DATABASE Apq_DBA SET READ_COMMITTED_SNAPSHOT ON WITH ROLLBACK IMMEDIATE -- 需要单连接,因此在迁移/维护时才能做
+/* 重新生成脚本以后,只更新此注释以下全部内容即可.
 
-/****** Object:  User [BcpIn]    Script Date: 10/11/2010 17:24:28 ******/
-CREATE USER [BcpIn] FOR LOGIN [BcpIn] WITH DEFAULT_SCHEMA=[dbo]
-GO
-/****** Object:  User [LinkIn]    Script Date: 10/11/2010 17:24:28 ******/
-CREATE USER [LinkIn] FOR LOGIN [LinkIn] WITH DEFAULT_SCHEMA=[dbo]
-GO
-/****** Object:  User [Performance_Log_User]    Script Date: 10/11/2010 17:24:28 ******/
-CREATE USER [Performance_Log_User] FOR LOGIN [BUILTIN\Performance Log Users]
-GO
-/****** Object:  User [Web]    Script Date: 10/11/2010 17:24:28 ******/
-CREATE USER [Web] FOR LOGIN [Web] WITH DEFAULT_SCHEMA=[dbo]
-GO
-/****** Object:  User [Web_Bg]    Script Date: 10/11/2010 17:24:28 ******/
-CREATE USER [Web_Bg] FOR LOGIN [Web_Bg] WITH DEFAULT_SCHEMA=[dbo]
-GO
-/****** Object:  User [Web_WS]    Script Date: 10/11/2010 17:24:28 ******/
+整理脚本:
+1.删除 开头建库的部分,分隔点是开始创建用户
+2.删除 对登录授权,标志是最后一个 USE [master]段
+*/
+
+/****** Object:  User [Web_WS]    Script Date: 10/19/2010 17:58:27 ******/
 CREATE USER [Web_WS] FOR LOGIN [Web_WS] WITH DEFAULT_SCHEMA=[dbo]
 GO
-/****** Object:  Schema [bak]    Script Date: 10/11/2010 17:24:29 ******/
-CREATE SCHEMA [bak] AUTHORIZATION [dbo]
+/****** Object:  User [Web_Bg]    Script Date: 10/19/2010 17:58:27 ******/
+CREATE USER [Web_Bg] FOR LOGIN [Web_Bg] WITH DEFAULT_SCHEMA=[dbo]
 GO
-/****** Object:  Schema [bcp]    Script Date: 10/11/2010 17:24:29 ******/
-CREATE SCHEMA [bcp] AUTHORIZATION [dbo]
+/****** Object:  User [Web]    Script Date: 10/19/2010 17:58:27 ******/
+CREATE USER [Web] FOR LOGIN [Web] WITH DEFAULT_SCHEMA=[dbo]
 GO
-/****** Object:  Schema [mgr]    Script Date: 10/11/2010 17:24:29 ******/
+/****** Object:  User [Performance_Log_User]    Script Date: 10/19/2010 17:58:27 ******/
+CREATE USER [Performance_Log_User] FOR LOGIN [BUILTIN\Performance Log Users]
+GO
+/****** Object:  User [LinkIn]    Script Date: 10/19/2010 17:58:27 ******/
+CREATE USER [LinkIn] FOR LOGIN [LinkIn] WITH DEFAULT_SCHEMA=[dbo]
+GO
+/****** Object:  User [BcpIn]    Script Date: 10/19/2010 17:58:27 ******/
+CREATE USER [BcpIn] FOR LOGIN [BcpIn] WITH DEFAULT_SCHEMA=[dbo]
+GO
+/****** Object:  Schema [mgr]    Script Date: 10/19/2010 17:58:27 ******/
 CREATE SCHEMA [mgr] AUTHORIZATION [dbo]
 GO
-/****** Object:  StoredProcedure [dbo].[p_who_lock]    Script Date: 10/11/2010 17:24:15 ******/
+/****** Object:  Schema [bcp]    Script Date: 10/19/2010 17:58:27 ******/
+CREATE SCHEMA [bcp] AUTHORIZATION [dbo]
+GO
+/****** Object:  Schema [bak]    Script Date: 10/19/2010 17:58:27 ******/
+CREATE SCHEMA [bak] AUTHORIZATION [dbo]
+GO
+/****** Object:  StoredProcedure [dbo].[p_who_lock]    Script Date: 10/19/2010 17:58:54 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -102,7 +108,7 @@ EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'
 ********************************************************/
 ' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'PROCEDURE',@level1name=N'p_who_lock'
 GO
-/****** Object:  StoredProcedure [dbo].[p_lockinfo]    Script Date: 10/11/2010 17:24:15 ******/
+/****** Object:  StoredProcedure [dbo].[p_lockinfo]    Script Date: 10/19/2010 17:58:54 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -207,7 +213,39 @@ EXEC dbo.p_lockinfo 0, 1
 --*/
 ' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'PROCEDURE',@level1name=N'p_lockinfo'
 GO
-/****** Object:  Table [dbo].[Log_DTS_LocalPick]    Script Date: 10/11/2010 17:23:31 ******/
+/****** Object:  Table [dbo].[Log_SSIS]    Script Date: 10/19/2010 17:58:58 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[Log_SSIS](
+	[c_Date] [datetime] NULL,
+	[c_Time] [varchar](10) NULL,
+	[c_Ip] [varchar](20) NULL,
+	[cs_Username] [varchar](20) NULL,
+	[s_Ip] [varchar](20) NULL,
+	[s_ComputerName] [varchar](30) NULL,
+	[s_Port] [varchar](10) NULL,
+	[cs_Method] [varchar](10) NULL,
+	[cs_Uri_Stem] [varchar](500) NULL,
+	[cs_Uri_Query] [varchar](500) NULL,
+	[sc_Status] [varchar](20) NULL,
+	[sc_SubStatus] [varchar](20) NULL,
+	[sc_Win32_Status] [varchar](20) NULL,
+	[sc_Bytes] [int] NULL,
+	[cs_Bytes] [int] NULL,
+	[time_Taken] [varchar](10) NULL,
+	[cs_Version] [varchar](20) NULL,
+	[cs_Host] [varchar](20) NULL,
+	[cs_User_Agent] [varchar](500) NULL,
+	[cs_Refere] [varchar](500) NULL
+) ON [PRIMARY]
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[Log_DTS_LocalPick]    Script Date: 10/19/2010 17:58:58 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -248,7 +286,7 @@ EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'文件名' , @
 GO
 EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'扩展名' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Log_DTS_LocalPick', @level2type=N'COLUMN',@level2name=N'FileEX'
 GO
-/****** Object:  Table [dbo].[Log_Apq_Alarm]    Script Date: 10/11/2010 17:23:31 ******/
+/****** Object:  Table [dbo].[Log_Apq_Alarm]    Script Date: 10/19/2010 17:58:58 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -276,7 +314,7 @@ EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'严重度' , @
 GO
 EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'信息内容' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Log_Apq_Alarm', @level2type=N'COLUMN',@level2name=N'Msg'
 GO
-/****** Object:  Table [dbo].[LinkLogic]    Script Date: 10/11/2010 17:23:31 ******/
+/****** Object:  Table [dbo].[LinkLogic]    Script Date: 10/19/2010 17:58:58 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -303,7 +341,7 @@ EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'用途/途径'
 GO
 EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'接收方端口(描述)' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'LinkLogic', @level2type=N'COLUMN',@level2name=N'DstPort'
 GO
-/****** Object:  StoredProcedure [dbo].[Job_updatestats]    Script Date: 10/11/2010 17:24:15 ******/
+/****** Object:  StoredProcedure [dbo].[Job_updatestats]    Script Date: 10/19/2010 17:58:58 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -348,7 +386,7 @@ CLOSE @csr;
 DECLARE @Now2 datetime;
 SELECT @Now2 = getdate();
 GO
-/****** Object:  UserDefinedFunction [dbo].[Apq_ConvertVarBinary_HexStr]    Script Date: 10/11/2010 17:24:27 ******/
+/****** Object:  UserDefinedFunction [dbo].[Apq_ConvertVarBinary_HexStr]    Script Date: 10/19/2010 17:59:12 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -408,7 +446,7 @@ BEGIN
 	RETURN @Return;
 END
 GO
-/****** Object:  StoredProcedure [dbo].[Apq_SwithPatition]    Script Date: 10/11/2010 17:24:14 ******/
+/****** Object:  StoredProcedure [dbo].[Apq_SwithPatition]    Script Date: 10/19/2010 17:59:12 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -449,7 +487,7 @@ EXEC sp_executesql @sqlDB, N'@sql nvarchar(4000)',@sql=@sql;
 
 RETURN 1;
 GO
-/****** Object:  UserDefinedFunction [dbo].[Apq_SwitchBinary8]    Script Date: 10/11/2010 17:24:27 ******/
+/****** Object:  UserDefinedFunction [dbo].[Apq_SwitchBinary8]    Script Date: 10/19/2010 17:59:12 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -472,7 +510,7 @@ BEGIN
 	RETURN @bin42 + @bin41;
 END
 GO
-/****** Object:  StoredProcedure [dbo].[Apq_RenameDefault]    Script Date: 10/11/2010 17:24:13 ******/
+/****** Object:  StoredProcedure [dbo].[Apq_RenameDefault]    Script Date: 10/19/2010 17:59:12 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -520,7 +558,7 @@ END
 CLOSE @csr_Constraints
 RETURN 1
 GO
-/****** Object:  StoredProcedure [dbo].[Apq_RandomString]    Script Date: 10/11/2010 17:24:13 ******/
+/****** Object:  StoredProcedure [dbo].[Apq_RandomString]    Script Date: 10/19/2010 17:59:12 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -601,7 +639,7 @@ DROP TABLE #t;
 SELECT @ExMsg = '生成成功';
 RETURN 1;
 GO
-/****** Object:  StoredProcedure [dbo].[Apq_Process_KillDead]    Script Date: 10/11/2010 17:24:13 ******/
+/****** Object:  StoredProcedure [dbo].[Apq_Process_KillDead]    Script Date: 10/19/2010 17:59:12 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -655,7 +693,7 @@ CLOSE @csr;
 DROP TABLE #cmd;
 RETURN 1;
 GO
-/****** Object:  StoredProcedure [dbo].[Apq_Login_StatCount]    Script Date: 10/11/2010 17:24:13 ******/
+/****** Object:  StoredProcedure [dbo].[Apq_Login_StatCount]    Script Date: 10/19/2010 17:59:12 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -699,7 +737,7 @@ SELECT loginame,count(spid)
   FROM #t_who
  GROUP BY loginame
 GO
-/****** Object:  StoredProcedure [dbo].[Apq_KILL_Login]    Script Date: 10/11/2010 17:24:13 ******/
+/****** Object:  StoredProcedure [dbo].[Apq_KILL_Login]    Script Date: 10/19/2010 17:59:12 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -761,7 +799,7 @@ WHILE ( @@FETCH_STATUS = 0 )
     END
 CLOSE @pSession ;
 GO
-/****** Object:  StoredProcedure [dbo].[Apq_KILL_DB]    Script Date: 10/11/2010 17:24:13 ******/
+/****** Object:  StoredProcedure [dbo].[Apq_KILL_DB]    Script Date: 10/19/2010 17:59:12 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -814,7 +852,7 @@ CLOSE @pSession;
 
 DROP TABLE #sp_who;
 GO
-/****** Object:  StoredProcedure [dbo].[Pr_RebuildIdx]    Script Date: 10/11/2010 17:24:15 ******/
+/****** Object:  StoredProcedure [dbo].[Pr_RebuildIdx]    Script Date: 10/19/2010 17:59:12 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -933,7 +971,7 @@ CLOSE @csr_partitions
 -- drop the temporary table
 DROP TABLE #Tmp_Idx_Rebuild
 GO
-/****** Object:  StoredProcedure [dbo].[Apq_RebuildIdx]    Script Date: 10/11/2010 17:24:13 ******/
+/****** Object:  StoredProcedure [dbo].[Apq_RebuildIdx]    Script Date: 10/19/2010 17:59:12 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1052,7 +1090,7 @@ CLOSE @csr_partitions
 -- drop the temporary table
 DROP TABLE #Apq_RebuildIdx
 GO
-/****** Object:  Table [dbo].[StatConfig_Day]    Script Date: 10/11/2010 17:23:31 ******/
+/****** Object:  Table [dbo].[StatConfig_Day]    Script Date: 10/19/2010 17:59:12 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1086,7 +1124,7 @@ EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'上次统计�
 GO
 EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'数据统计配置表' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'StatConfig_Day'
 GO
-/****** Object:  Table [mgr].[SrvPwd]    Script Date: 10/11/2010 17:23:31 ******/
+/****** Object:  Table [mgr].[SrvPwd]    Script Date: 10/19/2010 17:59:12 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1115,7 +1153,7 @@ EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'登录密码' 
 GO
 EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'是否启用' , @level0type=N'SCHEMA',@level0name=N'mgr', @level1type=N'TABLE',@level1name=N'SrvPwd', @level2type=N'COLUMN',@level2name=N'Enabled'
 GO
-/****** Object:  StoredProcedure [dbo].[Apq_WH_Init]    Script Date: 10/11/2010 17:24:14 ******/
+/****** Object:  StoredProcedure [dbo].[Apq_WH_Init]    Script Date: 10/19/2010 17:59:12 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1153,7 +1191,7 @@ CLOSE @csr;
 -- 2.启用维护作业
 EXEC msdb..sp_update_job @job_name = '例行维护',@enabled = 1
 GO
-/****** Object:  StoredProcedure [dbo].[Apq_WH_End]    Script Date: 10/11/2010 17:24:14 ******/
+/****** Object:  StoredProcedure [dbo].[Apq_WH_End]    Script Date: 10/19/2010 17:59:12 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1191,7 +1229,7 @@ CLOSE @csr;
 -- 2.禁用维护作业
 EXEC msdb..sp_update_job @job_name = '例行维护',@enabled = 0
 GO
-/****** Object:  Table [mgr].[Server]    Script Date: 10/11/2010 17:23:31 ******/
+/****** Object:  Table [mgr].[Server]    Script Date: 10/19/2010 17:59:13 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1213,7 +1251,7 @@ CREATE TABLE [mgr].[Server](
 	[IPLan3] [nvarchar](500) NOT NULL,
 	[IPWan4] [nvarchar](500) NOT NULL,
 	[IPLan4] [nvarchar](500) NOT NULL,
- CONSTRAINT [PK_RSrvConfig] PRIMARY KEY NONCLUSTERED 
+ CONSTRAINT [PK_Server] PRIMARY KEY NONCLUSTERED 
 (
 	[SrvID] ASC
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
@@ -1237,7 +1275,7 @@ EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'SQL Server端�
 GO
 EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'FTP端口' , @level0type=N'SCHEMA',@level0name=N'mgr', @level1type=N'TABLE',@level1name=N'Server', @level2type=N'COLUMN',@level2name=N'FTPPort'
 GO
-/****** Object:  Table [dbo].[RSrvConfig]    Script Date: 10/11/2010 17:23:31 ******/
+/****** Object:  Table [dbo].[RSrvConfig]    Script Date: 10/19/2010 17:59:13 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1285,7 +1323,7 @@ EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'已经断开�
 GO
 EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'LinkServer状态{0:断开(连续失败N次),1:正常}' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'RSrvConfig', @level2type=N'COLUMN',@level2name=N'LSState'
 GO
-/****** Object:  Table [bak].[RestoreFromFolder]    Script Date: 10/11/2010 17:23:29 ******/
+/****** Object:  Table [bak].[RestoreFromFolder]    Script Date: 10/19/2010 17:59:13 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1326,7 +1364,7 @@ EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'历史库保�
 GO
 EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'完整备份文件保留个数(同时保留具有基础完整备份文件的日志备份文件)' , @level0type=N'SCHEMA',@level0name=N'bak', @level1type=N'TABLE',@level1name=N'RestoreFromFolder', @level2type=N'COLUMN',@level2name=N'Num_Full'
 GO
-/****** Object:  Table [dbo].[RDBUser]    Script Date: 10/11/2010 17:23:31 ******/
+/****** Object:  Table [dbo].[RDBUser]    Script Date: 10/19/2010 17:59:13 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1355,7 +1393,7 @@ EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'对应的登�
 GO
 EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'远程数据库列表' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'RDBUser'
 GO
-/****** Object:  Table [dbo].[RDBLogin]    Script Date: 10/11/2010 17:23:31 ******/
+/****** Object:  Table [dbo].[RDBLogin]    Script Date: 10/19/2010 17:59:13 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1391,7 +1429,7 @@ EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'登录密码' 
 GO
 EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'远程数据库列表' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'RDBLogin'
 GO
-/****** Object:  Table [dbo].[RDBConfig]    Script Date: 10/11/2010 17:23:31 ******/
+/****** Object:  Table [dbo].[RDBConfig]    Script Date: 10/19/2010 17:59:13 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1430,7 +1468,7 @@ EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'游戏编号' 
 GO
 EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'远程数据库列表' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'RDBConfig'
 GO
-/****** Object:  UserDefinedFunction [dbo].[Apq_ConvertIP4_VarBinary]    Script Date: 10/11/2010 17:24:27 ******/
+/****** Object:  UserDefinedFunction [dbo].[Apq_ConvertIP4_VarBinary]    Script Date: 10/19/2010 17:59:13 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1483,7 +1521,7 @@ BEGIN
 	RETURN @Return;
 END
 GO
-/****** Object:  UserDefinedFunction [dbo].[Apq_ConvertInt_TimeString]    Script Date: 10/11/2010 17:24:27 ******/
+/****** Object:  UserDefinedFunction [dbo].[Apq_ConvertInt_TimeString]    Script Date: 10/19/2010 17:59:13 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1517,7 +1555,7 @@ BEGIN
 	RETURN @Return;
 END
 GO
-/****** Object:  UserDefinedFunction [dbo].[Apq_ConvertInt_Time]    Script Date: 10/11/2010 17:24:27 ******/
+/****** Object:  UserDefinedFunction [dbo].[Apq_ConvertInt_Time]    Script Date: 10/19/2010 17:59:13 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1551,7 +1589,7 @@ BEGIN
 	RETURN @Return;
 END
 GO
-/****** Object:  UserDefinedFunction [dbo].[Apq_ConvertHexStr_VarBinary]    Script Date: 10/11/2010 17:24:27 ******/
+/****** Object:  UserDefinedFunction [dbo].[Apq_ConvertHexStr_VarBinary]    Script Date: 10/19/2010 17:59:13 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1597,7 +1635,7 @@ BEGIN
 	RETURN @Return;
 END
 GO
-/****** Object:  Table [dbo].[Apq_Config]    Script Date: 10/11/2010 17:23:30 ******/
+/****** Object:  Table [dbo].[Apq_Config]    Script Date: 10/19/2010 17:59:13 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1620,7 +1658,7 @@ EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'配置名' , @
 GO
 EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'配置值' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Apq_Config', @level2type=N'COLUMN',@level2name=N'Value'
 GO
-/****** Object:  UserDefinedFunction [bak].[Apq_Compute_DBName_Restore]    Script Date: 10/11/2010 17:24:27 ******/
+/****** Object:  UserDefinedFunction [bak].[Apq_Compute_DBName_Restore]    Script Date: 10/19/2010 17:59:13 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1644,7 +1682,7 @@ BEGIN
 	RETURN @rtn;
 END
 GO
-/****** Object:  UserDefinedFunction [dbo].[Apq_CharIndexR]    Script Date: 10/11/2010 17:24:27 ******/
+/****** Object:  UserDefinedFunction [dbo].[Apq_CharIndexR]    Script Date: 10/19/2010 17:59:13 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1698,7 +1736,7 @@ BEGIN
     RETURN @Return ;
 END
 GO
-/****** Object:  StoredProcedure [bcp].[Apq_BcpInFromFolder_ga]    Script Date: 10/11/2010 17:24:12 ******/
+/****** Object:  StoredProcedure [bcp].[Apq_BcpInFromFolder_ga]    Script Date: 10/19/2010 17:59:13 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1756,7 +1794,7 @@ END
 DROP TABLE #t;
 RETURN 1;
 GO
-/****** Object:  Table [dbo].[Apq_Ext]    Script Date: 10/11/2010 17:23:30 ******/
+/****** Object:  Table [dbo].[Apq_Ext]    Script Date: 10/19/2010 17:59:13 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1781,7 +1819,7 @@ EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'扩展名' , @
 GO
 EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'扩展值' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Apq_Ext', @level2type=N'COLUMN',@level2name=N'Value'
 GO
-/****** Object:  StoredProcedure [dbo].[Apq_DropIndex]    Script Date: 10/11/2010 17:24:12 ******/
+/****** Object:  StoredProcedure [dbo].[Apq_DropIndex]    Script Date: 10/19/2010 17:59:13 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1903,7 +1941,7 @@ END
 SELECT @ExMsg = '操作成功';
 RETURN 1;
 GO
-/****** Object:  StoredProcedure [dbo].[Apq_Dependent_List]    Script Date: 10/11/2010 17:24:12 ******/
+/****** Object:  StoredProcedure [dbo].[Apq_Dependent_List]    Script Date: 10/19/2010 17:59:13 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1951,7 +1989,7 @@ EXEC @rtn = dbo.Apq_Dependent_List @object_id;
 SELECT @rtn,@ExMsg;
 ' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'PROCEDURE',@level1name=N'Apq_Dependent_List'
 GO
-/****** Object:  Table [dbo].[Apq_ID]    Script Date: 10/11/2010 17:23:30 ******/
+/****** Object:  Table [dbo].[Apq_ID]    Script Date: 10/19/2010 17:59:13 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1990,7 +2028,7 @@ EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'自定义ID自
 GO
 EXEC sys.sp_addextendedproperty @name=N'说明2', @value=N'随便写写' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Apq_ID'
 GO
-/****** Object:  StoredProcedure [dbo].[Apq_Gen_Ins]    Script Date: 10/11/2010 17:24:13 ******/
+/****** Object:  StoredProcedure [dbo].[Apq_Gen_Ins]    Script Date: 10/19/2010 17:59:13 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -2096,7 +2134,7 @@ DROP TABLE #sqlT
 TRUNCATE TABLE #sql
 DROP TABLE #sql
 GO
-/****** Object:  Table [dbo].[IPConfig]    Script Date: 10/11/2010 17:23:31 ******/
+/****** Object:  Table [dbo].[IPConfig]    Script Date: 10/19/2010 17:59:13 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -2114,7 +2152,55 @@ CREATE TABLE [dbo].[IPConfig](
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [bak].[FTP_PutBak]    Script Date: 10/11/2010 17:23:29 ******/
+/****** Object:  Table [dbo].[FTP_SendQueue]    Script Date: 10/19/2010 17:59:13 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[FTP_SendQueue](
+	[ID] [bigint] IDENTITY(1,1) NOT NULL,
+	[Folder] [nvarchar](512) NOT NULL,
+	[FileName] [nvarchar](256) NOT NULL,
+	[Enabled] [tinyint] NOT NULL,
+	[FTPSrv] [nvarchar](256) NOT NULL,
+	[U] [nvarchar](256) NOT NULL,
+	[P] [nvarchar](256) NOT NULL,
+	[FTPFolder] [nvarchar](512) NOT NULL,
+	[FTPFolderTmp] [nvarchar](512) NOT NULL,
+	[_InTime] [datetime] NOT NULL,
+	[_Time] [datetime] NOT NULL,
+	[LSize] [bigint] NOT NULL,
+	[RSize] [bigint] NOT NULL,
+	[IsSuccess] [tinyint] NOT NULL,
+ CONSTRAINT [PK_FTP_SendQueue] PRIMARY KEY NONCLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'本地文件目录' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'FTP_SendQueue', @level2type=N'COLUMN',@level2name=N'Folder'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'文件名' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'FTP_SendQueue', @level2type=N'COLUMN',@level2name=N'FileName'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'启用与否' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'FTP_SendQueue', @level2type=N'COLUMN',@level2name=N'Enabled'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'FTP服务器(IP 端口)' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'FTP_SendQueue', @level2type=N'COLUMN',@level2name=N'FTPSrv'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'用户名' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'FTP_SendQueue', @level2type=N'COLUMN',@level2name=N'U'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'密码' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'FTP_SendQueue', @level2type=N'COLUMN',@level2name=N'P'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'FTP目录' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'FTP_SendQueue', @level2type=N'COLUMN',@level2name=N'FTPFolder'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'FTP临时目录,上传完成后移动到正式目录' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'FTP_SendQueue', @level2type=N'COLUMN',@level2name=N'FTPFolderTmp'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'本地文件大小' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'FTP_SendQueue', @level2type=N'COLUMN',@level2name=N'LSize'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'远程文件大小' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'FTP_SendQueue', @level2type=N'COLUMN',@level2name=N'RSize'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'是否成功(失败重传)' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'FTP_SendQueue', @level2type=N'COLUMN',@level2name=N'IsSuccess'
+GO
+/****** Object:  Table [bak].[FTP_PutBak]    Script Date: 10/19/2010 17:59:13 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -2159,7 +2245,7 @@ EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'FTP临时目�
 GO
 EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'完整备份文件保留个数(同时保留具有基础完整备份文件的日志备份文件)' , @level0type=N'SCHEMA',@level0name=N'bak', @level1type=N'TABLE',@level1name=N'FTP_PutBak', @level2type=N'COLUMN',@level2name=N'Num_Full'
 GO
-/****** Object:  Table [dbo].[FTP_GetBak]    Script Date: 10/11/2010 17:23:31 ******/
+/****** Object:  Table [dbo].[FTP_GetBak]    Script Date: 10/19/2010 17:59:14 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -2212,7 +2298,7 @@ EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'状态{0:空�
 GO
 EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'历史库保留个数' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'FTP_GetBak', @level2type=N'COLUMN',@level2name=N'DB_HisNum'
 GO
-/****** Object:  Table [dbo].[FileTrans]    Script Date: 10/11/2010 17:23:31 ******/
+/****** Object:  Table [dbo].[FileTrans]    Script Date: 10/19/2010 17:59:14 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -2244,7 +2330,7 @@ EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'文件流' , @
 GO
 EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'时间' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'FileTrans', @level2type=N'COLUMN',@level2name=N'_InTime'
 GO
-/****** Object:  Table [dbo].[DTSConfig]    Script Date: 10/11/2010 17:23:30 ******/
+/****** Object:  Table [dbo].[DTSConfig]    Script Date: 10/19/2010 17:59:14 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -2296,7 +2382,7 @@ EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'上次传送�
 GO
 EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'数据传送配置表' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'DTSConfig'
 GO
-/****** Object:  Table [dbo].[DTS_Send]    Script Date: 10/11/2010 17:23:30 ******/
+/****** Object:  Table [dbo].[DTS_Send]    Script Date: 10/19/2010 17:59:14 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -2360,7 +2446,7 @@ EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'[仅用于收�
 GO
 EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'数据传送配置表' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'DTS_Send'
 GO
-/****** Object:  Table [dbo].[DisplayToID]    Script Date: 10/11/2010 17:23:30 ******/
+/****** Object:  Table [dbo].[DisplayToID]    Script Date: 10/19/2010 17:59:14 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -2388,7 +2474,7 @@ UNIQUE NONCLUSTERED
 GO
 SET ANSI_PADDING OFF
 GO
-/****** Object:  Table [dbo].[CounterDetails]    Script Date: 10/11/2010 17:23:30 ******/
+/****** Object:  Table [dbo].[CounterDetails]    Script Date: 10/19/2010 17:59:14 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -2416,7 +2502,7 @@ PRIMARY KEY NONCLUSTERED
 GO
 SET ANSI_PADDING OFF
 GO
-/****** Object:  Table [dbo].[CounterData]    Script Date: 10/11/2010 17:23:30 ******/
+/****** Object:  Table [dbo].[CounterData]    Script Date: 10/19/2010 17:59:14 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -2444,7 +2530,7 @@ PRIMARY KEY NONCLUSTERED
 GO
 SET ANSI_PADDING OFF
 GO
-/****** Object:  Table [dbo].[Cfg_WH]    Script Date: 10/11/2010 17:23:30 ******/
+/****** Object:  Table [dbo].[Cfg_WH]    Script Date: 10/19/2010 17:59:14 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -2459,7 +2545,7 @@ CREATE TABLE [dbo].[Cfg_WH](
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [bak].[BakCfg]    Script Date: 10/11/2010 17:23:29 ******/
+/****** Object:  Table [bak].[BakCfg]    Script Date: 10/19/2010 17:59:14 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -2523,7 +2609,7 @@ EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'中转文件�
 GO
 EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'完整备份文件保留个数(同时保留具有基础完整备份文件的日志备份文件)' , @level0type=N'SCHEMA',@level0name=N'bak', @level1type=N'TABLE',@level1name=N'BakCfg', @level2type=N'COLUMN',@level2name=N'Num_Full'
 GO
-/****** Object:  Table [dbo].[ArpCfg]    Script Date: 10/11/2010 17:23:30 ******/
+/****** Object:  Table [dbo].[ArpCfg]    Script Date: 10/19/2010 17:59:14 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -2539,7 +2625,7 @@ CREATE TABLE [dbo].[ArpCfg](
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  StoredProcedure [dbo].[ApqDBMgr_Servers_Save]    Script Date: 10/11/2010 17:24:14 ******/
+/****** Object:  StoredProcedure [dbo].[ApqDBMgr_Servers_Save]    Script Date: 10/19/2010 17:59:14 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -2576,7 +2662,7 @@ EXEC @rtn = dbo.ApqDBMgr_Servers_Save @ExMsg out, 1, DEFAULT, ''127019'',''User1
 SELECT @rtn,@ExMsg;
 ' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'PROCEDURE',@level1name=N'ApqDBMgr_Servers_Save'
 GO
-/****** Object:  UserDefinedFunction [dbo].[ApqDBMgr_Servers_GetAll]    Script Date: 10/11/2010 17:24:28 ******/
+/****** Object:  UserDefinedFunction [dbo].[ApqDBMgr_Servers_GetAll]    Script Date: 10/19/2010 17:59:15 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -2595,7 +2681,7 @@ RETURNS TABLE
     SELECT  *
     FROM    dbo.RSrvConfig
 GO
-/****** Object:  StoredProcedure [dbo].[ApqDBMgr_RSrv_Save_20100505]    Script Date: 10/11/2010 17:24:14 ******/
+/****** Object:  StoredProcedure [dbo].[ApqDBMgr_RSrv_Save_20100505]    Script Date: 10/19/2010 17:59:15 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -2639,7 +2725,7 @@ EXEC @rtn = dbo.ApqDBMgr_RSrv_Save_20100505 @ExMsg out, 1, DEFAULT, ''127019'','
 SELECT @rtn,@ExMsg;
 ' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'PROCEDURE',@level1name=N'ApqDBMgr_RSrv_Save_20100505'
 GO
-/****** Object:  StoredProcedure [dbo].[ApqDBMgr_RSrv_Save]    Script Date: 10/11/2010 17:24:14 ******/
+/****** Object:  StoredProcedure [dbo].[ApqDBMgr_RSrv_Save]    Script Date: 10/19/2010 17:59:15 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -2683,7 +2769,7 @@ EXEC @rtn = dbo.ApqDBMgr_RSrv_Save @ExMsg out, 1, DEFAULT, ''127019'',''User1'',
 SELECT @rtn,@ExMsg;
 ' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'PROCEDURE',@level1name=N'ApqDBMgr_RSrv_Save'
 GO
-/****** Object:  UserDefinedFunction [dbo].[ApqDBMgr_RSrv_List]    Script Date: 10/11/2010 17:24:28 ******/
+/****** Object:  UserDefinedFunction [dbo].[ApqDBMgr_RSrv_List]    Script Date: 10/19/2010 17:59:15 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -2702,7 +2788,7 @@ RETURNS TABLE
     SELECT  ID, ParentID, Name, UID, PwdC, Type, LSMaxTimes, LSErrTimes, LSState, IPLan, IPWan1, IPWan2, FTPPort, FTPU, FTPPC, SqlPort
     FROM    dbo.RSrvConfig
 GO
-/****** Object:  StoredProcedure [dbo].[ApqDBMgr_Route_BatArchive]    Script Date: 10/11/2010 17:24:14 ******/
+/****** Object:  StoredProcedure [dbo].[ApqDBMgr_Route_BatArchive]    Script Date: 10/19/2010 17:59:15 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -2773,7 +2859,7 @@ EXEC @rtn = dbo.ApqDBMgr_Route_BatArchive NULL;
 SELECT @rtn,@ExMsg;
 ' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'PROCEDURE',@level1name=N'ApqDBMgr_Route_BatArchive'
 GO
-/****** Object:  UserDefinedFunction [dbo].[ApqDBMgr_RDBUser_List]    Script Date: 10/11/2010 17:24:28 ******/
+/****** Object:  UserDefinedFunction [dbo].[ApqDBMgr_RDBUser_List]    Script Date: 10/19/2010 17:59:15 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -2792,7 +2878,7 @@ RETURNS TABLE
     SELECT  [RDBUserID],RDBID,DBUserName,DBUserDesc,RDBLoginID
     FROM    [Apq_DBA].[dbo].RDBUser
 GO
-/****** Object:  StoredProcedure [dbo].[ApqDBMgr_RDB_Save]    Script Date: 10/11/2010 17:24:14 ******/
+/****** Object:  StoredProcedure [dbo].[ApqDBMgr_RDB_Save]    Script Date: 10/19/2010 17:59:15 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -2829,7 +2915,7 @@ EXEC @rtn = dbo.ApqDBMgr_RDB_Save @ExMsg out, 1, DEFAULT, ''127019'',''User1'','
 SELECT @rtn,@ExMsg;
 ' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'PROCEDURE',@level1name=N'ApqDBMgr_RDB_Save'
 GO
-/****** Object:  UserDefinedFunction [dbo].[ApqDBMgr_RDB_List]    Script Date: 10/11/2010 17:24:28 ******/
+/****** Object:  UserDefinedFunction [dbo].[ApqDBMgr_RDB_List]    Script Date: 10/19/2010 17:59:15 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -2848,7 +2934,7 @@ RETURNS TABLE
     SELECT  RDBID,DBName,RDBDesc,RDBType,PLevel,GLevel,SrvID,GameID
     FROM    dbo.RDBConfig
 GO
-/****** Object:  StoredProcedure [dbo].[ApqDBMgr_Arp_BatArchive]    Script Date: 10/11/2010 17:24:14 ******/
+/****** Object:  StoredProcedure [dbo].[ApqDBMgr_Arp_BatArchive]    Script Date: 10/19/2010 17:59:15 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -2920,7 +3006,7 @@ EXEC @rtn = dbo.ApqDBMgr_Arp_BatArchive NULL;
 SELECT @rtn,@ExMsg;
 ' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'PROCEDURE',@level1name=N'ApqDBMgr_Arp_BatArchive'
 GO
-/****** Object:  StoredProcedure [dbo].[ApqDBMgr_Alias_RegArchive]    Script Date: 10/11/2010 17:24:14 ******/
+/****** Object:  StoredProcedure [dbo].[ApqDBMgr_Alias_RegArchive]    Script Date: 10/19/2010 17:59:15 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -2986,7 +3072,7 @@ EXEC @rtn = dbo.ApqDBMgr_Alias_RegArchive NULL;
 SELECT @rtn,@ExMsg;
 ' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'PROCEDURE',@level1name=N'ApqDBMgr_Alias_RegArchive'
 GO
-/****** Object:  StoredProcedure [dbo].[Apq_FileTrans_WriteToHD_ADO]    Script Date: 10/11/2010 17:24:13 ******/
+/****** Object:  StoredProcedure [dbo].[Apq_FileTrans_WriteToHD_ADO]    Script Date: 10/19/2010 17:59:15 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -3071,7 +3157,7 @@ EXEC @rtn = dbo.Apq_FileTrans_WriteToHD_ADO 2, 1;
 SELECT @rtn;
 ' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'PROCEDURE',@level1name=N'Apq_FileTrans_WriteToHD_ADO'
 GO
-/****** Object:  StoredProcedure [dbo].[Apq_FileTrans_List]    Script Date: 10/11/2010 17:24:13 ******/
+/****** Object:  StoredProcedure [dbo].[Apq_FileTrans_List]    Script Date: 10/19/2010 17:59:15 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -3093,7 +3179,7 @@ EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'
 EXEC dbo.Apq_FileTrans_List 2;
 ' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'PROCEDURE',@level1name=N'Apq_FileTrans_List'
 GO
-/****** Object:  StoredProcedure [dbo].[Apq_FileTrans_Insert_ADO]    Script Date: 10/11/2010 17:24:13 ******/
+/****** Object:  StoredProcedure [dbo].[Apq_FileTrans_Insert_ADO]    Script Date: 10/19/2010 17:59:15 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -3165,7 +3251,7 @@ EXEC @rtn = dbo.Apq_FileTrans_Insert_ADO @ID out, ''D:\Bak\Wallow[20100331_1657]
 SELECT @rtn;
 ' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'PROCEDURE',@level1name=N'Apq_FileTrans_Insert_ADO'
 GO
-/****** Object:  StoredProcedure [dbo].[Apq_FileTrans_Insert]    Script Date: 10/11/2010 17:24:13 ******/
+/****** Object:  StoredProcedure [dbo].[Apq_FileTrans_Insert]    Script Date: 10/19/2010 17:59:15 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -3190,7 +3276,7 @@ EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'
 -- 日期: 2010-03-29
 ' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'PROCEDURE',@level1name=N'Apq_FileTrans_Insert'
 GO
-/****** Object:  StoredProcedure [dbo].[Apq_FileTrans_Delete]    Script Date: 10/11/2010 17:24:13 ******/
+/****** Object:  StoredProcedure [dbo].[Apq_FileTrans_Delete]    Script Date: 10/19/2010 17:59:15 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -3211,7 +3297,7 @@ EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'
 EXEC dbo.Apq_FileTrans_Delete 2;
 ' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'PROCEDURE',@level1name=N'Apq_FileTrans_Delete'
 GO
-/****** Object:  StoredProcedure [dbo].[Apq_Ext_Set]    Script Date: 10/11/2010 17:24:13 ******/
+/****** Object:  StoredProcedure [dbo].[Apq_Ext_Set]    Script Date: 10/19/2010 17:59:15 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -3249,7 +3335,7 @@ END
 
 RETURN 1;
 GO
-/****** Object:  UserDefinedFunction [dbo].[Apq_Ext_Get]    Script Date: 10/11/2010 17:24:27 ******/
+/****** Object:  UserDefinedFunction [dbo].[Apq_Ext_Get]    Script Date: 10/19/2010 17:59:15 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -3274,7 +3360,7 @@ BEGIN
 	RETURN @Return;
 END
 GO
-/****** Object:  StoredProcedure [dbo].[Apq_Def_EveryDB]    Script Date: 10/11/2010 17:24:12 ******/
+/****** Object:  StoredProcedure [dbo].[Apq_Def_EveryDB]    Script Date: 10/19/2010 17:59:15 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -3629,7 +3715,7 @@ END
 Quit:
 CLOSE @csr;
 GO
-/****** Object:  StoredProcedure [dbo].[Apq_DataTrans]    Script Date: 10/11/2010 17:24:12 ******/
+/****** Object:  StoredProcedure [dbo].[Apq_DataTrans]    Script Date: 10/19/2010 17:59:15 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -3949,7 +4035,7 @@ EXEC master..xp_cmdshell @cmd;
 
 RETURN @Return;
 GO
-/****** Object:  UserDefinedFunction [dbo].[Apq_CreateSqlON]    Script Date: 10/11/2010 17:24:27 ******/
+/****** Object:  UserDefinedFunction [dbo].[Apq_CreateSqlON]    Script Date: 10/19/2010 17:59:15 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -4011,7 +4097,7 @@ BEGIN
 	RETURN @Vr;
 END
 GO
-/****** Object:  StoredProcedure [bak].[Apq_BakCfg_Trn]    Script Date: 10/11/2010 17:24:12 ******/
+/****** Object:  StoredProcedure [bak].[Apq_BakCfg_Trn]    Script Date: 10/19/2010 17:59:15 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -4101,7 +4187,7 @@ EXEC master..xp_cmdshell @cmd;
 SELECT BakFileName = @BakFileName;
 RETURN 1;
 GO
-/****** Object:  StoredProcedure [dbo].[Prws_Alarm]    Script Date: 10/11/2010 17:24:15 ******/
+/****** Object:  StoredProcedure [dbo].[Prws_Alarm]    Script Date: 10/19/2010 17:59:15 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -4134,7 +4220,7 @@ SELECT ID, _InTime, Type, Severity, Msg
 
 RETURN 1;
 GO
-/****** Object:  StoredProcedure [dbo].[Apq_Identifier]    Script Date: 10/11/2010 17:24:13 ******/
+/****** Object:  StoredProcedure [dbo].[Apq_Identifier]    Script Date: 10/19/2010 17:59:15 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -4207,7 +4293,7 @@ END
 
 RETURN 1;
 GO
-/****** Object:  StoredProcedure [dbo].[Apq_ID_Reset]    Script Date: 10/11/2010 17:24:13 ******/
+/****** Object:  StoredProcedure [dbo].[Apq_ID_Reset]    Script Date: 10/19/2010 17:59:15 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -4233,7 +4319,7 @@ UPDATE Apq_ID
  WHERE State = 0
 	AND (@Name = '' OR Name = @Name);
 GO
-/****** Object:  StoredProcedure [dbo].[Apq_ID_Recofig]    Script Date: 10/11/2010 17:24:13 ******/
+/****** Object:  StoredProcedure [dbo].[Apq_ID_Recofig]    Script Date: 10/19/2010 17:59:15 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -4259,7 +4345,7 @@ UPDATE Apq_ID
 	AND NOT (Inc > 0 AND Init <= Crt AND Crt < Limit)
 	AND NOT (Inc < 0 AND Limit < Crt AND Crt <= Init);
 GO
-/****** Object:  StoredProcedure [bak].[Apq_Bak_Trn]    Script Date: 10/11/2010 17:24:12 ******/
+/****** Object:  StoredProcedure [bak].[Apq_Bak_Trn]    Script Date: 10/19/2010 17:59:15 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -4349,7 +4435,7 @@ EXEC master..xp_cmdshell @cmd;
 SELECT BakFileName = @BakFileName;
 RETURN 1;
 GO
-/****** Object:  StoredProcedure [bak].[Apq_Bak_Full]    Script Date: 10/11/2010 17:24:11 ******/
+/****** Object:  StoredProcedure [bak].[Apq_Bak_Full]    Script Date: 10/19/2010 17:59:15 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -4475,7 +4561,7 @@ EXEC master..xp_cmdshell @cmd;
 SELECT BakFileName = @BakFileName;
 RETURN 1;
 GO
-/****** Object:  StoredProcedure [dbo].[Apq_Stat]    Script Date: 10/11/2010 17:24:14 ******/
+/****** Object:  StoredProcedure [dbo].[Apq_Stat]    Script Date: 10/19/2010 17:59:15 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -4543,7 +4629,7 @@ EXEC @rtn = sp_executesql @STMT, N'@StatDate datetime', @StatDate = @StatDate;
 
 RETURN 1;
 GO
-/****** Object:  StoredProcedure [bak].[Apq_Restore]    Script Date: 10/11/2010 17:24:12 ******/
+/****** Object:  StoredProcedure [bak].[Apq_Restore]    Script Date: 10/19/2010 17:59:15 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -4676,7 +4762,7 @@ END
 DROP TABLE #FileList;
 RETURN 1;
 GO
-/****** Object:  StoredProcedure [dbo].[Apq_WH]    Script Date: 10/11/2010 17:24:14 ******/
+/****** Object:  StoredProcedure [dbo].[Apq_WH]    Script Date: 10/19/2010 17:59:15 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -4715,7 +4801,7 @@ BEGIN
 END
 CLOSE @csr
 GO
-/****** Object:  UserDefinedFunction [dbo].[Apq_ConvertMac_VarBinary]    Script Date: 10/11/2010 17:24:27 ******/
+/****** Object:  UserDefinedFunction [dbo].[Apq_ConvertMac_VarBinary]    Script Date: 10/19/2010 17:59:15 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -4769,7 +4855,7 @@ BEGIN
 	RETURN @Return;
 END
 GO
-/****** Object:  StoredProcedure [bak].[Job_Apq_BakCfg_Init]    Script Date: 10/11/2010 17:24:12 ******/
+/****** Object:  StoredProcedure [bak].[Job_Apq_BakCfg_Init]    Script Date: 10/19/2010 17:59:15 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -4851,7 +4937,7 @@ CLOSE @csr;
 
 RETURN 1;
 GO
-/****** Object:  StoredProcedure [bak].[Job_Apq_Bak_Raiserror]    Script Date: 10/11/2010 17:24:12 ******/
+/****** Object:  StoredProcedure [bak].[Job_Apq_Bak_Raiserror]    Script Date: 10/19/2010 17:59:15 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -4885,7 +4971,7 @@ IF(EXISTS(SELECT TOP 1 1 FROM bak.RestoreFromFolder WHERE Enabled = 1 AND Len(La
 	RAISERROR('还原或删除 出现异常',16,1);
 RETURN 1;
 GO
-/****** Object:  StoredProcedure [bak].[Job_Apq_Bak_Init]    Script Date: 10/11/2010 17:24:12 ******/
+/****** Object:  StoredProcedure [bak].[Job_Apq_Bak_Init]    Script Date: 10/19/2010 17:59:15 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -4967,7 +5053,54 @@ CLOSE @csr;
 
 RETURN 1;
 GO
-/****** Object:  StoredProcedure [dbo].[Job_Apq_DataTrans_Loader]    Script Date: 10/11/2010 17:24:14 ******/
+/****** Object:  StoredProcedure [dbo].[Job_Apq_Arp]    Script Date: 10/19/2010 17:59:15 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROC [dbo].[Job_Apq_Arp]
+AS
+/* =============================================
+-- 作者: 黄宗银
+-- 日期: 2010-07-01
+-- 描述: Arp绑定
+-- 示例:
+DECLARE @rtn int;
+EXEC @rtn = dbo.Job_Apq_Arp;
+SELECT @rtn;
+-- =============================================
+*/
+SET NOCOUNT ON;
+
+--定义变量
+DECLARE @ID bigint,@GateWay nvarchar(50), @Mac nvarchar(50),
+	
+	@rtn int, @cmd nvarchar(4000)
+	,@JobTime datetime	-- 作业启动时间
+	;
+SELECT @JobTime=GetDate();
+
+--定义游标
+DECLARE @csr CURSOR;
+SET @csr=CURSOR STATIC FOR
+SELECT ID,GateWay,Mac
+  FROM dbo.ArpCfg
+ WHERE Enabled = 1;
+
+OPEN @csr;
+FETCH NEXT FROM @csr INTO @ID,@GateWay,@Mac;
+WHILE(@@FETCH_STATUS=0)
+BEGIN
+	SELECT @cmd = 'arp -s ' + @GateWay + ' ' + @Mac;
+	EXEC master..xp_cmdshell @cmd;
+
+	FETCH NEXT FROM @csr INTO @ID,@GateWay,@Mac;
+END
+CLOSE @csr;
+
+RETURN 1;
+GO
+/****** Object:  StoredProcedure [dbo].[Job_Apq_DataTrans_Loader]    Script Date: 10/19/2010 17:59:15 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -5032,7 +5165,7 @@ END
 
 RETURN 1;
 GO
-/****** Object:  StoredProcedure [bak].[Job_Apq_FTP_PutBak]    Script Date: 10/11/2010 17:24:12 ******/
+/****** Object:  StoredProcedure [bak].[Job_Apq_FTP_PutBak]    Script Date: 10/19/2010 17:59:15 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -5210,54 +5343,147 @@ DROP TABLE #t1;
 DROP TABLE #t2;
 RETURN 1;
 GO
-/****** Object:  StoredProcedure [dbo].[Job_Apq_Arp]    Script Date: 10/11/2010 17:24:14 ******/
+/****** Object:  StoredProcedure [dbo].[Job_FTP_Send]    Script Date: 10/19/2010 17:59:15 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-CREATE PROC [dbo].[Job_Apq_Arp]
+CREATE PROC [dbo].[Job_FTP_Send]
+	@TransRowCount	int = 100	-- 传送行数(最多读取的行数)
 AS
 /* =============================================
 -- 作者: 黄宗银
--- 日期: 2010-07-01
--- 描述: Arp绑定
+-- 日期: 2010-10-19
+-- 描述: 通过FTP上传文件
+-- 原因: FTP下载时是先写入临时文件,可能引起空间不足
 -- 示例:
-DECLARE @rtn int;
-EXEC @rtn = dbo.Job_Apq_Arp;
-SELECT @rtn;
+EXEC dbo.Job_FTP_Send 100;
 -- =============================================
 */
 SET NOCOUNT ON;
 
---定义变量
-DECLARE @ID bigint,@GateWay nvarchar(50), @Mac nvarchar(50),
-	
-	@rtn int, @cmd nvarchar(4000)
-	,@JobTime datetime	-- 作业启动时间
+IF(@TransRowCount IS NULL) SELECT @TransRowCount = 100;
+
+DECLARE @rtn int, @SPBeginTime datetime
+	,@cmd nvarchar(4000), @sql nvarchar(4000)
+	,@ScpFolder nvarchar(4000)
+	,@ScpFileName nvarchar(128)
+	,@ScpFullName nvarchar(4000)
+	,@LFullName nvarchar(4000)	 -- 临时变量:本地文件全名
+	,@FullFileToDel nvarchar(4000)--在此文件之前的文件将被删除
 	;
-SELECT @JobTime=GetDate();
+SELECT @SPBeginTime=GetDate(),@ScpFolder = 'D:\Apq_DBA\Scp\'
+SELECT @ScpFileName = 'FTP_Send['+LEFT(REPLACE(REPLACE(REPLACE(CONVERT(nvarchar,@SPBeginTime,120),'-',''),':',''),' ','_'),13)+'].scp';
+SELECT @ScpFullName = @ScpFolder + @ScpFileName;
+IF(RIGHT(@ScpFolder,1)<>'\') SELECT @ScpFolder = @ScpFolder+'\';
+SELECT @cmd = 'md ' + LEFT(@ScpFolder,LEN(@ScpFolder)-1);
+EXEC master..xp_cmdshell @cmd;
 
---定义游标
-DECLARE @csr CURSOR;
-SET @csr=CURSOR STATIC FOR
-SELECT ID,GateWay,Mac
-  FROM dbo.ArpCfg
- WHERE Enabled = 1;
+DECLARE @csr CURSOR
+SET @csr = CURSOR STATIC FOR
+SELECT TOP(@TransRowCount) ID,Folder,FileName,FTPSrv,U,P,FTPFolder,FTPFolderTmp,LSize,RSize
+  FROM dbo.FTP_SendQueue
+ WHERE Enabled = 1 AND IsSuccess = 0
 
+-- 游标内临时变量
+CREATE TABLE #t(s nvarchar(4000));
+CREATE TABLE #t1(s nvarchar(4000));
+
+DECLARE @ID bigint,@Folder nvarchar(512),@FileName nvarchar(256),@LSize bigint,@RSize bigint,
+	@FTPSrv nvarchar(256),@U nvarchar(256),@P nvarchar(256),@FTPFolder nvarchar(512),@FTPFolderTmp nvarchar(512);
 OPEN @csr;
-FETCH NEXT FROM @csr INTO @ID,@GateWay,@Mac;
-WHILE(@@FETCH_STATUS=0)
+FETCH NEXT FROM @csr INTO @ID,@Folder,@FileName,@FTPSrv,@U,@P,@FTPFolder,@FTPFolderTmp,@LSize,@RSize;
+WHILE(@@FETCH_STATUS = 0)
 BEGIN
-	SELECT @cmd = 'arp -s ' + @GateWay + ' ' + @Mac;
+	IF(RIGHT(@Folder,1)<>'\') SELECT @Folder = @Folder+'\';
+	IF(RIGHT(@FTPFolder,1)<>'/') SELECT @FTPFolder = @FTPFolder+'/';
+	IF(RIGHT(@FTPFolderTmp,1)<>'/') SELECT @FTPFolderTmp = @FTPFolderTmp+'/';
+	SELECT @cmd = 'md ' + LEFT(@Folder,LEN(@Folder)-1);
+	EXEC master..xp_cmdshell @cmd;
+	
+	-- 获取本地文件大小 ----------------------------------------------------------------------------
+	SELECT @cmd = 'dir "' + @Folder + @FileName + '"';
+	TRUNCATE TABLE #t1;
+	INSERT #t1 EXEC @rtn = master..xp_cmdshell @cmd;
+	IF(@@ERROR <> 0 OR @rtn <> 0)
+	BEGIN
+		GOTO NEXT_Row;
+	END
+	
+	DECLARE @sLDir nvarchar(4000);
+	SELECT TOP 1 @sLDir = s FROM #t1 WHERE RIGHT(s,Len(@FileName)) = @FileName;
+	--SELECT @sLDir;
+	IF(@sLDir IS NOT NULL) SELECT @LSize = LTRIM(RTRIM(Substring(@sLDir,18,Len(@sLDir)-18-Len(@FileName))));
+	IF(@LSize>0)
+	BEGIN
+		UPDATE dbo.FTP_SendQueue SET [_Time] = getdate(),LSize = @LSize WHERE ID = @ID;
+	END
+
+	-- 传送文件 ------------------------------------------------------------------------------------
+	SELECT @cmd = 'echo open ' + @FTPSrv + '>"' + @ScpFullName + '"';
+	EXEC master..xp_cmdshell  @cmd;
+	SELECT @cmd = 'echo user ' + @U + '>>"' + @ScpFullName + '"';
+	EXEC master..xp_cmdshell  @cmd;
+	SELECT @cmd = 'echo ' + @P + '>>"' + @ScpFullName + '"';
+	EXEC master..xp_cmdshell @cmd;
+	SELECT @cmd = 'echo cd "' + @FTPFolderTmp + '">>"' + @ScpFullName + '"';
+	EXEC master..xp_cmdshell @cmd;
+	SELECT @cmd = 'echo lcd "' + LEFT(@Folder,LEN(@Folder)-1) + '">>"' + @ScpFullName + '"';
 	EXEC master..xp_cmdshell @cmd;
 
-	FETCH NEXT FROM @csr INTO @ID,@GateWay,@Mac;
+	SELECT @cmd = 'echo binary>>"' + @ScpFullName + '"';-- 将文件传输类型设置为二进制
+	EXEC master..xp_cmdshell @cmd;
+	SELECT @cmd = 'echo put "' + @FileName + '">>"' + @ScpFullName + '"';
+	EXEC master..xp_cmdshell @cmd;
+	SELECT @cmd = 'echo rename "' + @FileName + '" "' + @FTPFolder + @FileName + '">>"' + @ScpFullName + '"';
+	EXEC master..xp_cmdshell @cmd;
+	SELECT @cmd = 'echo dir "' + @FTPFolder + @FileName + '">>"' + @ScpFullName + '"';	-- 获取已上传文件大小
+	EXEC master..xp_cmdshell @cmd;
+	SELECT @cmd = 'echo bye>>"' + @ScpFullName + '"';
+	EXEC master..xp_cmdshell @cmd;
+	SELECT @cmd = 'ftp -i -n -s:"' + @ScpFullName + '"';
+	--SELECT @cmd;
+	TRUNCATE TABLE #t;
+	INSERT #t EXEC @rtn = master..xp_cmdshell @cmd;
+	IF(@@ERROR <> 0 OR @rtn <> 0)
+	BEGIN
+		GOTO NEXT_Row;
+	END
+	SELECT * FROM #t;
+	IF(EXISTS(SELECT TOP 1 1 FROM #t WHERE s LIKE 'Not connected%' OR s LIKE 'Connection closed%' OR s LIKE 'Permission denied%'
+			OR s LIKE '%Unable to rename%'))
+	BEGIN
+		GOTO NEXT_Row;
+	END
+	-- 获取远程文件大小 ------------------------------------------------------------------------
+	DECLARE @sRDir nvarchar(4000);
+	SELECT TOP 1 @sRDir = s FROM #t WHERE Left(RIGHT(s,Len(@FileName)+1),Len(@FileName)) = @FileName;
+	--SELECT @sRDir;
+	IF(@sRDir IS NOT NULL) SELECT @RSize = LTRIM(RTRIM(Substring(@sRDir,30,12)));
+	IF(@RSize>0)
+	BEGIN
+		UPDATE dbo.FTP_SendQueue SET [_Time] = getdate(),RSize = @RSize WHERE ID = @ID;
+	END
+	
+	-- 上传成功
+	IF(@LSize = @RSize) UPDATE dbo.FTP_SendQueue SET _Time = getdate(), IsSuccess = 1 WHERE ID = @ID;
+	-- =============================================================================================
+	
+	NEXT_Row:
+	-- 删除FTP命令文件
+	SELECT @cmd = 'del ""' + @ScpFullName + '"" /q';
+	EXEC master..xp_cmdshell @cmd;
+
+	FETCH NEXT FROM @csr INTO @ID,@Folder,@FileName,@FTPSrv,@U,@P,@FTPFolder,@FTPFolderTmp,@LSize,@RSize;
 END
 CLOSE @csr;
 
+Quit:
+DROP TABLE #t;
+DROP TABLE #t1;
 RETURN 1;
 GO
-/****** Object:  StoredProcedure [dbo].[Pick_JobHis]    Script Date: 10/11/2010 17:24:15 ******/
+/****** Object:  StoredProcedure [dbo].[Pick_JobHis]    Script Date: 10/19/2010 17:59:15 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -5319,346 +5545,7 @@ WHERE   step_id > 0
                AND CONVERT(datetime,( CONVERT(nvarchar(20),run_date) + ' ' + dbo.Apq_ConvertInt_TimeString(run_time) )) <= @PickMaxTime
              )
 GO
-/****** Object:  StoredProcedure [dbo].[Job_Apq_DTS_Send]    Script Date: 10/11/2010 17:24:14 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE PROC [dbo].[Job_Apq_DTS_Send]
-	 @RunnerID	int	-- 传送者ID
-	,@RunRowCount	int	-- 传送行数(最多读取的行数)
-AS
-/* =============================================
--- 作者: 黄宗银
--- 日期: 2010-06-08
--- 描述: 基于收集历史的数据传送作业
--- 示例:
-DECLARE @rtn int;
-EXEC @rtn = dbo.Job_Apq_DTS_Send 1, 100;
-SELECT @rtn;
--- =============================================
-*/
-SET NOCOUNT ON;
-
-IF(@RunnerID IS NULL) SELECT @RunnerID = 1;
-IF(@RunRowCount IS NULL) SELECT @RunRowCount = 100;
-
---定义变量
-DECLARE @LocalSrvID nvarchar(32),
-	@ID bigint,	-- 配置ID
-	@CfgName nvarchar(256),		-- 配置名(唯一)
-	@PickTime datetime,			-- 采集时间
-	@HasContent tinyint,		-- 是否收集到数据
-	@FileFolder nvarchar(3000),	-- 文件夹
-	@FileName nvarchar(256),	-- 文件名
-	@FileEX nvarchar(50),		-- 扩展名(.txt)
-	@RunnerIDCfg int,			-- 指定执行者(0:未指定)
-	@TransMethod tinyint,		-- 传送方式{1:BCP in,5:FTP}
-	@SrvID int,					-- 服务器编号
-	@DBName nvarchar(256),		-- 数据库名
-	@SchemaName nvarchar(256),	-- 架构名
-	@SPTName nvarchar(256),		-- 存储过程名
-	@U nvarchar(256),
-	@P nvarchar(256),
-	@FTPIP tinyint,				-- FTP传送时选择IP{0:Lan,1:Wan1,2:Wan2}
-	@FTPFolderTmp nvarchar(512),-- FTP 临时目录
-	@FTPFolder nvarchar(512),	-- FTP 目录
-	@LogID bigint,
-	@t nvarchar(50),
-	@r nvarchar(50),
-	
-	@LSName nvarchar(512),		-- 目标服务器别名
-	@strFTPIP nvarchar(500),	-- 目标服务器FTPIP
-	@FTPPort nvarchar(32),		-- 目标服务器FTP端口
-	@ScpFullName nvarchar(3000),
-	
-	@rtn int, @cmd nvarchar(4000), @sql nvarchar(max)
-	,@SPBeginTime datetime		-- 存储过程启动时间
-	,@TodayTransTime datetime	-- 当天理论传送时间
-	;
-SELECT @SPBeginTime=GetDate();
-SELECT @LocalSrvID = dbo.Apq_Ext_Get('',0,'LocalSrvID');
-
---定义游标
-DECLARE @csr_DTS CURSOR;
-SET @csr_DTS=CURSOR FOR
-SELECT TOP(@RunRowCount) ds.ID, ds.CfgName, ds.TransMethod, ds.SrvID, rs.LSName, ds.DBName, ds.SchemaName, ds.SPTName, ds.U, ds.P, ds.FTPFolderTmp, ds.FTPFolder
-	, LogID=l.ID,l.PickTime,l.HasContent,l.FileFolder + CASE WHEN RIGHT(l.FileFolder,1)<>'\' THEN '\' ELSE '' END,l.FileName, l.FileEX,t,r
-  FROM dbo.DTS_Send ds INNER JOIN dbo.Log_DTS_LocalPick l ON l.CfgName = ds.CfgName INNER JOIN dbo.RSrvConfig rs ON ds.SrvID = rs.ID
- WHERE ds.Enabled = 1
-	AND ((ds.RunnerIDCfg = 0 AND ds.RunnerIDRun = 0) OR ds.RunnerIDCfg = @RunnerID)
-	AND l.TransTime IS NULL;
-
-CREATE TABLE #t(s nvarchar(4000));
-
-OPEN @csr_DTS;
-FETCH NEXT FROM @csr_DTS INTO @ID,@CfgName,@TransMethod,@SrvID,@LSName,@DBName,@SchemaName,@SPTName,@U,@P,@FTPFolderTmp,@FTPFolder
-	,@LogID,@PickTime,@HasContent,@FileFolder,@FileName,@FileEX,@t,@r;
-WHILE(@@FETCH_STATUS=0)
-BEGIN
-	UPDATE dbo.DTS_Send SET [_Time] = getdate(),RunnerIDRun = @RunnerID WHERE ID = @ID;
-	IF(@HasContent = 0) GOTO Success;	-- 无数据时直接认为成功
-
-	-- 开始传送文件 ------------------------------------------------------------------------
-	-- 1.BCP in
-	IF(@TransMethod = 1)
-	BEGIN
-		SELECT @cmd = 'bcp "' + @DBName + '.' + @SchemaName + '.' + @SPTName + '" in "' + @FileFolder + @FileName + @FileEX
-			+ '" -c -t' + CASE WHEN LEN(@t) > 0 THEN @t ELSE '\t' END	-- 列分隔符 推荐使用"~*"
-			+ ' -r' + CASE WHEN LEN(@r) > 0 THEN @r ELSE '\n' END			-- 行分隔符 推荐使用"~*$"
-			+ ' -U' + @U + ' -P' + @P + ' -S' + @LSName;
-		--PRINT @cmd; GOTO NEXT_Trans;
-		EXEC @rtn = master..xp_cmdshell @cmd;
-		--PRINT @@ERROR; PRINT @rtn; GOTO NEXT_Trans;
-		IF(@@ERROR <> 0 OR @rtn <> 0)
-		BEGIN
-			-- 失败
-			GOTO NEXT_Trans;
-		END
-	END
-	
-	-- 5.FTP
-	IF(@TransMethod = 5)
-	BEGIN
-		SELECT @ScpFullName = @FileFolder + @CfgName + '.scp';
-		SELECT @strFTPIP = CASE @FTPIP WHEN 1 THEN IPWan1 WHEN 2 THEN IPWan2 ELSE IPLan END,@FTPPort = FTPPort
-		  FROM dbo.RSrvConfig
-		 WHERE ID = @SrvID;
-	
-		SELECT @cmd = 'echo open ' + @strFTPIP + ' ' + @FTPPort + '>"' + @ScpFullName + '"';
-		EXEC master..xp_cmdshell  @cmd;
-		SELECT @cmd = 'echo user ' + @U + '>>"' + @ScpFullName + '"';
-		EXEC master..xp_cmdshell  @cmd;
-		SELECT @cmd = 'echo ' + @P + '>>"' + @ScpFullName + '"';
-		EXEC master..xp_cmdshell @cmd;
-		SELECT @cmd = 'echo cd "' + @FTPFolderTmp + '">>"' + @ScpFullName + '"';
-		EXEC master..xp_cmdshell @cmd;
-		SELECT @cmd = 'echo lcd "' + LEFT(@FileFolder,LEN(@FileFolder)-1) + '">>"' + @ScpFullName + '"';
-		EXEC master..xp_cmdshell @cmd;
-	
-		SELECT @cmd = 'echo binary>>"' + @ScpFullName + '"';-- 将文件传输类型设置为二进制
-		EXEC master..xp_cmdshell @cmd;
-		SELECT @cmd = 'echo put "' + @FileName + @FileEX + '">>"' + @ScpFullName + '"';
-		EXEC master..xp_cmdshell @cmd;
-		SELECT @cmd = 'echo rename "' + @FileName + @FileEX + '" "' + @FTPFolder + @FileName + @FileEX + '">>"' + @ScpFullName + '"';
-		EXEC master..xp_cmdshell @cmd;
-		SELECT @cmd = 'echo bye>>"' + @ScpFullName + '"';
-		EXEC master..xp_cmdshell @cmd;
-		SELECT @cmd = 'ftp -i -n -s:"' + @ScpFullName + '"';
-		--SELECT @cmd;
-		TRUNCATE TABLE #t;
-		INSERT #t EXEC @rtn = master..xp_cmdshell @cmd;
-		IF(@@ERROR <> 0 OR @rtn <> 0)
-		BEGIN
-			-- 失败
-			GOTO NEXT_Trans;
-		END
-		SELECT * FROM #t;
-		IF(EXISTS(SELECT TOP 1 1 FROM #t WHERE s LIKE 'Not connected%' OR s LIKE 'Connection closed%'))
-		BEGIN
-			-- 失败
-			GOTO NEXT_Trans;
-		END
-	END
-	-- =====================================================================================
-	
-	Success:
-	SELECT @sql = '
-INSERT [' + @LSName + '].[' + @DBName + '].dbo.Log_DTS_Receive(CfgName, PickTime, RSrvID, SendTime)
-VALUES(@CfgName,@PickTime,@RSrvID,@SendTime);
-';
-	EXEC @rtn = sp_executesql @sql,N'@CfgName nvarchar(256), @PickTime datetime, @RSrvID int, @SendTime datetime'
-		,@CfgName = @CfgName,@PickTime = @PickTime, @RSrvID = @LocalSrvID, @SendTime = @SPBeginTime;
-	IF(@@ERROR <> 0 OR @rtn <> 0)
-	BEGIN
-		-- 失败
-		GOTO NEXT_Trans;
-	END
-	
-	UPDATE dbo.Log_DTS_LocalPick
-	   SET [_Time] = getdate(),TransTime = getdate()
-	 WHERE ID = @LogID;
-	
-	SELECT @cmd = 'del "' + @FileFolder + @FileName + @FileEX + '" /f /q';
-	EXEC master..xp_cmdshell @cmd;
-	
-	NEXT_Trans:
-	UPDATE dbo.DTS_Send SET [_Time] = getdate(),RunnerIDRun = 0 WHERE ID = @ID;
-	FETCH NEXT FROM @csr_DTS INTO @ID,@CfgName,@TransMethod,@SrvID,@LSName,@DBName,@SchemaName,@SPTName,@U,@P,@FTPFolderTmp,@FTPFolder
-		,@LogID,@PickTime,@HasContent,@FileFolder,@FileName,@FileEX,@t,@r;
-END
-CLOSE @csr_DTS;
-
-TRUNCATE TABLE #t;
-DROP TABLE #t;
-
-RETURN 1;
-GO
-/****** Object:  StoredProcedure [dbo].[Job_Apq_DataTrans]    Script Date: 10/11/2010 17:24:14 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE PROC [dbo].[Job_Apq_DataTrans]
-AS
-/* =============================================
--- 作者: 黄宗银
--- 日期: 2009-08-11
--- 描述: 数据传送作业
--- 参数:
-@TransName: 传送名
-@TransCycle: 传送周期(天)
-@TransTime: 传送时间
--- 示例:
-DECLARE @rtn int;
-EXEC @rtn = dbo.Job_Apq_DataTrans;
-SELECT @rtn;
--- =============================================
-1: 首选备份成功
-2: 备用备份成功
-*/
-SET NOCOUNT ON;
-
---定义变量
-DECLARE @TransName nvarchar(50), -- 传送名
-	@TransCycle int,-- 传送周期(天)
-	@TransTime datetime,-- 传送时间
-	@LastTransTime datetime -- 上次传送时间
-	
-	,@rtn int, @cmd nvarchar(4000), @sql nvarchar(4000)
-	,@SPBeginTime datetime		-- 存储过程启动时间
-	,@TodayTransTime datetime	-- 当天理论传送时间
-	;
-SELECT @SPBeginTime=GetDate();
-
---定义游标
-DECLARE @csr CURSOR;
-SET @csr=CURSOR FOR
-SELECT TransName,TransCycle,TransTime,LastTransTime
-  FROM dbo.DTSConfig
- WHERE Enabled = 1 AND NeedTrans = 1;
-
-OPEN @csr;
-FETCH NEXT FROM @csr INTO @TransName,@TransCycle,@TransTime,@LastTransTime;
-WHILE(@@FETCH_STATUS=0)
-BEGIN
-	-- 传送数据
-	EXEC @rtn = dbo.Apq_DataTrans @TransName;
-	
-	IF(@@ERROR = 0 AND @rtn = 1)
-	BEGIN
-		UPDATE DTSConfig
-		   SET NeedTrans = 0
-		 WHERE TransName = @TransName;
-	END
-
-	NEXT_Trans:
-	FETCH NEXT FROM @csr INTO @TransName,@TransCycle,@TransTime,@LastTransTime;
-END
-CLOSE @csr;
-
-RETURN 1;
-GO
-/****** Object:  StoredProcedure [dbo].[Job_Pick_JobHis]    Script Date: 10/11/2010 17:24:15 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE PROC [dbo].[Job_Pick_JobHis]
-AS
-/* =============================================
--- 作者: 黄宗银
--- 日期: 2010-06-11
--- 描述: 作业日志本地收集
--- 示例:
-DECLARE @rtn int;
-EXEC @rtn = dbo.Job_Pick_JobHis
-SELECT @rtn;
--- =============================================
-*/
-SET NOCOUNT ON;
-
---定义变量
-DECLARE @LocalSrvID nvarchar(32),
-	@CfgName nvarchar(256),		-- 配置名(唯一)
-	@PickLastID bigint,
-	@PickLastTime datetime,
-	@HasContent tinyint,
-	@FileFolder nvarchar(3000),	-- 文件夹
-	@FileName nvarchar(256),	-- 文件名
-	@FileEX nvarchar(50),		-- 扩展名(.txt)
-	@SrvID int,					-- 服务器编号
-	@DBName nvarchar(256),		-- 数据库名
-	@t nvarchar(50),
-	@r nvarchar(50),
-	
-	@LSName nvarchar(512),		-- 目标服务器别名
-	@PickMaxID bigint,
-	@PickMaxTime datetime,
-	
-	@rtn int, @cmd nvarchar(4000), @sql nvarchar(max)
-	,@SPBeginTime datetime		-- 存储过程启动时间
-	;
-SELECT @SPBeginTime=GetDate();
-SELECT @CfgName = 'JobHis'	-- 指定配置名
-	,@FileFolder = 'D:\'
-	,@FileEX = '.txt'
-	,@t = '~*'	-- 列分隔符 推荐使用"~*"
-	,@r = '~*$'	-- 行分隔符 推荐使用"~*$"
-SELECT @LocalSrvID = dbo.Apq_Ext_Get('',0,'LocalSrvID');
-SELECT @FileName = @CfgName + '[' + LEFT(REPLACE(REPLACE(REPLACE(CONVERT(nvarchar,@SPBeginTime,120),'-',''),':',''),' ','_'),13)+']';
-SELECT @HasContent = 0;
-
-IF(Len(@FileFolder)>3)
-BEGIN
-	IF(RIGHT(@FileFolder,1)<>'\') SELECT @FileFolder = @FileFolder+'\';
-	SELECT @cmd = 'md ' + SUBSTRING(@FileFolder, 1, LEN(@FileFolder)-1);
-	EXEC master..xp_cmdshell @cmd;
-END
-
--- 取出上次收集的最后ID和最后时间
-SELECT @PickLastID = PickLastID, @PickLastTime = PickLastTime
-  FROM dbo.DTS_Send
- WHERE CfgName = @CfgName;
-
--- 计算本次收集的最后ID或最后时间
-SELECT @PickMaxID = ISNULL(max(instance_id),-1), @PickMaxTime = ISNULL(max(Convert(datetime,(convert(nvarchar(20), run_date) + ' ' + dbo.Apq_ConvertInt_TimeString(run_time)))),getdate())
-  FROM msdb.dbo.sysjobhistory
-
--- 有数据时导出
-IF(EXISTS(SELECT TOP 1 1 FROM msdb.dbo.sysjobhistory WHERE run_status = 0
-	AND ((instance_id > @PickLastID AND instance_id <= @PickMaxID)
-	OR (Convert(datetime,(convert(nvarchar(20), run_date) + ' ' + dbo.Apq_ConvertInt_TimeString(run_time))) > @PickLastTime
-	AND Convert(datetime,(convert(nvarchar(20), run_date) + ' ' + dbo.Apq_ConvertInt_TimeString(run_time))) <= @PickMaxTime))
-	)
-)
-BEGIN
-	SELECT @HasContent = 1;
-	SELECT @sql = 'EXEC Apq_DBA.dbo.Pick_JobHis ' + dbo.Apq_CreateSqlON(@PickLastID);
-	SELECT @sql = @sql + ',' + dbo.Apq_CreateSqlON(@PickMaxID);
-	SELECT @sql = @sql + ',' + dbo.Apq_CreateSqlON(@PickLastTime);
-	SELECT @sql = @sql + ',' + dbo.Apq_CreateSqlON(@PickMaxTime);
-	-- BCP queryout
-	SELECT @cmd = 'bcp "' + @sql + '" queryout "' + @FileFolder + @FileName + @FileEX
-			+ '" -c -t' + CASE WHEN LEN(@t) > 0 THEN @t ELSE '\t' END
-			+ ' -r' + CASE WHEN LEN(@r) > 0 THEN @r ELSE '\n' END
-			+ ' -T'
-	--Print @sql; Print @cmd; RETURN;
-	EXEC @rtn = master..xp_cmdshell @cmd;
-END
-
--- 更新上次收集的最后ID和最后时间
-UPDATE dbo.DTS_Send
-   SET _Time = GETDATE(), PickLastID = @PickMaxID, PickLastTime = @PickMaxTime
- WHERE CfgName = @CfgName;
-
--- 记录收集日志
-INSERT dbo.Log_DTS_LocalPick ( CfgName,PickTime,HasContent,FileFolder,FileName,FileEX,t,r )
-VALUES  (@CfgName,@SPBeginTime,@HasContent,@FileFolder,@FileName,@FileEX,@t,@r)
-
-RETURN 1;
-GO
-/****** Object:  StoredProcedure [dbo].[Job_Apq_Stat]    Script Date: 10/11/2010 17:24:14 ******/
+/****** Object:  StoredProcedure [dbo].[Job_Apq_Stat]    Script Date: 10/19/2010 17:59:15 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -5712,7 +5599,7 @@ CLOSE @csr;
 
 RETURN 1;
 GO
-/****** Object:  StoredProcedure [bak].[Job_Apq_RestoreFromFolder]    Script Date: 10/11/2010 17:24:12 ******/
+/****** Object:  StoredProcedure [bak].[Job_Apq_RestoreFromFolder]    Script Date: 10/19/2010 17:59:16 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -5900,7 +5787,346 @@ DROP TABLE #t1;
 DROP TABLE #t2;
 RETURN 1;
 GO
-/****** Object:  StoredProcedure [bak].[Job_Apq_Bak]    Script Date: 10/11/2010 17:24:12 ******/
+/****** Object:  StoredProcedure [dbo].[Job_Apq_DTS_Send]    Script Date: 10/19/2010 17:59:16 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROC [dbo].[Job_Apq_DTS_Send]
+	 @RunnerID	int	-- 传送者ID
+	,@RunRowCount	int	-- 传送行数(最多读取的行数)
+AS
+/* =============================================
+-- 作者: 黄宗银
+-- 日期: 2010-06-08
+-- 描述: 基于收集历史的数据传送作业
+-- 示例:
+DECLARE @rtn int;
+EXEC @rtn = dbo.Job_Apq_DTS_Send 1, 100;
+SELECT @rtn;
+-- =============================================
+*/
+SET NOCOUNT ON;
+
+IF(@RunnerID IS NULL) SELECT @RunnerID = 1;
+IF(@RunRowCount IS NULL) SELECT @RunRowCount = 100;
+
+--定义变量
+DECLARE @LocalSrvID nvarchar(32),
+	@ID bigint,	-- 配置ID
+	@CfgName nvarchar(256),		-- 配置名(唯一)
+	@PickTime datetime,			-- 采集时间
+	@HasContent tinyint,		-- 是否收集到数据
+	@FileFolder nvarchar(3000),	-- 文件夹
+	@FileName nvarchar(256),	-- 文件名
+	@FileEX nvarchar(50),		-- 扩展名(.txt)
+	@RunnerIDCfg int,			-- 指定执行者(0:未指定)
+	@TransMethod tinyint,		-- 传送方式{1:BCP in,5:FTP}
+	@SrvID int,					-- 服务器编号
+	@DBName nvarchar(256),		-- 数据库名
+	@SchemaName nvarchar(256),	-- 架构名
+	@SPTName nvarchar(256),		-- 存储过程名
+	@U nvarchar(256),
+	@P nvarchar(256),
+	@FTPIP tinyint,				-- FTP传送时选择IP{0:Lan,1:Wan1,2:Wan2}
+	@FTPFolderTmp nvarchar(512),-- FTP 临时目录
+	@FTPFolder nvarchar(512),	-- FTP 目录
+	@LogID bigint,
+	@t nvarchar(50),
+	@r nvarchar(50),
+	
+	@LSName nvarchar(512),		-- 目标服务器别名
+	@strFTPIP nvarchar(500),	-- 目标服务器FTPIP
+	@FTPPort nvarchar(32),		-- 目标服务器FTP端口
+	@ScpFullName nvarchar(3000),
+	
+	@rtn int, @cmd nvarchar(4000), @sql nvarchar(max)
+	,@SPBeginTime datetime		-- 存储过程启动时间
+	,@TodayTransTime datetime	-- 当天理论传送时间
+	;
+SELECT @SPBeginTime=GetDate();
+SELECT @LocalSrvID = dbo.Apq_Ext_Get('',0,'LocalSrvID');
+
+--定义游标
+DECLARE @csr_DTS CURSOR;
+SET @csr_DTS=CURSOR FOR
+SELECT TOP(@RunRowCount) ds.ID, ds.CfgName, ds.TransMethod, ds.SrvID, rs.LSName, ds.DBName, ds.SchemaName, ds.SPTName, ds.U, ds.P, ds.FTPFolderTmp, ds.FTPFolder
+	, LogID=l.ID,l.PickTime,l.HasContent,l.FileFolder + CASE WHEN RIGHT(l.FileFolder,1)<>'\' THEN '\' ELSE '' END,l.FileName, l.FileEX,t,r
+  FROM dbo.DTS_Send ds INNER JOIN dbo.Log_DTS_LocalPick l ON l.CfgName = ds.CfgName INNER JOIN dbo.RSrvConfig rs ON ds.SrvID = rs.ID
+ WHERE ds.Enabled = 1
+	AND ((ds.RunnerIDCfg = 0 AND ds.RunnerIDRun = 0) OR ds.RunnerIDCfg = @RunnerID)
+	AND l.TransTime IS NULL;
+
+CREATE TABLE #t(s nvarchar(4000));
+
+OPEN @csr_DTS;
+FETCH NEXT FROM @csr_DTS INTO @ID,@CfgName,@TransMethod,@SrvID,@LSName,@DBName,@SchemaName,@SPTName,@U,@P,@FTPFolderTmp,@FTPFolder
+	,@LogID,@PickTime,@HasContent,@FileFolder,@FileName,@FileEX,@t,@r;
+WHILE(@@FETCH_STATUS=0)
+BEGIN
+	UPDATE dbo.DTS_Send SET [_Time] = getdate(),RunnerIDRun = @RunnerID WHERE ID = @ID;
+	IF(@HasContent = 0) GOTO Success;	-- 无数据时直接认为成功
+
+	-- 开始传送文件 ------------------------------------------------------------------------
+	-- 1.BCP in
+	IF(@TransMethod = 1)
+	BEGIN
+		SELECT @cmd = 'bcp "' + @DBName + '.' + @SchemaName + '.' + @SPTName + '" in "' + @FileFolder + @FileName + @FileEX
+			+ '" -c -t' + CASE WHEN LEN(@t) > 0 THEN @t ELSE '\t' END	-- 列分隔符 推荐使用"~*"
+			+ ' -r' + CASE WHEN LEN(@r) > 0 THEN @r ELSE '\n' END			-- 行分隔符 推荐使用"~*$"
+			+ ' -U' + @U + ' -P' + @P + ' -S' + @LSName;
+		--PRINT @cmd; GOTO NEXT_Trans;
+		EXEC @rtn = master..xp_cmdshell @cmd;
+		--PRINT @@ERROR; PRINT @rtn; GOTO NEXT_Trans;
+		IF(@@ERROR <> 0 OR @rtn <> 0)
+		BEGIN
+			-- 失败
+			GOTO NEXT_Trans;
+		END
+	END
+	
+	-- 5.FTP
+	IF(@TransMethod = 5)
+	BEGIN
+		SELECT @ScpFullName = @FileFolder + @CfgName + '.scp';
+		SELECT @strFTPIP = CASE @FTPIP WHEN 1 THEN IPWan1 WHEN 2 THEN IPWan2 ELSE IPLan END,@FTPPort = FTPPort
+		  FROM dbo.RSrvConfig
+		 WHERE ID = @SrvID;
+	
+		SELECT @cmd = 'echo open ' + @strFTPIP + ' ' + @FTPPort + '>"' + @ScpFullName + '"';
+		EXEC master..xp_cmdshell  @cmd;
+		SELECT @cmd = 'echo user ' + @U + '>>"' + @ScpFullName + '"';
+		EXEC master..xp_cmdshell  @cmd;
+		SELECT @cmd = 'echo ' + @P + '>>"' + @ScpFullName + '"';
+		EXEC master..xp_cmdshell @cmd;
+		SELECT @cmd = 'echo cd "' + @FTPFolderTmp + '">>"' + @ScpFullName + '"';
+		EXEC master..xp_cmdshell @cmd;
+		SELECT @cmd = 'echo lcd "' + LEFT(@FileFolder,LEN(@FileFolder)-1) + '">>"' + @ScpFullName + '"';
+		EXEC master..xp_cmdshell @cmd;
+	
+		SELECT @cmd = 'echo binary>>"' + @ScpFullName + '"';-- 将文件传输类型设置为二进制
+		EXEC master..xp_cmdshell @cmd;
+		SELECT @cmd = 'echo put "' + @FileName + @FileEX + '">>"' + @ScpFullName + '"';
+		EXEC master..xp_cmdshell @cmd;
+		SELECT @cmd = 'echo rename "' + @FileName + @FileEX + '" "' + @FTPFolder + @FileName + @FileEX + '">>"' + @ScpFullName + '"';
+		EXEC master..xp_cmdshell @cmd;
+		SELECT @cmd = 'echo bye>>"' + @ScpFullName + '"';
+		EXEC master..xp_cmdshell @cmd;
+		SELECT @cmd = 'ftp -i -n -s:"' + @ScpFullName + '"';
+		--SELECT @cmd;
+		TRUNCATE TABLE #t;
+		INSERT #t EXEC @rtn = master..xp_cmdshell @cmd;
+		IF(@@ERROR <> 0 OR @rtn <> 0)
+		BEGIN
+			-- 失败
+			GOTO NEXT_Trans;
+		END
+		SELECT * FROM #t;
+		IF(EXISTS(SELECT TOP 1 1 FROM #t WHERE s LIKE 'Not connected%' OR s LIKE 'Connection closed%'))
+		BEGIN
+			-- 失败
+			GOTO NEXT_Trans;
+		END
+	END
+	-- =====================================================================================
+	
+	Success:
+	SELECT @sql = '
+INSERT [' + @LSName + '].[' + @DBName + '].dbo.Log_DTS_Receive(CfgName, PickTime, RSrvID, SendTime)
+VALUES(@CfgName,@PickTime,@RSrvID,@SendTime);
+';
+	EXEC @rtn = sp_executesql @sql,N'@CfgName nvarchar(256), @PickTime datetime, @RSrvID int, @SendTime datetime'
+		,@CfgName = @CfgName,@PickTime = @PickTime, @RSrvID = @LocalSrvID, @SendTime = @SPBeginTime;
+	IF(@@ERROR <> 0 OR @rtn <> 0)
+	BEGIN
+		-- 失败
+		GOTO NEXT_Trans;
+	END
+	
+	UPDATE dbo.Log_DTS_LocalPick
+	   SET [_Time] = getdate(),TransTime = getdate()
+	 WHERE ID = @LogID;
+	
+	SELECT @cmd = 'del "' + @FileFolder + @FileName + @FileEX + '" /f /q';
+	EXEC master..xp_cmdshell @cmd;
+	
+	NEXT_Trans:
+	UPDATE dbo.DTS_Send SET [_Time] = getdate(),RunnerIDRun = 0 WHERE ID = @ID;
+	FETCH NEXT FROM @csr_DTS INTO @ID,@CfgName,@TransMethod,@SrvID,@LSName,@DBName,@SchemaName,@SPTName,@U,@P,@FTPFolderTmp,@FTPFolder
+		,@LogID,@PickTime,@HasContent,@FileFolder,@FileName,@FileEX,@t,@r;
+END
+CLOSE @csr_DTS;
+
+TRUNCATE TABLE #t;
+DROP TABLE #t;
+
+RETURN 1;
+GO
+/****** Object:  StoredProcedure [dbo].[Job_Apq_DataTrans]    Script Date: 10/19/2010 17:59:16 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROC [dbo].[Job_Apq_DataTrans]
+AS
+/* =============================================
+-- 作者: 黄宗银
+-- 日期: 2009-08-11
+-- 描述: 数据传送作业
+-- 参数:
+@TransName: 传送名
+@TransCycle: 传送周期(天)
+@TransTime: 传送时间
+-- 示例:
+DECLARE @rtn int;
+EXEC @rtn = dbo.Job_Apq_DataTrans;
+SELECT @rtn;
+-- =============================================
+1: 首选备份成功
+2: 备用备份成功
+*/
+SET NOCOUNT ON;
+
+--定义变量
+DECLARE @TransName nvarchar(50), -- 传送名
+	@TransCycle int,-- 传送周期(天)
+	@TransTime datetime,-- 传送时间
+	@LastTransTime datetime -- 上次传送时间
+	
+	,@rtn int, @cmd nvarchar(4000), @sql nvarchar(4000)
+	,@SPBeginTime datetime		-- 存储过程启动时间
+	,@TodayTransTime datetime	-- 当天理论传送时间
+	;
+SELECT @SPBeginTime=GetDate();
+
+--定义游标
+DECLARE @csr CURSOR;
+SET @csr=CURSOR FOR
+SELECT TransName,TransCycle,TransTime,LastTransTime
+  FROM dbo.DTSConfig
+ WHERE Enabled = 1 AND NeedTrans = 1;
+
+OPEN @csr;
+FETCH NEXT FROM @csr INTO @TransName,@TransCycle,@TransTime,@LastTransTime;
+WHILE(@@FETCH_STATUS=0)
+BEGIN
+	-- 传送数据
+	EXEC @rtn = dbo.Apq_DataTrans @TransName;
+	
+	IF(@@ERROR = 0 AND @rtn = 1)
+	BEGIN
+		UPDATE DTSConfig
+		   SET NeedTrans = 0
+		 WHERE TransName = @TransName;
+	END
+
+	NEXT_Trans:
+	FETCH NEXT FROM @csr INTO @TransName,@TransCycle,@TransTime,@LastTransTime;
+END
+CLOSE @csr;
+
+RETURN 1;
+GO
+/****** Object:  StoredProcedure [dbo].[Job_Pick_JobHis]    Script Date: 10/19/2010 17:59:16 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROC [dbo].[Job_Pick_JobHis]
+AS
+/* =============================================
+-- 作者: 黄宗银
+-- 日期: 2010-06-11
+-- 描述: 作业日志本地收集
+-- 示例:
+DECLARE @rtn int;
+EXEC @rtn = dbo.Job_Pick_JobHis
+SELECT @rtn;
+-- =============================================
+*/
+SET NOCOUNT ON;
+
+--定义变量
+DECLARE @LocalSrvID nvarchar(32),
+	@CfgName nvarchar(256),		-- 配置名(唯一)
+	@PickLastID bigint,
+	@PickLastTime datetime,
+	@HasContent tinyint,
+	@FileFolder nvarchar(3000),	-- 文件夹
+	@FileName nvarchar(256),	-- 文件名
+	@FileEX nvarchar(50),		-- 扩展名(.txt)
+	@SrvID int,					-- 服务器编号
+	@DBName nvarchar(256),		-- 数据库名
+	@t nvarchar(50),
+	@r nvarchar(50),
+	
+	@LSName nvarchar(512),		-- 目标服务器别名
+	@PickMaxID bigint,
+	@PickMaxTime datetime,
+	
+	@rtn int, @cmd nvarchar(4000), @sql nvarchar(max)
+	,@SPBeginTime datetime		-- 存储过程启动时间
+	;
+SELECT @SPBeginTime=GetDate();
+SELECT @CfgName = 'JobHis'	-- 指定配置名
+	,@FileFolder = 'D:\'
+	,@FileEX = '.txt'
+	,@t = '~*'	-- 列分隔符 推荐使用"~*"
+	,@r = '~*$'	-- 行分隔符 推荐使用"~*$"
+SELECT @LocalSrvID = dbo.Apq_Ext_Get('',0,'LocalSrvID');
+SELECT @FileName = @CfgName + '[' + LEFT(REPLACE(REPLACE(REPLACE(CONVERT(nvarchar,@SPBeginTime,120),'-',''),':',''),' ','_'),13)+']';
+SELECT @HasContent = 0;
+
+IF(Len(@FileFolder)>3)
+BEGIN
+	IF(RIGHT(@FileFolder,1)<>'\') SELECT @FileFolder = @FileFolder+'\';
+	SELECT @cmd = 'md ' + SUBSTRING(@FileFolder, 1, LEN(@FileFolder)-1);
+	EXEC master..xp_cmdshell @cmd;
+END
+
+-- 取出上次收集的最后ID和最后时间
+SELECT @PickLastID = PickLastID, @PickLastTime = PickLastTime
+  FROM dbo.DTS_Send
+ WHERE CfgName = @CfgName;
+
+-- 计算本次收集的最后ID或最后时间
+SELECT @PickMaxID = ISNULL(max(instance_id),-1), @PickMaxTime = ISNULL(max(Convert(datetime,(convert(nvarchar(20), run_date) + ' ' + dbo.Apq_ConvertInt_TimeString(run_time)))),getdate())
+  FROM msdb.dbo.sysjobhistory
+
+-- 有数据时导出
+IF(EXISTS(SELECT TOP 1 1 FROM msdb.dbo.sysjobhistory WHERE run_status = 0
+	AND ((instance_id > @PickLastID AND instance_id <= @PickMaxID)
+	OR (Convert(datetime,(convert(nvarchar(20), run_date) + ' ' + dbo.Apq_ConvertInt_TimeString(run_time))) > @PickLastTime
+	AND Convert(datetime,(convert(nvarchar(20), run_date) + ' ' + dbo.Apq_ConvertInt_TimeString(run_time))) <= @PickMaxTime))
+	)
+)
+BEGIN
+	SELECT @HasContent = 1;
+	SELECT @sql = 'EXEC Apq_DBA.dbo.Pick_JobHis ' + dbo.Apq_CreateSqlON(@PickLastID);
+	SELECT @sql = @sql + ',' + dbo.Apq_CreateSqlON(@PickMaxID);
+	SELECT @sql = @sql + ',' + dbo.Apq_CreateSqlON(@PickLastTime);
+	SELECT @sql = @sql + ',' + dbo.Apq_CreateSqlON(@PickMaxTime);
+	-- BCP queryout
+	SELECT @cmd = 'bcp "' + @sql + '" queryout "' + @FileFolder + @FileName + @FileEX
+			+ '" -c -t' + CASE WHEN LEN(@t) > 0 THEN @t ELSE '\t' END
+			+ ' -r' + CASE WHEN LEN(@r) > 0 THEN @r ELSE '\n' END
+			+ ' -T'
+	--Print @sql; Print @cmd; RETURN;
+	EXEC @rtn = master..xp_cmdshell @cmd;
+END
+
+-- 更新上次收集的最后ID和最后时间
+UPDATE dbo.DTS_Send
+   SET _Time = GETDATE(), PickLastID = @PickMaxID, PickLastTime = @PickMaxTime
+ WHERE CfgName = @CfgName;
+
+-- 记录收集日志
+INSERT dbo.Log_DTS_LocalPick ( CfgName,PickTime,HasContent,FileFolder,FileName,FileEX,t,r )
+VALUES  (@CfgName,@SPBeginTime,@HasContent,@FileFolder,@FileName,@FileEX,@t,@r)
+
+RETURN 1;
+GO
+/****** Object:  StoredProcedure [bak].[Job_Apq_Bak]    Script Date: 10/19/2010 17:59:16 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -6073,7 +6299,7 @@ CLOSE @csr;
 DROP TABLE #t;
 RETURN 1;
 GO
-/****** Object:  StoredProcedure [dbo].[Apq_Pager]    Script Date: 10/11/2010 17:24:13 ******/
+/****** Object:  StoredProcedure [dbo].[Apq_Pager]    Script Date: 10/19/2010 17:59:16 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -6214,7 +6440,7 @@ EXEC sp_executesql @sql;
 
 RETURN 1;
 GO
-/****** Object:  StoredProcedure [bak].[Apq_BakCfg_Full]    Script Date: 10/11/2010 17:24:12 ******/
+/****** Object:  StoredProcedure [bak].[Apq_BakCfg_Full]    Script Date: 10/19/2010 17:59:16 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -6351,366 +6577,382 @@ END
 SELECT BakFileName = @BakFileName;
 RETURN 1;
 GO
-/****** Object:  Default [DF_BakCfg_Enabled]    Script Date: 10/11/2010 17:23:29 ******/
-ALTER TABLE [bak].[BakCfg] ADD  CONSTRAINT [DF_BakCfg_Enabled]  DEFAULT ((1)) FOR [Enabled]
-GO
-/****** Object:  Default [DF_BakCfg_FTPFolder]    Script Date: 10/11/2010 17:23:29 ******/
-ALTER TABLE [bak].[BakCfg] ADD  CONSTRAINT [DF_BakCfg_FTPFolder]  DEFAULT (N'D:\Bak2FTP') FOR [FTPFolder]
-GO
-/****** Object:  Default [DF_BakCfg_BakFolder]    Script Date: 10/11/2010 17:23:29 ******/
-ALTER TABLE [bak].[BakCfg] ADD  CONSTRAINT [DF_BakCfg_BakFolder]  DEFAULT (N'D:\Bak') FOR [BakFolder]
-GO
-/****** Object:  Default [DF_BakCfg_FullTime]    Script Date: 10/11/2010 17:23:29 ******/
-ALTER TABLE [bak].[BakCfg] ADD  CONSTRAINT [DF_BakCfg_FullTime]  DEFAULT (dateadd(hour,(4),dateadd(day,(0),datediff(day,(0),getdate())))) FOR [FullTime]
-GO
-/****** Object:  Default [DF_BakCfg_FullCycle]    Script Date: 10/11/2010 17:23:29 ******/
-ALTER TABLE [bak].[BakCfg] ADD  CONSTRAINT [DF_BakCfg_FullCycle]  DEFAULT ((1)) FOR [FullCycle]
-GO
-/****** Object:  Default [DF_BakCfg_TrnCycle]    Script Date: 10/11/2010 17:23:29 ******/
-ALTER TABLE [bak].[BakCfg] ADD  CONSTRAINT [DF_BakCfg_TrnCycle]  DEFAULT ((30)) FOR [TrnCycle]
-GO
-/****** Object:  Default [DF_BakCfg_NeedTruncate]    Script Date: 10/11/2010 17:23:29 ******/
-ALTER TABLE [bak].[BakCfg] ADD  CONSTRAINT [DF_BakCfg_NeedTruncate]  DEFAULT ((0)) FOR [NeedTruncate]
-GO
-/****** Object:  Default [DF_BakCfg_ReadyAction]    Script Date: 10/11/2010 17:23:29 ******/
-ALTER TABLE [bak].[BakCfg] ADD  CONSTRAINT [DF_BakCfg_ReadyAction]  DEFAULT ((0)) FOR [ReadyAction]
-GO
-/****** Object:  Default [DF_BakCfg_NeedRestore]    Script Date: 10/11/2010 17:23:29 ******/
-ALTER TABLE [bak].[BakCfg] ADD  CONSTRAINT [DF_BakCfg_NeedRestore]  DEFAULT ((0)) FOR [NeedRestore]
-GO
-/****** Object:  Default [DF_BakCfg_RestoreFolder]    Script Date: 10/11/2010 17:23:29 ******/
-ALTER TABLE [bak].[BakCfg] ADD  CONSTRAINT [DF_BakCfg_RestoreFolder]  DEFAULT (N'D:\DB_His') FOR [RestoreFolder]
-GO
-/****** Object:  Default [DF_BakCfg_State]    Script Date: 10/11/2010 17:23:29 ******/
-ALTER TABLE [bak].[BakCfg] ADD  CONSTRAINT [DF_BakCfg_State]  DEFAULT ((0)) FOR [State]
-GO
-/****** Object:  Default [DF_BakCfg_DB_HisNum]    Script Date: 10/11/2010 17:23:29 ******/
-ALTER TABLE [bak].[BakCfg] ADD  CONSTRAINT [DF_BakCfg_DB_HisNum]  DEFAULT ((15)) FOR [DB_HisNum]
-GO
-/****** Object:  Default [DF_BakCfg_Num_Full]    Script Date: 10/11/2010 17:23:29 ******/
-ALTER TABLE [bak].[BakCfg] ADD  CONSTRAINT [DF_BakCfg_Num_Full]  DEFAULT ((3)) FOR [Num_Full]
-GO
-/****** Object:  Default [DF_FTP_PutBak_LastFileName]    Script Date: 10/11/2010 17:23:29 ******/
-ALTER TABLE [bak].[FTP_PutBak] ADD  CONSTRAINT [DF_FTP_PutBak_LastFileName]  DEFAULT ('') FOR [LastFileName]
-GO
-/****** Object:  Default [DF_FTP_PutBak_Enabled]    Script Date: 10/11/2010 17:23:29 ******/
-ALTER TABLE [bak].[FTP_PutBak] ADD  CONSTRAINT [DF_FTP_PutBak_Enabled]  DEFAULT ((1)) FOR [Enabled]
-GO
-/****** Object:  Default [DF_FTP_PutBak_Folder]    Script Date: 10/11/2010 17:23:29 ******/
-ALTER TABLE [bak].[FTP_PutBak] ADD  CONSTRAINT [DF_FTP_PutBak_Folder]  DEFAULT (N'D:\Bak2FTP\') FOR [Folder]
-GO
-/****** Object:  Default [DF_FTP_PutBak_FTPFolder]    Script Date: 10/11/2010 17:23:29 ******/
-ALTER TABLE [bak].[FTP_PutBak] ADD  CONSTRAINT [DF_FTP_PutBak_FTPFolder]  DEFAULT (N'/D/BakFromFTP/') FOR [FTPFolder]
-GO
-/****** Object:  Default [DF_FTP_PutBak_FTPFolderTmp]    Script Date: 10/11/2010 17:23:29 ******/
-ALTER TABLE [bak].[FTP_PutBak] ADD  CONSTRAINT [DF_FTP_PutBak_FTPFolderTmp]  DEFAULT (N'/') FOR [FTPFolderTmp]
-GO
-/****** Object:  Default [DF_FTP_PutBak_Num_Full]    Script Date: 10/11/2010 17:23:29 ******/
-ALTER TABLE [bak].[FTP_PutBak] ADD  CONSTRAINT [DF_FTP_PutBak_Num_Full]  DEFAULT ((3)) FOR [Num_Full]
-GO
-/****** Object:  Default [DF_FTP_PutBak_TransferIDCfg]    Script Date: 10/11/2010 17:23:29 ******/
-ALTER TABLE [bak].[FTP_PutBak] ADD  CONSTRAINT [DF_FTP_PutBak_TransferIDCfg]  DEFAULT ((0)) FOR [TransferIDCfg]
-GO
-/****** Object:  Default [DF_FTP_PutBak__InTime]    Script Date: 10/11/2010 17:23:29 ******/
-ALTER TABLE [bak].[FTP_PutBak] ADD  CONSTRAINT [DF_FTP_PutBak__InTime]  DEFAULT (getdate()) FOR [_InTime]
-GO
-/****** Object:  Default [DF_FTP_PutBak__Time]    Script Date: 10/11/2010 17:23:29 ******/
-ALTER TABLE [bak].[FTP_PutBak] ADD  CONSTRAINT [DF_FTP_PutBak__Time]  DEFAULT (getdate()) FOR [_Time]
-GO
-/****** Object:  Default [DF_FTP_PutBak_TransferIDRun]    Script Date: 10/11/2010 17:23:29 ******/
-ALTER TABLE [bak].[FTP_PutBak] ADD  CONSTRAINT [DF_FTP_PutBak_TransferIDRun]  DEFAULT ((0)) FOR [TransferIDRun]
-GO
-/****** Object:  Default [DF_RestoreFromFolder_LastFileName]    Script Date: 10/11/2010 17:23:29 ******/
-ALTER TABLE [bak].[RestoreFromFolder] ADD  CONSTRAINT [DF_RestoreFromFolder_LastFileName]  DEFAULT ('') FOR [LastFileName]
-GO
-/****** Object:  Default [DF_RestoreFromFolder_Enabled]    Script Date: 10/11/2010 17:23:29 ******/
-ALTER TABLE [bak].[RestoreFromFolder] ADD  CONSTRAINT [DF_RestoreFromFolder_Enabled]  DEFAULT ((1)) FOR [Enabled]
-GO
-/****** Object:  Default [DF_RestoreFromFolder_BakFolder]    Script Date: 10/11/2010 17:23:29 ******/
-ALTER TABLE [bak].[RestoreFromFolder] ADD  CONSTRAINT [DF_RestoreFromFolder_BakFolder]  DEFAULT (N'D:\BakFromFTP') FOR [BakFolder]
-GO
-/****** Object:  Default [DF_RestoreFromFolder_RestoreType]    Script Date: 10/11/2010 17:23:29 ******/
-ALTER TABLE [bak].[RestoreFromFolder] ADD  CONSTRAINT [DF_RestoreFromFolder_RestoreType]  DEFAULT ((0)) FOR [RestoreType]
-GO
-/****** Object:  Default [DF_RestoreFromFolder_RestoreFolder]    Script Date: 10/11/2010 17:23:29 ******/
-ALTER TABLE [bak].[RestoreFromFolder] ADD  CONSTRAINT [DF_RestoreFromFolder_RestoreFolder]  DEFAULT (N'D:\DB_His') FOR [RestoreFolder]
-GO
-/****** Object:  Default [DF_RestoreFromFolder_DB_HisNum]    Script Date: 10/11/2010 17:23:29 ******/
-ALTER TABLE [bak].[RestoreFromFolder] ADD  CONSTRAINT [DF_RestoreFromFolder_DB_HisNum]  DEFAULT ((15)) FOR [DB_HisNum]
-GO
-/****** Object:  Default [DF_RestoreFromFolder_Num_Full]    Script Date: 10/11/2010 17:23:29 ******/
-ALTER TABLE [bak].[RestoreFromFolder] ADD  CONSTRAINT [DF_RestoreFromFolder_Num_Full]  DEFAULT ((3)) FOR [Num_Full]
-GO
-/****** Object:  Default [DF_RestoreFromFolder_TransferIDCfg]    Script Date: 10/11/2010 17:23:29 ******/
-ALTER TABLE [bak].[RestoreFromFolder] ADD  CONSTRAINT [DF_RestoreFromFolder_TransferIDCfg]  DEFAULT ((0)) FOR [RunnerIDCfg]
-GO
-/****** Object:  Default [DF_RestoreFromFolder_TransferIDRun]    Script Date: 10/11/2010 17:23:29 ******/
-ALTER TABLE [bak].[RestoreFromFolder] ADD  CONSTRAINT [DF_RestoreFromFolder_TransferIDRun]  DEFAULT ((0)) FOR [RunnerIDRun]
-GO
-/****** Object:  Default [DF_RestoreFromFolder__InTime]    Script Date: 10/11/2010 17:23:29 ******/
-ALTER TABLE [bak].[RestoreFromFolder] ADD  CONSTRAINT [DF_RestoreFromFolder__InTime]  DEFAULT (getdate()) FOR [_InTime]
-GO
-/****** Object:  Default [DF_RestoreFromFolder__Time]    Script Date: 10/11/2010 17:23:29 ******/
-ALTER TABLE [bak].[RestoreFromFolder] ADD  CONSTRAINT [DF_RestoreFromFolder__Time]  DEFAULT (getdate()) FOR [_Time]
-GO
-/****** Object:  Default [DF_Apq_Config_Class]    Script Date: 10/11/2010 17:23:30 ******/
-ALTER TABLE [dbo].[Apq_Config] ADD  CONSTRAINT [DF_Apq_Config_Class]  DEFAULT ('') FOR [Class]
-GO
-/****** Object:  Default [DF_Apq_Ext_TableName]    Script Date: 10/11/2010 17:23:30 ******/
-ALTER TABLE [dbo].[Apq_Ext] ADD  CONSTRAINT [DF_Apq_Ext_TableName]  DEFAULT ('') FOR [TableName]
-GO
-/****** Object:  Default [DF_Apq_Ext_ID]    Script Date: 10/11/2010 17:23:30 ******/
-ALTER TABLE [dbo].[Apq_Ext] ADD  CONSTRAINT [DF_Apq_Ext_ID]  DEFAULT ((0)) FOR [ID]
-GO
-/****** Object:  Default [DF_Apq_ID_Crt]    Script Date: 10/11/2010 17:23:30 ******/
-ALTER TABLE [dbo].[Apq_ID] ADD  CONSTRAINT [DF_Apq_ID_Crt]  DEFAULT ((0)) FOR [Crt]
-GO
-/****** Object:  Default [DF_Apq_ID_Limit]    Script Date: 10/11/2010 17:23:30 ******/
-ALTER TABLE [dbo].[Apq_ID] ADD  CONSTRAINT [DF_Apq_ID_Limit]  DEFAULT ((9223372034707292159.)) FOR [Limit]
-GO
-/****** Object:  Default [DF_Apq_ID_Init]    Script Date: 10/11/2010 17:23:30 ******/
-ALTER TABLE [dbo].[Apq_ID] ADD  CONSTRAINT [DF_Apq_ID_Init]  DEFAULT ((0)) FOR [Init]
-GO
-/****** Object:  Default [DF_Apq_ID_Inc]    Script Date: 10/11/2010 17:23:30 ******/
-ALTER TABLE [dbo].[Apq_ID] ADD  CONSTRAINT [DF_Apq_ID_Inc]  DEFAULT ((1)) FOR [Inc]
-GO
-/****** Object:  Default [DF_Apq_ID_State]    Script Date: 10/11/2010 17:23:30 ******/
-ALTER TABLE [dbo].[Apq_ID] ADD  CONSTRAINT [DF_Apq_ID_State]  DEFAULT ((0)) FOR [State]
-GO
-/****** Object:  Default [DF_Apq_ID__Time]    Script Date: 10/11/2010 17:23:30 ******/
-ALTER TABLE [dbo].[Apq_ID] ADD  CONSTRAINT [DF_Apq_ID__Time]  DEFAULT (getdate()) FOR [_Time]
-GO
-/****** Object:  Default [DF_Apq_ID__InTime]    Script Date: 10/11/2010 17:23:30 ******/
-ALTER TABLE [dbo].[Apq_ID] ADD  CONSTRAINT [DF_Apq_ID__InTime]  DEFAULT (getdate()) FOR [_InTime]
-GO
-/****** Object:  Default [DF_ArpCfg_Enabled]    Script Date: 10/11/2010 17:23:30 ******/
-ALTER TABLE [dbo].[ArpCfg] ADD  CONSTRAINT [DF_ArpCfg_Enabled]  DEFAULT ((1)) FOR [Enabled]
-GO
-/****** Object:  Default [DF_Cfg_WH_Enabled]    Script Date: 10/11/2010 17:23:30 ******/
-ALTER TABLE [dbo].[Cfg_WH] ADD  CONSTRAINT [DF_Cfg_WH_Enabled]  DEFAULT ((1)) FOR [Enabled]
-GO
-/****** Object:  Default [DF_DTS_Send_Enabled]    Script Date: 10/11/2010 17:23:30 ******/
-ALTER TABLE [dbo].[DTS_Send] ADD  CONSTRAINT [DF_DTS_Send_Enabled]  DEFAULT ((1)) FOR [Enabled]
-GO
-/****** Object:  Default [DF_DTS_Send_RunnerIDCfg]    Script Date: 10/11/2010 17:23:30 ******/
-ALTER TABLE [dbo].[DTS_Send] ADD  CONSTRAINT [DF_DTS_Send_RunnerIDCfg]  DEFAULT ((0)) FOR [RunnerIDCfg]
-GO
-/****** Object:  Default [DF_DTS_Send_TransMethod]    Script Date: 10/11/2010 17:23:30 ******/
-ALTER TABLE [dbo].[DTS_Send] ADD  CONSTRAINT [DF_DTS_Send_TransMethod]  DEFAULT ((1)) FOR [TransMethod]
-GO
-/****** Object:  Default [DF_DTS_Send_SchemaName]    Script Date: 10/11/2010 17:23:30 ******/
-ALTER TABLE [dbo].[DTS_Send] ADD  CONSTRAINT [DF_DTS_Send_SchemaName]  DEFAULT (N'bcp') FOR [SchemaName]
-GO
-/****** Object:  Default [DF_DTS_Send_FTPIP]    Script Date: 10/11/2010 17:23:30 ******/
-ALTER TABLE [dbo].[DTS_Send] ADD  CONSTRAINT [DF_DTS_Send_FTPIP]  DEFAULT ((0)) FOR [FTPIP]
-GO
-/****** Object:  Default [DF_DTS_Send_FTPFolderTmp]    Script Date: 10/11/2010 17:23:30 ******/
-ALTER TABLE [dbo].[DTS_Send] ADD  CONSTRAINT [DF_DTS_Send_FTPFolderTmp]  DEFAULT (N'/') FOR [FTPFolderTmp]
-GO
-/****** Object:  Default [DF_DTS_Send_FTPFolder]    Script Date: 10/11/2010 17:23:30 ******/
-ALTER TABLE [dbo].[DTS_Send] ADD  CONSTRAINT [DF_DTS_Send_FTPFolder]  DEFAULT (N'/D/BakFromFTP/') FOR [FTPFolder]
-GO
-/****** Object:  Default [DF_DTS_Send_RunnerIDRun]    Script Date: 10/11/2010 17:23:30 ******/
-ALTER TABLE [dbo].[DTS_Send] ADD  CONSTRAINT [DF_DTS_Send_RunnerIDRun]  DEFAULT ((0)) FOR [RunnerIDRun]
-GO
-/****** Object:  Default [DF_DTS_Send__InTime]    Script Date: 10/11/2010 17:23:30 ******/
-ALTER TABLE [dbo].[DTS_Send] ADD  CONSTRAINT [DF_DTS_Send__InTime]  DEFAULT (getdate()) FOR [_InTime]
-GO
-/****** Object:  Default [DF_DTS_Send__Time]    Script Date: 10/11/2010 17:23:30 ******/
-ALTER TABLE [dbo].[DTS_Send] ADD  CONSTRAINT [DF_DTS_Send__Time]  DEFAULT (getdate()) FOR [_Time]
-GO
-/****** Object:  Default [DF_DTS_Send_PickLastID]    Script Date: 10/11/2010 17:23:30 ******/
-ALTER TABLE [dbo].[DTS_Send] ADD  CONSTRAINT [DF_DTS_Send_PickLastID]  DEFAULT ((-1)) FOR [PickLastID]
-GO
-/****** Object:  Default [DF_DTS_Send_PickLastTime]    Script Date: 10/11/2010 17:23:30 ******/
-ALTER TABLE [dbo].[DTS_Send] ADD  CONSTRAINT [DF_DTS_Send_PickLastTime]  DEFAULT (getdate()) FOR [PickLastTime]
-GO
-/****** Object:  Default [DF_DTSConfig_Enabled]    Script Date: 10/11/2010 17:23:30 ******/
-ALTER TABLE [dbo].[DTSConfig] ADD  CONSTRAINT [DF_DTSConfig_Enabled]  DEFAULT ((1)) FOR [Enabled]
-GO
-/****** Object:  Default [DF_DTSConfig_TransMethod]    Script Date: 10/11/2010 17:23:30 ******/
-ALTER TABLE [dbo].[DTSConfig] ADD  CONSTRAINT [DF_DTSConfig_TransMethod]  DEFAULT ((1)) FOR [TransMethod]
-GO
-/****** Object:  Default [DF_DTSConfig_TransCycle]    Script Date: 10/11/2010 17:23:30 ******/
-ALTER TABLE [dbo].[DTSConfig] ADD  CONSTRAINT [DF_DTSConfig_TransCycle]  DEFAULT ((1)) FOR [TransCycle]
-GO
-/****** Object:  Default [DF_DTSConfig_TransTime]    Script Date: 10/11/2010 17:23:30 ******/
-ALTER TABLE [dbo].[DTSConfig] ADD  CONSTRAINT [DF_DTSConfig_TransTime]  DEFAULT (dateadd(hour,(4),dateadd(day,(0),datediff(day,(0),getdate())))) FOR [TransTime]
-GO
-/****** Object:  Default [DF_DTSConfig_SchemaName]    Script Date: 10/11/2010 17:23:30 ******/
-ALTER TABLE [dbo].[DTSConfig] ADD  CONSTRAINT [DF_DTSConfig_SchemaName]  DEFAULT (N'bcp') FOR [SchemaName]
-GO
-/****** Object:  Default [DF_DTSConfig__InTime]    Script Date: 10/11/2010 17:23:30 ******/
-ALTER TABLE [dbo].[DTSConfig] ADD  CONSTRAINT [DF_DTSConfig__InTime]  DEFAULT (getdate()) FOR [_InTime]
-GO
-/****** Object:  Default [DF_DTSConfig__Time]    Script Date: 10/11/2010 17:23:30 ******/
-ALTER TABLE [dbo].[DTSConfig] ADD  CONSTRAINT [DF_DTSConfig__Time]  DEFAULT (getdate()) FOR [_Time]
-GO
-/****** Object:  Default [DF_DTSConfig_NeedTrans]    Script Date: 10/11/2010 17:23:30 ******/
-ALTER TABLE [dbo].[DTSConfig] ADD  CONSTRAINT [DF_DTSConfig_NeedTrans]  DEFAULT ((0)) FOR [NeedTrans]
-GO
-/****** Object:  Default [DF_DTSConfig_KillFtpTime]    Script Date: 10/11/2010 17:23:30 ******/
-ALTER TABLE [dbo].[DTSConfig] ADD  CONSTRAINT [DF_DTSConfig_KillFtpTime]  DEFAULT (dateadd(month,(-1),getdate())) FOR [KillFtpTime]
-GO
-/****** Object:  Default [DF_FileTrans__InTime]    Script Date: 10/11/2010 17:23:31 ******/
-ALTER TABLE [dbo].[FileTrans] ADD  CONSTRAINT [DF_FileTrans__InTime]  DEFAULT (getdate()) FOR [_InTime]
-GO
-/****** Object:  Default [DF_FTP_GetBak_LastFileName]    Script Date: 10/11/2010 17:23:31 ******/
-ALTER TABLE [dbo].[FTP_GetBak] ADD  CONSTRAINT [DF_FTP_GetBak_LastFileName]  DEFAULT ('') FOR [LastFileName]
-GO
-/****** Object:  Default [DF_FTP_GetBak_Enabled]    Script Date: 10/11/2010 17:23:31 ******/
-ALTER TABLE [dbo].[FTP_GetBak] ADD  CONSTRAINT [DF_FTP_GetBak_Enabled]  DEFAULT ((1)) FOR [Enabled]
-GO
-/****** Object:  Default [DF_FTP_GetBak_Folder]    Script Date: 10/11/2010 17:23:31 ******/
-ALTER TABLE [dbo].[FTP_GetBak] ADD  CONSTRAINT [DF_FTP_GetBak_Folder]  DEFAULT (N'D:\Apq_DBA\FTP_GetBak\') FOR [Folder]
-GO
-/****** Object:  Default [DF_FTP_GetBak_FTPFolder]    Script Date: 10/11/2010 17:23:31 ******/
-ALTER TABLE [dbo].[FTP_GetBak] ADD  CONSTRAINT [DF_FTP_GetBak_FTPFolder]  DEFAULT (N'/') FOR [FTPFolder]
-GO
-/****** Object:  Default [DF_FTP_GetBak_State]    Script Date: 10/11/2010 17:23:31 ******/
-ALTER TABLE [dbo].[FTP_GetBak] ADD  CONSTRAINT [DF_FTP_GetBak_State]  DEFAULT ((0)) FOR [State]
-GO
-/****** Object:  Default [DF_FTP_GetBak_DB_HisNum]    Script Date: 10/11/2010 17:23:31 ******/
-ALTER TABLE [dbo].[FTP_GetBak] ADD  CONSTRAINT [DF_FTP_GetBak_DB_HisNum]  DEFAULT ((15)) FOR [DB_HisNum]
-GO
-/****** Object:  Default [DF_Log_Apq_Alarm__InTime]    Script Date: 10/11/2010 17:23:31 ******/
-ALTER TABLE [dbo].[Log_Apq_Alarm] ADD  CONSTRAINT [DF_Log_Apq_Alarm__InTime]  DEFAULT (getdate()) FOR [_InTime]
-GO
-/****** Object:  Default [DF_Log_Apq_Alarm_Type]    Script Date: 10/11/2010 17:23:31 ******/
-ALTER TABLE [dbo].[Log_Apq_Alarm] ADD  CONSTRAINT [DF_Log_Apq_Alarm_Type]  DEFAULT ((0)) FOR [Type]
-GO
-/****** Object:  Default [DF_Log_Apq_Alarm_Severity]    Script Date: 10/11/2010 17:23:31 ******/
-ALTER TABLE [dbo].[Log_Apq_Alarm] ADD  CONSTRAINT [DF_Log_Apq_Alarm_Severity]  DEFAULT ((16)) FOR [Severity]
-GO
-/****** Object:  Default [DF_Log_DTS_LocalPick_PickTime]    Script Date: 10/11/2010 17:23:31 ******/
+/****** Object:  Default [DF_Log_DTS_LocalPick_PickTime]    Script Date: 10/19/2010 17:58:58 ******/
 ALTER TABLE [dbo].[Log_DTS_LocalPick] ADD  CONSTRAINT [DF_Log_DTS_LocalPick_PickTime]  DEFAULT (getdate()) FOR [PickTime]
 GO
-/****** Object:  Default [DF_Log_DTS_LocalPick_HasContent]    Script Date: 10/11/2010 17:23:31 ******/
+/****** Object:  Default [DF_Log_DTS_LocalPick_HasContent]    Script Date: 10/19/2010 17:58:58 ******/
 ALTER TABLE [dbo].[Log_DTS_LocalPick] ADD  CONSTRAINT [DF_Log_DTS_LocalPick_HasContent]  DEFAULT ((1)) FOR [HasContent]
 GO
-/****** Object:  Default [DF_Log_DTS_LocalPick_FileFolder]    Script Date: 10/11/2010 17:23:31 ******/
+/****** Object:  Default [DF_Log_DTS_LocalPick_FileFolder]    Script Date: 10/19/2010 17:58:58 ******/
 ALTER TABLE [dbo].[Log_DTS_LocalPick] ADD  CONSTRAINT [DF_Log_DTS_LocalPick_FileFolder]  DEFAULT (N'D:\DTS') FOR [FileFolder]
 GO
-/****** Object:  Default [DF_Log_DTS_LocalPick_FileEX]    Script Date: 10/11/2010 17:23:31 ******/
+/****** Object:  Default [DF_Log_DTS_LocalPick_FileEX]    Script Date: 10/19/2010 17:58:58 ******/
 ALTER TABLE [dbo].[Log_DTS_LocalPick] ADD  CONSTRAINT [DF_Log_DTS_LocalPick_FileEX]  DEFAULT (N'.txt') FOR [FileEX]
 GO
-/****** Object:  Default [DF_Log_DTS_LocalPick_t]    Script Date: 10/11/2010 17:23:31 ******/
+/****** Object:  Default [DF_Log_DTS_LocalPick_t]    Script Date: 10/19/2010 17:58:58 ******/
 ALTER TABLE [dbo].[Log_DTS_LocalPick] ADD  CONSTRAINT [DF_Log_DTS_LocalPick_t]  DEFAULT (N'\t') FOR [t]
 GO
-/****** Object:  Default [DF_Log_DTS_LocalPick_r]    Script Date: 10/11/2010 17:23:31 ******/
+/****** Object:  Default [DF_Log_DTS_LocalPick_r]    Script Date: 10/19/2010 17:58:58 ******/
 ALTER TABLE [dbo].[Log_DTS_LocalPick] ADD  CONSTRAINT [DF_Log_DTS_LocalPick_r]  DEFAULT (N'\n') FOR [r]
 GO
-/****** Object:  Default [DF_Log_DTS_LocalPick__InTime]    Script Date: 10/11/2010 17:23:31 ******/
+/****** Object:  Default [DF_Log_DTS_LocalPick__InTime]    Script Date: 10/19/2010 17:58:58 ******/
 ALTER TABLE [dbo].[Log_DTS_LocalPick] ADD  CONSTRAINT [DF_Log_DTS_LocalPick__InTime]  DEFAULT (getdate()) FOR [_InTime]
 GO
-/****** Object:  Default [DF_Log_DTS_LocalPick__Time]    Script Date: 10/11/2010 17:23:31 ******/
+/****** Object:  Default [DF_Log_DTS_LocalPick__Time]    Script Date: 10/19/2010 17:58:58 ******/
 ALTER TABLE [dbo].[Log_DTS_LocalPick] ADD  CONSTRAINT [DF_Log_DTS_LocalPick__Time]  DEFAULT (getdate()) FOR [_Time]
 GO
-/****** Object:  Default [DF_RDBConfig_RDBType]    Script Date: 10/11/2010 17:23:31 ******/
-ALTER TABLE [dbo].[RDBConfig] ADD  CONSTRAINT [DF_RDBConfig_RDBType]  DEFAULT ((0)) FOR [RDBType]
+/****** Object:  Default [DF_Log_Apq_Alarm__InTime]    Script Date: 10/19/2010 17:58:58 ******/
+ALTER TABLE [dbo].[Log_Apq_Alarm] ADD  CONSTRAINT [DF_Log_Apq_Alarm__InTime]  DEFAULT (getdate()) FOR [_InTime]
 GO
-/****** Object:  Default [DF_RDBConfig_PLevel]    Script Date: 10/11/2010 17:23:31 ******/
-ALTER TABLE [dbo].[RDBConfig] ADD  CONSTRAINT [DF_RDBConfig_PLevel]  DEFAULT ((1)) FOR [PLevel]
+/****** Object:  Default [DF_Log_Apq_Alarm_Type]    Script Date: 10/19/2010 17:58:58 ******/
+ALTER TABLE [dbo].[Log_Apq_Alarm] ADD  CONSTRAINT [DF_Log_Apq_Alarm_Type]  DEFAULT ((0)) FOR [Type]
 GO
-/****** Object:  Default [DF_RDBConfig_GLevel]    Script Date: 10/11/2010 17:23:31 ******/
-ALTER TABLE [dbo].[RDBConfig] ADD  CONSTRAINT [DF_RDBConfig_GLevel]  DEFAULT ((2)) FOR [GLevel]
+/****** Object:  Default [DF_Log_Apq_Alarm_Severity]    Script Date: 10/19/2010 17:58:58 ******/
+ALTER TABLE [dbo].[Log_Apq_Alarm] ADD  CONSTRAINT [DF_Log_Apq_Alarm_Severity]  DEFAULT ((16)) FOR [Severity]
 GO
-/****** Object:  Default [DF_RDBConfig_GameID]    Script Date: 10/11/2010 17:23:31 ******/
-ALTER TABLE [dbo].[RDBConfig] ADD  CONSTRAINT [DF_RDBConfig_GameID]  DEFAULT ((0)) FOR [GameID]
-GO
-/****** Object:  Default [DF_RDBConfig_Enabled]    Script Date: 10/11/2010 17:23:31 ******/
-ALTER TABLE [dbo].[RDBConfig] ADD  CONSTRAINT [DF_RDBConfig_Enabled]  DEFAULT ((1)) FOR [Enabled]
-GO
-/****** Object:  Default [DF_RDBLogin_LoginPwdC]    Script Date: 10/11/2010 17:23:31 ******/
-ALTER TABLE [dbo].[RDBLogin] ADD  CONSTRAINT [DF_RDBLogin_LoginPwdC]  DEFAULT ('') FOR [LoginPwdC]
-GO
-/****** Object:  Default [DF__Tmp_RSrvC__LSNam__3651FAE7]    Script Date: 10/11/2010 17:23:31 ******/
-ALTER TABLE [dbo].[RSrvConfig] ADD  DEFAULT ('') FOR [LSName]
-GO
-/****** Object:  Default [DF_RSrvConfig_UID]    Script Date: 10/11/2010 17:23:31 ******/
-ALTER TABLE [dbo].[RSrvConfig] ADD  CONSTRAINT [DF_RSrvConfig_UID]  DEFAULT ('') FOR [UID]
-GO
-/****** Object:  Default [DF_RSrvConfig_LSMaxTimes]    Script Date: 10/11/2010 17:23:31 ******/
-ALTER TABLE [dbo].[RSrvConfig] ADD  CONSTRAINT [DF_RSrvConfig_LSMaxTimes]  DEFAULT ((10)) FOR [LSMaxTimes]
-GO
-/****** Object:  Default [DF_RSrvConfig_LSErrTimes]    Script Date: 10/11/2010 17:23:31 ******/
-ALTER TABLE [dbo].[RSrvConfig] ADD  CONSTRAINT [DF_RSrvConfig_LSErrTimes]  DEFAULT ((0)) FOR [LSErrTimes]
-GO
-/****** Object:  Default [DF_RSrvConfig_LSState]    Script Date: 10/11/2010 17:23:31 ******/
-ALTER TABLE [dbo].[RSrvConfig] ADD  CONSTRAINT [DF_RSrvConfig_LSState]  DEFAULT ((1)) FOR [LSState]
-GO
-/****** Object:  Default [DF_RSrvConfig_FTPPort]    Script Date: 10/11/2010 17:23:31 ******/
-ALTER TABLE [dbo].[RSrvConfig] ADD  CONSTRAINT [DF_RSrvConfig_FTPPort]  DEFAULT ((21)) FOR [FTPPort]
-GO
-/****** Object:  Default [DF_RSrvConfig_SqlPort]    Script Date: 10/11/2010 17:23:31 ******/
-ALTER TABLE [dbo].[RSrvConfig] ADD  CONSTRAINT [DF_RSrvConfig_SqlPort]  DEFAULT ((1433)) FOR [SqlPort]
-GO
-/****** Object:  Default [DF_RSrvConfig_Enabled]    Script Date: 10/11/2010 17:23:31 ******/
-ALTER TABLE [dbo].[RSrvConfig] ADD  CONSTRAINT [DF_RSrvConfig_Enabled]  DEFAULT ((1)) FOR [Enabled]
-GO
-/****** Object:  Default [DF_Server_Location]    Script Date: 10/11/2010 17:23:31 ******/
-ALTER TABLE [mgr].[Server] ADD  CONSTRAINT [DF_Server_Location]  DEFAULT ('') FOR [Location]
-GO
-/****** Object:  Default [DF_Server_Usage]    Script Date: 10/11/2010 17:23:31 ******/
-ALTER TABLE [mgr].[Server] ADD  CONSTRAINT [DF_Server_Usage]  DEFAULT ('') FOR [Usage]
-GO
-/****** Object:  Default [DF_Server_IPWan1]    Script Date: 10/11/2010 17:23:31 ******/
-ALTER TABLE [mgr].[Server] ADD  CONSTRAINT [DF_Server_IPWan1]  DEFAULT ('') FOR [IPWan1]
-GO
-/****** Object:  Default [DF_Server_IPLan1]    Script Date: 10/11/2010 17:23:31 ******/
-ALTER TABLE [mgr].[Server] ADD  CONSTRAINT [DF_Server_IPLan1]  DEFAULT ('') FOR [IPLan1]
-GO
-/****** Object:  Default [DF_Server_RdpPort]    Script Date: 10/11/2010 17:23:31 ******/
-ALTER TABLE [mgr].[Server] ADD  CONSTRAINT [DF_Server_RdpPort]  DEFAULT ((3389)) FOR [RdpPort]
-GO
-/****** Object:  Default [DF__Server__SqlPort__202DAF9E]    Script Date: 10/11/2010 17:23:31 ******/
-ALTER TABLE [mgr].[Server] ADD  CONSTRAINT [DF__Server__SqlPort__202DAF9E]  DEFAULT ((1433)) FOR [SqlPort]
-GO
-/****** Object:  Default [DF__Server__FTPPort__1F398B65]    Script Date: 10/11/2010 17:23:31 ******/
-ALTER TABLE [mgr].[Server] ADD  CONSTRAINT [DF__Server__FTPPort__1F398B65]  DEFAULT ((21)) FOR [FTPPort]
-GO
-/****** Object:  Default [DF_Server_IPWan2]    Script Date: 10/11/2010 17:23:31 ******/
-ALTER TABLE [mgr].[Server] ADD  CONSTRAINT [DF_Server_IPWan2]  DEFAULT ('') FOR [IPWan2]
-GO
-/****** Object:  Default [DF_Server_IPLan2]    Script Date: 10/11/2010 17:23:31 ******/
-ALTER TABLE [mgr].[Server] ADD  CONSTRAINT [DF_Server_IPLan2]  DEFAULT ('') FOR [IPLan2]
-GO
-/****** Object:  Default [DF_Server_IPWan3]    Script Date: 10/11/2010 17:23:31 ******/
-ALTER TABLE [mgr].[Server] ADD  CONSTRAINT [DF_Server_IPWan3]  DEFAULT ('') FOR [IPWan3]
-GO
-/****** Object:  Default [DF_Server_IPLan3]    Script Date: 10/11/2010 17:23:31 ******/
-ALTER TABLE [mgr].[Server] ADD  CONSTRAINT [DF_Server_IPLan3]  DEFAULT ('') FOR [IPLan3]
-GO
-/****** Object:  Default [DF_Server_IPWan4]    Script Date: 10/11/2010 17:23:31 ******/
-ALTER TABLE [mgr].[Server] ADD  CONSTRAINT [DF_Server_IPWan4]  DEFAULT ('') FOR [IPWan4]
-GO
-/****** Object:  Default [DF_Server_IPLan4]    Script Date: 10/11/2010 17:23:31 ******/
-ALTER TABLE [mgr].[Server] ADD  CONSTRAINT [DF_Server_IPLan4]  DEFAULT ('') FOR [IPLan4]
-GO
-/****** Object:  Default [DF_SrvPwd_PwdType]    Script Date: 10/11/2010 17:23:31 ******/
+/****** Object:  Default [DF_SrvPwd_PwdType]    Script Date: 10/19/2010 17:59:12 ******/
 ALTER TABLE [mgr].[SrvPwd] ADD  CONSTRAINT [DF_SrvPwd_PwdType]  DEFAULT ((2)) FOR [PwdType]
 GO
-/****** Object:  Default [DF_SrvPwd_Enabled]    Script Date: 10/11/2010 17:23:31 ******/
+/****** Object:  Default [DF_SrvPwd_Enabled]    Script Date: 10/19/2010 17:59:12 ******/
 ALTER TABLE [mgr].[SrvPwd] ADD  CONSTRAINT [DF_SrvPwd_Enabled]  DEFAULT ((1)) FOR [Enabled]
 GO
-/****** Object:  Default [DF_SrvPwd_SIDD]    Script Date: 10/11/2010 17:23:31 ******/
-ALTER TABLE [mgr].[SrvPwd] ADD  CONSTRAINT [DF_SrvPwd_SIDD]  DEFAULT ('0x01') FOR [SID]
+/****** Object:  Default [DF_SrvPwd_SID]    Script Date: 10/19/2010 17:59:12 ******/
+ALTER TABLE [mgr].[SrvPwd] ADD  CONSTRAINT [DF_SrvPwd_SID]  DEFAULT ('0x01') FOR [SID]
 GO
-GRANT DELETE ON [dbo].[CounterData] TO [Performance_Log_User] AS [dbo]
+/****** Object:  Default [DF_Server_Location]    Script Date: 10/19/2010 17:59:13 ******/
+ALTER TABLE [mgr].[Server] ADD  CONSTRAINT [DF_Server_Location]  DEFAULT ('') FOR [Location]
 GO
-GRANT INSERT ON [dbo].[CounterData] TO [Performance_Log_User] AS [dbo]
+/****** Object:  Default [DF_Server_Usage]    Script Date: 10/19/2010 17:59:13 ******/
+ALTER TABLE [mgr].[Server] ADD  CONSTRAINT [DF_Server_Usage]  DEFAULT ('') FOR [Usage]
 GO
-GRANT SELECT ON [dbo].[CounterData] TO [Performance_Log_User] AS [dbo]
+/****** Object:  Default [DF_Server_IPWan1]    Script Date: 10/19/2010 17:59:13 ******/
+ALTER TABLE [mgr].[Server] ADD  CONSTRAINT [DF_Server_IPWan1]  DEFAULT ('') FOR [IPWan1]
 GO
-GRANT UPDATE ON [dbo].[CounterData] TO [Performance_Log_User] AS [dbo]
+/****** Object:  Default [DF_Server_IPLan1]    Script Date: 10/19/2010 17:59:13 ******/
+ALTER TABLE [mgr].[Server] ADD  CONSTRAINT [DF_Server_IPLan1]  DEFAULT ('') FOR [IPLan1]
 GO
-GRANT DELETE ON [dbo].[CounterDetails] TO [Performance_Log_User] AS [dbo]
+/****** Object:  Default [DF_Server_RdpPort]    Script Date: 10/19/2010 17:59:13 ******/
+ALTER TABLE [mgr].[Server] ADD  CONSTRAINT [DF_Server_RdpPort]  DEFAULT ((3389)) FOR [RdpPort]
 GO
-GRANT INSERT ON [dbo].[CounterDetails] TO [Performance_Log_User] AS [dbo]
+/****** Object:  Default [DF_Server_SqlPort]    Script Date: 10/19/2010 17:59:13 ******/
+ALTER TABLE [mgr].[Server] ADD  CONSTRAINT [DF_Server_SqlPort]  DEFAULT ((1433)) FOR [SqlPort]
 GO
-GRANT SELECT ON [dbo].[CounterDetails] TO [Performance_Log_User] AS [dbo]
+/****** Object:  Default [DF_Server_FTPPort]    Script Date: 10/19/2010 17:59:13 ******/
+ALTER TABLE [mgr].[Server] ADD  CONSTRAINT [DF_Server_FTPPort]  DEFAULT ((21)) FOR [FTPPort]
 GO
-GRANT UPDATE ON [dbo].[CounterDetails] TO [Performance_Log_User] AS [dbo]
+/****** Object:  Default [DF_Server_IPWan2]    Script Date: 10/19/2010 17:59:13 ******/
+ALTER TABLE [mgr].[Server] ADD  CONSTRAINT [DF_Server_IPWan2]  DEFAULT ('') FOR [IPWan2]
+GO
+/****** Object:  Default [DF_Server_IPLan2]    Script Date: 10/19/2010 17:59:13 ******/
+ALTER TABLE [mgr].[Server] ADD  CONSTRAINT [DF_Server_IPLan2]  DEFAULT ('') FOR [IPLan2]
+GO
+/****** Object:  Default [DF_Server_IPWan3]    Script Date: 10/19/2010 17:59:13 ******/
+ALTER TABLE [mgr].[Server] ADD  CONSTRAINT [DF_Server_IPWan3]  DEFAULT ('') FOR [IPWan3]
+GO
+/****** Object:  Default [DF_Server_IPLan3]    Script Date: 10/19/2010 17:59:13 ******/
+ALTER TABLE [mgr].[Server] ADD  CONSTRAINT [DF_Server_IPLan3]  DEFAULT ('') FOR [IPLan3]
+GO
+/****** Object:  Default [DF_Server_IPWan4]    Script Date: 10/19/2010 17:59:13 ******/
+ALTER TABLE [mgr].[Server] ADD  CONSTRAINT [DF_Server_IPWan4]  DEFAULT ('') FOR [IPWan4]
+GO
+/****** Object:  Default [DF_Server_IPLan4]    Script Date: 10/19/2010 17:59:13 ******/
+ALTER TABLE [mgr].[Server] ADD  CONSTRAINT [DF_Server_IPLan4]  DEFAULT ('') FOR [IPLan4]
+GO
+/****** Object:  Default [DF_RSrvConfig_LSName]    Script Date: 10/19/2010 17:59:13 ******/
+ALTER TABLE [dbo].[RSrvConfig] ADD  CONSTRAINT [DF_RSrvConfig_LSName]  DEFAULT ('') FOR [LSName]
+GO
+/****** Object:  Default [DF_RSrvConfig_UID]    Script Date: 10/19/2010 17:59:13 ******/
+ALTER TABLE [dbo].[RSrvConfig] ADD  CONSTRAINT [DF_RSrvConfig_UID]  DEFAULT ('') FOR [UID]
+GO
+/****** Object:  Default [DF_RSrvConfig_LSMaxTimes]    Script Date: 10/19/2010 17:59:13 ******/
+ALTER TABLE [dbo].[RSrvConfig] ADD  CONSTRAINT [DF_RSrvConfig_LSMaxTimes]  DEFAULT ((10)) FOR [LSMaxTimes]
+GO
+/****** Object:  Default [DF_RSrvConfig_LSErrTimes]    Script Date: 10/19/2010 17:59:13 ******/
+ALTER TABLE [dbo].[RSrvConfig] ADD  CONSTRAINT [DF_RSrvConfig_LSErrTimes]  DEFAULT ((0)) FOR [LSErrTimes]
+GO
+/****** Object:  Default [DF_RSrvConfig_LSState]    Script Date: 10/19/2010 17:59:13 ******/
+ALTER TABLE [dbo].[RSrvConfig] ADD  CONSTRAINT [DF_RSrvConfig_LSState]  DEFAULT ((1)) FOR [LSState]
+GO
+/****** Object:  Default [DF_RSrvConfig_FTPPort]    Script Date: 10/19/2010 17:59:13 ******/
+ALTER TABLE [dbo].[RSrvConfig] ADD  CONSTRAINT [DF_RSrvConfig_FTPPort]  DEFAULT ((21)) FOR [FTPPort]
+GO
+/****** Object:  Default [DF_RSrvConfig_SqlPort]    Script Date: 10/19/2010 17:59:13 ******/
+ALTER TABLE [dbo].[RSrvConfig] ADD  CONSTRAINT [DF_RSrvConfig_SqlPort]  DEFAULT ((1433)) FOR [SqlPort]
+GO
+/****** Object:  Default [DF_RSrvConfig_Enabled]    Script Date: 10/19/2010 17:59:13 ******/
+ALTER TABLE [dbo].[RSrvConfig] ADD  CONSTRAINT [DF_RSrvConfig_Enabled]  DEFAULT ((1)) FOR [Enabled]
+GO
+/****** Object:  Default [DF_RestoreFromFolder_LastFileName]    Script Date: 10/19/2010 17:59:13 ******/
+ALTER TABLE [bak].[RestoreFromFolder] ADD  CONSTRAINT [DF_RestoreFromFolder_LastFileName]  DEFAULT ('') FOR [LastFileName]
+GO
+/****** Object:  Default [DF_RestoreFromFolder_Enabled]    Script Date: 10/19/2010 17:59:13 ******/
+ALTER TABLE [bak].[RestoreFromFolder] ADD  CONSTRAINT [DF_RestoreFromFolder_Enabled]  DEFAULT ((1)) FOR [Enabled]
+GO
+/****** Object:  Default [DF_RestoreFromFolder_BakFolder]    Script Date: 10/19/2010 17:59:13 ******/
+ALTER TABLE [bak].[RestoreFromFolder] ADD  CONSTRAINT [DF_RestoreFromFolder_BakFolder]  DEFAULT (N'D:\BakFromFTP') FOR [BakFolder]
+GO
+/****** Object:  Default [DF_RestoreFromFolder_RestoreType]    Script Date: 10/19/2010 17:59:13 ******/
+ALTER TABLE [bak].[RestoreFromFolder] ADD  CONSTRAINT [DF_RestoreFromFolder_RestoreType]  DEFAULT ((0)) FOR [RestoreType]
+GO
+/****** Object:  Default [DF_RestoreFromFolder_RestoreFolder]    Script Date: 10/19/2010 17:59:13 ******/
+ALTER TABLE [bak].[RestoreFromFolder] ADD  CONSTRAINT [DF_RestoreFromFolder_RestoreFolder]  DEFAULT (N'D:\DB_His') FOR [RestoreFolder]
+GO
+/****** Object:  Default [DF_RestoreFromFolder_DB_HisNum]    Script Date: 10/19/2010 17:59:13 ******/
+ALTER TABLE [bak].[RestoreFromFolder] ADD  CONSTRAINT [DF_RestoreFromFolder_DB_HisNum]  DEFAULT ((15)) FOR [DB_HisNum]
+GO
+/****** Object:  Default [DF_RestoreFromFolder_Num_Full]    Script Date: 10/19/2010 17:59:13 ******/
+ALTER TABLE [bak].[RestoreFromFolder] ADD  CONSTRAINT [DF_RestoreFromFolder_Num_Full]  DEFAULT ((3)) FOR [Num_Full]
+GO
+/****** Object:  Default [DF_RestoreFromFolder_RunnerIDCfg]    Script Date: 10/19/2010 17:59:13 ******/
+ALTER TABLE [bak].[RestoreFromFolder] ADD  CONSTRAINT [DF_RestoreFromFolder_RunnerIDCfg]  DEFAULT ((0)) FOR [RunnerIDCfg]
+GO
+/****** Object:  Default [DF_RestoreFromFolder_RunnerIDRun]    Script Date: 10/19/2010 17:59:13 ******/
+ALTER TABLE [bak].[RestoreFromFolder] ADD  CONSTRAINT [DF_RestoreFromFolder_RunnerIDRun]  DEFAULT ((0)) FOR [RunnerIDRun]
+GO
+/****** Object:  Default [DF_RestoreFromFolder__InTime]    Script Date: 10/19/2010 17:59:13 ******/
+ALTER TABLE [bak].[RestoreFromFolder] ADD  CONSTRAINT [DF_RestoreFromFolder__InTime]  DEFAULT (getdate()) FOR [_InTime]
+GO
+/****** Object:  Default [DF_RestoreFromFolder__Time]    Script Date: 10/19/2010 17:59:13 ******/
+ALTER TABLE [bak].[RestoreFromFolder] ADD  CONSTRAINT [DF_RestoreFromFolder__Time]  DEFAULT (getdate()) FOR [_Time]
+GO
+/****** Object:  Default [DF_RDBLogin_LoginPwdC]    Script Date: 10/19/2010 17:59:13 ******/
+ALTER TABLE [dbo].[RDBLogin] ADD  CONSTRAINT [DF_RDBLogin_LoginPwdC]  DEFAULT ('') FOR [LoginPwdC]
+GO
+/****** Object:  Default [DF_RDBConfig_RDBType]    Script Date: 10/19/2010 17:59:13 ******/
+ALTER TABLE [dbo].[RDBConfig] ADD  CONSTRAINT [DF_RDBConfig_RDBType]  DEFAULT ((0)) FOR [RDBType]
+GO
+/****** Object:  Default [DF_RDBConfig_PLevel]    Script Date: 10/19/2010 17:59:13 ******/
+ALTER TABLE [dbo].[RDBConfig] ADD  CONSTRAINT [DF_RDBConfig_PLevel]  DEFAULT ((1)) FOR [PLevel]
+GO
+/****** Object:  Default [DF_RDBConfig_GLevel]    Script Date: 10/19/2010 17:59:13 ******/
+ALTER TABLE [dbo].[RDBConfig] ADD  CONSTRAINT [DF_RDBConfig_GLevel]  DEFAULT ((2)) FOR [GLevel]
+GO
+/****** Object:  Default [DF_RDBConfig_GameID]    Script Date: 10/19/2010 17:59:13 ******/
+ALTER TABLE [dbo].[RDBConfig] ADD  CONSTRAINT [DF_RDBConfig_GameID]  DEFAULT ((0)) FOR [GameID]
+GO
+/****** Object:  Default [DF_RDBConfig_Enabled]    Script Date: 10/19/2010 17:59:13 ******/
+ALTER TABLE [dbo].[RDBConfig] ADD  CONSTRAINT [DF_RDBConfig_Enabled]  DEFAULT ((1)) FOR [Enabled]
+GO
+/****** Object:  Default [DF_Apq_Config_Class]    Script Date: 10/19/2010 17:59:13 ******/
+ALTER TABLE [dbo].[Apq_Config] ADD  CONSTRAINT [DF_Apq_Config_Class]  DEFAULT ('') FOR [Class]
+GO
+/****** Object:  Default [DF_Apq_Ext_TableName]    Script Date: 10/19/2010 17:59:13 ******/
+ALTER TABLE [dbo].[Apq_Ext] ADD  CONSTRAINT [DF_Apq_Ext_TableName]  DEFAULT ('') FOR [TableName]
+GO
+/****** Object:  Default [DF_Apq_Ext_ID]    Script Date: 10/19/2010 17:59:13 ******/
+ALTER TABLE [dbo].[Apq_Ext] ADD  CONSTRAINT [DF_Apq_Ext_ID]  DEFAULT ((0)) FOR [ID]
+GO
+/****** Object:  Default [DF_Apq_ID_Crt]    Script Date: 10/19/2010 17:59:13 ******/
+ALTER TABLE [dbo].[Apq_ID] ADD  CONSTRAINT [DF_Apq_ID_Crt]  DEFAULT ((0)) FOR [Crt]
+GO
+/****** Object:  Default [DF_Apq_ID_Limit]    Script Date: 10/19/2010 17:59:13 ******/
+ALTER TABLE [dbo].[Apq_ID] ADD  CONSTRAINT [DF_Apq_ID_Limit]  DEFAULT ((9223372034707292159.)) FOR [Limit]
+GO
+/****** Object:  Default [DF_Apq_ID_Init]    Script Date: 10/19/2010 17:59:13 ******/
+ALTER TABLE [dbo].[Apq_ID] ADD  CONSTRAINT [DF_Apq_ID_Init]  DEFAULT ((0)) FOR [Init]
+GO
+/****** Object:  Default [DF_Apq_ID_Inc]    Script Date: 10/19/2010 17:59:13 ******/
+ALTER TABLE [dbo].[Apq_ID] ADD  CONSTRAINT [DF_Apq_ID_Inc]  DEFAULT ((1)) FOR [Inc]
+GO
+/****** Object:  Default [DF_Apq_ID_State]    Script Date: 10/19/2010 17:59:13 ******/
+ALTER TABLE [dbo].[Apq_ID] ADD  CONSTRAINT [DF_Apq_ID_State]  DEFAULT ((0)) FOR [State]
+GO
+/****** Object:  Default [DF_Apq_ID__Time]    Script Date: 10/19/2010 17:59:13 ******/
+ALTER TABLE [dbo].[Apq_ID] ADD  CONSTRAINT [DF_Apq_ID__Time]  DEFAULT (getdate()) FOR [_Time]
+GO
+/****** Object:  Default [DF_Apq_ID__InTime]    Script Date: 10/19/2010 17:59:13 ******/
+ALTER TABLE [dbo].[Apq_ID] ADD  CONSTRAINT [DF_Apq_ID__InTime]  DEFAULT (getdate()) FOR [_InTime]
+GO
+/****** Object:  Default [DF_FTP_SendQueue_Folder]    Script Date: 10/19/2010 17:59:13 ******/
+ALTER TABLE [dbo].[FTP_SendQueue] ADD  CONSTRAINT [DF_FTP_SendQueue_Folder]  DEFAULT (N'D:\Bak2FTP\') FOR [Folder]
+GO
+/****** Object:  Default [DF_FTP_SendQueue_FileName]    Script Date: 10/19/2010 17:59:13 ******/
+ALTER TABLE [dbo].[FTP_SendQueue] ADD  CONSTRAINT [DF_FTP_SendQueue_FileName]  DEFAULT ('') FOR [FileName]
+GO
+/****** Object:  Default [DF_FTP_SendQueue_Enabled]    Script Date: 10/19/2010 17:59:13 ******/
+ALTER TABLE [dbo].[FTP_SendQueue] ADD  CONSTRAINT [DF_FTP_SendQueue_Enabled]  DEFAULT ((1)) FOR [Enabled]
+GO
+/****** Object:  Default [DF_FTP_SendQueue_FTPFolder]    Script Date: 10/19/2010 17:59:13 ******/
+ALTER TABLE [dbo].[FTP_SendQueue] ADD  CONSTRAINT [DF_FTP_SendQueue_FTPFolder]  DEFAULT (N'/D/BakFromFTP/') FOR [FTPFolder]
+GO
+/****** Object:  Default [DF_FTP_SendQueue_FTPFolderTmp]    Script Date: 10/19/2010 17:59:13 ******/
+ALTER TABLE [dbo].[FTP_SendQueue] ADD  CONSTRAINT [DF_FTP_SendQueue_FTPFolderTmp]  DEFAULT (N'/') FOR [FTPFolderTmp]
+GO
+/****** Object:  Default [DF_FTP_SendQueue__InTime]    Script Date: 10/19/2010 17:59:13 ******/
+ALTER TABLE [dbo].[FTP_SendQueue] ADD  CONSTRAINT [DF_FTP_SendQueue__InTime]  DEFAULT (getdate()) FOR [_InTime]
+GO
+/****** Object:  Default [DF_FTP_SendQueue__Time]    Script Date: 10/19/2010 17:59:13 ******/
+ALTER TABLE [dbo].[FTP_SendQueue] ADD  CONSTRAINT [DF_FTP_SendQueue__Time]  DEFAULT (getdate()) FOR [_Time]
+GO
+/****** Object:  Default [DF_FTP_SendQueue_LSize]    Script Date: 10/19/2010 17:59:13 ******/
+ALTER TABLE [dbo].[FTP_SendQueue] ADD  CONSTRAINT [DF_FTP_SendQueue_LSize]  DEFAULT ((0)) FOR [LSize]
+GO
+/****** Object:  Default [DF_FTP_SendQueue_RSize]    Script Date: 10/19/2010 17:59:13 ******/
+ALTER TABLE [dbo].[FTP_SendQueue] ADD  CONSTRAINT [DF_FTP_SendQueue_RSize]  DEFAULT ((0)) FOR [RSize]
+GO
+/****** Object:  Default [DF_FTP_SendQueue_IsSuccess]    Script Date: 10/19/2010 17:59:13 ******/
+ALTER TABLE [dbo].[FTP_SendQueue] ADD  CONSTRAINT [DF_FTP_SendQueue_IsSuccess]  DEFAULT ((0)) FOR [IsSuccess]
+GO
+/****** Object:  Default [DF_FTP_PutBak_LastFileName]    Script Date: 10/19/2010 17:59:13 ******/
+ALTER TABLE [bak].[FTP_PutBak] ADD  CONSTRAINT [DF_FTP_PutBak_LastFileName]  DEFAULT ('') FOR [LastFileName]
+GO
+/****** Object:  Default [DF_FTP_PutBak_Enabled]    Script Date: 10/19/2010 17:59:13 ******/
+ALTER TABLE [bak].[FTP_PutBak] ADD  CONSTRAINT [DF_FTP_PutBak_Enabled]  DEFAULT ((1)) FOR [Enabled]
+GO
+/****** Object:  Default [DF_FTP_PutBak_Folder]    Script Date: 10/19/2010 17:59:13 ******/
+ALTER TABLE [bak].[FTP_PutBak] ADD  CONSTRAINT [DF_FTP_PutBak_Folder]  DEFAULT (N'D:\Bak2FTP\') FOR [Folder]
+GO
+/****** Object:  Default [DF_FTP_PutBak_FTPFolder]    Script Date: 10/19/2010 17:59:13 ******/
+ALTER TABLE [bak].[FTP_PutBak] ADD  CONSTRAINT [DF_FTP_PutBak_FTPFolder]  DEFAULT (N'/D/BakFromFTP/') FOR [FTPFolder]
+GO
+/****** Object:  Default [DF_FTP_PutBak_FTPFolderTmp]    Script Date: 10/19/2010 17:59:13 ******/
+ALTER TABLE [bak].[FTP_PutBak] ADD  CONSTRAINT [DF_FTP_PutBak_FTPFolderTmp]  DEFAULT (N'/') FOR [FTPFolderTmp]
+GO
+/****** Object:  Default [DF_FTP_PutBak_Num_Full]    Script Date: 10/19/2010 17:59:13 ******/
+ALTER TABLE [bak].[FTP_PutBak] ADD  CONSTRAINT [DF_FTP_PutBak_Num_Full]  DEFAULT ((3)) FOR [Num_Full]
+GO
+/****** Object:  Default [DF_FTP_PutBak_TransferIDCfg]    Script Date: 10/19/2010 17:59:13 ******/
+ALTER TABLE [bak].[FTP_PutBak] ADD  CONSTRAINT [DF_FTP_PutBak_TransferIDCfg]  DEFAULT ((0)) FOR [TransferIDCfg]
+GO
+/****** Object:  Default [DF_FTP_PutBak__InTime]    Script Date: 10/19/2010 17:59:13 ******/
+ALTER TABLE [bak].[FTP_PutBak] ADD  CONSTRAINT [DF_FTP_PutBak__InTime]  DEFAULT (getdate()) FOR [_InTime]
+GO
+/****** Object:  Default [DF_FTP_PutBak__Time]    Script Date: 10/19/2010 17:59:13 ******/
+ALTER TABLE [bak].[FTP_PutBak] ADD  CONSTRAINT [DF_FTP_PutBak__Time]  DEFAULT (getdate()) FOR [_Time]
+GO
+/****** Object:  Default [DF_FTP_PutBak_TransferIDRun]    Script Date: 10/19/2010 17:59:13 ******/
+ALTER TABLE [bak].[FTP_PutBak] ADD  CONSTRAINT [DF_FTP_PutBak_TransferIDRun]  DEFAULT ((0)) FOR [TransferIDRun]
+GO
+/****** Object:  Default [DF_FTP_GetBak_LastFileName]    Script Date: 10/19/2010 17:59:14 ******/
+ALTER TABLE [dbo].[FTP_GetBak] ADD  CONSTRAINT [DF_FTP_GetBak_LastFileName]  DEFAULT ('') FOR [LastFileName]
+GO
+/****** Object:  Default [DF_FTP_GetBak_Enabled]    Script Date: 10/19/2010 17:59:14 ******/
+ALTER TABLE [dbo].[FTP_GetBak] ADD  CONSTRAINT [DF_FTP_GetBak_Enabled]  DEFAULT ((1)) FOR [Enabled]
+GO
+/****** Object:  Default [DF_FTP_GetBak_Folder]    Script Date: 10/19/2010 17:59:14 ******/
+ALTER TABLE [dbo].[FTP_GetBak] ADD  CONSTRAINT [DF_FTP_GetBak_Folder]  DEFAULT (N'D:\Apq_DBA\FTP_GetBak\') FOR [Folder]
+GO
+/****** Object:  Default [DF_FTP_GetBak_FTPFolder]    Script Date: 10/19/2010 17:59:14 ******/
+ALTER TABLE [dbo].[FTP_GetBak] ADD  CONSTRAINT [DF_FTP_GetBak_FTPFolder]  DEFAULT (N'/') FOR [FTPFolder]
+GO
+/****** Object:  Default [DF_FTP_GetBak_State]    Script Date: 10/19/2010 17:59:14 ******/
+ALTER TABLE [dbo].[FTP_GetBak] ADD  CONSTRAINT [DF_FTP_GetBak_State]  DEFAULT ((0)) FOR [State]
+GO
+/****** Object:  Default [DF_FTP_GetBak_DB_HisNum]    Script Date: 10/19/2010 17:59:14 ******/
+ALTER TABLE [dbo].[FTP_GetBak] ADD  CONSTRAINT [DF_FTP_GetBak_DB_HisNum]  DEFAULT ((15)) FOR [DB_HisNum]
+GO
+/****** Object:  Default [DF_FileTrans__InTime]    Script Date: 10/19/2010 17:59:14 ******/
+ALTER TABLE [dbo].[FileTrans] ADD  CONSTRAINT [DF_FileTrans__InTime]  DEFAULT (getdate()) FOR [_InTime]
+GO
+/****** Object:  Default [DF_DTSConfig_Enabled]    Script Date: 10/19/2010 17:59:14 ******/
+ALTER TABLE [dbo].[DTSConfig] ADD  CONSTRAINT [DF_DTSConfig_Enabled]  DEFAULT ((1)) FOR [Enabled]
+GO
+/****** Object:  Default [DF_DTSConfig_TransMethod]    Script Date: 10/19/2010 17:59:14 ******/
+ALTER TABLE [dbo].[DTSConfig] ADD  CONSTRAINT [DF_DTSConfig_TransMethod]  DEFAULT ((1)) FOR [TransMethod]
+GO
+/****** Object:  Default [DF_DTSConfig_TransCycle]    Script Date: 10/19/2010 17:59:14 ******/
+ALTER TABLE [dbo].[DTSConfig] ADD  CONSTRAINT [DF_DTSConfig_TransCycle]  DEFAULT ((1)) FOR [TransCycle]
+GO
+/****** Object:  Default [DF_DTSConfig_TransTime]    Script Date: 10/19/2010 17:59:14 ******/
+ALTER TABLE [dbo].[DTSConfig] ADD  CONSTRAINT [DF_DTSConfig_TransTime]  DEFAULT (dateadd(hour,(4),dateadd(day,(0),datediff(day,(0),getdate())))) FOR [TransTime]
+GO
+/****** Object:  Default [DF_DTSConfig_SchemaName]    Script Date: 10/19/2010 17:59:14 ******/
+ALTER TABLE [dbo].[DTSConfig] ADD  CONSTRAINT [DF_DTSConfig_SchemaName]  DEFAULT (N'bcp') FOR [SchemaName]
+GO
+/****** Object:  Default [DF_DTSConfig__InTime]    Script Date: 10/19/2010 17:59:14 ******/
+ALTER TABLE [dbo].[DTSConfig] ADD  CONSTRAINT [DF_DTSConfig__InTime]  DEFAULT (getdate()) FOR [_InTime]
+GO
+/****** Object:  Default [DF_DTSConfig__Time]    Script Date: 10/19/2010 17:59:14 ******/
+ALTER TABLE [dbo].[DTSConfig] ADD  CONSTRAINT [DF_DTSConfig__Time]  DEFAULT (getdate()) FOR [_Time]
+GO
+/****** Object:  Default [DF_DTSConfig_NeedTrans]    Script Date: 10/19/2010 17:59:14 ******/
+ALTER TABLE [dbo].[DTSConfig] ADD  CONSTRAINT [DF_DTSConfig_NeedTrans]  DEFAULT ((0)) FOR [NeedTrans]
+GO
+/****** Object:  Default [DF_DTSConfig_KillFtpTime]    Script Date: 10/19/2010 17:59:14 ******/
+ALTER TABLE [dbo].[DTSConfig] ADD  CONSTRAINT [DF_DTSConfig_KillFtpTime]  DEFAULT (dateadd(month,(-1),getdate())) FOR [KillFtpTime]
+GO
+/****** Object:  Default [DF_DTS_Send_Enabled]    Script Date: 10/19/2010 17:59:14 ******/
+ALTER TABLE [dbo].[DTS_Send] ADD  CONSTRAINT [DF_DTS_Send_Enabled]  DEFAULT ((1)) FOR [Enabled]
+GO
+/****** Object:  Default [DF_DTS_Send_RunnerIDCfg]    Script Date: 10/19/2010 17:59:14 ******/
+ALTER TABLE [dbo].[DTS_Send] ADD  CONSTRAINT [DF_DTS_Send_RunnerIDCfg]  DEFAULT ((0)) FOR [RunnerIDCfg]
+GO
+/****** Object:  Default [DF_DTS_Send_TransMethod]    Script Date: 10/19/2010 17:59:14 ******/
+ALTER TABLE [dbo].[DTS_Send] ADD  CONSTRAINT [DF_DTS_Send_TransMethod]  DEFAULT ((1)) FOR [TransMethod]
+GO
+/****** Object:  Default [DF_DTS_Send_SchemaName]    Script Date: 10/19/2010 17:59:14 ******/
+ALTER TABLE [dbo].[DTS_Send] ADD  CONSTRAINT [DF_DTS_Send_SchemaName]  DEFAULT (N'bcp') FOR [SchemaName]
+GO
+/****** Object:  Default [DF_DTS_Send_FTPIP]    Script Date: 10/19/2010 17:59:14 ******/
+ALTER TABLE [dbo].[DTS_Send] ADD  CONSTRAINT [DF_DTS_Send_FTPIP]  DEFAULT ((0)) FOR [FTPIP]
+GO
+/****** Object:  Default [DF_DTS_Send_FTPFolderTmp]    Script Date: 10/19/2010 17:59:14 ******/
+ALTER TABLE [dbo].[DTS_Send] ADD  CONSTRAINT [DF_DTS_Send_FTPFolderTmp]  DEFAULT (N'/') FOR [FTPFolderTmp]
+GO
+/****** Object:  Default [DF_DTS_Send_FTPFolder]    Script Date: 10/19/2010 17:59:14 ******/
+ALTER TABLE [dbo].[DTS_Send] ADD  CONSTRAINT [DF_DTS_Send_FTPFolder]  DEFAULT (N'/D/BakFromFTP/') FOR [FTPFolder]
+GO
+/****** Object:  Default [DF_DTS_Send_RunnerIDRun]    Script Date: 10/19/2010 17:59:14 ******/
+ALTER TABLE [dbo].[DTS_Send] ADD  CONSTRAINT [DF_DTS_Send_RunnerIDRun]  DEFAULT ((0)) FOR [RunnerIDRun]
+GO
+/****** Object:  Default [DF_DTS_Send__InTime]    Script Date: 10/19/2010 17:59:14 ******/
+ALTER TABLE [dbo].[DTS_Send] ADD  CONSTRAINT [DF_DTS_Send__InTime]  DEFAULT (getdate()) FOR [_InTime]
+GO
+/****** Object:  Default [DF_DTS_Send__Time]    Script Date: 10/19/2010 17:59:14 ******/
+ALTER TABLE [dbo].[DTS_Send] ADD  CONSTRAINT [DF_DTS_Send__Time]  DEFAULT (getdate()) FOR [_Time]
+GO
+/****** Object:  Default [DF_DTS_Send_PickLastID]    Script Date: 10/19/2010 17:59:14 ******/
+ALTER TABLE [dbo].[DTS_Send] ADD  CONSTRAINT [DF_DTS_Send_PickLastID]  DEFAULT ((-1)) FOR [PickLastID]
+GO
+/****** Object:  Default [DF_DTS_Send_PickLastTime]    Script Date: 10/19/2010 17:59:14 ******/
+ALTER TABLE [dbo].[DTS_Send] ADD  CONSTRAINT [DF_DTS_Send_PickLastTime]  DEFAULT (getdate()) FOR [PickLastTime]
+GO
+/****** Object:  Default [DF_Cfg_WH_Enabled]    Script Date: 10/19/2010 17:59:14 ******/
+ALTER TABLE [dbo].[Cfg_WH] ADD  CONSTRAINT [DF_Cfg_WH_Enabled]  DEFAULT ((1)) FOR [Enabled]
+GO
+/****** Object:  Default [DF_BakCfg_Enabled]    Script Date: 10/19/2010 17:59:14 ******/
+ALTER TABLE [bak].[BakCfg] ADD  CONSTRAINT [DF_BakCfg_Enabled]  DEFAULT ((1)) FOR [Enabled]
+GO
+/****** Object:  Default [DF_BakCfg_FTPFolder]    Script Date: 10/19/2010 17:59:14 ******/
+ALTER TABLE [bak].[BakCfg] ADD  CONSTRAINT [DF_BakCfg_FTPFolder]  DEFAULT (N'D:\Bak2FTP') FOR [FTPFolder]
+GO
+/****** Object:  Default [DF_BakCfg_BakFolder]    Script Date: 10/19/2010 17:59:14 ******/
+ALTER TABLE [bak].[BakCfg] ADD  CONSTRAINT [DF_BakCfg_BakFolder]  DEFAULT (N'D:\Bak') FOR [BakFolder]
+GO
+/****** Object:  Default [DF_BakCfg_FullTime]    Script Date: 10/19/2010 17:59:14 ******/
+ALTER TABLE [bak].[BakCfg] ADD  CONSTRAINT [DF_BakCfg_FullTime]  DEFAULT (dateadd(hour,(4),dateadd(day,(0),datediff(day,(0),getdate())))) FOR [FullTime]
+GO
+/****** Object:  Default [DF_BakCfg_FullCycle]    Script Date: 10/19/2010 17:59:14 ******/
+ALTER TABLE [bak].[BakCfg] ADD  CONSTRAINT [DF_BakCfg_FullCycle]  DEFAULT ((1)) FOR [FullCycle]
+GO
+/****** Object:  Default [DF_BakCfg_TrnCycle]    Script Date: 10/19/2010 17:59:14 ******/
+ALTER TABLE [bak].[BakCfg] ADD  CONSTRAINT [DF_BakCfg_TrnCycle]  DEFAULT ((30)) FOR [TrnCycle]
+GO
+/****** Object:  Default [DF_BakCfg_NeedTruncate]    Script Date: 10/19/2010 17:59:14 ******/
+ALTER TABLE [bak].[BakCfg] ADD  CONSTRAINT [DF_BakCfg_NeedTruncate]  DEFAULT ((0)) FOR [NeedTruncate]
+GO
+/****** Object:  Default [DF_BakCfg_ReadyAction]    Script Date: 10/19/2010 17:59:14 ******/
+ALTER TABLE [bak].[BakCfg] ADD  CONSTRAINT [DF_BakCfg_ReadyAction]  DEFAULT ((0)) FOR [ReadyAction]
+GO
+/****** Object:  Default [DF_BakCfg_NeedRestore]    Script Date: 10/19/2010 17:59:14 ******/
+ALTER TABLE [bak].[BakCfg] ADD  CONSTRAINT [DF_BakCfg_NeedRestore]  DEFAULT ((0)) FOR [NeedRestore]
+GO
+/****** Object:  Default [DF_BakCfg_RestoreFolder]    Script Date: 10/19/2010 17:59:14 ******/
+ALTER TABLE [bak].[BakCfg] ADD  CONSTRAINT [DF_BakCfg_RestoreFolder]  DEFAULT (N'D:\DB_His') FOR [RestoreFolder]
+GO
+/****** Object:  Default [DF_BakCfg_State]    Script Date: 10/19/2010 17:59:14 ******/
+ALTER TABLE [bak].[BakCfg] ADD  CONSTRAINT [DF_BakCfg_State]  DEFAULT ((0)) FOR [State]
+GO
+/****** Object:  Default [DF_BakCfg_DB_HisNum]    Script Date: 10/19/2010 17:59:14 ******/
+ALTER TABLE [bak].[BakCfg] ADD  CONSTRAINT [DF_BakCfg_DB_HisNum]  DEFAULT ((15)) FOR [DB_HisNum]
+GO
+/****** Object:  Default [DF_BakCfg_Num_Full]    Script Date: 10/19/2010 17:59:14 ******/
+ALTER TABLE [bak].[BakCfg] ADD  CONSTRAINT [DF_BakCfg_Num_Full]  DEFAULT ((3)) FOR [Num_Full]
+GO
+/****** Object:  Default [DF_ArpCfg_Enabled]    Script Date: 10/19/2010 17:59:14 ******/
+ALTER TABLE [dbo].[ArpCfg] ADD  CONSTRAINT [DF_ArpCfg_Enabled]  DEFAULT ((1)) FOR [Enabled]
+GO
+GRANT SELECT ON [dbo].[RSrvConfig] TO [LinkIn] AS [dbo]
 GO
 GRANT DELETE ON [dbo].[DisplayToID] TO [Performance_Log_User] AS [dbo]
 GO
@@ -6720,8 +6962,21 @@ GRANT SELECT ON [dbo].[DisplayToID] TO [Performance_Log_User] AS [dbo]
 GO
 GRANT UPDATE ON [dbo].[DisplayToID] TO [Performance_Log_User] AS [dbo]
 GO
-GRANT SELECT ON [dbo].[RSrvConfig] TO [LinkIn] AS [dbo]
+GRANT DELETE ON [dbo].[CounterDetails] TO [Performance_Log_User] AS [dbo]
+GO
+GRANT INSERT ON [dbo].[CounterDetails] TO [Performance_Log_User] AS [dbo]
+GO
+GRANT SELECT ON [dbo].[CounterDetails] TO [Performance_Log_User] AS [dbo]
+GO
+GRANT UPDATE ON [dbo].[CounterDetails] TO [Performance_Log_User] AS [dbo]
+GO
+GRANT DELETE ON [dbo].[CounterData] TO [Performance_Log_User] AS [dbo]
+GO
+GRANT INSERT ON [dbo].[CounterData] TO [Performance_Log_User] AS [dbo]
+GO
+GRANT SELECT ON [dbo].[CounterData] TO [Performance_Log_User] AS [dbo]
+GO
+GRANT UPDATE ON [dbo].[CounterData] TO [Performance_Log_User] AS [dbo]
 GO
 GRANT EXECUTE ON [dbo].[Prws_Alarm] TO [Web_Bg] AS [dbo]
 GO
- 
