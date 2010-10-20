@@ -66,7 +66,7 @@ BEGIN
 	DECLARE @sLDir nvarchar(4000);
 	SELECT TOP 1 @sLDir = s FROM #t1 WHERE RIGHT(s,Len(@FileName)) = @FileName;
 	--SELECT @sLDir;
-	IF(@sLDir IS NOT NULL) SELECT @LSize = LTRIM(RTRIM(Substring(@sLDir,18,Len(@sLDir)-18-Len(@FileName))));
+	IF(@sLDir IS NOT NULL) SELECT @LSize = Replace(LTRIM(RTRIM(Substring(@sLDir,18,Len(@sLDir)-18-Len(@FileName)))),',','');
 	IF(@LSize>0)
 	BEGIN
 		UPDATE dbo.FTP_SendQueue SET [_Time] = getdate(),LSize = @LSize WHERE ID = @ID;
@@ -112,7 +112,7 @@ BEGIN
 	DECLARE @sRDir nvarchar(4000);
 	SELECT TOP 1 @sRDir = s FROM #t WHERE Left(RIGHT(s,Len(@FileName)+1),Len(@FileName)) = @FileName;
 	--SELECT @sRDir;
-	IF(@sRDir IS NOT NULL) SELECT @RSize = LTRIM(RTRIM(Substring(@sRDir,30,12)));
+	IF(@sRDir IS NOT NULL) SELECT @RSize = Replace(LTRIM(RTRIM(Substring(@sRDir,30,12))),',','');
 	IF(@RSize>0)
 	BEGIN
 		UPDATE dbo.FTP_SendQueue SET [_Time] = getdate(),RSize = @RSize WHERE ID = @ID;
