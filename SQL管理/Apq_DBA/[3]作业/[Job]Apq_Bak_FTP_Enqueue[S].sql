@@ -1,7 +1,7 @@
-﻿USE [msdb]
+﻿ USE [msdb]
 GO
 DECLARE @jobId BINARY(16)
-EXEC  msdb.dbo.sp_add_job @job_name=N'Apq_FTP_Send', 
+EXEC  msdb.dbo.sp_add_job @job_name=N'Apq_Bak_FTP_Enqueue', 
 		@enabled=1, 
 		@notify_level_eventlog=0, 
 		@notify_level_email=2, 
@@ -12,11 +12,11 @@ EXEC  msdb.dbo.sp_add_job @job_name=N'Apq_FTP_Send',
 		@owner_login_name=N'NT AUTHORITY\SYSTEM', @job_id = @jobId OUTPUT
 select @jobId
 GO
-EXEC msdb.dbo.sp_add_jobserver @job_name=N'Apq_FTP_Send', @server_name = N'(local)'
+EXEC msdb.dbo.sp_add_jobserver @job_name=N'Apq_Bak_FTP_Enqueue', @server_name = N'(local)'
 GO
 USE [msdb]
 GO
-EXEC msdb.dbo.sp_add_jobstep @job_name=N'Apq_FTP_Send', @step_name=N'上传文件', 
+EXEC msdb.dbo.sp_add_jobstep @job_name=N'Apq_Bak_FTP_Enqueue', @step_name=N'上传备份', 
 		@step_id=1, 
 		@cmdexec_success_code=0, 
 		@on_success_action=1, 
@@ -25,14 +25,14 @@ EXEC msdb.dbo.sp_add_jobstep @job_name=N'Apq_FTP_Send', @step_name=N'上传文�
 		@retry_interval=0, 
 		@os_run_priority=0, @subsystem=N'TSQL', 
 		@command=N'
-EXEC dbo.Job_FTP_Send 100;
+EXEC bak.Job_Apq_Bak_FTP_Enqueue;
 ', 
 		@database_name=N'Apq_DBA', 
 		@flags=0
 GO
 USE [msdb]
 GO
-EXEC msdb.dbo.sp_update_job @job_name=N'Apq_FTP_Send', 
+EXEC msdb.dbo.sp_update_job @job_name=N'Apq_Bak_FTP_Enqueue', 
 		@enabled=1, 
 		@start_step_id=1, 
 		@notify_level_eventlog=0, 
@@ -50,7 +50,7 @@ GO
 USE [msdb]
 GO
 DECLARE @schedule_id int
-EXEC msdb.dbo.sp_add_jobschedule @job_name=N'Apq_FTP_Send', @name=N'计划1', 
+EXEC msdb.dbo.sp_add_jobschedule @job_name=N'Apq_Bak_FTP_Enqueue', @name=N'计划1', 
 		@enabled=1, 
 		@freq_type=4, 
 		@freq_interval=1, 
@@ -64,4 +64,3 @@ EXEC msdb.dbo.sp_add_jobschedule @job_name=N'Apq_FTP_Send', @name=N'计划1',
 		@active_end_time=235959, @schedule_id = @schedule_id OUTPUT
 select @schedule_id
 GO
- 
