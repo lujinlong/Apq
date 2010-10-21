@@ -60,7 +60,7 @@ EXEC msdb.dbo.sp_add_jobschedule @job_name=N'Apq_Bak_FTP_Enqueue', @name=N'è®¡åˆ
 		@freq_recurrence_factor=1, 
 		@active_start_date=20100512, 
 		@active_end_date=99991231, 
-		@active_start_time=100, 
+		@active_start_time=30, 
 		@active_end_time=235959, @schedule_id = @schedule_id OUTPUT
 select @schedule_id
 GO
