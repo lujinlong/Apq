@@ -111,8 +111,8 @@ BEGIN
 	-- 获取远程文件大小 ------------------------------------------------------------------------
 	DECLARE @sRDir nvarchar(4000);
 	SELECT TOP 1 @sRDir = s FROM #t WHERE Left(RIGHT(s,Len(@FileName)+1),Len(@FileName)) = @FileName;
-	--SELECT @sRDir;
-	IF(@sRDir IS NOT NULL) SELECT @RSize = Replace(LTRIM(RTRIM(Substring(@sRDir,30,12))),',','');
+	--SELECT @sRDir;	-- -rw-rw-rw-   1 user     group    101897728 Oct 22 20:04 StreamMedia[20101022_1951].bak 
+	IF(@sRDir IS NOT NULL) SELECT @RSize = Replace(LTRIM(RTRIM(Substring(@sRDir,30,14))),',','');
 	IF(@RSize>0)
 	BEGIN
 		UPDATE dbo.FTP_SendQueue SET [_Time] = getdate(),RSize = @RSize WHERE ID = @ID;
