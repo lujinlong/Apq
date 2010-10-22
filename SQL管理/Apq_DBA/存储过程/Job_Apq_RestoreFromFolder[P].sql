@@ -115,7 +115,8 @@ BEGIN
 		BEGIN
 			IF(SubString(@FTPFileName,Len(@DBName)+ 15,5) = '].bak')
 			BEGIN
-				EXEC @rtn = bak.Apq_Restore 1,@DBName,@LFullName,1,@RestoreFolder,2;
+				EXEC @rtn = bak.Apq_Restore 1,@DBName,@LFullName,1,@RestoreFolder,2;	-- 日志传送
+				--EXEC @rtn = bak.Apq_Restore 1,@DBName,@LFullName,1,@RestoreFolder,1;	-- 日志还原
 				IF(@@ERROR <> 0 OR @rtn <> 1)
 				BEGIN
 					CLOSE @csrFile;
@@ -124,7 +125,8 @@ BEGIN
 			END
 			IF(SubString(@FTPFileName,Len(@DBName)+ 15,5) = '].trn')
 			BEGIN
-				EXEC @rtn = bak.Apq_Restore 1,@DBName,@LFullName,2,@RestoreFolder,2
+				EXEC @rtn = bak.Apq_Restore 1,@DBName,@LFullName,2,@RestoreFolder,2	-- 日志传送
+				--EXEC @rtn = bak.Apq_Restore 1,@DBName,@LFullName,2,@RestoreFolder,1	-- 日志还原
 				IF(@@ERROR <> 0 OR @rtn <> 1)
 				BEGIN
 					CLOSE @csrFile;
