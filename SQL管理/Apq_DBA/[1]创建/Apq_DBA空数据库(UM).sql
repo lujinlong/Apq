@@ -8,6 +8,13 @@ CREATE DATABASE [Apq_DBA] ON  PRIMARY
 ( NAME = N'Apq_DBA_log', FILENAME = N'D:\DB\Apq_DBA\Apq_DBA_log.ldf' , SIZE = 1024KB , MAXSIZE = 2048GB , FILEGROWTH = 10%)
 GO
 
+-- 启用行版本控制 ---------------------------------------------------------------------------------- 
+USE [Apq_DBA]
+GO
+ALTER DATABASE Apq_DBA SET READ_COMMITTED_SNAPSHOT ON WITH ROLLBACK IMMEDIATE -- 需要单连接,因此在迁移/维护时才能做
+GO
+-- =================================================================================================
+
 ALTER DATABASE [Apq_DBA] SET COMPATIBILITY_LEVEL = 100
 GO
 

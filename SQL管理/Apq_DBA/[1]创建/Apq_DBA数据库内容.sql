@@ -1,6 +1,5 @@
 ﻿USE [Apq_DBA]
 GO
-ALTER DATABASE Apq_DBA SET READ_COMMITTED_SNAPSHOT ON WITH ROLLBACK IMMEDIATE -- 需要单连接,因此在迁移/维护时才能做
 /* 重新生成脚本以后,只更新此注释以下全部内容即可.
 
 整理脚本:

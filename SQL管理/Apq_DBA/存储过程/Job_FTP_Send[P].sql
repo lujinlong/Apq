@@ -37,6 +37,7 @@ SET @csr = CURSOR STATIC FOR
 SELECT TOP(@TransRowCount) ID,Folder,FileName,FTPSrv,U,P,FTPFolder,FTPFolderTmp,LSize,RSize
   FROM dbo.FTP_SendQueue
  WHERE Enabled = 1 AND IsSuccess = 0
+ ORDER BY FileName
 
 -- 游标内临时变量
 CREATE TABLE #t(s nvarchar(4000));
@@ -111,8 +112,17 @@ BEGIN
 	-- 获取远程文件大小 ------------------------------------------------------------------------
 	DECLARE @sRDir nvarchar(4000);
 	SELECT TOP 1 @sRDir = s FROM #t WHERE Left(RIGHT(s,Len(@FileName)+1),Len(@FileName)) = @FileName;
-	--SELECT @sRDir;	-- -rw-rw-rw-   1 user     group    101897728 Oct 22 20:04 StreamMedia[20101022_1951].bak 
-	IF(@sRDir IS NOT NULL) SELECT @RSize = Replace(LTRIM(RTRIM(Substring(@sRDir,30,14))),',','');
+	--SELECT @sRDir;
+	/*
+-rw-rw-rw-   1 user     group      118272 Oct 25 14:52 BaseBusinessDb[20101022_2150].trn 
+-rw-rw-rw-   1 user     group    42460672 Oct 25 14:18 PayCenter[20101022_2150].trn 
+-rw-rw-rw-   1 user     group    101897728 Oct 22 20:04 StreamMedia[20101022_1951].bak 
+规律:从34列开始为文件大小,最少占8字符,不足8位数字前补0,因此,从42列开始查找下一个空格,以此作为结束点.
+	*/
+	DECLARE @sidx int;
+	SELECT @sidx = charindex(' ',@sRDir,42);
+	SELECT @RSize = Replace(LTRIM(RTRIM(Substring(@sRDir,34,@sidx-34))),',','');
+	--SELECT @RSize;
 	IF(@RSize>0)
 	BEGIN
 		UPDATE dbo.FTP_SendQueue SET [_Time] = getdate(),RSize = @RSize WHERE ID = @ID;
