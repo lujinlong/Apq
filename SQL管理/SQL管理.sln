@@ -1,0 +1,18 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{4F174C21-8C12-11D0-8340-0000F80270F8}") = "ChinamnetGameFeeLog", "ChinamnetGameFeeLog\ChinamnetGameFeeLog.dbp", "{8C9B9697-A399-4DD6-AEA2-DD66B635A5D0}"
+EndProject
+Project("{4F174C21-8C12-11D0-8340-0000F80270F8}") = "Apq_DBA", "Apq_DBA\Apq_DBA.dbp", "{2EF7C8C7-0A3A-4549-8FD1-95DC446846D6}"
+EndProject
+Project("{4F174C21-8C12-11D0-8340-0000F80270F8}") = "SQL", "SQL\SQL.dbp", "{6713BFB8-BA8B-44BC-AEDE-8A48BD1557F9}"
+EndProject
+Project("{4F174C21-8C12-11D0-8340-0000F80270F8}") = "DW", "DW\DW.dbp", "{E456B458-B774-4B1D-A800-9FE1E698C250}"
+EndProject
+Project("{4F174C21-8C12-11D0-8340-0000F80270F8}") = "LogAnalysis", "LogAnalysis\LogAnalysis.dbp", "{60FAB8EA-CC79-478D-B204-C965F3BA7DCD}"
+EndProject
+Global
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
