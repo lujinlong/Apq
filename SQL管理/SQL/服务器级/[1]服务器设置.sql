@@ -46,13 +46,13 @@ EXEC xp_regwrite @rootkey='HKEY_LOCAL_MACHINE',
 	@key='Software\Microsoft\MSSQLServer\MSSQLServer\SuperSocketNetLib\Tcp\IPALL', 
 	@value_name='TcpPort', 
 	@type='REG_SZ',
-	@value=3134
+	@value='3134'
 --2008R2
 EXEC xp_regwrite @rootkey='HKEY_LOCAL_MACHINE', 
 	@key='SOFTWARE\Microsoft\Microsoft SQL Server\MSSQL10_50.MSSQLSERVER\MSSQLServer\SuperSocketNetLib\Tcp\IPAll', 
 	@value_name='TcpPort', 
 	@type='REG_SZ',
-	@value=3134
+	@value='3134'
 GO
 
 --修改TempDB库大小和增长方式
