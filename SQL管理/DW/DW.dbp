@@ -1,0 +1,19 @@
+# Microsoft Developer Studio 项目文件 -- 数据库项目
+Begin DataProject = "DW"
+   MSDTVersion = "80"
+   DefDBRef = "e0b170ccb9764b1.znlyDW.dbo"
+   Begin Folder = "|[1]创建|005b0031005d521b5efa"
+   End
+   Begin Folder = "|[2]更新|005b0032005d66f465b0"
+   End
+   Begin Folder = "|[3]初始数据|005b0033005d521d59cb6570636e"
+      Script = "|生成日期维数据表.sql|751f621065e5671f7ef46570636e8868002e00730071006c"
+   End
+   Begin DBRefFolder = "Database References"
+      Begin DBRefNode = "e0b170ccb9764b1.znlyDW.dbo"
+         ConnectStr = "Data Source=.;Initial Catalog=znlyDW;Persist Security Info=True;User ID=apq"
+         Provider = "{91510608-8809-4020-8897-FBA057E22D54}"
+         Colorizer = 6
+      End
+   End
+End

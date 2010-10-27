@@ -1,0 +1,72 @@
+# Microsoft Developer Studio 项目文件 -- 数据库项目
+Begin DataProject = "SQL"
+   MSDTVersion = "80"
+   DefDBRef = "e0b170ccb9764b1.Apq_DBA.dbo1"
+   Begin Folder = "BCP"
+      Script = "|BCP数据格式.sql|0042004300506570636e683c5f0f002e00730071006c"
+      Script = "|表设置.sql|88688bbe7f6e002e00730071006c"
+   End
+   Begin Folder = "cmd"
+      Script = "|Dos文件操作.sql|0044006f007365874ef664cd4f5c002e00730071006c"
+      Script = "|WinRAR解压.sql|00570069006e00520041005289e3538b002e00730071006c"
+      Script = "|远程服务.sql|8fdc7a0b670d52a1002e00730071006c"
+   End
+   Begin DBRefFolder = "Database References"
+      Begin DBRefNode = "e0b170ccb9764b1.Apq_DBA.dbo1"
+         ConnectStr = "Data Source=.;Initial Catalog=Apq_DBA;Persist Security Info=True;User ID=apq"
+         Provider = "{91510608-8809-4020-8897-FBA057E22D54}"
+         Colorizer = 6
+      End
+   End
+   Begin Folder = "|查询|67e58be2"
+      Script = "Script1.sql"
+   End
+   Begin Folder = "|创建|521b5efa"
+   End
+   Begin Folder = "|存储过程|5b5850a88fc77a0b"
+   End
+   Begin Folder = "|登录|767b5f55"
+      Script = "|[2]创建固定SID登录.sql|005b0032005d521b5efa56fa5b9a005300490044767b5f55002e00730071006c"
+      Script = "AlterLogin.sql"
+   End
+   Begin Folder = "|方案|65b96848"
+   End
+   Begin Folder = "|分区|5206533a"
+      Script = "|[分区][1][分区函数_按月]PFN_Month.sql|005b5206533a005d005b0031005d005b5206533a51fd6570005f63096708005d00500046004e005f004d006f006e00740068002e00730071006c"
+      Script = "|[分区][2][文件组_按月]Month[S].sql|005b5206533a005d005b0032005d005b65874ef67ec4005f63096708005d004d006f006e00740068005b0053005d002e00730071006c"
+      Script = "|[分区][3][分区方案_按月][4]PS_Month.sql|005b5206533a005d005b0033005d005b5206533a65b96848005f63096708005d005b0034005d00500053005f004d006f006e00740068002e00730071006c"
+      Script = "|[分区][4][文件_按月]Month[S].sql|005b5206533a005d005b0034005d005b65874ef6005f63096708005d004d006f006e00740068005b0053005d002e00730071006c"
+      Script = "|[分区][分区切换_按月]Apq_SwithPatition[P].sql|005b5206533a005d005b5206533a52076362005f63096708005d004100700071005f00530077006900740068005000610074006900740069006f006e005b0050005d002e00730071006c"
+      Script = "|[分区_按月]计算分隔值.sql|005b5206533a005f63096708005d8ba17b9752069694503c002e00730071006c"
+   End
+   Begin Folder = "|服务器级|670d52a156687ea7"
+      Script = "|[1]服务器设置.sql|005b0031005d670d52a156688bbe7f6e002e00730071006c"
+      Script = "|获取IP设置.sql|83b753d6004900508bbe7f6e002e00730071006c"
+      Script = "|默认跟踪.sql|9ed88ba48ddf8e2a002e00730071006c"
+      Script = "|清空缓存.sql|6e057a7a7f135b58002e00730071006c"
+      Script = "|去除微软日志传送.sql|53bb96645fae8f6f65e55fd74f209001002e00730071006c"
+   End
+   Begin Folder = "|更新|66f465b0"
+   End
+   Begin Folder = "|函数|51fd6570"
+   End
+   Begin Folder = "|计数器|8ba165705668"
+      Node = "Local_SQL.reg"
+      Script = "|计数器日志[用户,表,权限].sql|8ba16570566865e55fd7005b75286237002c8868002c67439650005d002e00730071006c"
+   End
+   Begin Folder = "|精彩语句|7cbe5f698bed53e5"
+      Script = "|年龄.sql|5e749f84002e00730071006c"
+      Script = "|树型表递归(公用表表达式).sql|6811578b886890125f520028516c7528886888688fbe5f0f0029002e00730071006c"
+   End
+   Begin Folder = "|数据库级|6570636e5e937ea7"
+      Script = "|数据库快照.sql|6570636e5e935feb7167002e00730071006c"
+      Script = "|数据库设置.sql|6570636e5e938bbe7f6e002e00730071006c"
+   End
+   Begin Folder = "|用户|75286237"
+      Script = "|用户映射.sql|7528623766205c04002e00730071006c"
+   End
+   Begin Folder = "|优化|4f185316"
+      Script = "|优化索引.sql|4f1853167d225f15002e00730071006c"
+      Script = "|优化语句.sql|4f1853168bed53e5002e00730071006c"
+   End
+End
