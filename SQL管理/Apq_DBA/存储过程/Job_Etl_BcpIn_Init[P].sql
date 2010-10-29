@@ -2,7 +2,7 @@
 	EXEC sp_executesql N'CREATE PROCEDURE etl.Job_Etl_BcpIn_Init AS BEGIN RETURN END';
 GO
 ALTER PROC etl.Job_Etl_BcpIn_Init
-	@CfgRowCount	int = 100	-- 从配置中最多读取的行数
+	@CfgRowCount	int = 10000	-- 从配置中最多读取的行数
 AS
 /* =============================================
 -- 作者: 黄宗银
@@ -46,25 +46,28 @@ DECLARE @ID bigint,
 	@Folder nvarchar(512),	-- 本地文件目录(不含时期)
 	@PeriodType int,		-- 时期类型{1:年,2:半年,3:季度,4:月,5:周,6:日,7:时,8:分}
 	@FileName nvarchar(256),-- 文件名(前缀)(格式:FileName_SrvID.txt)
-	@BcpInFullTableName nvarchar(512),-- BcpIn到的完整表名(数据库名.架构名.表名)
-	@HasSTable tinyint,
+	@DBName nvarchar(256),
+	@SchemaName nvarchar(256),
+	@TName nvarchar(256),
+	@r nvarchar(10),
+	@t nvarchar(10),
 	@LoadFullTableName nvarchar(512)-- 加载到的完整表名(数据库名.架构名.表名)
 	
 	,@FullFolder nvarchar(512)-- 目录(含时期)
+	--,@BcpInFullTableName nvarchar(512)-- BcpIn到的完整表名(数据库名.架构名.表名)
 	;
 
 DECLARE @csr CURSOR
 SET @csr = CURSOR STATIC FOR
-SELECT TOP(@CfgRowCount) ID, EtlName, Folder, PeriodType, FileName, BcpInFullTableName, HasSTable, LoadFullTableName
+SELECT TOP(@CfgRowCount) ID, EtlName, Folder, PeriodType, FileName, DBName, SchemaName, TName, r, t, LoadFullTableName
   FROM etl.EtlCfg
  WHERE Enabled = 1
 
 DECLARE @csrFile CURSOR;
-DECLARE @FTPFileName nvarchar(512);
 CREATE TABLE #t(s nvarchar(4000));
 
 OPEN @csr;
-FETCH NEXT FROM @csr INTO @ID,@EtlName,@Folder,@PeriodType,@FileName,@BcpInFullTableName,@HasSTable,@LoadFullTableName;
+FETCH NEXT FROM @csr INTO @ID,@EtlName,@Folder,@PeriodType,@FileName,@DBName,@SchemaName,@TName,@r,@t,@LoadFullTableName;
 WHILE(@@FETCH_STATUS=0)
 BEGIN
 	IF(RIGHT(@Folder,1)<>'\') SELECT @Folder = @Folder+'\';
@@ -84,14 +87,14 @@ BEGIN
 	SELECT @cmd = 'dir /a:-d/b/o:n "' + @FullFolder + @FileName + '*.txt"';
 	INSERT #t(s) EXEC master..xp_cmdshell @cmd;
 	
-	--INSERT etl.BcpInQueue ( EtlName, Folder, FileName, FullTableName, HasSTable )
-	SELECT @EtlName,@FullFolder,s,@BcpInFullTableName,@HasSTable
+	--INSERT etl.BcpInQueue ( EtlName, Folder, FileName, DBName, SchemaName, TName, r, t )
+	SELECT @EtlName,@FullFolder,s,@DBName,@SchemaName,@TName,@r,@t
 	  FROM #t
 	 WHERE Left(s,Len(@FileName)) = @FileName
 		AND NOT EXISTS(SELECT TOP 1 * FROM etl.BcpInQueue t WHERE EtlName = @EtlName AND Folder = @FullFolder AND Left(s,Len(FileName)) = FileName)
 	-- =============================================================================================
 
-	FETCH NEXT FROM @csr INTO @ID,@EtlName,@Folder,@PeriodType,@FileName,@BcpInFullTableName,@HasSTable,@LoadFullTableName;
+	FETCH NEXT FROM @csr INTO @ID,@EtlName,@Folder,@PeriodType,@FileName,@DBName,@SchemaName,@TName,@r,@t,@LoadFullTableName;
 END
 CLOSE @csr;
 

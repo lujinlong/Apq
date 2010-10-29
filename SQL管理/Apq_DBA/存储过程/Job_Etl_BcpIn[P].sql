@@ -19,7 +19,7 @@ SET NOCOUNT ON;
 SELECT @TransRowCount = ISNULL(@TransRowCount,10000);
 
 DECLARE @rtn int, @SPBeginTime datetime
-	,@cmd nvarchar(4000), @sql nvarchar(4000)
+	,@cmd nvarchar(4000), @sql nvarchar(4000), @sqlDB nvarchar(4000)
 	;
 	
 SELECT @SPBeginTime = getdate();
@@ -28,31 +28,53 @@ DECLARE @ID bigint,
 	@EtlName nvarchar(256),	-- 配置名
 	@Folder nvarchar(512),	-- 本地文件目录(含时期)
 	@FileName nvarchar(256),-- 文件名(前缀)(格式:FileName_SrvID.txt)
-	@FullTableName nvarchar(512),-- 完整表名(数据库名.架构名.表名)
-	@HasSTable tinyint
+	@DBName nvarchar(256),
+	@SchemaName nvarchar(256),
+	@TName nvarchar(256),
+	@r nvarchar(10),
+	@t nvarchar(10),
+	@DBID int
+	
+	,@FullTableName nvarchar(512)-- 完整表名(数据库名.架构名.表名)
 	;
 
 DECLARE @csr CURSOR
 SET @csr = CURSOR FOR
-SELECT TOP(@TransRowCount) ID, EtlName, Folder, FileName, FullTableName, HasSTable
+SELECT TOP(@TransRowCount) ID, EtlName, Folder, FileName, DBName, SchemaName, TName, t, r
   FROM etl.BcpInQueue
  WHERE Enabled = 1 AND IsFinished = 0;
 
-CREATE TABLE #t(s nvarchar(4000));
+DECLARE @sidx int;
 
 OPEN @csr;
-FETCH NEXT FROM @csr INTO @ID,@EtlName,@Folder,@FileName,@FullTableName,@HasSTable;
+FETCH NEXT FROM @csr INTO @ID,@EtlName,@Folder,@FileName,@DBName,@SchemaName,@TName, @t, @r;
 WHILE(@@FETCH_STATUS=0)
 BEGIN
-	SELECT @cmd = 'bcp "' + @FullTableName + '" in "' + @Folder + @FileName + '" -c -t\t -r\n -T';
+	-- 解析出DBID
+	SELECT @sidx = Charindex('[',@FileName);
+	IF( @sidx > 0)
+	BEGIN
+		SELECT @DBID = substring(@FileName,@sidx+1,Charindex(']',@FileName,@sidx)-@sidx-1);
+		UPDATE etl.BcpInQueue SET DBID = @DBID WHERE ID = @ID;
+	END
+
+	SELECT @FullTableName = '[' + @DBName + '].[' + @SchemaName + '].[' + @TName + ']';
+
+	SELECT @cmd = 'bcp "' + @FullTableName + '" in "' + @Folder + @FileName + '" -c -t' + @t + ' -r' + @r + ' -T';
+	--SELECT @cmd;
+	EXEC @rtn = master..xp_cmdshell @cmd;
+	IF(@@ERROR <> 0 OR @rtn <> 0)
+	BEGIN
+		GOTO NEXT_File;
+	END
 	
 	Success:
-	UPDATE etl.BcpInQueue SET IsFinished = 1 WHERE ID = @ID;
+	UPDATE etl.BcpInQueue SET [_Time] = getdate(), IsFinished = 1 WHERE ID = @ID;
 	SELECT @cmd = 'del "' + @Folder + @FileName + '" /f /q';
 	EXEC xp_cmdshell @cmd;
 	
 	NEXT_File:
-	FETCH NEXT FROM @csr INTO @ID,@EtlName,@Folder,@FileName,@FullTableName,@HasSTable;
+	FETCH NEXT FROM @csr INTO @ID,@EtlName,@Folder,@FileName,@DBName,@SchemaName,@TName, @t, @r;
 END
 CLOSE @csr;
 
