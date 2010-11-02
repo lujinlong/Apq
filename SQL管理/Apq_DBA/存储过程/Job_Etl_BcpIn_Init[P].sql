@@ -3,6 +3,7 @@
 GO
 ALTER PROC etl.Job_Etl_BcpIn_Init
 	@CfgRowCount	int = 10000	-- 从配置中最多读取的行数
+	,@BcpPeriod		datetime = NULL
 AS
 /* =============================================
 -- 作者: 黄宗银
@@ -16,7 +17,8 @@ SELECT @rtn;
 */
 SET NOCOUNT ON;
 
-SELECT @CfgRowCount = ISNULL(@CfgRowCount,100);
+SELECT @CfgRowCount = ISNULL(@CfgRowCount,10000);
+SELECT @BcpPeriod = ISNULL(@BcpPeriod,getdate());
 
 DECLARE @rtn int, @SPBeginTime datetime
 	,@yyyy int, @mm int, @dd int, @hh int, @mi int
@@ -27,12 +29,12 @@ DECLARE @rtn int, @SPBeginTime datetime
 	;
 
 SELECT @SPBeginTime = getdate();
-SELECT @yyyy = datepart(yyyy,@SPBeginTime)
-	,@mm = datepart(mm,@SPBeginTime)
-	,@dd = datepart(dd,@SPBeginTime)
-	,@hh = datepart(hh,@SPBeginTime)
-	,@mi = datepart(n,@SPBeginTime)
-	,@ww = datepart(ww,@SPBeginTime)
+SELECT @yyyy = datepart(yyyy,@BcpPeriod)
+	,@mm = datepart(mm,@BcpPeriod)
+	,@dd = datepart(dd,@BcpPeriod)
+	,@hh = datepart(hh,@BcpPeriod)
+	,@mi = datepart(n,@BcpPeriod)
+	,@ww = datepart(ww,@BcpPeriod)
 	;
 SELECT @yyyyStr = Convert(nvarchar(50),@yyyy)
 	,@mmStr = CASE WHEN @mm < 10 THEN '0' ELSE '' END + Convert(nvarchar(50),@mm)
@@ -87,8 +89,8 @@ BEGIN
 	SELECT @cmd = 'dir /a:-d/b/o:n "' + @FullFolder + @FileName + '*.txt"';
 	INSERT #t(s) EXEC master..xp_cmdshell @cmd;
 	
-	--INSERT etl.BcpInQueue ( EtlName, Folder, FileName, DBName, SchemaName, TName, r, t )
-	SELECT @EtlName,@FullFolder,s,@DBName,@SchemaName,@TName,@r,@t
+	INSERT etl.BcpInQueue ( EtlName, Folder, FileName, DBName, SchemaName, TName, t, r )
+	SELECT @EtlName,@FullFolder,s,@DBName,@SchemaName,@TName,@t,@r
 	  FROM #t
 	 WHERE Left(s,Len(@FileName)) = @FileName
 		AND NOT EXISTS(SELECT TOP 1 * FROM etl.BcpInQueue t WHERE EtlName = @EtlName AND Folder = @FullFolder AND Left(s,Len(FileName)) = FileName)
