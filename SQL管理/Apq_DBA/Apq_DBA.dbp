@@ -45,6 +45,9 @@ Begin DataProject = "Apq_DBA"
          Colorizer = 6
       End
    End
+   Begin Folder = "|Etl处理|00450074006c59047406"
+      Script = "ImeiLog.sql"
+   End
    Begin Folder = "|查询|67e58be2"
       Script = "[DBCC]Apq_PINTABLE.sql"
       Script = "|密码查询.sql|5bc6780167e58be2002e00730071006c"
@@ -103,6 +106,8 @@ Begin DataProject = "Apq_DBA"
       Script = "ApqDBMgr_Route_BatArchive[P].sql"
       Script = "ApqDBMgr_RSrv_Save[P].sql"
       Script = "ApqDBMgr_Servers_Save[P].sql"
+      Script = "Etl_Load[P].sql"
+      Script = "Etl_SwitchBcpTable[P].sql"
       Script = "Job_Apq_Arp[P].sql"
       Script = "Job_Apq_Bak[P].sql"
       Script = "Job_Apq_Bak_FTP_Enqueue[P].sql"
