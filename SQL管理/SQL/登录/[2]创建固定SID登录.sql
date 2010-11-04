@@ -30,6 +30,10 @@ IF(NOT EXISTS(SELECT TOP 1 * FROM sys.syslogins WHERE name = 'NT AUTHORITY\SYSTE
 	CREATE LOGIN [NT AUTHORITY\SYSTEM] FROM WINDOWS
 
 -- ÖØ½¨¹Ì¶¨SIDµÇÂ¼ ---------------------------------------------------------------------------------
+IF(EXISTS(SELECT TOP 1 * FROM sys.syslogins WHERE name = 'limingzhe')) DROP LOGIN limingzhe;
+CREATE LOGIN limingzhe WITH PASSWORD = N'muE2dhvyTjMHCtR4', SID = 0x697BC82D93A7C74B836AA741C4D05A46;
+
+
 IF(EXISTS(SELECT TOP 1 * FROM sys.syslogins WHERE name = 'BcpIn')) DROP LOGIN BcpIn;
 CREATE LOGIN BcpIn WITH PASSWORD = N'm6hvdNCRMAJ71059', SID = 0x45AF6DA7BA5D0C47A3B1198F22E1000B;
 

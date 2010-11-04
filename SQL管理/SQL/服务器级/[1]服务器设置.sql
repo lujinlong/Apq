@@ -12,6 +12,10 @@ EXEC sys.sp_configure N'Ole Automation Procedures', 1
 RECONFIGURE
 GO
 
+EXEC sys.sp_configure N'Ad Hoc Distributed Queries', 1
+RECONFIGURE
+GO
+
 EXEC sys.sp_configure N'awe enabled', N'1'
 RECONFIGURE
 GO
