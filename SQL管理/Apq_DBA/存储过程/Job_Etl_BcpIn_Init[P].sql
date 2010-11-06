@@ -29,20 +29,7 @@ DECLARE @rtn int, @SPBeginTime datetime
 	;
 
 SELECT @SPBeginTime = getdate();
-SELECT @yyyy = datepart(yyyy,@BcpPeriod)
-	,@mm = datepart(mm,@BcpPeriod)
-	,@dd = datepart(dd,@BcpPeriod)
-	,@hh = datepart(hh,@BcpPeriod)
-	,@mi = datepart(n,@BcpPeriod)
-	,@ww = datepart(ww,@BcpPeriod)
-	;
-SELECT @yyyyStr = Convert(nvarchar(50),@yyyy)
-	,@mmStr = CASE WHEN @mm < 10 THEN '0' ELSE '' END + Convert(nvarchar(50),@mm)
-	,@ddStr = CASE WHEN @dd < 10 THEN '0' ELSE '' END + Convert(nvarchar(50),@dd)
-	,@hhStr = CASE WHEN @hh < 10 THEN '0' ELSE '' END + Convert(nvarchar(50),@hh)
-	,@miStr = CASE WHEN @mi < 10 THEN '0' ELSE '' END + Convert(nvarchar(50),@mi)
-	,@wwStr = CASE WHEN @ww < 100 THEN '0' ELSE '' END + CASE WHEN @ww < 10 THEN '0' ELSE '' END + Convert(nvarchar(50),@ww)
-	;
+
 DECLARE @ID bigint,
 	@EtlName nvarchar(256),	-- 配置名
 	@Folder nvarchar(512),	-- 本地文件目录(不含时期)
@@ -52,8 +39,7 @@ DECLARE @ID bigint,
 	@SchemaName nvarchar(256),
 	@TName nvarchar(256),
 	@r nvarchar(10),
-	@t nvarchar(10),
-	@LoadFullTableName nvarchar(512)-- 加载到的完整表名(数据库名.架构名.表名)
+	@t nvarchar(10)
 	
 	,@FullFolder nvarchar(512)-- 目录(含时期)
 	--,@BcpInFullTableName nvarchar(512)-- BcpIn到的完整表名(数据库名.架构名.表名)
@@ -61,19 +47,46 @@ DECLARE @ID bigint,
 
 DECLARE @csr CURSOR
 SET @csr = CURSOR STATIC FOR
-SELECT TOP(@CfgRowCount) ID, EtlName, Folder, PeriodType, FileName, DBName, SchemaName, TName, r, t, LoadFullTableName
+SELECT TOP(@CfgRowCount) ID, EtlName, Folder, PeriodType, FileName, DBName, SchemaName, TName, r, t
   FROM etl.EtlCfg
  WHERE Enabled = 1
 
-DECLARE @csrFile CURSOR;
+DECLARE @DataPeriod datetime;
 CREATE TABLE #t(s nvarchar(4000));
 
 OPEN @csr;
-FETCH NEXT FROM @csr INTO @ID,@EtlName,@Folder,@PeriodType,@FileName,@DBName,@SchemaName,@TName,@r,@t,@LoadFullTableName;
+FETCH NEXT FROM @csr INTO @ID,@EtlName,@Folder,@PeriodType,@FileName,@DBName,@SchemaName,@TName,@r,@t;
 WHILE(@@FETCH_STATUS=0)
 BEGIN
 	IF(RIGHT(@Folder,1)<>'\') SELECT @Folder = @Folder+'\';
+	SELECT @FullFolder = @Folder;
 
+	-- 从当前时间计算应该获取的数据时间(往前推一周期) ----------------------------------------------
+	IF(@PeriodType = 1) SELECT @DataPeriod = dateadd(yyyy,-1,@BcpPeriod);
+	IF(@PeriodType = 2) SELECT @DataPeriod = dateadd(yyyy,-6,@BcpPeriod);
+	IF(@PeriodType = 3) SELECT @DataPeriod = dateadd(mm,-3,@BcpPeriod);
+	IF(@PeriodType = 4) SELECT @DataPeriod = dateadd(mm,-1,@BcpPeriod);
+	IF(@PeriodType = 5) SELECT @DataPeriod = dateadd(dd,-7,@BcpPeriod);
+	IF(@PeriodType = 6) SELECT @DataPeriod = dateadd(dd,-1,@BcpPeriod);
+	IF(@PeriodType IN (7,8)) SELECT @DataPeriod = dateadd(hh,-1,@BcpPeriod);
+	
+	SELECT @yyyy = datepart(yyyy,@DataPeriod)
+		,@mm = datepart(mm,@DataPeriod)
+		,@dd = datepart(dd,@DataPeriod)
+		,@hh = datepart(hh,@DataPeriod)
+		,@mi = datepart(n,@DataPeriod)
+		,@ww = datepart(ww,@DataPeriod)
+		;
+		
+	SELECT @yyyyStr = Convert(nvarchar(50),@yyyy)
+		,@mmStr = CASE WHEN @mm < 10 THEN '0' ELSE '' END + Convert(nvarchar(50),@mm)
+		,@ddStr = CASE WHEN @dd < 10 THEN '0' ELSE '' END + Convert(nvarchar(50),@dd)
+		,@hhStr = CASE WHEN @hh < 10 THEN '0' ELSE '' END + Convert(nvarchar(50),@hh)
+		,@miStr = CASE WHEN @mi < 10 THEN '0' ELSE '' END + Convert(nvarchar(50),@mi)
+		,@wwStr = CASE WHEN @ww < 100 THEN '0' ELSE '' END + CASE WHEN @ww < 10 THEN '0' ELSE '' END + Convert(nvarchar(50),@ww)
+		;
+	-- =============================================================================================
+	
 	-- 计算当前检查目录
 	IF(@PeriodType = 1) SELECT @FullFolder = @Folder + @yyyyStr;
 	IF(@PeriodType IN (2,3,4)) SELECT @FullFolder = @Folder + @yyyyStr + @mmStr;
@@ -96,7 +109,7 @@ BEGIN
 		AND NOT EXISTS(SELECT TOP 1 * FROM etl.BcpInQueue t WHERE EtlName = @EtlName AND Folder = @FullFolder AND Left(s,Len(FileName)) = FileName)
 	-- =============================================================================================
 
-	FETCH NEXT FROM @csr INTO @ID,@EtlName,@Folder,@PeriodType,@FileName,@DBName,@SchemaName,@TName,@r,@t,@LoadFullTableName;
+	FETCH NEXT FROM @csr INTO @ID,@EtlName,@Folder,@PeriodType,@FileName,@DBName,@SchemaName,@TName,@r,@t;
 END
 CLOSE @csr;
 

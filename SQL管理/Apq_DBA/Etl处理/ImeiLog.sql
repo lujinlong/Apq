@@ -1,11 +1,14 @@
 
-DECLARE @rtn int;
-EXEC @rtn = etl.Job_Etl_BcpIn_Init 10000,'20101101';
-SELECT @rtn;
+DECLARE @BTime datetime, @ETime datetime, @CTime datetime, @rtn int;
+SELECT @BTime = '20101001'
+SELECT @ETime = '20101106'
 
-DECLARE @rtn int;
-EXEC @rtn = etl.Job_Etl_BcpIn_Init 10000,'20101102';
-SELECT @rtn;
+SELECT @CTime = @BTime;
+WHILE(@CTime <= @ETime)
+BEGIN
+	SELECT @CTime = dateadd(hh,1,@CTime);
+	EXEC @rtn = etl.Job_Etl_BcpIn_Init 10000,@CTime;
+END
 
 DECLARE @rtn int;
 EXEC @rtn = etl.Job_Etl_BcpIn 10000;

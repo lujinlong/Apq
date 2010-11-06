@@ -11,6 +11,10 @@ Project("{4F174C21-8C12-11D0-8340-0000F80270F8}") = "DW", "DW\DW.dbp", "{E456B45
 EndProject
 Project("{4F174C21-8C12-11D0-8340-0000F80270F8}") = "LogAnalysis", "LogAnalysis\LogAnalysis.dbp", "{60FAB8EA-CC79-478D-B204-C965F3BA7DCD}"
 EndProject
+Project("{4F174C21-8C12-11D0-8340-0000F80270F8}") = "BaseBusinessDb", "BaseBusinessDb\BaseBusinessDb.dbp", "{47809DE6-31A4-4DC6-84F4-B1B2A765ECE7}"
+EndProject
+Project("{4F174C21-8C12-11D0-8340-0000F80270F8}") = "znlyDW", "znlyDW\znlyDW.dbp", "{0BE72FA7-7AE4-47DC-BC68-3C938FBB5B75}"
+EndProject
 Global
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
