@@ -1,0 +1,21 @@
+# Microsoft Developer Studio 项目文件 -- 数据库项目
+Begin DataProject = "znlyDW"
+   MSDTVersion = "80"
+   DefDBRef = "sxh-109.znlyDW.dbo"
+   Begin Folder = "Change Scripts"
+   End
+   Begin Folder = "Create Scripts"
+   End
+   Begin DBRefFolder = "Database References"
+      Begin DBRefNode = "sxh-109.znlyDW.dbo"
+         ConnectStr = "Data Source=113.105.93.86,3134;Initial Catalog=znlyDW;Persist Security Info=True;User ID=sx"
+         Provider = "{91510608-8809-4020-8897-FBA057E22D54}"
+         Colorizer = 6
+      End
+   End
+   Begin Folder = "|存储过程|5b5850a88fc77a0b"
+      Script = "Stat_PV[P].sql"
+      Script = "Wb_PV_Get[P].sql"
+      Script = "Wb_PV_LogType_Get[P].sql"
+   End
+End

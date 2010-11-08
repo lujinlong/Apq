@@ -41,6 +41,7 @@ Begin DataProject = "SQL"
    End
    Begin Folder = "|服务器级|670d52a156687ea7"
       Script = "|[1]服务器设置.sql|005b0031005d670d52a156688bbe7f6e002e00730071006c"
+      Script = "|SQL邮件.sql|00530051004c90ae4ef6002e00730071006c"
       Script = "|获取IP设置.sql|83b753d6004900508bbe7f6e002e00730071006c"
       Script = "|默认跟踪.sql|9ed88ba48ddf8e2a002e00730071006c"
       Script = "|清空缓存.sql|6e057a7a7f135b58002e00730071006c"
