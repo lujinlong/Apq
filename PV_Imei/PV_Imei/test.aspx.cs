@@ -31,7 +31,7 @@ namespace PV_Imei
 			int VisitCountMonth = 0;
 			int VisitCountNMonth = 0;
 
-			PV_Imei ws = new PV_Imei();
+			ws ws = new ws();
 			ws.PV_Imei_LogType(Imei, LogType
 				, ref FirstTime, ref FirstSource, ref FirstProvince
 				, ref LastTime, ref LastSource, ref LastProvince

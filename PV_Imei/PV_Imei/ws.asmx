@@ -1,0 +1,1 @@
+﻿<%@ WebService Language="C#" CodeBehind="ws.asmx.cs" Class="PV_Imei.Service1" %>

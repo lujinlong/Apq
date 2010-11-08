@@ -53,13 +53,13 @@
     <Reference Include="System.Web.Mobile" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="PV_Imei.asmx" />
+    <Content Include="ws.asmx" />
     <Content Include="test.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="PV_Imei.asmx.cs">
-      <DependentUpon>PV_Imei.asmx</DependentUpon>
+    <Compile Include="ws.asmx.cs">
+      <DependentUpon>ws.asmx</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
