@@ -45,6 +45,7 @@ SELECT TOP(@TransRowCount) ID, EtlName, Folder, FileName, DBName, SchemaName, TN
  WHERE Enabled = 1 AND IsFinished = 0;
 
 DECLARE @sidx int;
+CREATE TABLE #t(s nvarchar(4000));
 
 OPEN @csr;
 FETCH NEXT FROM @csr INTO @ID,@EtlName,@Folder,@FileName,@DBName,@SchemaName,@TName, @t, @r;
@@ -62,8 +63,14 @@ BEGIN
 
 	SELECT @cmd = 'bcp "' + @FullTableName + '" in "' + @Folder + @FileName + '" -c -t' + @t + ' -r' + @r + ' -T';
 	--SELECT @cmd;
+	TRUNCATE TABLE #t;
+	INSERT #t
 	EXEC @rtn = master..xp_cmdshell @cmd;
 	IF(@@ERROR <> 0 OR @rtn <> 0)
+	BEGIN
+		GOTO NEXT_File;
+	END
+	IF(EXISTS(SELECT TOP 1 * FROM #t WHERE left(s,7) = 'Error ='))
 	BEGIN
 		GOTO NEXT_File;
 	END
@@ -77,6 +84,9 @@ BEGIN
 	FETCH NEXT FROM @csr INTO @ID,@EtlName,@Folder,@FileName,@DBName,@SchemaName,@TName, @t, @r;
 END
 CLOSE @csr;
+
+TRUNCATE TABLE #t;
+DROP TABLE #t;
 
 RETURN 1;
 GO
