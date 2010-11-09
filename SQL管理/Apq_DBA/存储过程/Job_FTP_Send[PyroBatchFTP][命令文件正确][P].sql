@@ -19,16 +19,21 @@ IF(@TransRowCount IS NULL) SELECT @TransRowCount = 100;
 
 DECLARE @rtn int, @SPBeginTime datetime
 	,@cmd nvarchar(4000), @sql nvarchar(4000)
+	,@PyroBatchFTP nvarchar(4000)
 	,@ScpFolder nvarchar(4000)
 	,@ScpFileName nvarchar(128)
 	,@ScpFullName nvarchar(4000)
+	,@RLstFileName nvarchar(128)
+	,@RLstFullName nvarchar(4000)
 	,@LFullName nvarchar(4000)	 -- 临时变量:本地文件全名
 	,@FullFileToDel nvarchar(4000)--在此文件之前的文件将被删除
 	;
-SELECT @SPBeginTime=GetDate(),@ScpFolder = 'D:\Apq_DBA\Scp\'
-SELECT @ScpFileName = 'FTP_Send['+LEFT(REPLACE(REPLACE(REPLACE(CONVERT(nvarchar,@SPBeginTime,120),'-',''),':',''),' ','_'),13)+'].scp';
-SELECT @ScpFullName = @ScpFolder + @ScpFileName;
+SELECT @SPBeginTime=GetDate(),@PyroBatchFTP = dbo.Apq_Ext_Get('PyroBatchFTP',0,'PyroBatchFTP'), @ScpFolder = dbo.Apq_Ext_Get('PyroBatchFTP',0,'cmdFolder');
 IF(RIGHT(@ScpFolder,1)<>'\') SELECT @ScpFolder = @ScpFolder+'\';
+SELECT @ScpFileName = 'FTP_Send['+LEFT(REPLACE(REPLACE(REPLACE(CONVERT(nvarchar,@SPBeginTime,120),'-',''),':',''),' ','_'),13)+'].cmd';
+SELECT @RLstFileName = 'FTP_Send['+LEFT(REPLACE(REPLACE(REPLACE(CONVERT(nvarchar,@SPBeginTime,120),'-',''),':',''),' ','_'),13)+'].txt';
+SELECT @ScpFullName = @ScpFolder + @ScpFileName;
+SELECT @RLstFullName = @ScpFolder + @RLstFileName;
 SELECT @cmd = 'md ' + LEFT(@ScpFolder,LEN(@ScpFolder)-1);
 EXEC master..xp_cmdshell @cmd;
 
@@ -42,6 +47,7 @@ SELECT TOP(@TransRowCount) ID,Folder,FileName,FTPSrv,U,P,FTPFolder,FTPFolderTmp,
 -- 游标内临时变量
 CREATE TABLE #t(s nvarchar(4000));
 CREATE TABLE #t1(s nvarchar(4000));
+CREATE TABLE #t2(s nvarchar(4000));
 
 DECLARE @ID bigint,@Folder nvarchar(512),@FileName nvarchar(256),@LSize bigint,@RSize bigint,
 	@FTPSrv nvarchar(256),@U nvarchar(256),@P nvarchar(256),@FTPFolder nvarchar(512),@FTPFolderTmp nvarchar(512);
@@ -74,29 +80,26 @@ BEGIN
 	END
 
 	-- 传送文件 ------------------------------------------------------------------------------------
-	SELECT @cmd = 'echo open ' + @FTPSrv + '>"' + @ScpFullName + '"';
+	SELECT @cmd = 'echo Connect "' + @FTPSrv + '","' + @U + '","' + @P + '">"' + @ScpFullName + '"';
 	EXEC master..xp_cmdshell  @cmd;
-	SELECT @cmd = 'echo user ' + @U + '>>"' + @ScpFullName + '"';
-	EXEC master..xp_cmdshell  @cmd;
-	SELECT @cmd = 'echo ' + @P + '>>"' + @ScpFullName + '"';
+	SELECT @cmd = 'echo RemoteChDir "' + @FTPFolderTmp + '">>"' + @ScpFullName + '"';
 	EXEC master..xp_cmdshell @cmd;
-	SELECT @cmd = 'echo cd "' + @FTPFolderTmp + '">>"' + @ScpFullName + '"';
-	EXEC master..xp_cmdshell @cmd;
-	SELECT @cmd = 'echo lcd "' + LEFT(@Folder,LEN(@Folder)-1) + '">>"' + @ScpFullName + '"';
+	SELECT @cmd = 'echo LocalChDir "' + LEFT(@Folder,LEN(@Folder)-1) + '">>"' + @ScpFullName + '"';
 	EXEC master..xp_cmdshell @cmd;
 
-	SELECT @cmd = 'echo binary>>"' + @ScpFullName + '"';-- 将文件传输类型设置为二进制
+	SELECT @cmd = 'echo FtpMode "BINARY">>"' + @ScpFullName + '"';-- 将文件传输类型设置为二进制
 	EXEC master..xp_cmdshell @cmd;
-	SELECT @cmd = 'echo put "' + @FileName + '">>"' + @ScpFullName + '"';
+	SELECT @cmd = 'echo Put "' + @FileName + '">>"' + @ScpFullName + '"';
 	EXEC master..xp_cmdshell @cmd;
-	SELECT @cmd = 'echo rename "' + @FileName + '" "' + @FTPFolder + @FileName + '">>"' + @ScpFullName + '"';
+	SELECT @cmd = 'echo RemoteRename "' + @FileName + '", "' + @FTPFolder + @FileName + '">>"' + @ScpFullName + '"';
 	EXEC master..xp_cmdshell @cmd;
-	SELECT @cmd = 'echo dir "' + @FTPFolder + @FileName + '">>"' + @ScpFullName + '"';	-- 获取已上传文件大小
+	SELECT @cmd = 'echo ListDir remote "' + @FTPFolder + @FileName + '", "' + @RLstFullName + '">>"' + @ScpFullName + '"';	-- 获取已上传文件大小
 	EXEC master..xp_cmdshell @cmd;
-	SELECT @cmd = 'echo bye>>"' + @ScpFullName + '"';
+	SELECT @cmd = 'echo Disconnect>>"' + @ScpFullName + '"';
 	EXEC master..xp_cmdshell @cmd;
-	SELECT @cmd = 'ftp -i -n -s:"' + @ScpFullName + '"';
-	--SELECT @cmd;
+	
+	SELECT @cmd = @PyroBatchFTP + ' /EXEC:"' + @ScpFullName + '"';
+	SELECT @cmd;
 	TRUNCATE TABLE #t;
 	INSERT #t EXEC @rtn = master..xp_cmdshell @cmd;
 	IF(@@ERROR <> 0 OR @rtn <> 0)
@@ -109,9 +112,19 @@ BEGIN
 	BEGIN
 		GOTO NEXT_Row;
 	END
+	
 	-- 获取远程文件大小 ------------------------------------------------------------------------
+	SELECT @cmd = 'Type "' + @RLstFullName + '"';
+	--SELECT @cmd;
+	TRUNCATE TABLE #t2;
+	INSERT #t2 EXEC @rtn = master..xp_cmdshell @cmd;
+	IF(@@ERROR <> 0 OR @rtn <> 0)
+	BEGIN
+		GOTO NEXT_Row;
+	END
+	
 	DECLARE @sRDir nvarchar(4000);
-	SELECT TOP 1 @sRDir = s FROM #t WHERE Left(RIGHT(s,Len(@FileName)+1),Len(@FileName)) = @FileName;
+	SELECT TOP 1 @sRDir = s FROM #t2 WHERE Left(RIGHT(s,Len(@FileName)+1),Len(@FileName)) = @FileName;
 	--SELECT @sRDir;
 	/*
 -rw-rw-rw-   1 user     group      118272 Oct 25 14:52 BaseBusinessDb[20101022_2150].trn 
@@ -135,7 +148,7 @@ BEGIN
 	NEXT_Row:
 	-- 删除FTP命令文件
 	SELECT @cmd = 'del ""' + @ScpFullName + '"" /q';
-	EXEC master..xp_cmdshell @cmd;
+	--EXEC master..xp_cmdshell @cmd;
 
 	FETCH NEXT FROM @csr INTO @ID,@Folder,@FileName,@FTPSrv,@U,@P,@FTPFolder,@FTPFolderTmp,@LSize,@RSize;
 END

@@ -27,10 +27,10 @@ DECLARE @FTPFileName nvarchar(512);
 CREATE TABLE #t1(s nvarchar(4000));
 CREATE TABLE #t2(s nvarchar(4000));
 
-DECLARE @ID bigint,@DBName nvarchar(256),@LastFileName nvarchar(256),@FTPSrv nvarchar(256),@Folder nvarchar(512)
+DECLARE @ID bigint,@DBName nvarchar(256),@LastFileName nvarchar(256),@FTPSrv nvarchar(256),@FTPPort int,@Folder nvarchar(512)
 	,@U nvarchar(256),@P nvarchar(256),@FTPFolder nvarchar(512),@FTPFolderTmp nvarchar(512),@Num_Full int;
 OPEN @csr;
-FETCH NEXT FROM @csr INTO @ID,@DBName,@LastFileName,@FTPSrv,@Folder,@U,@P,@FTPFolder,@FTPFolderTmp,@Num_Full;
+FETCH NEXT FROM @csr INTO @ID,@DBName,@LastFileName,@FTPSrv,@FTPPort,@Folder,@U,@P,@FTPFolder,@FTPFolderTmp,@Num_Full;
 WHILE(@@FETCH_STATUS = 0)
 BEGIN
 	IF(RIGHT(@Folder,1)<>'\') SELECT @Folder = @Folder+'\';
@@ -54,8 +54,8 @@ BEGIN
 	SET @csrFile = CURSOR FOR
 	SELECT s FROM #t2;
 	
-	INSERT dbo.FTP_SendQueue ( Folder,FileName,Enabled,FTPSrv,U,P,FTPFolder,FTPFolderTmp )
-	SELECT @Folder,s,1,@FTPSrv,@U,@P,@FTPFolder,@FTPFolderTmp
+	INSERT dbo.FTP_SendQueue ( Folder,FileName,Enabled,FTPSrv,FTPPort,U,P,FTPFolder,FTPFolderTmp )
+	SELECT @Folder,s,1,@FTPSrv,@FTPPort,@U,@P,@FTPFolder,@FTPFolderTmp
 	  FROM #t2
 	
 	SELECT @FTPFileName = NULL;
@@ -65,7 +65,7 @@ BEGIN
 	-- =============================================================================================
 	
 	NEXT_DB:
-	FETCH NEXT FROM @csr INTO @ID,@DBName,@LastFileName,@FTPSrv,@Folder,@U,@P,@FTPFolder,@FTPFolderTmp,@Num_Full;
+	FETCH NEXT FROM @csr INTO @ID,@DBName,@LastFileName,@FTPSrv,@FTPPort,@Folder,@U,@P,@FTPFolder,@FTPFolderTmp,@Num_Full;
 END
 CLOSE @csr;
 
