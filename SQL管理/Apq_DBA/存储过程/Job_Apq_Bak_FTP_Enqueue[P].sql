@@ -18,7 +18,7 @@ SELECT @SPBeginTime=GetDate();
 
 DECLARE @csr CURSOR
 SET @csr = CURSOR FOR
-SELECT ID,DBName,LastFileName,FTPSrv,Folder,U,P,FTPFolder,FTPFolderTmp,Num_Full
+SELECT ID,DBName,LastFileName,FTPSrv,FTPPort,Folder,U,P,FTPFolder,FTPFolderTmp,Num_Full
   FROM bak.FTP_PutBak
  WHERE Enabled = 1;
 

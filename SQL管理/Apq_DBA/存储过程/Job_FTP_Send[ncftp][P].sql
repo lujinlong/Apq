@@ -36,7 +36,7 @@ IF(@ncFtpPut IS NULL OR Len(@ncFtpPut) < 2) SELECT @ncFtpPut = '"D:\Programs\ncf
 
 DECLARE @csr CURSOR
 SET @csr = CURSOR STATIC FOR
-SELECT TOP(@TransRowCount) ID,Folder,FileName,FTPSrv,FTPPort,U,P,FTPFolder,FTPFolderTmp,LSize,RSize
+SELECT TOP(@TransRowCount) ID,Folder,FileName,LTRIM(RTRIM(FTPSrv)),FTPPort,U,P,FTPFolder,FTPFolderTmp,LSize,RSize
   FROM dbo.FTP_SendQueue
  WHERE Enabled = 1 AND IsSuccess = 0
  ORDER BY FileName

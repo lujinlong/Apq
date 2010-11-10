@@ -2,8 +2,6 @@
 Begin DataProject = "znlyDW"
    MSDTVersion = "80"
    DefDBRef = "sxh-109.znlyDW.dbo"
-   Begin Folder = "Change Scripts"
-   End
    Begin Folder = "Create Scripts"
    End
    Begin DBRefFolder = "Database References"
@@ -17,5 +15,8 @@ Begin DataProject = "znlyDW"
       Script = "Stat_PV[P].sql"
       Script = "Wb_PV_Get[P].sql"
       Script = "Wb_PV_LogType_Get[P].sql"
+   End
+   Begin Folder = "|统计处理|7edf8ba159047406"
+      Script = "Stat_PV.sql"
    End
 End
