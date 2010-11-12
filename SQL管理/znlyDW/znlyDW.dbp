@@ -2,7 +2,10 @@
 Begin DataProject = "znlyDW"
    MSDTVersion = "80"
    DefDBRef = "sxh-109.znlyDW.dbo"
-   Begin Folder = "Create Scripts"
+   Begin Folder = "|[1]创建|005b0031005d521b5efa"
+      Script = "|[3]空库.sql|005b0033005d7a7a5e93002e00730071006c"
+      Script = "|[4]启用行版本.sql|005b0034005d542f7528884c7248672c002e00730071006c"
+      Script = "|[5]所有对象.sql|005b0035005d624067095bf98c61002e00730071006c"
    End
    Begin DBRefFolder = "Database References"
       Begin DBRefNode = "sxh-109.znlyDW.dbo"

@@ -1,14 +1,8 @@
 ﻿
 -- 1.重新统计
-DECLARE @BTime datetime, @ETime datetime, @CTimeB datetime, @CTimeE datetime, @rtn int;
+DECLARE @BTime datetime, @ETime datetime, @rtn int;
 SELECT @BTime = '20101001'
-SELECT @ETime = '20101110'
+SELECT @ETime = '20101109'
 
-SELECT @CTimeB = @BTime;
-SELECT @CTimeE = dateadd(dd,1,@CTimeB);
-WHILE(@CTimeB < @ETime)
-BEGIN
-	EXEC @rtn = dbo.Stat_PV @CTimeB,@CTimeE;
-	SELECT @CTimeB = dateadd(dd,1,@CTimeB);
-	SELECT @CTimeE = dateadd(dd,1,@CTimeB);
-END
+EXEC @rtn = dbo.Stat_PV @BTime,@ETime,1;	-- 重新统计
+--EXEC @rtn = dbo.Stat_PV @BTime,@ETime;

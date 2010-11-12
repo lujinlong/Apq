@@ -57,6 +57,7 @@ Begin DataProject = "SQL"
    End
    Begin Folder = "|精彩语句|7cbe5f698bed53e5"
       Script = "|标识列相关.sql|68078bc6521776f85173002e00730071006c"
+      Script = "|查看空间使用情况.sql|67e5770b7a7a95f44f7f752860c551b5002e00730071006c"
       Script = "|年龄.sql|5e749f84002e00730071006c"
       Script = "|树型表递归(公用表表达式).sql|6811578b886890125f520028516c7528886888688fbe5f0f0029002e00730071006c"
    End

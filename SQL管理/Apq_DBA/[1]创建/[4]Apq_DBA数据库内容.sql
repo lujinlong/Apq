@@ -8,40 +8,40 @@
 
 USE [Apq_DBA]
 GO
-/****** Object:  User [BcpIn]    Script Date: 11/09/2010 11:49:49 ******/
+/****** Object:  User [BcpIn]    Script Date: 11/12/2010 15:04:43 ******/
 CREATE USER [BcpIn] FOR LOGIN [BcpIn] WITH DEFAULT_SCHEMA=[dbo]
 GO
-/****** Object:  User [LinkIn]    Script Date: 11/09/2010 11:49:49 ******/
+/****** Object:  User [LinkIn]    Script Date: 11/12/2010 15:04:43 ******/
 CREATE USER [LinkIn] FOR LOGIN [LinkIn] WITH DEFAULT_SCHEMA=[dbo]
 GO
-/****** Object:  User [Performance_Log_User]    Script Date: 11/09/2010 11:49:49 ******/
+/****** Object:  User [Performance_Log_User]    Script Date: 11/12/2010 15:04:43 ******/
 CREATE USER [Performance_Log_User] FOR LOGIN [BUILTIN\Performance Log Users]
 GO
-/****** Object:  User [Web]    Script Date: 11/09/2010 11:49:49 ******/
+/****** Object:  User [Web]    Script Date: 11/12/2010 15:04:43 ******/
 CREATE USER [Web] FOR LOGIN [Web] WITH DEFAULT_SCHEMA=[dbo]
 GO
-/****** Object:  User [Web_Bg]    Script Date: 11/09/2010 11:49:49 ******/
+/****** Object:  User [Web_Bg]    Script Date: 11/12/2010 15:04:43 ******/
 CREATE USER [Web_Bg] FOR LOGIN [Web_Bg] WITH DEFAULT_SCHEMA=[dbo]
 GO
-/****** Object:  User [Web_WS]    Script Date: 11/09/2010 11:49:49 ******/
+/****** Object:  User [Web_WS]    Script Date: 11/12/2010 15:04:43 ******/
 CREATE USER [Web_WS] FOR LOGIN [Web_WS] WITH DEFAULT_SCHEMA=[dbo]
 GO
-/****** Object:  Schema [bak]    Script Date: 11/09/2010 11:49:49 ******/
+/****** Object:  Schema [bak]    Script Date: 11/12/2010 15:04:43 ******/
 CREATE SCHEMA [bak] AUTHORIZATION [dbo]
 GO
-/****** Object:  Schema [bcp]    Script Date: 11/09/2010 11:49:49 ******/
+/****** Object:  Schema [bcp]    Script Date: 11/12/2010 15:04:43 ******/
 CREATE SCHEMA [bcp] AUTHORIZATION [dbo]
 GO
-/****** Object:  Schema [dic]    Script Date: 11/09/2010 11:49:49 ******/
+/****** Object:  Schema [dic]    Script Date: 11/12/2010 15:04:43 ******/
 CREATE SCHEMA [dic] AUTHORIZATION [dbo]
 GO
-/****** Object:  Schema [etl]    Script Date: 11/09/2010 11:49:49 ******/
+/****** Object:  Schema [etl]    Script Date: 11/12/2010 15:04:43 ******/
 CREATE SCHEMA [etl] AUTHORIZATION [dbo]
 GO
-/****** Object:  Schema [mgr]    Script Date: 11/09/2010 11:49:49 ******/
+/****** Object:  Schema [mgr]    Script Date: 11/12/2010 15:04:43 ******/
 CREATE SCHEMA [mgr] AUTHORIZATION [dbo]
 GO
-/****** Object:  StoredProcedure [dbo].[p_who_lock]    Script Date: 11/09/2010 11:49:48 ******/
+/****** Object:  StoredProcedure [dbo].[p_who_lock]    Script Date: 11/12/2010 15:04:32 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -114,7 +114,7 @@ EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'
 ********************************************************/
 ' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'PROCEDURE',@level1name=N'p_who_lock'
 GO
-/****** Object:  StoredProcedure [dbo].[p_lockinfo]    Script Date: 11/09/2010 11:49:48 ******/
+/****** Object:  StoredProcedure [dbo].[p_lockinfo]    Script Date: 11/12/2010 15:04:32 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -219,7 +219,7 @@ EXEC dbo.p_lockinfo 0, 1
 --*/
 ' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'PROCEDURE',@level1name=N'p_lockinfo'
 GO
-/****** Object:  Table [etl].[Log_Stat]    Script Date: 11/09/2010 11:49:47 ******/
+/****** Object:  Table [etl].[Log_Stat]    Script Date: 11/12/2010 15:03:49 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -243,7 +243,7 @@ EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'统计存储�
 GO
 EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'BcpIn到的表名' , @level0type=N'SCHEMA',@level0name=N'etl', @level1type=N'TABLE',@level1name=N'Log_Stat', @level2type=N'COLUMN',@level2name=N'EndTime'
 GO
-/****** Object:  Table [dbo].[Log_SSIS]    Script Date: 11/09/2010 11:49:46 ******/
+/****** Object:  Table [dbo].[Log_SSIS]    Script Date: 11/12/2010 15:03:46 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -275,7 +275,7 @@ CREATE TABLE [dbo].[Log_SSIS](
 GO
 SET ANSI_PADDING OFF
 GO
-/****** Object:  Table [dbo].[Log_DTS_LocalPick]    Script Date: 11/09/2010 11:49:46 ******/
+/****** Object:  Table [dbo].[Log_DTS_LocalPick]    Script Date: 11/12/2010 15:03:46 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -316,7 +316,7 @@ EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'文件名' , @
 GO
 EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'扩展名' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Log_DTS_LocalPick', @level2type=N'COLUMN',@level2name=N'FileEX'
 GO
-/****** Object:  Table [dbo].[Log_Apq_Alarm]    Script Date: 11/09/2010 11:49:46 ******/
+/****** Object:  Table [dbo].[Log_Apq_Alarm]    Script Date: 11/12/2010 15:03:45 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -347,7 +347,7 @@ EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'标题' , @lev
 GO
 EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'信息内容' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Log_Apq_Alarm', @level2type=N'COLUMN',@level2name=N'Msg'
 GO
-/****** Object:  Table [etl].[LoadCfg]    Script Date: 11/09/2010 11:49:47 ******/
+/****** Object:  Table [etl].[LoadCfg]    Script Date: 11/12/2010 15:03:49 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -386,7 +386,7 @@ EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'首次加载�
 GO
 EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'上一次加载时间' , @level0type=N'SCHEMA',@level0name=N'etl', @level1type=N'TABLE',@level1name=N'LoadCfg', @level2type=N'COLUMN',@level2name=N'PreLTime'
 GO
-/****** Object:  Table [dbo].[LinkLogic]    Script Date: 11/09/2010 11:49:46 ******/
+/****** Object:  Table [dbo].[LinkLogic]    Script Date: 11/12/2010 15:03:45 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -413,7 +413,7 @@ EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'用途/途径'
 GO
 EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'接收方端口(描述)' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'LinkLogic', @level2type=N'COLUMN',@level2name=N'DstPort'
 GO
-/****** Object:  StoredProcedure [dbo].[Job_updatestats]    Script Date: 11/09/2010 11:49:48 ******/
+/****** Object:  StoredProcedure [dbo].[Job_updatestats]    Script Date: 11/12/2010 15:04:32 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -458,7 +458,248 @@ CLOSE @csr;
 DECLARE @Now2 datetime;
 SELECT @Now2 = getdate();
 GO
-/****** Object:  StoredProcedure [dbo].[Pr_RebuildIdx]    Script Date: 11/09/2010 11:49:48 ******/
+/****** Object:  UserDefinedFunction [dbo].[Apq_ConvertIP4_VarBinary]    Script Date: 11/12/2010 15:04:39 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+/* =============================================
+-- 作者: 黄宗银
+-- 日期: 2007-09-28
+-- 描述: 将IP4串转化为 varbinary(max)
+-- 示例:
+SELECT dbo.Apq_ConvertIP4_VarBinary('255.255.255.255');
+-- =============================================
+*/
+CREATE FUNCTION [dbo].[Apq_ConvertIP4_VarBinary](
+	@IP	varchar(max)
+)RETURNS varbinary(max)
+AS
+BEGIN
+	SELECT @IP = LTRIM(RTRIM(@IP));
+
+	DECLARE @Return varbinary(Max)
+		,@Len int		-- 字符数
+		,@ib int		-- 当前解析起始位置
+		,@ie int		-- 当前解析结束位置
+		,@i int
+		;
+	SELECT @Return = 0x
+		,@Len = LEN(@IP)
+		,@ie = 0
+		,@i = 1
+		;
+
+	IF(@Len < 7) RETURN @Return;
+
+	WHILE(@i <= 4)
+	BEGIN
+		SELECT	@ib = @ie + 1;
+		SELECT	@ie = CHARINDEX('.', @IP, @ib);
+		IF(@ie = 0)
+		BEGIN
+			SELECT	@ie = @Len + 1;
+		END
+		
+		IF(@ib >= @ie) BREAK;
+
+		SELECT	@Return = ISNULL(@Return, 0x) + Convert(binary(1), Convert(int, SUBSTRING(@IP, @ib, @ie - @ib)));
+
+		SELECT	@i = @i + 1;
+	END
+
+	RETURN @Return;
+END
+GO
+/****** Object:  StoredProcedure [dbo].[Apq_RandomString]    Script Date: 11/12/2010 15:04:31 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+/* =============================================
+-- 作者: 黄宗银
+-- 日期: 2009-03-31
+-- 描述: 生成随机字符串
+-- 示例:
+DECLARE @rtn int, @ExMsg nvarchar(max), @SimpleChars nvarchar(max);
+SELECT @SimpleChars = 'ABCDEFGHJLMNRTWYacdefhijkmnprtuvwxy0123456789';
+SELECT @SimpleChars = 'ABCDEFGHJLMNRTWY0123456789';
+EXEC @rtn = dbo.Apq_RandomString @ExMsg out, @SimpleChars, 50000, 8, 1, 1;
+SELECT @rtn, @ExMsg;
+-- =============================================
+*/
+CREATE PROC [dbo].[Apq_RandomString]
+	 @ExMsg nvarchar(max) out
+	 
+	,@Chars		nvarchar(max)='ABCDEFGHJLMNRTWYacdefhijkmnprtuvwxy0123456789'	-- 字符集(一般不重复)
+	,@Count		int	= 10		-- 个数
+	,@Length	int = 16		-- 长度
+	,@Repeat	tinyint = 1		-- 每个串中是否允许重复
+	,@Distinct	tinyint	= 0		-- 相互之间是否唯一(为1时需要保证 排列数 >= @Count)
+AS
+SET NOCOUNT ON;
+
+DECLARE @Now datetime, @i int, @l int, @chrs nvarchar(max)
+	,@s nvarchar(max)	-- 当前已生成的串
+	,@p int			-- 当前选中的位置(@chrs中)
+	--,@pl int			-- 上次选中的位置(@chrs中)
+	,@c nvarchar(1)	-- 上次选中的字符
+	;
+SELECT @Now = getdate();
+
+CREATE TABLE #t(
+	s	nvarchar(max)
+);
+IF(@Distinct = 1)
+BEGIN
+	CREATE INDEX [IX_#t:s] ON #t(s)
+END
+
+SELECT @i = 0;
+WHILE(@i < @Count)
+BEGIN
+	SELECT @l = 0, @p = 0, @chrs = @Chars, @s = '', @c='';
+	WHILE(@l < @Length)
+	BEGIN
+		IF(@Repeat = 0 AND LEN(@c) > 0)
+		BEGIN
+			-- 去除上次选中的字符
+			SELECT @chrs = REPLACE(@chrs, @c,'');
+		END
+		
+		SELECT @p = Convert(int,RAND()*LEN(@chrs)) + 1;
+		SELECT @c = SUBSTRING(@chrs, @p,1);
+		SELECT @s = @s + @c;
+	
+		SELECT @l = @l + 1;
+	END
+	
+	IF(@Distinct = 1 AND EXISTS(SELECT 1 FROM #t WHERE s = @s))
+	BEGIN
+		-- 跳过重复
+		CONTINUE;
+	END
+	
+	INSERT #t(s) SELECT @s;
+	SELECT @i = @i + 1;
+END
+
+SELECT * FROM #t;
+ 
+TRUNCATE TABLE #t;
+DROP TABLE #t;
+
+SELECT @ExMsg = '生成成功';
+RETURN 1;
+GO
+/****** Object:  StoredProcedure [dbo].[Apq_Process_KillDead]    Script Date: 11/12/2010 15:04:31 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROC [dbo].[Apq_Process_KillDead]
+	 @PName	nvarchar(256) = 'ftp.exe'	-- 进程名
+	,@MaxRunMinutes int = 120
+AS
+/* =============================================
+-- 作者: 黄宗银
+-- 日期: 2010-10-20
+-- 描述: 结束死掉的进程(运行时间超过指定时长(分钟),默认120)
+-- 示例:
+EXEC dbo.Apq_Process_KillDead 'cmd.exe';
+-- =============================================
+*/
+SET NOCOUNT ON;
+
+SELECT @PName = ISNULL(@PName,'ftp.exe')
+	,@MaxRunMinutes = ISNULL(@MaxRunMinutes,120)
+	;
+
+DECLARE @rtn int, @SPBeginTime datetime;
+SELECT @SPBeginTime=GetDate();
+
+DECLARE @cmd nvarchar(4000)
+	;
+CREATE TABLE #cmd(
+	s	nvarchar(4000)
+);
+
+SELECT @cmd = 'wmic process where (name="' + @PName + '") get CreationDate,ProcessId';
+EXEC @rtn = xp_cmdshell @cmd;	-- 先运行一次防止未安装
+INSERT #cmd EXEC @rtn = xp_cmdshell @cmd;
+
+DECLARE @s nvarchar(4000),@PID int,@StartTime datetime;
+DECLARE @csr CURSOR
+SET @csr = CURSOR FOR
+SELECT s FROM #cmd WHERE len(s) > 27 AND Left(s,12) <> 'CreationDate'
+
+OPEN @csr;
+FETCH NEXT FROM @csr INTO @s;
+WHILE(@@FETCH_STATUS = 0)
+BEGIN
+	SELECT @PID = LEFT(Right(@s,12),10),@StartTime = LEFT(@s,8) + ' ' + Substring(@s,9,2)+':' + Substring(@s,11,2)+':'+Substring(@s,13,2);
+	IF(datediff(n,@StartTime,@SPBeginTime) > @MaxRunMinutes)
+	BEGIN
+		SELECT @cmd = 'wmic process where (ProcessId=' + Convert(nvarchar,@PID) + ') delete';
+		EXEC xp_cmdshell @cmd;
+	END
+
+	FETCH NEXT FROM @csr INTO @s;
+END
+CLOSE @csr;
+
+DROP TABLE #cmd;
+RETURN 1;
+GO
+/****** Object:  StoredProcedure [dbo].[Apq_RenameDefault]    Script Date: 11/12/2010 15:04:31 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+/* =============================================
+-- 作者: 黄宗银
+-- 日期: 2010-06-06
+-- 功能: 重建本库默认值(命名规范化)
+-- 描述:
+	重命名规则: DF_表名_列名
+-- 示例:
+EXEC dbo.Apq_RenameDefault
+-- =============================================
+*/
+CREATE PROC [dbo].[Apq_RenameDefault]
+AS 
+DECLARE @SchemaName nvarchar(128)
+DECLARE @TableName nvarchar(128)
+DECLARE @ColumnName nvarchar(128)
+DECLARE @Defname nvarchar(128)
+DECLARE @Definition nvarchar(128)
+DECLARE @sql nvarchar(max)
+
+DECLARE @csr_Constraints CURSOR ;
+SET @csr_Constraints = CURSOR STATIC FOR 
+SELECT  SCHEMA_NAME(o.schema_id),o.Name,c.Name,so.name,so.definition 
+  FROM  sys.default_constraints so INNER JOIN sys.objects o  ON o.object_id = so.parent_object_id
+								   INNER JOIN sys.columns c  ON C.DEFAULT_OBJECT_ID =so.object_id;
+
+OPEN @csr_Constraints ;
+
+FETCH NEXT FROM @csr_Constraints INTO @SchemaName,@TableName,@ColumnName,@Defname,@Definition ;
+WHILE ( @@FETCH_STATUS = 0 ) 
+BEGIN
+    SELECT  @sql = 'ALTER TABLE [' + @SchemaName + '].[' + @TableName + '] DROP CONSTRAINT [' + @Defname + ']'
+    EXEC sp_executesql @sql
+
+    SELECT  @sql = 'ALTER TABLE [' + @SchemaName + '].[' + @TableName + '] ADD CONSTRAINT DF_' + @TableName + '_' + @ColumnName + ' DEFAULT '
+            + @Definition + ' FOR [' + @ColumnName + ']'
+    EXEC sp_executesql @sql
+
+    FETCH NEXT FROM @csr_Constraints INTO @SchemaName,@TableName,@ColumnName,@Defname,@Definition ;
+END
+
+CLOSE @csr_Constraints
+RETURN 1
+GO
+/****** Object:  StoredProcedure [dbo].[Pr_RebuildIdx]    Script Date: 11/12/2010 15:04:32 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -577,677 +818,7 @@ CLOSE @csr_partitions
 -- drop the temporary table
 DROP TABLE #Tmp_Idx_Rebuild
 GO
-/****** Object:  Table [dbo].[StatConfig_Day]    Script Date: 11/09/2010 11:49:46 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[StatConfig_Day](
-	[StatName] [nvarchar](50) NOT NULL,
-	[Enabled] [tinyint] NOT NULL,
-	[Detect] [nvarchar](4000) NULL,
-	[STMT] [nvarchar](4000) NOT NULL,
-	[StatTime] [datetime] NOT NULL,
-	[_InTime] [datetime] NOT NULL,
-	[_Time] [datetime] NOT NULL,
-	[LastStatDate] [datetime] NOT NULL,
- CONSTRAINT [PK_StatConfig_Day] PRIMARY KEY NONCLUSTERED 
-(
-	[StatName] ASC
-)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'统计名' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'StatConfig_Day', @level2type=N'COLUMN',@level2name=N'StatName'
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'启用与否' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'StatConfig_Day', @level2type=N'COLUMN',@level2name=N'Enabled'
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'统计前检测,可使用以下预定义变量@StatDate' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'StatConfig_Day', @level2type=N'COLUMN',@level2name=N'Detect'
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'统计语句,可使用以下预定义变量@StatDate' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'StatConfig_Day', @level2type=N'COLUMN',@level2name=N'STMT'
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'每日统计时间' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'StatConfig_Day', @level2type=N'COLUMN',@level2name=N'StatTime'
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'上次统计日期(初始)' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'StatConfig_Day', @level2type=N'COLUMN',@level2name=N'LastStatDate'
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'数据统计配置表' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'StatConfig_Day'
-GO
-/****** Object:  Table [etl].[StatCfg]    Script Date: 11/09/2010 11:49:47 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [etl].[StatCfg](
-	[ID] [bigint] IDENTITY(1,1) NOT NULL,
-	[StatName] [nvarchar](256) NOT NULL,
-	[Detect] [nvarchar](4000) NULL,
-	[STMT] [nvarchar](3500) NOT NULL,
-	[Enabled] [tinyint] NOT NULL,
-	[FirstStartTime] [datetime] NOT NULL,
-	[Cycle] [int] NOT NULL,
-	[RTime] [smalldatetime] NOT NULL,
-	[_InTime] [datetime] NOT NULL,
-	[_Time] [datetime] NOT NULL,
-	[PreRTime] [datetime] NULL,
- CONSTRAINT [PK_StatCfg] PRIMARY KEY NONCLUSTERED 
-(
-	[ID] ASC
-)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'统计命名' , @level0type=N'SCHEMA',@level0name=N'etl', @level1type=N'TABLE',@level1name=N'StatCfg', @level2type=N'COLUMN',@level2name=N'StatName'
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'检测数据到位情况,通过时返回1(参数:@StatName,@StartTime,@EndTime)' , @level0type=N'SCHEMA',@level0name=N'etl', @level1type=N'TABLE',@level1name=N'StatCfg', @level2type=N'COLUMN',@level2name=N'Detect'
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'统计存储过程或统计语句(参数:@StartTime,@EndTime)' , @level0type=N'SCHEMA',@level0name=N'etl', @level1type=N'TABLE',@level1name=N'StatCfg', @level2type=N'COLUMN',@level2name=N'STMT'
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'启用与否' , @level0type=N'SCHEMA',@level0name=N'etl', @level1type=N'TABLE',@level1name=N'StatCfg', @level2type=N'COLUMN',@level2name=N'Enabled'
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'统计参数:开始时间初始值' , @level0type=N'SCHEMA',@level0name=N'etl', @level1type=N'TABLE',@level1name=N'StatCfg', @level2type=N'COLUMN',@level2name=N'FirstStartTime'
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'统计周期(分钟)' , @level0type=N'SCHEMA',@level0name=N'etl', @level1type=N'TABLE',@level1name=N'StatCfg', @level2type=N'COLUMN',@level2name=N'Cycle'
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'首次统计执行时间' , @level0type=N'SCHEMA',@level0name=N'etl', @level1type=N'TABLE',@level1name=N'StatCfg', @level2type=N'COLUMN',@level2name=N'RTime'
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'上一次统计时间' , @level0type=N'SCHEMA',@level0name=N'etl', @level1type=N'TABLE',@level1name=N'StatCfg', @level2type=N'COLUMN',@level2name=N'PreRTime'
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'不能保证准时执行,只能用于数据仓库' , @level0type=N'SCHEMA',@level0name=N'etl', @level1type=N'TABLE',@level1name=N'StatCfg'
-GO
-/****** Object:  Table [mgr].[SrvPwd]    Script Date: 11/09/2010 11:49:47 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [mgr].[SrvPwd](
-	[ID] [bigint] IDENTITY(1,1) NOT NULL,
-	[SrvID] [int] NOT NULL,
-	[PwdType] [int] NOT NULL,
-	[LoginName] [nvarchar](256) NOT NULL,
-	[LoginPwd] [nvarchar](256) NOT NULL,
-	[Enabled] [tinyint] NOT NULL,
-	[SID] [nvarchar](200) NOT NULL,
- CONSTRAINT [PK_SrvPwd] PRIMARY KEY NONCLUSTERED 
-(
-	[ID] ASC
-)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'服务器' , @level0type=N'SCHEMA',@level0name=N'mgr', @level1type=N'TABLE',@level1name=N'SrvPwd', @level2type=N'COLUMN',@level2name=N'SrvID'
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'密码类型{1:OS,2:DB,3:FTP,4:Serv-U管理密码}' , @level0type=N'SCHEMA',@level0name=N'mgr', @level1type=N'TABLE',@level1name=N'SrvPwd', @level2type=N'COLUMN',@level2name=N'PwdType'
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'登录名' , @level0type=N'SCHEMA',@level0name=N'mgr', @level1type=N'TABLE',@level1name=N'SrvPwd', @level2type=N'COLUMN',@level2name=N'LoginName'
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'登录密码' , @level0type=N'SCHEMA',@level0name=N'mgr', @level1type=N'TABLE',@level1name=N'SrvPwd', @level2type=N'COLUMN',@level2name=N'LoginPwd'
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'是否启用' , @level0type=N'SCHEMA',@level0name=N'mgr', @level1type=N'TABLE',@level1name=N'SrvPwd', @level2type=N'COLUMN',@level2name=N'Enabled'
-GO
-/****** Object:  StoredProcedure [dbo].[Apq_WH_Init]    Script Date: 11/09/2010 11:49:48 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-/* =============================================
--- 作者: 黄宗银
--- 日期: 2010-04-13
--- 描述: 维护作业初始化
--- 步骤: 1.禁用相关作业 2.启用维护作业
--- 示例:
-EXEC dbo.Apq_WH_Init
--- =============================================
-*/
-CREATE PROC [dbo].[Apq_WH_Init]
-AS
-SET NOCOUNT ON ;
-
--- 1.禁用相关作业
---EXEC msdb..sp_update_job @job_name = '日志转移',@enabled = 0
-DECLARE @job_name sysname
-DECLARE @csr CURSOR
-SET @csr = CURSOR FOR
-SELECT name FROM msdb..sysjobs WHERE name LIKE '%日志切换转移'
-
-OPEN @csr;
-FETCH NEXT FROM @csr INTO @job_name
-WHILE(@@FETCH_STATUS = 0)
-BEGIN
-	EXEC msdb..sp_update_job @job_name = @job_name,@enabled = 0
-
-	FETCH NEXT FROM @csr INTO @job_name
-END
-CLOSE @csr;
-
--- 2.启用维护作业
-EXEC msdb..sp_update_job @job_name = '例行维护',@enabled = 1
-GO
-/****** Object:  StoredProcedure [dbo].[Apq_WH_End]    Script Date: 11/09/2010 11:49:48 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-/* =============================================
--- 作者: 黄宗银
--- 日期: 2010-04-13
--- 描述: 结束维护作业
--- 步骤: 1.启用相关作业 2.禁用维护作业
--- 示例:
-EXEC dbo.Apq_WH_End
--- =============================================
-*/
-CREATE PROC [dbo].[Apq_WH_End]
-AS
-SET NOCOUNT ON ;
-
--- 1.启用相关作业
---EXEC msdb..sp_update_job @job_name = '日志转移',@enabled = 1
-DECLARE @job_name sysname
-DECLARE @csr CURSOR
-SET @csr = CURSOR FOR
-SELECT name FROM msdb..sysjobs WHERE name LIKE '%日志切换转移'
-
-OPEN @csr;
-FETCH NEXT FROM @csr INTO @job_name
-WHILE(@@FETCH_STATUS = 0)
-BEGIN
-	EXEC msdb..sp_update_job @job_name = @job_name,@enabled = 1
-
-	FETCH NEXT FROM @csr INTO @job_name
-END
-CLOSE @csr;
-
--- 2.禁用维护作业
-EXEC msdb..sp_update_job @job_name = '例行维护',@enabled = 0
-GO
-/****** Object:  Table [mgr].[Server]    Script Date: 11/09/2010 11:49:47 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [mgr].[Server](
-	[SrvID] [int] NOT NULL,
-	[SrvName] [nvarchar](256) NOT NULL,
-	[Location] [nvarchar](max) NOT NULL,
-	[Usage] [nvarchar](500) NOT NULL,
-	[OS] [nvarchar](500) NOT NULL,
-	[IPWan1] [nvarchar](500) NOT NULL,
-	[IPLan1] [nvarchar](500) NOT NULL,
-	[RdpPort] [int] NULL,
-	[SqlPort] [int] NULL,
-	[FTPPort] [int] NULL,
-	[IPWan2] [nvarchar](500) NOT NULL,
-	[IPLan2] [nvarchar](500) NOT NULL,
-	[IPWan3] [nvarchar](500) NOT NULL,
-	[IPLan3] [nvarchar](500) NOT NULL,
-	[IPWan4] [nvarchar](500) NOT NULL,
-	[IPLan4] [nvarchar](500) NOT NULL,
- CONSTRAINT [PK_Server] PRIMARY KEY NONCLUSTERED 
-(
-	[SrvID] ASC
-)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'服务器命名/编号' , @level0type=N'SCHEMA',@level0name=N'mgr', @level1type=N'TABLE',@level1name=N'Server', @level2type=N'COLUMN',@level2name=N'SrvName'
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'位置(机房,机柜等)' , @level0type=N'SCHEMA',@level0name=N'mgr', @level1type=N'TABLE',@level1name=N'Server', @level2type=N'COLUMN',@level2name=N'Location'
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'主要用途' , @level0type=N'SCHEMA',@level0name=N'mgr', @level1type=N'TABLE',@level1name=N'Server', @level2type=N'COLUMN',@level2name=N'Usage'
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'操作系统(版本号)' , @level0type=N'SCHEMA',@level0name=N'mgr', @level1type=N'TABLE',@level1name=N'Server', @level2type=N'COLUMN',@level2name=N'OS'
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'外网IP' , @level0type=N'SCHEMA',@level0name=N'mgr', @level1type=N'TABLE',@level1name=N'Server', @level2type=N'COLUMN',@level2name=N'IPWan1'
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'内网IP' , @level0type=N'SCHEMA',@level0name=N'mgr', @level1type=N'TABLE',@level1name=N'Server', @level2type=N'COLUMN',@level2name=N'IPLan1'
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'远程端口' , @level0type=N'SCHEMA',@level0name=N'mgr', @level1type=N'TABLE',@level1name=N'Server', @level2type=N'COLUMN',@level2name=N'RdpPort'
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'SQL Server端口' , @level0type=N'SCHEMA',@level0name=N'mgr', @level1type=N'TABLE',@level1name=N'Server', @level2type=N'COLUMN',@level2name=N'SqlPort'
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'FTP端口' , @level0type=N'SCHEMA',@level0name=N'mgr', @level1type=N'TABLE',@level1name=N'Server', @level2type=N'COLUMN',@level2name=N'FTPPort'
-GO
-/****** Object:  Table [dbo].[RSrvConfig]    Script Date: 11/09/2010 11:49:46 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[RSrvConfig](
-	[ID] [int] NOT NULL,
-	[ParentID] [int] NULL,
-	[Name] [nvarchar](256) NOT NULL,
-	[LSName] [nvarchar](512) NOT NULL,
-	[UID] [nvarchar](256) NULL,
-	[PwdC] [nvarchar](max) NULL,
-	[Type] [int] NULL,
-	[LSMaxTimes] [int] NOT NULL,
-	[LSErrTimes] [int] NOT NULL,
-	[LSState] [int] NOT NULL,
-	[IPLan] [nvarchar](500) NULL,
-	[IPWan1] [nvarchar](500) NOT NULL,
-	[IPWan2] [nvarchar](500) NULL,
-	[FTPPort] [int] NOT NULL,
-	[FTPU] [nvarchar](50) NULL,
-	[FTPPC] [nvarchar](max) NULL,
-	[SqlPort] [int] NOT NULL,
-	[Enabled] [tinyint] NOT NULL,
- CONSTRAINT [PK_RSrvConfig] PRIMARY KEY NONCLUSTERED 
-(
-	[ID] ASC
-)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'服务器编号' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'RSrvConfig', @level2type=N'COLUMN',@level2name=N'ID'
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'服务器命名' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'RSrvConfig', @level2type=N'COLUMN',@level2name=N'Name'
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'LinkServerName(别名)' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'RSrvConfig', @level2type=N'COLUMN',@level2name=N'LSName'
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'UID' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'RSrvConfig', @level2type=N'COLUMN',@level2name=N'UID'
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'密码(已加密)' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'RSrvConfig', @level2type=N'COLUMN',@level2name=N'PwdC'
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'服务器分类{1:区库,2:游戏库}' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'RSrvConfig', @level2type=N'COLUMN',@level2name=N'Type'
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'允许该LinkServer断开的最大次数' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'RSrvConfig', @level2type=N'COLUMN',@level2name=N'LSMaxTimes'
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'已经断开的次数' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'RSrvConfig', @level2type=N'COLUMN',@level2name=N'LSErrTimes'
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'LinkServer状态{0:断开(连续失败N次),1:正常}' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'RSrvConfig', @level2type=N'COLUMN',@level2name=N'LSState'
-GO
-/****** Object:  Table [bak].[RestoreFromFolder]    Script Date: 11/09/2010 11:49:45 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [bak].[RestoreFromFolder](
-	[ID] [bigint] IDENTITY(1,1) NOT NULL,
-	[DBName] [nvarchar](256) NOT NULL,
-	[LastFileName] [nvarchar](256) NOT NULL,
-	[Enabled] [tinyint] NOT NULL,
-	[BakFolder] [nvarchar](4000) NOT NULL,
-	[RestoreType] [int] NOT NULL,
-	[RestoreFolder] [nvarchar](4000) NULL,
-	[DB_HisNum] [int] NOT NULL,
-	[Num_Full] [int] NOT NULL,
-	[RunnerIDCfg] [int] NOT NULL,
-	[RunnerIDRun] [int] NOT NULL,
-	[_InTime] [datetime] NOT NULL,
-	[_Time] [datetime] NOT NULL,
- CONSTRAINT [PK_RestoreFromFolder] PRIMARY KEY NONCLUSTERED 
-(
-	[ID] ASC
-)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'数据库名' , @level0type=N'SCHEMA',@level0name=N'bak', @level1type=N'TABLE',@level1name=N'RestoreFromFolder', @level2type=N'COLUMN',@level2name=N'DBName'
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'上次还原使用的文件名' , @level0type=N'SCHEMA',@level0name=N'bak', @level1type=N'TABLE',@level1name=N'RestoreFromFolder', @level2type=N'COLUMN',@level2name=N'LastFileName'
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'启用与否' , @level0type=N'SCHEMA',@level0name=N'bak', @level1type=N'TABLE',@level1name=N'RestoreFromFolder', @level2type=N'COLUMN',@level2name=N'Enabled'
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'备份文件目录' , @level0type=N'SCHEMA',@level0name=N'bak', @level1type=N'TABLE',@level1name=N'RestoreFromFolder', @level2type=N'COLUMN',@level2name=N'BakFolder'
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'还原类型{0x1:历史,0x2:备用}' , @level0type=N'SCHEMA',@level0name=N'bak', @level1type=N'TABLE',@level1name=N'RestoreFromFolder', @level2type=N'COLUMN',@level2name=N'RestoreType'
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'还原目录' , @level0type=N'SCHEMA',@level0name=N'bak', @level1type=N'TABLE',@level1name=N'RestoreFromFolder', @level2type=N'COLUMN',@level2name=N'RestoreFolder'
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'历史库保留个数' , @level0type=N'SCHEMA',@level0name=N'bak', @level1type=N'TABLE',@level1name=N'RestoreFromFolder', @level2type=N'COLUMN',@level2name=N'DB_HisNum'
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'完整备份文件保留个数(同时保留具有基础完整备份文件的日志备份文件)' , @level0type=N'SCHEMA',@level0name=N'bak', @level1type=N'TABLE',@level1name=N'RestoreFromFolder', @level2type=N'COLUMN',@level2name=N'Num_Full'
-GO
-/****** Object:  Table [dbo].[RDBUser]    Script Date: 11/09/2010 11:49:46 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[RDBUser](
-	[RDBUserID] [bigint] NOT NULL,
-	[RDBID] [bigint] NULL,
-	[DBUserName] [nvarchar](256) NOT NULL,
-	[DBUserDesc] [nvarchar](max) NULL,
-	[RDBLoginID] [bigint] NOT NULL,
- CONSTRAINT [PK_RDBUser] PRIMARY KEY NONCLUSTERED 
-(
-	[RDBUserID] ASC
-)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'登录名编号(ALL,可采用分级分段分配)' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'RDBUser', @level2type=N'COLUMN',@level2name=N'RDBUserID'
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'空表示通用用户' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'RDBUser', @level2type=N'COLUMN',@level2name=N'RDBID'
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'用户名' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'RDBUser', @level2type=N'COLUMN',@level2name=N'DBUserName'
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'描述(用户用途等)' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'RDBUser', @level2type=N'COLUMN',@level2name=N'DBUserDesc'
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'对应的登录' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'RDBUser', @level2type=N'COLUMN',@level2name=N'RDBLoginID'
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'远程数据库列表' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'RDBUser'
-GO
-/****** Object:  Table [dbo].[RDBLogin]    Script Date: 11/09/2010 11:49:46 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-SET ANSI_PADDING ON
-GO
-CREATE TABLE [dbo].[RDBLogin](
-	[RDBLoginID] [bigint] NOT NULL,
-	[RSrvID] [int] NULL,
-	[DBLoginName] [nvarchar](256) NOT NULL,
-	[DBLoginDesc] [nvarchar](max) NULL,
-	[SID] [varbinary](85) NULL,
-	[LoginPwdC] [nvarchar](max) NOT NULL,
- CONSTRAINT [PK_RDBLogin] PRIMARY KEY NONCLUSTERED 
-(
-	[RDBLoginID] ASC
-)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-SET ANSI_PADDING OFF
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'登录名编号(ALL,可采用分级分段分配)' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'RDBLogin', @level2type=N'COLUMN',@level2name=N'RDBLoginID'
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'空表示通用登录' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'RDBLogin', @level2type=N'COLUMN',@level2name=N'RSrvID'
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'登录名' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'RDBLogin', @level2type=N'COLUMN',@level2name=N'DBLoginName'
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'描述(登录用途,使用者等)' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'RDBLogin', @level2type=N'COLUMN',@level2name=N'DBLoginDesc'
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'登录SID(NULL表示windows登录)' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'RDBLogin', @level2type=N'COLUMN',@level2name=N'SID'
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'登录密码' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'RDBLogin', @level2type=N'COLUMN',@level2name=N'LoginPwdC'
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'远程数据库列表' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'RDBLogin'
-GO
-/****** Object:  Table [dbo].[RDBConfig]    Script Date: 11/09/2010 11:49:46 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[RDBConfig](
-	[RDBID] [bigint] NOT NULL,
-	[DBName] [nvarchar](256) NOT NULL,
-	[RDBDesc] [nvarchar](max) NULL,
-	[RDBType] [int] NOT NULL,
-	[PLevel] [int] NOT NULL,
-	[GLevel] [int] NOT NULL,
-	[SrvID] [int] NOT NULL,
-	[GameID] [int] NOT NULL,
-	[Enabled] [tinyint] NOT NULL,
- CONSTRAINT [PK_RDBConfig] PRIMARY KEY NONCLUSTERED 
-(
-	[RDBID] ASC
-)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'远程数据库编号(ALL,可采用分级分段分配)' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'RDBConfig', @level2type=N'COLUMN',@level2name=N'RDBID'
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'数据库名' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'RDBConfig', @level2type=N'COLUMN',@level2name=N'DBName'
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'数据库主要功能描述(主要功能名称,如''1-2-5世界名称'',''1-0-中心库''等)' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'RDBConfig', @level2type=N'COLUMN',@level2name=N'RDBDesc'
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'数据库类型{0:未分类,1:通行证,2:游戏用户中心,3:游戏数据中心,4:游戏日志中心,5:游戏库,6:游戏库日志}' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'RDBConfig', @level2type=N'COLUMN',@level2name=N'RDBType'
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'数据库层级(ALL)' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'RDBConfig', @level2type=N'COLUMN',@level2name=N'PLevel'
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'数据库层级(游戏内)' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'RDBConfig', @level2type=N'COLUMN',@level2name=N'GLevel'
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'数据库服务器编号(ALL)' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'RDBConfig', @level2type=N'COLUMN',@level2name=N'SrvID'
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'游戏编号' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'RDBConfig', @level2type=N'COLUMN',@level2name=N'GameID'
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'远程数据库列表' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'RDBConfig'
-GO
-/****** Object:  Table [dic].[PwdType]    Script Date: 11/09/2010 11:49:46 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dic].[PwdType](
-	[PwdType] [int] NOT NULL,
-	[Description] [nvarchar](100) NOT NULL
-) ON [PRIMARY]
-GO
-/****** Object:  UserDefinedFunction [dbo].[Apq_ConvertIP4_VarBinary]    Script Date: 11/09/2010 11:49:49 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-/* =============================================
--- 作者: 黄宗银
--- 日期: 2007-09-28
--- 描述: 将IP4串转化为 varbinary(max)
--- 示例:
-SELECT dbo.Apq_ConvertIP4_VarBinary('255.255.255.255');
--- =============================================
-*/
-CREATE FUNCTION [dbo].[Apq_ConvertIP4_VarBinary](
-	@IP	varchar(max)
-)RETURNS varbinary(max)
-AS
-BEGIN
-	SELECT @IP = LTRIM(RTRIM(@IP));
-
-	DECLARE @Return varbinary(Max)
-		,@Len int		-- 字符数
-		,@ib int		-- 当前解析起始位置
-		,@ie int		-- 当前解析结束位置
-		,@i int
-		;
-	SELECT @Return = 0x
-		,@Len = LEN(@IP)
-		,@ie = 0
-		,@i = 1
-		;
-
-	IF(@Len < 7) RETURN @Return;
-
-	WHILE(@i <= 4)
-	BEGIN
-		SELECT	@ib = @ie + 1;
-		SELECT	@ie = CHARINDEX('.', @IP, @ib);
-		IF(@ie = 0)
-		BEGIN
-			SELECT	@ie = @Len + 1;
-		END
-		
-		IF(@ib >= @ie) BREAK;
-
-		SELECT	@Return = ISNULL(@Return, 0x) + Convert(binary(1), Convert(int, SUBSTRING(@IP, @ib, @ie - @ib)));
-
-		SELECT	@i = @i + 1;
-	END
-
-	RETURN @Return;
-END
-GO
-/****** Object:  StoredProcedure [dbo].[Apq_RandomString]    Script Date: 11/09/2010 11:49:48 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-/* =============================================
--- 作者: 黄宗银
--- 日期: 2009-03-31
--- 描述: 生成随机字符串
--- 示例:
-DECLARE @rtn int, @ExMsg nvarchar(max), @SimpleChars nvarchar(max);
-SELECT @SimpleChars = 'ABCDEFGHJLMNRTWYacdefhijkmnprtuvwxy0123456789';
-SELECT @SimpleChars = 'ABCDEFGHJLMNRTWY0123456789';
-EXEC @rtn = dbo.Apq_RandomString @ExMsg out, @SimpleChars, 50000, 8, 1, 1;
-SELECT @rtn, @ExMsg;
--- =============================================
-*/
-CREATE PROC [dbo].[Apq_RandomString]
-	 @ExMsg nvarchar(max) out
-	 
-	,@Chars		nvarchar(max)='ABCDEFGHJLMNRTWYacdefhijkmnprtuvwxy0123456789'	-- 字符集(一般不重复)
-	,@Count		int	= 10		-- 个数
-	,@Length	int = 16		-- 长度
-	,@Repeat	tinyint = 1		-- 每个串中是否允许重复
-	,@Distinct	tinyint	= 0		-- 相互之间是否唯一(为1时需要保证 排列数 >= @Count)
-AS
-SET NOCOUNT ON;
-
-DECLARE @Now datetime, @i int, @l int, @chrs nvarchar(max)
-	,@s nvarchar(max)	-- 当前已生成的串
-	,@p int			-- 当前选中的位置(@chrs中)
-	--,@pl int			-- 上次选中的位置(@chrs中)
-	,@c nvarchar(1)	-- 上次选中的字符
-	;
-SELECT @Now = getdate();
-
-CREATE TABLE #t(
-	s	nvarchar(max)
-);
-IF(@Distinct = 1)
-BEGIN
-	CREATE INDEX [IX_#t:s] ON #t(s)
-END
-
-SELECT @i = 0;
-WHILE(@i < @Count)
-BEGIN
-	SELECT @l = 0, @p = 0, @chrs = @Chars, @s = '', @c='';
-	WHILE(@l < @Length)
-	BEGIN
-		IF(@Repeat = 0 AND LEN(@c) > 0)
-		BEGIN
-			-- 去除上次选中的字符
-			SELECT @chrs = REPLACE(@chrs, @c,'');
-		END
-		
-		SELECT @p = Convert(int,RAND()*LEN(@chrs)) + 1;
-		SELECT @c = SUBSTRING(@chrs, @p,1);
-		SELECT @s = @s + @c;
-	
-		SELECT @l = @l + 1;
-	END
-	
-	IF(@Distinct = 1 AND EXISTS(SELECT 1 FROM #t WHERE s = @s))
-	BEGIN
-		-- 跳过重复
-		CONTINUE;
-	END
-	
-	INSERT #t(s) SELECT @s;
-	SELECT @i = @i + 1;
-END
-
-SELECT * FROM #t;
- 
-TRUNCATE TABLE #t;
-DROP TABLE #t;
-
-SELECT @ExMsg = '生成成功';
-RETURN 1;
-GO
-/****** Object:  StoredProcedure [dbo].[Apq_Process_KillDead]    Script Date: 11/09/2010 11:49:48 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE PROC [dbo].[Apq_Process_KillDead]
-	 @PName	nvarchar(256) = 'ftp.exe'	-- 进程名
-	,@MaxRunMinutes int = 120
-AS
-/* =============================================
--- 作者: 黄宗银
--- 日期: 2010-10-20
--- 描述: 结束死掉的进程(运行时间超过指定时长(分钟),默认120)
--- 示例:
-EXEC dbo.Apq_Process_KillDead 'cmd.exe';
--- =============================================
-*/
-SET NOCOUNT ON;
-
-SELECT @PName = ISNULL(@PName,'ftp.exe')
-	,@MaxRunMinutes = ISNULL(@MaxRunMinutes,120)
-	;
-
-DECLARE @rtn int, @SPBeginTime datetime;
-SELECT @SPBeginTime=GetDate();
-
-DECLARE @cmd nvarchar(4000)
-	;
-CREATE TABLE #cmd(
-	s	nvarchar(4000)
-);
-
-SELECT @cmd = 'wmic process where (name="' + @PName + '") get CreationDate,ProcessId';
-EXEC @rtn = xp_cmdshell @cmd;	-- 先运行一次防止未安装
-INSERT #cmd EXEC @rtn = xp_cmdshell @cmd;
-
-DECLARE @s nvarchar(4000),@PID int,@StartTime datetime;
-DECLARE @csr CURSOR
-SET @csr = CURSOR FOR
-SELECT s FROM #cmd WHERE len(s) > 27 AND Left(s,12) <> 'CreationDate'
-
-OPEN @csr;
-FETCH NEXT FROM @csr INTO @s;
-WHILE(@@FETCH_STATUS = 0)
-BEGIN
-	SELECT @PID = LEFT(Right(@s,12),10),@StartTime = LEFT(@s,8) + ' ' + Substring(@s,9,2)+':' + Substring(@s,11,2)+':'+Substring(@s,13,2);
-	IF(datediff(n,@StartTime,@SPBeginTime) > @MaxRunMinutes)
-	BEGIN
-		SELECT @cmd = 'wmic process where (ProcessId=' + Convert(nvarchar,@PID) + ') delete';
-		EXEC xp_cmdshell @cmd;
-	END
-
-	FETCH NEXT FROM @csr INTO @s;
-END
-CLOSE @csr;
-
-DROP TABLE #cmd;
-RETURN 1;
-GO
-/****** Object:  StoredProcedure [dbo].[Apq_RenameDefault]    Script Date: 11/09/2010 11:49:48 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-/* =============================================
--- 作者: 黄宗银
--- 日期: 2010-06-06
--- 功能: 重建本库默认值(命名规范化)
--- 描述:
-	重命名规则: DF_表名_列名
--- 示例:
-EXEC dbo.Apq_RenameDefault
--- =============================================
-*/
-CREATE PROC [dbo].[Apq_RenameDefault]
-AS 
-DECLARE @SchemaName nvarchar(128)
-DECLARE @TableName nvarchar(128)
-DECLARE @ColumnName nvarchar(128)
-DECLARE @Defname nvarchar(128)
-DECLARE @Definition nvarchar(128)
-DECLARE @sql nvarchar(max)
-
-DECLARE @csr_Constraints CURSOR ;
-SET @csr_Constraints = CURSOR STATIC FOR 
-SELECT  SCHEMA_NAME(o.schema_id),o.Name,c.Name,so.name,so.definition 
-  FROM  sys.default_constraints so INNER JOIN sys.objects o  ON o.object_id = so.parent_object_id
-								   INNER JOIN sys.columns c  ON C.DEFAULT_OBJECT_ID =so.object_id;
-
-OPEN @csr_Constraints ;
-
-FETCH NEXT FROM @csr_Constraints INTO @SchemaName,@TableName,@ColumnName,@Defname,@Definition ;
-WHILE ( @@FETCH_STATUS = 0 ) 
-BEGIN
-    SELECT  @sql = 'ALTER TABLE [' + @SchemaName + '].[' + @TableName + '] DROP CONSTRAINT [' + @Defname + ']'
-    EXEC sp_executesql @sql
-
-    SELECT  @sql = 'ALTER TABLE [' + @SchemaName + '].[' + @TableName + '] ADD CONSTRAINT DF_' + @TableName + '_' + @ColumnName + ' DEFAULT '
-            + @Definition + ' FOR [' + @ColumnName + ']'
-    EXEC sp_executesql @sql
-
-    FETCH NEXT FROM @csr_Constraints INTO @SchemaName,@TableName,@ColumnName,@Defname,@Definition ;
-END
-
-CLOSE @csr_Constraints
-RETURN 1
-GO
-/****** Object:  StoredProcedure [dbo].[Apq_RebuildIdx]    Script Date: 11/09/2010 11:49:48 ******/
+/****** Object:  StoredProcedure [dbo].[Apq_RebuildIdx]    Script Date: 11/12/2010 15:04:31 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1366,58 +937,111 @@ CLOSE @csr_partitions
 -- drop the temporary table
 DROP TABLE #Apq_RebuildIdx
 GO
-/****** Object:  UserDefinedFunction [dbo].[Apq_NewID]    Script Date: 11/09/2010 11:49:49 ******/
+/****** Object:  Table [dbo].[StatConfig_Day]    Script Date: 11/12/2010 15:03:48 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-CREATE FUNCTION [dbo].[Apq_NewID]()RETURNS int AS BEGIN RETURN 0 END
+CREATE TABLE [dbo].[StatConfig_Day](
+	[StatName] [nvarchar](50) NOT NULL,
+	[Enabled] [tinyint] NOT NULL,
+	[Detect] [nvarchar](4000) NULL,
+	[STMT] [nvarchar](4000) NOT NULL,
+	[StatTime] [datetime] NOT NULL,
+	[_InTime] [datetime] NOT NULL,
+	[_Time] [datetime] NOT NULL,
+	[LastStatDate] [datetime] NOT NULL,
+ CONSTRAINT [PK_StatConfig_Day] PRIMARY KEY NONCLUSTERED 
+(
+	[StatName] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
 GO
-/****** Object:  StoredProcedure [dbo].[Apq_Login_StatCount]    Script Date: 11/09/2010 11:49:48 ******/
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'统计名' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'StatConfig_Day', @level2type=N'COLUMN',@level2name=N'StatName'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'启用与否' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'StatConfig_Day', @level2type=N'COLUMN',@level2name=N'Enabled'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'统计前检测,可使用以下预定义变量@StatDate' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'StatConfig_Day', @level2type=N'COLUMN',@level2name=N'Detect'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'统计语句,可使用以下预定义变量@StatDate' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'StatConfig_Day', @level2type=N'COLUMN',@level2name=N'STMT'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'每日统计时间' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'StatConfig_Day', @level2type=N'COLUMN',@level2name=N'StatTime'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'上次统计日期(初始)' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'StatConfig_Day', @level2type=N'COLUMN',@level2name=N'LastStatDate'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'数据统计配置表' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'StatConfig_Day'
+GO
+/****** Object:  Table [etl].[StatCfg]    Script Date: 11/12/2010 15:03:50 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-/* =============================================
--- 作者: 黄宗银
--- 日期: 2010-04-14
--- 描述: 统计指定登录名的连接数(未指定时为所有登录名)
--- 示例:
-EXEC dbo.Apq_Login_StatCount N'LoginName'
--- =============================================
-*/
-CREATE PROC [dbo].[Apq_Login_StatCount]
-    @LoginName nvarchar(256)
-AS 
-SET NOCOUNT ON ;
-
-IF ( Len(@LoginName) < 1 ) 
-    SELECT  @LoginName = NULL ;
-
-DECLARE @stmt nvarchar(max)
-   ,@pSession CURSOR ;
-
-CREATE TABLE #t_who (
-     spid smallint
-    ,ecid smallint
-    ,status nvarchar(30)
-    ,loginame nvarchar(128)
-    ,hostname nvarchar(128)
-    ,blk nvarchar(5)
-    ,DBName nvarchar(128)
-    ,cmd nvarchar(16)
-    ,request_id int
-    ) ;
-
-INSERT  #t_who
-        EXEC sp_who @LoginName
-IF(@@ROWCOUNT = 0) RETURN;
-
-SELECT loginame,count(spid)
-  FROM #t_who
- GROUP BY loginame
+CREATE TABLE [etl].[StatCfg](
+	[ID] [bigint] IDENTITY(1,1) NOT NULL,
+	[StatName] [nvarchar](256) NOT NULL,
+	[Detect] [nvarchar](4000) NULL,
+	[STMT] [nvarchar](3500) NOT NULL,
+	[Enabled] [tinyint] NOT NULL,
+	[FirstStartTime] [datetime] NOT NULL,
+	[Cycle] [int] NOT NULL,
+	[RTime] [smalldatetime] NOT NULL,
+	[_InTime] [datetime] NOT NULL,
+	[_Time] [datetime] NOT NULL,
+	[PreRTime] [datetime] NULL,
+ CONSTRAINT [PK_StatCfg] PRIMARY KEY NONCLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
 GO
-/****** Object:  StoredProcedure [dbo].[Apq_KILL_Login]    Script Date: 11/09/2010 11:49:48 ******/
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'统计命名' , @level0type=N'SCHEMA',@level0name=N'etl', @level1type=N'TABLE',@level1name=N'StatCfg', @level2type=N'COLUMN',@level2name=N'StatName'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'检测数据到位情况,通过时返回1(参数:@StatName,@StartTime,@EndTime)' , @level0type=N'SCHEMA',@level0name=N'etl', @level1type=N'TABLE',@level1name=N'StatCfg', @level2type=N'COLUMN',@level2name=N'Detect'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'统计存储过程或统计语句(参数:@StartTime,@EndTime)' , @level0type=N'SCHEMA',@level0name=N'etl', @level1type=N'TABLE',@level1name=N'StatCfg', @level2type=N'COLUMN',@level2name=N'STMT'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'启用与否' , @level0type=N'SCHEMA',@level0name=N'etl', @level1type=N'TABLE',@level1name=N'StatCfg', @level2type=N'COLUMN',@level2name=N'Enabled'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'统计参数:开始时间初始值' , @level0type=N'SCHEMA',@level0name=N'etl', @level1type=N'TABLE',@level1name=N'StatCfg', @level2type=N'COLUMN',@level2name=N'FirstStartTime'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'统计周期(分钟)' , @level0type=N'SCHEMA',@level0name=N'etl', @level1type=N'TABLE',@level1name=N'StatCfg', @level2type=N'COLUMN',@level2name=N'Cycle'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'首次统计执行时间' , @level0type=N'SCHEMA',@level0name=N'etl', @level1type=N'TABLE',@level1name=N'StatCfg', @level2type=N'COLUMN',@level2name=N'RTime'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'上一次统计时间' , @level0type=N'SCHEMA',@level0name=N'etl', @level1type=N'TABLE',@level1name=N'StatCfg', @level2type=N'COLUMN',@level2name=N'PreRTime'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'不能保证准时执行,只能用于数据仓库' , @level0type=N'SCHEMA',@level0name=N'etl', @level1type=N'TABLE',@level1name=N'StatCfg'
+GO
+/****** Object:  Table [mgr].[SrvPwd]    Script Date: 11/12/2010 15:03:51 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [mgr].[SrvPwd](
+	[ID] [bigint] IDENTITY(1,1) NOT NULL,
+	[SrvID] [int] NOT NULL,
+	[PwdType] [int] NOT NULL,
+	[LoginName] [nvarchar](256) NOT NULL,
+	[LoginPwd] [nvarchar](256) NOT NULL,
+	[Enabled] [tinyint] NOT NULL,
+	[SID] [nvarchar](200) NOT NULL,
+ CONSTRAINT [PK_SrvPwd] PRIMARY KEY NONCLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'服务器' , @level0type=N'SCHEMA',@level0name=N'mgr', @level1type=N'TABLE',@level1name=N'SrvPwd', @level2type=N'COLUMN',@level2name=N'SrvID'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'密码类型{1:OS,2:DB,3:FTP,4:Serv-U管理密码}' , @level0type=N'SCHEMA',@level0name=N'mgr', @level1type=N'TABLE',@level1name=N'SrvPwd', @level2type=N'COLUMN',@level2name=N'PwdType'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'登录名' , @level0type=N'SCHEMA',@level0name=N'mgr', @level1type=N'TABLE',@level1name=N'SrvPwd', @level2type=N'COLUMN',@level2name=N'LoginName'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'登录密码' , @level0type=N'SCHEMA',@level0name=N'mgr', @level1type=N'TABLE',@level1name=N'SrvPwd', @level2type=N'COLUMN',@level2name=N'LoginPwd'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'是否启用' , @level0type=N'SCHEMA',@level0name=N'mgr', @level1type=N'TABLE',@level1name=N'SrvPwd', @level2type=N'COLUMN',@level2name=N'Enabled'
+GO
+/****** Object:  StoredProcedure [dbo].[Apq_WH_Init]    Script Date: 11/12/2010 15:04:31 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1425,176 +1049,934 @@ GO
 /* =============================================
 -- 作者: 黄宗银
 -- 日期: 2010-04-13
--- 描述: 断开某用户数据库的所有连接
+-- 描述: 维护作业初始化
+-- 步骤: 1.禁用相关作业 2.启用维护作业
 -- 示例:
-EXEC dbo.Apq_KILL_Login N'LoginName'
+EXEC dbo.Apq_WH_Init
 -- =============================================
 */
-CREATE PROC [dbo].[Apq_KILL_Login]
-    @LoginName nvarchar(256)
-AS 
+CREATE PROC [dbo].[Apq_WH_Init]
+AS
 SET NOCOUNT ON ;
 
-DECLARE @LoginID int
+-- 1.禁用相关作业
+--EXEC msdb..sp_update_job @job_name = '日志转移',@enabled = 0
+DECLARE @job_name sysname
+DECLARE @csr CURSOR
+SET @csr = CURSOR FOR
+SELECT name FROM msdb..sysjobs WHERE name LIKE '%日志切换转移'
 
-IF ( Len(@LoginName) < 1 ) 
-    SELECT  @LoginName = NULL ;
+OPEN @csr;
+FETCH NEXT FROM @csr INTO @job_name
+WHILE(@@FETCH_STATUS = 0)
+BEGIN
+	EXEC msdb..sp_update_job @job_name = @job_name,@enabled = 0
 
-SELECT  @LoginID = principal_id
-FROM    master.sys.login_token
-WHERE   name = @LoginName ;
-IF ( @LoginID IS NULL
-     OR @LoginID < 4
-   ) 
-    RETURN -2 ;
+	FETCH NEXT FROM @csr INTO @job_name
+END
+CLOSE @csr;
 
-DECLARE @stmt nvarchar(max)
-   ,@pSession CURSOR ;
-
-CREATE TABLE #t_who (
-     spid smallint
-    ,ecid smallint
-    ,status nvarchar(30)
-    ,loginame nvarchar(128)
-    ,hostname nvarchar(128)
-    ,blk nvarchar(5)
-    ,DBName nvarchar(128)
-    ,cmd nvarchar(16)
-    ,request_id int
-    ) ;
-
-INSERT  #t_who
-        EXEC sp_who @LoginName
-
-SET @pSession = CURSOR FOR
-SELECT N'KILL ' + CAST(spid AS nvarchar) FROM #t_who;
-
-OPEN @pSession ;
-FETCH NEXT FROM @pSession INTO @stmt ;
-WHILE ( @@FETCH_STATUS = 0 ) 
-    BEGIN
-        EXEC sp_executesql @stmt ;
-
-        FETCH NEXT FROM @pSession INTO @stmt ;
-    END
-CLOSE @pSession ;
+-- 2.启用维护作业
+EXEC msdb..sp_update_job @job_name = '例行维护',@enabled = 1
 GO
-/****** Object:  StoredProcedure [dbo].[Apq_KILL_DB]    Script Date: 11/09/2010 11:49:48 ******/
+/****** Object:  StoredProcedure [dbo].[Apq_WH_End]    Script Date: 11/12/2010 15:04:31 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 /* =============================================
 -- 作者: 黄宗银
--- 日期: 2007-09-20
--- 描述: 断开某用户数据库的所有连接
+-- 日期: 2010-04-13
+-- 描述: 结束维护作业
+-- 步骤: 1.启用相关作业 2.禁用维护作业
 -- 示例:
-EXEC dbo.Apq_KILL_DB N'DBName'
+EXEC dbo.Apq_WH_End
 -- =============================================
 */
-CREATE PROC [dbo].[Apq_KILL_DB]
-	@DBName	nvarchar(256)
+CREATE PROC [dbo].[Apq_WH_End]
 AS
+SET NOCOUNT ON ;
+
+-- 1.启用相关作业
+--EXEC msdb..sp_update_job @job_name = '日志转移',@enabled = 1
+DECLARE @job_name sysname
+DECLARE @csr CURSOR
+SET @csr = CURSOR FOR
+SELECT name FROM msdb..sysjobs WHERE name LIKE '%日志切换转移'
+
+OPEN @csr;
+FETCH NEXT FROM @csr INTO @job_name
+WHILE(@@FETCH_STATUS = 0)
+BEGIN
+	EXEC msdb..sp_update_job @job_name = @job_name,@enabled = 1
+
+	FETCH NEXT FROM @csr INTO @job_name
+END
+CLOSE @csr;
+
+-- 2.禁用维护作业
+EXEC msdb..sp_update_job @job_name = '例行维护',@enabled = 0
+GO
+/****** Object:  Table [mgr].[Server]    Script Date: 11/12/2010 15:03:51 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [mgr].[Server](
+	[SrvID] [int] NOT NULL,
+	[SrvName] [nvarchar](256) NOT NULL,
+	[Location] [nvarchar](max) NOT NULL,
+	[Usage] [nvarchar](500) NOT NULL,
+	[OS] [nvarchar](500) NOT NULL,
+	[IPWan1] [nvarchar](500) NOT NULL,
+	[IPLan1] [nvarchar](500) NOT NULL,
+	[RdpPort] [int] NULL,
+	[SqlPort] [int] NULL,
+	[FTPPort] [int] NULL,
+	[IPWan2] [nvarchar](500) NOT NULL,
+	[IPLan2] [nvarchar](500) NOT NULL,
+	[IPWan3] [nvarchar](500) NOT NULL,
+	[IPLan3] [nvarchar](500) NOT NULL,
+	[IPWan4] [nvarchar](500) NOT NULL,
+	[IPLan4] [nvarchar](500) NOT NULL,
+ CONSTRAINT [PK_Server] PRIMARY KEY NONCLUSTERED 
+(
+	[SrvID] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'服务器命名/编号' , @level0type=N'SCHEMA',@level0name=N'mgr', @level1type=N'TABLE',@level1name=N'Server', @level2type=N'COLUMN',@level2name=N'SrvName'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'位置(机房,机柜等)' , @level0type=N'SCHEMA',@level0name=N'mgr', @level1type=N'TABLE',@level1name=N'Server', @level2type=N'COLUMN',@level2name=N'Location'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'主要用途' , @level0type=N'SCHEMA',@level0name=N'mgr', @level1type=N'TABLE',@level1name=N'Server', @level2type=N'COLUMN',@level2name=N'Usage'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'操作系统(版本号)' , @level0type=N'SCHEMA',@level0name=N'mgr', @level1type=N'TABLE',@level1name=N'Server', @level2type=N'COLUMN',@level2name=N'OS'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'外网IP' , @level0type=N'SCHEMA',@level0name=N'mgr', @level1type=N'TABLE',@level1name=N'Server', @level2type=N'COLUMN',@level2name=N'IPWan1'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'内网IP' , @level0type=N'SCHEMA',@level0name=N'mgr', @level1type=N'TABLE',@level1name=N'Server', @level2type=N'COLUMN',@level2name=N'IPLan1'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'远程端口' , @level0type=N'SCHEMA',@level0name=N'mgr', @level1type=N'TABLE',@level1name=N'Server', @level2type=N'COLUMN',@level2name=N'RdpPort'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'SQL Server端口' , @level0type=N'SCHEMA',@level0name=N'mgr', @level1type=N'TABLE',@level1name=N'Server', @level2type=N'COLUMN',@level2name=N'SqlPort'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'FTP端口' , @level0type=N'SCHEMA',@level0name=N'mgr', @level1type=N'TABLE',@level1name=N'Server', @level2type=N'COLUMN',@level2name=N'FTPPort'
+GO
+/****** Object:  Table [dbo].[RSrvConfig]    Script Date: 11/12/2010 15:03:47 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[RSrvConfig](
+	[ID] [int] NOT NULL,
+	[ParentID] [int] NULL,
+	[Name] [nvarchar](256) NOT NULL,
+	[LSName] [nvarchar](512) NOT NULL,
+	[UID] [nvarchar](256) NULL,
+	[PwdC] [nvarchar](max) NULL,
+	[Type] [int] NULL,
+	[LSMaxTimes] [int] NOT NULL,
+	[LSErrTimes] [int] NOT NULL,
+	[LSState] [int] NOT NULL,
+	[IPLan] [nvarchar](500) NULL,
+	[IPWan1] [nvarchar](500) NOT NULL,
+	[IPWan2] [nvarchar](500) NULL,
+	[FTPPort] [int] NOT NULL,
+	[FTPU] [nvarchar](50) NULL,
+	[FTPPC] [nvarchar](max) NULL,
+	[SqlPort] [int] NOT NULL,
+	[Enabled] [tinyint] NOT NULL,
+ CONSTRAINT [PK_RSrvConfig] PRIMARY KEY NONCLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'服务器编号' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'RSrvConfig', @level2type=N'COLUMN',@level2name=N'ID'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'服务器命名' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'RSrvConfig', @level2type=N'COLUMN',@level2name=N'Name'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'LinkServerName(别名)' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'RSrvConfig', @level2type=N'COLUMN',@level2name=N'LSName'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'UID' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'RSrvConfig', @level2type=N'COLUMN',@level2name=N'UID'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'密码(已加密)' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'RSrvConfig', @level2type=N'COLUMN',@level2name=N'PwdC'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'服务器分类{1:区库,2:游戏库}' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'RSrvConfig', @level2type=N'COLUMN',@level2name=N'Type'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'允许该LinkServer断开的最大次数' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'RSrvConfig', @level2type=N'COLUMN',@level2name=N'LSMaxTimes'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'已经断开的次数' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'RSrvConfig', @level2type=N'COLUMN',@level2name=N'LSErrTimes'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'LinkServer状态{0:断开(连续失败N次),1:正常}' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'RSrvConfig', @level2type=N'COLUMN',@level2name=N'LSState'
+GO
+/****** Object:  Table [bak].[RestoreFromFolder]    Script Date: 11/12/2010 15:03:40 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [bak].[RestoreFromFolder](
+	[ID] [bigint] IDENTITY(1,1) NOT NULL,
+	[DBName] [nvarchar](256) NOT NULL,
+	[LastFileName] [nvarchar](256) NOT NULL,
+	[Enabled] [tinyint] NOT NULL,
+	[BakFolder] [nvarchar](4000) NOT NULL,
+	[RestoreType] [int] NOT NULL,
+	[RestoreFolder] [nvarchar](4000) NULL,
+	[DB_HisNum] [int] NOT NULL,
+	[Num_Full] [int] NOT NULL,
+	[RunnerIDCfg] [int] NOT NULL,
+	[RunnerIDRun] [int] NOT NULL,
+	[_InTime] [datetime] NOT NULL,
+	[_Time] [datetime] NOT NULL,
+ CONSTRAINT [PK_RestoreFromFolder] PRIMARY KEY NONCLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'数据库名' , @level0type=N'SCHEMA',@level0name=N'bak', @level1type=N'TABLE',@level1name=N'RestoreFromFolder', @level2type=N'COLUMN',@level2name=N'DBName'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'上次还原使用的文件名' , @level0type=N'SCHEMA',@level0name=N'bak', @level1type=N'TABLE',@level1name=N'RestoreFromFolder', @level2type=N'COLUMN',@level2name=N'LastFileName'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'启用与否' , @level0type=N'SCHEMA',@level0name=N'bak', @level1type=N'TABLE',@level1name=N'RestoreFromFolder', @level2type=N'COLUMN',@level2name=N'Enabled'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'备份文件目录' , @level0type=N'SCHEMA',@level0name=N'bak', @level1type=N'TABLE',@level1name=N'RestoreFromFolder', @level2type=N'COLUMN',@level2name=N'BakFolder'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'还原类型{0x1:历史,0x2:备用}' , @level0type=N'SCHEMA',@level0name=N'bak', @level1type=N'TABLE',@level1name=N'RestoreFromFolder', @level2type=N'COLUMN',@level2name=N'RestoreType'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'还原目录' , @level0type=N'SCHEMA',@level0name=N'bak', @level1type=N'TABLE',@level1name=N'RestoreFromFolder', @level2type=N'COLUMN',@level2name=N'RestoreFolder'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'历史库保留个数' , @level0type=N'SCHEMA',@level0name=N'bak', @level1type=N'TABLE',@level1name=N'RestoreFromFolder', @level2type=N'COLUMN',@level2name=N'DB_HisNum'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'完整备份文件保留个数(同时保留具有基础完整备份文件的日志备份文件)' , @level0type=N'SCHEMA',@level0name=N'bak', @level1type=N'TABLE',@level1name=N'RestoreFromFolder', @level2type=N'COLUMN',@level2name=N'Num_Full'
+GO
+/****** Object:  Table [dbo].[RDBUser]    Script Date: 11/12/2010 15:03:47 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[RDBUser](
+	[RDBUserID] [bigint] NOT NULL,
+	[RDBID] [bigint] NULL,
+	[DBUserName] [nvarchar](256) NOT NULL,
+	[DBUserDesc] [nvarchar](max) NULL,
+	[RDBLoginID] [bigint] NOT NULL,
+ CONSTRAINT [PK_RDBUser] PRIMARY KEY NONCLUSTERED 
+(
+	[RDBUserID] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'登录名编号(ALL,可采用分级分段分配)' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'RDBUser', @level2type=N'COLUMN',@level2name=N'RDBUserID'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'空表示通用用户' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'RDBUser', @level2type=N'COLUMN',@level2name=N'RDBID'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'用户名' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'RDBUser', @level2type=N'COLUMN',@level2name=N'DBUserName'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'描述(用户用途等)' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'RDBUser', @level2type=N'COLUMN',@level2name=N'DBUserDesc'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'对应的登录' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'RDBUser', @level2type=N'COLUMN',@level2name=N'RDBLoginID'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'远程数据库列表' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'RDBUser'
+GO
+/****** Object:  Table [dbo].[RDBLogin]    Script Date: 11/12/2010 15:03:47 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[RDBLogin](
+	[RDBLoginID] [bigint] NOT NULL,
+	[RSrvID] [int] NULL,
+	[DBLoginName] [nvarchar](256) NOT NULL,
+	[DBLoginDesc] [nvarchar](max) NULL,
+	[SID] [varbinary](85) NULL,
+	[LoginPwdC] [nvarchar](max) NOT NULL,
+ CONSTRAINT [PK_RDBLogin] PRIMARY KEY NONCLUSTERED 
+(
+	[RDBLoginID] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+SET ANSI_PADDING OFF
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'登录名编号(ALL,可采用分级分段分配)' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'RDBLogin', @level2type=N'COLUMN',@level2name=N'RDBLoginID'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'空表示通用登录' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'RDBLogin', @level2type=N'COLUMN',@level2name=N'RSrvID'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'登录名' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'RDBLogin', @level2type=N'COLUMN',@level2name=N'DBLoginName'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'描述(登录用途,使用者等)' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'RDBLogin', @level2type=N'COLUMN',@level2name=N'DBLoginDesc'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'登录SID(NULL表示windows登录)' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'RDBLogin', @level2type=N'COLUMN',@level2name=N'SID'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'登录密码' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'RDBLogin', @level2type=N'COLUMN',@level2name=N'LoginPwdC'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'远程数据库列表' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'RDBLogin'
+GO
+/****** Object:  Table [dbo].[RDBConfig]    Script Date: 11/12/2010 15:03:46 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[RDBConfig](
+	[RDBID] [bigint] NOT NULL,
+	[DBName] [nvarchar](256) NOT NULL,
+	[RDBDesc] [nvarchar](max) NULL,
+	[RDBType] [int] NOT NULL,
+	[PLevel] [int] NOT NULL,
+	[GLevel] [int] NOT NULL,
+	[SrvID] [int] NOT NULL,
+	[GameID] [int] NOT NULL,
+	[Enabled] [tinyint] NOT NULL,
+ CONSTRAINT [PK_RDBConfig] PRIMARY KEY NONCLUSTERED 
+(
+	[RDBID] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'远程数据库编号(ALL,可采用分级分段分配)' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'RDBConfig', @level2type=N'COLUMN',@level2name=N'RDBID'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'数据库名' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'RDBConfig', @level2type=N'COLUMN',@level2name=N'DBName'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'数据库主要功能描述(主要功能名称,如''1-2-5世界名称'',''1-0-中心库''等)' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'RDBConfig', @level2type=N'COLUMN',@level2name=N'RDBDesc'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'数据库类型{0:未分类,1:通行证,2:游戏用户中心,3:游戏数据中心,4:游戏日志中心,5:游戏库,6:游戏库日志}' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'RDBConfig', @level2type=N'COLUMN',@level2name=N'RDBType'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'数据库层级(ALL)' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'RDBConfig', @level2type=N'COLUMN',@level2name=N'PLevel'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'数据库层级(游戏内)' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'RDBConfig', @level2type=N'COLUMN',@level2name=N'GLevel'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'数据库服务器编号(ALL)' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'RDBConfig', @level2type=N'COLUMN',@level2name=N'SrvID'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'游戏编号' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'RDBConfig', @level2type=N'COLUMN',@level2name=N'GameID'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'远程数据库列表' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'RDBConfig'
+GO
+/****** Object:  Table [dic].[PwdType]    Script Date: 11/12/2010 15:03:48 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dic].[PwdType](
+	[PwdType] [int] NOT NULL,
+	[Description] [nvarchar](100) NOT NULL
+) ON [PRIMARY]
+GO
+/****** Object:  UserDefinedFunction [dbo].[Apq_ConvertInt_TimeString]    Script Date: 11/12/2010 15:04:39 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+/* =============================================
+-- 作者: 黄宗银
+-- 日期: 2010-06-11
+-- 描述: 将整数表示的时间 转换为 24小时时间字符串,格式[hh:mi:ss]
+-- 示例:
+SELECT dbo.Apq_ConvertInt_TimeString('310')
+-- =============================================
+*/
+CREATE FUNCTION [dbo].[Apq_ConvertInt_TimeString]
+(
+	@nTime	int
+)
+RETURNS nvarchar(8)
+AS
+BEGIN
+	DECLARE @Return nvarchar(8), @strTime nvarchar(8), @p int;
+    SELECT @strTime = RIGHT('000000'+Convert(nvarchar(6),@nTime),6);
+	SELECT @Return = LEFT(@strTime,2);
+    SELECT @p = 3;
+    WHILE(@p < 6)
+    BEGIN
+		SELECT @Return = @Return + ':' + Substring(@strTime,@p,2);
+    
+    	SELECT @p = @p + 2;
+    END
+
+	RETURN @Return;
+END
+GO
+/****** Object:  UserDefinedFunction [dbo].[Apq_ConvertInt_Time]    Script Date: 11/12/2010 15:04:39 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+/* =============================================
+-- 作者: 黄宗银
+-- 日期: 2010-06-11
+-- 描述: 将整数表示的时间 转换为 24小时时间字符串,格式[hh:mi:ss]
+-- 示例:
+SELECT dbo.Apq_ConvertInt_Time('310'/*所支持的最大值*/)
+-- =============================================
+*/
+CREATE FUNCTION [dbo].[Apq_ConvertInt_Time]
+(
+	@nTime	int
+)
+RETURNS nvarchar(8)
+AS
+BEGIN
+	DECLARE @Return nvarchar(8), @strTime nvarchar(8), @p int;
+    SELECT @strTime = RIGHT('000000'+Convert(nvarchar(6),@nTime),6);
+	SELECT @Return = LEFT(@strTime,2);
+    SELECT @p = 3;
+    WHILE(@p < 6)
+    BEGIN
+		SELECT @Return = @Return + ':' + Substring(@strTime,@p,2);
+    
+    	SELECT @p = @p + 2;
+    END
+
+	RETURN @Return;
+END
+GO
+/****** Object:  UserDefinedFunction [dbo].[Apq_ConvertHexStr_VarBinary]    Script Date: 11/12/2010 15:04:39 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+/* =============================================
+-- 作者: 黄宗银
+-- 日期: 2009-04-30
+-- 描述: [未检测溢出]将一串16进制的字符串 @str 转换为 VarBinary
+-- 示例:
+SELECT dbo.Apq_ConvertHexStr_VarBinary('7FFFFFFFFFFFFFFF'/*所支持的最大值*/)
+-- =============================================
+*/
+CREATE FUNCTION [dbo].[Apq_ConvertHexStr_VarBinary]
+(
+	@hexstr	varchar(max)
+)
+RETURNS varbinary(max)
+AS
+BEGIN
+	DECLARE @Return varbinary(max), @ind int, @byte1 int, @byte2 int;
+	SELECT @Return = 0x;
+	IF(lower(substring(@hexstr, 1, 2)) = '0x') SET @ind = 3;
+	ELSE SET @ind = 1;
+	
+    WHILE ( @ind <= len(@hexstr) )
+    BEGIN
+        SET @byte1 = ascii(substring(@hexstr, @ind, 1))
+        SET @byte2 = ascii(substring(@hexstr, @ind + 1, 1))
+        SET @Return = @Return + convert(binary(1),
+                  case
+                        when @byte1 between 48 and 57 then @byte1 - 48
+                        when @byte1 between 65 and 70 then @byte1 - 55
+                        when @byte1 between 97 and 102 then @byte1 - 87
+                        else null end * 16 +
+                  case
+                        when @byte2 between 48 and 57 then @byte2 - 48
+                        when @byte2 between 65 and 70 then @byte2 - 55
+                        when @byte2 between 97 and 122 then @byte2 - 87
+                        else null end)
+        SET @ind = @ind + 2
+    END
+
+	RETURN @Return;
+END
+GO
+/****** Object:  UserDefinedFunction [dbo].[Apq_ConvertBinary4_IP4]    Script Date: 11/12/2010 15:04:38 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+/* =============================================
+-- 作者: 黄宗银
+-- 日期: 2007-10-30
+-- 描述: 将 binary(4) 转化为 IP4串
+-- 示例:
+SELECT dbo.Apq_ConvertBinary4_IP4(0xFFFFFFFFFFFFFFFF);
+-- =============================================
+*/
+CREATE FUNCTION [dbo].[Apq_ConvertBinary4_IP4](
+	@binIP	binary(4)
+)RETURNS varchar(max)
+AS
+BEGIN
+	DECLARE	 @Return varchar(max)
+			,@nIP int
+			,@i int
+			;
+	SELECT	 @nIP = 0
+			,@i = 1
+			;
+
+	WHILE(@i <= 4)
+	BEGIN
+		SELECT	@nIP = Convert(int, SUBSTRING(@binIP, @i, 1));
+		SELECT	@Return = ISNULL(@Return, '') + '.' + Convert(varchar, @nIP);
+
+		SELECT	@i = @i + 1;
+	END
+
+	RETURN SUBSTRING(@Return, 2, LEN(@Return)-1);
+END
+GO
+/****** Object:  Table [dbo].[Apq_Config]    Script Date: 11/12/2010 15:03:40 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Apq_Config](
+	[ID] [bigint] NOT NULL,
+	[ParentID] [bigint] NULL,
+	[Class] [nvarchar](512) NOT NULL,
+	[Name] [nvarchar](256) NOT NULL,
+	[Value] [nvarchar](max) NULL,
+ CONSTRAINT [PK_Apq_Config] PRIMARY KEY NONCLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'类名' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Apq_Config', @level2type=N'COLUMN',@level2name=N'Class'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'配置名' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Apq_Config', @level2type=N'COLUMN',@level2name=N'Name'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'配置值' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Apq_Config', @level2type=N'COLUMN',@level2name=N'Value'
+GO
+/****** Object:  UserDefinedFunction [bak].[Apq_Compute_DBName_Restore]    Script Date: 11/12/2010 15:04:38 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE FUNCTION [bak].[Apq_Compute_DBName_Restore](
+	@DBName	nvarchar(256),
+	@BakTime	datetime
+)RETURNS nvarchar(256) AS
+/* =============================================
+-- 作者: 黄宗银
+-- 日期: 2009-06-16
+-- 描述: 计算还原时使用的数据库名(可自行修改)
+-- 示例:
+SELECT bak.Apq_Compute_DBName_Restore('Apq', getdate())
+-- =============================================
+*/
+BEGIN
+	DECLARE	@rtn nvarchar(256);
+	SELECT @rtn = @DBName + '_DW' + Convert(nvarchar,DatePart(dw,@BakTime));
+	--SELECT @rtn = @DBName + FGameDB.dbo.Apq_Ext_Get('',0,'ServerID') + '_Bak' + Convert(nvarchar,DatePart(dw,@BakTime));
+	RETURN @rtn;
+END
+GO
+/****** Object:  UserDefinedFunction [dbo].[Apq_CharIndexR]    Script Date: 11/12/2010 15:04:38 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+/* =============================================
+-- 作者: 黄宗银
+-- 日期: 2010-03-31
+-- 描述: 自右向左的CharIndex
+-- 示例:
+SELECT dbo.Apq_CharIndexR('D:\Apq_DBA\UpFile\D\Bak\[Log]Apq_Bak.txt','\',1);
+-- =============================================
+*/
+CREATE FUNCTION [dbo].[Apq_CharIndexR] (
+     @str nvarchar(max)
+    ,@str_find nvarchar(max)
+    ,@Num bigint = 1
+    )
+RETURNS bigint
+AS 
+BEGIN
+    DECLARE @t TABLE (
+         ID [bigint] IDENTITY(1,1)
+                     NOT NULL
+        ,Pos bigint
+        )
+    DECLARE @Return bigint
+       ,@Len bigint	-- 长度
+       ,@ib int		-- 当前解析起始位置
+       ,@ie int		-- 当前解析结束位置
+       ,@i int ;
+       
+    SELECT  @Len = Len(@str) ;
+    SELECT  @ib = 1 ;
+    WHILE ( @ib <= @Len ) 
+        BEGIN
+            SELECT  @ie = Charindex(@str_find,@str,@ib) ;
+            IF ( @ie > 0 ) 
+                INSERT  @t ( Pos )
+                        SELECT  @ie ;
+            ELSE 
+                BREAK ;
+                
+            SELECT  @ib = @ie + 1 ;
+        END
+    
+    SELECT TOP ( @Num )
+            @Return = Pos
+    FROM    @t
+    ORDER BY ID DESC
+    
+    RETURN @Return ;
+END
+GO
+/****** Object:  StoredProcedure [bcp].[Apq_BcpInFromFolder_ga]    Script Date: 11/12/2010 15:04:29 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROC [bcp].[Apq_BcpInFromFolder_ga]
+AS
+/* =============================================
+-- 作者: 黄宗银
+-- 日期: 2009-09-23
+-- 描述: 从文件夹导入GameActor数据
+-- 示例:
+DECLARE @rtn int;
+EXEC @rtn = bcp.Apq_BcpInFromFolder_ga;
+SELECT @rtn;
+-- =============================================
+*/
 SET NOCOUNT ON;
 
-DECLARE	@stmt nvarchar(max), @pSession cursor;
+--定义变量
+DECLARE @FullTableName nvarchar(256),	-- 完整表名
+	@BcpFolder nvarchar(4000),--数据目录
+	@rtn int, @cmd nvarchar(4000), @sql nvarchar(4000)
+	,@FileName nvarchar(4000)		-- 临时变量:数据文件名
+	;
 
-CREATE TABLE #sp_who(
-	spid	smallint,
-	ecid	smallint,
-	status	nvarchar(30),
-	loginame	nvarchar(128),
-	hostname	nvarchar(128),
-	blk		int,
-	dbname	nvarchar(128),
-	cmd		nvarchar(16),
-	request_id	int
-);
+SELECT @BcpFolder = 'D:\FTP\GameActor\'
+	,@FullTableName = 'Stat_QQHX.bcp.GameActor_Bcp';
+-- 接收cmd返回结果
+CREATE TABLE #t(s nvarchar(4000));
 
-INSERT #sp_who EXEC sp_who;
-SELECT * FROM #sp_who
- WHERE dbname = @DBName;
+-- 读取文件
+SELECT @cmd = 'dir /a:-d/b/o:n "' + @BcpFolder + 'ga_*.txt"';
+INSERT #t(s) EXEC master..xp_cmdshell @cmd;
 
-SET	@pSession = CURSOR FOR
-SELECT DISTINCT N'KILL ' + CAST(spid AS nvarchar)
-  FROM #sp_who
- WHERE dbname = @DBName;
-
-OPEN @pSession;
-FETCH NEXT FROM @pSession INTO @stmt;
-WHILE( @@FETCH_STATUS = 0 )
+DECLARE @FileCount int;
+SELECT @FileCount = COUNT(*) FROM #t WHERE s IS NOT NULL;
+WHILE(@FileCount > 0 )
 BEGIN
-	EXEC sp_executesql @stmt;
-
-	FETCH NEXT FROM @pSession INTO @stmt;
+	SELECT TOP 1 @FileName = s FROM #t;
+	DELETE #t WHERE s = @FileName;
+	SELECT @FileCount = COUNT(*) FROM #t WHERE s IS NOT NULL;
+	
+	-- Bcp in
+	SELECT @cmd = 'bcp "' + @FullTableName + '" in "' + @BcpFolder + @FileName + '" -c -r~*$';
+	--SELECT @cmd;
+	EXEC @rtn = master..xp_cmdshell @cmd;
+	IF(@@ERROR <> 0 OR @rtn <> 0)
+	BEGIN
+		CONTINUE;
+	END
+	SELECT @cmd = 'del /F /Q "' + @BcpFolder + @FileName + '"'
+	EXEC master..xp_cmdshell @cmd;
 END
-CLOSE @pSession;
 
-DROP TABLE #sp_who;
+DROP TABLE #t;
+RETURN 1;
 GO
-/****** Object:  UserDefinedFunction [dbo].[Apq_IsNumeric]    Script Date: 11/09/2010 11:49:49 ******/
+/****** Object:  UserDefinedFunction [dbo].[Apq_ConvertPBigintTo]    Script Date: 11/12/2010 15:04:39 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 /* =============================================
 -- 作者: 黄宗银
--- 日期: 2008-06-18
--- 描述: 判断字符串是否全为数字
+-- 日期: 2007-09-29
+-- 描述: 将一正整数 @value 转换为 @to 进制表示的字符串
 -- 示例:
-SELECT dbo.Apq_IsNumeric('30000229');
+SELECT dbo.Apq_ConvertPBigintTo(16, 9223372036854775807/*Bigint正数最大值*/)
 -- =============================================
 */
-CREATE FUNCTION [dbo].[Apq_IsNumeric](
-	@s	nvarchar(50)
-)RETURNS tinyint
+CREATE FUNCTION [dbo].[Apq_ConvertPBigintTo]
+(
+	@to		int,
+	@value	bigint
+)
+RETURNS varchar(max)
 AS
 BEGIN
-	DECLARE @rtn tinyint, @i int, @c nvarchar(1);
-
-	SELECT @i = 1;
-	WHILE(@i <= LEN(@s))
+	IF(@to < 2 OR @to > 36)
 	BEGIN
-		SELECT @c = SubString(@s, @i, 1);
-		IF(@c < '0' OR '9' < @c)
+		RETURN '';
+	END
+
+	DECLARE @Return varchar(max);
+
+	DECLARE @q bigint, @r int;
+	SELECT @q = @value, @Return = '';
+	WHILE( @q <> 0 )
+	BEGIN
+		SELECT @r = @q % @to;
+		IF( @r < 10 )
 		BEGIN
-			RETURN 0;
+			SELECT @Return = CHAR(@r + ASCII('0') - 0) + @Return;
+		END
+		ELSE
+		BEGIN
+			SELECT @Return = CHAR(@r + ASCII('A') - 10) + @Return;
+		END
+
+		SELECT @q = @q / @to;
+	END
+
+	RETURN @Return
+END
+GO
+/****** Object:  UserDefinedFunction [dbo].[Apq_ConvertPBigintFrom]    Script Date: 11/12/2010 15:04:39 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+/* =============================================
+-- 作者: 黄宗银
+-- 日期: 2007-09-29
+-- 描述: [未检测溢出]将一串 @from 进制的字符串 @str 转换为Bigint正数
+-- 示例:
+SELECT dbo.Apq_ConvertPBigintFrom(16, '7FFFFFFFFFFFFFFF'/*所支持的最大值*/)
+-- =============================================
+*/
+CREATE FUNCTION [dbo].[Apq_ConvertPBigintFrom]
+(
+	@from	bigint,
+	@str	varchar(max)
+)
+RETURNS bigint
+AS
+BEGIN
+	DECLARE @Return bigint;
+
+	DECLARE @i int, @Length int, @c char(1);
+	SELECT @Return = 0, @i = 0, @Length = LEN(@str);
+	WHILE( @i < @Length )
+	BEGIN
+		SELECT @c = SUBSTRING( @str, @Length - @i, 1 );
+		IF( ASCII(@c) <= ASCII('9') )
+		BEGIN
+			SELECT @Return = POWER( @from, @i ) * (ASCII(@c) - ASCII('0') + 0) + @Return;
+		END
+		ELSE
+		BEGIN
+			IF( ASCII(@c) > ASCII('Z') )
+			BEGIN
+				SELECT @c = CHAR(ASCII(@c) - 32);	-- 转换为大写
+			END
+			SELECT @Return = POWER( @from, @i ) * (ASCII(@c) - ASCII('A') + 10) + @Return;
 		END
 
 		SELECT @i = @i + 1;
 	END
 
-	RETURN 1;
+	RETURN @Return
 END
 GO
-/****** Object:  UserDefinedFunction [dbo].[Apq_IP_GetCityID]    Script Date: 11/09/2010 11:49:49 ******/
+/****** Object:  UserDefinedFunction [dbo].[Apq_ConvertVarBinary_HexStr]    Script Date: 11/12/2010 15:04:39 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 /* =============================================
 -- 作者: 黄宗银
--- 日期: 2008-11-19
--- 描述: 根据IP获取所在城市ID
--- 输入: 二进制IP
--- 返回: 城市ID,未知时返回-10
+-- 日期: 2010-04-15
+-- 描述: 将VarBinary转换为16进制字符串表示(不含0x)
 -- 示例:
-SELECT dbo.Apq_IP_GetCityID(0x0000000000000000000000000029F4475B);
+SELECT dbo.Apq_ConvertVarBinary_HexStr(0x0123456789ABCDEF)
 -- =============================================
--10: 未知
 */
-CREATE FUNCTION [dbo].[Apq_IP_GetCityID](
-	@binIP	binary(16)
-)RETURNS bigint
+CREATE FUNCTION [dbo].[Apq_ConvertVarBinary_HexStr]
+(
+	@bin	varbinary(max)
+)
+RETURNS varchar(max)
 AS
 BEGIN
-	DECLARE @CityID bigint
-	SELECT @CityID = -10;	-- 未知
-	SELECT TOP 1 @CityID = CityID FROM Apq_IP WHERE @binIP BETWEEN IPBegin AND IPEnd ORDER BY _Time DESC;
-	RETURN @CityID;
+	DECLARE @Return varchar(max), @ind int, @byte binary(1),@byte1 int, @byte2 int;
+	SELECT @Return = '',@ind = 1;
+	
+    WHILE ( @ind <= datalength(@bin) )
+    BEGIN
+		SELECT @byte = substring(@bin, @ind, 1);
+        SET @byte1 = @byte / 16
+        IF(@byte1 >= 10)
+			SELECT @Return = @Return + 
+				CASE @byte1
+					WHEN 10 THEN 'A'
+					WHEN 11 THEN 'B'
+					WHEN 12 THEN 'C'
+					WHEN 13 THEN 'D'
+					WHEN 14 THEN 'E'
+					WHEN 15 THEN 'F'
+				END
+		ELSE
+			SELECT @Return = @Return + convert(char(1),@byte1)
+
+        SET @byte2 = @byte % 16
+        IF(@byte2 >= 10)
+			SELECT @Return = @Return + 
+				CASE @byte2
+					WHEN 10 THEN 'A'
+					WHEN 11 THEN 'B'
+					WHEN 12 THEN 'C'
+					WHEN 13 THEN 'D'
+					WHEN 14 THEN 'E'
+					WHEN 15 THEN 'F'
+				END
+		ELSE
+			SELECT @Return = @Return + convert(char(1),@byte2)
+
+		SELECT @ind = @ind + 1;
+    END
+
+	RETURN @Return;
 END
 GO
-/****** Object:  Table [dbo].[Apq_Ext]    Script Date: 11/09/2010 11:49:45 ******/
+/****** Object:  Table [dbo].[Apq_ID]    Script Date: 11/12/2010 15:03:41 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Apq_ID](
+	[ID] [bigint] IDENTITY(1,1) NOT NULL,
+	[Name] [nvarchar](256) NOT NULL,
+	[Crt] [bigint] NOT NULL,
+	[Limit] [bigint] NOT NULL,
+	[Init] [bigint] NOT NULL,
+	[Inc] [bigint] NOT NULL,
+	[State] [int] NOT NULL,
+	[_Time] [datetime] NOT NULL,
+	[_InTime] [datetime] NOT NULL,
+ CONSTRAINT [PK_Apq_ID] PRIMARY KEY NONCLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX  = ON, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON, FILLFACTOR = 80) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'自增名' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Apq_ID', @level2type=N'COLUMN',@level2name=N'Name'
+GO
+EXEC sys.sp_addextendedproperty @name=N'说明2', @value=N'12' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Apq_ID', @level2type=N'COLUMN',@level2name=N'Name'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'当前值' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Apq_ID', @level2type=N'COLUMN',@level2name=N'Crt'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'最大值(Bigint最大值-Int最大值)' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Apq_ID', @level2type=N'COLUMN',@level2name=N'Limit'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'初始值' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Apq_ID', @level2type=N'COLUMN',@level2name=N'Init'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'增量' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Apq_ID', @level2type=N'COLUMN',@level2name=N'Inc'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'状态{0:正常,1:已使用}' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Apq_ID', @level2type=N'COLUMN',@level2name=N'State'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'自定义ID自增控制表' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Apq_ID'
+GO
+EXEC sys.sp_addextendedproperty @name=N'说明2', @value=N'随便写写' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Apq_ID'
+GO
+/****** Object:  StoredProcedure [dbo].[Apq_Gen_Ins]    Script Date: 11/12/2010 15:04:30 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+/* =============================================
+-- 作者: 黄宗银
+-- 日期: 2010-04-15
+-- 描述: 计算INSERT语句
+-- 示例:
+EXEC dbo.Apq_Gen_Ins 'dbo.Apq_Ext',1
+-- =============================================
+*/
+CREATE PROC [dbo].[Apq_Gen_Ins]
+   @TableName nvarchar(512) = NULL	-- 表全名(架构.表名)
+  ,@HasID tinyint = 0	-- 是否包含自增列
+  ,@sqlWhere nvarchar(max) = NULL
+AS 
+SET NOCOUNT ON ;
+
+IF(@HasID IS NULL) SELECT @HasID = 0;
+IF(Charindex('.',@TableName) < 2) SELECT @TableName = '[dbo].' + @TableName;
+IF(LEN(@sqlWhere) < 2) SELECT @sqlWhere = NULL;
+
+DECLARE @objID int, @FullName nvarchar(512);
+SELECT @objID = object_id(@TableName);
+
+DECLARE @sql nvarchar(max),@sqlValues nvarchar(max);
+DECLARE @DBName sysname;
+DECLARE @csr CURSOR
+SET @csr = CURSOR FOR
+SELECT object_id, '[' + schema_name(schema_id) + '].[' + name + ']'
+  FROM sys.objects
+ WHERE @objID IS NULL OR object_id = @objID
+
+CREATE TABLE #sql(
+	ID bigint IDENTITY(1,1),
+	sql nvarchar(max)
+);
+CREATE TABLE #sqlT(
+	ID bigint IDENTITY(1,1),
+	sql nvarchar(max)
+);
+
+OPEN @csr;
+FETCH NEXT FROM @csr INTO @objID,@TableName;
+WHILE(@@FETCH_STATUS = 0)
+BEGIN
+	TRUNCATE TABLE #sqlT
+	IF(@HasID = 1 AND EXISTS(SELECT TOP 1 1 FROM sys.columns WHERE object_id = @objID AND is_identity = 1))
+	BEGIN
+		INSERT #sqlT ( sql )
+		SELECT 'SET IDENTITY_INSERT ' + @TableName + ' ON'
+	END
+	
+	SELECT @sql ='('
+	SELECT @sqlValues = 'VALUES (''+'
+	SELECT @sqlValues = @sqlValues + cols + ' + '','' + ' ,@sql = @sql + '[' + name + '],'
+	  FROM (SELECT name,Cols = CASE
+				WHEN system_type_id IN (48,52,56,59,60,62,104,106,108,122,127)  --如果是数值型或MOENY型     
+					 THEN 'CASE WHEN '+ name +' IS NULL THEN ''NULL'' ELSE ' + 'Convert(nvarchar,['+ name + '])'+' END'
+				WHEN system_type_id IN (165, 173) -- binary varbinary
+					 THEN 'CASE WHEN '+ name +' IS NULL THEN ''NULL'' ELSE ''0x'' + ' +  'dbo.Apq_ConvertVarBinary_HexStr([' + name + '])' + ' END'
+				WHEN system_type_id IN (58,61) --如果是datetime或smalldatetime类型
+					 THEN 'CASE WHEN '+ name +' IS NULL THEN ''NULL'' ELSE '+''''''''' + ' + 'Convert(varchar,['+ name +'],121)'+ '+'''''''''+' END'
+				WHEN system_type_id IN (167,175) --如果是varchar类型
+					 THEN 'CASE WHEN '+ name +' IS NULL THEN ''NULL'' ELSE '+''''''''' + ' + 'REPLACE(['+ name+'],'''''''','''''''''''')' + '+'''''''''+' END'
+				WHEN system_type_id IN (231,239) --如果是nvarchar类型
+					 THEN 'CASE WHEN '+ name +' IS NULL THEN ''NULL'' ELSE '+'''N'''''' + ' + 'REPLACE(['+ name+'],'''''''','''''''''''')' + '+'''''''''+' END'
+                /*
+                WHEN system_type_id IN (175) --如果是CHAR类型
+                     THEN 'CASE WHEN '+ name +' IS NULL THEN ''NULL'' ELSE '+''''''''' + ' + 'CAST(REPLACE('+ name+','''''''','''''''''''') AS char(' + cast(max_length as varchar)  + '))+'''''''''+' END'
+                WHEN system_type_id IN (239) --如果是NCHAR类型
+                     THEN 'CASE WHEN '+ name +' IS NULL THEN ''NULL'' ELSE '+'''N'''''' + ' + 'CAST(REPLACE('+ name+','''''''','''''''''''') AS char(' + cast(max_length as varchar)  + '))+'''''''''+' END'
+				*/
+				ELSE '''NULL'''
+			END
+	  FROM sys.columns
+	 WHERE object_id = object_id(@TableName) AND (@HasID <> 0 OR is_identity = 0)
+	) T
+	SELECT @sql ='SELECT ''INSERT INTO '+ @TableName + left(@sql,len(@sql)-1)+') ' + left(@sqlValues,len(@sqlValues)-4) + ')'' FROM '+@TableName + '(NOLOCK)'
+	IF(LEN(@sqlWhere) > 1)
+		SELECT @sql = @sql + ' WHERE (' + @sqlWhere + ')';
+	INSERT #sqlT ( sql )
+	EXEC sp_executesql @sql
+
+	IF(@HasID = 1 AND EXISTS(SELECT TOP 1 1 FROM sys.columns WHERE object_id = @objID AND is_identity = 1))
+	BEGIN
+		INSERT #sqlT ( sql )
+		SELECT 'SET IDENTITY_INSERT ' + @TableName + ' OFF'
+	END
+	
+	INSERT #sql ( sql )
+	SELECT sql FROM #sqlT ORDER BY ID;
+
+	FETCH NEXT FROM @csr INTO @objID,@TableName;
+END
+CLOSE @csr;
+
+SELECT sql FROM #sql ORDER BY ID;
+
+TRUNCATE TABLE #sqlT
+DROP TABLE #sqlT
+TRUNCATE TABLE #sql
+DROP TABLE #sql
+GO
+/****** Object:  Table [dbo].[Apq_Ext]    Script Date: 11/12/2010 15:03:40 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1619,7 +2001,7 @@ EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'扩展名' , @
 GO
 EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'扩展值' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Apq_Ext', @level2type=N'COLUMN',@level2name=N'Value'
 GO
-/****** Object:  StoredProcedure [dbo].[Apq_DropIndex]    Script Date: 11/09/2010 11:49:48 ******/
+/****** Object:  StoredProcedure [dbo].[Apq_DropIndex]    Script Date: 11/12/2010 15:04:30 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1741,7 +2123,7 @@ END
 SELECT @ExMsg = '操作成功';
 RETURN 1;
 GO
-/****** Object:  StoredProcedure [dbo].[Apq_Dependent_List]    Script Date: 11/09/2010 11:49:48 ******/
+/****** Object:  StoredProcedure [dbo].[Apq_Dependent_List]    Script Date: 11/12/2010 15:04:30 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1789,617 +2171,235 @@ EXEC @rtn = dbo.Apq_Dependent_List @object_id;
 SELECT @rtn,@ExMsg;
 ' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'PROCEDURE',@level1name=N'Apq_Dependent_List'
 GO
-/****** Object:  Table [dbo].[Apq_ID]    Script Date: 11/09/2010 11:49:45 ******/
+/****** Object:  UserDefinedFunction [dbo].[Apq_NewID]    Script Date: 11/12/2010 15:04:40 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-CREATE TABLE [dbo].[Apq_ID](
-	[ID] [bigint] IDENTITY(1,1) NOT NULL,
-	[Name] [nvarchar](256) NOT NULL,
-	[Crt] [bigint] NOT NULL,
-	[Limit] [bigint] NOT NULL,
-	[Init] [bigint] NOT NULL,
-	[Inc] [bigint] NOT NULL,
-	[State] [int] NOT NULL,
-	[_Time] [datetime] NOT NULL,
-	[_InTime] [datetime] NOT NULL,
- CONSTRAINT [PK_Apq_ID] PRIMARY KEY NONCLUSTERED 
-(
-	[ID] ASC
-)WITH (PAD_INDEX  = ON, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON, FILLFACTOR = 80) ON [PRIMARY]
-) ON [PRIMARY]
+CREATE FUNCTION [dbo].[Apq_NewID]()RETURNS int AS BEGIN RETURN 0 END
 GO
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'自增名' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Apq_ID', @level2type=N'COLUMN',@level2name=N'Name'
-GO
-EXEC sys.sp_addextendedproperty @name=N'说明2', @value=N'12' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Apq_ID', @level2type=N'COLUMN',@level2name=N'Name'
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'当前值' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Apq_ID', @level2type=N'COLUMN',@level2name=N'Crt'
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'最大值(Bigint最大值-Int最大值)' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Apq_ID', @level2type=N'COLUMN',@level2name=N'Limit'
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'初始值' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Apq_ID', @level2type=N'COLUMN',@level2name=N'Init'
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'增量' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Apq_ID', @level2type=N'COLUMN',@level2name=N'Inc'
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'状态{0:正常,1:已使用}' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Apq_ID', @level2type=N'COLUMN',@level2name=N'State'
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'自定义ID自增控制表' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Apq_ID'
-GO
-EXEC sys.sp_addextendedproperty @name=N'说明2', @value=N'随便写写' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Apq_ID'
-GO
-/****** Object:  StoredProcedure [dbo].[Apq_Gen_Ins]    Script Date: 11/09/2010 11:49:48 ******/
+/****** Object:  StoredProcedure [dbo].[Apq_Login_StatCount]    Script Date: 11/12/2010 15:04:30 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 /* =============================================
 -- 作者: 黄宗银
--- 日期: 2010-04-15
--- 描述: 计算INSERT语句
+-- 日期: 2010-04-14
+-- 描述: 统计指定登录名的连接数(未指定时为所有登录名)
 -- 示例:
-EXEC dbo.Apq_Gen_Ins 'dbo.Apq_Ext',1
+EXEC dbo.Apq_Login_StatCount N'LoginName'
 -- =============================================
 */
-CREATE PROC [dbo].[Apq_Gen_Ins]
-   @TableName nvarchar(512) = NULL	-- 表全名(架构.表名)
-  ,@HasID tinyint = 0	-- 是否包含自增列
-  ,@sqlWhere nvarchar(max) = NULL
+CREATE PROC [dbo].[Apq_Login_StatCount]
+    @LoginName nvarchar(256)
 AS 
 SET NOCOUNT ON ;
 
-IF(@HasID IS NULL) SELECT @HasID = 0;
-IF(Charindex('.',@TableName) < 2) SELECT @TableName = '[dbo].' + @TableName;
-IF(LEN(@sqlWhere) < 2) SELECT @sqlWhere = NULL;
+IF ( Len(@LoginName) < 1 ) 
+    SELECT  @LoginName = NULL ;
 
-DECLARE @objID int, @FullName nvarchar(512);
-SELECT @objID = object_id(@TableName);
+DECLARE @stmt nvarchar(max)
+   ,@pSession CURSOR ;
 
-DECLARE @sql nvarchar(max),@sqlValues nvarchar(max);
-DECLARE @DBName sysname;
-DECLARE @csr CURSOR
-SET @csr = CURSOR FOR
-SELECT object_id, '[' + schema_name(schema_id) + '].[' + name + ']'
-  FROM sys.objects
- WHERE @objID IS NULL OR object_id = @objID
+CREATE TABLE #t_who (
+     spid smallint
+    ,ecid smallint
+    ,status nvarchar(30)
+    ,loginame nvarchar(128)
+    ,hostname nvarchar(128)
+    ,blk nvarchar(5)
+    ,DBName nvarchar(128)
+    ,cmd nvarchar(16)
+    ,request_id int
+    ) ;
 
-CREATE TABLE #sql(
-	ID bigint IDENTITY(1,1),
-	sql nvarchar(max)
-);
-CREATE TABLE #sqlT(
-	ID bigint IDENTITY(1,1),
-	sql nvarchar(max)
-);
+INSERT  #t_who
+        EXEC sp_who @LoginName
+IF(@@ROWCOUNT = 0) RETURN;
 
-OPEN @csr;
-FETCH NEXT FROM @csr INTO @objID,@TableName;
-WHILE(@@FETCH_STATUS = 0)
-BEGIN
-	TRUNCATE TABLE #sqlT
-	IF(@HasID = 1 AND EXISTS(SELECT TOP 1 1 FROM sys.columns WHERE object_id = @objID AND is_identity = 1))
-	BEGIN
-		INSERT #sqlT ( sql )
-		SELECT 'SET IDENTITY_INSERT ' + @TableName + ' ON'
-	END
-	
-	SELECT @sql ='('
-	SELECT @sqlValues = 'VALUES (''+'
-	SELECT @sqlValues = @sqlValues + cols + ' + '','' + ' ,@sql = @sql + '[' + name + '],'
-	  FROM (SELECT name,Cols = CASE
-				WHEN system_type_id IN (48,52,56,59,60,62,104,106,108,122,127)  --如果是数值型或MOENY型     
-					 THEN 'CASE WHEN '+ name +' IS NULL THEN ''NULL'' ELSE ' + 'Convert(nvarchar,['+ name + '])'+' END'
-				WHEN system_type_id IN (165, 173) -- binary varbinary
-					 THEN 'CASE WHEN '+ name +' IS NULL THEN ''NULL'' ELSE ''0x'' + ' +  'dbo.Apq_ConvertVarBinary_HexStr([' + name + '])' + ' END'
-				WHEN system_type_id IN (58,61) --如果是datetime或smalldatetime类型
-					 THEN 'CASE WHEN '+ name +' IS NULL THEN ''NULL'' ELSE '+''''''''' + ' + 'Convert(varchar,['+ name +'],121)'+ '+'''''''''+' END'
-				WHEN system_type_id IN (167,175) --如果是varchar类型
-					 THEN 'CASE WHEN '+ name +' IS NULL THEN ''NULL'' ELSE '+''''''''' + ' + 'REPLACE(['+ name+'],'''''''','''''''''''')' + '+'''''''''+' END'
-				WHEN system_type_id IN (231,239) --如果是nvarchar类型
-					 THEN 'CASE WHEN '+ name +' IS NULL THEN ''NULL'' ELSE '+'''N'''''' + ' + 'REPLACE(['+ name+'],'''''''','''''''''''')' + '+'''''''''+' END'
-                /*
-                WHEN system_type_id IN (175) --如果是CHAR类型
-                     THEN 'CASE WHEN '+ name +' IS NULL THEN ''NULL'' ELSE '+''''''''' + ' + 'CAST(REPLACE('+ name+','''''''','''''''''''') AS char(' + cast(max_length as varchar)  + '))+'''''''''+' END'
-                WHEN system_type_id IN (239) --如果是NCHAR类型
-                     THEN 'CASE WHEN '+ name +' IS NULL THEN ''NULL'' ELSE '+'''N'''''' + ' + 'CAST(REPLACE('+ name+','''''''','''''''''''') AS char(' + cast(max_length as varchar)  + '))+'''''''''+' END'
-				*/
-				ELSE '''NULL'''
-			END
-	  FROM sys.columns
-	 WHERE object_id = object_id(@TableName) AND (@HasID <> 0 OR is_identity = 0)
-	) T
-	SELECT @sql ='SELECT ''INSERT INTO '+ @TableName + left(@sql,len(@sql)-1)+') ' + left(@sqlValues,len(@sqlValues)-4) + ')'' FROM '+@TableName + '(NOLOCK)'
-	IF(LEN(@sqlWhere) > 1)
-		SELECT @sql = @sql + ' WHERE (' + @sqlWhere + ')';
-	INSERT #sqlT ( sql )
-	EXEC sp_executesql @sql
-
-	IF(@HasID = 1 AND EXISTS(SELECT TOP 1 1 FROM sys.columns WHERE object_id = @objID AND is_identity = 1))
-	BEGIN
-		INSERT #sqlT ( sql )
-		SELECT 'SET IDENTITY_INSERT ' + @TableName + ' OFF'
-	END
-	
-	INSERT #sql ( sql )
-	SELECT sql FROM #sqlT ORDER BY ID;
-
-	FETCH NEXT FROM @csr INTO @objID,@TableName;
-END
-CLOSE @csr;
-
-SELECT sql FROM #sql ORDER BY ID;
-
-TRUNCATE TABLE #sqlT
-DROP TABLE #sqlT
-TRUNCATE TABLE #sql
-DROP TABLE #sql
+SELECT loginame,count(spid)
+  FROM #t_who
+ GROUP BY loginame
 GO
-/****** Object:  UserDefinedFunction [dbo].[Apq_ConvertInt_TimeString]    Script Date: 11/09/2010 11:49:49 ******/
+/****** Object:  StoredProcedure [dbo].[Apq_KILL_Login]    Script Date: 11/12/2010 15:04:30 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 /* =============================================
 -- 作者: 黄宗银
--- 日期: 2010-06-11
--- 描述: 将整数表示的时间 转换为 24小时时间字符串,格式[hh:mi:ss]
+-- 日期: 2010-04-13
+-- 描述: 断开某用户数据库的所有连接
 -- 示例:
-SELECT dbo.Apq_ConvertInt_TimeString('310')
+EXEC dbo.Apq_KILL_Login N'LoginName'
 -- =============================================
 */
-CREATE FUNCTION [dbo].[Apq_ConvertInt_TimeString]
-(
-	@nTime	int
-)
-RETURNS nvarchar(8)
-AS
-BEGIN
-	DECLARE @Return nvarchar(8), @strTime nvarchar(8), @p int;
-    SELECT @strTime = RIGHT('000000'+Convert(nvarchar(6),@nTime),6);
-	SELECT @Return = LEFT(@strTime,2);
-    SELECT @p = 3;
-    WHILE(@p < 6)
-    BEGIN
-		SELECT @Return = @Return + ':' + Substring(@strTime,@p,2);
-    
-    	SELECT @p = @p + 2;
-    END
-
-	RETURN @Return;
-END
-GO
-/****** Object:  UserDefinedFunction [dbo].[Apq_ConvertInt_Time]    Script Date: 11/09/2010 11:49:49 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-/* =============================================
--- 作者: 黄宗银
--- 日期: 2010-06-11
--- 描述: 将整数表示的时间 转换为 24小时时间字符串,格式[hh:mi:ss]
--- 示例:
-SELECT dbo.Apq_ConvertInt_Time('310'/*所支持的最大值*/)
--- =============================================
-*/
-CREATE FUNCTION [dbo].[Apq_ConvertInt_Time]
-(
-	@nTime	int
-)
-RETURNS nvarchar(8)
-AS
-BEGIN
-	DECLARE @Return nvarchar(8), @strTime nvarchar(8), @p int;
-    SELECT @strTime = RIGHT('000000'+Convert(nvarchar(6),@nTime),6);
-	SELECT @Return = LEFT(@strTime,2);
-    SELECT @p = 3;
-    WHILE(@p < 6)
-    BEGIN
-		SELECT @Return = @Return + ':' + Substring(@strTime,@p,2);
-    
-    	SELECT @p = @p + 2;
-    END
-
-	RETURN @Return;
-END
-GO
-/****** Object:  UserDefinedFunction [dbo].[Apq_ConvertHexStr_VarBinary]    Script Date: 11/09/2010 11:49:49 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-/* =============================================
--- 作者: 黄宗银
--- 日期: 2009-04-30
--- 描述: [未检测溢出]将一串16进制的字符串 @str 转换为 VarBinary
--- 示例:
-SELECT dbo.Apq_ConvertHexStr_VarBinary('7FFFFFFFFFFFFFFF'/*所支持的最大值*/)
--- =============================================
-*/
-CREATE FUNCTION [dbo].[Apq_ConvertHexStr_VarBinary]
-(
-	@hexstr	varchar(max)
-)
-RETURNS varbinary(max)
-AS
-BEGIN
-	DECLARE @Return varbinary(max), @ind int, @byte1 int, @byte2 int;
-	SELECT @Return = 0x;
-	IF(lower(substring(@hexstr, 1, 2)) = '0x') SET @ind = 3;
-	ELSE SET @ind = 1;
-	
-    WHILE ( @ind <= len(@hexstr) )
-    BEGIN
-        SET @byte1 = ascii(substring(@hexstr, @ind, 1))
-        SET @byte2 = ascii(substring(@hexstr, @ind + 1, 1))
-        SET @Return = @Return + convert(binary(1),
-                  case
-                        when @byte1 between 48 and 57 then @byte1 - 48
-                        when @byte1 between 65 and 70 then @byte1 - 55
-                        when @byte1 between 97 and 102 then @byte1 - 87
-                        else null end * 16 +
-                  case
-                        when @byte2 between 48 and 57 then @byte2 - 48
-                        when @byte2 between 65 and 70 then @byte2 - 55
-                        when @byte2 between 97 and 122 then @byte2 - 87
-                        else null end)
-        SET @ind = @ind + 2
-    END
-
-	RETURN @Return;
-END
-GO
-/****** Object:  UserDefinedFunction [dbo].[Apq_ConvertBinary4_IP4]    Script Date: 11/09/2010 11:49:49 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-/* =============================================
--- 作者: 黄宗银
--- 日期: 2007-10-30
--- 描述: 将 binary(4) 转化为 IP4串
--- 示例:
-SELECT dbo.Apq_ConvertBinary4_IP4(0xFFFFFFFFFFFFFFFF);
--- =============================================
-*/
-CREATE FUNCTION [dbo].[Apq_ConvertBinary4_IP4](
-	@binIP	binary(4)
-)RETURNS varchar(max)
-AS
-BEGIN
-	DECLARE	 @Return varchar(max)
-			,@nIP int
-			,@i int
-			;
-	SELECT	 @nIP = 0
-			,@i = 1
-			;
-
-	WHILE(@i <= 4)
-	BEGIN
-		SELECT	@nIP = Convert(int, SUBSTRING(@binIP, @i, 1));
-		SELECT	@Return = ISNULL(@Return, '') + '.' + Convert(varchar, @nIP);
-
-		SELECT	@i = @i + 1;
-	END
-
-	RETURN SUBSTRING(@Return, 2, LEN(@Return)-1);
-END
-GO
-/****** Object:  Table [dbo].[Apq_Config]    Script Date: 11/09/2010 11:49:45 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[Apq_Config](
-	[ID] [bigint] NOT NULL,
-	[ParentID] [bigint] NULL,
-	[Class] [nvarchar](512) NOT NULL,
-	[Name] [nvarchar](256) NOT NULL,
-	[Value] [nvarchar](max) NULL,
- CONSTRAINT [PK_Apq_Config] PRIMARY KEY NONCLUSTERED 
-(
-	[ID] ASC
-)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'类名' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Apq_Config', @level2type=N'COLUMN',@level2name=N'Class'
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'配置名' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Apq_Config', @level2type=N'COLUMN',@level2name=N'Name'
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'配置值' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Apq_Config', @level2type=N'COLUMN',@level2name=N'Value'
-GO
-/****** Object:  UserDefinedFunction [bak].[Apq_Compute_DBName_Restore]    Script Date: 11/09/2010 11:49:49 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE FUNCTION [bak].[Apq_Compute_DBName_Restore](
-	@DBName	nvarchar(256),
-	@BakTime	datetime
-)RETURNS nvarchar(256) AS
-/* =============================================
--- 作者: 黄宗银
--- 日期: 2009-06-16
--- 描述: 计算还原时使用的数据库名(可自行修改)
--- 示例:
-SELECT bak.Apq_Compute_DBName_Restore('Apq', getdate())
--- =============================================
-*/
-BEGIN
-	DECLARE	@rtn nvarchar(256);
-	SELECT @rtn = @DBName + '_DW' + Convert(nvarchar,DatePart(dw,@BakTime));
-	--SELECT @rtn = @DBName + FGameDB.dbo.Apq_Ext_Get('',0,'ServerID') + '_Bak' + Convert(nvarchar,DatePart(dw,@BakTime));
-	RETURN @rtn;
-END
-GO
-/****** Object:  UserDefinedFunction [dbo].[Apq_CharIndexR]    Script Date: 11/09/2010 11:49:49 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-/* =============================================
--- 作者: 黄宗银
--- 日期: 2010-03-31
--- 描述: 自右向左的CharIndex
--- 示例:
-SELECT dbo.Apq_CharIndexR('D:\Apq_DBA\UpFile\D\Bak\[Log]Apq_Bak.txt','\',1);
--- =============================================
-*/
-CREATE FUNCTION [dbo].[Apq_CharIndexR] (
-     @str nvarchar(max)
-    ,@str_find nvarchar(max)
-    ,@Num bigint = 1
-    )
-RETURNS bigint
+CREATE PROC [dbo].[Apq_KILL_Login]
+    @LoginName nvarchar(256)
 AS 
-BEGIN
-    DECLARE @t TABLE (
-         ID [bigint] IDENTITY(1,1)
-                     NOT NULL
-        ,Pos bigint
-        )
-    DECLARE @Return bigint
-       ,@Len bigint	-- 长度
-       ,@ib int		-- 当前解析起始位置
-       ,@ie int		-- 当前解析结束位置
-       ,@i int ;
-       
-    SELECT  @Len = Len(@str) ;
-    SELECT  @ib = 1 ;
-    WHILE ( @ib <= @Len ) 
-        BEGIN
-            SELECT  @ie = Charindex(@str_find,@str,@ib) ;
-            IF ( @ie > 0 ) 
-                INSERT  @t ( Pos )
-                        SELECT  @ie ;
-            ELSE 
-                BREAK ;
-                
-            SELECT  @ib = @ie + 1 ;
-        END
-    
-    SELECT TOP ( @Num )
-            @Return = Pos
-    FROM    @t
-    ORDER BY ID DESC
-    
-    RETURN @Return ;
-END
+SET NOCOUNT ON ;
+
+DECLARE @LoginID int
+
+IF ( Len(@LoginName) < 1 ) 
+    SELECT  @LoginName = NULL ;
+
+SELECT  @LoginID = principal_id
+FROM    master.sys.login_token
+WHERE   name = @LoginName ;
+IF ( @LoginID IS NULL
+     OR @LoginID < 4
+   ) 
+    RETURN -2 ;
+
+DECLARE @stmt nvarchar(max)
+   ,@pSession CURSOR ;
+
+CREATE TABLE #t_who (
+     spid smallint
+    ,ecid smallint
+    ,status nvarchar(30)
+    ,loginame nvarchar(128)
+    ,hostname nvarchar(128)
+    ,blk nvarchar(5)
+    ,DBName nvarchar(128)
+    ,cmd nvarchar(16)
+    ,request_id int
+    ) ;
+
+INSERT  #t_who
+        EXEC sp_who @LoginName
+
+SET @pSession = CURSOR FOR
+SELECT N'KILL ' + CAST(spid AS nvarchar) FROM #t_who;
+
+OPEN @pSession ;
+FETCH NEXT FROM @pSession INTO @stmt ;
+WHILE ( @@FETCH_STATUS = 0 ) 
+    BEGIN
+        EXEC sp_executesql @stmt ;
+
+        FETCH NEXT FROM @pSession INTO @stmt ;
+    END
+CLOSE @pSession ;
 GO
-/****** Object:  StoredProcedure [bcp].[Apq_BcpInFromFolder_ga]    Script Date: 11/09/2010 11:49:48 ******/
+/****** Object:  StoredProcedure [dbo].[Apq_KILL_DB]    Script Date: 11/12/2010 15:04:30 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-CREATE PROC [bcp].[Apq_BcpInFromFolder_ga]
-AS
 /* =============================================
 -- 作者: 黄宗银
--- 日期: 2009-09-23
--- 描述: 从文件夹导入GameActor数据
+-- 日期: 2007-09-20
+-- 描述: 断开某用户数据库的所有连接
 -- 示例:
-DECLARE @rtn int;
-EXEC @rtn = bcp.Apq_BcpInFromFolder_ga;
-SELECT @rtn;
+EXEC dbo.Apq_KILL_DB N'DBName'
 -- =============================================
 */
+CREATE PROC [dbo].[Apq_KILL_DB]
+	@DBName	nvarchar(256)
+AS
 SET NOCOUNT ON;
 
---定义变量
-DECLARE @FullTableName nvarchar(256),	-- 完整表名
-	@BcpFolder nvarchar(4000),--数据目录
-	@rtn int, @cmd nvarchar(4000), @sql nvarchar(4000)
-	,@FileName nvarchar(4000)		-- 临时变量:数据文件名
-	;
+DECLARE	@stmt nvarchar(max), @pSession cursor;
 
-SELECT @BcpFolder = 'D:\FTP\GameActor\'
-	,@FullTableName = 'Stat_QQHX.bcp.GameActor_Bcp';
--- 接收cmd返回结果
-CREATE TABLE #t(s nvarchar(4000));
+CREATE TABLE #sp_who(
+	spid	smallint,
+	ecid	smallint,
+	status	nvarchar(30),
+	loginame	nvarchar(128),
+	hostname	nvarchar(128),
+	blk		int,
+	dbname	nvarchar(128),
+	cmd		nvarchar(16),
+	request_id	int
+);
 
--- 读取文件
-SELECT @cmd = 'dir /a:-d/b/o:n "' + @BcpFolder + 'ga_*.txt"';
-INSERT #t(s) EXEC master..xp_cmdshell @cmd;
+INSERT #sp_who EXEC sp_who;
+SELECT * FROM #sp_who
+ WHERE dbname = @DBName;
 
-DECLARE @FileCount int;
-SELECT @FileCount = COUNT(*) FROM #t WHERE s IS NOT NULL;
-WHILE(@FileCount > 0 )
+SET	@pSession = CURSOR FOR
+SELECT DISTINCT N'KILL ' + CAST(spid AS nvarchar)
+  FROM #sp_who
+ WHERE dbname = @DBName;
+
+OPEN @pSession;
+FETCH NEXT FROM @pSession INTO @stmt;
+WHILE( @@FETCH_STATUS = 0 )
 BEGIN
-	SELECT TOP 1 @FileName = s FROM #t;
-	DELETE #t WHERE s = @FileName;
-	SELECT @FileCount = COUNT(*) FROM #t WHERE s IS NOT NULL;
-	
-	-- Bcp in
-	SELECT @cmd = 'bcp "' + @FullTableName + '" in "' + @BcpFolder + @FileName + '" -c -r~*$';
-	--SELECT @cmd;
-	EXEC @rtn = master..xp_cmdshell @cmd;
-	IF(@@ERROR <> 0 OR @rtn <> 0)
-	BEGIN
-		CONTINUE;
-	END
-	SELECT @cmd = 'del /F /Q "' + @BcpFolder + @FileName + '"'
-	EXEC master..xp_cmdshell @cmd;
-END
+	EXEC sp_executesql @stmt;
 
-DROP TABLE #t;
-RETURN 1;
+	FETCH NEXT FROM @pSession INTO @stmt;
+END
+CLOSE @pSession;
+
+DROP TABLE #sp_who;
 GO
-/****** Object:  UserDefinedFunction [dbo].[Apq_ConvertPBigintTo]    Script Date: 11/09/2010 11:49:49 ******/
+/****** Object:  UserDefinedFunction [dbo].[Apq_IsNumeric]    Script Date: 11/12/2010 15:04:40 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 /* =============================================
 -- 作者: 黄宗银
--- 日期: 2007-09-29
--- 描述: 将一正整数 @value 转换为 @to 进制表示的字符串
+-- 日期: 2008-06-18
+-- 描述: 判断字符串是否全为数字
 -- 示例:
-SELECT dbo.Apq_ConvertPBigintTo(16, 9223372036854775807/*Bigint正数最大值*/)
+SELECT dbo.Apq_IsNumeric('30000229');
 -- =============================================
 */
-CREATE FUNCTION [dbo].[Apq_ConvertPBigintTo]
-(
-	@to		int,
-	@value	bigint
-)
-RETURNS varchar(max)
+CREATE FUNCTION [dbo].[Apq_IsNumeric](
+	@s	nvarchar(50)
+)RETURNS tinyint
 AS
 BEGIN
-	IF(@to < 2 OR @to > 36)
+	DECLARE @rtn tinyint, @i int, @c nvarchar(1);
+
+	SELECT @i = 1;
+	WHILE(@i <= LEN(@s))
 	BEGIN
-		RETURN '';
-	END
-
-	DECLARE @Return varchar(max);
-
-	DECLARE @q bigint, @r int;
-	SELECT @q = @value, @Return = '';
-	WHILE( @q <> 0 )
-	BEGIN
-		SELECT @r = @q % @to;
-		IF( @r < 10 )
+		SELECT @c = SubString(@s, @i, 1);
+		IF(@c < '0' OR '9' < @c)
 		BEGIN
-			SELECT @Return = CHAR(@r + ASCII('0') - 0) + @Return;
-		END
-		ELSE
-		BEGIN
-			SELECT @Return = CHAR(@r + ASCII('A') - 10) + @Return;
-		END
-
-		SELECT @q = @q / @to;
-	END
-
-	RETURN @Return
-END
-GO
-/****** Object:  UserDefinedFunction [dbo].[Apq_ConvertPBigintFrom]    Script Date: 11/09/2010 11:49:49 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-/* =============================================
--- 作者: 黄宗银
--- 日期: 2007-09-29
--- 描述: [未检测溢出]将一串 @from 进制的字符串 @str 转换为Bigint正数
--- 示例:
-SELECT dbo.Apq_ConvertPBigintFrom(16, '7FFFFFFFFFFFFFFF'/*所支持的最大值*/)
--- =============================================
-*/
-CREATE FUNCTION [dbo].[Apq_ConvertPBigintFrom]
-(
-	@from	bigint,
-	@str	varchar(max)
-)
-RETURNS bigint
-AS
-BEGIN
-	DECLARE @Return bigint;
-
-	DECLARE @i int, @Length int, @c char(1);
-	SELECT @Return = 0, @i = 0, @Length = LEN(@str);
-	WHILE( @i < @Length )
-	BEGIN
-		SELECT @c = SUBSTRING( @str, @Length - @i, 1 );
-		IF( ASCII(@c) <= ASCII('9') )
-		BEGIN
-			SELECT @Return = POWER( @from, @i ) * (ASCII(@c) - ASCII('0') + 0) + @Return;
-		END
-		ELSE
-		BEGIN
-			IF( ASCII(@c) > ASCII('Z') )
-			BEGIN
-				SELECT @c = CHAR(ASCII(@c) - 32);	-- 转换为大写
-			END
-			SELECT @Return = POWER( @from, @i ) * (ASCII(@c) - ASCII('A') + 10) + @Return;
+			RETURN 0;
 		END
 
 		SELECT @i = @i + 1;
 	END
 
-	RETURN @Return
+	RETURN 1;
 END
 GO
-/****** Object:  UserDefinedFunction [dbo].[Apq_ConvertVarBinary_HexStr]    Script Date: 11/09/2010 11:49:49 ******/
+/****** Object:  UserDefinedFunction [dbo].[Apq_IP_GetCityID]    Script Date: 11/12/2010 15:04:40 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 /* =============================================
 -- 作者: 黄宗银
--- 日期: 2010-04-15
--- 描述: 将VarBinary转换为16进制字符串表示(不含0x)
+-- 日期: 2008-11-19
+-- 描述: 根据IP获取所在城市ID
+-- 输入: 二进制IP
+-- 返回: 城市ID,未知时返回-10
 -- 示例:
-SELECT dbo.Apq_ConvertVarBinary_HexStr(0x0123456789ABCDEF)
+SELECT dbo.Apq_IP_GetCityID(0x0000000000000000000000000029F4475B);
 -- =============================================
+-10: 未知
 */
-CREATE FUNCTION [dbo].[Apq_ConvertVarBinary_HexStr]
-(
-	@bin	varbinary(max)
-)
-RETURNS varchar(max)
+CREATE FUNCTION [dbo].[Apq_IP_GetCityID](
+	@binIP	binary(16)
+)RETURNS bigint
 AS
 BEGIN
-	DECLARE @Return varchar(max), @ind int, @byte binary(1),@byte1 int, @byte2 int;
-	SELECT @Return = '',@ind = 1;
-	
-    WHILE ( @ind <= datalength(@bin) )
-    BEGIN
-		SELECT @byte = substring(@bin, @ind, 1);
-        SET @byte1 = @byte / 16
-        IF(@byte1 >= 10)
-			SELECT @Return = @Return + 
-				CASE @byte1
-					WHEN 10 THEN 'A'
-					WHEN 11 THEN 'B'
-					WHEN 12 THEN 'C'
-					WHEN 13 THEN 'D'
-					WHEN 14 THEN 'E'
-					WHEN 15 THEN 'F'
-				END
-		ELSE
-			SELECT @Return = @Return + convert(char(1),@byte1)
-
-        SET @byte2 = @byte % 16
-        IF(@byte2 >= 10)
-			SELECT @Return = @Return + 
-				CASE @byte2
-					WHEN 10 THEN 'A'
-					WHEN 11 THEN 'B'
-					WHEN 12 THEN 'C'
-					WHEN 13 THEN 'D'
-					WHEN 14 THEN 'E'
-					WHEN 15 THEN 'F'
-				END
-		ELSE
-			SELECT @Return = @Return + convert(char(1),@byte2)
-
-		SELECT @ind = @ind + 1;
-    END
-
-	RETURN @Return;
+	DECLARE @CityID bigint
+	SELECT @CityID = -10;	-- 未知
+	SELECT TOP 1 @CityID = CityID FROM Apq_IP WHERE @binIP BETWEEN IPBegin AND IPEnd ORDER BY _Time DESC;
+	RETURN @CityID;
 END
 GO
-/****** Object:  Table [dbo].[DTSConfig]    Script Date: 11/09/2010 11:49:46 ******/
+/****** Object:  Table [dbo].[DTSConfig]    Script Date: 11/12/2010 15:03:43 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -2451,7 +2451,7 @@ EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'上次传送�
 GO
 EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'数据传送配置表' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'DTSConfig'
 GO
-/****** Object:  Table [dbo].[DTS_Send]    Script Date: 11/09/2010 11:49:46 ******/
+/****** Object:  Table [dbo].[DTS_Send]    Script Date: 11/12/2010 15:03:43 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -2515,7 +2515,7 @@ EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'[仅用于收�
 GO
 EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'数据传送配置表' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'DTS_Send'
 GO
-/****** Object:  Table [dbo].[DisplayToID]    Script Date: 11/09/2010 11:49:45 ******/
+/****** Object:  Table [dbo].[DisplayToID]    Script Date: 11/12/2010 15:03:42 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -2543,7 +2543,7 @@ UNIQUE NONCLUSTERED
 GO
 SET ANSI_PADDING OFF
 GO
-/****** Object:  Table [dbo].[CounterDetails]    Script Date: 11/09/2010 11:49:45 ******/
+/****** Object:  Table [dbo].[CounterDetails]    Script Date: 11/12/2010 15:03:42 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -2571,7 +2571,7 @@ PRIMARY KEY NONCLUSTERED
 GO
 SET ANSI_PADDING OFF
 GO
-/****** Object:  Table [dbo].[CounterData]    Script Date: 11/09/2010 11:49:45 ******/
+/****** Object:  Table [dbo].[CounterData]    Script Date: 11/12/2010 15:03:41 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -2599,7 +2599,7 @@ PRIMARY KEY NONCLUSTERED
 GO
 SET ANSI_PADDING OFF
 GO
-/****** Object:  Table [dbo].[Cfg_WH]    Script Date: 11/09/2010 11:49:45 ******/
+/****** Object:  Table [dbo].[Cfg_WH]    Script Date: 11/12/2010 15:03:41 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -2614,7 +2614,7 @@ CREATE TABLE [dbo].[Cfg_WH](
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [etl].[BcpSTableCfg]    Script Date: 11/09/2010 11:49:47 ******/
+/****** Object:  Table [etl].[BcpSTableCfg]    Script Date: 11/12/2010 15:03:49 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -2653,7 +2653,7 @@ EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'切换时间' 
 GO
 EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'上一次切换时间' , @level0type=N'SCHEMA',@level0name=N'etl', @level1type=N'TABLE',@level1name=N'BcpSTableCfg', @level2type=N'COLUMN',@level2name=N'PreSTime'
 GO
-/****** Object:  Table [etl].[BcpInQueue]    Script Date: 11/09/2010 11:49:46 ******/
+/****** Object:  Table [etl].[BcpInQueue]    Script Date: 11/12/2010 15:03:48 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -2695,7 +2695,7 @@ EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'-r' , @level0t
 GO
 EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'是否完成' , @level0type=N'SCHEMA',@level0name=N'etl', @level1type=N'TABLE',@level1name=N'BcpInQueue', @level2type=N'COLUMN',@level2name=N'IsFinished'
 GO
-/****** Object:  Table [bak].[BakCfg]    Script Date: 11/09/2010 11:49:45 ******/
+/****** Object:  Table [bak].[BakCfg]    Script Date: 11/12/2010 15:03:39 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -2759,7 +2759,7 @@ EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'中转文件�
 GO
 EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'完整备份文件保留个数(同时保留具有基础完整备份文件的日志备份文件)' , @level0type=N'SCHEMA',@level0name=N'bak', @level1type=N'TABLE',@level1name=N'BakCfg', @level2type=N'COLUMN',@level2name=N'Num_Full'
 GO
-/****** Object:  Table [dbo].[ArpCfg]    Script Date: 11/09/2010 11:49:45 ******/
+/****** Object:  Table [dbo].[ArpCfg]    Script Date: 11/12/2010 15:03:41 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -2775,7 +2775,7 @@ CREATE TABLE [dbo].[ArpCfg](
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  UserDefinedFunction [dbo].[Apq_VarBinary_XOr]    Script Date: 11/09/2010 11:49:49 ******/
+/****** Object:  UserDefinedFunction [dbo].[Apq_VarBinary_XOr]    Script Date: 11/12/2010 15:04:41 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -2826,7 +2826,7 @@ BEGIN
 	RETURN @rtn;
 END
 GO
-/****** Object:  UserDefinedFunction [dbo].[Apq_VarBinary_Reverse]    Script Date: 11/09/2010 11:49:49 ******/
+/****** Object:  UserDefinedFunction [dbo].[Apq_VarBinary_Reverse]    Script Date: 11/12/2010 15:04:41 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -2854,7 +2854,7 @@ BEGIN
 	RETURN @rtn;
 END
 GO
-/****** Object:  UserDefinedFunction [dbo].[Apq_VarBinary_Or]    Script Date: 11/09/2010 11:49:49 ******/
+/****** Object:  UserDefinedFunction [dbo].[Apq_VarBinary_Or]    Script Date: 11/12/2010 15:04:41 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -2902,7 +2902,7 @@ BEGIN
 	RETURN @rtn;
 END
 GO
-/****** Object:  UserDefinedFunction [dbo].[Apq_VarBinary_InsertAt]    Script Date: 11/09/2010 11:49:49 ******/
+/****** Object:  UserDefinedFunction [dbo].[Apq_VarBinary_InsertAt]    Script Date: 11/12/2010 15:04:41 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -2942,7 +2942,7 @@ BEGIN
 	RETURN @vb1b + @vb2 + @vb1e;
 END
 GO
-/****** Object:  UserDefinedFunction [dbo].[Apq_VarBinary_InitFromBitIndex]    Script Date: 11/09/2010 11:49:49 ******/
+/****** Object:  UserDefinedFunction [dbo].[Apq_VarBinary_InitFromBitIndex]    Script Date: 11/12/2010 15:04:41 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -2980,7 +2980,7 @@ BEGIN
 	RETURN @rtn;
 END
 GO
-/****** Object:  UserDefinedFunction [dbo].[Apq_VarBinary_ComputeBitIndex]    Script Date: 11/09/2010 11:49:49 ******/
+/****** Object:  UserDefinedFunction [dbo].[Apq_VarBinary_ComputeBitIndex]    Script Date: 11/12/2010 15:04:41 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -3020,7 +3020,7 @@ BEGIN
 	RETURN @return;
 END
 GO
-/****** Object:  UserDefinedFunction [dbo].[Apq_VarBinary_And_2k]    Script Date: 11/09/2010 11:49:49 ******/
+/****** Object:  UserDefinedFunction [dbo].[Apq_VarBinary_And_2k]    Script Date: 11/12/2010 15:04:41 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -3066,7 +3066,7 @@ BEGIN
 	RETURN @rtn;
 END
 GO
-/****** Object:  UserDefinedFunction [dbo].[Apq_VarBinary_And]    Script Date: 11/09/2010 11:49:49 ******/
+/****** Object:  UserDefinedFunction [dbo].[Apq_VarBinary_And]    Script Date: 11/12/2010 15:04:40 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -3112,14 +3112,14 @@ BEGIN
 	RETURN @rtn;
 END
 GO
-/****** Object:  UserDefinedFunction [dbo].[Apq_Tree_City_List]    Script Date: 11/09/2010 11:49:49 ******/
+/****** Object:  UserDefinedFunction [dbo].[Apq_Tree_City_List]    Script Date: 11/12/2010 15:04:40 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE FUNCTION [dbo].[Apq_Tree_City_List]()RETURNS TABLE AS RETURN SELECT ID=1;
 GO
-/****** Object:  StoredProcedure [dbo].[Apq_SwithPatition]    Script Date: 11/09/2010 11:49:48 ******/
+/****** Object:  StoredProcedure [dbo].[Apq_SwithPatition]    Script Date: 11/12/2010 15:04:31 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -3160,7 +3160,7 @@ EXEC sp_executesql @sqlDB, N'@sql nvarchar(4000)',@sql=@sql;
 
 RETURN 1;
 GO
-/****** Object:  UserDefinedFunction [dbo].[Apq_SwitchBinary8]    Script Date: 11/09/2010 11:49:49 ******/
+/****** Object:  UserDefinedFunction [dbo].[Apq_SwitchBinary8]    Script Date: 11/12/2010 15:04:40 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -3183,14 +3183,14 @@ BEGIN
 	RETURN @bin42 + @bin41;
 END
 GO
-/****** Object:  UserDefinedFunction [dbo].[Apq_String_Get_tvp]    Script Date: 11/09/2010 11:49:49 ******/
+/****** Object:  UserDefinedFunction [dbo].[Apq_String_Get_tvp]    Script Date: 11/12/2010 15:04:40 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE FUNCTION [dbo].[Apq_String_Get_tvp]() RETURNS @t table([ID] int) AS BEGIN RETURN; END
 GO
-/****** Object:  Table [dbo].[IPConfig]    Script Date: 11/09/2010 11:49:46 ******/
+/****** Object:  Table [dbo].[IPConfig]    Script Date: 11/12/2010 15:03:45 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -3208,7 +3208,7 @@ CREATE TABLE [dbo].[IPConfig](
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[FTP_SendQueue]    Script Date: 11/09/2010 11:49:46 ******/
+/****** Object:  Table [dbo].[FTP_SendQueue]    Script Date: 11/12/2010 15:03:45 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -3219,6 +3219,7 @@ CREATE TABLE [dbo].[FTP_SendQueue](
 	[FileName] [nvarchar](256) NOT NULL,
 	[Enabled] [tinyint] NOT NULL,
 	[FTPSrv] [nvarchar](256) NOT NULL,
+	[FTPPort] [int] NOT NULL,
 	[U] [nvarchar](256) NOT NULL,
 	[P] [nvarchar](256) NOT NULL,
 	[FTPFolder] [nvarchar](512) NOT NULL,
@@ -3256,7 +3257,7 @@ EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'远程文件�
 GO
 EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'是否成功(失败重传)' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'FTP_SendQueue', @level2type=N'COLUMN',@level2name=N'IsSuccess'
 GO
-/****** Object:  Table [bak].[FTP_PutBak]    Script Date: 11/09/2010 11:49:45 ******/
+/****** Object:  Table [bak].[FTP_PutBak]    Script Date: 11/12/2010 15:03:39 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -3268,6 +3269,7 @@ CREATE TABLE [bak].[FTP_PutBak](
 	[Enabled] [tinyint] NOT NULL,
 	[Folder] [nvarchar](512) NOT NULL,
 	[FTPSrv] [nvarchar](256) NOT NULL,
+	[FTPPort] [int] NOT NULL,
 	[U] [nvarchar](256) NOT NULL,
 	[P] [nvarchar](256) NOT NULL,
 	[FTPFolder] [nvarchar](512) NOT NULL,
@@ -3301,7 +3303,7 @@ EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'FTP临时目�
 GO
 EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'完整备份文件保留个数(同时保留具有基础完整备份文件的日志备份文件)' , @level0type=N'SCHEMA',@level0name=N'bak', @level1type=N'TABLE',@level1name=N'FTP_PutBak', @level2type=N'COLUMN',@level2name=N'Num_Full'
 GO
-/****** Object:  Table [dbo].[FTP_GetBak]    Script Date: 11/09/2010 11:49:46 ******/
+/****** Object:  Table [dbo].[FTP_GetBak]    Script Date: 11/12/2010 15:03:44 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -3354,7 +3356,7 @@ EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'状态{0:空�
 GO
 EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'历史库保留个数' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'FTP_GetBak', @level2type=N'COLUMN',@level2name=N'DB_HisNum'
 GO
-/****** Object:  Table [dbo].[FileTrans]    Script Date: 11/09/2010 11:49:46 ******/
+/****** Object:  Table [dbo].[FileTrans]    Script Date: 11/12/2010 15:03:44 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -3386,7 +3388,7 @@ EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'文件流' , @
 GO
 EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'时间' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'FileTrans', @level2type=N'COLUMN',@level2name=N'_InTime'
 GO
-/****** Object:  Table [etl].[EtlCfg]    Script Date: 11/09/2010 11:49:47 ******/
+/****** Object:  Table [etl].[EtlCfg]    Script Date: 11/12/2010 15:03:49 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -3432,7 +3434,7 @@ EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'-t' , @level0t
 GO
 EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'-r' , @level0type=N'SCHEMA',@level0name=N'etl', @level1type=N'TABLE',@level1name=N'EtlCfg', @level2type=N'COLUMN',@level2name=N'r'
 GO
-/****** Object:  StoredProcedure [etl].[Etl_SwitchBcpTable]    Script Date: 11/09/2010 11:49:48 ******/
+/****** Object:  StoredProcedure [etl].[Etl_SwitchBcpTable]    Script Date: 11/12/2010 15:04:33 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -3488,7 +3490,7 @@ END
 
 RETURN 1;
 GO
-/****** Object:  StoredProcedure [etl].[Etl_Load]    Script Date: 11/09/2010 11:49:48 ******/
+/****** Object:  StoredProcedure [etl].[Etl_Load]    Script Date: 11/12/2010 15:04:33 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -3540,7 +3542,7 @@ END
 
 RETURN 1;
 GO
-/****** Object:  StoredProcedure [dbo].[Apq_Stat]    Script Date: 11/09/2010 11:49:48 ******/
+/****** Object:  StoredProcedure [dbo].[Apq_Stat]    Script Date: 11/12/2010 15:04:31 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -3608,7 +3610,7 @@ EXEC @rtn = sp_executesql @STMT, N'@StatDate datetime', @StatDate = @StatDate;
 
 RETURN 1;
 GO
-/****** Object:  StoredProcedure [bak].[Apq_Restore]    Script Date: 11/09/2010 11:49:48 ******/
+/****** Object:  StoredProcedure [bak].[Apq_Restore]    Script Date: 11/12/2010 15:04:29 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -3746,7 +3748,7 @@ END
 DROP TABLE #FileList;
 RETURN 1;
 GO
-/****** Object:  StoredProcedure [dbo].[ApqDBMgr_Servers_Save]    Script Date: 11/09/2010 11:49:48 ******/
+/****** Object:  StoredProcedure [dbo].[ApqDBMgr_Servers_Save]    Script Date: 11/12/2010 15:04:32 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -3783,7 +3785,7 @@ EXEC @rtn = dbo.ApqDBMgr_Servers_Save @ExMsg out, 1, DEFAULT, ''127019'',''User1
 SELECT @rtn,@ExMsg;
 ' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'PROCEDURE',@level1name=N'ApqDBMgr_Servers_Save'
 GO
-/****** Object:  UserDefinedFunction [dbo].[ApqDBMgr_Servers_GetAll]    Script Date: 11/09/2010 11:49:49 ******/
+/****** Object:  UserDefinedFunction [dbo].[ApqDBMgr_Servers_GetAll]    Script Date: 11/12/2010 15:04:43 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -3802,7 +3804,7 @@ RETURNS TABLE
     SELECT  *
     FROM    dbo.RSrvConfig
 GO
-/****** Object:  StoredProcedure [dbo].[ApqDBMgr_RSrv_Save_20100505]    Script Date: 11/09/2010 11:49:48 ******/
+/****** Object:  StoredProcedure [dbo].[ApqDBMgr_RSrv_Save_20100505]    Script Date: 11/12/2010 15:04:31 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -3846,7 +3848,7 @@ EXEC @rtn = dbo.ApqDBMgr_RSrv_Save_20100505 @ExMsg out, 1, DEFAULT, ''127019'','
 SELECT @rtn,@ExMsg;
 ' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'PROCEDURE',@level1name=N'ApqDBMgr_RSrv_Save_20100505'
 GO
-/****** Object:  StoredProcedure [dbo].[ApqDBMgr_RSrv_Save]    Script Date: 11/09/2010 11:49:48 ******/
+/****** Object:  StoredProcedure [dbo].[ApqDBMgr_RSrv_Save]    Script Date: 11/12/2010 15:04:31 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -3890,7 +3892,7 @@ EXEC @rtn = dbo.ApqDBMgr_RSrv_Save @ExMsg out, 1, DEFAULT, ''127019'',''User1'',
 SELECT @rtn,@ExMsg;
 ' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'PROCEDURE',@level1name=N'ApqDBMgr_RSrv_Save'
 GO
-/****** Object:  UserDefinedFunction [dbo].[ApqDBMgr_RSrv_List]    Script Date: 11/09/2010 11:49:49 ******/
+/****** Object:  UserDefinedFunction [dbo].[ApqDBMgr_RSrv_List]    Script Date: 11/12/2010 15:04:42 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -3909,7 +3911,7 @@ RETURNS TABLE
     SELECT  ID, ParentID, Name, UID, PwdC, Type, LSMaxTimes, LSErrTimes, LSState, IPLan, IPWan1, IPWan2, FTPPort, FTPU, FTPPC, SqlPort
     FROM    dbo.RSrvConfig
 GO
-/****** Object:  StoredProcedure [dbo].[ApqDBMgr_Route_BatArchive]    Script Date: 11/09/2010 11:49:48 ******/
+/****** Object:  StoredProcedure [dbo].[ApqDBMgr_Route_BatArchive]    Script Date: 11/12/2010 15:04:31 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -3980,7 +3982,7 @@ EXEC @rtn = dbo.ApqDBMgr_Route_BatArchive NULL;
 SELECT @rtn,@ExMsg;
 ' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'PROCEDURE',@level1name=N'ApqDBMgr_Route_BatArchive'
 GO
-/****** Object:  UserDefinedFunction [dbo].[ApqDBMgr_RDBUser_List]    Script Date: 11/09/2010 11:49:49 ******/
+/****** Object:  UserDefinedFunction [dbo].[ApqDBMgr_RDBUser_List]    Script Date: 11/12/2010 15:04:41 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -3999,7 +4001,7 @@ RETURNS TABLE
     SELECT  [RDBUserID],RDBID,DBUserName,DBUserDesc,RDBLoginID
     FROM    dbo.RDBUser
 GO
-/****** Object:  StoredProcedure [dbo].[ApqDBMgr_RDB_Save]    Script Date: 11/09/2010 11:49:48 ******/
+/****** Object:  StoredProcedure [dbo].[ApqDBMgr_RDB_Save]    Script Date: 11/12/2010 15:04:31 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -4036,7 +4038,7 @@ EXEC @rtn = dbo.ApqDBMgr_RDB_Save @ExMsg out, 1, DEFAULT, ''127019'',''User1'','
 SELECT @rtn,@ExMsg;
 ' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'PROCEDURE',@level1name=N'ApqDBMgr_RDB_Save'
 GO
-/****** Object:  UserDefinedFunction [dbo].[ApqDBMgr_RDB_List]    Script Date: 11/09/2010 11:49:49 ******/
+/****** Object:  UserDefinedFunction [dbo].[ApqDBMgr_RDB_List]    Script Date: 11/12/2010 15:04:41 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -4055,7 +4057,7 @@ RETURNS TABLE
     SELECT  RDBID,DBName,RDBDesc,RDBType,PLevel,GLevel,SrvID,GameID
     FROM    dbo.RDBConfig
 GO
-/****** Object:  StoredProcedure [dbo].[ApqDBMgr_Arp_BatArchive]    Script Date: 11/09/2010 11:49:48 ******/
+/****** Object:  StoredProcedure [dbo].[ApqDBMgr_Arp_BatArchive]    Script Date: 11/12/2010 15:04:31 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -4127,7 +4129,7 @@ EXEC @rtn = dbo.ApqDBMgr_Arp_BatArchive NULL;
 SELECT @rtn,@ExMsg;
 ' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'PROCEDURE',@level1name=N'ApqDBMgr_Arp_BatArchive'
 GO
-/****** Object:  StoredProcedure [dbo].[ApqDBMgr_Alias_RegArchive]    Script Date: 11/09/2010 11:49:48 ******/
+/****** Object:  StoredProcedure [dbo].[ApqDBMgr_Alias_RegArchive]    Script Date: 11/12/2010 15:04:31 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -4193,777 +4195,132 @@ EXEC @rtn = dbo.ApqDBMgr_Alias_RegArchive NULL;
 SELECT @rtn,@ExMsg;
 ' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'PROCEDURE',@level1name=N'ApqDBMgr_Alias_RegArchive'
 GO
-/****** Object:  UserDefinedFunction [dbo].[Apq_ConvertScale]    Script Date: 11/09/2010 11:49:49 ******/
+/****** Object:  StoredProcedure [dbo].[Apq_Identifier]    Script Date: 11/12/2010 15:04:30 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-/* =============================================
--- 作者: 黄宗银
--- 日期: 2007-09-28
--- 描述: 将一 @from 进制的串 @value 转换为 @to 进制表示的字符串
--- 示例:
-SELECT dbo.Apq_ConvertScale(16, 10, '7FFFFFFFFFFFFFFF'/*所支持的最大值*/)
--- =============================================
-*/
-CREATE FUNCTION [dbo].[Apq_ConvertScale]
-(
-	@from	int,
-	@to		int,
-	@value	varchar(max)
-)
-RETURNS varchar(max)
+CREATE PROC [dbo].[Apq_Identifier]
+	 @ExMsg nvarchar(MAX) out
+
+	,@Name	nvarchar(256)	-- 自增名
+	,@Count	bigint = 1		-- 增长次数
+
+	,@Next	bigint = 1 out	-- 可以使用的首个值
 AS
-BEGIN
-	RETURN dbo.Apq_ConvertPBigintTo( @to, dbo.Apq_ConvertPBigintFrom( @from, @value ) );
-END
-GO
-/****** Object:  StoredProcedure [bak].[Apq_Bak_Trn]    Script Date: 11/09/2010 11:49:48 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE PROC [bak].[Apq_Bak_Trn]
-	@DBName	nvarchar(256)
-AS
-/* =============================================
--- 作者: 黄宗银
--- 日期: 2010-04-17
--- 描述: 日志备份(仅本地)
--- 参数:
-@DBName: 数据库名
-@BakFolder: 备份路径
--- 示例:
-DECLARE @rtn int;
-EXEC @rtn = bak.Apq_Bak_Trn 'dtxc';
-SELECT @rtn;
--- =============================================
-1: 备份成功
-*/
 SET NOCOUNT ON;
-
-DECLARE @rtn int, @SPBeginTime datetime, @BakFileName nvarchar(256), @BakFileFullName nvarchar(4000)
-	,@cmd nvarchar(4000)
-	,@sql nvarchar(4000)
-	,@ID bigint
-	,@BakFolder nvarchar(4000)
-	,@FTPFolder nvarchar(4000)
-	,@FTPFolderT nvarchar(4000)
-	,@FTPFileFullName nvarchar(4000);
-SELECT @SPBeginTime=GetDate();
-SELECT @BakFolder = '';
-SELECT @BakFolder = BakFolder,@FTPFolder = FTPFolder,@FTPFolderT = FTPFolderT
-  FROM bak.BakCfg
- WHERE DBName = @DBName;
-
-IF(Len(@BakFolder)>3)
-BEGIN
-	IF(RIGHT(@BakFolder,1)<>'\') SELECT @BakFolder = @BakFolder+'\';
-	SELECT @cmd = 'md ' + SUBSTRING(@BakFolder, 1, LEN(@BakFolder)-1);
-	EXEC master..xp_cmdshell @cmd;
-END
-IF(Len(@FTPFolder)>3)
-BEGIN
-	IF(RIGHT(@FTPFolder,1)<>'\') SELECT @FTPFolder = @FTPFolder+'\';
-	SELECT @cmd = 'md ' + SUBSTRING(@FTPFolder, 1, LEN(@FTPFolder)-1);
-	EXEC master..xp_cmdshell @cmd;
-END
-IF(Len(@FTPFolderT)>3)
-BEGIN
-	IF(RIGHT(@FTPFolderT,1)<>'\') SELECT @FTPFolderT = @FTPFolderT+'\';
-	SELECT @cmd = 'md ' + SUBSTRING(@FTPFolderT, 1, LEN(@FTPFolderT)-1);
-	EXEC master..xp_cmdshell @cmd;
-END
-
--- 记录备份日志
-SELECT @BakFileName = @DBName + '[' + LEFT(REPLACE(REPLACE(REPLACE(CONVERT(nvarchar,@SPBeginTime,120),'-',''),':',''),' ','_'),13)+'].trn';
-SELECT @BakFileFullName = @BakFolder + @BakFileName;
---SELECT @cmd = '@echo [' + convert(nvarchar,@SPBeginTime,120) + ']' + @BakFileName + '>>' + @BakFolder + '[Log]Apq_Bak.txt'
---EXEC @rtn = xp_cmdshell @cmd;
-
--- 备份
-SELECT @sql = 'BACKUP LOG @DBName TO DISK=@BakFile';
-EXEC @rtn = sp_executesql @sql, N'@DBName nvarchar(256), @BakFile nvarchar(4000)', @DBName = @DBName, @BakFile = @BakFileFullName;
-IF(@@ERROR <> 0 OR @rtn<>0)
-BEGIN
-	RETURN -1;
-END
-
--- 移动到FTP目录 -----------------------------------------------------------------------------------
-IF(Len(@FTPFolderT)>0)
-BEGIN
-	SELECT @FTPFileFullName = @BakFolder + @BakFileName;
-	SELECT @cmd = 'move /y "' + @FTPFileFullName + '" "' + SUBSTRING(@FTPFolderT, 1, LEN(@FTPFolderT)-1) + '"';
-	EXEC master..xp_cmdshell @cmd;
-END
-ELSE
-BEGIN
-	SELECT @FTPFolderT = @BakFolder;
-END
-SELECT @FTPFileFullName = @FTPFolderT + @BakFileName;
-SELECT @cmd = 'move /y "' + @FTPFileFullName + '" "' + SUBSTRING(@FTPFolder, 1, LEN(@FTPFolder)-1) + '"';
-EXEC master..xp_cmdshell @cmd;
--- =================================================================================================
-
-SELECT BakFileName = @BakFileName;
-RETURN 1;
-GO
-/****** Object:  StoredProcedure [bak].[Apq_Bak_Full]    Script Date: 11/09/2010 11:49:48 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE PROC [bak].[Apq_Bak_Full]
-	 @DBName		nvarchar(256)
-	,@BakFileName	nvarchar(256) OUT	-- 备份文件名(不含路径)
-AS
 /* =============================================
 -- 作者: 黄宗银
--- 日期: 2010-04-17
--- 描述: 完整备份(仅本地)
--- 参数:
-@DBName: 数据库名
-@BakFolder: 备份路径
+-- 日期: 2008-02-26
+-- 描述: 自增, 范围:(Init, Limit]
 -- 示例:
-DECLARE @rtn int;
-EXEC @rtn = bak.Apq_Bak_Full 'Apq_DBA';
-SELECT @rtn;
--- =============================================
--2: 空间不足
-*/
-SET NOCOUNT ON;
-
-DECLARE @rtn int, @SPBeginTime datetime, @BakFileFullName nvarchar(4000)
-	,@cmd nvarchar(4000), @sql nvarchar(4000)
-	,@ID bigint
-	,@BakFolder nvarchar(4000)
-	,@FTPFolder nvarchar(4000)
-	,@FTPFolderT nvarchar(4000)
-	,@FTPFileFullName nvarchar(4000)
-	,@NeedTruncate tinyint;
-SELECT @SPBeginTime=GetDate();
-SELECT @BakFolder = '', @NeedTruncate = 0;
-SELECT @BakFolder = BakFolder, @FTPFolder = FTPFolder,@FTPFolderT = FTPFolderT, @NeedTruncate = NeedTruncate
-  FROM bak.BakCfg
- WHERE DBName = @DBName;
-
-IF(Len(@BakFolder)>3)
-BEGIN
-	IF(RIGHT(@BakFolder,1)<>'\') SELECT @BakFolder = @BakFolder+'\';
-	SELECT @cmd = 'md ' + SUBSTRING(@BakFolder, 1, LEN(@BakFolder)-1);
-	EXEC master..xp_cmdshell @cmd;
-END
-IF(Len(@FTPFolder)>3)
-BEGIN
-	IF(RIGHT(@FTPFolder,1)<>'\') SELECT @FTPFolder = @FTPFolder+'\';
-	SELECT @cmd = 'md ' + SUBSTRING(@FTPFolder, 1, LEN(@FTPFolder)-1);
-	EXEC master..xp_cmdshell @cmd;
-END
-IF(Len(@FTPFolderT)>3)
-BEGIN
-	IF(RIGHT(@FTPFolderT,1)<>'\') SELECT @FTPFolderT = @FTPFolderT+'\';
-	SELECT @cmd = 'md ' + SUBSTRING(@FTPFolderT, 1, LEN(@FTPFolderT)-1);
-	EXEC master..xp_cmdshell @cmd;
-END
-
--- 记录备份日志
-SELECT @BakFileName = @DBName + '[' + LEFT(REPLACE(REPLACE(REPLACE(CONVERT(nvarchar,@SPBeginTime,120),'-',''),':',''),' ','_'),13)+'].bak';
-SELECT @BakFileFullName = @BakFolder + @BakFileName;
-SELECT @cmd = '@echo [' + convert(nvarchar,@SPBeginTime,120) + ']' + @BakFileName + '>>' + @BakFolder + '[Log]Apq_Bak.txt'
-EXEC @rtn = master..xp_cmdshell @cmd;
-
--- 检测剩余空间 ------------------------------------------------------------------------------------
-DECLARE @spused float, @disksp float;
-SELECT @sql = '
-CREATE TABLE #spused(
-	name		nvarchar(256),
-	rows		varchar(11),
-	reserved	varchar(18),
-	data		varchar(18),
-	index_size	varchar(18),
-	unused		varchar(18)
-);
-EXEC ' + @DBName + '..sp_MSforeachtable "INSERT #spused EXEC sp_spaceused ''?'', ''true''";
-SELECT @spused = 0;
-SELECT @spused = @spused + LEFT(reserved,LEN(reserved)-3) FROM #spused;
-SELECT @spused = @spused / 1024;
-DROP TABLE #spused;
-';
-EXEC @rtn = sp_executesql @sql, N'@spused float out', @spused = @spused out;
-CREATE TABLE #drives(
-	drive	varchar(5),
-	MB		float
-);
-INSERT #drives
-EXEC master..xp_fixeddrives;
-
-IF(EXISTS(SELECT TOP 1 1 FROM #drives WHERE MB < @spused * 0.7 AND drive IN(LEFT(@BakFolder,1),LEFT(@FTPFolder,1)))) -- 暂取0.7
-RETURN -2;
--- =================================================================================================
-
---截断日志(仅限2000使用)
-IF(@NeedTruncate=1)
-BEGIN
-	SELECT @sql='BACKUP LOG '+@DBName+' WITH NO_LOG';
-	EXEC sp_executesql @sql;
-END
-
-SELECT @sql = 'BACKUP DATABASE @DBName TO DISK=@BakFile WITH INIT';
-EXEC @rtn = sp_executesql @sql, N'@DBName nvarchar(256), @BakFile nvarchar(4000)', @DBName = @DBName, @BakFile = @BakFileFullName;
-IF(@@ERROR <> 0 OR @rtn<>0)
-BEGIN
-	RETURN -1;
-END
-
--- 移动到FTP目录 -----------------------------------------------------------------------------------
-IF(Len(@FTPFolderT)>0)
-BEGIN
-	SELECT @FTPFileFullName = @BakFolder + @BakFileName;
-	SELECT @cmd = 'move /y "' + @FTPFileFullName + '" "' + SUBSTRING(@FTPFolderT, 1, LEN(@FTPFolderT)-1) + '"';
-	EXEC master..xp_cmdshell @cmd;
-END
-ELSE
-BEGIN
-	SELECT @FTPFolderT = @BakFolder;
-END
-SELECT @FTPFileFullName = @FTPFolderT + @BakFileName;
-SELECT @cmd = 'move /y "' + @FTPFileFullName + '" "' + SUBSTRING(@FTPFolder, 1, LEN(@FTPFolder)-1) + '"';
-EXEC master..xp_cmdshell @cmd;
--- =================================================================================================
-
-SELECT BakFileName = @BakFileName;
-RETURN 1;
-GO
-/****** Object:  UserDefinedFunction [dbo].[Apq_ConvertMac_VarBinary]    Script Date: 11/09/2010 11:49:49 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-/* =============================================
--- 作者: 黄宗银
--- 日期: 2007-09-28
--- 描述: 将Mac串转化为 varbinary(max)
--- 示例:
-SELECT dbo.Apq_ConvertMac_VarBinary('00-50-8D-9E-EB-70');
--- =============================================
-*/
-CREATE FUNCTION [dbo].[Apq_ConvertMac_VarBinary](
-	@Mac	varchar(max)
-)RETURNS varbinary(max)
-AS
-BEGIN
-	SELECT @Mac = LTRIM(RTRIM(@Mac));
-
-	DECLARE @Return varbinary(max)
-		,@Len int		-- 字符数
-		,@ib int		-- 当前解析起始位置
-		,@ie int		-- 当前解析结束位置
-		,@i int
-		;
-	SELECT @Return = 0x
-		,@Len = LEN(@Mac)
-		,@ie = 0
-		,@i = 1
-		;
-
-	IF(@Len < 16) RETURN @Return;
-
-	WHILE(@i <= 6)
-	BEGIN
-		SELECT	@ib = @ie + 1;
-		--SELECT	@ie = CHARINDEX(':', @Mac, @ib);
-		SELECT	@ie = CHARINDEX('-', @Mac, @ib);
-		IF(@ie = 0)
-		BEGIN
-			SELECT	@ie = @Len + 1;
-		END
-		
-		IF(@ib >= @ie) BREAK;
-
-		SELECT	@Return = ISNULL(@Return, 0x) + dbo.Apq_ConvertHexStr_VarBinary(SUBSTRING(@Mac, @ib, @ie - @ib));
-
-		SELECT	@i = @i + 1;
-	END
-
-	RETURN @Return;
-END
-GO
-/****** Object:  UserDefinedFunction [dbo].[Apq_ConvertIP6_VarBinary]    Script Date: 11/09/2010 11:49:49 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-/* =============================================
--- 作者: 黄宗银
--- 日期: 2007-19-25
--- 描述: 将标准的IP6串转为 varbinary(max)
--- 示例:
-SELECT dbo.Apq_ConvertIP6_VarBinary('FFFF::FFFF', 8);
--- =============================================
-*/
-CREATE FUNCTION [dbo].[Apq_ConvertIP6_VarBinary](
-	@IP		varchar(max),
-	@Seg	tinyint	-- 段数
-)RETURNS varbinary(max)
-AS
-BEGIN
-	SELECT	 @IP = LTRIM(RTRIM(@IP))
-			,@Seg = ISNULL(@Seg, 8)
-			;
-
-	IF(CHARINDEX('::', @IP) = LEN(@IP) - 1)
-	BEGIN
-		SELECT	@IP = @IP + '0000';
-	END
-
-	DECLARE	 @Return varbinary(max)
-			,@Len int		-- 字符数
-			,@ib int		-- 当前解析起始位置
-			,@ie int		-- 当前解析结束位置
-			,@Subs int		-- 分隔符(:)数量
-			,@i int
-			,@j int
-			,@SLength int	-- (如果存在缩写符)缩写符实际表示的 双字节0(0x0000) 的数量(段数)
-			;
-	SELECT	 @Len = LEN(@IP)
-			,@ie = 0
-			,@i = 1
-			,@j = 1
-			;
-	SELECT	@Subs = LEN(REPLACE(@IP, ':', 'zz')) - @Len;
-	SELECT	@SLength = CASE CHARINDEX('::', @IP) WHEN 0 THEN 0 ELSE @Seg - @Subs END;
-
-	WHILE(@i <= @Seg)
-	BEGIN
-		SELECT	@ib = @ie + 1;
-		IF(@ib > @Len)
-		BEGIN
-			SELECT	@j = 1;
-			WHILE(@j <= @Seg - @i)
-			BEGIN
-				SELECT	@Return = ISNULL(@Return, 0x) + 0x0000;
-				
-				SELECT	@j = @j + 1;
-			END
-			BREAK;
-		END
-		SELECT	@ie = CHARINDEX(':', @IP, @ib);
-		IF(@ie = 0)
-		BEGIN
-			SELECT	@ie = @Len + 1;
-		END
-
-		IF(@ie = @ib)
-		BEGIN	-- 遇到缩写符
-			IF(@ib = 1)
-			BEGIN
-				SELECT	@SLength = @SLength + 1;
-			END
-			SELECT	@i = @i + @SLength - 1;
-
-			SELECT	@j = 1;
-			WHILE(@j <= @SLength)
-			BEGIN
-				SELECT	@Return = ISNULL(@Return, 0x) + 0x0000;
-				
-				SELECT	@j = @j + 1;
-			END
-
-			IF(@ib = 1)
-			BEGIN
-				SELECT	@ie = @ie + 1;
-			END
-		END
-		ELSE
-		BEGIN
-			SELECT	@Return = ISNULL(@Return, 0x) + Convert(binary(2), dbo.Apq_ConvertPBigintFrom(16, SUBSTRING(@IP, @ib, @ie - @ib)));
-		END
-
-		SELECT	@i = @i + 1;
-	END
-
-	RETURN @Return;
-END
-GO
-/****** Object:  StoredProcedure [bak].[Apq_BakCfg_Trn]    Script Date: 11/09/2010 11:49:48 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE PROC [bak].[Apq_BakCfg_Trn]
-	@DBName	nvarchar(256)
-AS
-/* =============================================
--- 作者: 黄宗银
--- 日期: 2010-04-17
--- 描述: 日志备份(仅本地)
--- 参数:
-@DBName: 数据库名
-@BakFolder: 备份路径
--- 示例:
-DECLARE @rtn int;
-EXEC @rtn = bak.Apq_BakCfg_Trn 'dtxc';
-SELECT @rtn;
--- =============================================
-1: 备份成功
-*/
-SET NOCOUNT ON;
-
-DECLARE @rtn int, @SPBeginTime datetime, @BakFileName nvarchar(256), @BakFileFullName nvarchar(4000)
-	,@cmd nvarchar(4000)
-	,@sql nvarchar(4000)
-	,@ID bigint
-	,@BakFolder nvarchar(4000)
-	,@FTPFolder nvarchar(4000)
-	,@FTPFolderT nvarchar(4000)
-	,@FTPFileFullName nvarchar(4000);
-SELECT @SPBeginTime=GetDate();
-SELECT @BakFolder = '';
-SELECT @BakFolder = BakFolder,@FTPFolder = FTPFolder,@FTPFolderT = FTPFolderT
-  FROM bak.BakCfg
- WHERE DBName = @DBName;
-
-IF(Len(@BakFolder)>3)
-BEGIN
-	IF(RIGHT(@BakFolder,1)<>'\') SELECT @BakFolder = @BakFolder+'\';
-	SELECT @cmd = 'md ' + SUBSTRING(@BakFolder, 1, LEN(@BakFolder)-1);
-	EXEC master..xp_cmdshell @cmd;
-END
-IF(Len(@FTPFolder)>3)
-BEGIN
-	IF(RIGHT(@FTPFolder,1)<>'\') SELECT @FTPFolder = @FTPFolder+'\';
-	SELECT @cmd = 'md ' + SUBSTRING(@FTPFolder, 1, LEN(@FTPFolder)-1);
-	EXEC master..xp_cmdshell @cmd;
-END
-IF(Len(@FTPFolderT)>3)
-BEGIN
-	IF(RIGHT(@FTPFolderT,1)<>'\') SELECT @FTPFolderT = @FTPFolderT+'\';
-	SELECT @cmd = 'md ' + SUBSTRING(@FTPFolderT, 1, LEN(@FTPFolderT)-1);
-	EXEC master..xp_cmdshell @cmd;
-END
-
--- 记录备份日志
-SELECT @BakFileName = @DBName + '[' + LEFT(REPLACE(REPLACE(REPLACE(CONVERT(nvarchar,@SPBeginTime,120),'-',''),':',''),' ','_'),13)+'].trn';
-SELECT @BakFileFullName = @BakFolder + @BakFileName;
---SELECT @cmd = '@echo [' + convert(nvarchar,@SPBeginTime,120) + ']' + @BakFileName + '>>' + @BakFolder + '[Log]Apq_Bak.txt'
---EXEC @rtn = xp_cmdshell @cmd;
-
--- 备份
-SELECT @sql = 'BACKUP LOG @DBName TO DISK=@BakFile';
-EXEC @rtn = sp_executesql @sql, N'@DBName nvarchar(256), @BakFile nvarchar(4000)', @DBName = @DBName, @BakFile = @BakFileFullName;
-IF(@@ERROR <> 0 OR @rtn<>0)
-BEGIN
-	RETURN -1;
-END
-
--- 移动到FTP目录 -----------------------------------------------------------------------------------
-IF(Len(@FTPFolderT)>0)
-BEGIN
-	SELECT @FTPFileFullName = @BakFolder + @BakFileName;
-	SELECT @cmd = 'move /y "' + @FTPFileFullName + '" "' + SUBSTRING(@FTPFolderT, 1, LEN(@FTPFolderT)-1) + '"';
-	EXEC master..xp_cmdshell @cmd;
-END
-ELSE
-BEGIN
-	SELECT @FTPFolderT = @BakFolder;
-END
-SELECT @FTPFileFullName = @FTPFolderT + @BakFileName;
-SELECT @cmd = 'move /y "' + @FTPFileFullName + '" "' + SUBSTRING(@FTPFolder, 1, LEN(@FTPFolder)-1) + '"';
-EXEC master..xp_cmdshell @cmd;
--- =================================================================================================
-
-SELECT BakFileName = @BakFileName;
-RETURN 1;
-GO
-/****** Object:  StoredProcedure [dbo].[Apq_FileTrans_WriteToHD_ADO]    Script Date: 11/09/2010 11:49:48 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE PROC [dbo].[Apq_FileTrans_WriteToHD_ADO]
-    @ID bigint
-   ,@KeepInDB tinyint
-AS 
-SET NOCOUNT ON ;
-
-DECLARE @rtn int
-   ,@rs int
-   ,@Stream int
-   ,@Len int
-   ,@i int
-   ,@value varbinary(8000)
-   ,@constr nvarchar(200)
-   ,@sql nvarchar(4000)
-   ,@FileName nvarchar(500)
-   ,@DBFolder nvarchar(500)
-   ,@FullName nvarchar(500)
-   ,@cmd nvarchar(4000)
-   
-DECLARE @source nvarchar(4000)
-DECLARE @description nvarchar(4000)
-/*
---查看错误信息
-EXEC sp_OAGetErrorInfo @rs, @source OUT, @description OUT
-SELECT @source, @description
-*/
-
-SET @constr = 'Provider=SQLOLEDB;Data Source=(local);Initial Catalog=' + db_name() + ';Integrated Security=SSPI;'
-SET @sql = 'SELECT FileName, FileStream, DBFolder,CFolder FROM dbo.FileTrans WHERE ID = ' + CONVERT(nvarchar,@ID) ;
-EXEC sp_OACreate 'ADODB.Recordset',@rs OUT
-EXEC sp_OAMethod @rs,'open',NULL,@sql,@constr
-EXEC sp_OAGetProperty @rs,'Fields.item(0).Value',@FileName OUT
-EXEC sp_OAGetProperty @rs,'Fields.item(2).Value',@DBFolder OUT
-EXEC sp_OAGetProperty @rs,'Fields.item(1).ActualSize',@len OUT
-EXEC sp_OACreate 'ADODB.Stream',@Stream OUT
-EXEC sp_OASetProperty @Stream,'type',1--1是二进制 2是文本
-EXEC sp_OASetProperty @Stream,'mode',3--读/写状态
-EXEC sp_OAMethod @Stream,'open'--打开流
-SET @i = 0
-WHILE ( @Len > @i ) 
-    BEGIN
-        EXEC sp_OAGetProperty @rs,'Fields.item(1).GetChunk',@Value OUT,8000
-        EXEC sp_OAMethod @Stream,'write',NULL,@Value
-        SET @i = @i + 8000
-    END
---EXEC sp_OASetProperty @Stream,'Position',@Len
---EXEC sp_OAMethod @Stream,'SetEos'
-
--- 创建目录
-SELECT  @cmd = 'md "' + @DBFolder + '"' ;
-EXEC sys.xp_cmdshell @cmd ;
-
-IF ( RIGHT(@DBFolder,1) <> '\' ) SELECT @DBFolder = @DBFolder + '\' ;
--- 写入文件
-SELECT  @FullName = @DBFolder + @FileName ;
-EXEC sp_OAMethod @Stream,'SaveToFile',NULL,@FullName,2
-
--- 清理COM组件
-EXEC sp_OADestroy @rs
-EXEC sp_OADestroy @Stream
-
--- 删除数据库内的记录
-IF ( @KeepInDB IS NULL
-     OR @KeepInDB <> 1
-   ) 
-    DELETE  FileTrans
-    WHERE   ID = @ID ;
-
-RETURN 1 ;
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'
--- 保存文件
--- 作者: 黄宗银
--- 日期: 2010-03-31
--- 示例:
-DECLARE @rtn int;
-EXEC @rtn = dbo.Apq_FileTrans_WriteToHD_ADO 2, 1;
-SELECT @rtn;
-' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'PROCEDURE',@level1name=N'Apq_FileTrans_WriteToHD_ADO'
-GO
-/****** Object:  StoredProcedure [dbo].[Apq_FileTrans_List]    Script Date: 11/09/2010 11:49:48 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE PROC [dbo].[Apq_FileTrans_List] @ID bigint
-AS 
-SET NOCOUNT ON ;
-
-SELECT  FileName,FileStream,DBFolder,CFolder
-FROM    dbo.FileTrans
-WHERE   ID = @ID ;
-RETURN 1 ;
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'
--- 列表"缓存文件"(用于下载)
--- 作者: 黄宗银
--- 日期: 2010-03-31
--- 示例:
-EXEC dbo.Apq_FileTrans_List 2;
-' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'PROCEDURE',@level1name=N'Apq_FileTrans_List'
-GO
-/****** Object:  StoredProcedure [dbo].[Apq_FileTrans_Insert_ADO]    Script Date: 11/09/2010 11:49:48 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE PROC [dbo].[Apq_FileTrans_Insert_ADO]
-    @ID bigint OUT
-   ,@FullName nvarchar(500)
-   ,@CFolder nvarchar(500)
-AS 
-SET NOCOUNT ON ;
-
-DECLARE @rtn int
-   ,@Stream int
-   ,@Len int
-   ,@i int
-   ,@value varbinary(8000)
-   ,@constr nvarchar(200)
-   ,@sql nvarchar(4000)
-   ,@FileName nvarchar(500)
-   ,@FileStream varbinary(max)
-   ,@DBFolder nvarchar(500)
-   ,@cmd nvarchar(4000)
-   
-DECLARE @source nvarchar(4000)
-DECLARE @description nvarchar(4000)
-/*
---查看错误信息
-EXEC sp_OAGetErrorInfo @Stream, @source OUT, @description OUT
-SELECT @source, @description
-*/
-
-EXEC sp_OACreate 'ADODB.Stream',@Stream OUT
-EXEC sp_OASetProperty @Stream,'type',1--1是二进制 2是文本
-EXEC sp_OASetProperty @Stream,'mode',3--读写
-EXEC sp_OAMethod @Stream,'Open'-- 打开流
-EXEC sp_OAMethod @Stream,'LoadFromFile',NULL,@FullName--打开文件
-EXEC sp_OAGetProperty @Stream,'Size',@Len OUT--取长度
-SELECT  @FileStream = 0x,@i = 0
-WHILE ( @Len > @i ) 
-    BEGIN
-        EXEC sp_OAMethod @Stream,'Read',@Value OUT,8000
-        SELECT  @FileStream = @FileStream + @Value ;
-        SET @i = @i + 8000
-    END
---EXEC sp_OASetProperty @Stream,'Position',@Len
---EXEC sp_OAMethod @Stream,'SetEos'
-
--- 清理COM组件
-EXEC sp_OADestroy @Stream
-
--- 计算本地目录
-SELECT  @DBFolder = Substring(@FullName,1,dbo.Apq_CharIndexR(@FullName,'\',1)) ;
-SELECT  @FileName = Substring(@FullName,dbo.Apq_CharIndexR(@FullName,'\',1) + 1,Len(@FullName) - Len(@DBFolder)) ;
-
--- 写入数据库
-INSERT  dbo.FileTrans ( FileName,FileStream,DBFolder,CFolder )
-        SELECT  @FileName,@FileStream,@DBFolder,@CFolder
-SELECT  @ID = Scope_identity() ;
-
-RETURN 1 ;
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'
--- 保存文件(从本地)
--- 作者: 黄宗银
--- 日期: 2010-03-31
--- 示例:
-DECLARE @rtn int, @ID bigint;
-EXEC @rtn = dbo.Apq_FileTrans_Insert_ADO @ID out, ''D:\Bak\Wallow[20100331_1657].bak'','''';
-SELECT @rtn;
-' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'PROCEDURE',@level1name=N'Apq_FileTrans_Insert_ADO'
-GO
-/****** Object:  StoredProcedure [dbo].[Apq_FileTrans_Insert]    Script Date: 11/09/2010 11:49:48 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE PROC [dbo].[Apq_FileTrans_Insert]
-    @ID bigint OUT
-   ,@FileName nvarchar(500)
-   ,@DBFolder nvarchar(500)
-   ,@CFolder nvarchar(500)
-   ,@FileStream varbinary(max)
-AS 
-SET NOCOUNT ON ;
-
-INSERT  dbo.FileTrans ( FileName,DBFolder,CFolder,FileStream )
-VALUES  ( @FileName,@DBFolder,@CFolder,@FileStream ) ;
-SELECT  @ID = Scope_identity() ;
-RETURN 1 ;
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'
--- 保存文件到数据库
--- 作者: 黄宗银
--- 日期: 2010-03-29
-' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'PROCEDURE',@level1name=N'Apq_FileTrans_Insert'
-GO
-/****** Object:  StoredProcedure [dbo].[Apq_FileTrans_Delete]    Script Date: 11/09/2010 11:49:48 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE PROC [dbo].[Apq_FileTrans_Delete] @ID bigint
-AS 
-SET NOCOUNT ON ;
-
-DELETE  dbo.FileTrans
-WHERE   ID = @ID ;
-RETURN 1 ;
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'
--- 删除"缓存文件"
--- 作者: 黄宗银
--- 日期: 2010-04-07
--- 示例:
-EXEC dbo.Apq_FileTrans_Delete 2;
-' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'PROCEDURE',@level1name=N'Apq_FileTrans_Delete'
-GO
-/****** Object:  StoredProcedure [dbo].[Apq_Ext_Set]    Script Date: 11/09/2010 11:49:48 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-/* =============================================
--- 作者: 黄宗银
--- 日期: 2009-02-05
--- 描述: 设置扩展属性值(添加或修改)
--- 示例:
-DECLARE @err int, @rtn int, @Msg nvarchar(MAX);
-EXEC @rtn = dbo.Apq_Ext_Set @Msg out, '', 0, 'pName', 'zh-cn', '属性值';
+DECLARE	@err int, @rtn int, @Next bigint, @ExMsg nvarchar(MAX);
+EXEC @rtn = dbo.Apq_Identifier @ExMsg out, N'Apq_String', 1, @Next out;
 SELECT @err = @@ERROR;
-SELECT @err, @rtn, @Msg;
+SELECT @err, @rtn, @Next, @ExMsg;
 -- =============================================
+10: 无可分配值
+11: 超出当前自增范围
 */
-CREATE PROC [dbo].[Apq_Ext_Set]
-	 @TableName	nvarchar(256) = ''
-	,@ID		bigint = 0
-	,@Name		nvarchar(256)
 
-	,@Value	nvarchar(MAX)
-AS
-SET NOCOUNT ON;
+SELECT @Next = ISNULL(@Next,1);
 
-DECLARE @err int, @rtn int, @strID bigint;
+DECLARE	@ID bigint, @Limit bigint, @Inc bigint, @End bigint;
+SELECT @Limit = 9223372034707292160;
 
-UPDATE Apq_Ext
-   SET Value = @Value
- WHERE TableName = @TableName AND ID = @ID AND Name = @Name;
-IF( @@ROWCOUNT = 0 )
+-- 查找第一条用于分配ID的行
+SELECT TOP 1 @ID = ID
+  FROM Apq_ID
+ WHERE Name = @Name AND State = 0;
+IF(@@ROWCOUNT = 0)
 BEGIN
-	INSERT Apq_Ext(TableName, ID, Name, Value)
-	VALUES(@TableName, @ID, @Name, @Value);
+	IF(EXISTS(SELECT TOP 1 1 FROM Apq_ID WHERE Name = @Name AND State = 1))
+	BEGIN
+		SELECT @ExMsg = '自增名"' + @Name + '"已无可分配值!';
+		RETURN -1;
+	END
+	ELSE
+	BEGIN
+		-- 提取自动初始化行,失败则不能分配
+		UPDATE Apq_ID SET @ID = ID, State = 0 WHERE Name = @Name AND State = 2;
+		IF(@@ROWCOUNT = 0)
+		BEGIN
+			SELECT @ExMsg = '自增名"' + @Name + '"未配置!';
+			RETURN -1;
+		END
+	END
+END
+
+-- 尝试分配ID
+UPDATE Apq_ID
+   SET _Time = getdate(), @Limit = Limit, @Inc = Inc, @Next = Inc + Crt, @End = Crt = Inc * @Count + Crt
+ WHERE ID = @ID;
+
+IF((@Inc > 0 AND @End > @Limit) OR (@Inc < 0 AND @End < @Limit))
+BEGIN
+	UPDATE Apq_ID
+	   SET State = 1
+	 WHERE ID = @ID;
+
+	SELECT @ExMsg = '超出当前自增范围,请重试!';
+	RETURN -1;
 END
 
 RETURN 1;
 GO
-/****** Object:  UserDefinedFunction [dbo].[Apq_Ext_Get]    Script Date: 11/09/2010 11:49:49 ******/
+/****** Object:  StoredProcedure [dbo].[Apq_ID_Reset]    Script Date: 11/12/2010 15:04:30 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
+CREATE PROC [dbo].[Apq_ID_Reset]
+	@Name	nvarchar(256)
+AS
+SET NOCOUNT ON;
 /* =============================================
 -- 作者: 黄宗银
--- 日期: 2009-01-14
--- 描述: 逆置类型转换,符号扩展(最多支持8字节,bigint类型)
+-- 日期: 2009-05-25
+-- 描述: 操作 Apq_ID,将指定 Name 的正常行的当前值重置为初始值
 -- 示例:
-SELECT dbo.Apq_Ext_Get('',0,'ServerID')
+INSERT Apq_ID(Name, Init, Limit, Inc) VALUES('GameUser', 40000000, 60000000, 1);
+DECLARE	@rtn int;
+EXEC @rtn = dbo.Apq_ID_Reset 'GameUser';
+SELECT	@rtn;
 -- =============================================
 */
-CREATE FUNCTION [dbo].[Apq_Ext_Get](
-	 @TableName	nvarchar(256) = N''
-	,@ID		bigint = 0
-	,@Name		nvarchar(256) = N''
-)  
-RETURNS nvarchar(max) AS
-BEGIN
-	DECLARE	@Return nvarchar(max);
-	SELECT @Return = Value FROM Apq_Ext	WHERE TableName = @TableName AND ID = @ID AND Name = @Name;
-	RETURN @Return;
-END
+
+UPDATE Apq_ID
+   SET Crt = Init
+ WHERE State = 0
+	AND (@Name = '' OR Name = @Name);
 GO
-/****** Object:  StoredProcedure [dbo].[Apq_Def_EveryDB]    Script Date: 11/09/2010 11:49:48 ******/
+/****** Object:  StoredProcedure [dbo].[Apq_ID_Recofig]    Script Date: 11/12/2010 15:04:30 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROC [dbo].[Apq_ID_Recofig]
+AS
+SET NOCOUNT ON;
+/* =============================================
+-- 作者: 黄宗银
+-- 日期: 2008-02-26
+-- 描述: 操作 Apq_ID, 将正常行的当前值正确配置, 请确保在 配置启用前 或 连接少的时候 调用
+-- 示例:
+INSERT Apq_ID(Name, Init, Limit, Inc) VALUES('GameUser', 40000000, 60000000, 1);
+DECLARE	@rtn int;
+EXEC @rtn = dbo.Apq_ID_Recofig;
+SELECT	@rtn;
+-- =============================================
+*/
+
+UPDATE Apq_ID
+   SET Crt = Init
+ WHERE State = 0
+	AND NOT (Inc > 0 AND Init <= Crt AND Crt < Limit)
+	AND NOT (Inc < 0 AND Limit < Crt AND Crt <= Init);
+GO
+/****** Object:  StoredProcedure [dbo].[Apq_Def_EveryDB]    Script Date: 11/12/2010 15:04:30 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -5318,7 +4675,7 @@ END
 Quit:
 CLOSE @csr;
 GO
-/****** Object:  StoredProcedure [dbo].[Apq_DataTrans]    Script Date: 11/09/2010 11:49:48 ******/
+/****** Object:  StoredProcedure [dbo].[Apq_DataTrans]    Script Date: 11/12/2010 15:04:30 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -5638,7 +4995,7 @@ EXEC master..xp_cmdshell @cmd;
 
 RETURN @Return;
 GO
-/****** Object:  UserDefinedFunction [dbo].[Apq_CreateSqlON]    Script Date: 11/09/2010 11:49:49 ******/
+/****** Object:  UserDefinedFunction [dbo].[Apq_CreateSqlON]    Script Date: 11/12/2010 15:04:39 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -5700,209 +5057,777 @@ BEGIN
 	RETURN @Vr;
 END
 GO
-/****** Object:  StoredProcedure [dbo].[Apq_Identifier]    Script Date: 11/09/2010 11:49:48 ******/
+/****** Object:  StoredProcedure [dbo].[Apq_FileTrans_WriteToHD_ADO]    Script Date: 11/12/2010 15:04:30 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-CREATE PROC [dbo].[Apq_Identifier]
-	 @ExMsg nvarchar(MAX) out
+CREATE PROC [dbo].[Apq_FileTrans_WriteToHD_ADO]
+    @ID bigint
+   ,@KeepInDB tinyint
+AS 
+SET NOCOUNT ON ;
 
-	,@Name	nvarchar(256)	-- 自增名
-	,@Count	bigint = 1		-- 增长次数
-
-	,@Next	bigint = 1 out	-- 可以使用的首个值
-AS
-SET NOCOUNT ON;
-/* =============================================
--- 作者: 黄宗银
--- 日期: 2008-02-26
--- 描述: 自增, 范围:(Init, Limit]
--- 示例:
-DECLARE	@err int, @rtn int, @Next bigint, @ExMsg nvarchar(MAX);
-EXEC @rtn = dbo.Apq_Identifier @ExMsg out, N'Apq_String', 1, @Next out;
-SELECT @err = @@ERROR;
-SELECT @err, @rtn, @Next, @ExMsg;
--- =============================================
-10: 无可分配值
-11: 超出当前自增范围
+DECLARE @rtn int
+   ,@rs int
+   ,@Stream int
+   ,@Len int
+   ,@i int
+   ,@value varbinary(8000)
+   ,@constr nvarchar(200)
+   ,@sql nvarchar(4000)
+   ,@FileName nvarchar(500)
+   ,@DBFolder nvarchar(500)
+   ,@FullName nvarchar(500)
+   ,@cmd nvarchar(4000)
+   
+DECLARE @source nvarchar(4000)
+DECLARE @description nvarchar(4000)
+/*
+--查看错误信息
+EXEC sp_OAGetErrorInfo @rs, @source OUT, @description OUT
+SELECT @source, @description
 */
 
-SELECT @Next = ISNULL(@Next,1);
+SET @constr = 'Provider=SQLOLEDB;Data Source=(local);Initial Catalog=' + db_name() + ';Integrated Security=SSPI;'
+SET @sql = 'SELECT FileName, FileStream, DBFolder,CFolder FROM dbo.FileTrans WHERE ID = ' + CONVERT(nvarchar,@ID) ;
+EXEC sp_OACreate 'ADODB.Recordset',@rs OUT
+EXEC sp_OAMethod @rs,'open',NULL,@sql,@constr
+EXEC sp_OAGetProperty @rs,'Fields.item(0).Value',@FileName OUT
+EXEC sp_OAGetProperty @rs,'Fields.item(2).Value',@DBFolder OUT
+EXEC sp_OAGetProperty @rs,'Fields.item(1).ActualSize',@len OUT
+EXEC sp_OACreate 'ADODB.Stream',@Stream OUT
+EXEC sp_OASetProperty @Stream,'type',1--1是二进制 2是文本
+EXEC sp_OASetProperty @Stream,'mode',3--读/写状态
+EXEC sp_OAMethod @Stream,'open'--打开流
+SET @i = 0
+WHILE ( @Len > @i ) 
+    BEGIN
+        EXEC sp_OAGetProperty @rs,'Fields.item(1).GetChunk',@Value OUT,8000
+        EXEC sp_OAMethod @Stream,'write',NULL,@Value
+        SET @i = @i + 8000
+    END
+--EXEC sp_OASetProperty @Stream,'Position',@Len
+--EXEC sp_OAMethod @Stream,'SetEos'
 
-DECLARE	@ID bigint, @Limit bigint, @Inc bigint, @End bigint;
-SELECT @Limit = 9223372034707292160;
+-- 创建目录
+SELECT  @cmd = 'md "' + @DBFolder + '"' ;
+EXEC sys.xp_cmdshell @cmd ;
 
--- 查找第一条用于分配ID的行
-SELECT TOP 1 @ID = ID
-  FROM Apq_ID
- WHERE Name = @Name AND State = 0;
-IF(@@ROWCOUNT = 0)
+IF ( RIGHT(@DBFolder,1) <> '\' ) SELECT @DBFolder = @DBFolder + '\' ;
+-- 写入文件
+SELECT  @FullName = @DBFolder + @FileName ;
+EXEC sp_OAMethod @Stream,'SaveToFile',NULL,@FullName,2
+
+-- 清理COM组件
+EXEC sp_OADestroy @rs
+EXEC sp_OADestroy @Stream
+
+-- 删除数据库内的记录
+IF ( @KeepInDB IS NULL
+     OR @KeepInDB <> 1
+   ) 
+    DELETE  FileTrans
+    WHERE   ID = @ID ;
+
+RETURN 1 ;
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'
+-- 保存文件
+-- 作者: 黄宗银
+-- 日期: 2010-03-31
+-- 示例:
+DECLARE @rtn int;
+EXEC @rtn = dbo.Apq_FileTrans_WriteToHD_ADO 2, 1;
+SELECT @rtn;
+' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'PROCEDURE',@level1name=N'Apq_FileTrans_WriteToHD_ADO'
+GO
+/****** Object:  StoredProcedure [dbo].[Apq_FileTrans_List]    Script Date: 11/12/2010 15:04:30 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROC [dbo].[Apq_FileTrans_List] @ID bigint
+AS 
+SET NOCOUNT ON ;
+
+SELECT  FileName,FileStream,DBFolder,CFolder
+FROM    dbo.FileTrans
+WHERE   ID = @ID ;
+RETURN 1 ;
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'
+-- 列表"缓存文件"(用于下载)
+-- 作者: 黄宗银
+-- 日期: 2010-03-31
+-- 示例:
+EXEC dbo.Apq_FileTrans_List 2;
+' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'PROCEDURE',@level1name=N'Apq_FileTrans_List'
+GO
+/****** Object:  StoredProcedure [dbo].[Apq_FileTrans_Insert_ADO]    Script Date: 11/12/2010 15:04:30 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROC [dbo].[Apq_FileTrans_Insert_ADO]
+    @ID bigint OUT
+   ,@FullName nvarchar(500)
+   ,@CFolder nvarchar(500)
+AS 
+SET NOCOUNT ON ;
+
+DECLARE @rtn int
+   ,@Stream int
+   ,@Len int
+   ,@i int
+   ,@value varbinary(8000)
+   ,@constr nvarchar(200)
+   ,@sql nvarchar(4000)
+   ,@FileName nvarchar(500)
+   ,@FileStream varbinary(max)
+   ,@DBFolder nvarchar(500)
+   ,@cmd nvarchar(4000)
+   
+DECLARE @source nvarchar(4000)
+DECLARE @description nvarchar(4000)
+/*
+--查看错误信息
+EXEC sp_OAGetErrorInfo @Stream, @source OUT, @description OUT
+SELECT @source, @description
+*/
+
+EXEC sp_OACreate 'ADODB.Stream',@Stream OUT
+EXEC sp_OASetProperty @Stream,'type',1--1是二进制 2是文本
+EXEC sp_OASetProperty @Stream,'mode',3--读写
+EXEC sp_OAMethod @Stream,'Open'-- 打开流
+EXEC sp_OAMethod @Stream,'LoadFromFile',NULL,@FullName--打开文件
+EXEC sp_OAGetProperty @Stream,'Size',@Len OUT--取长度
+SELECT  @FileStream = 0x,@i = 0
+WHILE ( @Len > @i ) 
+    BEGIN
+        EXEC sp_OAMethod @Stream,'Read',@Value OUT,8000
+        SELECT  @FileStream = @FileStream + @Value ;
+        SET @i = @i + 8000
+    END
+--EXEC sp_OASetProperty @Stream,'Position',@Len
+--EXEC sp_OAMethod @Stream,'SetEos'
+
+-- 清理COM组件
+EXEC sp_OADestroy @Stream
+
+-- 计算本地目录
+SELECT  @DBFolder = Substring(@FullName,1,dbo.Apq_CharIndexR(@FullName,'\',1)) ;
+SELECT  @FileName = Substring(@FullName,dbo.Apq_CharIndexR(@FullName,'\',1) + 1,Len(@FullName) - Len(@DBFolder)) ;
+
+-- 写入数据库
+INSERT  dbo.FileTrans ( FileName,FileStream,DBFolder,CFolder )
+        SELECT  @FileName,@FileStream,@DBFolder,@CFolder
+SELECT  @ID = Scope_identity() ;
+
+RETURN 1 ;
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'
+-- 保存文件(从本地)
+-- 作者: 黄宗银
+-- 日期: 2010-03-31
+-- 示例:
+DECLARE @rtn int, @ID bigint;
+EXEC @rtn = dbo.Apq_FileTrans_Insert_ADO @ID out, ''D:\Bak\Wallow[20100331_1657].bak'','''';
+SELECT @rtn;
+' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'PROCEDURE',@level1name=N'Apq_FileTrans_Insert_ADO'
+GO
+/****** Object:  StoredProcedure [dbo].[Apq_FileTrans_Insert]    Script Date: 11/12/2010 15:04:30 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROC [dbo].[Apq_FileTrans_Insert]
+    @ID bigint OUT
+   ,@FileName nvarchar(500)
+   ,@DBFolder nvarchar(500)
+   ,@CFolder nvarchar(500)
+   ,@FileStream varbinary(max)
+AS 
+SET NOCOUNT ON ;
+
+INSERT  dbo.FileTrans ( FileName,DBFolder,CFolder,FileStream )
+VALUES  ( @FileName,@DBFolder,@CFolder,@FileStream ) ;
+SELECT  @ID = Scope_identity() ;
+RETURN 1 ;
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'
+-- 保存文件到数据库
+-- 作者: 黄宗银
+-- 日期: 2010-03-29
+' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'PROCEDURE',@level1name=N'Apq_FileTrans_Insert'
+GO
+/****** Object:  StoredProcedure [dbo].[Apq_FileTrans_Delete]    Script Date: 11/12/2010 15:04:30 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROC [dbo].[Apq_FileTrans_Delete] @ID bigint
+AS 
+SET NOCOUNT ON ;
+
+DELETE  dbo.FileTrans
+WHERE   ID = @ID ;
+RETURN 1 ;
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'
+-- 删除"缓存文件"
+-- 作者: 黄宗银
+-- 日期: 2010-04-07
+-- 示例:
+EXEC dbo.Apq_FileTrans_Delete 2;
+' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'PROCEDURE',@level1name=N'Apq_FileTrans_Delete'
+GO
+/****** Object:  StoredProcedure [dbo].[Apq_Ext_Set]    Script Date: 11/12/2010 15:04:30 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+/* =============================================
+-- 作者: 黄宗银
+-- 日期: 2009-02-05
+-- 描述: 设置扩展属性值(添加或修改)
+-- 示例:
+DECLARE @err int, @rtn int, @Msg nvarchar(MAX);
+EXEC @rtn = dbo.Apq_Ext_Set @Msg out, '', 0, 'pName', 'zh-cn', '属性值';
+SELECT @err = @@ERROR;
+SELECT @err, @rtn, @Msg;
+-- =============================================
+*/
+CREATE PROC [dbo].[Apq_Ext_Set]
+	 @TableName	nvarchar(256) = ''
+	,@ID		bigint = 0
+	,@Name		nvarchar(256)
+
+	,@Value	nvarchar(MAX)
+AS
+SET NOCOUNT ON;
+
+DECLARE @err int, @rtn int, @strID bigint;
+
+UPDATE Apq_Ext
+   SET Value = @Value
+ WHERE TableName = @TableName AND ID = @ID AND Name = @Name;
+IF( @@ROWCOUNT = 0 )
 BEGIN
-	IF(EXISTS(SELECT TOP 1 1 FROM Apq_ID WHERE Name = @Name AND State = 1))
-	BEGIN
-		SELECT @ExMsg = '自增名"' + @Name + '"已无可分配值!';
-		RETURN -1;
-	END
-	ELSE
-	BEGIN
-		-- 提取自动初始化行,失败则不能分配
-		UPDATE Apq_ID SET @ID = ID, State = 0 WHERE Name = @Name AND State = 2;
-		IF(@@ROWCOUNT = 0)
-		BEGIN
-			SELECT @ExMsg = '自增名"' + @Name + '"未配置!';
-			RETURN -1;
-		END
-	END
-END
-
--- 尝试分配ID
-UPDATE Apq_ID
-   SET _Time = getdate(), @Limit = Limit, @Inc = Inc, @Next = Inc + Crt, @End = Crt = Inc * @Count + Crt
- WHERE ID = @ID;
-
-IF((@Inc > 0 AND @End > @Limit) OR (@Inc < 0 AND @End < @Limit))
-BEGIN
-	UPDATE Apq_ID
-	   SET State = 1
-	 WHERE ID = @ID;
-
-	SELECT @ExMsg = '超出当前自增范围,请重试!';
-	RETURN -1;
+	INSERT Apq_Ext(TableName, ID, Name, Value)
+	VALUES(@TableName, @ID, @Name, @Value);
 END
 
 RETURN 1;
 GO
-/****** Object:  StoredProcedure [dbo].[Apq_ID_Reset]    Script Date: 11/09/2010 11:49:48 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE PROC [dbo].[Apq_ID_Reset]
-	@Name	nvarchar(256)
-AS
-SET NOCOUNT ON;
-/* =============================================
--- 作者: 黄宗银
--- 日期: 2009-05-25
--- 描述: 操作 Apq_ID,将指定 Name 的正常行的当前值重置为初始值
--- 示例:
-INSERT Apq_ID(Name, Init, Limit, Inc) VALUES('GameUser', 40000000, 60000000, 1);
-DECLARE	@rtn int;
-EXEC @rtn = dbo.Apq_ID_Reset 'GameUser';
-SELECT	@rtn;
--- =============================================
-*/
-
-UPDATE Apq_ID
-   SET Crt = Init
- WHERE State = 0
-	AND (@Name = '' OR Name = @Name);
-GO
-/****** Object:  StoredProcedure [dbo].[Apq_ID_Recofig]    Script Date: 11/09/2010 11:49:48 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE PROC [dbo].[Apq_ID_Recofig]
-AS
-SET NOCOUNT ON;
-/* =============================================
--- 作者: 黄宗银
--- 日期: 2008-02-26
--- 描述: 操作 Apq_ID, 将正常行的当前值正确配置, 请确保在 配置启用前 或 连接少的时候 调用
--- 示例:
-INSERT Apq_ID(Name, Init, Limit, Inc) VALUES('GameUser', 40000000, 60000000, 1);
-DECLARE	@rtn int;
-EXEC @rtn = dbo.Apq_ID_Recofig;
-SELECT	@rtn;
--- =============================================
-*/
-
-UPDATE Apq_ID
-   SET Crt = Init
- WHERE State = 0
-	AND NOT (Inc > 0 AND Init <= Crt AND Crt < Limit)
-	AND NOT (Inc < 0 AND Limit < Crt AND Crt <= Init);
-GO
-/****** Object:  UserDefinedFunction [dbo].[Apq_RConvertVarBinary8X_BigInt]    Script Date: 11/09/2010 11:49:49 ******/
+/****** Object:  UserDefinedFunction [dbo].[Apq_Ext_Get]    Script Date: 11/12/2010 15:04:40 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 /* =============================================
 -- 作者: 黄宗银
--- 日期: 2009-02-19
+-- 日期: 2009-01-14
 -- 描述: 逆置类型转换,符号扩展(最多支持8字节,bigint类型)
 -- 示例:
-SELECT dbo.Apq_RConvertVarBinary8X_BigInt(0x01F1)
+SELECT dbo.Apq_Ext_Get('',0,'ServerID')
 -- =============================================
 */
-CREATE FUNCTION [dbo].[Apq_RConvertVarBinary8X_BigInt](
-	@Input	varbinary(8)
-)RETURNS bigint AS
+CREATE FUNCTION [dbo].[Apq_Ext_Get](
+	 @TableName	nvarchar(256) = N''
+	,@ID		bigint = 0
+	,@Name		nvarchar(256) = N''
+)  
+RETURNS nvarchar(max) AS
 BEGIN
-	IF(DATALENGTH(@Input) < 8)
+	DECLARE	@Return nvarchar(max);
+	SELECT @Return = Value FROM Apq_Ext	WHERE TableName = @TableName AND ID = @ID AND Name = @Name;
+	RETURN @Return;
+END
+GO
+/****** Object:  UserDefinedFunction [dbo].[Apq_ConvertScale]    Script Date: 11/12/2010 15:04:39 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+/* =============================================
+-- 作者: 黄宗银
+-- 日期: 2007-09-28
+-- 描述: 将一 @from 进制的串 @value 转换为 @to 进制表示的字符串
+-- 示例:
+SELECT dbo.Apq_ConvertScale(16, 10, '7FFFFFFFFFFFFFFF'/*所支持的最大值*/)
+-- =============================================
+*/
+CREATE FUNCTION [dbo].[Apq_ConvertScale]
+(
+	@from	int,
+	@to		int,
+	@value	varchar(max)
+)
+RETURNS varchar(max)
+AS
+BEGIN
+	RETURN dbo.Apq_ConvertPBigintTo( @to, dbo.Apq_ConvertPBigintFrom( @from, @value ) );
+END
+GO
+/****** Object:  StoredProcedure [bak].[Apq_Bak_Trn]    Script Date: 11/12/2010 15:04:29 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROC [bak].[Apq_Bak_Trn]
+	@DBName	nvarchar(256)
+AS
+/* =============================================
+-- 作者: 黄宗银
+-- 日期: 2010-04-17
+-- 描述: 日志备份(仅本地)
+-- 参数:
+@DBName: 数据库名
+@BakFolder: 备份路径
+-- 示例:
+DECLARE @rtn int;
+EXEC @rtn = bak.Apq_Bak_Trn 'dtxc';
+SELECT @rtn;
+-- =============================================
+1: 备份成功
+*/
+SET NOCOUNT ON;
+
+DECLARE @rtn int, @SPBeginTime datetime, @BakFileName nvarchar(256), @BakFileFullName nvarchar(4000)
+	,@cmd nvarchar(4000)
+	,@sql nvarchar(4000)
+	,@ID bigint
+	,@BakFolder nvarchar(4000)
+	,@FTPFolder nvarchar(4000)
+	,@FTPFolderT nvarchar(4000)
+	,@FTPFileFullName nvarchar(4000);
+SELECT @SPBeginTime=GetDate();
+SELECT @BakFolder = '';
+SELECT @BakFolder = BakFolder,@FTPFolder = FTPFolder,@FTPFolderT = FTPFolderT
+  FROM bak.BakCfg
+ WHERE DBName = @DBName;
+
+IF(Len(@BakFolder)>3)
+BEGIN
+	IF(RIGHT(@BakFolder,1)<>'\') SELECT @BakFolder = @BakFolder+'\';
+	SELECT @cmd = 'md ' + SUBSTRING(@BakFolder, 1, LEN(@BakFolder)-1);
+	EXEC master..xp_cmdshell @cmd;
+END
+IF(Len(@FTPFolder)>3)
+BEGIN
+	IF(RIGHT(@FTPFolder,1)<>'\') SELECT @FTPFolder = @FTPFolder+'\';
+	SELECT @cmd = 'md ' + SUBSTRING(@FTPFolder, 1, LEN(@FTPFolder)-1);
+	EXEC master..xp_cmdshell @cmd;
+END
+IF(Len(@FTPFolderT)>3)
+BEGIN
+	IF(RIGHT(@FTPFolderT,1)<>'\') SELECT @FTPFolderT = @FTPFolderT+'\';
+	SELECT @cmd = 'md ' + SUBSTRING(@FTPFolderT, 1, LEN(@FTPFolderT)-1);
+	EXEC master..xp_cmdshell @cmd;
+END
+
+-- 记录备份日志
+SELECT @BakFileName = @DBName + '[' + LEFT(REPLACE(REPLACE(REPLACE(CONVERT(nvarchar,@SPBeginTime,120),'-',''),':',''),' ','_'),13)+'].trn';
+SELECT @BakFileFullName = @BakFolder + @BakFileName;
+--SELECT @cmd = '@echo [' + convert(nvarchar,@SPBeginTime,120) + ']' + @BakFileName + '>>' + @BakFolder + '[Log]Apq_Bak.txt'
+--EXEC @rtn = xp_cmdshell @cmd;
+
+-- 备份
+SELECT @sql = 'BACKUP LOG @DBName TO DISK=@BakFile';
+EXEC @rtn = sp_executesql @sql, N'@DBName nvarchar(256), @BakFile nvarchar(4000)', @DBName = @DBName, @BakFile = @BakFileFullName;
+IF(@@ERROR <> 0 OR @rtn<>0)
+BEGIN
+	RETURN -1;
+END
+
+-- 移动到FTP目录 -----------------------------------------------------------------------------------
+IF(Len(@FTPFolderT)>0)
+BEGIN
+	SELECT @FTPFileFullName = @BakFolder + @BakFileName;
+	SELECT @cmd = 'move /y "' + @FTPFileFullName + '" "' + SUBSTRING(@FTPFolderT, 1, LEN(@FTPFolderT)-1) + '"';
+	EXEC master..xp_cmdshell @cmd;
+END
+ELSE
+BEGIN
+	SELECT @FTPFolderT = @BakFolder;
+END
+SELECT @FTPFileFullName = @FTPFolderT + @BakFileName;
+SELECT @cmd = 'move /y "' + @FTPFileFullName + '" "' + SUBSTRING(@FTPFolder, 1, LEN(@FTPFolder)-1) + '"';
+EXEC master..xp_cmdshell @cmd;
+-- =================================================================================================
+
+SELECT BakFileName = @BakFileName;
+RETURN 1;
+GO
+/****** Object:  StoredProcedure [bak].[Apq_Bak_Full]    Script Date: 11/12/2010 15:04:29 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROC [bak].[Apq_Bak_Full]
+	 @DBName		nvarchar(256)
+	,@BakFileName	nvarchar(256) OUT	-- 备份文件名(不含路径)
+AS
+/* =============================================
+-- 作者: 黄宗银
+-- 日期: 2010-04-17
+-- 描述: 完整备份(仅本地)
+-- 参数:
+@DBName: 数据库名
+@BakFolder: 备份路径
+-- 示例:
+DECLARE @rtn int;
+EXEC @rtn = bak.Apq_Bak_Full 'Apq_DBA';
+SELECT @rtn;
+-- =============================================
+-2: 空间不足
+*/
+SET NOCOUNT ON;
+
+DECLARE @rtn int, @SPBeginTime datetime, @BakFileFullName nvarchar(4000)
+	,@cmd nvarchar(4000), @sql nvarchar(4000)
+	,@ID bigint
+	,@BakFolder nvarchar(4000)
+	,@FTPFolder nvarchar(4000)
+	,@FTPFolderT nvarchar(4000)
+	,@FTPFileFullName nvarchar(4000)
+	,@NeedTruncate tinyint;
+SELECT @SPBeginTime=GetDate();
+SELECT @BakFolder = '', @NeedTruncate = 0;
+SELECT @BakFolder = BakFolder, @FTPFolder = FTPFolder,@FTPFolderT = FTPFolderT, @NeedTruncate = NeedTruncate
+  FROM bak.BakCfg
+ WHERE DBName = @DBName;
+
+IF(Len(@BakFolder)>3)
+BEGIN
+	IF(RIGHT(@BakFolder,1)<>'\') SELECT @BakFolder = @BakFolder+'\';
+	SELECT @cmd = 'md ' + SUBSTRING(@BakFolder, 1, LEN(@BakFolder)-1);
+	EXEC master..xp_cmdshell @cmd;
+END
+IF(Len(@FTPFolder)>3)
+BEGIN
+	IF(RIGHT(@FTPFolder,1)<>'\') SELECT @FTPFolder = @FTPFolder+'\';
+	SELECT @cmd = 'md ' + SUBSTRING(@FTPFolder, 1, LEN(@FTPFolder)-1);
+	EXEC master..xp_cmdshell @cmd;
+END
+IF(Len(@FTPFolderT)>3)
+BEGIN
+	IF(RIGHT(@FTPFolderT,1)<>'\') SELECT @FTPFolderT = @FTPFolderT+'\';
+	SELECT @cmd = 'md ' + SUBSTRING(@FTPFolderT, 1, LEN(@FTPFolderT)-1);
+	EXEC master..xp_cmdshell @cmd;
+END
+
+-- 记录备份日志
+SELECT @BakFileName = @DBName + '[' + LEFT(REPLACE(REPLACE(REPLACE(CONVERT(nvarchar,@SPBeginTime,120),'-',''),':',''),' ','_'),13)+'].bak';
+SELECT @BakFileFullName = @BakFolder + @BakFileName;
+SELECT @cmd = '@echo [' + convert(nvarchar,@SPBeginTime,120) + ']' + @BakFileName + '>>' + @BakFolder + '[Log]Apq_Bak.txt'
+EXEC @rtn = master..xp_cmdshell @cmd;
+
+-- 检测剩余空间 ------------------------------------------------------------------------------------
+DECLARE @spused float, @disksp float;
+SELECT @sql = '
+CREATE TABLE #spused(
+	name		nvarchar(256),
+	rows		varchar(11),
+	reserved	varchar(18),
+	data		varchar(18),
+	index_size	varchar(18),
+	unused		varchar(18)
+);
+EXEC ' + @DBName + '..sp_MSforeachtable "INSERT #spused EXEC sp_spaceused ''?'', ''true''";
+SELECT @spused = 0;
+SELECT @spused = @spused + LEFT(reserved,LEN(reserved)-3) FROM #spused;
+SELECT @spused = @spused / 1024;
+DROP TABLE #spused;
+';
+EXEC @rtn = sp_executesql @sql, N'@spused float out', @spused = @spused out;
+CREATE TABLE #drives(
+	drive	varchar(5),
+	MB		float
+);
+INSERT #drives
+EXEC master..xp_fixeddrives;
+
+IF(EXISTS(SELECT TOP 1 1 FROM #drives WHERE MB < @spused * 0.7 AND drive IN(LEFT(@BakFolder,1),LEFT(@FTPFolder,1)))) -- 暂取0.7
+RETURN -2;
+-- =================================================================================================
+
+--截断日志(仅限2000使用)
+IF(@NeedTruncate=1)
+BEGIN
+	SELECT @sql='BACKUP LOG '+@DBName+' WITH NO_LOG';
+	EXEC sp_executesql @sql;
+END
+
+SELECT @sql = 'BACKUP DATABASE @DBName TO DISK=@BakFile WITH INIT';
+EXEC @rtn = sp_executesql @sql, N'@DBName nvarchar(256), @BakFile nvarchar(4000)', @DBName = @DBName, @BakFile = @BakFileFullName;
+IF(@@ERROR <> 0 OR @rtn<>0)
+BEGIN
+	RETURN -1;
+END
+
+-- 移动到FTP目录 -----------------------------------------------------------------------------------
+IF(Len(@FTPFolderT)>0)
+BEGIN
+	SELECT @FTPFileFullName = @BakFolder + @BakFileName;
+	SELECT @cmd = 'move /y "' + @FTPFileFullName + '" "' + SUBSTRING(@FTPFolderT, 1, LEN(@FTPFolderT)-1) + '"';
+	EXEC master..xp_cmdshell @cmd;
+END
+ELSE
+BEGIN
+	SELECT @FTPFolderT = @BakFolder;
+END
+SELECT @FTPFileFullName = @FTPFolderT + @BakFileName;
+SELECT @cmd = 'move /y "' + @FTPFileFullName + '" "' + SUBSTRING(@FTPFolder, 1, LEN(@FTPFolder)-1) + '"';
+EXEC master..xp_cmdshell @cmd;
+-- =================================================================================================
+
+SELECT BakFileName = @BakFileName;
+RETURN 1;
+GO
+/****** Object:  UserDefinedFunction [dbo].[Apq_ConvertMac_VarBinary]    Script Date: 11/12/2010 15:04:39 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+/* =============================================
+-- 作者: 黄宗银
+-- 日期: 2007-09-28
+-- 描述: 将Mac串转化为 varbinary(max)
+-- 示例:
+SELECT dbo.Apq_ConvertMac_VarBinary('00-50-8D-9E-EB-70');
+-- =============================================
+*/
+CREATE FUNCTION [dbo].[Apq_ConvertMac_VarBinary](
+	@Mac	varchar(max)
+)RETURNS varbinary(max)
+AS
+BEGIN
+	SELECT @Mac = LTRIM(RTRIM(@Mac));
+
+	DECLARE @Return varbinary(max)
+		,@Len int		-- 字符数
+		,@ib int		-- 当前解析起始位置
+		,@ie int		-- 当前解析结束位置
+		,@i int
+		;
+	SELECT @Return = 0x
+		,@Len = LEN(@Mac)
+		,@ie = 0
+		,@i = 1
+		;
+
+	IF(@Len < 16) RETURN @Return;
+
+	WHILE(@i <= 6)
 	BEGIN
-		IF((128 & SubString(@Input,DataLength(@Input),1)) > 0)
+		SELECT	@ib = @ie + 1;
+		--SELECT	@ie = CHARINDEX(':', @Mac, @ib);
+		SELECT	@ie = CHARINDEX('-', @Mac, @ib);
+		IF(@ie = 0)
 		BEGIN
-			-- 符号扩展
-			SELECT @Input = @Input + 0xFFFFFFFFFFFFFF/*7字节*/
+			SELECT	@ie = @Len + 1;
 		END
+		
+		IF(@ib >= @ie) BREAK;
+
+		SELECT	@Return = ISNULL(@Return, 0x) + dbo.Apq_ConvertHexStr_VarBinary(SUBSTRING(@Mac, @ib, @ie - @ib));
+
+		SELECT	@i = @i + 1;
 	END
-	
-	RETURN dbo.Apq_VarBinary_Reverse(@Input);
+
+	RETURN @Return;
 END
 GO
-/****** Object:  UserDefinedFunction [dbo].[Apq_RConvertVarBinary8_BigInt]    Script Date: 11/09/2010 11:49:49 ******/
+/****** Object:  UserDefinedFunction [dbo].[Apq_ConvertIP6_VarBinary]    Script Date: 11/12/2010 15:04:39 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 /* =============================================
 -- 作者: 黄宗银
--- 日期: 2008-05-07
--- 描述: 逆置类型转换(最多支持8字节,bigint类型)
+-- 日期: 2007-19-25
+-- 描述: 将标准的IP6串转为 varbinary(max)
 -- 示例:
-SELECT dbo.Apq_RConvertVarBinary8_BigInt(0x0100)
+SELECT dbo.Apq_ConvertIP6_VarBinary('FFFF::FFFF', 8);
 -- =============================================
 */
-CREATE FUNCTION [dbo].[Apq_RConvertVarBinary8_BigInt](
-	@Input	varbinary(8)
-)RETURNS bigint AS
+CREATE FUNCTION [dbo].[Apq_ConvertIP6_VarBinary](
+	@IP		varchar(max),
+	@Seg	tinyint	-- 段数
+)RETURNS varbinary(max)
+AS
 BEGIN
-	DECLARE	@bin varbinary(8), @rtn bigint;
-	SELECT @bin = dbo.Apq_VarBinary_Reverse(@Input);
-	SELECT @rtn = Convert(bigint, @bin);
-	RETURN @rtn;
+	SELECT	 @IP = LTRIM(RTRIM(@IP))
+			,@Seg = ISNULL(@Seg, 8)
+			;
+
+	IF(CHARINDEX('::', @IP) = LEN(@IP) - 1)
+	BEGIN
+		SELECT	@IP = @IP + '0000';
+	END
+
+	DECLARE	 @Return varbinary(max)
+			,@Len int		-- 字符数
+			,@ib int		-- 当前解析起始位置
+			,@ie int		-- 当前解析结束位置
+			,@Subs int		-- 分隔符(:)数量
+			,@i int
+			,@j int
+			,@SLength int	-- (如果存在缩写符)缩写符实际表示的 双字节0(0x0000) 的数量(段数)
+			;
+	SELECT	 @Len = LEN(@IP)
+			,@ie = 0
+			,@i = 1
+			,@j = 1
+			;
+	SELECT	@Subs = LEN(REPLACE(@IP, ':', 'zz')) - @Len;
+	SELECT	@SLength = CASE CHARINDEX('::', @IP) WHEN 0 THEN 0 ELSE @Seg - @Subs END;
+
+	WHILE(@i <= @Seg)
+	BEGIN
+		SELECT	@ib = @ie + 1;
+		IF(@ib > @Len)
+		BEGIN
+			SELECT	@j = 1;
+			WHILE(@j <= @Seg - @i)
+			BEGIN
+				SELECT	@Return = ISNULL(@Return, 0x) + 0x0000;
+				
+				SELECT	@j = @j + 1;
+			END
+			BREAK;
+		END
+		SELECT	@ie = CHARINDEX(':', @IP, @ib);
+		IF(@ie = 0)
+		BEGIN
+			SELECT	@ie = @Len + 1;
+		END
+
+		IF(@ie = @ib)
+		BEGIN	-- 遇到缩写符
+			IF(@ib = 1)
+			BEGIN
+				SELECT	@SLength = @SLength + 1;
+			END
+			SELECT	@i = @i + @SLength - 1;
+
+			SELECT	@j = 1;
+			WHILE(@j <= @SLength)
+			BEGIN
+				SELECT	@Return = ISNULL(@Return, 0x) + 0x0000;
+				
+				SELECT	@j = @j + 1;
+			END
+
+			IF(@ib = 1)
+			BEGIN
+				SELECT	@ie = @ie + 1;
+			END
+		END
+		ELSE
+		BEGIN
+			SELECT	@Return = ISNULL(@Return, 0x) + Convert(binary(2), dbo.Apq_ConvertPBigintFrom(16, SUBSTRING(@IP, @ib, @ie - @ib)));
+		END
+
+		SELECT	@i = @i + 1;
+	END
+
+	RETURN @Return;
 END
 GO
-/****** Object:  UserDefinedFunction [dbo].[Apq_RConvertBigInt_VarBinary8]    Script Date: 11/09/2010 11:49:49 ******/
+/****** Object:  StoredProcedure [bak].[Apq_BakCfg_Trn]    Script Date: 11/12/2010 15:04:29 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
+CREATE PROC [bak].[Apq_BakCfg_Trn]
+	@DBName	nvarchar(256)
+AS
 /* =============================================
 -- 作者: 黄宗银
--- 日期: 2008-05-07
--- 描述: 逆置类型转换(最多支持8字节,bigint类型)
+-- 日期: 2010-04-17
+-- 描述: 日志备份(仅本地)
+-- 参数:
+@DBName: 数据库名
+@BakFolder: 备份路径
 -- 示例:
-SELECT dbo.Apq_RConvertBigInt_VarBinary8(0x0100)
+DECLARE @rtn int;
+EXEC @rtn = bak.Apq_BakCfg_Trn 'dtxc';
+SELECT @rtn;
 -- =============================================
+1: 备份成功
 */
-CREATE FUNCTION [dbo].[Apq_RConvertBigInt_VarBinary8](
-	@Input	bigint,
-	@Length	tinyint	-- [1,8]
-)RETURNS varbinary(8) AS
+SET NOCOUNT ON;
+
+DECLARE @rtn int, @SPBeginTime datetime, @BakFileName nvarchar(256), @BakFileFullName nvarchar(4000)
+	,@cmd nvarchar(4000)
+	,@sql nvarchar(4000)
+	,@ID bigint
+	,@BakFolder nvarchar(4000)
+	,@FTPFolder nvarchar(4000)
+	,@FTPFolderT nvarchar(4000)
+	,@FTPFileFullName nvarchar(4000);
+SELECT @SPBeginTime=GetDate();
+SELECT @BakFolder = '';
+SELECT @BakFolder = BakFolder,@FTPFolder = FTPFolder,@FTPFolderT = FTPFolderT
+  FROM bak.BakCfg
+ WHERE DBName = @DBName;
+
+IF(Len(@BakFolder)>3)
 BEGIN
-	DECLARE	@bin varbinary(8), @rtn varbinary(8);
-	SELECT @bin = Convert(varbinary, @Input);
-	SELECT @bin = dbo.Apq_VarBinary_Reverse(@bin);
-	SELECT @rtn = SubString(@bin,1, @Length);
-	RETURN @rtn;
+	IF(RIGHT(@BakFolder,1)<>'\') SELECT @BakFolder = @BakFolder+'\';
+	SELECT @cmd = 'md ' + SUBSTRING(@BakFolder, 1, LEN(@BakFolder)-1);
+	EXEC master..xp_cmdshell @cmd;
 END
+IF(Len(@FTPFolder)>3)
+BEGIN
+	IF(RIGHT(@FTPFolder,1)<>'\') SELECT @FTPFolder = @FTPFolder+'\';
+	SELECT @cmd = 'md ' + SUBSTRING(@FTPFolder, 1, LEN(@FTPFolder)-1);
+	EXEC master..xp_cmdshell @cmd;
+END
+IF(Len(@FTPFolderT)>3)
+BEGIN
+	IF(RIGHT(@FTPFolderT,1)<>'\') SELECT @FTPFolderT = @FTPFolderT+'\';
+	SELECT @cmd = 'md ' + SUBSTRING(@FTPFolderT, 1, LEN(@FTPFolderT)-1);
+	EXEC master..xp_cmdshell @cmd;
+END
+
+-- 记录备份日志
+SELECT @BakFileName = @DBName + '[' + LEFT(REPLACE(REPLACE(REPLACE(CONVERT(nvarchar,@SPBeginTime,120),'-',''),':',''),' ','_'),13)+'].trn';
+SELECT @BakFileFullName = @BakFolder + @BakFileName;
+--SELECT @cmd = '@echo [' + convert(nvarchar,@SPBeginTime,120) + ']' + @BakFileName + '>>' + @BakFolder + '[Log]Apq_Bak.txt'
+--EXEC @rtn = xp_cmdshell @cmd;
+
+-- 备份
+SELECT @sql = 'BACKUP LOG @DBName TO DISK=@BakFile';
+EXEC @rtn = sp_executesql @sql, N'@DBName nvarchar(256), @BakFile nvarchar(4000)', @DBName = @DBName, @BakFile = @BakFileFullName;
+IF(@@ERROR <> 0 OR @rtn<>0)
+BEGIN
+	RETURN -1;
+END
+
+-- 移动到FTP目录 -----------------------------------------------------------------------------------
+IF(Len(@FTPFolderT)>0)
+BEGIN
+	SELECT @FTPFileFullName = @BakFolder + @BakFileName;
+	SELECT @cmd = 'move /y "' + @FTPFileFullName + '" "' + SUBSTRING(@FTPFolderT, 1, LEN(@FTPFolderT)-1) + '"';
+	EXEC master..xp_cmdshell @cmd;
+END
+ELSE
+BEGIN
+	SELECT @FTPFolderT = @BakFolder;
+END
+SELECT @FTPFileFullName = @FTPFolderT + @BakFileName;
+SELECT @cmd = 'move /y "' + @FTPFileFullName + '" "' + SUBSTRING(@FTPFolder, 1, LEN(@FTPFolder)-1) + '"';
+EXEC master..xp_cmdshell @cmd;
+-- =================================================================================================
+
+SELECT BakFileName = @BakFileName;
+RETURN 1;
 GO
-/****** Object:  StoredProcedure [dbo].[Prws_Alarm]    Script Date: 11/09/2010 11:49:48 ******/
+/****** Object:  StoredProcedure [dbo].[Prws_Alarm]    Script Date: 11/12/2010 15:04:33 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -5935,7 +5860,84 @@ SELECT ID, _InTime, Type, Severity, Msg
 
 RETURN 1;
 GO
-/****** Object:  StoredProcedure [bak].[Job_Apq_BakCfg_Init]    Script Date: 11/09/2010 11:49:48 ******/
+/****** Object:  UserDefinedFunction [dbo].[Apq_RConvertVarBinary8X_BigInt]    Script Date: 11/12/2010 15:04:40 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+/* =============================================
+-- 作者: 黄宗银
+-- 日期: 2009-02-19
+-- 描述: 逆置类型转换,符号扩展(最多支持8字节,bigint类型)
+-- 示例:
+SELECT dbo.Apq_RConvertVarBinary8X_BigInt(0x01F1)
+-- =============================================
+*/
+CREATE FUNCTION [dbo].[Apq_RConvertVarBinary8X_BigInt](
+	@Input	varbinary(8)
+)RETURNS bigint AS
+BEGIN
+	IF(DATALENGTH(@Input) < 8)
+	BEGIN
+		IF((128 & SubString(@Input,DataLength(@Input),1)) > 0)
+		BEGIN
+			-- 符号扩展
+			SELECT @Input = @Input + 0xFFFFFFFFFFFFFF/*7字节*/
+		END
+	END
+	
+	RETURN dbo.Apq_VarBinary_Reverse(@Input);
+END
+GO
+/****** Object:  UserDefinedFunction [dbo].[Apq_RConvertVarBinary8_BigInt]    Script Date: 11/12/2010 15:04:40 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+/* =============================================
+-- 作者: 黄宗银
+-- 日期: 2008-05-07
+-- 描述: 逆置类型转换(最多支持8字节,bigint类型)
+-- 示例:
+SELECT dbo.Apq_RConvertVarBinary8_BigInt(0x0100)
+-- =============================================
+*/
+CREATE FUNCTION [dbo].[Apq_RConvertVarBinary8_BigInt](
+	@Input	varbinary(8)
+)RETURNS bigint AS
+BEGIN
+	DECLARE	@bin varbinary(8), @rtn bigint;
+	SELECT @bin = dbo.Apq_VarBinary_Reverse(@Input);
+	SELECT @rtn = Convert(bigint, @bin);
+	RETURN @rtn;
+END
+GO
+/****** Object:  UserDefinedFunction [dbo].[Apq_RConvertBigInt_VarBinary8]    Script Date: 11/12/2010 15:04:40 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+/* =============================================
+-- 作者: 黄宗银
+-- 日期: 2008-05-07
+-- 描述: 逆置类型转换(最多支持8字节,bigint类型)
+-- 示例:
+SELECT dbo.Apq_RConvertBigInt_VarBinary8(0x0100)
+-- =============================================
+*/
+CREATE FUNCTION [dbo].[Apq_RConvertBigInt_VarBinary8](
+	@Input	bigint,
+	@Length	tinyint	-- [1,8]
+)RETURNS varbinary(8) AS
+BEGIN
+	DECLARE	@bin varbinary(8), @rtn varbinary(8);
+	SELECT @bin = Convert(varbinary, @Input);
+	SELECT @bin = dbo.Apq_VarBinary_Reverse(@bin);
+	SELECT @rtn = SubString(@bin,1, @Length);
+	RETURN @rtn;
+END
+GO
+/****** Object:  StoredProcedure [bak].[Job_Apq_BakCfg_Init]    Script Date: 11/12/2010 15:04:29 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -6017,7 +6019,7 @@ CLOSE @csr;
 
 RETURN 1;
 GO
-/****** Object:  StoredProcedure [bak].[Job_Apq_Bak_Raiserror]    Script Date: 11/09/2010 11:49:48 ******/
+/****** Object:  StoredProcedure [bak].[Job_Apq_Bak_Raiserror]    Script Date: 11/12/2010 15:04:29 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -6051,7 +6053,7 @@ IF(EXISTS(SELECT TOP 1 1 FROM bak.RestoreFromFolder WHERE Enabled = 1 AND Len(La
 	RAISERROR('还原或删除 出现异常',16,1);
 RETURN 1;
 GO
-/****** Object:  StoredProcedure [bak].[Job_Apq_Bak_Init]    Script Date: 11/09/2010 11:49:48 ******/
+/****** Object:  StoredProcedure [bak].[Job_Apq_Bak_Init]    Script Date: 11/12/2010 15:04:29 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -6133,7 +6135,7 @@ CLOSE @csr;
 
 RETURN 1;
 GO
-/****** Object:  StoredProcedure [bak].[Job_Apq_Bak_FTP_Enqueue]    Script Date: 11/09/2010 11:49:48 ******/
+/****** Object:  StoredProcedure [bak].[Job_Apq_Bak_FTP_Enqueue]    Script Date: 11/12/2010 15:04:29 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -6155,7 +6157,7 @@ SELECT @SPBeginTime=GetDate();
 
 DECLARE @csr CURSOR
 SET @csr = CURSOR FOR
-SELECT ID,DBName,LastFileName,FTPSrv,Folder,U,P,FTPFolder,FTPFolderTmp,Num_Full
+SELECT ID,DBName,LastFileName,FTPSrv,FTPPort,Folder,U,P,FTPFolder,FTPFolderTmp,Num_Full
   FROM bak.FTP_PutBak
  WHERE Enabled = 1;
 
@@ -6164,10 +6166,10 @@ DECLARE @FTPFileName nvarchar(512);
 CREATE TABLE #t1(s nvarchar(4000));
 CREATE TABLE #t2(s nvarchar(4000));
 
-DECLARE @ID bigint,@DBName nvarchar(256),@LastFileName nvarchar(256),@FTPSrv nvarchar(256),@Folder nvarchar(512)
+DECLARE @ID bigint,@DBName nvarchar(256),@LastFileName nvarchar(256),@FTPSrv nvarchar(256),@FTPPort int,@Folder nvarchar(512)
 	,@U nvarchar(256),@P nvarchar(256),@FTPFolder nvarchar(512),@FTPFolderTmp nvarchar(512),@Num_Full int;
 OPEN @csr;
-FETCH NEXT FROM @csr INTO @ID,@DBName,@LastFileName,@FTPSrv,@Folder,@U,@P,@FTPFolder,@FTPFolderTmp,@Num_Full;
+FETCH NEXT FROM @csr INTO @ID,@DBName,@LastFileName,@FTPSrv,@FTPPort,@Folder,@U,@P,@FTPFolder,@FTPFolderTmp,@Num_Full;
 WHILE(@@FETCH_STATUS = 0)
 BEGIN
 	IF(RIGHT(@Folder,1)<>'\') SELECT @Folder = @Folder+'\';
@@ -6191,8 +6193,8 @@ BEGIN
 	SET @csrFile = CURSOR FOR
 	SELECT s FROM #t2;
 	
-	INSERT dbo.FTP_SendQueue ( Folder,FileName,Enabled,FTPSrv,U,P,FTPFolder,FTPFolderTmp )
-	SELECT @Folder,s,1,@FTPSrv,@U,@P,@FTPFolder,@FTPFolderTmp
+	INSERT dbo.FTP_SendQueue ( Folder,FileName,Enabled,FTPSrv,FTPPort,U,P,FTPFolder,FTPFolderTmp )
+	SELECT @Folder,s,1,@FTPSrv,@FTPPort,@U,@P,@FTPFolder,@FTPFolderTmp
 	  FROM #t2
 	
 	SELECT @FTPFileName = NULL;
@@ -6202,7 +6204,7 @@ BEGIN
 	-- =============================================================================================
 	
 	NEXT_DB:
-	FETCH NEXT FROM @csr INTO @ID,@DBName,@LastFileName,@FTPSrv,@Folder,@U,@P,@FTPFolder,@FTPFolderTmp,@Num_Full;
+	FETCH NEXT FROM @csr INTO @ID,@DBName,@LastFileName,@FTPSrv,@FTPPort,@Folder,@U,@P,@FTPFolder,@FTPFolderTmp,@Num_Full;
 END
 CLOSE @csr;
 
@@ -6211,7 +6213,7 @@ DROP TABLE #t1;
 DROP TABLE #t2;
 RETURN 1;
 GO
-/****** Object:  StoredProcedure [dbo].[Apq_WH]    Script Date: 11/09/2010 11:49:48 ******/
+/****** Object:  StoredProcedure [dbo].[Apq_WH]    Script Date: 11/12/2010 15:04:31 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -6250,7 +6252,7 @@ BEGIN
 END
 CLOSE @csr
 GO
-/****** Object:  StoredProcedure [dbo].[Job_Apq_DataTrans_Loader]    Script Date: 11/09/2010 11:49:48 ******/
+/****** Object:  StoredProcedure [dbo].[Job_Apq_DataTrans_Loader]    Script Date: 11/12/2010 15:04:32 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -6315,7 +6317,7 @@ END
 
 RETURN 1;
 GO
-/****** Object:  StoredProcedure [etl].[Job_Etl_BcpIn_Init]    Script Date: 11/09/2010 11:49:48 ******/
+/****** Object:  StoredProcedure [etl].[Job_Etl_BcpIn_Init]    Script Date: 11/12/2010 15:04:33 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -6457,7 +6459,7 @@ DROP TABLE #t;
 
 RETURN 1;
 GO
-/****** Object:  StoredProcedure [etl].[Job_Etl_BcpIn]    Script Date: 11/09/2010 11:49:48 ******/
+/****** Object:  StoredProcedure [etl].[Job_Etl_BcpIn]    Script Date: 11/12/2010 15:04:33 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -6506,6 +6508,7 @@ SELECT TOP(@TransRowCount) ID, EtlName, Folder, FileName, DBName, SchemaName, TN
  WHERE Enabled = 1 AND IsFinished = 0;
 
 DECLARE @sidx int;
+CREATE TABLE #t(s nvarchar(4000));
 
 OPEN @csr;
 FETCH NEXT FROM @csr INTO @ID,@EtlName,@Folder,@FileName,@DBName,@SchemaName,@TName, @t, @r;
@@ -6523,8 +6526,14 @@ BEGIN
 
 	SELECT @cmd = 'bcp "' + @FullTableName + '" in "' + @Folder + @FileName + '" -c -t' + @t + ' -r' + @r + ' -T';
 	--SELECT @cmd;
+	TRUNCATE TABLE #t;
+	INSERT #t
 	EXEC @rtn = master..xp_cmdshell @cmd;
 	IF(@@ERROR <> 0 OR @rtn <> 0)
+	BEGIN
+		GOTO NEXT_File;
+	END
+	IF(EXISTS(SELECT TOP 1 * FROM #t WHERE left(s,7) = 'Error ='))
 	BEGIN
 		GOTO NEXT_File;
 	END
@@ -6539,9 +6548,12 @@ BEGIN
 END
 CLOSE @csr;
 
+TRUNCATE TABLE #t;
+DROP TABLE #t;
+
 RETURN 1;
 GO
-/****** Object:  StoredProcedure [bak].[Job_Apq_FTP_PutBak]    Script Date: 11/09/2010 11:49:48 ******/
+/****** Object:  StoredProcedure [bak].[Job_Apq_FTP_PutBak]    Script Date: 11/12/2010 15:04:29 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -6719,7 +6731,7 @@ DROP TABLE #t1;
 DROP TABLE #t2;
 RETURN 1;
 GO
-/****** Object:  StoredProcedure [etl].[Job_Etl_Stat]    Script Date: 11/09/2010 11:49:48 ******/
+/****** Object:  StoredProcedure [etl].[Job_Etl_Stat]    Script Date: 11/12/2010 15:04:33 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -6823,7 +6835,7 @@ CLOSE @csr;
 
 RETURN 1;
 GO
-/****** Object:  StoredProcedure [dbo].[Job_Apq_Arp]    Script Date: 11/09/2010 11:49:48 ******/
+/****** Object:  StoredProcedure [dbo].[Job_Apq_Arp]    Script Date: 11/12/2010 15:04:32 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -6870,157 +6882,7 @@ CLOSE @csr;
 
 RETURN 1;
 GO
-/****** Object:  StoredProcedure [dbo].[Job_FTP_Send]    Script Date: 11/09/2010 11:49:48 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE PROC [dbo].[Job_FTP_Send]
-	@TransRowCount	int = 100	-- 传送行数(最多读取的行数)
-AS
-/* =============================================
--- 作者: 黄宗银
--- 日期: 2010-10-19
--- 描述: 通过FTP上传文件
--- 原因: FTP下载时是先写入临时文件,可能引起空间不足
--- 示例:
-EXEC dbo.Job_FTP_Send 100;
--- =============================================
-*/
-SET NOCOUNT ON;
-
-IF(@TransRowCount IS NULL) SELECT @TransRowCount = 100;
-
-DECLARE @rtn int, @SPBeginTime datetime
-	,@cmd nvarchar(4000), @sql nvarchar(4000)
-	,@ScpFolder nvarchar(4000)
-	,@ScpFileName nvarchar(128)
-	,@ScpFullName nvarchar(4000)
-	,@LFullName nvarchar(4000)	 -- 临时变量:本地文件全名
-	,@FullFileToDel nvarchar(4000)--在此文件之前的文件将被删除
-	;
-SELECT @SPBeginTime=GetDate(),@ScpFolder = 'D:\Apq_DBA\Scp\'
-SELECT @ScpFileName = 'FTP_Send['+LEFT(REPLACE(REPLACE(REPLACE(CONVERT(nvarchar,@SPBeginTime,120),'-',''),':',''),' ','_'),13)+'].scp';
-SELECT @ScpFullName = @ScpFolder + @ScpFileName;
-IF(RIGHT(@ScpFolder,1)<>'\') SELECT @ScpFolder = @ScpFolder+'\';
-SELECT @cmd = 'md ' + LEFT(@ScpFolder,LEN(@ScpFolder)-1);
-EXEC master..xp_cmdshell @cmd;
-
-DECLARE @csr CURSOR
-SET @csr = CURSOR STATIC FOR
-SELECT TOP(@TransRowCount) ID,Folder,FileName,FTPSrv,U,P,FTPFolder,FTPFolderTmp,LSize,RSize
-  FROM dbo.FTP_SendQueue
- WHERE Enabled = 1 AND IsSuccess = 0
- ORDER BY FileName
-
--- 游标内临时变量
-CREATE TABLE #t(s nvarchar(4000));
-CREATE TABLE #t1(s nvarchar(4000));
-
-DECLARE @ID bigint,@Folder nvarchar(512),@FileName nvarchar(256),@LSize bigint,@RSize bigint,
-	@FTPSrv nvarchar(256),@U nvarchar(256),@P nvarchar(256),@FTPFolder nvarchar(512),@FTPFolderTmp nvarchar(512);
-OPEN @csr;
-FETCH NEXT FROM @csr INTO @ID,@Folder,@FileName,@FTPSrv,@U,@P,@FTPFolder,@FTPFolderTmp,@LSize,@RSize;
-WHILE(@@FETCH_STATUS = 0)
-BEGIN
-	IF(RIGHT(@Folder,1)<>'\') SELECT @Folder = @Folder+'\';
-	IF(RIGHT(@FTPFolder,1)<>'/') SELECT @FTPFolder = @FTPFolder+'/';
-	IF(RIGHT(@FTPFolderTmp,1)<>'/') SELECT @FTPFolderTmp = @FTPFolderTmp+'/';
-	SELECT @cmd = 'md ' + LEFT(@Folder,LEN(@Folder)-1);
-	EXEC master..xp_cmdshell @cmd;
-	
-	-- 获取本地文件大小 ----------------------------------------------------------------------------
-	SELECT @cmd = 'dir "' + @Folder + @FileName + '"';
-	TRUNCATE TABLE #t1;
-	INSERT #t1 EXEC @rtn = master..xp_cmdshell @cmd;
-	IF(@@ERROR <> 0 OR @rtn <> 0)
-	BEGIN
-		GOTO NEXT_Row;
-	END
-	
-	DECLARE @sLDir nvarchar(4000);
-	SELECT TOP 1 @sLDir = s FROM #t1 WHERE RIGHT(s,Len(@FileName)) = @FileName;
-	--SELECT @sLDir;
-	IF(@sLDir IS NOT NULL) SELECT @LSize = Replace(LTRIM(RTRIM(Substring(@sLDir,18,Len(@sLDir)-18-Len(@FileName)))),',','');
-	IF(@LSize>0)
-	BEGIN
-		UPDATE dbo.FTP_SendQueue SET [_Time] = getdate(),LSize = @LSize WHERE ID = @ID;
-	END
-
-	-- 传送文件 ------------------------------------------------------------------------------------
-	SELECT @cmd = 'echo open ' + @FTPSrv + '>"' + @ScpFullName + '"';
-	EXEC master..xp_cmdshell  @cmd;
-	SELECT @cmd = 'echo user ' + @U + '>>"' + @ScpFullName + '"';
-	EXEC master..xp_cmdshell  @cmd;
-	SELECT @cmd = 'echo ' + @P + '>>"' + @ScpFullName + '"';
-	EXEC master..xp_cmdshell @cmd;
-	SELECT @cmd = 'echo cd "' + @FTPFolderTmp + '">>"' + @ScpFullName + '"';
-	EXEC master..xp_cmdshell @cmd;
-	SELECT @cmd = 'echo lcd "' + LEFT(@Folder,LEN(@Folder)-1) + '">>"' + @ScpFullName + '"';
-	EXEC master..xp_cmdshell @cmd;
-
-	SELECT @cmd = 'echo binary>>"' + @ScpFullName + '"';-- 将文件传输类型设置为二进制
-	EXEC master..xp_cmdshell @cmd;
-	SELECT @cmd = 'echo put "' + @FileName + '">>"' + @ScpFullName + '"';
-	EXEC master..xp_cmdshell @cmd;
-	SELECT @cmd = 'echo rename "' + @FileName + '" "' + @FTPFolder + @FileName + '">>"' + @ScpFullName + '"';
-	EXEC master..xp_cmdshell @cmd;
-	SELECT @cmd = 'echo dir "' + @FTPFolder + @FileName + '">>"' + @ScpFullName + '"';	-- 获取已上传文件大小
-	EXEC master..xp_cmdshell @cmd;
-	SELECT @cmd = 'echo bye>>"' + @ScpFullName + '"';
-	EXEC master..xp_cmdshell @cmd;
-	SELECT @cmd = 'ftp -i -n -s:"' + @ScpFullName + '"';
-	--SELECT @cmd;
-	TRUNCATE TABLE #t;
-	INSERT #t EXEC @rtn = master..xp_cmdshell @cmd;
-	IF(@@ERROR <> 0 OR @rtn <> 0)
-	BEGIN
-		GOTO NEXT_Row;
-	END
-	SELECT * FROM #t;
-	IF(EXISTS(SELECT TOP 1 1 FROM #t WHERE s LIKE 'Not connected%' OR s LIKE 'Connection closed%' OR s LIKE 'Permission denied%'
-			OR s LIKE '%Unable to rename%'))
-	BEGIN
-		GOTO NEXT_Row;
-	END
-	-- 获取远程文件大小 ------------------------------------------------------------------------
-	DECLARE @sRDir nvarchar(4000);
-	SELECT TOP 1 @sRDir = s FROM #t WHERE Left(RIGHT(s,Len(@FileName)+1),Len(@FileName)) = @FileName;
-	--SELECT @sRDir;
-	/*
--rw-rw-rw-   1 user     group      118272 Oct 25 14:52 BaseBusinessDb[20101022_2150].trn 
--rw-rw-rw-   1 user     group    42460672 Oct 25 14:18 PayCenter[20101022_2150].trn 
--rw-rw-rw-   1 user     group    101897728 Oct 22 20:04 StreamMedia[20101022_1951].bak 
-规律:从34列开始为文件大小,最少占8字符,不足8位数字前补0,因此,从42列开始查找下一个空格,以此作为结束点.
-	*/
-	DECLARE @sidx int;
-	SELECT @sidx = charindex(' ',@sRDir,42);
-	SELECT @RSize = Replace(LTRIM(RTRIM(Substring(@sRDir,34,@sidx-34))),',','');
-	--SELECT @RSize;
-	IF(@RSize>0)
-	BEGIN
-		UPDATE dbo.FTP_SendQueue SET [_Time] = getdate(),RSize = @RSize WHERE ID = @ID;
-	END
-	
-	-- 上传成功
-	IF(@LSize = @RSize) UPDATE dbo.FTP_SendQueue SET _Time = getdate(), IsSuccess = 1 WHERE ID = @ID;
-	-- =============================================================================================
-	
-	NEXT_Row:
-	-- 删除FTP命令文件
-	SELECT @cmd = 'del ""' + @ScpFullName + '"" /q';
-	EXEC master..xp_cmdshell @cmd;
-
-	FETCH NEXT FROM @csr INTO @ID,@Folder,@FileName,@FTPSrv,@U,@P,@FTPFolder,@FTPFolderTmp,@LSize,@RSize;
-END
-CLOSE @csr;
-
-Quit:
-DROP TABLE #t;
-DROP TABLE #t1;
-RETURN 1;
-GO
-/****** Object:  StoredProcedure [dbo].[Pick_JobHis]    Script Date: 11/09/2010 11:49:48 ******/
+/****** Object:  StoredProcedure [dbo].[Pick_JobHis]    Script Date: 11/12/2010 15:04:32 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -7082,176 +6944,7 @@ WHERE   step_id > 0
                AND CONVERT(datetime,( CONVERT(nvarchar(20),run_date) + ' ' + dbo.Apq_ConvertInt_TimeString(run_time) )) <= @PickMaxTime
              )
 GO
-/****** Object:  StoredProcedure [etl].[Job_Etl_SwitchBcpTable]    Script Date: 11/09/2010 11:49:48 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE PROC [etl].[Job_Etl_SwitchBcpTable]
-AS
-/* =============================================
--- 作者: 黄宗银
--- 日期: 2010-10-28
--- 描述: 切换BCP接收表
--- 功能: 按预定时间切换BCP接收表
--- 示例:
-DECLARE @rtn int;
-EXEC @rtn = etl.Job_Etl_SwitchBcpTable;
-SELECT @rtn;
--- =============================================
-*/
-SET NOCOUNT ON;
-
---定义变量
-DECLARE @ID bigint,
-	@EtlName nvarchar(50),
-	@DBName nvarchar(256),	-- 数据库名
-	@SchemaName nvarchar(256),
-	@TName nvarchar(256),
-	@STName nvarchar(256),
-	@Cycle int,			-- 切换周期(分钟)
-	@STime smalldatetime,-- 切换时间
-	@PreSTime datetime	-- 上一次切换时间
-	
-	,@rtn int, @sql nvarchar(4000), @sqlDB nvarchar(4000)
-	,@JobTime datetime	-- 作业启动时间
-	,@Today smalldatetime
-	,@TodaySTime smalldatetime -- 今天预定切换时间
-	;
-SELECT @JobTime=GetDate();
-SELECT @Today = dateadd(dd,0,datediff(dd,0,@JobTime));
-
---定义游标
-DECLARE @csr CURSOR;
-SET @csr=CURSOR STATIC FOR
-SELECT ID, EtlName, DBName, SchemaName, TName, STName, Cycle, STime, PreSTime
-  FROM etl.BcpSTableCfg
- WHERE Enabled = 1;
-
-OPEN @csr;
-FETCH NEXT FROM @csr INTO @ID,@EtlName,@DBName,@SchemaName,@TName,@STName,@Cycle,@STime,@PreSTime;
-WHILE(@@FETCH_STATUS=0)
-BEGIN
-	SELECT @PreSTime = ISNULL(@PreSTime,dateadd(n,4-@Cycle,@STime))
-	SELECT @TodaySTime = Convert(nvarchar(11),@Today,120) + Left(Convert(nvarchar(50),@STime,108),6)+'00';
-
-	IF(DATEDIFF(n, @PreSTime, @JobTime) >= @Cycle - 1	-- 执行周期已到
-		--AND datediff(n,@JobTime,@TodaySTime) BETWEEN 0 AND 5	-- 今天执行时间已到
-	)BEGIN
-		-- 切换表
-		EXEC @rtn = etl.Etl_SwitchBcpTable @EtlName = @EtlName;
-		IF(@@ERROR = 0 AND @rtn = 1)
-		BEGIN
-			UPDATE etl.BcpSTableCfg SET _Time = getdate(), PreSTime = @JobTime WHERE ID = @ID;
-		END
-	END
-
-	FETCH NEXT FROM @csr INTO @ID,@EtlName,@DBName,@SchemaName,@TName,@STName,@Cycle,@STime,@PreSTime;
-END
-CLOSE @csr;
-
-RETURN 1;
-GO
-/****** Object:  StoredProcedure [dbo].[Job_Pick_JobHis]    Script Date: 11/09/2010 11:49:48 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE PROC [dbo].[Job_Pick_JobHis]
-AS
-/* =============================================
--- 作者: 黄宗银
--- 日期: 2010-06-11
--- 描述: 作业日志本地收集
--- 示例:
-DECLARE @rtn int;
-EXEC @rtn = dbo.Job_Pick_JobHis
-SELECT @rtn;
--- =============================================
-*/
-SET NOCOUNT ON;
-
---定义变量
-DECLARE @LocalSrvID nvarchar(32),
-	@CfgName nvarchar(256),		-- 配置名(唯一)
-	@PickLastID bigint,
-	@PickLastTime datetime,
-	@HasContent tinyint,
-	@FileFolder nvarchar(3000),	-- 文件夹
-	@FileName nvarchar(256),	-- 文件名
-	@FileEX nvarchar(50),		-- 扩展名(.txt)
-	@SrvID int,					-- 服务器编号
-	@DBName nvarchar(256),		-- 数据库名
-	@t nvarchar(50),
-	@r nvarchar(50),
-	
-	@LSName nvarchar(512),		-- 目标服务器别名
-	@PickMaxID bigint,
-	@PickMaxTime datetime,
-	
-	@rtn int, @cmd nvarchar(4000), @sql nvarchar(max)
-	,@SPBeginTime datetime		-- 存储过程启动时间
-	;
-SELECT @SPBeginTime=GetDate();
-SELECT @CfgName = 'JobHis'	-- 指定配置名
-	,@FileFolder = 'D:\'
-	,@FileEX = '.txt'
-	,@t = '~*'	-- 列分隔符 推荐使用"~*"
-	,@r = '~*$'	-- 行分隔符 推荐使用"~*$"
-SELECT @LocalSrvID = dbo.Apq_Ext_Get('',0,'LocalSrvID');
-SELECT @FileName = @CfgName + '[' + LEFT(REPLACE(REPLACE(REPLACE(CONVERT(nvarchar,@SPBeginTime,120),'-',''),':',''),' ','_'),13)+']';
-SELECT @HasContent = 0;
-
-IF(Len(@FileFolder)>3)
-BEGIN
-	IF(RIGHT(@FileFolder,1)<>'\') SELECT @FileFolder = @FileFolder+'\';
-	SELECT @cmd = 'md ' + SUBSTRING(@FileFolder, 1, LEN(@FileFolder)-1);
-	EXEC master..xp_cmdshell @cmd;
-END
-
--- 取出上次收集的最后ID和最后时间
-SELECT @PickLastID = PickLastID, @PickLastTime = PickLastTime
-  FROM dbo.DTS_Send
- WHERE CfgName = @CfgName;
-
--- 计算本次收集的最后ID或最后时间
-SELECT @PickMaxID = ISNULL(max(instance_id),-1), @PickMaxTime = ISNULL(max(Convert(datetime,(convert(nvarchar(20), run_date) + ' ' + dbo.Apq_ConvertInt_TimeString(run_time)))),getdate())
-  FROM msdb.dbo.sysjobhistory
-
--- 有数据时导出
-IF(EXISTS(SELECT TOP 1 1 FROM msdb.dbo.sysjobhistory WHERE run_status = 0
-	AND ((instance_id > @PickLastID AND instance_id <= @PickMaxID)
-	OR (Convert(datetime,(convert(nvarchar(20), run_date) + ' ' + dbo.Apq_ConvertInt_TimeString(run_time))) > @PickLastTime
-	AND Convert(datetime,(convert(nvarchar(20), run_date) + ' ' + dbo.Apq_ConvertInt_TimeString(run_time))) <= @PickMaxTime))
-	)
-)
-BEGIN
-	SELECT @HasContent = 1;
-	SELECT @sql = 'EXEC Apq_DBA.dbo.Pick_JobHis ' + dbo.Apq_CreateSqlON(@PickLastID);
-	SELECT @sql = @sql + ',' + dbo.Apq_CreateSqlON(@PickMaxID);
-	SELECT @sql = @sql + ',' + dbo.Apq_CreateSqlON(@PickLastTime);
-	SELECT @sql = @sql + ',' + dbo.Apq_CreateSqlON(@PickMaxTime);
-	-- BCP queryout
-	SELECT @cmd = 'bcp "' + @sql + '" queryout "' + @FileFolder + @FileName + @FileEX
-			+ '" -c -t' + CASE WHEN LEN(@t) > 0 THEN @t ELSE '\t' END
-			+ ' -r' + CASE WHEN LEN(@r) > 0 THEN @r ELSE '\n' END
-			+ ' -T'
-	--Print @sql; Print @cmd; RETURN;
-	EXEC @rtn = master..xp_cmdshell @cmd;
-END
-
--- 更新上次收集的最后ID和最后时间
-UPDATE dbo.DTS_Send
-   SET _Time = GETDATE(), PickLastID = @PickMaxID, PickLastTime = @PickMaxTime
- WHERE CfgName = @CfgName;
-
--- 记录收集日志
-INSERT dbo.Log_DTS_LocalPick ( CfgName,PickTime,HasContent,FileFolder,FileName,FileEX,t,r )
-VALUES  (@CfgName,@SPBeginTime,@HasContent,@FileFolder,@FileName,@FileEX,@t,@r)
-
-RETURN 1;
-GO
-/****** Object:  StoredProcedure [etl].[Job_Etl_Load]    Script Date: 11/09/2010 11:49:48 ******/
+/****** Object:  StoredProcedure [etl].[Job_Etl_Load]    Script Date: 11/12/2010 15:04:33 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -7320,7 +7013,7 @@ CLOSE @csr;
 
 RETURN 1;
 GO
-/****** Object:  StoredProcedure [dbo].[Job_Apq_DTS_Send]    Script Date: 11/09/2010 11:49:48 ******/
+/****** Object:  StoredProcedure [dbo].[Job_Apq_DTS_Send]    Script Date: 11/12/2010 15:04:32 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -7495,7 +7188,7 @@ DROP TABLE #t;
 
 RETURN 1;
 GO
-/****** Object:  StoredProcedure [dbo].[Job_Apq_Stat]    Script Date: 11/09/2010 11:49:48 ******/
+/****** Object:  StoredProcedure [dbo].[Job_Apq_Stat]    Script Date: 11/12/2010 15:04:32 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -7549,7 +7242,7 @@ CLOSE @csr;
 
 RETURN 1;
 GO
-/****** Object:  StoredProcedure [bak].[Job_Apq_RestoreFromFolder]    Script Date: 11/09/2010 11:49:48 ******/
+/****** Object:  StoredProcedure [bak].[Job_Apq_RestoreFromFolder]    Script Date: 11/12/2010 15:04:29 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -7668,8 +7361,8 @@ BEGIN
 		BEGIN
 			IF(SubString(@FTPFileName,Len(@DBName)+ 15,5) = '].bak')
 			BEGIN
-				--EXEC @rtn = bak.Apq_Restore 1,@DBName,@LFullName,1,@RestoreFolder,2;
-				EXEC @rtn = bak.Apq_Restore 1,@DBName,@LFullName,1,@RestoreFolder,1;
+				EXEC @rtn = bak.Apq_Restore 1,@DBName,@LFullName,1,@RestoreFolder,2;
+				--EXEC @rtn = bak.Apq_Restore 1,@DBName,@LFullName,1,@RestoreFolder,1;
 				IF(@@ERROR <> 0 OR @rtn <> 1)
 				BEGIN
 					CLOSE @csrFile;
@@ -7678,8 +7371,8 @@ BEGIN
 			END
 			IF(SubString(@FTPFileName,Len(@DBName)+ 15,5) = '].trn')
 			BEGIN
-				--EXEC @rtn = bak.Apq_Restore 1,@DBName,@LFullName,2,@RestoreFolder,2
-				EXEC @rtn = bak.Apq_Restore 1,@DBName,@LFullName,2,@RestoreFolder,1
+				EXEC @rtn = bak.Apq_Restore 1,@DBName,@LFullName,2,@RestoreFolder,2
+				--EXEC @rtn = bak.Apq_Restore 1,@DBName,@LFullName,2,@RestoreFolder,1
 				IF(@@ERROR <> 0 OR @rtn <> 1)
 				BEGIN
 					CLOSE @csrFile;
@@ -7739,7 +7432,299 @@ DROP TABLE #t1;
 DROP TABLE #t2;
 RETURN 1;
 GO
-/****** Object:  StoredProcedure [dbo].[Job_Apq_DataTrans]    Script Date: 11/09/2010 11:49:48 ******/
+/****** Object:  StoredProcedure [dbo].[Job_Pick_JobHis]    Script Date: 11/12/2010 15:04:32 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROC [dbo].[Job_Pick_JobHis]
+AS
+/* =============================================
+-- 作者: 黄宗银
+-- 日期: 2010-06-11
+-- 描述: 作业日志本地收集
+-- 示例:
+DECLARE @rtn int;
+EXEC @rtn = dbo.Job_Pick_JobHis
+SELECT @rtn;
+-- =============================================
+*/
+SET NOCOUNT ON;
+
+--定义变量
+DECLARE @LocalSrvID nvarchar(32),
+	@CfgName nvarchar(256),		-- 配置名(唯一)
+	@PickLastID bigint,
+	@PickLastTime datetime,
+	@HasContent tinyint,
+	@FileFolder nvarchar(3000),	-- 文件夹
+	@FileName nvarchar(256),	-- 文件名
+	@FileEX nvarchar(50),		-- 扩展名(.txt)
+	@SrvID int,					-- 服务器编号
+	@DBName nvarchar(256),		-- 数据库名
+	@t nvarchar(50),
+	@r nvarchar(50),
+	
+	@LSName nvarchar(512),		-- 目标服务器别名
+	@PickMaxID bigint,
+	@PickMaxTime datetime,
+	
+	@rtn int, @cmd nvarchar(4000), @sql nvarchar(max)
+	,@SPBeginTime datetime		-- 存储过程启动时间
+	;
+SELECT @SPBeginTime=GetDate();
+SELECT @CfgName = 'JobHis'	-- 指定配置名
+	,@FileFolder = 'D:\'
+	,@FileEX = '.txt'
+	,@t = '~*'	-- 列分隔符 推荐使用"~*"
+	,@r = '~*$'	-- 行分隔符 推荐使用"~*$"
+SELECT @LocalSrvID = dbo.Apq_Ext_Get('',0,'LocalSrvID');
+SELECT @FileName = @CfgName + '[' + LEFT(REPLACE(REPLACE(REPLACE(CONVERT(nvarchar,@SPBeginTime,120),'-',''),':',''),' ','_'),13)+']';
+SELECT @HasContent = 0;
+
+IF(Len(@FileFolder)>3)
+BEGIN
+	IF(RIGHT(@FileFolder,1)<>'\') SELECT @FileFolder = @FileFolder+'\';
+	SELECT @cmd = 'md ' + SUBSTRING(@FileFolder, 1, LEN(@FileFolder)-1);
+	EXEC master..xp_cmdshell @cmd;
+END
+
+-- 取出上次收集的最后ID和最后时间
+SELECT @PickLastID = PickLastID, @PickLastTime = PickLastTime
+  FROM dbo.DTS_Send
+ WHERE CfgName = @CfgName;
+
+-- 计算本次收集的最后ID或最后时间
+SELECT @PickMaxID = ISNULL(max(instance_id),-1), @PickMaxTime = ISNULL(max(Convert(datetime,(convert(nvarchar(20), run_date) + ' ' + dbo.Apq_ConvertInt_TimeString(run_time)))),getdate())
+  FROM msdb.dbo.sysjobhistory
+
+-- 有数据时导出
+IF(EXISTS(SELECT TOP 1 1 FROM msdb.dbo.sysjobhistory WHERE run_status = 0
+	AND ((instance_id > @PickLastID AND instance_id <= @PickMaxID)
+	OR (Convert(datetime,(convert(nvarchar(20), run_date) + ' ' + dbo.Apq_ConvertInt_TimeString(run_time))) > @PickLastTime
+	AND Convert(datetime,(convert(nvarchar(20), run_date) + ' ' + dbo.Apq_ConvertInt_TimeString(run_time))) <= @PickMaxTime))
+	)
+)
+BEGIN
+	SELECT @HasContent = 1;
+	SELECT @sql = 'EXEC Apq_DBA.dbo.Pick_JobHis ' + dbo.Apq_CreateSqlON(@PickLastID);
+	SELECT @sql = @sql + ',' + dbo.Apq_CreateSqlON(@PickMaxID);
+	SELECT @sql = @sql + ',' + dbo.Apq_CreateSqlON(@PickLastTime);
+	SELECT @sql = @sql + ',' + dbo.Apq_CreateSqlON(@PickMaxTime);
+	-- BCP queryout
+	SELECT @cmd = 'bcp "' + @sql + '" queryout "' + @FileFolder + @FileName + @FileEX
+			+ '" -c -t' + CASE WHEN LEN(@t) > 0 THEN @t ELSE '\t' END
+			+ ' -r' + CASE WHEN LEN(@r) > 0 THEN @r ELSE '\n' END
+			+ ' -T'
+	--Print @sql; Print @cmd; RETURN;
+	EXEC @rtn = master..xp_cmdshell @cmd;
+END
+
+-- 更新上次收集的最后ID和最后时间
+UPDATE dbo.DTS_Send
+   SET _Time = GETDATE(), PickLastID = @PickMaxID, PickLastTime = @PickMaxTime
+ WHERE CfgName = @CfgName;
+
+-- 记录收集日志
+INSERT dbo.Log_DTS_LocalPick ( CfgName,PickTime,HasContent,FileFolder,FileName,FileEX,t,r )
+VALUES  (@CfgName,@SPBeginTime,@HasContent,@FileFolder,@FileName,@FileEX,@t,@r)
+
+RETURN 1;
+GO
+/****** Object:  StoredProcedure [dbo].[Job_FTP_Send]    Script Date: 11/12/2010 15:04:32 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROC [dbo].[Job_FTP_Send]
+	@TransRowCount	int = 100	-- 传送行数(最多读取的行数)
+AS
+/* =============================================
+-- 作者: 黄宗银
+-- 日期: 2010-10-19
+-- 描述: 通过FTP上传文件
+-- 原因: FTP下载时是先写入临时文件,可能引起空间不足
+-- 示例:
+EXEC dbo.Job_FTP_Send 100;
+-- =============================================
+*/
+SET NOCOUNT ON;
+
+IF(@TransRowCount IS NULL) SELECT @TransRowCount = 100;
+
+DECLARE @rtn int, @SPBeginTime datetime
+	,@cmd nvarchar(4000), @sql nvarchar(4000)
+	,@ncFtp nvarchar(4000)
+	,@ncFtpLs nvarchar(4000)
+	,@ncFtpPut nvarchar(4000)
+	,@LFullName nvarchar(4000)	 -- 临时变量:本地文件全名
+	,@FullFileToDel nvarchar(4000)--在此文件之前的文件将被删除
+	;
+SELECT @SPBeginTime=GetDate()
+	,@ncFtp = dbo.Apq_Ext_Get('ncftp',0,'ncftp')
+	,@ncFtpLs = dbo.Apq_Ext_Get('ncftp',0,'ncFtpLs')
+	,@ncFtpPut = dbo.Apq_Ext_Get('ncftp',0,'ncFtpPut')
+	;
+IF(@ncFtp IS NULL OR Len(@ncFtp) < 2) SELECT @ncFtp = '"D:\Programs\ncftp\ncftp.exe"';
+IF(@ncFtpLs IS NULL OR Len(@ncFtpLs) < 2) SELECT @ncFtpLs = '"D:\Programs\ncftp\ncftpls.exe"';
+IF(@ncFtpPut IS NULL OR Len(@ncFtpPut) < 2) SELECT @ncFtpPut = '"D:\Programs\ncftp\ncftpput.exe"';
+
+DECLARE @csr CURSOR
+SET @csr = CURSOR STATIC FOR
+SELECT TOP(@TransRowCount) ID,Folder,FileName,LTRIM(RTRIM(FTPSrv)),FTPPort,U,P,FTPFolder,FTPFolderTmp,LSize,RSize
+  FROM dbo.FTP_SendQueue
+ WHERE Enabled = 1 AND IsSuccess = 0
+ ORDER BY FileName
+
+-- 游标内临时变量
+CREATE TABLE #t(s nvarchar(4000));
+CREATE TABLE #t1(s nvarchar(4000));
+
+DECLARE @ID bigint,@Folder nvarchar(512),@FileName nvarchar(256),@LSize bigint,@RSize bigint,
+	@FTPSrv nvarchar(256),@FTPPort int,@U nvarchar(256),@P nvarchar(256),@FTPFolder nvarchar(512),@FTPFolderTmp nvarchar(512);
+OPEN @csr;
+FETCH NEXT FROM @csr INTO @ID,@Folder,@FileName,@FTPSrv,@FTPPort,@U,@P,@FTPFolder,@FTPFolderTmp,@LSize,@RSize;
+WHILE(@@FETCH_STATUS = 0)
+BEGIN
+	IF(RIGHT(@Folder,1)<>'\') SELECT @Folder = @Folder+'\';
+	IF(RIGHT(@FTPFolder,1)<>'/') SELECT @FTPFolder = @FTPFolder+'/';
+	IF(RIGHT(@FTPFolderTmp,1)<>'/') SELECT @FTPFolderTmp = @FTPFolderTmp+'/';
+	SELECT @cmd = 'md ' + LEFT(@Folder,LEN(@Folder)-1);
+	EXEC master..xp_cmdshell @cmd;
+	
+	-- 获取本地文件大小 ----------------------------------------------------------------------------
+	SELECT @cmd = 'dir "' + @Folder + @FileName + '"';
+	TRUNCATE TABLE #t1;
+	INSERT #t1 EXEC @rtn = master..xp_cmdshell @cmd;
+	IF(@@ERROR <> 0 OR @rtn <> 0)
+	BEGIN
+		GOTO NEXT_Row;
+	END
+	
+	DECLARE @sLDir nvarchar(4000);
+	SELECT TOP 1 @sLDir = s FROM #t1 WHERE RIGHT(s,Len(@FileName)) = @FileName;
+	--SELECT @sLDir;
+	IF(@sLDir IS NOT NULL) SELECT @LSize = Replace(LTRIM(RTRIM(Substring(@sLDir,18,Len(@sLDir)-18-Len(@FileName)))),',','');
+	IF(@LSize>0)
+	BEGIN
+		UPDATE dbo.FTP_SendQueue SET [_Time] = getdate(),LSize = @LSize WHERE ID = @ID;
+	END
+
+	-- 传送文件 ------------------------------------------------------------------------------------
+	SELECT @cmd = @ncFtpPut + ' -u ' + @U + ' -p ' + @P + ' -P '+ Convert(nvarchar(21),@FTPPort) + ' -m -T _up ' + @FTPSrv + ' ' + @FTPFolder + ' ' + @Folder + @FileName;
+	--SELECT @cmd;
+	EXEC @rtn = master..xp_cmdshell @cmd;
+	
+	-- 获取远程文件大小 ------------------------------------------------------------------------
+	SELECT @cmd = @ncFtpLs + ' -u ' + @U + ' -p ' + @P + ' -P '+ Convert(nvarchar(21),@FTPPort) + ' -l ftp://' + @FTPSrv + @FTPFolder + @FileName;
+	--SELECT @cmd;
+	TRUNCATE TABLE #t;
+	INSERT #t EXEC @rtn = master..xp_cmdshell @cmd;
+	--SELECT * FROM #t;
+	DECLARE @sRDir nvarchar(4000);
+	SELECT TOP 1 @sRDir = s FROM #t WHERE RIGHT(s,Len(@FileName)) = @FileName;
+	--SELECT @sRDir;
+	/*
+-rw-rw-rw-   1 user     group      550912 Nov  9 17:31 BaseBusinessDb[20101109_1731].bak
+-rw-rw-rw-   1 user     group    42460672 Oct 25 14:18 PayCenter[20101022_2150].trn 
+-rw-rw-rw-   1 user     group    101897728 Oct 22 20:04 StreamMedia[20101022_1951].bak 
+规律:从34列开始为文件大小,最少占8字符,不足8位数字前补0,因此,从42列开始查找下一个空格,以此作为结束点.
+	*/
+	DECLARE @sidx int;
+	SELECT @sidx = charindex(' ',@sRDir,42);
+	--SELECT @sidx;
+	SELECT @RSize = Replace(LTRIM(RTRIM(Substring(@sRDir,34,@sidx-34))),',','');
+	--SELECT @RSize;
+	IF(@RSize>0)
+	BEGIN
+		UPDATE dbo.FTP_SendQueue SET [_Time] = getdate(),RSize = @RSize WHERE ID = @ID;
+	END
+	
+	-- 上传成功
+	IF(@LSize = @RSize) UPDATE dbo.FTP_SendQueue SET _Time = getdate(), IsSuccess = 1 WHERE ID = @ID;
+	-- =============================================================================================
+	
+	NEXT_Row:
+	FETCH NEXT FROM @csr INTO @ID,@Folder,@FileName,@FTPSrv,@FTPPort,@U,@P,@FTPFolder,@FTPFolderTmp,@LSize,@RSize;
+END
+CLOSE @csr;
+
+Quit:
+DROP TABLE #t;
+DROP TABLE #t1;
+RETURN 1;
+GO
+/****** Object:  StoredProcedure [etl].[Job_Etl_SwitchBcpTable]    Script Date: 11/12/2010 15:04:33 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROC [etl].[Job_Etl_SwitchBcpTable]
+AS
+/* =============================================
+-- 作者: 黄宗银
+-- 日期: 2010-10-28
+-- 描述: 切换BCP接收表
+-- 功能: 按预定时间切换BCP接收表
+-- 示例:
+DECLARE @rtn int;
+EXEC @rtn = etl.Job_Etl_SwitchBcpTable;
+SELECT @rtn;
+-- =============================================
+*/
+SET NOCOUNT ON;
+
+--定义变量
+DECLARE @ID bigint,
+	@EtlName nvarchar(50),
+	@DBName nvarchar(256),	-- 数据库名
+	@SchemaName nvarchar(256),
+	@TName nvarchar(256),
+	@STName nvarchar(256),
+	@Cycle int,			-- 切换周期(分钟)
+	@STime smalldatetime,-- 切换时间
+	@PreSTime datetime	-- 上一次切换时间
+	
+	,@rtn int, @sql nvarchar(4000), @sqlDB nvarchar(4000)
+	,@JobTime datetime	-- 作业启动时间
+	,@Today smalldatetime
+	,@TodaySTime smalldatetime -- 今天预定切换时间
+	;
+SELECT @JobTime=GetDate();
+SELECT @Today = dateadd(dd,0,datediff(dd,0,@JobTime));
+
+--定义游标
+DECLARE @csr CURSOR;
+SET @csr=CURSOR STATIC FOR
+SELECT ID, EtlName, DBName, SchemaName, TName, STName, Cycle, STime, PreSTime
+  FROM etl.BcpSTableCfg
+ WHERE Enabled = 1;
+
+OPEN @csr;
+FETCH NEXT FROM @csr INTO @ID,@EtlName,@DBName,@SchemaName,@TName,@STName,@Cycle,@STime,@PreSTime;
+WHILE(@@FETCH_STATUS=0)
+BEGIN
+	SELECT @PreSTime = ISNULL(@PreSTime,dateadd(n,4-@Cycle,@STime))
+	SELECT @TodaySTime = Convert(nvarchar(11),@Today,120) + Left(Convert(nvarchar(50),@STime,108),6)+'00';
+
+	IF(DATEDIFF(n, @PreSTime, @JobTime) >= @Cycle - 1	-- 执行周期已到
+		--AND datediff(n,@JobTime,@TodaySTime) BETWEEN 0 AND 5	-- 今天执行时间已到
+	)BEGIN
+		-- 切换表
+		EXEC @rtn = etl.Etl_SwitchBcpTable @EtlName = @EtlName;
+		IF(@@ERROR = 0 AND @rtn = 1)
+		BEGIN
+			UPDATE etl.BcpSTableCfg SET _Time = getdate(), PreSTime = @JobTime WHERE ID = @ID;
+		END
+	END
+
+	FETCH NEXT FROM @csr INTO @ID,@EtlName,@DBName,@SchemaName,@TName,@STName,@Cycle,@STime,@PreSTime;
+END
+CLOSE @csr;
+
+RETURN 1;
+GO
+/****** Object:  StoredProcedure [dbo].[Job_Apq_DataTrans]    Script Date: 11/12/2010 15:04:32 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -7804,7 +7789,7 @@ CLOSE @csr;
 
 RETURN 1;
 GO
-/****** Object:  StoredProcedure [bak].[Job_Apq_Bak]    Script Date: 11/09/2010 11:49:48 ******/
+/****** Object:  StoredProcedure [bak].[Job_Apq_Bak]    Script Date: 11/12/2010 15:04:29 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -7977,7 +7962,7 @@ CLOSE @csr;
 DROP TABLE #t;
 RETURN 1;
 GO
-/****** Object:  StoredProcedure [dbo].[Apq_Pager]    Script Date: 11/09/2010 11:49:48 ******/
+/****** Object:  StoredProcedure [dbo].[Apq_Pager]    Script Date: 11/12/2010 15:04:31 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -8118,7 +8103,7 @@ EXEC sp_executesql @sql;
 
 RETURN 1;
 GO
-/****** Object:  UserDefinedFunction [dbo].[Apq_ConvertIP_Binary16]    Script Date: 11/09/2010 11:49:49 ******/
+/****** Object:  UserDefinedFunction [dbo].[Apq_ConvertIP_Binary16]    Script Date: 11/12/2010 15:04:39 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -8179,7 +8164,7 @@ BEGIN
 	RETURN @Return;
 END
 GO
-/****** Object:  UserDefinedFunction [dbo].[Apq_ConvertBinary16_IP6]    Script Date: 11/09/2010 11:49:49 ******/
+/****** Object:  UserDefinedFunction [dbo].[Apq_ConvertBinary16_IP6]    Script Date: 11/12/2010 15:04:38 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -8216,7 +8201,7 @@ BEGIN
 	RETURN SUBSTRING(@Return, 2, LEN(@Return)-1);
 END
 GO
-/****** Object:  StoredProcedure [bak].[Apq_BakCfg_Full]    Script Date: 11/09/2010 11:49:48 ******/
+/****** Object:  StoredProcedure [bak].[Apq_BakCfg_Full]    Script Date: 11/12/2010 15:04:29 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -8353,496 +8338,502 @@ END
 SELECT BakFileName = @BakFileName;
 RETURN 1;
 GO
-/****** Object:  Default [DF_BakCfg_Enabled]    Script Date: 11/09/2010 11:49:45 ******/
+/****** Object:  Default [DF_BakCfg_Enabled]    Script Date: 11/12/2010 15:03:39 ******/
 ALTER TABLE [bak].[BakCfg] ADD  CONSTRAINT [DF_BakCfg_Enabled]  DEFAULT ((1)) FOR [Enabled]
 GO
-/****** Object:  Default [DF_BakCfg_FTPFolder]    Script Date: 11/09/2010 11:49:45 ******/
+/****** Object:  Default [DF_BakCfg_FTPFolder]    Script Date: 11/12/2010 15:03:39 ******/
 ALTER TABLE [bak].[BakCfg] ADD  CONSTRAINT [DF_BakCfg_FTPFolder]  DEFAULT (N'D:\Bak2FTP') FOR [FTPFolder]
 GO
-/****** Object:  Default [DF_BakCfg_BakFolder]    Script Date: 11/09/2010 11:49:45 ******/
+/****** Object:  Default [DF_BakCfg_BakFolder]    Script Date: 11/12/2010 15:03:39 ******/
 ALTER TABLE [bak].[BakCfg] ADD  CONSTRAINT [DF_BakCfg_BakFolder]  DEFAULT (N'D:\Bak') FOR [BakFolder]
 GO
-/****** Object:  Default [DF_BakCfg_FullTime]    Script Date: 11/09/2010 11:49:45 ******/
+/****** Object:  Default [DF_BakCfg_FullTime]    Script Date: 11/12/2010 15:03:39 ******/
 ALTER TABLE [bak].[BakCfg] ADD  CONSTRAINT [DF_BakCfg_FullTime]  DEFAULT (dateadd(hour,(4),dateadd(day,(0),datediff(day,(0),getdate())))) FOR [FullTime]
 GO
-/****** Object:  Default [DF_BakCfg_FullCycle]    Script Date: 11/09/2010 11:49:45 ******/
+/****** Object:  Default [DF_BakCfg_FullCycle]    Script Date: 11/12/2010 15:03:39 ******/
 ALTER TABLE [bak].[BakCfg] ADD  CONSTRAINT [DF_BakCfg_FullCycle]  DEFAULT ((1)) FOR [FullCycle]
 GO
-/****** Object:  Default [DF_BakCfg_TrnCycle]    Script Date: 11/09/2010 11:49:45 ******/
+/****** Object:  Default [DF_BakCfg_TrnCycle]    Script Date: 11/12/2010 15:03:39 ******/
 ALTER TABLE [bak].[BakCfg] ADD  CONSTRAINT [DF_BakCfg_TrnCycle]  DEFAULT ((30)) FOR [TrnCycle]
 GO
-/****** Object:  Default [DF_BakCfg_NeedTruncate]    Script Date: 11/09/2010 11:49:45 ******/
+/****** Object:  Default [DF_BakCfg_NeedTruncate]    Script Date: 11/12/2010 15:03:39 ******/
 ALTER TABLE [bak].[BakCfg] ADD  CONSTRAINT [DF_BakCfg_NeedTruncate]  DEFAULT ((0)) FOR [NeedTruncate]
 GO
-/****** Object:  Default [DF_BakCfg_ReadyAction]    Script Date: 11/09/2010 11:49:45 ******/
+/****** Object:  Default [DF_BakCfg_ReadyAction]    Script Date: 11/12/2010 15:03:39 ******/
 ALTER TABLE [bak].[BakCfg] ADD  CONSTRAINT [DF_BakCfg_ReadyAction]  DEFAULT ((0)) FOR [ReadyAction]
 GO
-/****** Object:  Default [DF_BakCfg_NeedRestore]    Script Date: 11/09/2010 11:49:45 ******/
+/****** Object:  Default [DF_BakCfg_NeedRestore]    Script Date: 11/12/2010 15:03:39 ******/
 ALTER TABLE [bak].[BakCfg] ADD  CONSTRAINT [DF_BakCfg_NeedRestore]  DEFAULT ((0)) FOR [NeedRestore]
 GO
-/****** Object:  Default [DF_BakCfg_RestoreFolder]    Script Date: 11/09/2010 11:49:45 ******/
+/****** Object:  Default [DF_BakCfg_RestoreFolder]    Script Date: 11/12/2010 15:03:39 ******/
 ALTER TABLE [bak].[BakCfg] ADD  CONSTRAINT [DF_BakCfg_RestoreFolder]  DEFAULT (N'D:\DB_His') FOR [RestoreFolder]
 GO
-/****** Object:  Default [DF_BakCfg_State]    Script Date: 11/09/2010 11:49:45 ******/
+/****** Object:  Default [DF_BakCfg_State]    Script Date: 11/12/2010 15:03:39 ******/
 ALTER TABLE [bak].[BakCfg] ADD  CONSTRAINT [DF_BakCfg_State]  DEFAULT ((0)) FOR [State]
 GO
-/****** Object:  Default [DF_BakCfg_DB_HisNum]    Script Date: 11/09/2010 11:49:45 ******/
+/****** Object:  Default [DF_BakCfg_DB_HisNum]    Script Date: 11/12/2010 15:03:39 ******/
 ALTER TABLE [bak].[BakCfg] ADD  CONSTRAINT [DF_BakCfg_DB_HisNum]  DEFAULT ((15)) FOR [DB_HisNum]
 GO
-/****** Object:  Default [DF_BakCfg_Num_Full]    Script Date: 11/09/2010 11:49:45 ******/
+/****** Object:  Default [DF_BakCfg_Num_Full]    Script Date: 11/12/2010 15:03:39 ******/
 ALTER TABLE [bak].[BakCfg] ADD  CONSTRAINT [DF_BakCfg_Num_Full]  DEFAULT ((3)) FOR [Num_Full]
 GO
-/****** Object:  Default [DF_FTP_PutBak_LastFileName]    Script Date: 11/09/2010 11:49:45 ******/
+/****** Object:  Default [DF_FTP_PutBak_LastFileName]    Script Date: 11/12/2010 15:03:39 ******/
 ALTER TABLE [bak].[FTP_PutBak] ADD  CONSTRAINT [DF_FTP_PutBak_LastFileName]  DEFAULT ('') FOR [LastFileName]
 GO
-/****** Object:  Default [DF_FTP_PutBak_Enabled]    Script Date: 11/09/2010 11:49:45 ******/
+/****** Object:  Default [DF_FTP_PutBak_Enabled]    Script Date: 11/12/2010 15:03:39 ******/
 ALTER TABLE [bak].[FTP_PutBak] ADD  CONSTRAINT [DF_FTP_PutBak_Enabled]  DEFAULT ((1)) FOR [Enabled]
 GO
-/****** Object:  Default [DF_FTP_PutBak_Folder]    Script Date: 11/09/2010 11:49:45 ******/
+/****** Object:  Default [DF_FTP_PutBak_Folder]    Script Date: 11/12/2010 15:03:39 ******/
 ALTER TABLE [bak].[FTP_PutBak] ADD  CONSTRAINT [DF_FTP_PutBak_Folder]  DEFAULT (N'D:\Bak2FTP\') FOR [Folder]
 GO
-/****** Object:  Default [DF_FTP_PutBak_FTPFolder]    Script Date: 11/09/2010 11:49:45 ******/
+/****** Object:  Default [DF_FTP_PutBak_FTPPort]    Script Date: 11/12/2010 15:03:39 ******/
+ALTER TABLE [bak].[FTP_PutBak] ADD  CONSTRAINT [DF_FTP_PutBak_FTPPort]  DEFAULT ((21)) FOR [FTPPort]
+GO
+/****** Object:  Default [DF_FTP_PutBak_FTPFolder]    Script Date: 11/12/2010 15:03:39 ******/
 ALTER TABLE [bak].[FTP_PutBak] ADD  CONSTRAINT [DF_FTP_PutBak_FTPFolder]  DEFAULT (N'/D/BakFromFTP/') FOR [FTPFolder]
 GO
-/****** Object:  Default [DF_FTP_PutBak_FTPFolderTmp]    Script Date: 11/09/2010 11:49:45 ******/
+/****** Object:  Default [DF_FTP_PutBak_FTPFolderTmp]    Script Date: 11/12/2010 15:03:39 ******/
 ALTER TABLE [bak].[FTP_PutBak] ADD  CONSTRAINT [DF_FTP_PutBak_FTPFolderTmp]  DEFAULT (N'/') FOR [FTPFolderTmp]
 GO
-/****** Object:  Default [DF_FTP_PutBak_Num_Full]    Script Date: 11/09/2010 11:49:45 ******/
+/****** Object:  Default [DF_FTP_PutBak_Num_Full]    Script Date: 11/12/2010 15:03:39 ******/
 ALTER TABLE [bak].[FTP_PutBak] ADD  CONSTRAINT [DF_FTP_PutBak_Num_Full]  DEFAULT ((3)) FOR [Num_Full]
 GO
-/****** Object:  Default [DF_FTP_PutBak_TransferIDCfg]    Script Date: 11/09/2010 11:49:45 ******/
+/****** Object:  Default [DF_FTP_PutBak_TransferIDCfg]    Script Date: 11/12/2010 15:03:39 ******/
 ALTER TABLE [bak].[FTP_PutBak] ADD  CONSTRAINT [DF_FTP_PutBak_TransferIDCfg]  DEFAULT ((0)) FOR [TransferIDCfg]
 GO
-/****** Object:  Default [DF_FTP_PutBak__InTime]    Script Date: 11/09/2010 11:49:45 ******/
+/****** Object:  Default [DF_FTP_PutBak__InTime]    Script Date: 11/12/2010 15:03:39 ******/
 ALTER TABLE [bak].[FTP_PutBak] ADD  CONSTRAINT [DF_FTP_PutBak__InTime]  DEFAULT (getdate()) FOR [_InTime]
 GO
-/****** Object:  Default [DF_FTP_PutBak__Time]    Script Date: 11/09/2010 11:49:45 ******/
+/****** Object:  Default [DF_FTP_PutBak__Time]    Script Date: 11/12/2010 15:03:39 ******/
 ALTER TABLE [bak].[FTP_PutBak] ADD  CONSTRAINT [DF_FTP_PutBak__Time]  DEFAULT (getdate()) FOR [_Time]
 GO
-/****** Object:  Default [DF_FTP_PutBak_TransferIDRun]    Script Date: 11/09/2010 11:49:45 ******/
+/****** Object:  Default [DF_FTP_PutBak_TransferIDRun]    Script Date: 11/12/2010 15:03:39 ******/
 ALTER TABLE [bak].[FTP_PutBak] ADD  CONSTRAINT [DF_FTP_PutBak_TransferIDRun]  DEFAULT ((0)) FOR [TransferIDRun]
 GO
-/****** Object:  Default [DF_RestoreFromFolder_LastFileName]    Script Date: 11/09/2010 11:49:45 ******/
+/****** Object:  Default [DF_RestoreFromFolder_LastFileName]    Script Date: 11/12/2010 15:03:40 ******/
 ALTER TABLE [bak].[RestoreFromFolder] ADD  CONSTRAINT [DF_RestoreFromFolder_LastFileName]  DEFAULT ('') FOR [LastFileName]
 GO
-/****** Object:  Default [DF_RestoreFromFolder_Enabled]    Script Date: 11/09/2010 11:49:45 ******/
+/****** Object:  Default [DF_RestoreFromFolder_Enabled]    Script Date: 11/12/2010 15:03:40 ******/
 ALTER TABLE [bak].[RestoreFromFolder] ADD  CONSTRAINT [DF_RestoreFromFolder_Enabled]  DEFAULT ((1)) FOR [Enabled]
 GO
-/****** Object:  Default [DF_RestoreFromFolder_BakFolder]    Script Date: 11/09/2010 11:49:45 ******/
+/****** Object:  Default [DF_RestoreFromFolder_BakFolder]    Script Date: 11/12/2010 15:03:40 ******/
 ALTER TABLE [bak].[RestoreFromFolder] ADD  CONSTRAINT [DF_RestoreFromFolder_BakFolder]  DEFAULT (N'D:\BakFromFTP') FOR [BakFolder]
 GO
-/****** Object:  Default [DF_RestoreFromFolder_RestoreType]    Script Date: 11/09/2010 11:49:45 ******/
+/****** Object:  Default [DF_RestoreFromFolder_RestoreType]    Script Date: 11/12/2010 15:03:40 ******/
 ALTER TABLE [bak].[RestoreFromFolder] ADD  CONSTRAINT [DF_RestoreFromFolder_RestoreType]  DEFAULT ((0)) FOR [RestoreType]
 GO
-/****** Object:  Default [DF_RestoreFromFolder_RestoreFolder]    Script Date: 11/09/2010 11:49:45 ******/
+/****** Object:  Default [DF_RestoreFromFolder_RestoreFolder]    Script Date: 11/12/2010 15:03:40 ******/
 ALTER TABLE [bak].[RestoreFromFolder] ADD  CONSTRAINT [DF_RestoreFromFolder_RestoreFolder]  DEFAULT (N'D:\DB_His') FOR [RestoreFolder]
 GO
-/****** Object:  Default [DF_RestoreFromFolder_DB_HisNum]    Script Date: 11/09/2010 11:49:45 ******/
+/****** Object:  Default [DF_RestoreFromFolder_DB_HisNum]    Script Date: 11/12/2010 15:03:40 ******/
 ALTER TABLE [bak].[RestoreFromFolder] ADD  CONSTRAINT [DF_RestoreFromFolder_DB_HisNum]  DEFAULT ((15)) FOR [DB_HisNum]
 GO
-/****** Object:  Default [DF_RestoreFromFolder_Num_Full]    Script Date: 11/09/2010 11:49:45 ******/
+/****** Object:  Default [DF_RestoreFromFolder_Num_Full]    Script Date: 11/12/2010 15:03:40 ******/
 ALTER TABLE [bak].[RestoreFromFolder] ADD  CONSTRAINT [DF_RestoreFromFolder_Num_Full]  DEFAULT ((3)) FOR [Num_Full]
 GO
-/****** Object:  Default [DF_RestoreFromFolder_RunnerIDCfg]    Script Date: 11/09/2010 11:49:45 ******/
+/****** Object:  Default [DF_RestoreFromFolder_RunnerIDCfg]    Script Date: 11/12/2010 15:03:40 ******/
 ALTER TABLE [bak].[RestoreFromFolder] ADD  CONSTRAINT [DF_RestoreFromFolder_RunnerIDCfg]  DEFAULT ((0)) FOR [RunnerIDCfg]
 GO
-/****** Object:  Default [DF_RestoreFromFolder_RunnerIDRun]    Script Date: 11/09/2010 11:49:45 ******/
+/****** Object:  Default [DF_RestoreFromFolder_RunnerIDRun]    Script Date: 11/12/2010 15:03:40 ******/
 ALTER TABLE [bak].[RestoreFromFolder] ADD  CONSTRAINT [DF_RestoreFromFolder_RunnerIDRun]  DEFAULT ((0)) FOR [RunnerIDRun]
 GO
-/****** Object:  Default [DF_RestoreFromFolder__InTime]    Script Date: 11/09/2010 11:49:45 ******/
+/****** Object:  Default [DF_RestoreFromFolder__InTime]    Script Date: 11/12/2010 15:03:40 ******/
 ALTER TABLE [bak].[RestoreFromFolder] ADD  CONSTRAINT [DF_RestoreFromFolder__InTime]  DEFAULT (getdate()) FOR [_InTime]
 GO
-/****** Object:  Default [DF_RestoreFromFolder__Time]    Script Date: 11/09/2010 11:49:45 ******/
+/****** Object:  Default [DF_RestoreFromFolder__Time]    Script Date: 11/12/2010 15:03:40 ******/
 ALTER TABLE [bak].[RestoreFromFolder] ADD  CONSTRAINT [DF_RestoreFromFolder__Time]  DEFAULT (getdate()) FOR [_Time]
 GO
-/****** Object:  Default [DF_Apq_Config_Class]    Script Date: 11/09/2010 11:49:45 ******/
+/****** Object:  Default [DF_Apq_Config_Class]    Script Date: 11/12/2010 15:03:40 ******/
 ALTER TABLE [dbo].[Apq_Config] ADD  CONSTRAINT [DF_Apq_Config_Class]  DEFAULT ('') FOR [Class]
 GO
-/****** Object:  Default [DF_Apq_Ext_TableName]    Script Date: 11/09/2010 11:49:45 ******/
+/****** Object:  Default [DF_Apq_Ext_TableName]    Script Date: 11/12/2010 15:03:40 ******/
 ALTER TABLE [dbo].[Apq_Ext] ADD  CONSTRAINT [DF_Apq_Ext_TableName]  DEFAULT ('') FOR [TableName]
 GO
-/****** Object:  Default [DF_Apq_Ext_ID]    Script Date: 11/09/2010 11:49:45 ******/
+/****** Object:  Default [DF_Apq_Ext_ID]    Script Date: 11/12/2010 15:03:40 ******/
 ALTER TABLE [dbo].[Apq_Ext] ADD  CONSTRAINT [DF_Apq_Ext_ID]  DEFAULT ((0)) FOR [ID]
 GO
-/****** Object:  Default [DF_Apq_ID_Crt]    Script Date: 11/09/2010 11:49:45 ******/
+/****** Object:  Default [DF_Apq_ID_Crt]    Script Date: 11/12/2010 15:03:41 ******/
 ALTER TABLE [dbo].[Apq_ID] ADD  CONSTRAINT [DF_Apq_ID_Crt]  DEFAULT ((0)) FOR [Crt]
 GO
-/****** Object:  Default [DF_Apq_ID_Limit]    Script Date: 11/09/2010 11:49:45 ******/
+/****** Object:  Default [DF_Apq_ID_Limit]    Script Date: 11/12/2010 15:03:41 ******/
 ALTER TABLE [dbo].[Apq_ID] ADD  CONSTRAINT [DF_Apq_ID_Limit]  DEFAULT ((9223372034707292159.)) FOR [Limit]
 GO
-/****** Object:  Default [DF_Apq_ID_Init]    Script Date: 11/09/2010 11:49:45 ******/
+/****** Object:  Default [DF_Apq_ID_Init]    Script Date: 11/12/2010 15:03:41 ******/
 ALTER TABLE [dbo].[Apq_ID] ADD  CONSTRAINT [DF_Apq_ID_Init]  DEFAULT ((0)) FOR [Init]
 GO
-/****** Object:  Default [DF_Apq_ID_Inc]    Script Date: 11/09/2010 11:49:45 ******/
+/****** Object:  Default [DF_Apq_ID_Inc]    Script Date: 11/12/2010 15:03:41 ******/
 ALTER TABLE [dbo].[Apq_ID] ADD  CONSTRAINT [DF_Apq_ID_Inc]  DEFAULT ((1)) FOR [Inc]
 GO
-/****** Object:  Default [DF_Apq_ID_State]    Script Date: 11/09/2010 11:49:45 ******/
+/****** Object:  Default [DF_Apq_ID_State]    Script Date: 11/12/2010 15:03:41 ******/
 ALTER TABLE [dbo].[Apq_ID] ADD  CONSTRAINT [DF_Apq_ID_State]  DEFAULT ((0)) FOR [State]
 GO
-/****** Object:  Default [DF_Apq_ID__Time]    Script Date: 11/09/2010 11:49:45 ******/
+/****** Object:  Default [DF_Apq_ID__Time]    Script Date: 11/12/2010 15:03:41 ******/
 ALTER TABLE [dbo].[Apq_ID] ADD  CONSTRAINT [DF_Apq_ID__Time]  DEFAULT (getdate()) FOR [_Time]
 GO
-/****** Object:  Default [DF_Apq_ID__InTime]    Script Date: 11/09/2010 11:49:45 ******/
+/****** Object:  Default [DF_Apq_ID__InTime]    Script Date: 11/12/2010 15:03:41 ******/
 ALTER TABLE [dbo].[Apq_ID] ADD  CONSTRAINT [DF_Apq_ID__InTime]  DEFAULT (getdate()) FOR [_InTime]
 GO
-/****** Object:  Default [DF_ArpCfg_Enabled]    Script Date: 11/09/2010 11:49:45 ******/
+/****** Object:  Default [DF_ArpCfg_Enabled]    Script Date: 11/12/2010 15:03:41 ******/
 ALTER TABLE [dbo].[ArpCfg] ADD  CONSTRAINT [DF_ArpCfg_Enabled]  DEFAULT ((1)) FOR [Enabled]
 GO
-/****** Object:  Default [DF_Cfg_WH_Enabled]    Script Date: 11/09/2010 11:49:45 ******/
+/****** Object:  Default [DF_Cfg_WH_Enabled]    Script Date: 11/12/2010 15:03:41 ******/
 ALTER TABLE [dbo].[Cfg_WH] ADD  CONSTRAINT [DF_Cfg_WH_Enabled]  DEFAULT ((1)) FOR [Enabled]
 GO
-/****** Object:  Default [DF_DTS_Send_Enabled]    Script Date: 11/09/2010 11:49:46 ******/
+/****** Object:  Default [DF_DTS_Send_Enabled]    Script Date: 11/12/2010 15:03:43 ******/
 ALTER TABLE [dbo].[DTS_Send] ADD  CONSTRAINT [DF_DTS_Send_Enabled]  DEFAULT ((1)) FOR [Enabled]
 GO
-/****** Object:  Default [DF_DTS_Send_RunnerIDCfg]    Script Date: 11/09/2010 11:49:46 ******/
+/****** Object:  Default [DF_DTS_Send_RunnerIDCfg]    Script Date: 11/12/2010 15:03:43 ******/
 ALTER TABLE [dbo].[DTS_Send] ADD  CONSTRAINT [DF_DTS_Send_RunnerIDCfg]  DEFAULT ((0)) FOR [RunnerIDCfg]
 GO
-/****** Object:  Default [DF_DTS_Send_TransMethod]    Script Date: 11/09/2010 11:49:46 ******/
+/****** Object:  Default [DF_DTS_Send_TransMethod]    Script Date: 11/12/2010 15:03:43 ******/
 ALTER TABLE [dbo].[DTS_Send] ADD  CONSTRAINT [DF_DTS_Send_TransMethod]  DEFAULT ((1)) FOR [TransMethod]
 GO
-/****** Object:  Default [DF_DTS_Send_SchemaName]    Script Date: 11/09/2010 11:49:46 ******/
+/****** Object:  Default [DF_DTS_Send_SchemaName]    Script Date: 11/12/2010 15:03:43 ******/
 ALTER TABLE [dbo].[DTS_Send] ADD  CONSTRAINT [DF_DTS_Send_SchemaName]  DEFAULT (N'bcp') FOR [SchemaName]
 GO
-/****** Object:  Default [DF_DTS_Send_FTPIP]    Script Date: 11/09/2010 11:49:46 ******/
+/****** Object:  Default [DF_DTS_Send_FTPIP]    Script Date: 11/12/2010 15:03:43 ******/
 ALTER TABLE [dbo].[DTS_Send] ADD  CONSTRAINT [DF_DTS_Send_FTPIP]  DEFAULT ((0)) FOR [FTPIP]
 GO
-/****** Object:  Default [DF_DTS_Send_FTPFolderTmp]    Script Date: 11/09/2010 11:49:46 ******/
+/****** Object:  Default [DF_DTS_Send_FTPFolderTmp]    Script Date: 11/12/2010 15:03:43 ******/
 ALTER TABLE [dbo].[DTS_Send] ADD  CONSTRAINT [DF_DTS_Send_FTPFolderTmp]  DEFAULT (N'/') FOR [FTPFolderTmp]
 GO
-/****** Object:  Default [DF_DTS_Send_FTPFolder]    Script Date: 11/09/2010 11:49:46 ******/
+/****** Object:  Default [DF_DTS_Send_FTPFolder]    Script Date: 11/12/2010 15:03:43 ******/
 ALTER TABLE [dbo].[DTS_Send] ADD  CONSTRAINT [DF_DTS_Send_FTPFolder]  DEFAULT (N'/D/BakFromFTP/') FOR [FTPFolder]
 GO
-/****** Object:  Default [DF_DTS_Send_RunnerIDRun]    Script Date: 11/09/2010 11:49:46 ******/
+/****** Object:  Default [DF_DTS_Send_RunnerIDRun]    Script Date: 11/12/2010 15:03:43 ******/
 ALTER TABLE [dbo].[DTS_Send] ADD  CONSTRAINT [DF_DTS_Send_RunnerIDRun]  DEFAULT ((0)) FOR [RunnerIDRun]
 GO
-/****** Object:  Default [DF_DTS_Send__InTime]    Script Date: 11/09/2010 11:49:46 ******/
+/****** Object:  Default [DF_DTS_Send__InTime]    Script Date: 11/12/2010 15:03:43 ******/
 ALTER TABLE [dbo].[DTS_Send] ADD  CONSTRAINT [DF_DTS_Send__InTime]  DEFAULT (getdate()) FOR [_InTime]
 GO
-/****** Object:  Default [DF_DTS_Send__Time]    Script Date: 11/09/2010 11:49:46 ******/
+/****** Object:  Default [DF_DTS_Send__Time]    Script Date: 11/12/2010 15:03:43 ******/
 ALTER TABLE [dbo].[DTS_Send] ADD  CONSTRAINT [DF_DTS_Send__Time]  DEFAULT (getdate()) FOR [_Time]
 GO
-/****** Object:  Default [DF_DTS_Send_PickLastID]    Script Date: 11/09/2010 11:49:46 ******/
+/****** Object:  Default [DF_DTS_Send_PickLastID]    Script Date: 11/12/2010 15:03:43 ******/
 ALTER TABLE [dbo].[DTS_Send] ADD  CONSTRAINT [DF_DTS_Send_PickLastID]  DEFAULT ((-1)) FOR [PickLastID]
 GO
-/****** Object:  Default [DF_DTS_Send_PickLastTime]    Script Date: 11/09/2010 11:49:46 ******/
+/****** Object:  Default [DF_DTS_Send_PickLastTime]    Script Date: 11/12/2010 15:03:43 ******/
 ALTER TABLE [dbo].[DTS_Send] ADD  CONSTRAINT [DF_DTS_Send_PickLastTime]  DEFAULT (getdate()) FOR [PickLastTime]
 GO
-/****** Object:  Default [DF_DTSConfig_Enabled]    Script Date: 11/09/2010 11:49:46 ******/
+/****** Object:  Default [DF_DTSConfig_Enabled]    Script Date: 11/12/2010 15:03:43 ******/
 ALTER TABLE [dbo].[DTSConfig] ADD  CONSTRAINT [DF_DTSConfig_Enabled]  DEFAULT ((1)) FOR [Enabled]
 GO
-/****** Object:  Default [DF_DTSConfig_TransMethod]    Script Date: 11/09/2010 11:49:46 ******/
+/****** Object:  Default [DF_DTSConfig_TransMethod]    Script Date: 11/12/2010 15:03:43 ******/
 ALTER TABLE [dbo].[DTSConfig] ADD  CONSTRAINT [DF_DTSConfig_TransMethod]  DEFAULT ((1)) FOR [TransMethod]
 GO
-/****** Object:  Default [DF_DTSConfig_TransCycle]    Script Date: 11/09/2010 11:49:46 ******/
+/****** Object:  Default [DF_DTSConfig_TransCycle]    Script Date: 11/12/2010 15:03:43 ******/
 ALTER TABLE [dbo].[DTSConfig] ADD  CONSTRAINT [DF_DTSConfig_TransCycle]  DEFAULT ((1)) FOR [TransCycle]
 GO
-/****** Object:  Default [DF_DTSConfig_TransTime]    Script Date: 11/09/2010 11:49:46 ******/
+/****** Object:  Default [DF_DTSConfig_TransTime]    Script Date: 11/12/2010 15:03:43 ******/
 ALTER TABLE [dbo].[DTSConfig] ADD  CONSTRAINT [DF_DTSConfig_TransTime]  DEFAULT (dateadd(hour,(4),dateadd(day,(0),datediff(day,(0),getdate())))) FOR [TransTime]
 GO
-/****** Object:  Default [DF_DTSConfig_SchemaName]    Script Date: 11/09/2010 11:49:46 ******/
+/****** Object:  Default [DF_DTSConfig_SchemaName]    Script Date: 11/12/2010 15:03:43 ******/
 ALTER TABLE [dbo].[DTSConfig] ADD  CONSTRAINT [DF_DTSConfig_SchemaName]  DEFAULT (N'bcp') FOR [SchemaName]
 GO
-/****** Object:  Default [DF_DTSConfig__InTime]    Script Date: 11/09/2010 11:49:46 ******/
+/****** Object:  Default [DF_DTSConfig__InTime]    Script Date: 11/12/2010 15:03:43 ******/
 ALTER TABLE [dbo].[DTSConfig] ADD  CONSTRAINT [DF_DTSConfig__InTime]  DEFAULT (getdate()) FOR [_InTime]
 GO
-/****** Object:  Default [DF_DTSConfig__Time]    Script Date: 11/09/2010 11:49:46 ******/
+/****** Object:  Default [DF_DTSConfig__Time]    Script Date: 11/12/2010 15:03:43 ******/
 ALTER TABLE [dbo].[DTSConfig] ADD  CONSTRAINT [DF_DTSConfig__Time]  DEFAULT (getdate()) FOR [_Time]
 GO
-/****** Object:  Default [DF_DTSConfig_NeedTrans]    Script Date: 11/09/2010 11:49:46 ******/
+/****** Object:  Default [DF_DTSConfig_NeedTrans]    Script Date: 11/12/2010 15:03:43 ******/
 ALTER TABLE [dbo].[DTSConfig] ADD  CONSTRAINT [DF_DTSConfig_NeedTrans]  DEFAULT ((0)) FOR [NeedTrans]
 GO
-/****** Object:  Default [DF_DTSConfig_KillFtpTime]    Script Date: 11/09/2010 11:49:46 ******/
+/****** Object:  Default [DF_DTSConfig_KillFtpTime]    Script Date: 11/12/2010 15:03:43 ******/
 ALTER TABLE [dbo].[DTSConfig] ADD  CONSTRAINT [DF_DTSConfig_KillFtpTime]  DEFAULT (dateadd(month,(-1),getdate())) FOR [KillFtpTime]
 GO
-/****** Object:  Default [DF_FileTrans__InTime]    Script Date: 11/09/2010 11:49:46 ******/
+/****** Object:  Default [DF_FileTrans__InTime]    Script Date: 11/12/2010 15:03:44 ******/
 ALTER TABLE [dbo].[FileTrans] ADD  CONSTRAINT [DF_FileTrans__InTime]  DEFAULT (getdate()) FOR [_InTime]
 GO
-/****** Object:  Default [DF_FTP_GetBak_LastFileName]    Script Date: 11/09/2010 11:49:46 ******/
+/****** Object:  Default [DF_FTP_GetBak_LastFileName]    Script Date: 11/12/2010 15:03:44 ******/
 ALTER TABLE [dbo].[FTP_GetBak] ADD  CONSTRAINT [DF_FTP_GetBak_LastFileName]  DEFAULT ('') FOR [LastFileName]
 GO
-/****** Object:  Default [DF_FTP_GetBak_Enabled]    Script Date: 11/09/2010 11:49:46 ******/
+/****** Object:  Default [DF_FTP_GetBak_Enabled]    Script Date: 11/12/2010 15:03:44 ******/
 ALTER TABLE [dbo].[FTP_GetBak] ADD  CONSTRAINT [DF_FTP_GetBak_Enabled]  DEFAULT ((1)) FOR [Enabled]
 GO
-/****** Object:  Default [DF_FTP_GetBak_Folder]    Script Date: 11/09/2010 11:49:46 ******/
+/****** Object:  Default [DF_FTP_GetBak_Folder]    Script Date: 11/12/2010 15:03:44 ******/
 ALTER TABLE [dbo].[FTP_GetBak] ADD  CONSTRAINT [DF_FTP_GetBak_Folder]  DEFAULT (N'D:\Apq_DBA\FTP_GetBak\') FOR [Folder]
 GO
-/****** Object:  Default [DF_FTP_GetBak_FTPFolder]    Script Date: 11/09/2010 11:49:46 ******/
+/****** Object:  Default [DF_FTP_GetBak_FTPFolder]    Script Date: 11/12/2010 15:03:44 ******/
 ALTER TABLE [dbo].[FTP_GetBak] ADD  CONSTRAINT [DF_FTP_GetBak_FTPFolder]  DEFAULT (N'/') FOR [FTPFolder]
 GO
-/****** Object:  Default [DF_FTP_GetBak_State]    Script Date: 11/09/2010 11:49:46 ******/
+/****** Object:  Default [DF_FTP_GetBak_State]    Script Date: 11/12/2010 15:03:44 ******/
 ALTER TABLE [dbo].[FTP_GetBak] ADD  CONSTRAINT [DF_FTP_GetBak_State]  DEFAULT ((0)) FOR [State]
 GO
-/****** Object:  Default [DF_FTP_GetBak_DB_HisNum]    Script Date: 11/09/2010 11:49:46 ******/
+/****** Object:  Default [DF_FTP_GetBak_DB_HisNum]    Script Date: 11/12/2010 15:03:44 ******/
 ALTER TABLE [dbo].[FTP_GetBak] ADD  CONSTRAINT [DF_FTP_GetBak_DB_HisNum]  DEFAULT ((15)) FOR [DB_HisNum]
 GO
-/****** Object:  Default [DF_FTP_SendQueue_Folder]    Script Date: 11/09/2010 11:49:46 ******/
+/****** Object:  Default [DF_FTP_SendQueue_Folder]    Script Date: 11/12/2010 15:03:45 ******/
 ALTER TABLE [dbo].[FTP_SendQueue] ADD  CONSTRAINT [DF_FTP_SendQueue_Folder]  DEFAULT (N'D:\Bak2FTP\') FOR [Folder]
 GO
-/****** Object:  Default [DF_FTP_SendQueue_FileName]    Script Date: 11/09/2010 11:49:46 ******/
+/****** Object:  Default [DF_FTP_SendQueue_FileName]    Script Date: 11/12/2010 15:03:45 ******/
 ALTER TABLE [dbo].[FTP_SendQueue] ADD  CONSTRAINT [DF_FTP_SendQueue_FileName]  DEFAULT ('') FOR [FileName]
 GO
-/****** Object:  Default [DF_FTP_SendQueue_Enabled]    Script Date: 11/09/2010 11:49:46 ******/
+/****** Object:  Default [DF_FTP_SendQueue_Enabled]    Script Date: 11/12/2010 15:03:45 ******/
 ALTER TABLE [dbo].[FTP_SendQueue] ADD  CONSTRAINT [DF_FTP_SendQueue_Enabled]  DEFAULT ((1)) FOR [Enabled]
 GO
-/****** Object:  Default [DF_FTP_SendQueue_FTPFolder]    Script Date: 11/09/2010 11:49:46 ******/
+/****** Object:  Default [DF_FTP_SendQueue_FTPPort]    Script Date: 11/12/2010 15:03:45 ******/
+ALTER TABLE [dbo].[FTP_SendQueue] ADD  CONSTRAINT [DF_FTP_SendQueue_FTPPort]  DEFAULT ((21)) FOR [FTPPort]
+GO
+/****** Object:  Default [DF_FTP_SendQueue_FTPFolder]    Script Date: 11/12/2010 15:03:45 ******/
 ALTER TABLE [dbo].[FTP_SendQueue] ADD  CONSTRAINT [DF_FTP_SendQueue_FTPFolder]  DEFAULT (N'/D/BakFromFTP/') FOR [FTPFolder]
 GO
-/****** Object:  Default [DF_FTP_SendQueue_FTPFolderTmp]    Script Date: 11/09/2010 11:49:46 ******/
+/****** Object:  Default [DF_FTP_SendQueue_FTPFolderTmp]    Script Date: 11/12/2010 15:03:45 ******/
 ALTER TABLE [dbo].[FTP_SendQueue] ADD  CONSTRAINT [DF_FTP_SendQueue_FTPFolderTmp]  DEFAULT (N'/') FOR [FTPFolderTmp]
 GO
-/****** Object:  Default [DF_FTP_SendQueue__InTime]    Script Date: 11/09/2010 11:49:46 ******/
+/****** Object:  Default [DF_FTP_SendQueue__InTime]    Script Date: 11/12/2010 15:03:45 ******/
 ALTER TABLE [dbo].[FTP_SendQueue] ADD  CONSTRAINT [DF_FTP_SendQueue__InTime]  DEFAULT (getdate()) FOR [_InTime]
 GO
-/****** Object:  Default [DF_FTP_SendQueue__Time]    Script Date: 11/09/2010 11:49:46 ******/
+/****** Object:  Default [DF_FTP_SendQueue__Time]    Script Date: 11/12/2010 15:03:45 ******/
 ALTER TABLE [dbo].[FTP_SendQueue] ADD  CONSTRAINT [DF_FTP_SendQueue__Time]  DEFAULT (getdate()) FOR [_Time]
 GO
-/****** Object:  Default [DF_FTP_SendQueue_LSize]    Script Date: 11/09/2010 11:49:46 ******/
+/****** Object:  Default [DF_FTP_SendQueue_LSize]    Script Date: 11/12/2010 15:03:45 ******/
 ALTER TABLE [dbo].[FTP_SendQueue] ADD  CONSTRAINT [DF_FTP_SendQueue_LSize]  DEFAULT ((0)) FOR [LSize]
 GO
-/****** Object:  Default [DF_FTP_SendQueue_RSize]    Script Date: 11/09/2010 11:49:46 ******/
+/****** Object:  Default [DF_FTP_SendQueue_RSize]    Script Date: 11/12/2010 15:03:45 ******/
 ALTER TABLE [dbo].[FTP_SendQueue] ADD  CONSTRAINT [DF_FTP_SendQueue_RSize]  DEFAULT ((0)) FOR [RSize]
 GO
-/****** Object:  Default [DF_FTP_SendQueue_IsSuccess]    Script Date: 11/09/2010 11:49:46 ******/
+/****** Object:  Default [DF_FTP_SendQueue_IsSuccess]    Script Date: 11/12/2010 15:03:45 ******/
 ALTER TABLE [dbo].[FTP_SendQueue] ADD  CONSTRAINT [DF_FTP_SendQueue_IsSuccess]  DEFAULT ((0)) FOR [IsSuccess]
 GO
-/****** Object:  Default [DF_Log_Apq_Alarm__InTime]    Script Date: 11/09/2010 11:49:46 ******/
+/****** Object:  Default [DF_Log_Apq_Alarm__InTime]    Script Date: 11/12/2010 15:03:45 ******/
 ALTER TABLE [dbo].[Log_Apq_Alarm] ADD  CONSTRAINT [DF_Log_Apq_Alarm__InTime]  DEFAULT (getdate()) FOR [_InTime]
 GO
-/****** Object:  Default [DF_Log_Apq_Alarm_Type]    Script Date: 11/09/2010 11:49:46 ******/
+/****** Object:  Default [DF_Log_Apq_Alarm_Type]    Script Date: 11/12/2010 15:03:45 ******/
 ALTER TABLE [dbo].[Log_Apq_Alarm] ADD  CONSTRAINT [DF_Log_Apq_Alarm_Type]  DEFAULT ((0)) FOR [Type]
 GO
-/****** Object:  Default [DF_Log_Apq_Alarm_Severity]    Script Date: 11/09/2010 11:49:46 ******/
+/****** Object:  Default [DF_Log_Apq_Alarm_Severity]    Script Date: 11/12/2010 15:03:45 ******/
 ALTER TABLE [dbo].[Log_Apq_Alarm] ADD  CONSTRAINT [DF_Log_Apq_Alarm_Severity]  DEFAULT ((16)) FOR [Severity]
 GO
-/****** Object:  Default [DF_Log_Apq_Alarm_Titile]    Script Date: 11/09/2010 11:49:46 ******/
+/****** Object:  Default [DF_Log_Apq_Alarm_Titile]    Script Date: 11/12/2010 15:03:45 ******/
 ALTER TABLE [dbo].[Log_Apq_Alarm] ADD  CONSTRAINT [DF_Log_Apq_Alarm_Titile]  DEFAULT ('') FOR [Titile]
 GO
-/****** Object:  Default [DF_Log_DTS_LocalPick_PickTime]    Script Date: 11/09/2010 11:49:46 ******/
+/****** Object:  Default [DF_Log_DTS_LocalPick_PickTime]    Script Date: 11/12/2010 15:03:46 ******/
 ALTER TABLE [dbo].[Log_DTS_LocalPick] ADD  CONSTRAINT [DF_Log_DTS_LocalPick_PickTime]  DEFAULT (getdate()) FOR [PickTime]
 GO
-/****** Object:  Default [DF_Log_DTS_LocalPick_HasContent]    Script Date: 11/09/2010 11:49:46 ******/
+/****** Object:  Default [DF_Log_DTS_LocalPick_HasContent]    Script Date: 11/12/2010 15:03:46 ******/
 ALTER TABLE [dbo].[Log_DTS_LocalPick] ADD  CONSTRAINT [DF_Log_DTS_LocalPick_HasContent]  DEFAULT ((1)) FOR [HasContent]
 GO
-/****** Object:  Default [DF_Log_DTS_LocalPick_FileFolder]    Script Date: 11/09/2010 11:49:46 ******/
+/****** Object:  Default [DF_Log_DTS_LocalPick_FileFolder]    Script Date: 11/12/2010 15:03:46 ******/
 ALTER TABLE [dbo].[Log_DTS_LocalPick] ADD  CONSTRAINT [DF_Log_DTS_LocalPick_FileFolder]  DEFAULT (N'D:\DTS') FOR [FileFolder]
 GO
-/****** Object:  Default [DF_Log_DTS_LocalPick_FileEX]    Script Date: 11/09/2010 11:49:46 ******/
+/****** Object:  Default [DF_Log_DTS_LocalPick_FileEX]    Script Date: 11/12/2010 15:03:46 ******/
 ALTER TABLE [dbo].[Log_DTS_LocalPick] ADD  CONSTRAINT [DF_Log_DTS_LocalPick_FileEX]  DEFAULT (N'.txt') FOR [FileEX]
 GO
-/****** Object:  Default [DF_Log_DTS_LocalPick_t]    Script Date: 11/09/2010 11:49:46 ******/
+/****** Object:  Default [DF_Log_DTS_LocalPick_t]    Script Date: 11/12/2010 15:03:46 ******/
 ALTER TABLE [dbo].[Log_DTS_LocalPick] ADD  CONSTRAINT [DF_Log_DTS_LocalPick_t]  DEFAULT (N'\t') FOR [t]
 GO
-/****** Object:  Default [DF_Log_DTS_LocalPick_r]    Script Date: 11/09/2010 11:49:46 ******/
+/****** Object:  Default [DF_Log_DTS_LocalPick_r]    Script Date: 11/12/2010 15:03:46 ******/
 ALTER TABLE [dbo].[Log_DTS_LocalPick] ADD  CONSTRAINT [DF_Log_DTS_LocalPick_r]  DEFAULT (N'\n') FOR [r]
 GO
-/****** Object:  Default [DF_Log_DTS_LocalPick__InTime]    Script Date: 11/09/2010 11:49:46 ******/
+/****** Object:  Default [DF_Log_DTS_LocalPick__InTime]    Script Date: 11/12/2010 15:03:46 ******/
 ALTER TABLE [dbo].[Log_DTS_LocalPick] ADD  CONSTRAINT [DF_Log_DTS_LocalPick__InTime]  DEFAULT (getdate()) FOR [_InTime]
 GO
-/****** Object:  Default [DF_Log_DTS_LocalPick__Time]    Script Date: 11/09/2010 11:49:46 ******/
+/****** Object:  Default [DF_Log_DTS_LocalPick__Time]    Script Date: 11/12/2010 15:03:46 ******/
 ALTER TABLE [dbo].[Log_DTS_LocalPick] ADD  CONSTRAINT [DF_Log_DTS_LocalPick__Time]  DEFAULT (getdate()) FOR [_Time]
 GO
-/****** Object:  Default [DF_RDBConfig_RDBType]    Script Date: 11/09/2010 11:49:46 ******/
+/****** Object:  Default [DF_RDBConfig_RDBType]    Script Date: 11/12/2010 15:03:46 ******/
 ALTER TABLE [dbo].[RDBConfig] ADD  CONSTRAINT [DF_RDBConfig_RDBType]  DEFAULT ((0)) FOR [RDBType]
 GO
-/****** Object:  Default [DF_RDBConfig_PLevel]    Script Date: 11/09/2010 11:49:46 ******/
+/****** Object:  Default [DF_RDBConfig_PLevel]    Script Date: 11/12/2010 15:03:46 ******/
 ALTER TABLE [dbo].[RDBConfig] ADD  CONSTRAINT [DF_RDBConfig_PLevel]  DEFAULT ((1)) FOR [PLevel]
 GO
-/****** Object:  Default [DF_RDBConfig_GLevel]    Script Date: 11/09/2010 11:49:46 ******/
+/****** Object:  Default [DF_RDBConfig_GLevel]    Script Date: 11/12/2010 15:03:46 ******/
 ALTER TABLE [dbo].[RDBConfig] ADD  CONSTRAINT [DF_RDBConfig_GLevel]  DEFAULT ((2)) FOR [GLevel]
 GO
-/****** Object:  Default [DF_RDBConfig_GameID]    Script Date: 11/09/2010 11:49:46 ******/
+/****** Object:  Default [DF_RDBConfig_GameID]    Script Date: 11/12/2010 15:03:46 ******/
 ALTER TABLE [dbo].[RDBConfig] ADD  CONSTRAINT [DF_RDBConfig_GameID]  DEFAULT ((0)) FOR [GameID]
 GO
-/****** Object:  Default [DF_RDBConfig_Enabled]    Script Date: 11/09/2010 11:49:46 ******/
+/****** Object:  Default [DF_RDBConfig_Enabled]    Script Date: 11/12/2010 15:03:46 ******/
 ALTER TABLE [dbo].[RDBConfig] ADD  CONSTRAINT [DF_RDBConfig_Enabled]  DEFAULT ((1)) FOR [Enabled]
 GO
-/****** Object:  Default [DF_RDBLogin_LoginPwdC]    Script Date: 11/09/2010 11:49:46 ******/
+/****** Object:  Default [DF_RDBLogin_LoginPwdC]    Script Date: 11/12/2010 15:03:47 ******/
 ALTER TABLE [dbo].[RDBLogin] ADD  CONSTRAINT [DF_RDBLogin_LoginPwdC]  DEFAULT ('') FOR [LoginPwdC]
 GO
-/****** Object:  Default [DF_RSrvConfig_LSName]    Script Date: 11/09/2010 11:49:46 ******/
+/****** Object:  Default [DF_RSrvConfig_LSName]    Script Date: 11/12/2010 15:03:47 ******/
 ALTER TABLE [dbo].[RSrvConfig] ADD  CONSTRAINT [DF_RSrvConfig_LSName]  DEFAULT ('') FOR [LSName]
 GO
-/****** Object:  Default [DF_RSrvConfig_UID]    Script Date: 11/09/2010 11:49:46 ******/
+/****** Object:  Default [DF_RSrvConfig_UID]    Script Date: 11/12/2010 15:03:47 ******/
 ALTER TABLE [dbo].[RSrvConfig] ADD  CONSTRAINT [DF_RSrvConfig_UID]  DEFAULT ('') FOR [UID]
 GO
-/****** Object:  Default [DF_RSrvConfig_LSMaxTimes]    Script Date: 11/09/2010 11:49:46 ******/
+/****** Object:  Default [DF_RSrvConfig_LSMaxTimes]    Script Date: 11/12/2010 15:03:47 ******/
 ALTER TABLE [dbo].[RSrvConfig] ADD  CONSTRAINT [DF_RSrvConfig_LSMaxTimes]  DEFAULT ((10)) FOR [LSMaxTimes]
 GO
-/****** Object:  Default [DF_RSrvConfig_LSErrTimes]    Script Date: 11/09/2010 11:49:46 ******/
+/****** Object:  Default [DF_RSrvConfig_LSErrTimes]    Script Date: 11/12/2010 15:03:47 ******/
 ALTER TABLE [dbo].[RSrvConfig] ADD  CONSTRAINT [DF_RSrvConfig_LSErrTimes]  DEFAULT ((0)) FOR [LSErrTimes]
 GO
-/****** Object:  Default [DF_RSrvConfig_LSState]    Script Date: 11/09/2010 11:49:46 ******/
+/****** Object:  Default [DF_RSrvConfig_LSState]    Script Date: 11/12/2010 15:03:47 ******/
 ALTER TABLE [dbo].[RSrvConfig] ADD  CONSTRAINT [DF_RSrvConfig_LSState]  DEFAULT ((1)) FOR [LSState]
 GO
-/****** Object:  Default [DF_RSrvConfig_FTPPort]    Script Date: 11/09/2010 11:49:46 ******/
+/****** Object:  Default [DF_RSrvConfig_FTPPort]    Script Date: 11/12/2010 15:03:47 ******/
 ALTER TABLE [dbo].[RSrvConfig] ADD  CONSTRAINT [DF_RSrvConfig_FTPPort]  DEFAULT ((21)) FOR [FTPPort]
 GO
-/****** Object:  Default [DF_RSrvConfig_SqlPort]    Script Date: 11/09/2010 11:49:46 ******/
+/****** Object:  Default [DF_RSrvConfig_SqlPort]    Script Date: 11/12/2010 15:03:47 ******/
 ALTER TABLE [dbo].[RSrvConfig] ADD  CONSTRAINT [DF_RSrvConfig_SqlPort]  DEFAULT ((1433)) FOR [SqlPort]
 GO
-/****** Object:  Default [DF_RSrvConfig_Enabled]    Script Date: 11/09/2010 11:49:46 ******/
+/****** Object:  Default [DF_RSrvConfig_Enabled]    Script Date: 11/12/2010 15:03:47 ******/
 ALTER TABLE [dbo].[RSrvConfig] ADD  CONSTRAINT [DF_RSrvConfig_Enabled]  DEFAULT ((1)) FOR [Enabled]
 GO
-/****** Object:  Default [DF_BcpInQueue_Folder]    Script Date: 11/09/2010 11:49:46 ******/
+/****** Object:  Default [DF_BcpInQueue_Folder]    Script Date: 11/12/2010 15:03:48 ******/
 ALTER TABLE [etl].[BcpInQueue] ADD  CONSTRAINT [DF_BcpInQueue_Folder]  DEFAULT (N'D:\BcpIn\XXX\20101029\') FOR [Folder]
 GO
-/****** Object:  Default [DF_BcpInQueue_FileName]    Script Date: 11/09/2010 11:49:46 ******/
+/****** Object:  Default [DF_BcpInQueue_FileName]    Script Date: 11/12/2010 15:03:48 ******/
 ALTER TABLE [etl].[BcpInQueue] ADD  CONSTRAINT [DF_BcpInQueue_FileName]  DEFAULT ('') FOR [FileName]
 GO
-/****** Object:  Default [DF_BcpInQueue_Enabled]    Script Date: 11/09/2010 11:49:46 ******/
+/****** Object:  Default [DF_BcpInQueue_Enabled]    Script Date: 11/12/2010 15:03:48 ******/
 ALTER TABLE [etl].[BcpInQueue] ADD  CONSTRAINT [DF_BcpInQueue_Enabled]  DEFAULT ((1)) FOR [Enabled]
 GO
-/****** Object:  Default [DF_BcpInQueue_SchemaName]    Script Date: 11/09/2010 11:49:46 ******/
+/****** Object:  Default [DF_BcpInQueue_SchemaName]    Script Date: 11/12/2010 15:03:48 ******/
 ALTER TABLE [etl].[BcpInQueue] ADD  CONSTRAINT [DF_BcpInQueue_SchemaName]  DEFAULT (N'dbo') FOR [SchemaName]
 GO
-/****** Object:  Default [DF_BcpInQueue_t]    Script Date: 11/09/2010 11:49:46 ******/
+/****** Object:  Default [DF_BcpInQueue_t]    Script Date: 11/12/2010 15:03:48 ******/
 ALTER TABLE [etl].[BcpInQueue] ADD  CONSTRAINT [DF_BcpInQueue_t]  DEFAULT (N'\t') FOR [t]
 GO
-/****** Object:  Default [DF_BcpInQueue_r]    Script Date: 11/09/2010 11:49:46 ******/
+/****** Object:  Default [DF_BcpInQueue_r]    Script Date: 11/12/2010 15:03:48 ******/
 ALTER TABLE [etl].[BcpInQueue] ADD  CONSTRAINT [DF_BcpInQueue_r]  DEFAULT (N'\n') FOR [r]
 GO
-/****** Object:  Default [DF_BcpInQueue__InTime]    Script Date: 11/09/2010 11:49:46 ******/
+/****** Object:  Default [DF_BcpInQueue__InTime]    Script Date: 11/12/2010 15:03:48 ******/
 ALTER TABLE [etl].[BcpInQueue] ADD  CONSTRAINT [DF_BcpInQueue__InTime]  DEFAULT (getdate()) FOR [_InTime]
 GO
-/****** Object:  Default [DF_BcpInQueue__Time]    Script Date: 11/09/2010 11:49:46 ******/
+/****** Object:  Default [DF_BcpInQueue__Time]    Script Date: 11/12/2010 15:03:48 ******/
 ALTER TABLE [etl].[BcpInQueue] ADD  CONSTRAINT [DF_BcpInQueue__Time]  DEFAULT (getdate()) FOR [_Time]
 GO
-/****** Object:  Default [DF_BcpInQueue_IsFinished]    Script Date: 11/09/2010 11:49:46 ******/
+/****** Object:  Default [DF_BcpInQueue_IsFinished]    Script Date: 11/12/2010 15:03:48 ******/
 ALTER TABLE [etl].[BcpInQueue] ADD  CONSTRAINT [DF_BcpInQueue_IsFinished]  DEFAULT ((0)) FOR [IsFinished]
 GO
-/****** Object:  Default [DF_BcpSTableCfg_EtlName]    Script Date: 11/09/2010 11:49:47 ******/
+/****** Object:  Default [DF_BcpSTableCfg_EtlName]    Script Date: 11/12/2010 15:03:49 ******/
 ALTER TABLE [etl].[BcpSTableCfg] ADD  CONSTRAINT [DF_BcpSTableCfg_EtlName]  DEFAULT ('') FOR [EtlName]
 GO
-/****** Object:  Default [DF_BcpSTableCfg_SchemaName]    Script Date: 11/09/2010 11:49:47 ******/
+/****** Object:  Default [DF_BcpSTableCfg_SchemaName]    Script Date: 11/12/2010 15:03:49 ******/
 ALTER TABLE [etl].[BcpSTableCfg] ADD  CONSTRAINT [DF_BcpSTableCfg_SchemaName]  DEFAULT (N'dbo') FOR [SchemaName]
 GO
-/****** Object:  Default [DF_BcpSTableCfg_Enabled]    Script Date: 11/09/2010 11:49:47 ******/
+/****** Object:  Default [DF_BcpSTableCfg_Enabled]    Script Date: 11/12/2010 15:03:49 ******/
 ALTER TABLE [etl].[BcpSTableCfg] ADD  CONSTRAINT [DF_BcpSTableCfg_Enabled]  DEFAULT ((1)) FOR [Enabled]
 GO
-/****** Object:  Default [DF_BcpSTableCfg_Cycle]    Script Date: 11/09/2010 11:49:47 ******/
+/****** Object:  Default [DF_BcpSTableCfg_Cycle]    Script Date: 11/12/2010 15:03:49 ******/
 ALTER TABLE [etl].[BcpSTableCfg] ADD  CONSTRAINT [DF_BcpSTableCfg_Cycle]  DEFAULT ((1440)) FOR [Cycle]
 GO
-/****** Object:  Default [DF_BcpSTableCfg_STime]    Script Date: 11/09/2010 11:49:47 ******/
+/****** Object:  Default [DF_BcpSTableCfg_STime]    Script Date: 11/12/2010 15:03:49 ******/
 ALTER TABLE [etl].[BcpSTableCfg] ADD  CONSTRAINT [DF_BcpSTableCfg_STime]  DEFAULT (dateadd(hour,(1),dateadd(day,(0),datediff(day,(0),getdate())))) FOR [STime]
 GO
-/****** Object:  Default [DF_BcpSTableCfg__InTime]    Script Date: 11/09/2010 11:49:47 ******/
+/****** Object:  Default [DF_BcpSTableCfg__InTime]    Script Date: 11/12/2010 15:03:49 ******/
 ALTER TABLE [etl].[BcpSTableCfg] ADD  CONSTRAINT [DF_BcpSTableCfg__InTime]  DEFAULT (getdate()) FOR [_InTime]
 GO
-/****** Object:  Default [DF_BcpSTableCfg__Time]    Script Date: 11/09/2010 11:49:47 ******/
+/****** Object:  Default [DF_BcpSTableCfg__Time]    Script Date: 11/12/2010 15:03:49 ******/
 ALTER TABLE [etl].[BcpSTableCfg] ADD  CONSTRAINT [DF_BcpSTableCfg__Time]  DEFAULT (getdate()) FOR [_Time]
 GO
-/****** Object:  Default [DF_EtlCfg_Folder]    Script Date: 11/09/2010 11:49:47 ******/
+/****** Object:  Default [DF_EtlCfg_Folder]    Script Date: 11/12/2010 15:03:49 ******/
 ALTER TABLE [etl].[EtlCfg] ADD  CONSTRAINT [DF_EtlCfg_Folder]  DEFAULT (N'D:\BcpIn\XXX\20101029\') FOR [Folder]
 GO
-/****** Object:  Default [DF_EtlCfg_PeriodType]    Script Date: 11/09/2010 11:49:47 ******/
+/****** Object:  Default [DF_EtlCfg_PeriodType]    Script Date: 11/12/2010 15:03:49 ******/
 ALTER TABLE [etl].[EtlCfg] ADD  CONSTRAINT [DF_EtlCfg_PeriodType]  DEFAULT ((6)) FOR [PeriodType]
 GO
-/****** Object:  Default [DF_EtlCfg_FileName]    Script Date: 11/09/2010 11:49:47 ******/
+/****** Object:  Default [DF_EtlCfg_FileName]    Script Date: 11/12/2010 15:03:49 ******/
 ALTER TABLE [etl].[EtlCfg] ADD  CONSTRAINT [DF_EtlCfg_FileName]  DEFAULT ('') FOR [FileName]
 GO
-/****** Object:  Default [DF_EtlCfg_Enabled]    Script Date: 11/09/2010 11:49:47 ******/
+/****** Object:  Default [DF_EtlCfg_Enabled]    Script Date: 11/12/2010 15:03:49 ******/
 ALTER TABLE [etl].[EtlCfg] ADD  CONSTRAINT [DF_EtlCfg_Enabled]  DEFAULT ((1)) FOR [Enabled]
 GO
-/****** Object:  Default [DF_EtlCfg_SchemaName]    Script Date: 11/09/2010 11:49:47 ******/
+/****** Object:  Default [DF_EtlCfg_SchemaName]    Script Date: 11/12/2010 15:03:49 ******/
 ALTER TABLE [etl].[EtlCfg] ADD  CONSTRAINT [DF_EtlCfg_SchemaName]  DEFAULT (N'dbo') FOR [SchemaName]
 GO
-/****** Object:  Default [DF_EtlCfg_t]    Script Date: 11/09/2010 11:49:47 ******/
+/****** Object:  Default [DF_EtlCfg_t]    Script Date: 11/12/2010 15:03:49 ******/
 ALTER TABLE [etl].[EtlCfg] ADD  CONSTRAINT [DF_EtlCfg_t]  DEFAULT (N'\t') FOR [t]
 GO
-/****** Object:  Default [DF_EtlCfg_r]    Script Date: 11/09/2010 11:49:47 ******/
+/****** Object:  Default [DF_EtlCfg_r]    Script Date: 11/12/2010 15:03:49 ******/
 ALTER TABLE [etl].[EtlCfg] ADD  CONSTRAINT [DF_EtlCfg_r]  DEFAULT (N'\n') FOR [r]
 GO
-/****** Object:  Default [DF_EtlCfg__InTime]    Script Date: 11/09/2010 11:49:47 ******/
+/****** Object:  Default [DF_EtlCfg__InTime]    Script Date: 11/12/2010 15:03:49 ******/
 ALTER TABLE [etl].[EtlCfg] ADD  CONSTRAINT [DF_EtlCfg__InTime]  DEFAULT (getdate()) FOR [_InTime]
 GO
-/****** Object:  Default [DF_EtlCfg__Time]    Script Date: 11/09/2010 11:49:47 ******/
+/****** Object:  Default [DF_EtlCfg__Time]    Script Date: 11/12/2010 15:03:49 ******/
 ALTER TABLE [etl].[EtlCfg] ADD  CONSTRAINT [DF_EtlCfg__Time]  DEFAULT (getdate()) FOR [_Time]
 GO
-/****** Object:  Default [DF_LoadCfg_Enabled]    Script Date: 11/09/2010 11:49:47 ******/
+/****** Object:  Default [DF_LoadCfg_Enabled]    Script Date: 11/12/2010 15:03:49 ******/
 ALTER TABLE [etl].[LoadCfg] ADD  CONSTRAINT [DF_LoadCfg_Enabled]  DEFAULT ((1)) FOR [Enabled]
 GO
-/****** Object:  Default [DF_LoadCfg_Cycle]    Script Date: 11/09/2010 11:49:47 ******/
+/****** Object:  Default [DF_LoadCfg_Cycle]    Script Date: 11/12/2010 15:03:49 ******/
 ALTER TABLE [etl].[LoadCfg] ADD  CONSTRAINT [DF_LoadCfg_Cycle]  DEFAULT ((1440)) FOR [Cycle]
 GO
-/****** Object:  Default [DF_LoadCfg_LTime]    Script Date: 11/09/2010 11:49:47 ******/
+/****** Object:  Default [DF_LoadCfg_LTime]    Script Date: 11/12/2010 15:03:49 ******/
 ALTER TABLE [etl].[LoadCfg] ADD  CONSTRAINT [DF_LoadCfg_LTime]  DEFAULT (dateadd(hour,(1),dateadd(day,(0),datediff(day,(0),getdate())))) FOR [LTime]
 GO
-/****** Object:  Default [DF_LoadCfg__InTime]    Script Date: 11/09/2010 11:49:47 ******/
+/****** Object:  Default [DF_LoadCfg__InTime]    Script Date: 11/12/2010 15:03:49 ******/
 ALTER TABLE [etl].[LoadCfg] ADD  CONSTRAINT [DF_LoadCfg__InTime]  DEFAULT (getdate()) FOR [_InTime]
 GO
-/****** Object:  Default [DF_LoadCfg__Time]    Script Date: 11/09/2010 11:49:47 ******/
+/****** Object:  Default [DF_LoadCfg__Time]    Script Date: 11/12/2010 15:03:49 ******/
 ALTER TABLE [etl].[LoadCfg] ADD  CONSTRAINT [DF_LoadCfg__Time]  DEFAULT (getdate()) FOR [_Time]
 GO
-/****** Object:  Default [DF_Log_Stat_StartTime]    Script Date: 11/09/2010 11:49:47 ******/
+/****** Object:  Default [DF_Log_Stat_StartTime]    Script Date: 11/12/2010 15:03:49 ******/
 ALTER TABLE [etl].[Log_Stat] ADD  CONSTRAINT [DF_Log_Stat_StartTime]  DEFAULT (dateadd(day,(-1),dateadd(day,(0),datediff(day,(0),getdate())))) FOR [StartTime]
 GO
-/****** Object:  Default [DF_Log_Stat_EndTime]    Script Date: 11/09/2010 11:49:47 ******/
+/****** Object:  Default [DF_Log_Stat_EndTime]    Script Date: 11/12/2010 15:03:49 ******/
 ALTER TABLE [etl].[Log_Stat] ADD  CONSTRAINT [DF_Log_Stat_EndTime]  DEFAULT (dateadd(day,(0),datediff(day,(0),getdate()))) FOR [EndTime]
 GO
-/****** Object:  Default [DF_Log_Stat__LogTime]    Script Date: 11/09/2010 11:49:47 ******/
+/****** Object:  Default [DF_Log_Stat__LogTime]    Script Date: 11/12/2010 15:03:49 ******/
 ALTER TABLE [etl].[Log_Stat] ADD  CONSTRAINT [DF_Log_Stat__LogTime]  DEFAULT (getdate()) FOR [_LogTime]
 GO
-/****** Object:  Default [DF_StatCfg_Enabled]    Script Date: 11/09/2010 11:49:47 ******/
+/****** Object:  Default [DF_StatCfg_Enabled]    Script Date: 11/12/2010 15:03:50 ******/
 ALTER TABLE [etl].[StatCfg] ADD  CONSTRAINT [DF_StatCfg_Enabled]  DEFAULT ((1)) FOR [Enabled]
 GO
-/****** Object:  Default [DF_StatCfg_Cycle]    Script Date: 11/09/2010 11:49:47 ******/
+/****** Object:  Default [DF_StatCfg_Cycle]    Script Date: 11/12/2010 15:03:50 ******/
 ALTER TABLE [etl].[StatCfg] ADD  CONSTRAINT [DF_StatCfg_Cycle]  DEFAULT ((1440)) FOR [Cycle]
 GO
-/****** Object:  Default [DF_StatCfg_RTime]    Script Date: 11/09/2010 11:49:47 ******/
+/****** Object:  Default [DF_StatCfg_RTime]    Script Date: 11/12/2010 15:03:50 ******/
 ALTER TABLE [etl].[StatCfg] ADD  CONSTRAINT [DF_StatCfg_RTime]  DEFAULT (dateadd(hour,(1),dateadd(day,(0),datediff(day,(0),getdate())))) FOR [RTime]
 GO
-/****** Object:  Default [DF_StatCfg__InTime]    Script Date: 11/09/2010 11:49:47 ******/
+/****** Object:  Default [DF_StatCfg__InTime]    Script Date: 11/12/2010 15:03:50 ******/
 ALTER TABLE [etl].[StatCfg] ADD  CONSTRAINT [DF_StatCfg__InTime]  DEFAULT (getdate()) FOR [_InTime]
 GO
-/****** Object:  Default [DF_StatCfg__Time]    Script Date: 11/09/2010 11:49:47 ******/
+/****** Object:  Default [DF_StatCfg__Time]    Script Date: 11/12/2010 15:03:50 ******/
 ALTER TABLE [etl].[StatCfg] ADD  CONSTRAINT [DF_StatCfg__Time]  DEFAULT (getdate()) FOR [_Time]
 GO
-/****** Object:  Default [DF_Server_Location]    Script Date: 11/09/2010 11:49:47 ******/
+/****** Object:  Default [DF_Server_Location]    Script Date: 11/12/2010 15:03:51 ******/
 ALTER TABLE [mgr].[Server] ADD  CONSTRAINT [DF_Server_Location]  DEFAULT ('') FOR [Location]
 GO
-/****** Object:  Default [DF_Server_Usage]    Script Date: 11/09/2010 11:49:47 ******/
+/****** Object:  Default [DF_Server_Usage]    Script Date: 11/12/2010 15:03:51 ******/
 ALTER TABLE [mgr].[Server] ADD  CONSTRAINT [DF_Server_Usage]  DEFAULT ('') FOR [Usage]
 GO
-/****** Object:  Default [DF_Server_IPWan1]    Script Date: 11/09/2010 11:49:47 ******/
+/****** Object:  Default [DF_Server_IPWan1]    Script Date: 11/12/2010 15:03:51 ******/
 ALTER TABLE [mgr].[Server] ADD  CONSTRAINT [DF_Server_IPWan1]  DEFAULT ('') FOR [IPWan1]
 GO
-/****** Object:  Default [DF_Server_IPLan1]    Script Date: 11/09/2010 11:49:47 ******/
+/****** Object:  Default [DF_Server_IPLan1]    Script Date: 11/12/2010 15:03:51 ******/
 ALTER TABLE [mgr].[Server] ADD  CONSTRAINT [DF_Server_IPLan1]  DEFAULT ('') FOR [IPLan1]
 GO
-/****** Object:  Default [DF_Server_RdpPort]    Script Date: 11/09/2010 11:49:47 ******/
+/****** Object:  Default [DF_Server_RdpPort]    Script Date: 11/12/2010 15:03:51 ******/
 ALTER TABLE [mgr].[Server] ADD  CONSTRAINT [DF_Server_RdpPort]  DEFAULT ((3389)) FOR [RdpPort]
 GO
-/****** Object:  Default [DF_Server_SqlPort]    Script Date: 11/09/2010 11:49:47 ******/
+/****** Object:  Default [DF_Server_SqlPort]    Script Date: 11/12/2010 15:03:51 ******/
 ALTER TABLE [mgr].[Server] ADD  CONSTRAINT [DF_Server_SqlPort]  DEFAULT ((1433)) FOR [SqlPort]
 GO
-/****** Object:  Default [DF_Server_FTPPort]    Script Date: 11/09/2010 11:49:47 ******/
+/****** Object:  Default [DF_Server_FTPPort]    Script Date: 11/12/2010 15:03:51 ******/
 ALTER TABLE [mgr].[Server] ADD  CONSTRAINT [DF_Server_FTPPort]  DEFAULT ((21)) FOR [FTPPort]
 GO
-/****** Object:  Default [DF_Server_IPWan2]    Script Date: 11/09/2010 11:49:47 ******/
+/****** Object:  Default [DF_Server_IPWan2]    Script Date: 11/12/2010 15:03:51 ******/
 ALTER TABLE [mgr].[Server] ADD  CONSTRAINT [DF_Server_IPWan2]  DEFAULT ('') FOR [IPWan2]
 GO
-/****** Object:  Default [DF_Server_IPLan2]    Script Date: 11/09/2010 11:49:47 ******/
+/****** Object:  Default [DF_Server_IPLan2]    Script Date: 11/12/2010 15:03:51 ******/
 ALTER TABLE [mgr].[Server] ADD  CONSTRAINT [DF_Server_IPLan2]  DEFAULT ('') FOR [IPLan2]
 GO
-/****** Object:  Default [DF_Server_IPWan3]    Script Date: 11/09/2010 11:49:47 ******/
+/****** Object:  Default [DF_Server_IPWan3]    Script Date: 11/12/2010 15:03:51 ******/
 ALTER TABLE [mgr].[Server] ADD  CONSTRAINT [DF_Server_IPWan3]  DEFAULT ('') FOR [IPWan3]
 GO
-/****** Object:  Default [DF_Server_IPLan3]    Script Date: 11/09/2010 11:49:47 ******/
+/****** Object:  Default [DF_Server_IPLan3]    Script Date: 11/12/2010 15:03:51 ******/
 ALTER TABLE [mgr].[Server] ADD  CONSTRAINT [DF_Server_IPLan3]  DEFAULT ('') FOR [IPLan3]
 GO
-/****** Object:  Default [DF_Server_IPWan4]    Script Date: 11/09/2010 11:49:47 ******/
+/****** Object:  Default [DF_Server_IPWan4]    Script Date: 11/12/2010 15:03:51 ******/
 ALTER TABLE [mgr].[Server] ADD  CONSTRAINT [DF_Server_IPWan4]  DEFAULT ('') FOR [IPWan4]
 GO
-/****** Object:  Default [DF_Server_IPLan4]    Script Date: 11/09/2010 11:49:47 ******/
+/****** Object:  Default [DF_Server_IPLan4]    Script Date: 11/12/2010 15:03:51 ******/
 ALTER TABLE [mgr].[Server] ADD  CONSTRAINT [DF_Server_IPLan4]  DEFAULT ('') FOR [IPLan4]
 GO
-/****** Object:  Default [DF_SrvPwd_PwdType]    Script Date: 11/09/2010 11:49:47 ******/
+/****** Object:  Default [DF_SrvPwd_PwdType]    Script Date: 11/12/2010 15:03:51 ******/
 ALTER TABLE [mgr].[SrvPwd] ADD  CONSTRAINT [DF_SrvPwd_PwdType]  DEFAULT ((2)) FOR [PwdType]
 GO
-/****** Object:  Default [DF_SrvPwd_Enabled]    Script Date: 11/09/2010 11:49:47 ******/
+/****** Object:  Default [DF_SrvPwd_Enabled]    Script Date: 11/12/2010 15:03:51 ******/
 ALTER TABLE [mgr].[SrvPwd] ADD  CONSTRAINT [DF_SrvPwd_Enabled]  DEFAULT ((1)) FOR [Enabled]
 GO
-/****** Object:  Default [DF_SrvPwd_SID]    Script Date: 11/09/2010 11:49:47 ******/
+/****** Object:  Default [DF_SrvPwd_SID]    Script Date: 11/12/2010 15:03:51 ******/
 ALTER TABLE [mgr].[SrvPwd] ADD  CONSTRAINT [DF_SrvPwd_SID]  DEFAULT ('0x01') FOR [SID]
 GO
 GRANT DELETE ON [dbo].[CounterData] TO [Performance_Log_User] AS [dbo]

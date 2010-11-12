@@ -1,0 +1,16 @@
+# Microsoft Developer Studio 项目文件 -- 数据库项目
+Begin DataProject = "BaseBusinessDb"
+   MSDTVersion = "80"
+   DefDBRef = "sxh-102.BaseBusinessDb.dbo"
+   Begin DBRefFolder = "Database References"
+      Begin DBRefNode = "sxh-102.BaseBusinessDb.dbo"
+         ConnectStr = "Data Source=58.61.152.94,3134;Initial Catalog=BaseBusinessDb;Persist Security Info=True;User ID=sa"
+         Provider = "{91510608-8809-4020-8897-FBA057E22D54}"
+         Colorizer = 6
+      End
+   End
+   Begin Folder = "|存储过程|5b5850a88fc77a0b"
+      Script = "Job_BcpOut_Model[P].sql"
+      Script = "Job_TC_BaseBusinessDb[P].sql"
+   End
+End

@@ -5,6 +5,8 @@ SELECT plan_handle, st.text
 	CROSS APPLY sys.dm_exec_sql_text(plan_handle) AS st
  WHERE text LIKE N'SELECT * FROM Person.Address%';
 
+-- 查看内存使用情况
+DBCC MEMORYSTATUS()
 
 DBCC FREEPROCCACHE([plan_handle]/'default');	-- 指定(或所有)存储过程重新编译,重新生成执行计划
 DBCC DROPCLEANBUFFERS;		-- 清空所有缓存(写入硬盘)
