@@ -48,16 +48,21 @@ BEGIN
 	END
 END
 
-WHILE(1=1)
+DECLARE @BID bigint, @EID bigint, @CID bigint, @CIDE bigint;
+SELECT @BID = min(l.ID),@EID = max(l.ID) FROM log.ImeiLog l(NOLOCK) WHERE l.LogTime >= @StartTime AND l.LogTime < @EndTime;
+IF(@BID IS NULL OR @EID IS NULL) RETURN -1;
+
+SELECT @CID = @BID;
+WHILE(@CID <= @EID)
 BEGIN
-	INSERT dbo.PV_Imei_LogType ( Imei,LogType,FirstTime,FirstSource,FirstProvince )
-	SELECT TOP(1000) l.Imei,l.LogType,ISNULL(l.LogTime,'9999-12-31 23:59:59.997'),ISNULL(l.Source,0),ISNULL(l.Province,'未知')
+	SELECT @BID,@CID,@EID;
+	SELECT @CIDE = @CID + 1000;
+	INSERT dbo.PV_Imei_LogType ( Imei,LogType,FirstTime,FirstPlatform,FirstSMSC,FirstProvince )
+	SELECT l.Imei,l.LogType,ISNULL(l.LogTime,'9999-12-31 23:59:59.997'),ISNULL(l.Platform,'未知'),ISNULL(l.SMSC,'未知'),ISNULL(l.Province,'未知')
 	  FROM log.ImeiLog l(NOLOCK)
-	 WHERE NOT EXISTS(SELECT TOP 1 1 FROM dbo.PV_Imei_LogType d(NOLOCK) WHERE d.LogType = l.LogType AND d.Imei = l.Imei)
-		AND l.LogTime >= @StartTime AND l.LogTime < @EndTime
+	 WHERE l.ID >= @CID AND l.ID < @CIDE
 		AND l.Imei IS NOT NULL AND l.LogType IS NOT NULL
-	 ORDER BY l.LogTime
-	IF(@@ROWCOUNT = 0) BREAK;
+	SELECT @CID = @CIDE;
 END
 
 -- 统计最近访问次数
@@ -115,9 +120,10 @@ WHILE(1=1)
 BEGIN
 	UPDATE TOP(1000) t
 	   SET _Time = getdate(), Last_Time = @EndTime
-		,t.LastTime = ISNULL((SELECT TOP 1 LogTime FROM log.ImeiLog l(NOLOCK) WHERE l.LogType = t.LogType AND l.Imei = t.Imei ORDER BY LogTime DESC),0)
-		,t.LastSource = ISNULL((SELECT TOP 1 Source FROM log.ImeiLog l(NOLOCK) WHERE l.LogType = t.LogType AND l.Imei = t.Imei ORDER BY LogTime DESC),0)
-		,t.LastProvince = ISNULL((SELECT TOP 1 Province FROM log.ImeiLog l(NOLOCK) WHERE l.LogType = t.LogType AND l.Imei = t.Imei ORDER BY LogTime DESC),'未知')
+		,t.LastTime = ISNULL((SELECT TOP 1 LogTime FROM log.ImeiLog l(NOLOCK) WHERE l.LogType = t.LogType AND l.Imei = t.Imei ORDER BY LogTime DESC, ID DESC),0)
+		,t.LastPlatform = ISNULL((SELECT TOP 1 LastPlatform FROM log.ImeiLog l(NOLOCK) WHERE l.LogType = t.LogType AND l.Imei = t.Imei ORDER BY LogTime DESC, ID DESC),'未知')
+		,t.LastSMSC = ISNULL((SELECT TOP 1 LastSMSC FROM log.ImeiLog l(NOLOCK) WHERE l.LogType = t.LogType AND l.Imei = t.Imei ORDER BY LogTime DESC, ID DESC),'未知')
+		,t.LastProvince = ISNULL((SELECT TOP 1 Province FROM log.ImeiLog l(NOLOCK) WHERE l.LogType = t.LogType AND l.Imei = t.Imei ORDER BY LogTime DESC, ID DESC),'未知')
 	  FROM dbo.PV_Imei_LogType t
 	 WHERE t.Last_Time < @EndTime;
 	IF(@@ROWCOUNT = 0) BREAK;
@@ -140,8 +146,8 @@ END
 
 WHILE(1=1)
 BEGIN
-	INSERT dbo.PV_Imei ( Imei,FirstLogType,FirstTime,FirstSource,FirstProvince )
-	SELECT TOP(1000) t.Imei,ISNULL(LogType,0),FirstTime,FirstSource,FirstProvince
+	INSERT dbo.PV_Imei ( Imei,FirstLogType,FirstTime,FirstPlatform,FirstSMSC,FirstProvince )
+	SELECT TOP(1000) t.Imei,ISNULL(LogType,0),FirstTime,FirstPlatform,FirstSMSC,FirstProvince
 	  FROM dbo.PV_Imei_LogType t(NOLOCK)
 	 WHERE t.FirstTime >= @StartTime AND t.FirstTime < @EndTime
 		AND NOT EXISTS(SELECT TOP 1 1 FROM dbo.PV_Imei d(NOLOCK) WHERE d.Imei = t.Imei)
@@ -193,10 +199,11 @@ WHILE(1=1)
 BEGIN
 	UPDATE TOP(1000) t
 	   SET _Time = getdate(), Last_Time = @EndTime
-		,t.LastLogType = ISNULL((SELECT TOP 1 LogType FROM log.ImeiLog l(NOLOCK) WHERE l.Imei = t.Imei ORDER BY LogTime DESC),0)
-		,t.LastTime = ISNULL((SELECT TOP 1 LogTime FROM log.ImeiLog l(NOLOCK) WHERE l.Imei = t.Imei ORDER BY LogTime DESC),0)
-		,t.LastSource = ISNULL((SELECT TOP 1 Source FROM log.ImeiLog l(NOLOCK) WHERE l.Imei = t.Imei ORDER BY LogTime DESC),0)
-		,t.LastProvince = ISNULL((SELECT TOP 1 Province FROM log.ImeiLog l(NOLOCK) WHERE l.Imei = t.Imei ORDER BY LogTime DESC),'未知')
+		,t.LastLogType = ISNULL((SELECT TOP 1 LogType FROM log.ImeiLog l(NOLOCK) WHERE l.Imei = t.Imei ORDER BY LogTime DESC, ID DESC),0)
+		,t.LastTime = ISNULL((SELECT TOP 1 LogTime FROM log.ImeiLog l(NOLOCK) WHERE l.Imei = t.Imei ORDER BY LogTime DESC, ID DESC),0)
+		,t.LastPlatform = ISNULL((SELECT TOP 1 LastPlatform FROM log.ImeiLog l(NOLOCK) WHERE l.Imei = t.Imei ORDER BY LogTime DESC, ID DESC),'未知')
+		,t.LastSMSC = ISNULL((SELECT TOP 1 LastSMSC FROM log.ImeiLog l(NOLOCK) WHERE l.Imei = t.Imei ORDER BY LogTime DESC, ID DESC),'未知')
+		,t.LastProvince = ISNULL((SELECT TOP 1 Province FROM log.ImeiLog l(NOLOCK) WHERE l.Imei = t.Imei ORDER BY LogTime DESC, ID DESC),'未知')
 	  FROM dbo.PV_Imei t
 	 WHERE t.Last_Time < @EndTime;
 	IF(@@ROWCOUNT = 0) BREAK;
