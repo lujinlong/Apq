@@ -45,7 +45,7 @@ CREATE TABLE #Apq_DropIndex_t_helpindex(
 INSERT #Apq_DropIndex_t_helpindex(index_name,index_description,index_keys) EXEC sp_helpindex @FullTableName;
 UPDATE #Apq_DropIndex_t_helpindex SET index_keys = '[' + REPLACE(index_keys,',','],[');	-- (,)前后加括号,最前面加([)
 UPDATE #Apq_DropIndex_t_helpindex SET index_keys = REPLACE(index_keys,'[ ','[');			-- 去掉([)后面的空格
-UPDATE #Apq_DropIndex_t_helpindex SET index_keys = REPLACE(index_keys,'(-)','] DESC') + ']';	-- 装(-)替换为排序方式,最后加(])
+UPDATE #Apq_DropIndex_t_helpindex SET index_keys = REPLACE(index_keys,'(-)','] DESC') + ']';	-- 将(-)替换为排序方式,最后加(])
 UPDATE #Apq_DropIndex_t_helpindex SET index_keys = REPLACE(index_keys,'] DESC]','] DESC');	-- 去掉排序方式后多余的(])
 
 UPDATE #Apq_DropIndex_t_helpindex
@@ -77,8 +77,10 @@ SELECT index_name = i.name,ic.partition_ordinal,c.name
 
 UPDATE t
    SET t.Sql_DROP = 'ALTER TABLE ' + @FullTableName + ' DROP CONSTRAINT [' + index_name + ']'
-	,t.Sql_CREATE = 'ALTER TABLE ' + @FullTableName + ' ADD CONSTRAINT [' + index_name + '] PRIMARY KEY ' + CASE IsClustered WHEN 1 THEN '' ELSE 'NON' END + 'CLUSTERED(' + index_keys + ') ON '
-		+ ISNULL(t.PSorFG,'PRIMARY') + CASE t.IsPS WHEN 1 THEN '('+ll.PSCols+')' ELSE '' END
+	,t.Sql_CREATE = 'ALTER TABLE ' + @FullTableName + ' ADD CONSTRAINT [' + index_name + '] PRIMARY KEY ' + CASE IsClustered WHEN 1 THEN '' ELSE 'NON' END + 'CLUSTERED(' + index_keys + ')'
+		+ CASE ignore_dup_key WHEN 1 THEN ' WITH (IGNORE_DUP_KEY = ON)' ELSE '' END
+		+' ON '+ CASE WHEN t.PSorFG IS NULL THEN '[PRIMARY]' ELSE '[' + t.PSorFG + ']' END
+		+ CASE t.IsPS WHEN 1 THEN '('+ll.PSCols+')' ELSE '' END
   FROM #Apq_DropIndex_t_helpindex t OUTER APPLY (
 	SELECT PSCols = STUFF(REPLACE(REPLACE(
 		(SELECT name FROM #Apq_DropIndex_t_index_PSColumn ld WHERE ld.index_name = t.index_name FOR XML AUTO),
@@ -88,8 +90,12 @@ UPDATE t
 
 UPDATE t
    SET t.Sql_DROP = 'DROP INDEX ' + @FullTableName + '.[' + index_name + ']'
-	,t.Sql_CREATE = 'CREATE ' + CASE IsClustered WHEN 1 THEN '' ELSE 'NON' END + 'CLUSTERED INDEX [' + index_name + '] ON ' + @FullTableName + '(' + index_keys + ') ON '
-		+ ISNULL(t.PSorFG,'PRIMARY') + CASE t.IsPS WHEN 1 THEN '('+ll.PSCols+')' ELSE '' END
+	,t.Sql_CREATE = 'CREATE ' + CASE IsUnique WHEN 1 THEN 'UNIQUE ' ELSE '' END
+		+ CASE IsClustered WHEN 1 THEN '' ELSE 'NON' END + 'CLUSTERED INDEX [' + index_name + ']'
+		+ ' ON ' + @FullTableName + '(' + index_keys + ')'
+		+ CASE ignore_dup_key WHEN 1 THEN ' WITH (IGNORE_DUP_KEY = ON)' ELSE '' END
+		+' ON '+ CASE WHEN t.PSorFG IS NULL THEN '[PRIMARY]' ELSE '[' + t.PSorFG + ']' END
+		+ CASE t.IsPS WHEN 1 THEN '('+ll.PSCols+')' ELSE '' END
   FROM #Apq_DropIndex_t_helpindex t OUTER APPLY (
 	SELECT PSCols = STUFF(REPLACE(REPLACE(
 		(SELECT name FROM #Apq_DropIndex_t_index_PSColumn ld WHERE ld.index_name = t.index_name FOR XML AUTO),
@@ -110,7 +116,7 @@ TRUNCATE TABLE #Apq_DropIndex_t_index_PSColumn;
 DROP TABLE #Apq_DropIndex_t_helpindex;
 DROP TABLE #Apq_DropIndex_t_index_PSColumn;
 
-IF(@DoDrop = 1)
+IF(@DoDrop = 1 AND Len(@sql_Drop) > 1)
 BEGIN
 	EXEC sp_executesql @sql_Drop;
 END

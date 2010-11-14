@@ -49,21 +49,48 @@ BEGIN
 END
 
 DECLARE @BID bigint, @EID bigint, @CID bigint, @CIDE bigint;
+SELECT @CID = -1;
 SELECT @BID = min(l.ID),@EID = max(l.ID) FROM log.ImeiLog l(NOLOCK) WHERE l.LogTime >= @StartTime AND l.LogTime < @EndTime;
 IF(@BID IS NULL OR @EID IS NULL) RETURN -1;
+IF(@IsAgain = 0) SELECT @CID = ISNULL(dbo.Apq_Ext_Get('PV_Stat',0,'CID_PV_Imei_LogType'),@BID);
+IF(NOT @CID BETWEEN @BID AND @EID)
+BEGIN
+	SELECT @CID = @BID;
+END
+PRINT Convert(nvarchar(21),@BID)+','+Convert(nvarchar(21),@CID)+','+Convert(nvarchar(21),@EID)
 
-SELECT @CID = @BID;
+-- 开始插入前去掉索引
+DECLARE @ExMsg nvarchar(max),@sql_Create nvarchar(max), @sql_Drop nvarchar(max)
+EXEC dbo.Apq_DropIndex @ExMsg OUT, 'dbo', 'PV_Imei_LogType', @sql_Create OUT, @sql_Drop OUT, 1
+IF(Len(@sql_Create)>1) EXEC dbo.Apq_Ext_Set 'PV_Imei_LogType', 0, 'Apq_CreateIndex',@sql_Create; -- 有索引时存档
+ELSE SELECT @sql_Create = dbo.Apq_Ext_Get('PV_Imei_LogType', 0, 'Apq_CreateIndex');	-- 否则读档
+
+PRINT '-- 创建索引 ---------------------------------------------------------------------------------'
+PRINT @sql_Create
+PRINT '-- 删除索引 ---------------------------------------------------------------------------------'
+PRINT @sql_Drop
+
+
 WHILE(@CID <= @EID)
 BEGIN
-	SELECT @BID,@CID,@EID;
-	SELECT @CIDE = @CID + 1000;
+	--SELECT 1,@BID,@CID,@EID;
+	PRINT '[1]'+Convert(nvarchar(21),@CID);
+	EXEC dbo.Apq_Ext_Set 'PV_Stat',0,'CID_PV_Imei_LogType',@CID;
+	
+	SELECT @CIDE = @CID + 10000;
 	INSERT dbo.PV_Imei_LogType ( Imei,LogType,FirstTime,FirstPlatform,FirstSMSC,FirstProvince )
 	SELECT l.Imei,l.LogType,ISNULL(l.LogTime,'9999-12-31 23:59:59.997'),ISNULL(l.Platform,'未知'),ISNULL(l.SMSC,'未知'),ISNULL(l.Province,'未知')
 	  FROM log.ImeiLog l(NOLOCK)
-	 WHERE l.ID >= @CID AND l.ID < @CIDE
-		AND l.Imei IS NOT NULL AND l.LogType IS NOT NULL
+	 WHERE NOT EXISTS(SELECT TOP 1 1 FROM dbo.PV_Imei_LogType d(NOLOCK) WHERE d.LogType = l.LogType AND d.Imei = l.Imei)
+		AND l.LogTime >= @StartTime AND l.LogTime < @EndTime
+		AND l.ID >= @CID AND l.ID < @CIDE
+		AND l.Imei IS NOT NULL AND l.LogType IS NOT NULL;
+		
 	SELECT @CID = @CIDE;
 END
+
+-- 插入完成后创建索引
+IF(LEN(@sql_Create)>1) EXEC sp_executesql @sql_Create;
 
 -- 统计最近访问次数
 IF(@IsAgain = 1)
@@ -144,15 +171,32 @@ BEGIN
 	END
 END
 
-WHILE(1=1)
+SELECT @CID = -1;
+SELECT @BID = min(t.ID),@EID = max(t.ID) FROM dbo.PV_Imei_LogType t(NOLOCK) WHERE t.FirstTime >= @StartTime AND t.FirstTime < @EndTime;
+IF(@IsAgain = 0) SELECT @CID = ISNULL(dbo.Apq_Ext_Get('PV_Stat',0,'CID_PV_Imei'),@BID);
+IF(@BID IS NULL OR @EID IS NULL) RETURN -1;
+IF(NOT @CID BETWEEN @BID AND @EID)
 BEGIN
+	SELECT @CID = @BID;
+END
+PRINT Convert(nvarchar(21),@BID)+','+Convert(nvarchar(21),@CID)+','+Convert(nvarchar(21),@EID)
+
+WHILE(@CID <= @EID)
+BEGIN
+	--SELECT 2,@BID,@CID,@EID;
+	PRINT '[2]'+Convert(nvarchar(21),@CID);
+	EXEC dbo.Apq_Ext_Set 'PV_Stat',0,'CID_PV_Imei',@CID;
+	
+	SELECT @CIDE = @CID + 10000;
 	INSERT dbo.PV_Imei ( Imei,FirstLogType,FirstTime,FirstPlatform,FirstSMSC,FirstProvince )
-	SELECT TOP(1000) t.Imei,ISNULL(LogType,0),FirstTime,FirstPlatform,FirstSMSC,FirstProvince
+	SELECT t.Imei,ISNULL(LogType,0),FirstTime,FirstPlatform,FirstSMSC,FirstProvince
 	  FROM dbo.PV_Imei_LogType t(NOLOCK)
-	 WHERE t.FirstTime >= @StartTime AND t.FirstTime < @EndTime
-		AND NOT EXISTS(SELECT TOP 1 1 FROM dbo.PV_Imei d(NOLOCK) WHERE d.Imei = t.Imei)
+	 WHERE NOT EXISTS(SELECT TOP 1 1 FROM dbo.PV_Imei d(NOLOCK) WHERE d.Imei = t.Imei)
+		AND t.FirstTime >= @StartTime AND t.FirstTime < @EndTime
+		AND t.ID >= @CID AND t.ID < @CIDE
 	 ORDER BY t.FirstTime;
-	IF(@@ROWCOUNT = 0) BREAK;
+	 
+	SELECT @CID = @CIDE;
 END
 
 -- 统计访问次数
@@ -172,11 +216,11 @@ WHILE(1=1)
 BEGIN
 	UPDATE TOP(1000) t
 	   SET _Time = getdate(), VisitCount_Time = @EndTime
-		,t.VisitCountWeek = ISNULL((SELECT Sum(VisitCountWeek) FROM log.PV_Imei_LogType l(NOLOCK) WHERE l.Imei = t.Imei),0)
-		,t.VisitCountDWeek = ISNULL((SELECT Sum(VisitCountDWeek) FROM log.PV_Imei_LogType l(NOLOCK) WHERE l.Imei = t.Imei),0)
-		,t.VisitCountMonth = ISNULL((SELECT Sum(VisitCountMonth) FROM log.PV_Imei_LogType l(NOLOCK) WHERE l.Imei = t.Imei),0)
-		,t.VisitCountNMonth = ISNULL((SELECT Sum(VisitCountNMonth) FROM log.PV_Imei_LogType l(NOLOCK) WHERE l.Imei = t.Imei),0)
-	,t.VisitCountTotal = ISNULL((SELECT Sum(VisitCountTotal) FROM log.PV_Imei_LogType l(NOLOCK) WHERE l.Imei = t.Imei),0)
+		,t.VisitCountWeek = ISNULL((SELECT Sum(VisitCountWeek) FROM dbo.PV_Imei_LogType l(NOLOCK) WHERE l.Imei = t.Imei),0)
+		,t.VisitCountDWeek = ISNULL((SELECT Sum(VisitCountDWeek) FROM dbo.PV_Imei_LogType l(NOLOCK) WHERE l.Imei = t.Imei),0)
+		,t.VisitCountMonth = ISNULL((SELECT Sum(VisitCountMonth) FROM dbo.PV_Imei_LogType l(NOLOCK) WHERE l.Imei = t.Imei),0)
+		,t.VisitCountNMonth = ISNULL((SELECT Sum(VisitCountNMonth) FROM dbo.PV_Imei_LogType l(NOLOCK) WHERE l.Imei = t.Imei),0)
+	,t.VisitCountTotal = ISNULL((SELECT Sum(VisitCountTotal) FROM dbo.PV_Imei_LogType l(NOLOCK) WHERE l.Imei = t.Imei),0)
 	  FROM dbo.PV_Imei t
 	 WHERE t.VisitCount_Time < @EndTime;
 	IF(@@ROWCOUNT = 0) BREAK;

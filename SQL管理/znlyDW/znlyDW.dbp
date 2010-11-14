@@ -7,6 +7,9 @@ Begin DataProject = "znlyDW"
       Script = "|[4]启用行版本.sql|005b0034005d542f7528884c7248672c002e00730071006c"
       Script = "|[5]所有对象.sql|005b0035005d624067095bf98c61002e00730071006c"
    End
+   Begin Folder = "|[2]初始数据|005b0032005d521d59cb6570636e"
+      Script = "dbo.Apq_Ext.sql"
+   End
    Begin DBRefFolder = "Database References"
       Begin DBRefNode = "sxh-109.znlyDW.dbo"
          ConnectStr = "Data Source=113.105.93.86,3134;Initial Catalog=znlyDW;Persist Security Info=True;User ID=sx"

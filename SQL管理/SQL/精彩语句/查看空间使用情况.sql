@@ -1,5 +1,14 @@
 
 /*
+DBCC SQLPERF(LOGSPACE)					-- 查看日志文件空间情况(百分比)
+DBCC SRHINKFILE('LogFileGroupName')		-- 收缩日志并显示空间情况
+
+-- 查看所有文件空间情况
+SELECT DB_NAME() AS DbName,name AS FileName,size/128.0 AS CurrentSizeMB,size/128.0 - CAST(FILEPROPERTY(name, 'SpaceUsed') AS INT)/128.0 AS FreeSpaceMB
+  FROM sys.database_files
+*/
+
+/*
 -- 
 EXEC sp_spaceused @updateusage = 'TRUE'
 --sp_MSforeachdb	-- 对每个库
