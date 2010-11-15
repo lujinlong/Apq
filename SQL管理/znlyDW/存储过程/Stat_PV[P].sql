@@ -59,17 +59,19 @@ BEGIN
 END
 PRINT Convert(nvarchar(21),@BID)+','+Convert(nvarchar(21),@CID)+','+Convert(nvarchar(21),@EID)
 
--- 开始插入前去掉索引
-DECLARE @ExMsg nvarchar(max),@sql_Create nvarchar(max), @sql_Drop nvarchar(max)
-EXEC dbo.Apq_DropIndex @ExMsg OUT, 'dbo', 'PV_Imei_LogType', @sql_Create OUT, @sql_Drop OUT, 1
-IF(Len(@sql_Create)>1) EXEC dbo.Apq_Ext_Set 'PV_Imei_LogType', 0, 'Apq_CreateIndex',@sql_Create; -- 有索引时存档
-ELSE SELECT @sql_Create = dbo.Apq_Ext_Get('PV_Imei_LogType', 0, 'Apq_CreateIndex');	-- 否则读档
+IF(@CID < @EID)
+BEGIN
+	-- 开始插入前去掉索引
+	DECLARE @ExMsg nvarchar(max),@sql_Create nvarchar(max), @sql_Drop nvarchar(max)
+	EXEC dbo.Apq_DropIndex @ExMsg OUT, 'dbo', 'PV_Imei_LogType', @sql_Create OUT, @sql_Drop OUT, 1
+	IF(Len(@sql_Create)>1) EXEC dbo.Apq_Ext_Set 'PV_Imei_LogType', 0, 'Apq_CreateIndex',@sql_Create; -- 有索引时存档
+	ELSE SELECT @sql_Create = dbo.Apq_Ext_Get('PV_Imei_LogType', 0, 'Apq_CreateIndex');	-- 否则读档
 
-PRINT '-- 创建索引 ---------------------------------------------------------------------------------'
-PRINT @sql_Create
-PRINT '-- 删除索引 ---------------------------------------------------------------------------------'
-PRINT @sql_Drop
-
+	PRINT '-- 创建索引 ---------------------------------------------------------------------------------'
+	PRINT @sql_Create
+	PRINT '-- 删除索引 ---------------------------------------------------------------------------------'
+	PRINT @sql_Drop
+END
 
 WHILE(@CID <= @EID)
 BEGIN
@@ -89,7 +91,10 @@ BEGIN
 	SELECT @CID = @CIDE;
 END
 
--- 插入完成后创建索引
+-- 插入完成,记录最后ID
+EXEC dbo.Apq_Ext_Set 'PV_Stat',0,'CID_PV_Imei_LogType',@EID;
+
+-- 插入完成后按需创建索引
 IF(LEN(@sql_Create)>1) EXEC sp_executesql @sql_Create;
 
 -- 统计最近访问次数
@@ -198,6 +203,9 @@ BEGIN
 	 
 	SELECT @CID = @CIDE;
 END
+
+-- 插入完成,记录最后ID
+EXEC dbo.Apq_Ext_Set 'PV_Stat',0,'CID_PV_Imei',@EID;
 
 -- 统计访问次数
 IF(@IsAgain = 1)
