@@ -32,9 +32,35 @@ SELECT @BTimeWeek = dateadd(dd,-7,@EndTime)
 	,@BTimeNMonth = CASE datepart(dd,@EndTime) WHEN 1 THEN Convert(nvarchar(8),@StartTime,120) ELSE Convert(nvarchar(8),@EndTime,120) END+'01'
 	;
 
+DECLARE @BID bigint, @EID bigint, @CID bigint, @CIDE bigint;
+DECLARE @ExMsg nvarchar(max),@sql_Create nvarchar(max), @sql_Drop nvarchar(max)
+
 --SELECT @BTimeWeek, @BTimeDWeek,@BTimeMonth,@BTimeNMonth;
 
 -- PV_Imei_LogType ---------------------------------------------------------------------------------
+SELECT @CID = -1,@sql_Create='',@sql_Drop='';
+SELECT @BID = min(l.ID),@EID = max(l.ID) FROM log.ImeiLog l(NOLOCK) WHERE l.LogTime >= @StartTime AND l.LogTime < @EndTime;
+IF(@BID IS NULL OR @EID IS NULL) RETURN -1;
+IF(@IsAgain = 0) SELECT @CID = ISNULL(dbo.Apq_Ext_Get('PV_Stat',0,'CID_PV_Imei_LogType'),@BID);
+IF(@IsAgain = 1) SELECT @CID = @BID;
+IF(NOT @CID BETWEEN @BID AND @EID)
+BEGIN
+	SELECT @CID = @BID;
+END
+PRINT '[1]'+Convert(nvarchar(21),@BID)+','+Convert(nvarchar(21),@CID)+','+Convert(nvarchar(21),@EID)
+
+IF(@CID < @EID)
+BEGIN
+	-- 开始插入前去掉索引
+	EXEC dbo.Apq_DropIndex @ExMsg OUT, 'dbo', 'PV_Imei_LogType', @sql_Create OUT, @sql_Drop OUT, 1
+	IF(Len(@sql_Create)>1) EXEC dbo.Apq_Ext_Set 'PV_Imei_LogType', 0, 'Apq_CreateIndex',@sql_Create; -- 有索引时存档
+	ELSE SELECT @sql_Create = dbo.Apq_Ext_Get('PV_Imei_LogType', 0, 'Apq_CreateIndex');	-- 否则读档
+
+	PRINT '-- 创建索引 ---------------------------------------------------------------------------------'
+	PRINT @sql_Create
+	PRINT '-- 删除索引 ---------------------------------------------------------------------------------'
+	PRINT @sql_Drop
+END
 
 -- 加入新增用户
 IF(@IsAgain = 1)
@@ -46,31 +72,6 @@ BEGIN
 		 WHERE t.FirstTime >= @StartTime-- AND t.FirstTime < @EndTime
 		IF(@@ROWCOUNT = 0) BREAK;
 	END
-END
-
-DECLARE @BID bigint, @EID bigint, @CID bigint, @CIDE bigint;
-SELECT @CID = -1;
-SELECT @BID = min(l.ID),@EID = max(l.ID) FROM log.ImeiLog l(NOLOCK) WHERE l.LogTime >= @StartTime AND l.LogTime < @EndTime;
-IF(@BID IS NULL OR @EID IS NULL) RETURN -1;
-IF(@IsAgain = 0) SELECT @CID = ISNULL(dbo.Apq_Ext_Get('PV_Stat',0,'CID_PV_Imei_LogType'),@BID);
-IF(NOT @CID BETWEEN @BID AND @EID)
-BEGIN
-	SELECT @CID = @BID;
-END
-PRINT Convert(nvarchar(21),@BID)+','+Convert(nvarchar(21),@CID)+','+Convert(nvarchar(21),@EID)
-
-IF(@CID < @EID)
-BEGIN
-	-- 开始插入前去掉索引
-	DECLARE @ExMsg nvarchar(max),@sql_Create nvarchar(max), @sql_Drop nvarchar(max)
-	EXEC dbo.Apq_DropIndex @ExMsg OUT, 'dbo', 'PV_Imei_LogType', @sql_Create OUT, @sql_Drop OUT, 1
-	IF(Len(@sql_Create)>1) EXEC dbo.Apq_Ext_Set 'PV_Imei_LogType', 0, 'Apq_CreateIndex',@sql_Create; -- 有索引时存档
-	ELSE SELECT @sql_Create = dbo.Apq_Ext_Get('PV_Imei_LogType', 0, 'Apq_CreateIndex');	-- 否则读档
-
-	PRINT '-- 创建索引 ---------------------------------------------------------------------------------'
-	PRINT @sql_Create
-	PRINT '-- 删除索引 ---------------------------------------------------------------------------------'
-	PRINT @sql_Drop
 END
 
 WHILE(@CID <= @EID)
@@ -154,6 +155,7 @@ BEGIN
 	   SET _Time = getdate(), Last_Time = @EndTime
 		,t.LastTime = ISNULL((SELECT TOP 1 LogTime FROM log.ImeiLog l(NOLOCK) WHERE l.LogType = t.LogType AND l.Imei = t.Imei ORDER BY LogTime DESC, ID DESC),0)
 		,t.LastPlatform = ISNULL((SELECT TOP 1 LastPlatform FROM log.ImeiLog l(NOLOCK) WHERE l.LogType = t.LogType AND l.Imei = t.Imei ORDER BY LogTime DESC, ID DESC),'未知')
+		,t.LastPlatformDate = (SELECT TOP 1 PlatformDate FROM log.ImeiLog l(NOLOCK) WHERE l.LogType = t.LogType AND l.Imei = t.Imei ORDER BY LogTime DESC, ID DESC)
 		,t.LastSMSC = ISNULL((SELECT TOP 1 LastSMSC FROM log.ImeiLog l(NOLOCK) WHERE l.LogType = t.LogType AND l.Imei = t.Imei ORDER BY LogTime DESC, ID DESC),'未知')
 		,t.LastProvince = ISNULL((SELECT TOP 1 Province FROM log.ImeiLog l(NOLOCK) WHERE l.LogType = t.LogType AND l.Imei = t.Imei ORDER BY LogTime DESC, ID DESC),'未知')
 	  FROM dbo.PV_Imei_LogType t
@@ -163,28 +165,41 @@ END
 -- =================================================================================================
 
 -- PV_Imei -----------------------------------------------------------------------------------------
+SELECT @CID = -1,@sql_Create='',@sql_Drop='';
+SELECT @BID = min(l.ID),@EID = max(l.ID) FROM dbo.PV_Imei_LogType l(NOLOCK) WHERE l.FirstTime >= @StartTime AND l.FirstTime < @EndTime;
+IF(@BID IS NULL OR @EID IS NULL) RETURN -1;
+IF(@IsAgain = 0) SELECT @CID = ISNULL(dbo.Apq_Ext_Get('PV_Stat',0,'CID_PV_Imei'),@BID);
+IF(@IsAgain = 1) SELECT @CID = @BID;
+IF(NOT @CID BETWEEN @BID AND @EID)
+BEGIN
+	SELECT @CID = @BID;
+END
+PRINT '[2]'+Convert(nvarchar(21),@BID)+','+Convert(nvarchar(21),@CID)+','+Convert(nvarchar(21),@EID)
+
+IF(@CID < @EID)
+BEGIN
+	-- 开始插入前去掉索引
+	EXEC dbo.Apq_DropIndex @ExMsg OUT, 'dbo', 'PV_Imei', @sql_Create OUT, @sql_Drop OUT, 1
+	IF(Len(@sql_Create)>1) EXEC dbo.Apq_Ext_Set 'PV_Imei', 0, 'Apq_CreateIndex',@sql_Create; -- 有索引时存档
+	ELSE SELECT @sql_Create = dbo.Apq_Ext_Get('PV_Imei', 0, 'Apq_CreateIndex');	-- 否则读档
+
+	PRINT '-- 创建索引 ---------------------------------------------------------------------------------'
+	PRINT @sql_Create
+	PRINT '-- 删除索引 ---------------------------------------------------------------------------------'
+	PRINT @sql_Drop
+END
 
 -- 加入新增用户
 IF(@IsAgain = 1)
 BEGIN
 	WHILE(1=1)
 	BEGIN
-		DELETE TOP(1000) t
+		DELETE TOP(10000) t
 		  FROM dbo.PV_Imei t
 		 WHERE t.FirstTime >= @StartTime-- AND t.FirstTime < @EndTime
 		IF(@@ROWCOUNT = 0) BREAK;
 	END
 END
-
-SELECT @CID = -1;
-SELECT @BID = min(t.ID),@EID = max(t.ID) FROM dbo.PV_Imei_LogType t(NOLOCK) WHERE t.FirstTime >= @StartTime AND t.FirstTime < @EndTime;
-IF(@IsAgain = 0) SELECT @CID = ISNULL(dbo.Apq_Ext_Get('PV_Stat',0,'CID_PV_Imei'),@BID);
-IF(@BID IS NULL OR @EID IS NULL) RETURN -1;
-IF(NOT @CID BETWEEN @BID AND @EID)
-BEGIN
-	SELECT @CID = @BID;
-END
-PRINT Convert(nvarchar(21),@BID)+','+Convert(nvarchar(21),@CID)+','+Convert(nvarchar(21),@EID)
 
 WHILE(@CID <= @EID)
 BEGIN
@@ -193,8 +208,8 @@ BEGIN
 	EXEC dbo.Apq_Ext_Set 'PV_Stat',0,'CID_PV_Imei',@CID;
 	
 	SELECT @CIDE = @CID + 10000;
-	INSERT dbo.PV_Imei ( Imei,FirstLogType,FirstTime,FirstPlatform,FirstSMSC,FirstProvince )
-	SELECT t.Imei,ISNULL(LogType,0),FirstTime,FirstPlatform,FirstSMSC,FirstProvince
+	INSERT dbo.PV_Imei ( Imei,FirstLogType,FirstTime,FirstPlatform,FristPlatformDate,FirstSMSC,FirstProvince )
+	SELECT t.Imei,ISNULL(LogType,0),FirstTime,FirstPlatform,FristPlatformDate,FirstSMSC,FirstProvince
 	  FROM dbo.PV_Imei_LogType t(NOLOCK)
 	 WHERE NOT EXISTS(SELECT TOP 1 1 FROM dbo.PV_Imei d(NOLOCK) WHERE d.Imei = t.Imei)
 		AND t.FirstTime >= @StartTime AND t.FirstTime < @EndTime
@@ -207,7 +222,7 @@ END
 -- 插入完成,记录最后ID
 EXEC dbo.Apq_Ext_Set 'PV_Stat',0,'CID_PV_Imei',@EID;
 
--- 统计访问次数
+-- 更新其余统计信息
 IF(@IsAgain = 1)
 BEGIN
 	WHILE(1=1)
@@ -228,36 +243,16 @@ BEGIN
 		,t.VisitCountDWeek = ISNULL((SELECT Sum(VisitCountDWeek) FROM dbo.PV_Imei_LogType l(NOLOCK) WHERE l.Imei = t.Imei),0)
 		,t.VisitCountMonth = ISNULL((SELECT Sum(VisitCountMonth) FROM dbo.PV_Imei_LogType l(NOLOCK) WHERE l.Imei = t.Imei),0)
 		,t.VisitCountNMonth = ISNULL((SELECT Sum(VisitCountNMonth) FROM dbo.PV_Imei_LogType l(NOLOCK) WHERE l.Imei = t.Imei),0)
-	,t.VisitCountTotal = ISNULL((SELECT Sum(VisitCountTotal) FROM dbo.PV_Imei_LogType l(NOLOCK) WHERE l.Imei = t.Imei),0)
+		,t.VisitCountTotal = ISNULL((SELECT Sum(VisitCountTotal) FROM dbo.PV_Imei_LogType l(NOLOCK) WHERE l.Imei = t.Imei),0)
+		
+		,t.LastLogType = (SELECT TOP 1 LogType FROM dbo.PV_Imei_LogType l(NOLOCK) WHERE l.Imei = t.Imei ORDER BY LastTime DESC, ID DESC)
+		,t.LastTime = (SELECT TOP 1 LastTime FROM dbo.PV_Imei_LogType l(NOLOCK) WHERE l.Imei = t.Imei ORDER BY LastTime DESC, ID DESC)
+		,t.LastPlatform = (SELECT TOP 1 LastPlatform FROM dbo.PV_Imei_LogType l(NOLOCK) WHERE l.Imei = t.Imei ORDER BY LastTime DESC, ID DESC)
+		,t.LastPlatformDate = (SELECT TOP 1 LastPlatformDate FROM dbo.PV_Imei_LogType l(NOLOCK) WHERE l.Imei = t.Imei ORDER BY LastTime DESC, ID DESC)
+		,t.LastSMSC = (SELECT TOP 1 LastSMSC FROM dbo.PV_Imei_LogType l(NOLOCK) WHERE l.Imei = t.Imei ORDER BY LastTime DESC, ID DESC)
+		,t.LastProvince = (SELECT TOP 1 LastProvince FROM dbo.PV_Imei_LogType l(NOLOCK) WHERE l.Imei = t.Imei ORDER BY LastTime DESC, ID DESC)
 	  FROM dbo.PV_Imei t
 	 WHERE t.VisitCount_Time < @EndTime;
-	IF(@@ROWCOUNT = 0) BREAK;
-END
-
--- 更新最后访问信息
-IF(@IsAgain = 1)
-BEGIN
-	WHILE(1=1)
-	BEGIN
-		UPDATE TOP(1000) t
-		   SET _Time = getdate(), Last_Time = dateadd(n,-1,@EndTime)
-		  FROM dbo.PV_Imei t
-		WHERE t.Last_Time >= @EndTime;
-		IF(@@ROWCOUNT = 0) BREAK;
-	END
-END
-
-WHILE(1=1)
-BEGIN
-	UPDATE TOP(1000) t
-	   SET _Time = getdate(), Last_Time = @EndTime
-		,t.LastLogType = ISNULL((SELECT TOP 1 LogType FROM log.ImeiLog l(NOLOCK) WHERE l.Imei = t.Imei ORDER BY LogTime DESC, ID DESC),0)
-		,t.LastTime = ISNULL((SELECT TOP 1 LogTime FROM log.ImeiLog l(NOLOCK) WHERE l.Imei = t.Imei ORDER BY LogTime DESC, ID DESC),0)
-		,t.LastPlatform = ISNULL((SELECT TOP 1 LastPlatform FROM log.ImeiLog l(NOLOCK) WHERE l.Imei = t.Imei ORDER BY LogTime DESC, ID DESC),'未知')
-		,t.LastSMSC = ISNULL((SELECT TOP 1 LastSMSC FROM log.ImeiLog l(NOLOCK) WHERE l.Imei = t.Imei ORDER BY LogTime DESC, ID DESC),'未知')
-		,t.LastProvince = ISNULL((SELECT TOP 1 Province FROM log.ImeiLog l(NOLOCK) WHERE l.Imei = t.Imei ORDER BY LogTime DESC, ID DESC),'未知')
-	  FROM dbo.PV_Imei t
-	 WHERE t.Last_Time < @EndTime;
 	IF(@@ROWCOUNT = 0) BREAK;
 END
 -- =================================================================================================

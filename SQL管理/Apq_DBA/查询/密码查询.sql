@@ -7,5 +7,5 @@ SELECT s.SrvID,s.SrvName,s.IPWan1,s.IPLan1,PwdType=pt.Description
   FROM mgr.Server s FULL JOIN mgr.SrvPwd p ON s.SrvID = p.SrvID LEFT JOIN dic.PwdType pt ON p.PwdType = pt.PwdType
  
 -- WHERE SrvName LIKE ''
- ORDER BY p.SrvID
+ ORDER BY s.SrvID DESC
  

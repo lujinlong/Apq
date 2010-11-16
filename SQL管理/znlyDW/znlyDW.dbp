@@ -18,7 +18,8 @@ Begin DataProject = "znlyDW"
       End
    End
    Begin Folder = "|´æ´¢¹ý³Ì|5b5850a88fc77a0b"
-      Script = "Stat_PV[P].sql"
+      Script = "Stat_PV_20101116[P].sql"
+      Script = "Stat_PV_R1[P].sql"
       Script = "Wb_PV_Get[P].sql"
       Script = "Wb_PV_LogType_Get[P].sql"
    End
