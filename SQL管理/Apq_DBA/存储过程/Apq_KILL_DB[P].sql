@@ -35,7 +35,7 @@ SELECT * FROM #sp_who
 SET	@pSession = CURSOR FOR
 SELECT DISTINCT N'KILL ' + CAST(spid AS nvarchar)
   FROM #sp_who
- WHERE dbname = @DBName;
+ WHERE spid > 50 AND dbname = @DBName;
 
 OPEN @pSession;
 FETCH NEXT FROM @pSession INTO @stmt;

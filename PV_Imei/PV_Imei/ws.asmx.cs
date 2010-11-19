@@ -21,8 +21,8 @@ namespace PV_Imei
 	{
 		[WebMethod]
 		public void PV_Imei(string Imei
-			, ref DateTime FirstTime, ref int FirstLogType, ref int FirstSource, ref string FirstProvince
-			, ref DateTime LastTime, ref int LastLogType, ref int LastSource, ref string LastProvince
+			, ref DateTime FirstTime, ref int FirstLogType, ref string FirstPlatform, ref string FirstSMSC, ref string FirstProvince
+			, ref DateTime LastTime, ref int LastLogType, ref string LastPlatform, ref string LastSMSC, ref string LastProvince
 			, ref int VisitCountTotal, ref int VisitCountWeek, ref int VisitCountDWeek, ref int VisitCountMonth, ref int VisitCountNMonth)
 		{
 			DataSet ds = new DataSet();
@@ -36,11 +36,13 @@ namespace PV_Imei
 
 			sda.SelectCommand.Parameters.Add("FirstTime", SqlDbType.DateTime);
 			sda.SelectCommand.Parameters.Add("FirstLogType", SqlDbType.Int);
-			sda.SelectCommand.Parameters.Add("FirstSource", SqlDbType.Int);
+			sda.SelectCommand.Parameters.Add("FirstPlatform", SqlDbType.NVarChar, 100);
+			sda.SelectCommand.Parameters.Add("FirstSMSC", SqlDbType.NVarChar, 50);
 			sda.SelectCommand.Parameters.Add("FirstProvince", SqlDbType.NVarChar, 50);
 			sda.SelectCommand.Parameters.Add("LastTime", SqlDbType.DateTime);
 			sda.SelectCommand.Parameters.Add("LastLogType", SqlDbType.Int);
-			sda.SelectCommand.Parameters.Add("LastSource", SqlDbType.Int);
+			sda.SelectCommand.Parameters.Add("LastPlatform", SqlDbType.NVarChar, 100);
+			sda.SelectCommand.Parameters.Add("LastSMSC", SqlDbType.NVarChar, 50);
 			sda.SelectCommand.Parameters.Add("LastProvince", SqlDbType.NVarChar, 50);
 			sda.SelectCommand.Parameters.Add("VisitCountTotal", SqlDbType.Int);
 			sda.SelectCommand.Parameters.Add("VisitCountWeek", SqlDbType.Int);
@@ -52,11 +54,13 @@ namespace PV_Imei
 			sda.SelectCommand.Parameters["ExMsg"].Direction = ParameterDirection.InputOutput;
 			sda.SelectCommand.Parameters["FirstTime"].Direction = ParameterDirection.InputOutput;
 			sda.SelectCommand.Parameters["FirstLogType"].Direction = ParameterDirection.InputOutput;
-			sda.SelectCommand.Parameters["FirstSource"].Direction = ParameterDirection.InputOutput;
+			sda.SelectCommand.Parameters["FirstPlatform"].Direction = ParameterDirection.InputOutput;
+			sda.SelectCommand.Parameters["FirstSMSC"].Direction = ParameterDirection.InputOutput;
 			sda.SelectCommand.Parameters["FirstProvince"].Direction = ParameterDirection.InputOutput;
 			sda.SelectCommand.Parameters["LastTime"].Direction = ParameterDirection.InputOutput;
 			sda.SelectCommand.Parameters["LastLogType"].Direction = ParameterDirection.InputOutput;
-			sda.SelectCommand.Parameters["LastSource"].Direction = ParameterDirection.InputOutput;
+			sda.SelectCommand.Parameters["LastPlatform"].Direction = ParameterDirection.InputOutput;
+			sda.SelectCommand.Parameters["LastSMSC"].Direction = ParameterDirection.InputOutput;
 			sda.SelectCommand.Parameters["LastProvince"].Direction = ParameterDirection.InputOutput;
 			sda.SelectCommand.Parameters["VisitCountTotal"].Direction = ParameterDirection.InputOutput;
 			sda.SelectCommand.Parameters["VisitCountWeek"].Direction = ParameterDirection.InputOutput;
@@ -75,11 +79,13 @@ namespace PV_Imei
 
 			FirstTime = sda.SelectCommand.Parameters["FirstTime"].Value == null ? new DateTime(9999, 12, 31) : Convert.ToDateTime(sda.SelectCommand.Parameters["FirstTime"].Value);
 			FirstLogType = sda.SelectCommand.Parameters["FirstLogType"].Value == null ? 0 : Convert.ToInt32(sda.SelectCommand.Parameters["FirstLogType"].Value);
-			FirstSource = sda.SelectCommand.Parameters["FirstSource"].Value == null ? 0 : Convert.ToInt32(sda.SelectCommand.Parameters["FirstSource"].Value);
+			FirstPlatform = sda.SelectCommand.Parameters["FirstPlatform"].Value == null ? "未知" : sda.SelectCommand.Parameters["FirstPlatform"].Value.ToString();
+			FirstSMSC = sda.SelectCommand.Parameters["FirstSMSC"].Value == null ? "未知" : sda.SelectCommand.Parameters["FirstSMSC"].Value.ToString();
 			FirstProvince = sda.SelectCommand.Parameters["FirstProvince"].Value == null ? "未知" : sda.SelectCommand.Parameters["FirstProvince"].Value.ToString();
 			LastTime = sda.SelectCommand.Parameters["LastTime"].Value == null ? new DateTime(9999, 12, 31) : Convert.ToDateTime(sda.SelectCommand.Parameters["LastTime"].Value);
 			LastLogType = sda.SelectCommand.Parameters["LastLogType"].Value == null ? 0 : Convert.ToInt32(sda.SelectCommand.Parameters["LastLogType"].Value);
-			LastSource = sda.SelectCommand.Parameters["LastSource"].Value == null ? 0 : Convert.ToInt32(sda.SelectCommand.Parameters["LastSource"].Value);
+			LastPlatform = sda.SelectCommand.Parameters["LastPlatform"].Value == null ? "未知" : sda.SelectCommand.Parameters["LastPlatform"].Value.ToString();
+			LastSMSC = sda.SelectCommand.Parameters["LastSMSC"].Value == null ? "未知" : sda.SelectCommand.Parameters["LastSMSC"].Value.ToString();
 			LastProvince = sda.SelectCommand.Parameters["LastProvince"].Value == null ? "未知" : sda.SelectCommand.Parameters["LastProvince"].Value.ToString();
 			VisitCountTotal = sda.SelectCommand.Parameters["VisitCountTotal"].Value == null ? 0 : Convert.ToInt32(sda.SelectCommand.Parameters["VisitCountTotal"].Value);
 			VisitCountWeek = sda.SelectCommand.Parameters["VisitCountWeek"].Value == null ? 0 : Convert.ToInt32(sda.SelectCommand.Parameters["VisitCountWeek"].Value);
@@ -91,8 +97,8 @@ namespace PV_Imei
 
 		[WebMethod]
 		public void PV_Imei_LogType(string Imei, int LogType
-			, ref DateTime FirstTime, ref int FirstSource, ref string FirstProvince
-			, ref DateTime LastTime, ref int LastSource, ref string LastProvince
+			, ref DateTime FirstTime, ref string FirstPlatform, ref string FirstSMSC, ref string FirstProvince
+			, ref DateTime LastTime, ref string LastPlatform, ref string LastSMSC, ref string LastProvince
 			, ref int VisitCountTotal, ref int VisitCountWeek, ref int VisitCountDWeek, ref int VisitCountMonth, ref int VisitCountNMonth)
 		{
 			DataSet ds = new DataSet();
@@ -106,10 +112,12 @@ namespace PV_Imei
 			sda.SelectCommand.Parameters.Add("LogType", SqlDbType.Int);
 
 			sda.SelectCommand.Parameters.Add("FirstTime", SqlDbType.DateTime);
-			sda.SelectCommand.Parameters.Add("FirstSource", SqlDbType.Int);
+			sda.SelectCommand.Parameters.Add("FirstPlatform", SqlDbType.NVarChar, 100);
+			sda.SelectCommand.Parameters.Add("FirstSMSC", SqlDbType.NVarChar, 50);
 			sda.SelectCommand.Parameters.Add("FirstProvince", SqlDbType.NVarChar, 50);
 			sda.SelectCommand.Parameters.Add("LastTime", SqlDbType.DateTime);
-			sda.SelectCommand.Parameters.Add("LastSource", SqlDbType.Int);
+			sda.SelectCommand.Parameters.Add("LastPlatform", SqlDbType.NVarChar, 100);
+			sda.SelectCommand.Parameters.Add("LastSMSC", SqlDbType.NVarChar, 50);
 			sda.SelectCommand.Parameters.Add("LastProvince", SqlDbType.NVarChar, 50);
 			sda.SelectCommand.Parameters.Add("VisitCountTotal", SqlDbType.Int);
 			sda.SelectCommand.Parameters.Add("VisitCountWeek", SqlDbType.Int);
@@ -120,10 +128,12 @@ namespace PV_Imei
 			sda.SelectCommand.Parameters["rtn"].Direction = ParameterDirection.ReturnValue;
 			sda.SelectCommand.Parameters["ExMsg"].Direction = ParameterDirection.InputOutput;
 			sda.SelectCommand.Parameters["FirstTime"].Direction = ParameterDirection.InputOutput;
-			sda.SelectCommand.Parameters["FirstSource"].Direction = ParameterDirection.InputOutput;
+			sda.SelectCommand.Parameters["FirstPlatform"].Direction = ParameterDirection.InputOutput;
+			sda.SelectCommand.Parameters["FirstSMSC"].Direction = ParameterDirection.InputOutput;
 			sda.SelectCommand.Parameters["FirstProvince"].Direction = ParameterDirection.InputOutput;
 			sda.SelectCommand.Parameters["LastTime"].Direction = ParameterDirection.InputOutput;
-			sda.SelectCommand.Parameters["LastSource"].Direction = ParameterDirection.InputOutput;
+			sda.SelectCommand.Parameters["LastPlatform"].Direction = ParameterDirection.InputOutput;
+			sda.SelectCommand.Parameters["LastSMSC"].Direction = ParameterDirection.InputOutput;
 			sda.SelectCommand.Parameters["LastProvince"].Direction = ParameterDirection.InputOutput;
 			sda.SelectCommand.Parameters["VisitCountTotal"].Direction = ParameterDirection.InputOutput;
 			sda.SelectCommand.Parameters["VisitCountWeek"].Direction = ParameterDirection.InputOutput;
@@ -142,10 +152,12 @@ namespace PV_Imei
 			}
 
 			FirstTime = sda.SelectCommand.Parameters["FirstTime"].Value == null ? new DateTime(9999, 12, 31) : Convert.ToDateTime(sda.SelectCommand.Parameters["FirstTime"].Value);
-			FirstSource = sda.SelectCommand.Parameters["FirstSource"].Value == null ? 0 : Convert.ToInt32(sda.SelectCommand.Parameters["FirstSource"].Value);
+			FirstPlatform = sda.SelectCommand.Parameters["FirstPlatform"].Value == null ? "未知" : sda.SelectCommand.Parameters["FirstPlatform"].Value.ToString();
+			FirstSMSC = sda.SelectCommand.Parameters["FirstSMSC"].Value == null ? "未知" : sda.SelectCommand.Parameters["FirstSMSC"].Value.ToString();
 			FirstProvince = sda.SelectCommand.Parameters["FirstProvince"].Value == null ? "未知" : sda.SelectCommand.Parameters["FirstProvince"].Value.ToString();
 			LastTime = sda.SelectCommand.Parameters["LastTime"].Value == null ? new DateTime(9999, 12, 31) : Convert.ToDateTime(sda.SelectCommand.Parameters["LastTime"].Value);
-			LastSource = sda.SelectCommand.Parameters["LastSource"].Value == null ? 0 : Convert.ToInt32(sda.SelectCommand.Parameters["LastSource"].Value);
+			LastPlatform = sda.SelectCommand.Parameters["LastPlatform"].Value == null ? "未知" : sda.SelectCommand.Parameters["LastPlatform"].Value.ToString();
+			LastSMSC = sda.SelectCommand.Parameters["LastSMSC"].Value == null ? "未知" : sda.SelectCommand.Parameters["LastSMSC"].Value.ToString();
 			LastProvince = sda.SelectCommand.Parameters["LastProvince"].Value == null ? "未知" : sda.SelectCommand.Parameters["LastProvince"].Value.ToString();
 			VisitCountTotal = sda.SelectCommand.Parameters["VisitCountTotal"].Value == null ? 0 : Convert.ToInt32(sda.SelectCommand.Parameters["VisitCountTotal"].Value);
 			VisitCountWeek = sda.SelectCommand.Parameters["VisitCountWeek"].Value == null ? 0 : Convert.ToInt32(sda.SelectCommand.Parameters["VisitCountWeek"].Value);

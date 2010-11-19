@@ -127,6 +127,12 @@ BEGIN
 		,t.LastPlatformDate = (SELECT TOP 1 PlatformDate FROM log.ImeiLog l(NOLOCK) WHERE l.LogType = t.LogType AND l.Imei = t.Imei ORDER BY LogTime DESC, ID DESC)
 		,t.LastSMSC = ISNULL((SELECT TOP 1 LastSMSC FROM log.ImeiLog l(NOLOCK) WHERE l.LogType = t.LogType AND l.Imei = t.Imei ORDER BY LogTime DESC, ID DESC),'未知')
 		,t.LastProvince = ISNULL((SELECT TOP 1 Province FROM log.ImeiLog l(NOLOCK) WHERE l.LogType = t.LogType AND l.Imei = t.Imei ORDER BY LogTime DESC, ID DESC),'未知')
+		
+		,t.SLastTime = t.LastTime
+		,t.SLastPlatform = t.LastPlatform
+		,t.SLastPlatformDate = t.LastPlatformDate
+		,t.SLastSMSC = t.LastSMSC
+		,t.SLastProvince = t.LastProvince
 	  FROM dbo.PV_Imei_LogType t
 	 WHERE t.VisitCountLately_Time < @EndTime;
 	IF(@@ROWCOUNT = 0) BREAK;
@@ -221,6 +227,13 @@ BEGIN
 		,t.LastPlatformDate = (SELECT TOP 1 LastPlatformDate FROM dbo.PV_Imei_LogType l(NOLOCK) WHERE l.Imei = t.Imei ORDER BY LastTime DESC, ID DESC)
 		,t.LastSMSC = (SELECT TOP 1 LastSMSC FROM dbo.PV_Imei_LogType l(NOLOCK) WHERE l.Imei = t.Imei ORDER BY LastTime DESC, ID DESC)
 		,t.LastProvince = (SELECT TOP 1 LastProvince FROM dbo.PV_Imei_LogType l(NOLOCK) WHERE l.Imei = t.Imei ORDER BY LastTime DESC, ID DESC)
+		
+		,t.SLastLogType = t.LastLogType
+		,t.SLastTime = t.LastTime
+		,t.SLastPlatform = t.LastPlatform
+		,t.SLastPlatformDate = t.LastPlatformDate
+		,t.SLastSMSC = t.LastSMSC
+		,t.SLastProvince = t.LastProvince
 	  FROM dbo.PV_Imei t
 	 WHERE t.VisitCount_Time < @EndTime;
 	IF(@@ROWCOUNT = 0) BREAK;

@@ -20,10 +20,12 @@ namespace PV_Imei
 			int LogType = Convert.ToInt32(txtLogType.Text);
 
 			DateTime FirstTime = new DateTime(9999, 12, 31);
-			int FirstSource = 0;
+			string FirstPlatform = "未知";
+			string FirstSMSC = "未知";
 			string FirstProvince = "未知";
 			DateTime LastTime = new DateTime(9999, 12, 31);
-			int LastSource = 0;
+			string LastPlatform = "未知";
+			string LastSMSC = "未知";
 			string LastProvince = "未知";
 			int VisitCountTotal = 0;
 			int VisitCountWeek = 0;
@@ -33,12 +35,12 @@ namespace PV_Imei
 
 			ws ws = new ws();
 			ws.PV_Imei_LogType(Imei, LogType
-				, ref FirstTime, ref FirstSource, ref FirstProvince
-				, ref LastTime, ref LastSource, ref LastProvince
+				, ref FirstTime, ref FirstPlatform, ref FirstSMSC, ref FirstProvince
+				, ref LastTime, ref LastPlatform, ref LastSMSC, ref LastProvince
 				, ref VisitCountTotal, ref VisitCountWeek, ref VisitCountDWeek, ref VisitCountMonth, ref VisitCountNMonth);
 
-			txtOut.Text = FirstTime.ToString("yyyy-MM-dd HH:mm:ss") + "," + FirstSource + "," + FirstProvince + ","
-				+ LastTime.ToString("yyyy-MM-dd HH:mm:ss") + "," + LastSource + "," + LastProvince + ","
+			txtOut.Text = FirstTime.ToString("yyyy-MM-dd HH:mm:ss") + "," + FirstPlatform + "," + FirstSMSC + "," + FirstProvince + ","
+				+ LastTime.ToString("yyyy-MM-dd HH:mm:ss") + "," + LastPlatform + "," + LastSMSC + "," + LastProvince + ","
 				+ VisitCountTotal + "," + VisitCountWeek + "," + VisitCountDWeek + "," + VisitCountMonth + "," + VisitCountNMonth;
 		}
 	}

@@ -10,6 +10,9 @@ Begin DataProject = "znlyDW"
    Begin Folder = "|[2]初始数据|005b0032005d521d59cb6570636e"
       Script = "dbo.Apq_Ext.sql"
    End
+   Begin Folder = "|[3]作业|005b0033005d4f5c4e1a"
+      Script = "|[Job][每日00_00]清空机型厂商切换表[S].sql|005b004a006f0062005d005b6bcf65e500300030005f00300030005d6e057a7a673a578b53825546520763628868005b0053005d002e00730071006c"
+   End
    Begin DBRefFolder = "Database References"
       Begin DBRefNode = "sxh-109.znlyDW.dbo"
          ConnectStr = "Data Source=113.105.93.86,3134;Initial Catalog=znlyDW;Persist Security Info=True;User ID=sx"
