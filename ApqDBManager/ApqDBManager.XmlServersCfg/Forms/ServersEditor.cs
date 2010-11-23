@@ -246,7 +246,7 @@ namespace ApqDBManager.XmlServersCfg.Forms
 				string strPwdD = Apq.Convert.ChangeType<string>(tln["PwdD"]);
 				if (string.IsNullOrEmpty(strPwdD))
 				{
-					strPwdD = Apq.Security.Cryptography.DESHelper.DecryptString(tln["PwdC"].ToString(), Apq.CryptKey.DES.Key, Apq.CryptKey.DES.IV);
+					strPwdD = Apq.Security.Cryptography.DESHelper.DecryptString(tln["PwdC"].ToString(), GlobalObject.RegConfigChain["Crypt","DESKey"], GlobalObject.RegConfigChain["Crypt","DESIV"]);
 				}
 				SqlConnection sc = new SqlConnection(string.Format("Data Source={0},{1};User Id={2};Password={3};",
 					tln["IPWan1"], tln["SqlPort"], tln["UID"], strPwdD));
@@ -277,7 +277,7 @@ namespace ApqDBManager.XmlServersCfg.Forms
 				string FtpP = Apq.Convert.ChangeType<string>(tln["FTPPD"]);
 				if (string.IsNullOrEmpty(FtpP))
 				{
-					FtpP = Apq.Security.Cryptography.DESHelper.DecryptString(tln["FTPPC"].ToString(), Apq.CryptKey.DES.Key, Apq.CryptKey.DES.IV);
+					FtpP = Apq.Security.Cryptography.DESHelper.DecryptString(tln["FTPPC"].ToString(), GlobalObject.RegConfigChain["Crypt", "DESKey"], GlobalObject.RegConfigChain["Crypt", "DESIV"]);
 				}
 				if (string.IsNullOrEmpty(FtpU))
 				{
@@ -368,11 +368,11 @@ namespace ApqDBManager.XmlServersCfg.Forms
 				if (Apq.Convert.HasMean(dr["IPWan1"]) && Apq.Convert.HasMean(dr["SqlPort"])
 					&& Apq.Convert.HasMean(dr["UID"]) && Apq.Convert.HasMean(dr["PwdD"]))
 				{
-					dr["PwdC"] = Apq.Security.Cryptography.DESHelper.EncryptString(dr["PwdD"].ToString(), Apq.CryptKey.DES.Key, Apq.CryptKey.DES.IV);
+					dr["PwdC"] = Apq.Security.Cryptography.DESHelper.EncryptString(dr["PwdD"].ToString(), GlobalObject.RegConfigChain["Crypt", "DESKey"], GlobalObject.RegConfigChain["Crypt", "DESIV"]);
 				}
 				if (Apq.Convert.HasMean(dr["FTPPD"]))
 				{
-					dr["FTPPC"] = Apq.Security.Cryptography.DESHelper.EncryptString(dr["FTPPD"].ToString(), Apq.CryptKey.DES.Key, Apq.CryptKey.DES.IV);
+					dr["FTPPC"] = Apq.Security.Cryptography.DESHelper.EncryptString(dr["FTPPD"].ToString(), GlobalObject.RegConfigChain["Crypt", "DESKey"], GlobalObject.RegConfigChain["Crypt", "DESIV"]);
 				}
 				dr["CheckState"] = 0;
 				dr["Err"] = 0;
@@ -407,7 +407,7 @@ namespace ApqDBManager.XmlServersCfg.Forms
 		private void bbiLoadFromDB_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
 		{
 			// 从数据库加载
-			string strPwdD = Apq.Security.Cryptography.DESHelper.DecryptString(GlobalObject.XmlConfigChain[this.GetType(), "PwdC"], Apq.CryptKey.DES.Key, Apq.CryptKey.DES.IV);
+			string strPwdD = Apq.Security.Cryptography.DESHelper.DecryptString(GlobalObject.XmlConfigChain[this.GetType(), "PwdC"], GlobalObject.RegConfigChain["Crypt", "DESKey"], GlobalObject.RegConfigChain["Crypt", "DESIV"]);
 			string strConn = string.Format("Data Source={0},{1};User Id={2};Password={3};Initial Catalog={4};"
 				, GlobalObject.XmlConfigChain[this.GetType(), "IP"]
 				, GlobalObject.XmlConfigChain[this.GetType(), "SqlPort"]
@@ -429,7 +429,7 @@ namespace ApqDBManager.XmlServersCfg.Forms
 			DataTable dt = Servers.dtServers.Copy();
 			dt_CryptPwdD(dt);
 			// 保存到数据库
-			string strPwdD = Apq.Security.Cryptography.DESHelper.DecryptString(GlobalObject.XmlConfigChain[this.GetType(), "PwdC"], Apq.CryptKey.DES.Key, Apq.CryptKey.DES.IV);
+			string strPwdD = Apq.Security.Cryptography.DESHelper.DecryptString(GlobalObject.XmlConfigChain[this.GetType(), "PwdC"], GlobalObject.RegConfigChain["Crypt", "DESKey"], GlobalObject.RegConfigChain["Crypt", "DESIV"]);
 			string strConn = string.Format("Data Source={0},{1};User Id={2};Password={3};Initial Catalog={4};"
 				, GlobalObject.XmlConfigChain[this.GetType(), "IP"]
 				, GlobalObject.XmlConfigChain[this.GetType(), "SqlPort"]

@@ -107,10 +107,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Dlls\Apq.Com.dll</HintPath>
     </Reference>
-    <Reference Include="Apq.CryptKey, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>Dlls\Apq.CryptKey.dll</HintPath>
-    </Reference>
     <Reference Include="Apq.Win, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Dlls\Apq.Win.dll</HintPath>
@@ -557,9 +553,9 @@ xcopy "%25Reference%25\$(ConfigurationName)\Apq.Com.dll" "$(ProjectDir)Dlls\" /c
 xcopy "%25Reference%25\$(ConfigurationName)\Apq.Com.xml" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
 xcopy "%25Reference%25\$(ConfigurationName)\Apq.Com.pdb" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
 
-xcopy "%25Reference%25\$(ConfigurationName)\Apq.CryptKey.dll" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
-xcopy "%25Reference%25\$(ConfigurationName)\Apq.CryptKey.xml" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
-xcopy "%25Reference%25\$(ConfigurationName)\Apq.CryptKey.pdb" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+:xcopy "%25Reference%25\$(ConfigurationName)\Apq.CryptKey.dll" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+:xcopy "%25Reference%25\$(ConfigurationName)\Apq.CryptKey.xml" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+:xcopy "%25Reference%25\$(ConfigurationName)\Apq.CryptKey.pdb" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
 
 xcopy "%25Reference%25\$(ConfigurationName)\Apq.Win.dll" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
 xcopy "%25Reference%25\$(ConfigurationName)\Apq.Win.xml" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y

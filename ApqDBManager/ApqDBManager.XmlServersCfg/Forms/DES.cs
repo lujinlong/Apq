@@ -43,29 +43,29 @@ namespace ApqDBManager
 
 		private void btnEncryptFile_Click(object sender, EventArgs e)
 		{
-			byte[] desKey = ceDefaultKey.Checked ? Apq.CryptKey.DES.Key : System.Text.Encoding.Unicode.GetBytes(teKey.Text);
-			byte[] desIV = ceDefaultKey.Checked ? Apq.CryptKey.DES.IV : System.Text.Encoding.Unicode.GetBytes(teIV.Text);
+			byte[] desKey = System.Text.Encoding.Unicode.GetBytes(ceDefaultKey.Checked ? ApqDBManager.XmlServersCfg.GlobalObject.RegConfigChain["Crypt", "DESKey"] : teKey.Text);
+			byte[] desIV = System.Text.Encoding.Unicode.GetBytes(ceDefaultKey.Checked ? ApqDBManager.XmlServersCfg.GlobalObject.RegConfigChain["Crypt", "DESIV"] : teIV.Text);
 			Apq.Security.Cryptography.DESHelper.EncryptFile(beInput.Text, beOutput.Text, desKey, desIV);
 		}
 
 		private void btnDecryptFile_Click(object sender, EventArgs e)
 		{
-			byte[] desKey = ceDefaultKey.Checked ? Apq.CryptKey.DES.Key : System.Text.Encoding.Unicode.GetBytes(teKey.Text);
-			byte[] desIV = ceDefaultKey.Checked ? Apq.CryptKey.DES.IV : System.Text.Encoding.Unicode.GetBytes(teIV.Text);
+			byte[] desKey = System.Text.Encoding.Unicode.GetBytes(ceDefaultKey.Checked ? ApqDBManager.XmlServersCfg.GlobalObject.RegConfigChain["Crypt", "DESKey"] : teKey.Text);
+			byte[] desIV = System.Text.Encoding.Unicode.GetBytes(ceDefaultKey.Checked ? ApqDBManager.XmlServersCfg.GlobalObject.RegConfigChain["Crypt", "DESIV"] : teIV.Text);
 			Apq.Security.Cryptography.DESHelper.DecryptFile(beInput.Text, beOutput.Text, desKey, desIV);
 		}
 
 		private void btnEncryptString_Click(object sender, EventArgs e)
 		{
-			byte[] desKey = ceDefaultKey.Checked ? Apq.CryptKey.DES.Key : System.Text.Encoding.Unicode.GetBytes(teKey.Text);
-			byte[] desIV = ceDefaultKey.Checked ? Apq.CryptKey.DES.IV : System.Text.Encoding.Unicode.GetBytes(teIV.Text);
+			byte[] desKey = System.Text.Encoding.Unicode.GetBytes(ceDefaultKey.Checked ? ApqDBManager.XmlServersCfg.GlobalObject.RegConfigChain["Crypt", "DESKey"] : teKey.Text);
+			byte[] desIV = System.Text.Encoding.Unicode.GetBytes(ceDefaultKey.Checked ? ApqDBManager.XmlServersCfg.GlobalObject.RegConfigChain["Crypt", "DESIV"] : teIV.Text);
 			meOutput.Text = Apq.Security.Cryptography.DESHelper.EncryptString(meInput.Text, desKey, desIV);
 		}
 
 		private void btnDecryptString_Click(object sender, EventArgs e)
 		{
-			byte[] desKey = ceDefaultKey.Checked ? Apq.CryptKey.DES.Key : System.Text.Encoding.Unicode.GetBytes(teKey.Text);
-			byte[] desIV = ceDefaultKey.Checked ? Apq.CryptKey.DES.IV : System.Text.Encoding.Unicode.GetBytes(teIV.Text);
+			byte[] desKey = System.Text.Encoding.Unicode.GetBytes(ceDefaultKey.Checked ? ApqDBManager.XmlServersCfg.GlobalObject.RegConfigChain["Crypt", "DESKey"] : teKey.Text);
+			byte[] desIV = System.Text.Encoding.Unicode.GetBytes(ceDefaultKey.Checked ? ApqDBManager.XmlServersCfg.GlobalObject.RegConfigChain["Crypt", "DESIV"] : teIV.Text);
 			meOutput.Text = Apq.Security.Cryptography.DESHelper.DecryptString(meInput.Text, desKey, desIV);
 		}
 	}

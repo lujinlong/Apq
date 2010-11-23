@@ -662,11 +662,12 @@ UNION ALL SELECT 2,2;";
 				}
 			}
 
-			SqlConnection sc = new SqlConnection(dr["ConnectionString"].ToString());
+			SqlConnection sc = null;
 			DataSet ds = null;
 			int nRows = 0;
 			try
 			{
+				sc = new SqlConnection(dr["ConnectionString"].ToString());
 				SqlDataAdapter sda = new SqlDataAdapter(string.Empty, sc);
 				sda.SelectCommand.CommandTimeout = 86400;//3600*24
 

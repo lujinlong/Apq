@@ -10,7 +10,7 @@ AS
 -- 描述: 读取BcpIn队列,执行BcpIn
 -- 示例:
 DECLARE @rtn int;
-EXEC @rtn = etl.Job_Etl_BcpIn_Init 10000;
+EXEC @rtn = etl.Job_Etl_BcpIn 10000;
 SELECT @rtn;
 -- =============================================
 */
@@ -20,6 +20,7 @@ SELECT @TransRowCount = ISNULL(@TransRowCount,10000);
 
 DECLARE @rtn int, @SPBeginTime datetime
 	,@cmd nvarchar(4000), @sql nvarchar(4000), @sqlDB nvarchar(4000)
+	,@ExMsg nvarchar(max),@sql_Create nvarchar(4000), @sql_Drop nvarchar(4000)
 	;
 	
 SELECT @SPBeginTime = getdate();
@@ -60,6 +61,23 @@ BEGIN
 	END
 
 	SELECT @FullTableName = '[' + @DBName + '].[' + @SchemaName + '].[' + @TName + ']';
+	
+	-- BcpIn前删除索引
+	SELECT @sqlDB = '
+DECLARE @ExMsg nvarchar(max);
+EXEC dbo.Apq_DropIndex @ExMsg OUT, @SchemaName, @TName, @sql_Create OUT, @sql_Drop OUT, 1
+IF(Len(@sql_Create)>1) EXEC dbo.Apq_Ext_Set @TName, 0, ''Apq_DropIndex'',@sql_Create; -- 有索引时存档
+ELSE SELECT @sql_Create = dbo.Apq_Ext_Get(@TName, 0, ''Apq_DropIndex'');	-- 否则读档
+';
+	SELECT @sql = '
+EXEC [' + @DBName + ']..sp_executesql @sqlDB
+	,N''@SchemaName nvarchar(256), @TName nvarchar(256), @sql_Create nvarchar(4000) out, @sql_Drop nvarchar(4000) out''
+	,@SchemaName = @SchemaName, @TName = @TName, @sql_Create = @sql_Create out, @sql_Drop = @sql_Drop out
+	;
+';
+	EXEC sp_executesql @sql
+		,N'@sqlDB nvarchar(4000),@SchemaName nvarchar(256), @TName nvarchar(256), @sql_Create nvarchar(4000) out, @sql_Drop nvarchar(4000) out'
+		,@sqlDB = @sqlDB, @SchemaName = @SchemaName, @TName = @TName, @sql_Create = @sql_Create OUT, @sql_Drop = @sql_Drop OUT;
 
 	SELECT @cmd = 'bcp "' + @FullTableName + '" in "' + @Folder + @FileName + '" -c -t' + @t + ' -r' + @r + ' -T';
 	--SELECT @cmd;
@@ -73,6 +91,21 @@ BEGIN
 	IF(EXISTS(SELECT TOP 1 * FROM #t WHERE left(s,7) = 'Error ='))
 	BEGIN
 		GOTO NEXT_File;
+	END
+	
+	-- BcpIn后添加索引
+	IF(LEN(@sql_Create)>1)
+	BEGIN
+		SELECT @sqlDB = 'EXEC sp_executesql @sql_Create;';
+		SELECT @sql = '
+EXEC [' + @DBName + ']..sp_executesql @sqlDB
+	,N''@sql_Create nvarchar(4000)''
+	,@sql_Create = @sql_Create
+	;
+';
+		EXEC sp_executesql @sql
+		,N'@sqlDB nvarchar(4000),@sql_Create nvarchar(4000)'
+		,@sqlDB = @sqlDB,@sql_Create = @sql_Create;
 	END
 	
 	Success:

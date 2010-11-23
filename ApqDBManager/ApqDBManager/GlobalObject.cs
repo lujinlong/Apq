@@ -83,6 +83,64 @@ namespace ApqDBManager
 		}
 		#endregion
 
+		#region RegSysConfig
+		private static Apq.Config.RegConfig _RegSysConfig;
+		/// <summary>
+		/// 该程序集配置文件(程序集名.后缀.Reg)
+		/// </summary>
+		public static Apq.Config.RegConfig RegSysConfig
+		{
+			get
+			{
+				if (_RegSysConfig == null)
+				{
+					_RegSysConfig = new Apq.Config.RegConfig();
+					_RegSysConfig.Path = "$reg$LocalMachine";
+					_RegSysConfig.Root = @"SOFTWARE\Apq\ApqDBManager";
+				}
+				return _RegSysConfig;
+			}
+		}
+		#endregion
+
+		#region RegUserConfig
+		private static Apq.Config.RegConfig _RegUserConfig;
+		/// <summary>
+		/// 该程序集用户配置文件(程序集名.后缀.Reg)
+		/// </summary>
+		public static Apq.Config.RegConfig RegUserConfig
+		{
+			get
+			{
+				if (_RegUserConfig == null)
+				{
+					_RegUserConfig = new Apq.Config.RegConfig();
+					_RegUserConfig.Path = "$reg$CurrentUser";
+					_RegUserConfig.Root = @"SOFTWARE\Apq\ApqDBManager";
+				}
+				return _RegUserConfig;
+			}
+		}
+		#endregion
+
+		#region RegConfigChain
+		private static Apq.Config.ConfigChain _RegConfigChain;
+		/// <summary>
+		/// 该程序集配置文件链
+		/// </summary>
+		public static Apq.Config.ConfigChain RegConfigChain
+		{
+			get
+			{
+				if (_RegConfigChain == null)
+				{
+					_RegConfigChain = new Apq.Config.ConfigChain(RegSysConfig, RegUserConfig);
+				}
+				return _RegConfigChain;
+			}
+		}
+		#endregion
+
 		#region MainForm
 		private static MainForm _MainForm;
 		/// <summary>
@@ -187,12 +245,12 @@ namespace ApqDBManager
 			{
 				if (!Apq.Convert.LikeDBNull(dr["PwdC"]))
 				{
-					dr.PwdD = Apq.Security.Cryptography.DESHelper.DecryptString(dr.PwdC, Apq.CryptKey.DES.Key, Apq.CryptKey.DES.IV);
+					dr.PwdD = Apq.Security.Cryptography.DESHelper.DecryptString(dr.PwdC, GlobalObject.RegConfigChain["Crypt", "DESKey"], GlobalObject.RegConfigChain["Crypt", "DESIV"]);
 					dr["ConnectionString"] = string.Format("Data Source={0},{1};User Id={2};Password={3};", dr.IPWan1, dr.SqlPort, dr.UID, dr.PwdD);
 				}
 				if (!Apq.Convert.LikeDBNull(dr["FTPPC"]))
 				{
-					dr.FTPPD = Apq.Security.Cryptography.DESHelper.DecryptString(dr.FTPPC, Apq.CryptKey.DES.Key, Apq.CryptKey.DES.IV);
+					dr.FTPPD = Apq.Security.Cryptography.DESHelper.DecryptString(dr.FTPPC, GlobalObject.RegConfigChain["Crypt", "DESKey"], GlobalObject.RegConfigChain["Crypt", "DESIV"]);
 				}
 			}
 
