@@ -16,7 +16,7 @@ namespace Apq.Data.Common
 		/// <param name="Connection"></param>
 		public static void Open(System.Data.Common.DbConnection Connection)
 		{
-			if (Connection.State == System.Data.ConnectionState.Closed)
+			if (Connection != null && Connection.State == System.Data.ConnectionState.Closed)
 			{
 				Connection.Open();
 			}
@@ -28,7 +28,7 @@ namespace Apq.Data.Common
 		/// <param name="Connection"></param>
 		public static void Close(System.Data.Common.DbConnection Connection)
 		{
-			if (Connection.State != System.Data.ConnectionState.Closed)
+			if (Connection != null && Connection.State != System.Data.ConnectionState.Closed)
 			{
 				Connection.Close();
 			}

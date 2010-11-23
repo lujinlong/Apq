@@ -17,7 +17,7 @@ namespace Apq.CryptKey
 		{
 			//冰川	~JD7(1vy]$ik7WB)
 			//UM	`G#1y{~89a\W*@)n
-			get { return System.Text.Encoding.Unicode.GetBytes("`G#1y{~8"); }
+			get { return System.Text.Encoding.Unicode.GetBytes(@"`G#1y{~8"); }
 		}
 
 		/// <summary>
@@ -25,7 +25,7 @@ namespace Apq.CryptKey
 		/// </summary>
 		public static byte[] IV
 		{
-			get { return System.Text.Encoding.Unicode.GetBytes("9a\\W*@)n"); }
+			get { return System.Text.Encoding.Unicode.GetBytes(@"9a\W*@)n"); }
 		}
 	}
 }

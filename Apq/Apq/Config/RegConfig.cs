@@ -8,6 +8,7 @@ namespace Apq.Config
 {
 	/// <summary>
 	/// 注册表配置
+	/// 先设置Path,然后设置Root
 	/// </summary>
 	public partial class RegConfig : clsConfig
 	{
@@ -100,7 +101,11 @@ namespace Apq.Config
 				if (rkRoot != null)
 				{
 					RegistryKey rk1 = rkRoot.OpenSubKey(ClassName);
-					return rk1.GetValue(PropertyName).ToString();
+					if (rk1 != null)
+					{
+						object value = rk1.GetValue(PropertyName);
+						if (value != null) return rk1.GetValue(PropertyName).ToString();
+					}
 				}
 				return null;
 			}

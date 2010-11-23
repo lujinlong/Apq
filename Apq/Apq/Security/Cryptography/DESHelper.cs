@@ -85,6 +85,29 @@ namespace Apq.Security.Cryptography
 			des.IV = FormatKey(desIV);
 			return SymmetricAlgorithmHelper.DecryptString(CypherText, des);
 		}
+
+		/// <summary>
+		/// 加密字符串
+		/// </summary>
+		/// <param name="PlainText">原始字符串</param>
+		/// <param name="desKey">加密密钥</param>
+		/// <param name="desIV">初始向量</param>
+		/// <returns>Base64编码后的字符串</returns>
+		public static string EncryptString(string PlainText, string desKey, string desIV)
+		{
+			return EncryptString(PlainText, System.Text.Encoding.Unicode.GetBytes(desKey), System.Text.Encoding.Unicode.GetBytes(desIV));
+		}
+
+		/// <summary>
+		/// 解密字符串
+		/// </summary>
+		/// <param name="CypherText">加密后的Base64字符串</param>
+		/// <param name="desKey">解密密钥</param>
+		/// <param name="desIV">初始向量</param>
+		public static string DecryptString(string CypherText, string desKey, string desIV)
+		{
+			return DecryptString(CypherText, System.Text.Encoding.Unicode.GetBytes(desKey), System.Text.Encoding.Unicode.GetBytes(desIV));
+		}
 		#endregion
 	}
 }
