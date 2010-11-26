@@ -1,4 +1,4 @@
-﻿namespace ApqDBManager
+﻿namespace ApqDBManager.Forms
 {
 	partial class CryptCS
 	{
@@ -42,10 +42,6 @@
 			this.btnEncryptString = new DevExpress.XtraEditors.SimpleButton();
 			this.meOutput = new DevExpress.XtraEditors.MemoEdit();
 			this.meInput = new DevExpress.XtraEditors.MemoEdit();
-			this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
-			this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
-			this.teKey = new DevExpress.XtraEditors.TextEdit();
-			this.teIV = new DevExpress.XtraEditors.TextEdit();
 			this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
 			this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
 			((System.ComponentModel.ISupportInitialize)(this.beInput.Properties)).BeginInit();
@@ -56,8 +52,6 @@
 			this.xtraTabPage2.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.meOutput.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.meInput.Properties)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.teKey.Properties)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.teIV.Properties)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// labelControl1
@@ -105,15 +99,14 @@
 			this.xtraTabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
 						| System.Windows.Forms.AnchorStyles.Left)
 						| System.Windows.Forms.AnchorStyles.Right)));
-			this.xtraTabControl1.Location = new System.Drawing.Point(3, 66);
+			this.xtraTabControl1.Location = new System.Drawing.Point(3, 12);
 			this.xtraTabControl1.Name = "xtraTabControl1";
 			this.xtraTabControl1.SelectedTabPage = this.xtraTabPage1;
-			this.xtraTabControl1.Size = new System.Drawing.Size(593, 356);
+			this.xtraTabControl1.Size = new System.Drawing.Size(593, 410);
 			this.xtraTabControl1.TabIndex = 7;
 			this.xtraTabControl1.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.xtraTabPage1,
             this.xtraTabPage2});
-			this.xtraTabControl1.Text = "xtraTabControl1";
 			// 
 			// xtraTabPage1
 			// 
@@ -124,7 +117,7 @@
 			this.xtraTabPage1.Controls.Add(this.labelControl1);
 			this.xtraTabPage1.Controls.Add(this.labelControl2);
 			this.xtraTabPage1.Name = "xtraTabPage1";
-			this.xtraTabPage1.Size = new System.Drawing.Size(584, 324);
+			this.xtraTabPage1.Size = new System.Drawing.Size(586, 380);
 			this.xtraTabPage1.Text = "文件";
 			// 
 			// btnDecryptFile
@@ -152,7 +145,7 @@
 			this.xtraTabPage2.Controls.Add(this.meOutput);
 			this.xtraTabPage2.Controls.Add(this.meInput);
 			this.xtraTabPage2.Name = "xtraTabPage2";
-			this.xtraTabPage2.Size = new System.Drawing.Size(584, 324);
+			this.xtraTabPage2.Size = new System.Drawing.Size(586, 380);
 			this.xtraTabPage2.Text = "字符串";
 			// 
 			// btnDecryptString
@@ -180,7 +173,7 @@
 						| System.Windows.Forms.AnchorStyles.Right)));
 			this.meOutput.Location = new System.Drawing.Point(6, 166);
 			this.meOutput.Name = "meOutput";
-			this.meOutput.Size = new System.Drawing.Size(684, 141);
+			this.meOutput.Size = new System.Drawing.Size(577, 208);
 			this.meOutput.TabIndex = 1;
 			// 
 			// meInput
@@ -189,44 +182,8 @@
 						| System.Windows.Forms.AnchorStyles.Right)));
 			this.meInput.Location = new System.Drawing.Point(6, 3);
 			this.meInput.Name = "meInput";
-			this.meInput.Size = new System.Drawing.Size(684, 128);
+			this.meInput.Size = new System.Drawing.Size(577, 128);
 			this.meInput.TabIndex = 0;
-			// 
-			// labelControl3
-			// 
-			this.labelControl3.Location = new System.Drawing.Point(24, 15);
-			this.labelControl3.Name = "labelControl3";
-			this.labelControl3.Size = new System.Drawing.Size(24, 14);
-			this.labelControl3.TabIndex = 10;
-			this.labelControl3.Text = "密钥";
-			// 
-			// labelControl4
-			// 
-			this.labelControl4.Location = new System.Drawing.Point(24, 42);
-			this.labelControl4.Name = "labelControl4";
-			this.labelControl4.Size = new System.Drawing.Size(48, 14);
-			this.labelControl4.TabIndex = 11;
-			this.labelControl4.Text = "初始向量";
-			// 
-			// teKey
-			// 
-			this.teKey.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-						| System.Windows.Forms.AnchorStyles.Right)));
-			this.teKey.EditValue = "asdsad12321ad";
-			this.teKey.Location = new System.Drawing.Point(78, 12);
-			this.teKey.Name = "teKey";
-			this.teKey.Size = new System.Drawing.Size(512, 21);
-			this.teKey.TabIndex = 12;
-			// 
-			// teIV
-			// 
-			this.teIV.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-						| System.Windows.Forms.AnchorStyles.Right)));
-			this.teIV.EditValue = "asdsad12321ad";
-			this.teIV.Location = new System.Drawing.Point(78, 39);
-			this.teIV.Name = "teIV";
-			this.teIV.Size = new System.Drawing.Size(512, 21);
-			this.teIV.TabIndex = 13;
 			// 
 			// openFileDialog1
 			// 
@@ -243,10 +200,6 @@
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(600, 423);
-			this.Controls.Add(this.teIV);
-			this.Controls.Add(this.teKey);
-			this.Controls.Add(this.labelControl4);
-			this.Controls.Add(this.labelControl3);
 			this.Controls.Add(this.xtraTabControl1);
 			this.DockAreas = ((WeifenLuo.WinFormsUI.Docking.DockAreas)((WeifenLuo.WinFormsUI.Docking.DockAreas.Float | WeifenLuo.WinFormsUI.Docking.DockAreas.Document)));
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -262,10 +215,7 @@
 			this.xtraTabPage2.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.meOutput.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.meInput.Properties)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.teKey.Properties)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.teIV.Properties)).EndInit();
 			this.ResumeLayout(false);
-			this.PerformLayout();
 
 		}
 
@@ -280,14 +230,10 @@
 		private DevExpress.XtraEditors.SimpleButton btnDecryptFile;
 		private DevExpress.XtraEditors.SimpleButton btnEncryptFile;
 		private DevExpress.XtraTab.XtraTabPage xtraTabPage2;
-		private DevExpress.XtraEditors.LabelControl labelControl3;
-		private DevExpress.XtraEditors.LabelControl labelControl4;
 		private DevExpress.XtraEditors.SimpleButton btnDecryptString;
 		private DevExpress.XtraEditors.SimpleButton btnEncryptString;
 		private DevExpress.XtraEditors.MemoEdit meOutput;
 		private DevExpress.XtraEditors.MemoEdit meInput;
-		private DevExpress.XtraEditors.TextEdit teKey;
-		private DevExpress.XtraEditors.TextEdit teIV;
 		private System.Windows.Forms.OpenFileDialog openFileDialog1;
 		private System.Windows.Forms.SaveFileDialog saveFileDialog1;
 	}

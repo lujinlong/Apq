@@ -28,60 +28,6 @@ namespace Apq.DBC
 		}
 		#endregion
 
-		#region XmlAsmConfig
-		private static Apq.Config.XmlConfig _XmlAsmConfig;
-		/// <summary>
-		/// 该程序集配置文件(程序集名.后缀.xml)
-		/// </summary>
-		public static Apq.Config.XmlConfig XmlAsmConfig
-		{
-			get
-			{
-				if (_XmlAsmConfig == null)
-				{
-					_XmlAsmConfig = Apq.Config.ApqConfigs.GetAsmConfig(TheAssembly) as Apq.Config.XmlConfig;
-				}
-				return _XmlAsmConfig;
-			}
-		}
-		#endregion
-
-		#region XmlUserConfig
-		private static Apq.Config.XmlConfig _XmlUserConfig;
-		/// <summary>
-		/// 该程序集用户配置文件(程序集名.后缀.xml)
-		/// </summary>
-		public static Apq.Config.XmlConfig XmlUserConfig
-		{
-			get
-			{
-				if (_XmlUserConfig == null)
-				{
-					_XmlUserConfig = Apq.Config.ApqConfigs.GetUserConfig(TheAssembly) as Apq.Config.XmlConfig;
-				}
-				return _XmlUserConfig;
-			}
-		}
-		#endregion
-
-		#region XmlConfigChain
-		private static Apq.Config.ConfigChain _XmlConfigChain;
-		/// <summary>
-		/// 该程序集配置文件链
-		/// </summary>
-		public static Apq.Config.ConfigChain XmlConfigChain
-		{
-			get
-			{
-				if (_XmlConfigChain == null)
-				{
-					_XmlConfigChain = new Apq.Config.ConfigChain(XmlAsmConfig, XmlUserConfig);
-				}
-				return _XmlConfigChain;
-			}
-		}
-		#endregion
-
 		#region RegSysConfig
 		private static Apq.Config.RegConfig _RegSysConfig;
 		/// <summary>

@@ -79,6 +79,7 @@
 			this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
 			this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
 			this.dockPanel1 = new WeifenLuo.WinFormsUI.Docking.DockPanel();
+			this.menuDBC = new DevExpress.XtraBars.BarButtonItem();
 			((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
 			this.SuspendLayout();
 			// 
@@ -133,9 +134,10 @@
             this.menuFTP,
             this.menuErrList,
             this.menuFTPFileUp,
-            this.menuRSAKey});
+            this.menuRSAKey,
+            this.menuDBC});
 			this.barManager1.MainMenu = this.bar2;
-			this.barManager1.MaxItemId = 13;
+			this.barManager1.MaxItemId = 14;
 			this.barManager1.StatusBar = this.bar3;
 			// 
 			// bar1
@@ -373,7 +375,8 @@
             new DevExpress.XtraBars.LinkPersistInfo(this.menuFileUp),
             new DevExpress.XtraBars.LinkPersistInfo(this.menuFileTrans),
             new DevExpress.XtraBars.LinkPersistInfo(this.menuFTP),
-            new DevExpress.XtraBars.LinkPersistInfo(this.menuFTPFileUp)});
+            new DevExpress.XtraBars.LinkPersistInfo(this.menuFTPFileUp),
+            new DevExpress.XtraBars.LinkPersistInfo(this.menuDBC)});
 			this.bsiTool.Name = "bsiTool";
 			// 
 			// menuOption
@@ -524,6 +527,13 @@
 			this.dockPanel1.Size = new System.Drawing.Size(1036, 425);
 			this.dockPanel1.TabIndex = 5;
 			// 
+			// menuDBC
+			// 
+			this.menuDBC.Caption = "DB连接加解密(&C)";
+			this.menuDBC.Id = 13;
+			this.menuDBC.Name = "menuDBC";
+			this.menuDBC.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.menuDBC_ItemClick);
+			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -597,5 +607,6 @@
 		private DevExpress.XtraBars.BarCheckItem menuErrList;
 		private DevExpress.XtraBars.BarButtonItem menuFTPFileUp;
 		private DevExpress.XtraBars.BarButtonItem menuRSAKey;
+		private DevExpress.XtraBars.BarButtonItem menuDBC;
 	}
 }

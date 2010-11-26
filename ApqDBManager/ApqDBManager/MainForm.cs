@@ -312,6 +312,12 @@ namespace ApqDBManager
 			win.Show(dockPanel1);
 		}
 
+		private void menuDBC_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+		{
+			Forms.CryptCS win = new Forms.CryptCS();
+			win.Show(dockPanel1);
+		}
+
 		private void menuRSAKey_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
 		{
 			Forms.RSAKey win = new ApqDBManager.Forms.RSAKey();

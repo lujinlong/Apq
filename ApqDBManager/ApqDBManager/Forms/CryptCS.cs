@@ -7,8 +7,9 @@ using System.Text;
 using System.Windows.Forms;
 using WeifenLuo.WinFormsUI.Docking;
 using System.Security.Cryptography;
+using System.IO;
 
-namespace ApqDBManager
+namespace ApqDBManager.Forms
 {
 	public partial class CryptCS : Apq.Windows.Forms.DockForm
 	{
@@ -43,29 +44,33 @@ namespace ApqDBManager
 
 		private void btnEncryptFile_Click(object sender, EventArgs e)
 		{
-			byte[] desKey = System.Text.Encoding.Unicode.GetBytes(teKey.Text);
-			byte[] desIV = System.Text.Encoding.Unicode.GetBytes(teIV.Text);
-			Apq.Security.Cryptography.DESHelper.EncryptFile(beInput.Text, beOutput.Text, desKey, desIV);
+			string desKey = GlobalObject.RegConfigChain["Crypt", "DESKey"];
+			string desIV = GlobalObject.RegConfigChain["Crypt", "DESIV"];
+			string str = File.ReadAllText(beInput.Text);
+			string strCs = Apq.Security.Cryptography.DESHelper.EncryptString(str, desKey, desIV);
+			File.WriteAllText(beOutput.Text, strCs, Encoding.UTF8);
 		}
 
 		private void btnDecryptFile_Click(object sender, EventArgs e)
 		{
-			byte[] desKey = System.Text.Encoding.Unicode.GetBytes(teKey.Text);
-			byte[] desIV = System.Text.Encoding.Unicode.GetBytes(teIV.Text);
-			Apq.Security.Cryptography.DESHelper.DecryptFile(beInput.Text, beOutput.Text, desKey, desIV);
+			string desKey = GlobalObject.RegConfigChain["Crypt", "DESKey"];
+			string desIV = GlobalObject.RegConfigChain["Crypt", "DESIV"];
+			string strCs = File.ReadAllText(beInput.Text);
+			string str = Apq.Security.Cryptography.DESHelper.DecryptString(strCs, desKey, desIV);
+			File.WriteAllText(beOutput.Text, str, Encoding.UTF8);
 		}
 
 		private void btnEncryptString_Click(object sender, EventArgs e)
 		{
-			byte[] desKey = System.Text.Encoding.Unicode.GetBytes(teKey.Text);
-			byte[] desIV = System.Text.Encoding.Unicode.GetBytes(teIV.Text);
+			string desKey = GlobalObject.RegConfigChain["Crypt", "DESKey"];
+			string desIV = GlobalObject.RegConfigChain["Crypt", "DESIV"];
 			meOutput.Text = Apq.Security.Cryptography.DESHelper.EncryptString(meInput.Text, desKey, desIV);
 		}
 
 		private void btnDecryptString_Click(object sender, EventArgs e)
 		{
-			byte[] desKey = System.Text.Encoding.Unicode.GetBytes(teKey.Text);
-			byte[] desIV = System.Text.Encoding.Unicode.GetBytes(teIV.Text);
+			string desKey = GlobalObject.RegConfigChain["Crypt", "DESKey"];
+			string desIV = GlobalObject.RegConfigChain["Crypt", "DESIV"];
 			meOutput.Text = Apq.Security.Cryptography.DESHelper.DecryptString(meInput.Text, desKey, desIV);
 		}
 	}
