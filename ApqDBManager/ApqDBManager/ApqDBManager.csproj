@@ -612,12 +612,6 @@
     <Content Include="_Doc\计划.txt" />
     <Content Include="_Doc\说明.txt" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Apq.DBC\Apq.DBC.csproj">
-      <Project>{40669BE4-5C1F-4C76-84C7-35649167BAF9}</Project>
-      <Name>Apq.DBC</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
