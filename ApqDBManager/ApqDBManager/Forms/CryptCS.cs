@@ -18,6 +18,40 @@ namespace ApqDBManager.Forms
 			InitializeComponent();
 		}
 
+		private void CryptCS_Load(object sender, EventArgs e)
+		{
+			string EncryptFile = GlobalObject.XmlConfigChain[this.GetType(), "EncryptFile"];
+			if (EncryptFile != null)
+			{
+				beInput.Text = EncryptFile;
+			}
+			string DecryptFile = GlobalObject.XmlConfigChain[this.GetType(), "DecryptFile"];
+			if (DecryptFile != null)
+			{
+				beOutput.Text = DecryptFile;
+			}
+			string CDString = GlobalObject.XmlConfigChain[this.GetType(), "CDString"];
+			if (CDString != null)
+			{
+				meInput.Text = CDString;
+			}
+		}
+
+		private void beInput_EditValueChanged(object sender, EventArgs e)
+		{
+			GlobalObject.XmlUserConfig.SetValue("EncryptFile", beInput.Text);
+		}
+
+		private void beOutput_EditValueChanged(object sender, EventArgs e)
+		{
+			GlobalObject.XmlUserConfig.SetValue("DecryptFile", beOutput.Text);
+		}
+
+		private void meInput_EditValueChanged(object sender, EventArgs e)
+		{
+			GlobalObject.XmlUserConfig.SetValue("CDString", meInput.Text);
+		}
+
 		private void beInput_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
 		{
 			if (beInput.Text.Trim().Length > 0)
@@ -49,6 +83,7 @@ namespace ApqDBManager.Forms
 			string str = File.ReadAllText(beInput.Text);
 			string strCs = Apq.Security.Cryptography.DESHelper.EncryptString(str, desKey, desIV);
 			File.WriteAllText(beOutput.Text, strCs, Encoding.UTF8);
+			MessageBox.Show("加密完成");
 		}
 
 		private void btnDecryptFile_Click(object sender, EventArgs e)
@@ -58,6 +93,7 @@ namespace ApqDBManager.Forms
 			string strCs = File.ReadAllText(beInput.Text);
 			string str = Apq.Security.Cryptography.DESHelper.DecryptString(strCs, desKey, desIV);
 			File.WriteAllText(beOutput.Text, str, Encoding.UTF8);
+			MessageBox.Show("解密完成");
 		}
 
 		private void btnEncryptString_Click(object sender, EventArgs e)
@@ -65,6 +101,7 @@ namespace ApqDBManager.Forms
 			string desKey = GlobalObject.RegConfigChain["Crypt", "DESKey"];
 			string desIV = GlobalObject.RegConfigChain["Crypt", "DESIV"];
 			meOutput.Text = Apq.Security.Cryptography.DESHelper.EncryptString(meInput.Text, desKey, desIV);
+			MessageBox.Show("加密完成");
 		}
 
 		private void btnDecryptString_Click(object sender, EventArgs e)
@@ -72,6 +109,7 @@ namespace ApqDBManager.Forms
 			string desKey = GlobalObject.RegConfigChain["Crypt", "DESKey"];
 			string desIV = GlobalObject.RegConfigChain["Crypt", "DESIV"];
 			meOutput.Text = Apq.Security.Cryptography.DESHelper.DecryptString(meInput.Text, desKey, desIV);
+			MessageBox.Show("解密完成");
 		}
 	}
 }

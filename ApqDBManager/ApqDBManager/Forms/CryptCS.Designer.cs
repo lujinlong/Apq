@@ -81,6 +81,7 @@
 			this.beInput.Size = new System.Drawing.Size(495, 21);
 			this.beInput.TabIndex = 5;
 			this.beInput.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.beInput_ButtonClick);
+			this.beInput.EditValueChanged += new System.EventHandler(this.beInput_EditValueChanged);
 			// 
 			// beOutput
 			// 
@@ -93,6 +94,7 @@
 			this.beOutput.Size = new System.Drawing.Size(495, 21);
 			this.beOutput.TabIndex = 6;
 			this.beOutput.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.beOutput_ButtonClick);
+			this.beOutput.EditValueChanged += new System.EventHandler(this.beOutput_EditValueChanged);
 			// 
 			// xtraTabControl1
 			// 
@@ -184,6 +186,7 @@
 			this.meInput.Name = "meInput";
 			this.meInput.Size = new System.Drawing.Size(577, 128);
 			this.meInput.TabIndex = 0;
+			this.meInput.EditValueChanged += new System.EventHandler(this.meInput_EditValueChanged);
 			// 
 			// openFileDialog1
 			// 
@@ -206,6 +209,7 @@
 			this.Name = "CryptCS";
 			this.TabText = "CryptCS";
 			this.Text = "CryptCS";
+			this.Load += new System.EventHandler(this.CryptCS_Load);
 			((System.ComponentModel.ISupportInitialize)(this.beInput.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.beOutput.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).EndInit();

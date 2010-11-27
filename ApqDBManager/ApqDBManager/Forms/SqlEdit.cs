@@ -120,6 +120,7 @@ namespace ApqDBManager
 			{
 				txtSql.Text = cfgtxtSql_Text;
 			}
+			/*
 #if DEBUG
 			if (string.IsNullOrEmpty(txtSql.Text))
 			{
@@ -154,6 +155,7 @@ SELECT 1,1
 UNION ALL SELECT 2,2;";
 			}
 #endif
+			 */
 			#endregion
 
 			#region cbDBName.EditValue
