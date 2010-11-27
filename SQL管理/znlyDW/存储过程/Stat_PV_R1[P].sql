@@ -95,14 +95,20 @@ BEGIN
 	PRINT '[1]'+Convert(nvarchar(21),@CID);
 	EXEC dbo.Apq_Ext_Set 'PV_Stat',0,'CID_PV_Imei_LogType',@CID;
 	
+	TRUNCATE TABLE dbo.PV_Imei_LogType1;
+	
 	SELECT @CIDE = @CID + 10000;
-	INSERT dbo.PV_Imei_LogType ( Imei,LogType,FirstTime,FirstPlatform,FirstSMSC,FirstProvince,FristPlatformDate )
+	INSERT dbo.PV_Imei_LogType1 ( Imei,LogType,FirstTime,FirstPlatform,FirstSMSC,FirstProvince,FristPlatformDate )
 	SELECT l.Imei,l.LogType,ISNULL(l.LogTime,'9999-12-31 23:59:59.997'),ISNULL(l.Platform,'未知'),ISNULL(l.SMSC,'未知'),ISNULL(l.Province,'未知'),PlatformDate
 	  FROM log.ImeiLog l(NOLOCK)
-	 WHERE NOT EXISTS(SELECT TOP 1 1 FROM dbo.PV_Imei_LogType d(NOLOCK) WHERE d.LogType = l.LogType AND d.Imei = l.Imei)
+	 WHERE NOT EXISTS(SELECT TOP 1 1 FROM dbo.PV_Imei_LogType d WHERE d.LogType = l.LogType AND d.Imei = l.Imei)
 		AND l.LogTime >= @StartTime AND l.LogTime < @EndTime
 		AND l.ID >= @CID AND l.ID < @CIDE
 		AND l.Imei IS NOT NULL AND l.LogType IS NOT NULL;
+	INSERT dbo.PV_Imei_LogType ( Imei,LogType,FirstTime,FirstPlatform,FirstSMSC,FirstProvince,FristPlatformDate )
+	SELECT Imei,LogType,FirstTime,FirstPlatform,FirstSMSC,FirstProvince,FristPlatformDate
+	  FROM dbo.PV_Imei_LogType1 l
+	 WHERE NOT EXISTS(SELECT TOP 1 1 FROM dbo.PV_Imei_LogType d WHERE d.LogType = l.LogType AND d.Imei = l.Imei)
 		
 	SELECT @CID = @CIDE;
 END
@@ -238,14 +244,20 @@ BEGIN
 	PRINT '[2]'+Convert(nvarchar(21),@CID);
 	EXEC dbo.Apq_Ext_Set 'PV_Stat',0,'CID_PV_Imei',@CID;
 	
+	TRUNCATE TABLE dbo.PV_Imei1
+	
 	SELECT @CIDE = @CID + 10000;
-	INSERT dbo.PV_Imei ( Imei,FirstLogType,FirstTime,FirstPlatform,FristPlatformDate,FirstSMSC,FirstProvince )
+	INSERT dbo.PV_Imei1 ( Imei,FirstLogType,FirstTime,FirstPlatform,FristPlatformDate,FirstSMSC,FirstProvince )
 	SELECT t.Imei,ISNULL(LogType,0),FirstTime,FirstPlatform,FristPlatformDate,FirstSMSC,FirstProvince
 	  FROM dbo.PV_Imei_LogType t(NOLOCK)
 	 WHERE NOT EXISTS(SELECT TOP 1 1 FROM dbo.PV_Imei d(NOLOCK) WHERE d.Imei = t.Imei)
 		AND t.FirstTime >= @StartTime AND t.FirstTime < @EndTime
 		AND t.ID >= @CID AND t.ID < @CIDE
 	 ORDER BY t.FirstTime;
+	INSERT dbo.PV_Imei ( Imei,FirstLogType,FirstTime,FirstPlatform,FristPlatformDate,FirstSMSC,FirstProvince )
+	SELECT Imei,FirstLogType,FirstTime,FirstPlatform,FristPlatformDate,FirstSMSC,FirstProvince
+	  FROM dbo.PV_Imei1 t(NOLOCK)
+	 WHERE NOT EXISTS(SELECT TOP 1 1 FROM dbo.PV_Imei d(NOLOCK) WHERE d.Imei = t.Imei)
 	 
 	SELECT @CID = @CIDE;
 END
