@@ -6,6 +6,9 @@ using System.IO;
 
 namespace Apq.DBC
 {
+	/// <summary>
+	/// Apq.DBC.Common
+	/// </summary>
 	public static class Common
 	{
 		private static FileSystemWatcher fsw = new FileSystemWatcher();

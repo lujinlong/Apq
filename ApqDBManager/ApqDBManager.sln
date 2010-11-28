@@ -20,6 +20,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_说明", "_说明", "{40D4
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Apq.DBC", "Apq.DBC\Apq.DBC.csproj", "{40669BE4-5C1F-4C76-84C7-35649167BAF9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApqFTPWS", "ApqFTPWS\ApqFTPWS.csproj", "{B155398E-37EC-4961-8BB6-41B3D5081811}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug_Home|Any CPU = Debug_Home|Any CPU
@@ -72,6 +74,15 @@ Global
 		{40669BE4-5C1F-4C76-84C7-35649167BAF9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{40669BE4-5C1F-4C76-84C7-35649167BAF9}.Release|Any CPU.Build.0 = Release|Any CPU
 		{40669BE4-5C1F-4C76-84C7-35649167BAF9}.Release|x86.ActiveCfg = Release|Any CPU
+		{B155398E-37EC-4961-8BB6-41B3D5081811}.Debug_Home|Any CPU.ActiveCfg = Debug|Any CPU
+		{B155398E-37EC-4961-8BB6-41B3D5081811}.Debug_Home|Any CPU.Build.0 = Debug|Any CPU
+		{B155398E-37EC-4961-8BB6-41B3D5081811}.Debug_Home|x86.ActiveCfg = Debug|Any CPU
+		{B155398E-37EC-4961-8BB6-41B3D5081811}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B155398E-37EC-4961-8BB6-41B3D5081811}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B155398E-37EC-4961-8BB6-41B3D5081811}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{B155398E-37EC-4961-8BB6-41B3D5081811}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B155398E-37EC-4961-8BB6-41B3D5081811}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B155398E-37EC-4961-8BB6-41B3D5081811}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
