@@ -213,6 +213,7 @@
     <Compile Include="Security\Cryptography\SymmetricAlgorithmHelper.cs" />
     <Compile Include="Security\Cryptography\DSAHelper.cs" />
     <Compile Include="Sim\Mouse.cs" />
+    <Compile Include="Threading\Thread.cs" />
     <Compile Include="Utils\VirtKeys.cs" />
     <Compile Include="Xml\XmlDocument.cs" />
     <Compile Include="Apq\Char.cs" />

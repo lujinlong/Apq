@@ -266,7 +266,6 @@
     <Compile Include="Xtra\Common.cs" />
     <Compile Include="Xtra\Grid\Common.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Threading\Thread.cs" />
     <Compile Include="Windows\Controls\Control.cs" />
     <Compile Include="Windows\Controls\FolderBrowser.cs">
       <SubType>UserControl</SubType>
