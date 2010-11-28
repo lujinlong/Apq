@@ -21,7 +21,7 @@ namespace Apq.DBC
 		static Common()
 		{
 			fsw.Changed += new FileSystemEventHandler(fsw_Changed);
-			_csFilePath = GlobalObject.RegConfigChain["ConnectionFile", "csFile"];
+			_csFilePath = GlobalObject.XmlConfigChain["ConnectionFile", "csFile"];
 			string strFolder = Path.GetDirectoryName(_csFilePath);
 			string strFileName = Path.GetFileName(_csFilePath);
 			if (fsw.Path != strFolder)
@@ -47,8 +47,8 @@ namespace Apq.DBC
 			_csStringCrypt = System.IO.File.ReadAllText(_csFilePath, Encoding.UTF8);
 
 			// 读取密钥
-			string desKey = GlobalObject.RegConfigChain["Crypt", "DESKey"];
-			string desIV = GlobalObject.RegConfigChain["Crypt", "DESIV"];
+			string desKey = GlobalObject.XmlConfigChain["Crypt", "DESKey"];
+			string desIV = GlobalObject.XmlConfigChain["Crypt", "DESIV"];
 
 			_csString = Apq.Security.Cryptography.DESHelper.DecryptString(_csStringCrypt, desKey, desIV);
 			//_csString = _csStringCrypt;

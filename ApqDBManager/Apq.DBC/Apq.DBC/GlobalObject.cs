@@ -28,60 +28,56 @@ namespace Apq.DBC
 		}
 		#endregion
 
-		#region RegSysConfig
-		private static Apq.Config.RegConfig _RegSysConfig;
+		#region XmlAsmConfig
+		private static Apq.Config.XmlConfig _XmlAsmConfig;
 		/// <summary>
-		/// 该程序集配置文件(程序集名.后缀.Reg)
+		/// 该程序集配置文件(程序集名.后缀.xml)
 		/// </summary>
-		public static Apq.Config.RegConfig RegSysConfig
+		public static Apq.Config.XmlConfig XmlAsmConfig
 		{
 			get
 			{
-				if (_RegSysConfig == null)
+				if (_XmlAsmConfig == null)
 				{
-					_RegSysConfig = new Apq.Config.RegConfig();
-					_RegSysConfig.Path = "$reg$LocalMachine";
-					_RegSysConfig.Root = @"SOFTWARE\Apq\ApqDBManager";
+					_XmlAsmConfig = Apq.Config.ApqConfigs.GetAsmConfig(TheAssembly) as Apq.Config.XmlConfig;
 				}
-				return _RegSysConfig;
+				return _XmlAsmConfig;
 			}
 		}
 		#endregion
 
-		#region RegUserConfig
-		private static Apq.Config.RegConfig _RegUserConfig;
+		#region XmlUserConfig
+		private static Apq.Config.XmlConfig _XmlUserConfig;
 		/// <summary>
-		/// 该程序集用户配置文件(程序集名.后缀.Reg)
+		/// 该程序集用户配置文件(程序集名.后缀.xml)
 		/// </summary>
-		public static Apq.Config.RegConfig RegUserConfig
+		public static Apq.Config.XmlConfig XmlUserConfig
 		{
 			get
 			{
-				if (_RegUserConfig == null)
+				if (_XmlUserConfig == null)
 				{
-					_RegUserConfig = new Apq.Config.RegConfig();
-					_RegUserConfig.Path = "$reg$CurrentUser";
-					_RegUserConfig.Root = @"SOFTWARE\Apq\ApqDBManager";
+					_XmlUserConfig = Apq.Config.ApqConfigs.GetUserConfig(TheAssembly) as Apq.Config.XmlConfig;
 				}
-				return _RegUserConfig;
+				return _XmlUserConfig;
 			}
 		}
 		#endregion
 
-		#region RegConfigChain
-		private static Apq.Config.ConfigChain _RegConfigChain;
+		#region XmlConfigChain
+		private static Apq.Config.ConfigChain _XmlConfigChain;
 		/// <summary>
 		/// 该程序集配置文件链
 		/// </summary>
-		public static Apq.Config.ConfigChain RegConfigChain
+		public static Apq.Config.ConfigChain XmlConfigChain
 		{
 			get
 			{
-				if (_RegConfigChain == null)
+				if (_XmlConfigChain == null)
 				{
-					_RegConfigChain = new Apq.Config.ConfigChain(RegSysConfig, RegUserConfig);
+					_XmlConfigChain = new Apq.Config.ConfigChain(XmlAsmConfig, XmlUserConfig);
 				}
-				return _RegConfigChain;
+				return _XmlConfigChain;
 			}
 		}
 		#endregion
