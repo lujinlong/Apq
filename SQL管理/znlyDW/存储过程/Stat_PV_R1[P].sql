@@ -99,7 +99,7 @@ BEGIN
 	
 	SELECT @CIDE = @CID + 10000;
 	INSERT dbo.PV_Imei_LogType1 ( Imei,LogType,FirstTime,FirstPlatform,FirstSMSC,FirstProvince,FristPlatformDate )
-	SELECT l.Imei,l.LogType,ISNULL(l.LogTime,'9999-12-31 23:59:59.997'),ISNULL(l.Platform,'未知'),ISNULL(l.SMSC,'未知'),ISNULL(l.Province,'未知'),PlatformDate
+	SELECT l.Imei,l.LogType,l.LogTime,l.[Platform],l.SMSC,l.Province,PlatformDate
 	  FROM log.ImeiLog l(NOLOCK)
 	 WHERE NOT EXISTS(SELECT TOP 1 1 FROM dbo.PV_Imei_LogType d WHERE d.LogType = l.LogType AND d.Imei = l.Imei)
 		AND l.LogTime >= @StartTime AND l.LogTime < @EndTime
@@ -163,6 +163,7 @@ SELECT @Now = getdate();
 SELECT @strNow = Convert(nvarchar(50),@Now,121)
 EXEC dbo.Apq_Ext_Set 'PV_Stat',0,'_Time06',@strNow;
 
+/* 太慢,先跳过
 -- Last
 WHILE(1=1)
 BEGIN
@@ -181,7 +182,7 @@ BEGIN
 		,t.SLastProvince = t.LastProvince
 	  FROM dbo.PV_Imei_LogType t
 	 WHERE t.VisitCountLately_Time < @EndTime
-		AND EXISTS(SELECT * FROM log.ImeiLog l(NOLOCK) WHERE l.LogType = t.LogType AND l.Imei = t.Imei AND l.LogTime >= @StartTime AND l.LogTime < @EndTime);
+		AND EXISTS(SELECT TOP 1 1 FROM log.ImeiLog l(NOLOCK) WHERE l.LogType = t.LogType AND l.Imei = t.Imei AND l.LogTime >= @StartTime AND l.LogTime < @EndTime);
 	IF(@@ROWCOUNT = 0) BREAK;
 END
 
@@ -189,6 +190,7 @@ END
 SELECT @Now = getdate();
 SELECT @strNow = Convert(nvarchar(50),@Now,121)
 EXEC dbo.Apq_Ext_Set 'PV_Stat',0,'_Time07',@strNow;
+*/
 -- =================================================================================================
 
 -- PV_Imei -----------------------------------------------------------------------------------------
@@ -265,6 +267,9 @@ END
 -- 插入完成,记录最后ID
 EXEC dbo.Apq_Ext_Set 'PV_Stat',0,'CID_PV_Imei',@EID;
 
+-- 插入完成后按需创建索引
+IF(LEN(@sql_Create)>1) EXEC sp_executesql @sql_Create;
+
 -- 记录时间点10
 SELECT @Now = getdate();
 SELECT @strNow = Convert(nvarchar(50),@Now,121)
@@ -308,6 +313,7 @@ SELECT @Now = getdate();
 SELECT @strNow = Convert(nvarchar(50),@Now,121)
 EXEC dbo.Apq_Ext_Set 'PV_Stat',0,'_Time12',@strNow;
 
+/*
 -- Last
 WHILE(1=1)
 BEGIN
@@ -328,7 +334,7 @@ BEGIN
 		,t.SLastProvince = t.LastProvince
 	  FROM dbo.PV_Imei t
 	 WHERE t.VisitLast_Time < @EndTime
-		AND EXISTS(SELECT * FROM dbo.PV_Imei_LogType l(NOLOCK) WHERE l.Imei = t.Imei AND l.VisitCountLately_Time = @EndTime);
+		AND EXISTS(SELECT TOP 1 1 FROM dbo.PV_Imei_LogType l(NOLOCK) WHERE l.Imei = t.Imei AND l.VisitCountLately_Time = @EndTime);
 	IF(@@ROWCOUNT = 0) BREAK;
 END
 
@@ -336,7 +342,7 @@ END
 SELECT @Now = getdate();
 SELECT @strNow = Convert(nvarchar(50),@Now,121)
 EXEC dbo.Apq_Ext_Set 'PV_Stat',0,'_Time13',@strNow;
-
+*/
 -- =================================================================================================
 
 RETURN 1;
