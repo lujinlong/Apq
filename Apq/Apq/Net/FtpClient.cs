@@ -43,16 +43,16 @@ namespace Apq.Net
 		/// </summary>
 		public void Upload(string FullName)
 		{
-			FileInfo fileInf = new FileInfo(FullName);
-			FtpWebRequest reqFTP = (FtpWebRequest)FtpWebRequest.Create(new Uri(_FtpURI + fileInf.Name));
+			FileInfo fileInfo = new FileInfo(FullName);
+			FtpWebRequest reqFTP = (FtpWebRequest)FtpWebRequest.Create(new Uri(_FtpURI + "_up" + fileInfo.Name));
 			reqFTP.Credentials = new NetworkCredential(_U, _P);
 			reqFTP.KeepAlive = false;
 			reqFTP.Method = WebRequestMethods.Ftp.UploadFile;
 			reqFTP.UseBinary = true;
-			reqFTP.ContentLength = fileInf.Length;
+			reqFTP.ContentLength = fileInfo.Length;
 			byte[] buff = new byte[_CacheSize];
 			int contentLen;
-			FileStream fs = fileInf.OpenRead();
+			FileStream fs = fileInfo.OpenRead();
 			try
 			{
 				Stream strm = reqFTP.GetRequestStream();
@@ -63,6 +63,8 @@ namespace Apq.Net
 					contentLen = fs.Read(buff, 0, _CacheSize);
 				}
 				strm.Close();
+
+				Rename("_up" + fileInfo.Name, fileInfo.Name);
 			}
 			finally
 			{
