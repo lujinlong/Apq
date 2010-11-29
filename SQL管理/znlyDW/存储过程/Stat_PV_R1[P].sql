@@ -129,7 +129,7 @@ IF(@IsAgain = 1)
 BEGIN
 	WHILE(1=1)
 	BEGIN
-		UPDATE TOP(1000) t
+		UPDATE TOP(10000) t
 		   SET _Time = getdate(), VisitCountLately_Time = dateadd(n,-1,@EndTime), VisitCountTotal_Time = dateadd(n,-1,@EndTime)
 		  FROM dbo.PV_Imei_LogType t
 		WHERE t.VisitCountLately_Time >= @EndTime;
@@ -145,7 +145,7 @@ EXEC dbo.Apq_Ext_Set 'PV_Stat',0,'_Time05',@strNow;
 -- PV
 WHILE(1=1)
 BEGIN
-	UPDATE TOP(1000) t
+	UPDATE TOP(10000) t
 	   SET _Time = getdate(), VisitCountTotal_Time = @EndTime
 		,t.VisitCountWeek = ISNULL((SELECT Count(l.Imei) FROM log.ImeiLog l(NOLOCK) WHERE l.LogType = t.LogType AND l.Imei = t.Imei AND l.LogTime >= @BTimeWeek AND l.LogTime < @EndTime),0)
 		,t.VisitCountDWeek = ISNULL((SELECT Count(l.Imei) FROM log.ImeiLog l(NOLOCK) WHERE l.LogType = t.LogType AND l.Imei = t.Imei AND l.LogTime >= @BTimeDWeek AND l.LogTime < @EndTime),0)
@@ -163,26 +163,35 @@ SELECT @Now = getdate();
 SELECT @strNow = Convert(nvarchar(50),@Now,121)
 EXEC dbo.Apq_Ext_Set 'PV_Stat',0,'_Time06',@strNow;
 
-/* 太慢,先跳过
 -- Last
+UPDATE t
+   SET _Time = getdate(), _LastImeiLogIDTemp_Time = @EndTime
+	,t._LastImeiLogIDTemp = l.LastID
+  FROM dbo.PV_Imei_LogType t INNER JOIN 
+	(SELECT Imei, LogType, LastID=Max(ID)
+	   FROM log.ImeiLog(NOLOCK)
+	  WHERE LogTime >= @StartTime AND LogTime < @EndTime
+	  GROUP BY Imei, LogType
+	 ) l ON t.Imei = l.Imei AND t.LogType = l.LogType
+ WHERE t._LastImeiLogIDTemp_Time < @EndTime
 WHILE(1=1)
 BEGIN
-	UPDATE TOP(1000) t
-	   SET _Time = getdate(), VisitCountLately_Time = @EndTime
-		,t.LastTime = (SELECT TOP 1 LogTime FROM log.ImeiLog l(NOLOCK) WHERE l.LogType = t.LogType AND l.Imei = t.Imei ORDER BY LogTime DESC, ID DESC)
-		,t.LastPlatform = (SELECT TOP 1 [Platform] FROM log.ImeiLog l(NOLOCK) WHERE l.LogType = t.LogType AND l.Imei = t.Imei ORDER BY LogTime DESC, ID DESC)
-		,t.LastPlatformDate = (SELECT TOP 1 PlatformDate FROM log.ImeiLog l(NOLOCK) WHERE l.LogType = t.LogType AND l.Imei = t.Imei ORDER BY LogTime DESC, ID DESC)
-		,t.LastSMSC = (SELECT TOP 1 LastSMSC FROM log.ImeiLog l(NOLOCK) WHERE l.LogType = t.LogType AND l.Imei = t.Imei ORDER BY LogTime DESC, ID DESC)
-		,t.LastProvince = (SELECT TOP 1 Province FROM log.ImeiLog l(NOLOCK) WHERE l.LogType = t.LogType AND l.Imei = t.Imei ORDER BY LogTime DESC, ID DESC)
+	UPDATE TOP(10000) t
+	   SET _Time = getdate(), _LastImeiLogID_Time = @EndTime
+		,t.LastTime = l.LogTime
+		,t.LastPlatform = l.[Platform]
+		,t.LastPlatformDate = l.PlatformDate
+		,t.LastSMSC = l.LastSMSC
+		,t.LastProvince = l.Province
 		
 		,t.SLastTime = t.LastTime
 		,t.SLastPlatform = t.LastPlatform
 		,t.SLastPlatformDate = t.LastPlatformDate
 		,t.SLastSMSC = t.LastSMSC
 		,t.SLastProvince = t.LastProvince
-	  FROM dbo.PV_Imei_LogType t
-	 WHERE t.VisitCountLately_Time < @EndTime
-		AND EXISTS(SELECT TOP 1 1 FROM log.ImeiLog l(NOLOCK) WHERE l.LogType = t.LogType AND l.Imei = t.Imei AND l.LogTime >= @StartTime AND l.LogTime < @EndTime);
+	  FROM dbo.PV_Imei_LogType t INNER JOIN log.ImeiLog l(NOLOCK) ON l.ID = t._LastImeiLogIDTemp
+	 WHERE t._LastImeiLogID_Time < @EndTime
+		AND t._LastImeiLogIDTemp_Time = @EndTime
 	IF(@@ROWCOUNT = 0) BREAK;
 END
 
@@ -190,7 +199,6 @@ END
 SELECT @Now = getdate();
 SELECT @strNow = Convert(nvarchar(50),@Now,121)
 EXEC dbo.Apq_Ext_Set 'PV_Stat',0,'_Time07',@strNow;
-*/
 -- =================================================================================================
 
 -- PV_Imei -----------------------------------------------------------------------------------------
@@ -280,7 +288,7 @@ IF(@IsAgain = 1)
 BEGIN
 	WHILE(1=1)
 	BEGIN
-		UPDATE TOP(1000) t
+		UPDATE TOP(10000) t
 		   SET _Time = getdate(), VisitCount_Time = dateadd(n,-1,@EndTime), VisitLast_Time = dateadd(n,-1,@EndTime)
 		  FROM dbo.PV_Imei t
 		WHERE t.VisitCount_Time >= @EndTime;
@@ -296,7 +304,7 @@ EXEC dbo.Apq_Ext_Set 'PV_Stat',0,'_Time11',@strNow;
 -- PV
 WHILE(1=1)
 BEGIN
-	UPDATE TOP(1000) t
+	UPDATE TOP(10000) t
 	   SET _Time = getdate(), VisitCount_Time = @EndTime
 		,t.VisitCountWeek = ISNULL((SELECT Sum(VisitCountWeek) FROM dbo.PV_Imei_LogType l(NOLOCK) WHERE l.Imei = t.Imei),0)
 		,t.VisitCountDWeek = ISNULL((SELECT Sum(VisitCountDWeek) FROM dbo.PV_Imei_LogType l(NOLOCK) WHERE l.Imei = t.Imei),0)
@@ -313,18 +321,27 @@ SELECT @Now = getdate();
 SELECT @strNow = Convert(nvarchar(50),@Now,121)
 EXEC dbo.Apq_Ext_Set 'PV_Stat',0,'_Time12',@strNow;
 
-/*
 -- Last
+UPDATE t
+   SET _Time = getdate(), _LastPVTimeTemp_Time = @EndTime
+	,t._LastPVTimeTemp = l.LastTime
+  FROM dbo.PV_Imei t INNER JOIN 
+	(SELECT Imei, LastTime=Max(LastTime)
+	   FROM dbo.PV_Imei_LogType(NOLOCK)
+	  WHERE LogTime >= @StartTime AND LogTime < @EndTime
+	  GROUP BY Imei
+	 ) l ON t.Imei = l.Imei
+ WHERE t._LastPVTimeTemp_Time < @EndTime
 WHILE(1=1)
 BEGIN
-	UPDATE TOP(1000) t
-	   SET _Time = getdate(), VisitLast_Time = @EndTime
-		,t.LastLogType = (SELECT TOP 1 LogType FROM dbo.PV_Imei_LogType l(NOLOCK) WHERE l.Imei = t.Imei ORDER BY LastTime DESC, ID DESC)
-		,t.LastTime = (SELECT TOP 1 LastTime FROM dbo.PV_Imei_LogType l(NOLOCK) WHERE l.Imei = t.Imei ORDER BY LastTime DESC, ID DESC)
-		,t.LastPlatform = (SELECT TOP 1 LastPlatform FROM dbo.PV_Imei_LogType l(NOLOCK) WHERE l.Imei = t.Imei ORDER BY LastTime DESC, ID DESC)
-		,t.LastPlatformDate = (SELECT TOP 1 LastPlatformDate FROM dbo.PV_Imei_LogType l(NOLOCK) WHERE l.Imei = t.Imei ORDER BY LastTime DESC, ID DESC)
-		,t.LastSMSC = (SELECT TOP 1 LastSMSC FROM dbo.PV_Imei_LogType l(NOLOCK) WHERE l.Imei = t.Imei ORDER BY LastTime DESC, ID DESC)
-		,t.LastProvince = (SELECT TOP 1 LastProvince FROM dbo.PV_Imei_LogType l(NOLOCK) WHERE l.Imei = t.Imei ORDER BY LastTime DESC, ID DESC)
+	UPDATE TOP(10000) t
+	   SET _Time = getdate(), _LastPVTime_Time = @EndTime
+		,t.LastLogType = l.LogType
+		,t.LastTime = l.LastTime
+		,t.LastPlatform = l.LastPlatform
+		,t.LastPlatformDate = l.LastPlatformDate
+		,t.LastSMSC = l.LastSMSC
+		,t.LastProvince = l.LastProvince
 		
 		,t.SLastLogType = t.LastLogType
 		,t.SLastTime = t.LastTime
@@ -332,9 +349,9 @@ BEGIN
 		,t.SLastPlatformDate = t.LastPlatformDate
 		,t.SLastSMSC = t.LastSMSC
 		,t.SLastProvince = t.LastProvince
-	  FROM dbo.PV_Imei t
-	 WHERE t.VisitLast_Time < @EndTime
-		AND EXISTS(SELECT TOP 1 1 FROM dbo.PV_Imei_LogType l(NOLOCK) WHERE l.Imei = t.Imei AND l.VisitCountLately_Time = @EndTime);
+	  FROM dbo.PV_Imei t INNER JOIN dbo.PV_Imei_LogType l(NOLOCK) ON l.Imei = t.Imei AND l.LastTime = t._LastPVTimeTemp
+	 WHERE t._LastPVTime_Time < @EndTime
+		AND t._LastPVTimeTemp_Time = @EndTime
 	IF(@@ROWCOUNT = 0) BREAK;
 END
 
@@ -342,7 +359,6 @@ END
 SELECT @Now = getdate();
 SELECT @strNow = Convert(nvarchar(50),@Now,121)
 EXEC dbo.Apq_Ext_Set 'PV_Stat',0,'_Time13',@strNow;
-*/
 -- =================================================================================================
 
 RETURN 1;

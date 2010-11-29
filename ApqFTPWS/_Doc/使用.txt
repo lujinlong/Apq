@@ -1,0 +1,2 @@
+﻿1.添加WebService引用,或使用代理类.
+2.调用wsFtp.asmx的Enqueue方法即可.

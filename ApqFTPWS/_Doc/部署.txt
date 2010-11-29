@@ -1,0 +1,16 @@
+﻿1.安装ASPAJAXExtSetup.msi.
+2.解压文件.
+3.设置web共享,即IIS虚拟目录.
+4.配置文件:
+	1).Web.Config
+	<appSettings>
+		<!-- 指定apq配置文件目录,必须使用\结尾 -->
+		<add key="Apq.Config.ApqConfigs.XmlConfigFolder" value="D:\DBA\ApqFtpWS\bin\"/>
+	</appSettings>
+	2).bin\ApqFtpWS.dll.apq
+		<!-- 指定FTP队列保存文件,注意要对目录设置(NETWORK SERVICE)可写权限 -->
+		<ApqFtpWS.App_Code.FtpQueue FtpFile="D:\DBA\FtpFile.xml"/>
+	3).Apq.dll.log4net
+		<appender name="LogFileAppender" type="log4net.Appender.FileAppender">
+			<!-- log4net日志记录文件 -->
+			<file value="D:\DBA\ApqFtpWS\log\Apq_log-file.log" />
