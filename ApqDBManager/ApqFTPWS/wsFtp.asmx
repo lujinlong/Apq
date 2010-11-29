@@ -1,1 +1,0 @@
-﻿<%@ WebService Language="C#" CodeBehind="wsFtp.asmx.cs" Class="ApqFtpWS.wsFtp" %>
