@@ -9,7 +9,7 @@
 	</appSettings>
 	2).bin\ApqFtpWS.dll.apq
 		<!-- 指定FTP队列保存文件,注意要对目录设置(NETWORK SERVICE)可写权限 -->
-		<ApqFtpWS.App_Code.FtpQueue FtpFile="D:\DBA\FtpFile.xml"/>
+		<ApqFtpWS.App_Code.FtpQueue FtpFile="D:\DBA\ApqFtpWS\FtpFile.xml"/>
 	3).Apq.dll.log4net
 		<appender name="LogFileAppender" type="log4net.Appender.FileAppender">
 			<!-- log4net日志记录文件 -->

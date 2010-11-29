@@ -4,7 +4,7 @@
 	<log4net>
 		<!-- Define some output appenders -->
 		<appender name="RollingLogFileAppender" type="log4net.Appender.RollingFileAppender">
-			<file value="log\Apq_rolling-log.log" />
+			<file value="D:\DBA\ApqFtpWS\log\Apq_rolling-log.log" />
 			<appendToFile value="true" />
 			<maxSizeRollBackups value="10" />
 			<maximumFileSize value="100" />
@@ -17,7 +17,7 @@
 			</layout>
 		</appender>
 		<appender name="LogFileAppender" type="log4net.Appender.FileAppender">
-			<file value="log\Apq_log-file.log" />
+			<file value="D:\DBA\ApqFtpWS\log\Apq_log-file.log" />
 			<!-- Example using environment variables in params -->
 			<!-- <file value="${TMP}\Apq_log-file.log" /> -->
 			<sppendToFile value="true" />

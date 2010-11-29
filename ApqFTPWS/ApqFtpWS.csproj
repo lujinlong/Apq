@@ -122,7 +122,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>3169</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost/ApqDBManager/ApqFtpWS/</IISUrl>
+          <IISUrl>http://localhost/ApqFtpWS/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

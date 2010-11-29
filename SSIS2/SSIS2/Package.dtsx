@@ -1,0 +1,896 @@
+<?xml version="1.0"?><DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts" DTS:ExecutableType="SSIS.Package.2">
+<DTS:Property DTS:Name="PackageFormatVersion">3</DTS:Property>
+<DTS:Property DTS:Name="VersionComments"></DTS:Property>
+<DTS:Property DTS:Name="CreatorName">E0B170CCB9764B1\Administrator</DTS:Property>
+<DTS:Property DTS:Name="CreatorComputerName">E0B170CCB9764B1</DTS:Property>
+<DTS:Property DTS:Name="CreationDate" DTS:DataType="7">10/18/2010 6:23:00 PM</DTS:Property>
+<DTS:Property DTS:Name="PackageType">5</DTS:Property>
+<DTS:Property DTS:Name="ProtectionLevel">1</DTS:Property>
+<DTS:Property DTS:Name="MaxConcurrentExecutables">-1</DTS:Property>
+<DTS:Property DTS:Name="PackagePriorityClass">0</DTS:Property>
+<DTS:Property DTS:Name="VersionMajor">1</DTS:Property>
+<DTS:Property DTS:Name="VersionMinor">0</DTS:Property>
+<DTS:Property DTS:Name="VersionBuild">4</DTS:Property>
+<DTS:Property DTS:Name="VersionGUID">{32786E23-79B5-496A-9DF8-EF30AE8F363C}</DTS:Property>
+<DTS:Property DTS:Name="EnableConfig">0</DTS:Property>
+<DTS:Property DTS:Name="CheckpointFileName"></DTS:Property>
+<DTS:Property DTS:Name="SaveCheckpoints">0</DTS:Property>
+<DTS:Property DTS:Name="CheckpointUsage">0</DTS:Property>
+<DTS:Property DTS:Name="SuppressConfigurationWarnings">0</DTS:Property>
+<DTS:ConnectionManager>
+<DTS:Property DTS:Name="DelayValidation">0</DTS:Property>
+<DTS:Property DTS:Name="ObjectName">LocalHost.znlyDW.apq</DTS:Property>
+<DTS:Property DTS:Name="DTSID">{F66E6739-849F-45C4-BF8D-5A117C94CD49}</DTS:Property>
+<DTS:Property DTS:Name="Description"></DTS:Property>
+<DTS:Property DTS:Name="CreationName">OLEDB</DTS:Property><DTS:ObjectData><DTS:ConnectionManager>
+<DTS:Property DTS:Name="Retain">0</DTS:Property><DTS:Password DTS:Name="Password" Sensitive="1" Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAFVrTh7Srs029bogpOFJ9rwAAAAAIAAAARABUAFMAAAADZgAAqAAAABAAAAA0/Q7DG+1zc11gMsAdXJ9HAAAAAASAAACgAAAAEAAAAHtVF+XzrsM1cRQLHGzpB1UIAAAAHlqc7f3uZzAUAAAA76mNZrqjZ35bXTQn7Pc2Yxc3aUo</DTS:Password>
+<DTS:Property DTS:Name="ConnectionString">Data Source=.;User ID=apq;Initial Catalog=znlyDW;Provider=SQLNCLI10.1;Persist Security Info=True;Application Name=SSIS-Package-{F66E6739-849F-45C4-BF8D-5A117C94CD49}LocalHost.znlyDW.apq;Auto Translate=False;</DTS:Property></DTS:ConnectionManager></DTS:ObjectData></DTS:ConnectionManager>
+<DTS:ConnectionManager>
+<DTS:Property DTS:Name="DelayValidation">0</DTS:Property>
+<DTS:Property DTS:Name="ObjectName">test1</DTS:Property>
+<DTS:Property DTS:Name="DTSID">{91B0D862-E3C3-4C80-8720-07FCBBBBEAC1}</DTS:Property>
+<DTS:Property DTS:Name="Description"></DTS:Property>
+<DTS:Property DTS:Name="CreationName">FLATFILE</DTS:Property><DTS:ObjectData><DTS:ConnectionManager>
+<DTS:Property DTS:Name="FileUsageType">0</DTS:Property>
+<DTS:Property DTS:Name="Format">Delimited</DTS:Property>
+<DTS:Property DTS:Name="LocaleID">2052</DTS:Property>
+<DTS:Property DTS:Name="Unicode">0</DTS:Property>
+<DTS:Property DTS:Name="HeaderRowsToSkip">0</DTS:Property>
+<DTS:Property DTS:Name="HeaderRowDelimiter" xml:space="preserve">_x000D__x000A_</DTS:Property>
+<DTS:Property DTS:Name="ColumnNamesInFirstDataRow">0</DTS:Property>
+<DTS:Property DTS:Name="RowDelimiter" xml:space="preserve"></DTS:Property>
+<DTS:Property DTS:Name="DataRowsToSkip">0</DTS:Property>
+<DTS:Property DTS:Name="TextQualifier">&lt;none&gt;</DTS:Property>
+<DTS:Property DTS:Name="CodePage">936</DTS:Property>
+<DTS:FlatFileColumn>
+<DTS:Property DTS:Name="ColumnType">Delimited</DTS:Property>
+<DTS:Property DTS:Name="ColumnDelimiter" xml:space="preserve">_x0009_</DTS:Property>
+<DTS:Property DTS:Name="ColumnWidth">0</DTS:Property>
+<DTS:Property DTS:Name="MaximumWidth">50</DTS:Property>
+<DTS:Property DTS:Name="DataType">129</DTS:Property>
+<DTS:Property DTS:Name="DataPrecision">0</DTS:Property>
+<DTS:Property DTS:Name="DataScale">0</DTS:Property>
+<DTS:Property DTS:Name="TextQualified">-1</DTS:Property>
+<DTS:Property DTS:Name="ObjectName">列 0</DTS:Property>
+<DTS:Property DTS:Name="DTSID">{041AE732-48B3-48BD-8207-6EDDBA58166B}</DTS:Property>
+<DTS:Property DTS:Name="Description"></DTS:Property>
+<DTS:Property DTS:Name="CreationName"></DTS:Property></DTS:FlatFileColumn>
+<DTS:FlatFileColumn>
+<DTS:Property DTS:Name="ColumnType">Delimited</DTS:Property>
+<DTS:Property DTS:Name="ColumnDelimiter" xml:space="preserve">_x0009_</DTS:Property>
+<DTS:Property DTS:Name="ColumnWidth">0</DTS:Property>
+<DTS:Property DTS:Name="MaximumWidth">50</DTS:Property>
+<DTS:Property DTS:Name="DataType">129</DTS:Property>
+<DTS:Property DTS:Name="DataPrecision">0</DTS:Property>
+<DTS:Property DTS:Name="DataScale">0</DTS:Property>
+<DTS:Property DTS:Name="TextQualified">-1</DTS:Property>
+<DTS:Property DTS:Name="ObjectName">列 1</DTS:Property>
+<DTS:Property DTS:Name="DTSID">{33F91EC1-F1E0-484F-845D-56AA1AA26FE0}</DTS:Property>
+<DTS:Property DTS:Name="Description"></DTS:Property>
+<DTS:Property DTS:Name="CreationName"></DTS:Property></DTS:FlatFileColumn>
+<DTS:FlatFileColumn>
+<DTS:Property DTS:Name="ColumnType">Delimited</DTS:Property>
+<DTS:Property DTS:Name="ColumnDelimiter" xml:space="preserve">_x0009_</DTS:Property>
+<DTS:Property DTS:Name="ColumnWidth">0</DTS:Property>
+<DTS:Property DTS:Name="MaximumWidth">50</DTS:Property>
+<DTS:Property DTS:Name="DataType">129</DTS:Property>
+<DTS:Property DTS:Name="DataPrecision">0</DTS:Property>
+<DTS:Property DTS:Name="DataScale">0</DTS:Property>
+<DTS:Property DTS:Name="TextQualified">-1</DTS:Property>
+<DTS:Property DTS:Name="ObjectName">列 2</DTS:Property>
+<DTS:Property DTS:Name="DTSID">{48D081E8-BCE6-4302-AD96-F1B44D6A9D72}</DTS:Property>
+<DTS:Property DTS:Name="Description"></DTS:Property>
+<DTS:Property DTS:Name="CreationName"></DTS:Property></DTS:FlatFileColumn>
+<DTS:FlatFileColumn>
+<DTS:Property DTS:Name="ColumnType">Delimited</DTS:Property>
+<DTS:Property DTS:Name="ColumnDelimiter" xml:space="preserve">_x0009_</DTS:Property>
+<DTS:Property DTS:Name="ColumnWidth">0</DTS:Property>
+<DTS:Property DTS:Name="MaximumWidth">50</DTS:Property>
+<DTS:Property DTS:Name="DataType">129</DTS:Property>
+<DTS:Property DTS:Name="DataPrecision">0</DTS:Property>
+<DTS:Property DTS:Name="DataScale">0</DTS:Property>
+<DTS:Property DTS:Name="TextQualified">-1</DTS:Property>
+<DTS:Property DTS:Name="ObjectName">列 3</DTS:Property>
+<DTS:Property DTS:Name="DTSID">{DE27BE41-3C1F-4EAC-ADFC-71C7D5157699}</DTS:Property>
+<DTS:Property DTS:Name="Description"></DTS:Property>
+<DTS:Property DTS:Name="CreationName"></DTS:Property></DTS:FlatFileColumn>
+<DTS:FlatFileColumn>
+<DTS:Property DTS:Name="ColumnType">Delimited</DTS:Property>
+<DTS:Property DTS:Name="ColumnDelimiter" xml:space="preserve">_x0009_</DTS:Property>
+<DTS:Property DTS:Name="ColumnWidth">0</DTS:Property>
+<DTS:Property DTS:Name="MaximumWidth">50</DTS:Property>
+<DTS:Property DTS:Name="DataType">129</DTS:Property>
+<DTS:Property DTS:Name="DataPrecision">0</DTS:Property>
+<DTS:Property DTS:Name="DataScale">0</DTS:Property>
+<DTS:Property DTS:Name="TextQualified">-1</DTS:Property>
+<DTS:Property DTS:Name="ObjectName">列 4</DTS:Property>
+<DTS:Property DTS:Name="DTSID">{CCEEBFF9-4AFA-4D39-88AA-A0B8A7B72F53}</DTS:Property>
+<DTS:Property DTS:Name="Description"></DTS:Property>
+<DTS:Property DTS:Name="CreationName"></DTS:Property></DTS:FlatFileColumn>
+<DTS:FlatFileColumn>
+<DTS:Property DTS:Name="ColumnType">Delimited</DTS:Property>
+<DTS:Property DTS:Name="ColumnDelimiter" xml:space="preserve">_x0009_</DTS:Property>
+<DTS:Property DTS:Name="ColumnWidth">0</DTS:Property>
+<DTS:Property DTS:Name="MaximumWidth">50</DTS:Property>
+<DTS:Property DTS:Name="DataType">129</DTS:Property>
+<DTS:Property DTS:Name="DataPrecision">0</DTS:Property>
+<DTS:Property DTS:Name="DataScale">0</DTS:Property>
+<DTS:Property DTS:Name="TextQualified">-1</DTS:Property>
+<DTS:Property DTS:Name="ObjectName">列 5</DTS:Property>
+<DTS:Property DTS:Name="DTSID">{13E3DE02-94C7-46F9-AEB5-CC7C6AC0552A}</DTS:Property>
+<DTS:Property DTS:Name="Description"></DTS:Property>
+<DTS:Property DTS:Name="CreationName"></DTS:Property></DTS:FlatFileColumn>
+<DTS:FlatFileColumn>
+<DTS:Property DTS:Name="ColumnType">Delimited</DTS:Property>
+<DTS:Property DTS:Name="ColumnDelimiter" xml:space="preserve">_x0009_</DTS:Property>
+<DTS:Property DTS:Name="ColumnWidth">0</DTS:Property>
+<DTS:Property DTS:Name="MaximumWidth">50</DTS:Property>
+<DTS:Property DTS:Name="DataType">129</DTS:Property>
+<DTS:Property DTS:Name="DataPrecision">0</DTS:Property>
+<DTS:Property DTS:Name="DataScale">0</DTS:Property>
+<DTS:Property DTS:Name="TextQualified">-1</DTS:Property>
+<DTS:Property DTS:Name="ObjectName">列 6</DTS:Property>
+<DTS:Property DTS:Name="DTSID">{C63EF27A-BC94-4688-ADB6-A5847C09922D}</DTS:Property>
+<DTS:Property DTS:Name="Description"></DTS:Property>
+<DTS:Property DTS:Name="CreationName"></DTS:Property></DTS:FlatFileColumn>
+<DTS:FlatFileColumn>
+<DTS:Property DTS:Name="ColumnType">Delimited</DTS:Property>
+<DTS:Property DTS:Name="ColumnDelimiter" xml:space="preserve">_x0009_</DTS:Property>
+<DTS:Property DTS:Name="ColumnWidth">0</DTS:Property>
+<DTS:Property DTS:Name="MaximumWidth">50</DTS:Property>
+<DTS:Property DTS:Name="DataType">129</DTS:Property>
+<DTS:Property DTS:Name="DataPrecision">0</DTS:Property>
+<DTS:Property DTS:Name="DataScale">0</DTS:Property>
+<DTS:Property DTS:Name="TextQualified">-1</DTS:Property>
+<DTS:Property DTS:Name="ObjectName">列 7</DTS:Property>
+<DTS:Property DTS:Name="DTSID">{0992E766-9E60-4197-9C3F-B024CDF3E805}</DTS:Property>
+<DTS:Property DTS:Name="Description"></DTS:Property>
+<DTS:Property DTS:Name="CreationName"></DTS:Property></DTS:FlatFileColumn>
+<DTS:FlatFileColumn>
+<DTS:Property DTS:Name="ColumnType">Delimited</DTS:Property>
+<DTS:Property DTS:Name="ColumnDelimiter" xml:space="preserve">_x0009_</DTS:Property>
+<DTS:Property DTS:Name="ColumnWidth">0</DTS:Property>
+<DTS:Property DTS:Name="MaximumWidth">50</DTS:Property>
+<DTS:Property DTS:Name="DataType">129</DTS:Property>
+<DTS:Property DTS:Name="DataPrecision">0</DTS:Property>
+<DTS:Property DTS:Name="DataScale">0</DTS:Property>
+<DTS:Property DTS:Name="TextQualified">-1</DTS:Property>
+<DTS:Property DTS:Name="ObjectName">列 8</DTS:Property>
+<DTS:Property DTS:Name="DTSID">{0BD9AF3B-C209-4FD7-9D3F-ABF99BAB05F2}</DTS:Property>
+<DTS:Property DTS:Name="Description"></DTS:Property>
+<DTS:Property DTS:Name="CreationName"></DTS:Property></DTS:FlatFileColumn>
+<DTS:FlatFileColumn>
+<DTS:Property DTS:Name="ColumnType">Delimited</DTS:Property>
+<DTS:Property DTS:Name="ColumnDelimiter" xml:space="preserve">_x0009_</DTS:Property>
+<DTS:Property DTS:Name="ColumnWidth">0</DTS:Property>
+<DTS:Property DTS:Name="MaximumWidth">50</DTS:Property>
+<DTS:Property DTS:Name="DataType">129</DTS:Property>
+<DTS:Property DTS:Name="DataPrecision">0</DTS:Property>
+<DTS:Property DTS:Name="DataScale">0</DTS:Property>
+<DTS:Property DTS:Name="TextQualified">-1</DTS:Property>
+<DTS:Property DTS:Name="ObjectName">列 9</DTS:Property>
+<DTS:Property DTS:Name="DTSID">{57BCC2A8-9C55-45E4-9A62-4DED55BE7058}</DTS:Property>
+<DTS:Property DTS:Name="Description"></DTS:Property>
+<DTS:Property DTS:Name="CreationName"></DTS:Property></DTS:FlatFileColumn>
+<DTS:FlatFileColumn>
+<DTS:Property DTS:Name="ColumnType">Delimited</DTS:Property>
+<DTS:Property DTS:Name="ColumnDelimiter" xml:space="preserve">_x0009_</DTS:Property>
+<DTS:Property DTS:Name="ColumnWidth">0</DTS:Property>
+<DTS:Property DTS:Name="MaximumWidth">50</DTS:Property>
+<DTS:Property DTS:Name="DataType">129</DTS:Property>
+<DTS:Property DTS:Name="DataPrecision">0</DTS:Property>
+<DTS:Property DTS:Name="DataScale">0</DTS:Property>
+<DTS:Property DTS:Name="TextQualified">-1</DTS:Property>
+<DTS:Property DTS:Name="ObjectName">列 10</DTS:Property>
+<DTS:Property DTS:Name="DTSID">{2B8C18EF-190A-4767-90ED-1D386F334700}</DTS:Property>
+<DTS:Property DTS:Name="Description"></DTS:Property>
+<DTS:Property DTS:Name="CreationName"></DTS:Property></DTS:FlatFileColumn>
+<DTS:FlatFileColumn>
+<DTS:Property DTS:Name="ColumnType">Delimited</DTS:Property>
+<DTS:Property DTS:Name="ColumnDelimiter" xml:space="preserve">_x0009_</DTS:Property>
+<DTS:Property DTS:Name="ColumnWidth">0</DTS:Property>
+<DTS:Property DTS:Name="MaximumWidth">50</DTS:Property>
+<DTS:Property DTS:Name="DataType">129</DTS:Property>
+<DTS:Property DTS:Name="DataPrecision">0</DTS:Property>
+<DTS:Property DTS:Name="DataScale">0</DTS:Property>
+<DTS:Property DTS:Name="TextQualified">-1</DTS:Property>
+<DTS:Property DTS:Name="ObjectName">列 11</DTS:Property>
+<DTS:Property DTS:Name="DTSID">{B42EFA86-1EDF-41C2-8475-7EF309B09256}</DTS:Property>
+<DTS:Property DTS:Name="Description"></DTS:Property>
+<DTS:Property DTS:Name="CreationName"></DTS:Property></DTS:FlatFileColumn>
+<DTS:FlatFileColumn>
+<DTS:Property DTS:Name="ColumnType">Delimited</DTS:Property>
+<DTS:Property DTS:Name="ColumnDelimiter" xml:space="preserve">_x0009_</DTS:Property>
+<DTS:Property DTS:Name="ColumnWidth">0</DTS:Property>
+<DTS:Property DTS:Name="MaximumWidth">50</DTS:Property>
+<DTS:Property DTS:Name="DataType">129</DTS:Property>
+<DTS:Property DTS:Name="DataPrecision">0</DTS:Property>
+<DTS:Property DTS:Name="DataScale">0</DTS:Property>
+<DTS:Property DTS:Name="TextQualified">-1</DTS:Property>
+<DTS:Property DTS:Name="ObjectName">列 12</DTS:Property>
+<DTS:Property DTS:Name="DTSID">{01E048D4-AB25-4009-B42F-F5D8BA5D6ECF}</DTS:Property>
+<DTS:Property DTS:Name="Description"></DTS:Property>
+<DTS:Property DTS:Name="CreationName"></DTS:Property></DTS:FlatFileColumn>
+<DTS:FlatFileColumn>
+<DTS:Property DTS:Name="ColumnType">Delimited</DTS:Property>
+<DTS:Property DTS:Name="ColumnDelimiter" xml:space="preserve">_x0009_</DTS:Property>
+<DTS:Property DTS:Name="ColumnWidth">0</DTS:Property>
+<DTS:Property DTS:Name="MaximumWidth">50</DTS:Property>
+<DTS:Property DTS:Name="DataType">129</DTS:Property>
+<DTS:Property DTS:Name="DataPrecision">0</DTS:Property>
+<DTS:Property DTS:Name="DataScale">0</DTS:Property>
+<DTS:Property DTS:Name="TextQualified">-1</DTS:Property>
+<DTS:Property DTS:Name="ObjectName">列 13</DTS:Property>
+<DTS:Property DTS:Name="DTSID">{7A792592-D5F3-4C97-94FB-E07DF1224D2A}</DTS:Property>
+<DTS:Property DTS:Name="Description"></DTS:Property>
+<DTS:Property DTS:Name="CreationName"></DTS:Property></DTS:FlatFileColumn>
+<DTS:FlatFileColumn>
+<DTS:Property DTS:Name="ColumnType">Delimited</DTS:Property>
+<DTS:Property DTS:Name="ColumnDelimiter" xml:space="preserve">_x0009_</DTS:Property>
+<DTS:Property DTS:Name="ColumnWidth">0</DTS:Property>
+<DTS:Property DTS:Name="MaximumWidth">50</DTS:Property>
+<DTS:Property DTS:Name="DataType">129</DTS:Property>
+<DTS:Property DTS:Name="DataPrecision">0</DTS:Property>
+<DTS:Property DTS:Name="DataScale">0</DTS:Property>
+<DTS:Property DTS:Name="TextQualified">-1</DTS:Property>
+<DTS:Property DTS:Name="ObjectName">列 14</DTS:Property>
+<DTS:Property DTS:Name="DTSID">{9A3166E2-133F-4008-873A-A4A8FD729CDF}</DTS:Property>
+<DTS:Property DTS:Name="Description"></DTS:Property>
+<DTS:Property DTS:Name="CreationName"></DTS:Property></DTS:FlatFileColumn>
+<DTS:FlatFileColumn>
+<DTS:Property DTS:Name="ColumnType">Delimited</DTS:Property>
+<DTS:Property DTS:Name="ColumnDelimiter" xml:space="preserve">_x0009_</DTS:Property>
+<DTS:Property DTS:Name="ColumnWidth">0</DTS:Property>
+<DTS:Property DTS:Name="MaximumWidth">50</DTS:Property>
+<DTS:Property DTS:Name="DataType">129</DTS:Property>
+<DTS:Property DTS:Name="DataPrecision">0</DTS:Property>
+<DTS:Property DTS:Name="DataScale">0</DTS:Property>
+<DTS:Property DTS:Name="TextQualified">-1</DTS:Property>
+<DTS:Property DTS:Name="ObjectName">列 15</DTS:Property>
+<DTS:Property DTS:Name="DTSID">{656CB58D-E539-4660-95E7-40039EB8FC97}</DTS:Property>
+<DTS:Property DTS:Name="Description"></DTS:Property>
+<DTS:Property DTS:Name="CreationName"></DTS:Property></DTS:FlatFileColumn>
+<DTS:FlatFileColumn>
+<DTS:Property DTS:Name="ColumnType">Delimited</DTS:Property>
+<DTS:Property DTS:Name="ColumnDelimiter" xml:space="preserve">_x0009_</DTS:Property>
+<DTS:Property DTS:Name="ColumnWidth">0</DTS:Property>
+<DTS:Property DTS:Name="MaximumWidth">50</DTS:Property>
+<DTS:Property DTS:Name="DataType">129</DTS:Property>
+<DTS:Property DTS:Name="DataPrecision">0</DTS:Property>
+<DTS:Property DTS:Name="DataScale">0</DTS:Property>
+<DTS:Property DTS:Name="TextQualified">-1</DTS:Property>
+<DTS:Property DTS:Name="ObjectName">列 16</DTS:Property>
+<DTS:Property DTS:Name="DTSID">{DCF1ABEF-7B94-4BFF-BA23-C43B080F7A19}</DTS:Property>
+<DTS:Property DTS:Name="Description"></DTS:Property>
+<DTS:Property DTS:Name="CreationName"></DTS:Property></DTS:FlatFileColumn>
+<DTS:FlatFileColumn>
+<DTS:Property DTS:Name="ColumnType">Delimited</DTS:Property>
+<DTS:Property DTS:Name="ColumnDelimiter" xml:space="preserve">_x0009_</DTS:Property>
+<DTS:Property DTS:Name="ColumnWidth">0</DTS:Property>
+<DTS:Property DTS:Name="MaximumWidth">50</DTS:Property>
+<DTS:Property DTS:Name="DataType">129</DTS:Property>
+<DTS:Property DTS:Name="DataPrecision">0</DTS:Property>
+<DTS:Property DTS:Name="DataScale">0</DTS:Property>
+<DTS:Property DTS:Name="TextQualified">-1</DTS:Property>
+<DTS:Property DTS:Name="ObjectName">列 17</DTS:Property>
+<DTS:Property DTS:Name="DTSID">{95C11E21-A42C-486F-B7E6-32EAEAD38C01}</DTS:Property>
+<DTS:Property DTS:Name="Description"></DTS:Property>
+<DTS:Property DTS:Name="CreationName"></DTS:Property></DTS:FlatFileColumn>
+<DTS:FlatFileColumn>
+<DTS:Property DTS:Name="ColumnType">Delimited</DTS:Property>
+<DTS:Property DTS:Name="ColumnDelimiter" xml:space="preserve">_x0009_</DTS:Property>
+<DTS:Property DTS:Name="ColumnWidth">0</DTS:Property>
+<DTS:Property DTS:Name="MaximumWidth">50</DTS:Property>
+<DTS:Property DTS:Name="DataType">129</DTS:Property>
+<DTS:Property DTS:Name="DataPrecision">0</DTS:Property>
+<DTS:Property DTS:Name="DataScale">0</DTS:Property>
+<DTS:Property DTS:Name="TextQualified">-1</DTS:Property>
+<DTS:Property DTS:Name="ObjectName">列 18</DTS:Property>
+<DTS:Property DTS:Name="DTSID">{8024458A-E963-4D05-8737-B74210D96126}</DTS:Property>
+<DTS:Property DTS:Name="Description"></DTS:Property>
+<DTS:Property DTS:Name="CreationName"></DTS:Property></DTS:FlatFileColumn>
+<DTS:FlatFileColumn>
+<DTS:Property DTS:Name="ColumnType">Delimited</DTS:Property>
+<DTS:Property DTS:Name="ColumnDelimiter" xml:space="preserve">_x0009_</DTS:Property>
+<DTS:Property DTS:Name="ColumnWidth">0</DTS:Property>
+<DTS:Property DTS:Name="MaximumWidth">50</DTS:Property>
+<DTS:Property DTS:Name="DataType">129</DTS:Property>
+<DTS:Property DTS:Name="DataPrecision">0</DTS:Property>
+<DTS:Property DTS:Name="DataScale">0</DTS:Property>
+<DTS:Property DTS:Name="TextQualified">-1</DTS:Property>
+<DTS:Property DTS:Name="ObjectName">列 19</DTS:Property>
+<DTS:Property DTS:Name="DTSID">{97775834-BECE-4417-98F8-658A5EBCF20C}</DTS:Property>
+<DTS:Property DTS:Name="Description"></DTS:Property>
+<DTS:Property DTS:Name="CreationName"></DTS:Property></DTS:FlatFileColumn>
+<DTS:FlatFileColumn>
+<DTS:Property DTS:Name="ColumnType">Delimited</DTS:Property>
+<DTS:Property DTS:Name="ColumnDelimiter" xml:space="preserve">_x0009_</DTS:Property>
+<DTS:Property DTS:Name="ColumnWidth">0</DTS:Property>
+<DTS:Property DTS:Name="MaximumWidth">50</DTS:Property>
+<DTS:Property DTS:Name="DataType">129</DTS:Property>
+<DTS:Property DTS:Name="DataPrecision">0</DTS:Property>
+<DTS:Property DTS:Name="DataScale">0</DTS:Property>
+<DTS:Property DTS:Name="TextQualified">-1</DTS:Property>
+<DTS:Property DTS:Name="ObjectName">列 20</DTS:Property>
+<DTS:Property DTS:Name="DTSID">{556A0AF8-AB94-4D44-BB97-9230B91CE888}</DTS:Property>
+<DTS:Property DTS:Name="Description"></DTS:Property>
+<DTS:Property DTS:Name="CreationName"></DTS:Property></DTS:FlatFileColumn>
+<DTS:FlatFileColumn>
+<DTS:Property DTS:Name="ColumnType">Delimited</DTS:Property>
+<DTS:Property DTS:Name="ColumnDelimiter" xml:space="preserve">_x0009_</DTS:Property>
+<DTS:Property DTS:Name="ColumnWidth">0</DTS:Property>
+<DTS:Property DTS:Name="MaximumWidth">50</DTS:Property>
+<DTS:Property DTS:Name="DataType">129</DTS:Property>
+<DTS:Property DTS:Name="DataPrecision">0</DTS:Property>
+<DTS:Property DTS:Name="DataScale">0</DTS:Property>
+<DTS:Property DTS:Name="TextQualified">-1</DTS:Property>
+<DTS:Property DTS:Name="ObjectName">列 21</DTS:Property>
+<DTS:Property DTS:Name="DTSID">{B49CC3A9-9B44-4094-970A-145219779A5A}</DTS:Property>
+<DTS:Property DTS:Name="Description"></DTS:Property>
+<DTS:Property DTS:Name="CreationName"></DTS:Property></DTS:FlatFileColumn>
+<DTS:FlatFileColumn>
+<DTS:Property DTS:Name="ColumnType">Delimited</DTS:Property>
+<DTS:Property DTS:Name="ColumnDelimiter" xml:space="preserve">_x0009_</DTS:Property>
+<DTS:Property DTS:Name="ColumnWidth">0</DTS:Property>
+<DTS:Property DTS:Name="MaximumWidth">50</DTS:Property>
+<DTS:Property DTS:Name="DataType">129</DTS:Property>
+<DTS:Property DTS:Name="DataPrecision">0</DTS:Property>
+<DTS:Property DTS:Name="DataScale">0</DTS:Property>
+<DTS:Property DTS:Name="TextQualified">-1</DTS:Property>
+<DTS:Property DTS:Name="ObjectName">列 22</DTS:Property>
+<DTS:Property DTS:Name="DTSID">{C0A76CC8-89CB-4F49-A6B3-B2B87290841E}</DTS:Property>
+<DTS:Property DTS:Name="Description"></DTS:Property>
+<DTS:Property DTS:Name="CreationName"></DTS:Property></DTS:FlatFileColumn>
+<DTS:FlatFileColumn>
+<DTS:Property DTS:Name="ColumnType">Delimited</DTS:Property>
+<DTS:Property DTS:Name="ColumnDelimiter" xml:space="preserve">_x0009_</DTS:Property>
+<DTS:Property DTS:Name="ColumnWidth">0</DTS:Property>
+<DTS:Property DTS:Name="MaximumWidth">50</DTS:Property>
+<DTS:Property DTS:Name="DataType">129</DTS:Property>
+<DTS:Property DTS:Name="DataPrecision">0</DTS:Property>
+<DTS:Property DTS:Name="DataScale">0</DTS:Property>
+<DTS:Property DTS:Name="TextQualified">-1</DTS:Property>
+<DTS:Property DTS:Name="ObjectName">列 23</DTS:Property>
+<DTS:Property DTS:Name="DTSID">{B44E9B86-7541-47A8-A9ED-5F2C5F7D5C8E}</DTS:Property>
+<DTS:Property DTS:Name="Description"></DTS:Property>
+<DTS:Property DTS:Name="CreationName"></DTS:Property></DTS:FlatFileColumn>
+<DTS:FlatFileColumn>
+<DTS:Property DTS:Name="ColumnType">Delimited</DTS:Property>
+<DTS:Property DTS:Name="ColumnDelimiter" xml:space="preserve">_x0009_</DTS:Property>
+<DTS:Property DTS:Name="ColumnWidth">0</DTS:Property>
+<DTS:Property DTS:Name="MaximumWidth">50</DTS:Property>
+<DTS:Property DTS:Name="DataType">129</DTS:Property>
+<DTS:Property DTS:Name="DataPrecision">0</DTS:Property>
+<DTS:Property DTS:Name="DataScale">0</DTS:Property>
+<DTS:Property DTS:Name="TextQualified">-1</DTS:Property>
+<DTS:Property DTS:Name="ObjectName">列 24</DTS:Property>
+<DTS:Property DTS:Name="DTSID">{30C77041-1545-486A-9464-78E183AF7CD5}</DTS:Property>
+<DTS:Property DTS:Name="Description"></DTS:Property>
+<DTS:Property DTS:Name="CreationName"></DTS:Property></DTS:FlatFileColumn>
+<DTS:FlatFileColumn>
+<DTS:Property DTS:Name="ColumnType">Delimited</DTS:Property>
+<DTS:Property DTS:Name="ColumnDelimiter" xml:space="preserve">_x0009_</DTS:Property>
+<DTS:Property DTS:Name="ColumnWidth">0</DTS:Property>
+<DTS:Property DTS:Name="MaximumWidth">50</DTS:Property>
+<DTS:Property DTS:Name="DataType">129</DTS:Property>
+<DTS:Property DTS:Name="DataPrecision">0</DTS:Property>
+<DTS:Property DTS:Name="DataScale">0</DTS:Property>
+<DTS:Property DTS:Name="TextQualified">-1</DTS:Property>
+<DTS:Property DTS:Name="ObjectName">列 25</DTS:Property>
+<DTS:Property DTS:Name="DTSID">{331FCFE1-5E2A-48BC-988E-7F736F36EE8E}</DTS:Property>
+<DTS:Property DTS:Name="Description"></DTS:Property>
+<DTS:Property DTS:Name="CreationName"></DTS:Property></DTS:FlatFileColumn>
+<DTS:FlatFileColumn>
+<DTS:Property DTS:Name="ColumnType">Delimited</DTS:Property>
+<DTS:Property DTS:Name="ColumnDelimiter" xml:space="preserve">_x0009_</DTS:Property>
+<DTS:Property DTS:Name="ColumnWidth">0</DTS:Property>
+<DTS:Property DTS:Name="MaximumWidth">50</DTS:Property>
+<DTS:Property DTS:Name="DataType">129</DTS:Property>
+<DTS:Property DTS:Name="DataPrecision">0</DTS:Property>
+<DTS:Property DTS:Name="DataScale">0</DTS:Property>
+<DTS:Property DTS:Name="TextQualified">-1</DTS:Property>
+<DTS:Property DTS:Name="ObjectName">列 26</DTS:Property>
+<DTS:Property DTS:Name="DTSID">{A21D79DB-2620-46E3-9846-E2677B1AF042}</DTS:Property>
+<DTS:Property DTS:Name="Description"></DTS:Property>
+<DTS:Property DTS:Name="CreationName"></DTS:Property></DTS:FlatFileColumn>
+<DTS:FlatFileColumn>
+<DTS:Property DTS:Name="ColumnType">Delimited</DTS:Property>
+<DTS:Property DTS:Name="ColumnDelimiter" xml:space="preserve">_x000D__x000A_</DTS:Property>
+<DTS:Property DTS:Name="ColumnWidth">0</DTS:Property>
+<DTS:Property DTS:Name="MaximumWidth">50</DTS:Property>
+<DTS:Property DTS:Name="DataType">129</DTS:Property>
+<DTS:Property DTS:Name="DataPrecision">0</DTS:Property>
+<DTS:Property DTS:Name="DataScale">0</DTS:Property>
+<DTS:Property DTS:Name="TextQualified">-1</DTS:Property>
+<DTS:Property DTS:Name="ObjectName">列 27</DTS:Property>
+<DTS:Property DTS:Name="DTSID">{806626A5-4867-4C04-BFB7-5C8CB54C7071}</DTS:Property>
+<DTS:Property DTS:Name="Description"></DTS:Property>
+<DTS:Property DTS:Name="CreationName"></DTS:Property></DTS:FlatFileColumn>
+<DTS:Property DTS:Name="ConnectionString">D:\T_ChargeBase.txt</DTS:Property></DTS:ConnectionManager></DTS:ObjectData></DTS:ConnectionManager>
+<DTS:Property DTS:Name="LastModifiedProductVersion">10.50.1600.1</DTS:Property>
+<DTS:Property DTS:Name="ForceExecValue">0</DTS:Property>
+<DTS:Property DTS:Name="ExecValue" DTS:DataType="3">0</DTS:Property>
+<DTS:Property DTS:Name="ForceExecutionResult">-1</DTS:Property>
+<DTS:Property DTS:Name="Disabled">0</DTS:Property>
+<DTS:Property DTS:Name="FailPackageOnFailure">0</DTS:Property>
+<DTS:Property DTS:Name="FailParentOnFailure">0</DTS:Property>
+<DTS:Property DTS:Name="MaxErrorCount">1</DTS:Property>
+<DTS:Property DTS:Name="ISOLevel">1048576</DTS:Property>
+<DTS:Property DTS:Name="LocaleID">2052</DTS:Property>
+<DTS:Property DTS:Name="TransactionOption">1</DTS:Property>
+<DTS:Property DTS:Name="DelayValidation">0</DTS:Property>
+<DTS:LoggingOptions>
+<DTS:Property DTS:Name="LoggingMode">0</DTS:Property>
+<DTS:Property DTS:Name="FilterKind">1</DTS:Property>
+<DTS:Property DTS:Name="EventFilter" DTS:DataType="8"></DTS:Property></DTS:LoggingOptions>
+<DTS:Executable DTS:ExecutableType="SSIS.Pipeline.2">
+<DTS:Property DTS:Name="ExecutionLocation">0</DTS:Property>
+<DTS:Property DTS:Name="ExecutionAddress"></DTS:Property>
+<DTS:Property DTS:Name="TaskContact">Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server v10; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1</DTS:Property>
+<DTS:Property DTS:Name="ForceExecValue">0</DTS:Property>
+<DTS:Property DTS:Name="ExecValue" DTS:DataType="3">0</DTS:Property>
+<DTS:Property DTS:Name="ForceExecutionResult">-1</DTS:Property>
+<DTS:Property DTS:Name="Disabled">0</DTS:Property>
+<DTS:Property DTS:Name="FailPackageOnFailure">0</DTS:Property>
+<DTS:Property DTS:Name="FailParentOnFailure">0</DTS:Property>
+<DTS:Property DTS:Name="MaxErrorCount">1</DTS:Property>
+<DTS:Property DTS:Name="ISOLevel">1048576</DTS:Property>
+<DTS:Property DTS:Name="LocaleID">-1</DTS:Property>
+<DTS:Property DTS:Name="TransactionOption">1</DTS:Property>
+<DTS:Property DTS:Name="DelayValidation">0</DTS:Property>
+<DTS:LoggingOptions>
+<DTS:Property DTS:Name="LoggingMode">0</DTS:Property>
+<DTS:Property DTS:Name="FilterKind">1</DTS:Property>
+<DTS:Property DTS:Name="EventFilter" DTS:DataType="8"></DTS:Property></DTS:LoggingOptions>
+<DTS:Property DTS:Name="ObjectName">数据流任务</DTS:Property>
+<DTS:Property DTS:Name="DTSID">{654E24DB-131F-478E-B7AA-0975D8475922}</DTS:Property>
+<DTS:Property DTS:Name="Description">数据流任务</DTS:Property>
+<DTS:Property DTS:Name="CreationName">SSIS.Pipeline.2</DTS:Property>
+<DTS:Property DTS:Name="DisableEventHandlers">0</DTS:Property><DTS:ObjectData><pipeline id="0" name="pipelineXml" description="pipelineXml" defaultBufferMaxRows="10000" engineThreads="10" defaultBufferSize="10485760" BLOBTempStoragePath="" bufferTempStoragePath="" runInOptimizedMode="true">
+<components>
+<component id="1" name="平面文件源" componentClassID="{5ACD952A-F16A-41D8-A681-713640837664}" description="平面文件源" localeId="2052" usesDispositions="true" validateExternalMetadata="True" version="1" pipelineVersion="0" contactInfo="平面文件源;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; 保留所有权利; http://www.microsoft.com/sql/support;1">
+<properties>
+<property id="7" name="RetainNulls" dataType="System.Boolean" state="default" isArray="false" description="指定是否将长度为 0 的列视为 Null。" typeConverter="" UITypeEditor="" containsID="false" expressionType="None">false</property>
+<property id="8" name="FileNameColumnName" dataType="System.String" state="default" isArray="false" description="指定包含该文件名的输出列的名称。如果未指定名称，则不会生成包含该文件名的输出列。" typeConverter="" UITypeEditor="" containsID="false" expressionType="None"></property></properties>
+<connections>
+<connection id="6" name="FlatFileConnection" description="" connectionManagerID="{91B0D862-E3C3-4C80-8720-07FCBBBBEAC1}"/></connections>
+<outputs>
+<output id="2" name="平面文件源输出" description="" exclusionGroup="0" synchronousInputId="0" deleteOutputOnPathDetached="false" hasSideEffects="false" dangling="false" isErrorOut="false" isSorted="false" errorOrTruncationOperation="" errorRowDisposition="NotUsed" truncationRowDisposition="NotUsed"><outputColumns>
+<outputColumn id="28" name="列 0" description="" lineageId="28" precision="0" scale="0" length="50" dataType="str" codePage="936" sortKeyPosition="0" comparisonFlags="0" specialFlags="0" errorOrTruncationOperation="转换" errorRowDisposition="FailComponent" truncationRowDisposition="FailComponent" externalMetadataColumnId="27" mappedColumnId="0"><properties>
+<property id="29" name="FastParse" dataType="System.Boolean" state="default" isArray="false" description="指示该列是否使用更快、不分区域设置的分析例程。" typeConverter="" UITypeEditor="" containsID="false" expressionType="None">false</property>
+<property id="30" name="UseBinaryFormat" dataType="System.Boolean" state="default" isArray="false" description="指示数据是否为二进制格式。" typeConverter="" UITypeEditor="" containsID="false" expressionType="None">false</property></properties></outputColumn>
+<outputColumn id="32" name="列 1" description="" lineageId="32" precision="0" scale="0" length="50" dataType="str" codePage="936" sortKeyPosition="0" comparisonFlags="0" specialFlags="0" errorOrTruncationOperation="转换" errorRowDisposition="FailComponent" truncationRowDisposition="FailComponent" externalMetadataColumnId="31" mappedColumnId="0"><properties>
+<property id="33" name="FastParse" dataType="System.Boolean" state="default" isArray="false" description="指示该列是否使用更快、不分区域设置的分析例程。" typeConverter="" UITypeEditor="" containsID="false" expressionType="None">false</property>
+<property id="34" name="UseBinaryFormat" dataType="System.Boolean" state="default" isArray="false" description="指示数据是否为二进制格式。" typeConverter="" UITypeEditor="" containsID="false" expressionType="None">false</property></properties></outputColumn>
+<outputColumn id="36" name="列 2" description="" lineageId="36" precision="0" scale="0" length="50" dataType="str" codePage="936" sortKeyPosition="0" comparisonFlags="0" specialFlags="0" errorOrTruncationOperation="转换" errorRowDisposition="FailComponent" truncationRowDisposition="FailComponent" externalMetadataColumnId="35" mappedColumnId="0"><properties>
+<property id="37" name="FastParse" dataType="System.Boolean" state="default" isArray="false" description="指示该列是否使用更快、不分区域设置的分析例程。" typeConverter="" UITypeEditor="" containsID="false" expressionType="None">false</property>
+<property id="38" name="UseBinaryFormat" dataType="System.Boolean" state="default" isArray="false" description="指示数据是否为二进制格式。" typeConverter="" UITypeEditor="" containsID="false" expressionType="None">false</property></properties></outputColumn>
+<outputColumn id="40" name="列 3" description="" lineageId="40" precision="0" scale="0" length="50" dataType="str" codePage="936" sortKeyPosition="0" comparisonFlags="0" specialFlags="0" errorOrTruncationOperation="转换" errorRowDisposition="FailComponent" truncationRowDisposition="FailComponent" externalMetadataColumnId="39" mappedColumnId="0"><properties>
+<property id="41" name="FastParse" dataType="System.Boolean" state="default" isArray="false" description="指示该列是否使用更快、不分区域设置的分析例程。" typeConverter="" UITypeEditor="" containsID="false" expressionType="None">false</property>
+<property id="42" name="UseBinaryFormat" dataType="System.Boolean" state="default" isArray="false" description="指示数据是否为二进制格式。" typeConverter="" UITypeEditor="" containsID="false" expressionType="None">false</property></properties></outputColumn>
+<outputColumn id="44" name="列 4" description="" lineageId="44" precision="0" scale="0" length="50" dataType="str" codePage="936" sortKeyPosition="0" comparisonFlags="0" specialFlags="0" errorOrTruncationOperation="转换" errorRowDisposition="FailComponent" truncationRowDisposition="FailComponent" externalMetadataColumnId="43" mappedColumnId="0"><properties>
+<property id="45" name="FastParse" dataType="System.Boolean" state="default" isArray="false" description="指示该列是否使用更快、不分区域设置的分析例程。" typeConverter="" UITypeEditor="" containsID="false" expressionType="None">false</property>
+<property id="46" name="UseBinaryFormat" dataType="System.Boolean" state="default" isArray="false" description="指示数据是否为二进制格式。" typeConverter="" UITypeEditor="" containsID="false" expressionType="None">false</property></properties></outputColumn>
+<outputColumn id="48" name="列 5" description="" lineageId="48" precision="0" scale="0" length="50" dataType="str" codePage="936" sortKeyPosition="0" comparisonFlags="0" specialFlags="0" errorOrTruncationOperation="转换" errorRowDisposition="FailComponent" truncationRowDisposition="FailComponent" externalMetadataColumnId="47" mappedColumnId="0"><properties>
+<property id="49" name="FastParse" dataType="System.Boolean" state="default" isArray="false" description="指示该列是否使用更快、不分区域设置的分析例程。" typeConverter="" UITypeEditor="" containsID="false" expressionType="None">false</property>
+<property id="50" name="UseBinaryFormat" dataType="System.Boolean" state="default" isArray="false" description="指示数据是否为二进制格式。" typeConverter="" UITypeEditor="" containsID="false" expressionType="None">false</property></properties></outputColumn>
+<outputColumn id="52" name="列 6" description="" lineageId="52" precision="0" scale="0" length="50" dataType="str" codePage="936" sortKeyPosition="0" comparisonFlags="0" specialFlags="0" errorOrTruncationOperation="转换" errorRowDisposition="FailComponent" truncationRowDisposition="FailComponent" externalMetadataColumnId="51" mappedColumnId="0"><properties>
+<property id="53" name="FastParse" dataType="System.Boolean" state="default" isArray="false" description="指示该列是否使用更快、不分区域设置的分析例程。" typeConverter="" UITypeEditor="" containsID="false" expressionType="None">false</property>
+<property id="54" name="UseBinaryFormat" dataType="System.Boolean" state="default" isArray="false" description="指示数据是否为二进制格式。" typeConverter="" UITypeEditor="" containsID="false" expressionType="None">false</property></properties></outputColumn>
+<outputColumn id="56" name="列 7" description="" lineageId="56" precision="0" scale="0" length="50" dataType="str" codePage="936" sortKeyPosition="0" comparisonFlags="0" specialFlags="0" errorOrTruncationOperation="转换" errorRowDisposition="FailComponent" truncationRowDisposition="FailComponent" externalMetadataColumnId="55" mappedColumnId="0"><properties>
+<property id="57" name="FastParse" dataType="System.Boolean" state="default" isArray="false" description="指示该列是否使用更快、不分区域设置的分析例程。" typeConverter="" UITypeEditor="" containsID="false" expressionType="None">false</property>
+<property id="58" name="UseBinaryFormat" dataType="System.Boolean" state="default" isArray="false" description="指示数据是否为二进制格式。" typeConverter="" UITypeEditor="" containsID="false" expressionType="None">false</property></properties></outputColumn>
+<outputColumn id="60" name="列 8" description="" lineageId="60" precision="0" scale="0" length="50" dataType="str" codePage="936" sortKeyPosition="0" comparisonFlags="0" specialFlags="0" errorOrTruncationOperation="转换" errorRowDisposition="FailComponent" truncationRowDisposition="FailComponent" externalMetadataColumnId="59" mappedColumnId="0"><properties>
+<property id="61" name="FastParse" dataType="System.Boolean" state="default" isArray="false" description="指示该列是否使用更快、不分区域设置的分析例程。" typeConverter="" UITypeEditor="" containsID="false" expressionType="None">false</property>
+<property id="62" name="UseBinaryFormat" dataType="System.Boolean" state="default" isArray="false" description="指示数据是否为二进制格式。" typeConverter="" UITypeEditor="" containsID="false" expressionType="None">false</property></properties></outputColumn>
+<outputColumn id="64" name="列 9" description="" lineageId="64" precision="0" scale="0" length="50" dataType="str" codePage="936" sortKeyPosition="0" comparisonFlags="0" specialFlags="0" errorOrTruncationOperation="转换" errorRowDisposition="FailComponent" truncationRowDisposition="FailComponent" externalMetadataColumnId="63" mappedColumnId="0"><properties>
+<property id="65" name="FastParse" dataType="System.Boolean" state="default" isArray="false" description="指示该列是否使用更快、不分区域设置的分析例程。" typeConverter="" UITypeEditor="" containsID="false" expressionType="None">false</property>
+<property id="66" name="UseBinaryFormat" dataType="System.Boolean" state="default" isArray="false" description="指示数据是否为二进制格式。" typeConverter="" UITypeEditor="" containsID="false" expressionType="None">false</property></properties></outputColumn>
+<outputColumn id="68" name="列 10" description="" lineageId="68" precision="0" scale="0" length="50" dataType="str" codePage="936" sortKeyPosition="0" comparisonFlags="0" specialFlags="0" errorOrTruncationOperation="转换" errorRowDisposition="FailComponent" truncationRowDisposition="FailComponent" externalMetadataColumnId="67" mappedColumnId="0"><properties>
+<property id="69" name="FastParse" dataType="System.Boolean" state="default" isArray="false" description="指示该列是否使用更快、不分区域设置的分析例程。" typeConverter="" UITypeEditor="" containsID="false" expressionType="None">false</property>
+<property id="70" name="UseBinaryFormat" dataType="System.Boolean" state="default" isArray="false" description="指示数据是否为二进制格式。" typeConverter="" UITypeEditor="" containsID="false" expressionType="None">false</property></properties></outputColumn>
+<outputColumn id="72" name="列 11" description="" lineageId="72" precision="0" scale="0" length="50" dataType="str" codePage="936" sortKeyPosition="0" comparisonFlags="0" specialFlags="0" errorOrTruncationOperation="转换" errorRowDisposition="FailComponent" truncationRowDisposition="FailComponent" externalMetadataColumnId="71" mappedColumnId="0"><properties>
+<property id="73" name="FastParse" dataType="System.Boolean" state="default" isArray="false" description="指示该列是否使用更快、不分区域设置的分析例程。" typeConverter="" UITypeEditor="" containsID="false" expressionType="None">false</property>
+<property id="74" name="UseBinaryFormat" dataType="System.Boolean" state="default" isArray="false" description="指示数据是否为二进制格式。" typeConverter="" UITypeEditor="" containsID="false" expressionType="None">false</property></properties></outputColumn>
+<outputColumn id="76" name="列 12" description="" lineageId="76" precision="0" scale="0" length="50" dataType="str" codePage="936" sortKeyPosition="0" comparisonFlags="0" specialFlags="0" errorOrTruncationOperation="转换" errorRowDisposition="FailComponent" truncationRowDisposition="FailComponent" externalMetadataColumnId="75" mappedColumnId="0"><properties>
+<property id="77" name="FastParse" dataType="System.Boolean" state="default" isArray="false" description="指示该列是否使用更快、不分区域设置的分析例程。" typeConverter="" UITypeEditor="" containsID="false" expressionType="None">false</property>
+<property id="78" name="UseBinaryFormat" dataType="System.Boolean" state="default" isArray="false" description="指示数据是否为二进制格式。" typeConverter="" UITypeEditor="" containsID="false" expressionType="None">false</property></properties></outputColumn>
+<outputColumn id="80" name="列 13" description="" lineageId="80" precision="0" scale="0" length="50" dataType="str" codePage="936" sortKeyPosition="0" comparisonFlags="0" specialFlags="0" errorOrTruncationOperation="转换" errorRowDisposition="FailComponent" truncationRowDisposition="FailComponent" externalMetadataColumnId="79" mappedColumnId="0"><properties>
+<property id="81" name="FastParse" dataType="System.Boolean" state="default" isArray="false" description="指示该列是否使用更快、不分区域设置的分析例程。" typeConverter="" UITypeEditor="" containsID="false" expressionType="None">false</property>
+<property id="82" name="UseBinaryFormat" dataType="System.Boolean" state="default" isArray="false" description="指示数据是否为二进制格式。" typeConverter="" UITypeEditor="" containsID="false" expressionType="None">false</property></properties></outputColumn>
+<outputColumn id="84" name="列 14" description="" lineageId="84" precision="0" scale="0" length="50" dataType="str" codePage="936" sortKeyPosition="0" comparisonFlags="0" specialFlags="0" errorOrTruncationOperation="转换" errorRowDisposition="FailComponent" truncationRowDisposition="FailComponent" externalMetadataColumnId="83" mappedColumnId="0"><properties>
+<property id="85" name="FastParse" dataType="System.Boolean" state="default" isArray="false" description="指示该列是否使用更快、不分区域设置的分析例程。" typeConverter="" UITypeEditor="" containsID="false" expressionType="None">false</property>
+<property id="86" name="UseBinaryFormat" dataType="System.Boolean" state="default" isArray="false" description="指示数据是否为二进制格式。" typeConverter="" UITypeEditor="" containsID="false" expressionType="None">false</property></properties></outputColumn>
+<outputColumn id="88" name="列 15" description="" lineageId="88" precision="0" scale="0" length="50" dataType="str" codePage="936" sortKeyPosition="0" comparisonFlags="0" specialFlags="0" errorOrTruncationOperation="转换" errorRowDisposition="FailComponent" truncationRowDisposition="FailComponent" externalMetadataColumnId="87" mappedColumnId="0"><properties>
+<property id="89" name="FastParse" dataType="System.Boolean" state="default" isArray="false" description="指示该列是否使用更快、不分区域设置的分析例程。" typeConverter="" UITypeEditor="" containsID="false" expressionType="None">false</property>
+<property id="90" name="UseBinaryFormat" dataType="System.Boolean" state="default" isArray="false" description="指示数据是否为二进制格式。" typeConverter="" UITypeEditor="" containsID="false" expressionType="None">false</property></properties></outputColumn>
+<outputColumn id="92" name="列 16" description="" lineageId="92" precision="0" scale="0" length="50" dataType="str" codePage="936" sortKeyPosition="0" comparisonFlags="0" specialFlags="0" errorOrTruncationOperation="转换" errorRowDisposition="FailComponent" truncationRowDisposition="FailComponent" externalMetadataColumnId="91" mappedColumnId="0"><properties>
+<property id="93" name="FastParse" dataType="System.Boolean" state="default" isArray="false" description="指示该列是否使用更快、不分区域设置的分析例程。" typeConverter="" UITypeEditor="" containsID="false" expressionType="None">false</property>
+<property id="94" name="UseBinaryFormat" dataType="System.Boolean" state="default" isArray="false" description="指示数据是否为二进制格式。" typeConverter="" UITypeEditor="" containsID="false" expressionType="None">false</property></properties></outputColumn>
+<outputColumn id="96" name="列 17" description="" lineageId="96" precision="0" scale="0" length="50" dataType="str" codePage="936" sortKeyPosition="0" comparisonFlags="0" specialFlags="0" errorOrTruncationOperation="转换" errorRowDisposition="FailComponent" truncationRowDisposition="FailComponent" externalMetadataColumnId="95" mappedColumnId="0"><properties>
+<property id="97" name="FastParse" dataType="System.Boolean" state="default" isArray="false" description="指示该列是否使用更快、不分区域设置的分析例程。" typeConverter="" UITypeEditor="" containsID="false" expressionType="None">false</property>
+<property id="98" name="UseBinaryFormat" dataType="System.Boolean" state="default" isArray="false" description="指示数据是否为二进制格式。" typeConverter="" UITypeEditor="" containsID="false" expressionType="None">false</property></properties></outputColumn>
+<outputColumn id="100" name="列 18" description="" lineageId="100" precision="0" scale="0" length="50" dataType="str" codePage="936" sortKeyPosition="0" comparisonFlags="0" specialFlags="0" errorOrTruncationOperation="转换" errorRowDisposition="FailComponent" truncationRowDisposition="FailComponent" externalMetadataColumnId="99" mappedColumnId="0"><properties>
+<property id="101" name="FastParse" dataType="System.Boolean" state="default" isArray="false" description="指示该列是否使用更快、不分区域设置的分析例程。" typeConverter="" UITypeEditor="" containsID="false" expressionType="None">false</property>
+<property id="102" name="UseBinaryFormat" dataType="System.Boolean" state="default" isArray="false" description="指示数据是否为二进制格式。" typeConverter="" UITypeEditor="" containsID="false" expressionType="None">false</property></properties></outputColumn>
+<outputColumn id="104" name="列 19" description="" lineageId="104" precision="0" scale="0" length="50" dataType="str" codePage="936" sortKeyPosition="0" comparisonFlags="0" specialFlags="0" errorOrTruncationOperation="转换" errorRowDisposition="FailComponent" truncationRowDisposition="FailComponent" externalMetadataColumnId="103" mappedColumnId="0"><properties>
+<property id="105" name="FastParse" dataType="System.Boolean" state="default" isArray="false" description="指示该列是否使用更快、不分区域设置的分析例程。" typeConverter="" UITypeEditor="" containsID="false" expressionType="None">false</property>
+<property id="106" name="UseBinaryFormat" dataType="System.Boolean" state="default" isArray="false" description="指示数据是否为二进制格式。" typeConverter="" UITypeEditor="" containsID="false" expressionType="None">false</property></properties></outputColumn>
+<outputColumn id="108" name="列 20" description="" lineageId="108" precision="0" scale="0" length="50" dataType="str" codePage="936" sortKeyPosition="0" comparisonFlags="0" specialFlags="0" errorOrTruncationOperation="转换" errorRowDisposition="FailComponent" truncationRowDisposition="FailComponent" externalMetadataColumnId="107" mappedColumnId="0"><properties>
+<property id="109" name="FastParse" dataType="System.Boolean" state="default" isArray="false" description="指示该列是否使用更快、不分区域设置的分析例程。" typeConverter="" UITypeEditor="" containsID="false" expressionType="None">false</property>
+<property id="110" name="UseBinaryFormat" dataType="System.Boolean" state="default" isArray="false" description="指示数据是否为二进制格式。" typeConverter="" UITypeEditor="" containsID="false" expressionType="None">false</property></properties></outputColumn>
+<outputColumn id="112" name="列 21" description="" lineageId="112" precision="0" scale="0" length="50" dataType="str" codePage="936" sortKeyPosition="0" comparisonFlags="0" specialFlags="0" errorOrTruncationOperation="转换" errorRowDisposition="FailComponent" truncationRowDisposition="FailComponent" externalMetadataColumnId="111" mappedColumnId="0"><properties>
+<property id="113" name="FastParse" dataType="System.Boolean" state="default" isArray="false" description="指示该列是否使用更快、不分区域设置的分析例程。" typeConverter="" UITypeEditor="" containsID="false" expressionType="None">false</property>
+<property id="114" name="UseBinaryFormat" dataType="System.Boolean" state="default" isArray="false" description="指示数据是否为二进制格式。" typeConverter="" UITypeEditor="" containsID="false" expressionType="None">false</property></properties></outputColumn>
+<outputColumn id="116" name="列 22" description="" lineageId="116" precision="0" scale="0" length="50" dataType="str" codePage="936" sortKeyPosition="0" comparisonFlags="0" specialFlags="0" errorOrTruncationOperation="转换" errorRowDisposition="FailComponent" truncationRowDisposition="FailComponent" externalMetadataColumnId="115" mappedColumnId="0"><properties>
+<property id="117" name="FastParse" dataType="System.Boolean" state="default" isArray="false" description="指示该列是否使用更快、不分区域设置的分析例程。" typeConverter="" UITypeEditor="" containsID="false" expressionType="None">false</property>
+<property id="118" name="UseBinaryFormat" dataType="System.Boolean" state="default" isArray="false" description="指示数据是否为二进制格式。" typeConverter="" UITypeEditor="" containsID="false" expressionType="None">false</property></properties></outputColumn>
+<outputColumn id="120" name="列 23" description="" lineageId="120" precision="0" scale="0" length="50" dataType="str" codePage="936" sortKeyPosition="0" comparisonFlags="0" specialFlags="0" errorOrTruncationOperation="转换" errorRowDisposition="FailComponent" truncationRowDisposition="FailComponent" externalMetadataColumnId="119" mappedColumnId="0"><properties>
+<property id="121" name="FastParse" dataType="System.Boolean" state="default" isArray="false" description="指示该列是否使用更快、不分区域设置的分析例程。" typeConverter="" UITypeEditor="" containsID="false" expressionType="None">false</property>
+<property id="122" name="UseBinaryFormat" dataType="System.Boolean" state="default" isArray="false" description="指示数据是否为二进制格式。" typeConverter="" UITypeEditor="" containsID="false" expressionType="None">false</property></properties></outputColumn>
+<outputColumn id="124" name="列 24" description="" lineageId="124" precision="0" scale="0" length="50" dataType="str" codePage="936" sortKeyPosition="0" comparisonFlags="0" specialFlags="0" errorOrTruncationOperation="转换" errorRowDisposition="FailComponent" truncationRowDisposition="FailComponent" externalMetadataColumnId="123" mappedColumnId="0"><properties>
+<property id="125" name="FastParse" dataType="System.Boolean" state="default" isArray="false" description="指示该列是否使用更快、不分区域设置的分析例程。" typeConverter="" UITypeEditor="" containsID="false" expressionType="None">false</property>
+<property id="126" name="UseBinaryFormat" dataType="System.Boolean" state="default" isArray="false" description="指示数据是否为二进制格式。" typeConverter="" UITypeEditor="" containsID="false" expressionType="None">false</property></properties></outputColumn>
+<outputColumn id="128" name="列 25" description="" lineageId="128" precision="0" scale="0" length="50" dataType="str" codePage="936" sortKeyPosition="0" comparisonFlags="0" specialFlags="0" errorOrTruncationOperation="转换" errorRowDisposition="FailComponent" truncationRowDisposition="FailComponent" externalMetadataColumnId="127" mappedColumnId="0"><properties>
+<property id="129" name="FastParse" dataType="System.Boolean" state="default" isArray="false" description="指示该列是否使用更快、不分区域设置的分析例程。" typeConverter="" UITypeEditor="" containsID="false" expressionType="None">false</property>
+<property id="130" name="UseBinaryFormat" dataType="System.Boolean" state="default" isArray="false" description="指示数据是否为二进制格式。" typeConverter="" UITypeEditor="" containsID="false" expressionType="None">false</property></properties></outputColumn>
+<outputColumn id="132" name="列 26" description="" lineageId="132" precision="0" scale="0" length="50" dataType="str" codePage="936" sortKeyPosition="0" comparisonFlags="0" specialFlags="0" errorOrTruncationOperation="转换" errorRowDisposition="FailComponent" truncationRowDisposition="FailComponent" externalMetadataColumnId="131" mappedColumnId="0"><properties>
+<property id="133" name="FastParse" dataType="System.Boolean" state="default" isArray="false" description="指示该列是否使用更快、不分区域设置的分析例程。" typeConverter="" UITypeEditor="" containsID="false" expressionType="None">false</property>
+<property id="134" name="UseBinaryFormat" dataType="System.Boolean" state="default" isArray="false" description="指示数据是否为二进制格式。" typeConverter="" UITypeEditor="" containsID="false" expressionType="None">false</property></properties></outputColumn>
+<outputColumn id="136" name="列 27" description="" lineageId="136" precision="0" scale="0" length="50" dataType="str" codePage="936" sortKeyPosition="0" comparisonFlags="0" specialFlags="0" errorOrTruncationOperation="转换" errorRowDisposition="FailComponent" truncationRowDisposition="FailComponent" externalMetadataColumnId="135" mappedColumnId="0"><properties>
+<property id="137" name="FastParse" dataType="System.Boolean" state="default" isArray="false" description="指示该列是否使用更快、不分区域设置的分析例程。" typeConverter="" UITypeEditor="" containsID="false" expressionType="None">false</property>
+<property id="138" name="UseBinaryFormat" dataType="System.Boolean" state="default" isArray="false" description="指示数据是否为二进制格式。" typeConverter="" UITypeEditor="" containsID="false" expressionType="None">false</property></properties></outputColumn></outputColumns><externalMetadataColumns isUsed="True">
+<externalMetadataColumn id="27" name="列 0" description="" precision="0" scale="0" length="50" dataType="str" codePage="936" mappedColumnId="0"/>
+<externalMetadataColumn id="31" name="列 1" description="" precision="0" scale="0" length="50" dataType="str" codePage="936" mappedColumnId="0"/>
+<externalMetadataColumn id="35" name="列 2" description="" precision="0" scale="0" length="50" dataType="str" codePage="936" mappedColumnId="0"/>
+<externalMetadataColumn id="39" name="列 3" description="" precision="0" scale="0" length="50" dataType="str" codePage="936" mappedColumnId="0"/>
+<externalMetadataColumn id="43" name="列 4" description="" precision="0" scale="0" length="50" dataType="str" codePage="936" mappedColumnId="0"/>
+<externalMetadataColumn id="47" name="列 5" description="" precision="0" scale="0" length="50" dataType="str" codePage="936" mappedColumnId="0"/>
+<externalMetadataColumn id="51" name="列 6" description="" precision="0" scale="0" length="50" dataType="str" codePage="936" mappedColumnId="0"/>
+<externalMetadataColumn id="55" name="列 7" description="" precision="0" scale="0" length="50" dataType="str" codePage="936" mappedColumnId="0"/>
+<externalMetadataColumn id="59" name="列 8" description="" precision="0" scale="0" length="50" dataType="str" codePage="936" mappedColumnId="0"/>
+<externalMetadataColumn id="63" name="列 9" description="" precision="0" scale="0" length="50" dataType="str" codePage="936" mappedColumnId="0"/>
+<externalMetadataColumn id="67" name="列 10" description="" precision="0" scale="0" length="50" dataType="str" codePage="936" mappedColumnId="0"/>
+<externalMetadataColumn id="71" name="列 11" description="" precision="0" scale="0" length="50" dataType="str" codePage="936" mappedColumnId="0"/>
+<externalMetadataColumn id="75" name="列 12" description="" precision="0" scale="0" length="50" dataType="str" codePage="936" mappedColumnId="0"/>
+<externalMetadataColumn id="79" name="列 13" description="" precision="0" scale="0" length="50" dataType="str" codePage="936" mappedColumnId="0"/>
+<externalMetadataColumn id="83" name="列 14" description="" precision="0" scale="0" length="50" dataType="str" codePage="936" mappedColumnId="0"/>
+<externalMetadataColumn id="87" name="列 15" description="" precision="0" scale="0" length="50" dataType="str" codePage="936" mappedColumnId="0"/>
+<externalMetadataColumn id="91" name="列 16" description="" precision="0" scale="0" length="50" dataType="str" codePage="936" mappedColumnId="0"/>
+<externalMetadataColumn id="95" name="列 17" description="" precision="0" scale="0" length="50" dataType="str" codePage="936" mappedColumnId="0"/>
+<externalMetadataColumn id="99" name="列 18" description="" precision="0" scale="0" length="50" dataType="str" codePage="936" mappedColumnId="0"/>
+<externalMetadataColumn id="103" name="列 19" description="" precision="0" scale="0" length="50" dataType="str" codePage="936" mappedColumnId="0"/>
+<externalMetadataColumn id="107" name="列 20" description="" precision="0" scale="0" length="50" dataType="str" codePage="936" mappedColumnId="0"/>
+<externalMetadataColumn id="111" name="列 21" description="" precision="0" scale="0" length="50" dataType="str" codePage="936" mappedColumnId="0"/>
+<externalMetadataColumn id="115" name="列 22" description="" precision="0" scale="0" length="50" dataType="str" codePage="936" mappedColumnId="0"/>
+<externalMetadataColumn id="119" name="列 23" description="" precision="0" scale="0" length="50" dataType="str" codePage="936" mappedColumnId="0"/>
+<externalMetadataColumn id="123" name="列 24" description="" precision="0" scale="0" length="50" dataType="str" codePage="936" mappedColumnId="0"/>
+<externalMetadataColumn id="127" name="列 25" description="" precision="0" scale="0" length="50" dataType="str" codePage="936" mappedColumnId="0"/>
+<externalMetadataColumn id="131" name="列 26" description="" precision="0" scale="0" length="50" dataType="str" codePage="936" mappedColumnId="0"/>
+<externalMetadataColumn id="135" name="列 27" description="" precision="0" scale="0" length="50" dataType="str" codePage="936" mappedColumnId="0"/></externalMetadataColumns></output>
+<output id="3" name="平面文件源错误输出" description="" exclusionGroup="0" synchronousInputId="0" deleteOutputOnPathDetached="false" hasSideEffects="false" dangling="false" isErrorOut="true" isSorted="false" errorOrTruncationOperation="" errorRowDisposition="NotUsed" truncationRowDisposition="NotUsed"><outputColumns>
+<outputColumn id="139" name="平面文件源错误输出列" description="平面文件源错误输出列" lineageId="139" precision="0" scale="0" length="0" dataType="text" codePage="936" sortKeyPosition="0" comparisonFlags="0" specialFlags="0" errorOrTruncationOperation="" errorRowDisposition="NotUsed" truncationRowDisposition="NotUsed" externalMetadataColumnId="0" mappedColumnId="0"/>
+<outputColumn id="4" name="ErrorCode" description="" lineageId="4" precision="0" scale="0" length="0" dataType="i4" codePage="0" sortKeyPosition="0" comparisonFlags="0" specialFlags="1" errorOrTruncationOperation="" errorRowDisposition="NotUsed" truncationRowDisposition="NotUsed" externalMetadataColumnId="0" mappedColumnId="0"/>
+<outputColumn id="5" name="ErrorColumn" description="" lineageId="5" precision="0" scale="0" length="0" dataType="i4" codePage="0" sortKeyPosition="0" comparisonFlags="0" specialFlags="2" errorOrTruncationOperation="" errorRowDisposition="NotUsed" truncationRowDisposition="NotUsed" externalMetadataColumnId="0" mappedColumnId="0"/></outputColumns><externalMetadataColumns isUsed="False"/></output>
+</outputs>
+</component>
+<component id="9" name="SQL Server 目标" componentClassID="{E4B61516-847B-4BDF-9CC6-1968A2D43E73}" description="SQL Server 目标" localeId="-1" usesDispositions="false" validateExternalMetadata="True" version="5" pipelineVersion="0" contactInfo="SQL Server 目标;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; 保留所有权利; http://www.microsoft.com/sql/support;5">
+<properties>
+<property id="10" name="DefaultCodePage" dataType="System.Int32" state="default" isArray="false" description="指定当数据源中没有代码页信息时使用的列代码页。" typeConverter="" UITypeEditor="" containsID="false" expressionType="None">936</property>
+<property id="11" name="AlwaysUseDefaultCodePage" dataType="System.Boolean" state="default" isArray="false" description="描述字符数据时，强制使用 DefaultCodePage 属性值。" typeConverter="" UITypeEditor="" containsID="false" expressionType="None">false</property>
+<property id="13" name="BulkInsertTableName" dataType="System.String" state="default" isArray="false" description="要将数据复制到的数据库对象的名称。" typeConverter="" UITypeEditor="" containsID="false" expressionType="Notify">[dbo].[SQL Server 目标]</property>
+<property id="14" name="BulkInsertCheckConstraints" dataType="System.Boolean" state="default" isArray="false" description="指定在数据复制操作过程中检查目标对象的所有约束。对应于大容量插入 CHECK_CONSTRAINTS 选项。" typeConverter="" UITypeEditor="" containsID="false" expressionType="None">true</property>
+<property id="15" name="BulkInsertFirstRow" dataType="System.Int32" state="default" isArray="false" description="指定要复制的首行行号。对应于大容量插入 FIRSTROW 选项。" typeConverter="" UITypeEditor="" containsID="false" expressionType="Notify">-1</property>
+<property id="16" name="BulkInsertFireTriggers" dataType="System.Boolean" state="default" isArray="false" description="指定在数据复制过程中将执行针对目标对象定义的所有插入触发器。对应于大容量插入 FIRE_TRIGGERS 选项。" typeConverter="" UITypeEditor="" containsID="false" expressionType="None">false</property>
+<property id="17" name="BulkInsertKeepIdentity" dataType="System.Boolean" state="default" isArray="false" description="指示是否将为标识列提供的值复制到目标。如果设置为 False，则将在目标中为标识列自动生成值。相当于大容量插入命令中的 KEEPIDENTITY 选项。" typeConverter="" UITypeEditor="" containsID="false" expressionType="None">false</property>
+<property id="18" name="BulkInsertKeepNulls" dataType="System.Boolean" state="default" isArray="false" description="指示对于包含 Null 值的列是否将 Null 值复制到目标。如果为 False，则对于包含 Null 值的列会将其默认值插入目标中。仅当启用了快速加载时适用。" typeConverter="" UITypeEditor="" containsID="false" expressionType="None">false</property>
+<property id="19" name="BulkInsertLastRow" dataType="System.Int32" state="default" isArray="false" description="指定要复制的最后一行的行号。对应于大容量插入 LASTROW 选项。" typeConverter="" UITypeEditor="" containsID="false" expressionType="Notify">-1</property>
+<property id="20" name="BulkInsertMaxErrors" dataType="System.Int32" state="default" isArray="false" description="指定最多允许出现多少个语法错误和编译错误；当错误数超过此值时，数据复制操作将取消。无法复制的每一行都将忽略，并计为一个错误。对应于大容量插入 MAXERRORS 选项。" typeConverter="" UITypeEditor="" containsID="false" expressionType="None">-1</property>
+<property id="21" name="BulkInsertOrder" dataType="System.String" state="default" isArray="false" description="指定如何对要复制的数据进行排序。对应于大容量插入 ORDER 选项。" typeConverter="" UITypeEditor="" containsID="false" expressionType="Notify"></property>
+<property id="22" name="BulkInsertTablock" dataType="System.Boolean" state="default" isArray="false" description="指定在数据复制操作期间获取表级锁。对应于大容量插入 TABLOCK 选项。" typeConverter="" UITypeEditor="" containsID="false" expressionType="None">true</property>
+<property id="23" name="Timeout" dataType="System.Int32" state="default" isArray="false" description="指定当没有要插入的数据时 SQL 目标适配器等待多少秒后终止。超时值为 0 表示 SQL 目标适配器不会超时。" typeConverter="" UITypeEditor="" containsID="false" expressionType="Notify">30</property>
+<property id="24" name="MaxInsertCommitSize" dataType="System.Int32" state="default" isArray="false" description="指定插入数据期间何时发出提交命令。如果值为 0，则指定在数据插入结束时发出一个提交命令。" typeConverter="" UITypeEditor="" containsID="false" expressionType="None">0</property></properties>
+<connections>
+<connection id="12" name="OleDbConnection" description="指定用于访问数据库的 OLE DB 运行时连接。" connectionManagerID="{F66E6739-849F-45C4-BF8D-5A117C94CD49}"/></connections>
+<inputs>
+<input id="25" name="SQL Server 目标输入" description="" hasSideEffects="true" dangling="false" errorOrTruncationOperation="" errorRowDisposition="NotUsed" truncationRowDisposition="NotUsed"><inputColumns>
+<inputColumn id="170" name="" description="" lineageId="36" usageType="readOnly" errorOrTruncationOperation="" errorRowDisposition="NotUsed" truncationRowDisposition="NotUsed" externalMetadataColumnId="142" mappedColumnId="0"/>
+<inputColumn id="171" name="" description="" lineageId="40" usageType="readOnly" errorOrTruncationOperation="" errorRowDisposition="NotUsed" truncationRowDisposition="NotUsed" externalMetadataColumnId="143" mappedColumnId="0"/>
+<inputColumn id="172" name="" description="" lineageId="44" usageType="readOnly" errorOrTruncationOperation="" errorRowDisposition="NotUsed" truncationRowDisposition="NotUsed" externalMetadataColumnId="144" mappedColumnId="0"/>
+<inputColumn id="173" name="" description="" lineageId="48" usageType="readOnly" errorOrTruncationOperation="" errorRowDisposition="NotUsed" truncationRowDisposition="NotUsed" externalMetadataColumnId="145" mappedColumnId="0"/>
+<inputColumn id="174" name="" description="" lineageId="52" usageType="readOnly" errorOrTruncationOperation="" errorRowDisposition="NotUsed" truncationRowDisposition="NotUsed" externalMetadataColumnId="146" mappedColumnId="0"/>
+<inputColumn id="175" name="" description="" lineageId="56" usageType="readOnly" errorOrTruncationOperation="" errorRowDisposition="NotUsed" truncationRowDisposition="NotUsed" externalMetadataColumnId="147" mappedColumnId="0"/>
+<inputColumn id="176" name="" description="" lineageId="60" usageType="readOnly" errorOrTruncationOperation="" errorRowDisposition="NotUsed" truncationRowDisposition="NotUsed" externalMetadataColumnId="148" mappedColumnId="0"/>
+<inputColumn id="177" name="" description="" lineageId="64" usageType="readOnly" errorOrTruncationOperation="" errorRowDisposition="NotUsed" truncationRowDisposition="NotUsed" externalMetadataColumnId="149" mappedColumnId="0"/>
+<inputColumn id="178" name="" description="" lineageId="68" usageType="readOnly" errorOrTruncationOperation="" errorRowDisposition="NotUsed" truncationRowDisposition="NotUsed" externalMetadataColumnId="150" mappedColumnId="0"/>
+<inputColumn id="179" name="" description="" lineageId="72" usageType="readOnly" errorOrTruncationOperation="" errorRowDisposition="NotUsed" truncationRowDisposition="NotUsed" externalMetadataColumnId="151" mappedColumnId="0"/>
+<inputColumn id="180" name="" description="" lineageId="76" usageType="readOnly" errorOrTruncationOperation="" errorRowDisposition="NotUsed" truncationRowDisposition="NotUsed" externalMetadataColumnId="152" mappedColumnId="0"/>
+<inputColumn id="181" name="" description="" lineageId="80" usageType="readOnly" errorOrTruncationOperation="" errorRowDisposition="NotUsed" truncationRowDisposition="NotUsed" externalMetadataColumnId="153" mappedColumnId="0"/>
+<inputColumn id="182" name="" description="" lineageId="84" usageType="readOnly" errorOrTruncationOperation="" errorRowDisposition="NotUsed" truncationRowDisposition="NotUsed" externalMetadataColumnId="154" mappedColumnId="0"/>
+<inputColumn id="183" name="" description="" lineageId="88" usageType="readOnly" errorOrTruncationOperation="" errorRowDisposition="NotUsed" truncationRowDisposition="NotUsed" externalMetadataColumnId="155" mappedColumnId="0"/>
+<inputColumn id="184" name="" description="" lineageId="92" usageType="readOnly" errorOrTruncationOperation="" errorRowDisposition="NotUsed" truncationRowDisposition="NotUsed" externalMetadataColumnId="156" mappedColumnId="0"/>
+<inputColumn id="185" name="" description="" lineageId="96" usageType="readOnly" errorOrTruncationOperation="" errorRowDisposition="NotUsed" truncationRowDisposition="NotUsed" externalMetadataColumnId="157" mappedColumnId="0"/>
+<inputColumn id="186" name="" description="" lineageId="100" usageType="readOnly" errorOrTruncationOperation="" errorRowDisposition="NotUsed" truncationRowDisposition="NotUsed" externalMetadataColumnId="158" mappedColumnId="0"/>
+<inputColumn id="187" name="" description="" lineageId="104" usageType="readOnly" errorOrTruncationOperation="" errorRowDisposition="NotUsed" truncationRowDisposition="NotUsed" externalMetadataColumnId="159" mappedColumnId="0"/>
+<inputColumn id="188" name="" description="" lineageId="108" usageType="readOnly" errorOrTruncationOperation="" errorRowDisposition="NotUsed" truncationRowDisposition="NotUsed" externalMetadataColumnId="160" mappedColumnId="0"/>
+<inputColumn id="189" name="" description="" lineageId="112" usageType="readOnly" errorOrTruncationOperation="" errorRowDisposition="NotUsed" truncationRowDisposition="NotUsed" externalMetadataColumnId="161" mappedColumnId="0"/>
+<inputColumn id="190" name="" description="" lineageId="116" usageType="readOnly" errorOrTruncationOperation="" errorRowDisposition="NotUsed" truncationRowDisposition="NotUsed" externalMetadataColumnId="162" mappedColumnId="0"/>
+<inputColumn id="191" name="" description="" lineageId="120" usageType="readOnly" errorOrTruncationOperation="" errorRowDisposition="NotUsed" truncationRowDisposition="NotUsed" externalMetadataColumnId="163" mappedColumnId="0"/>
+<inputColumn id="192" name="" description="" lineageId="124" usageType="readOnly" errorOrTruncationOperation="" errorRowDisposition="NotUsed" truncationRowDisposition="NotUsed" externalMetadataColumnId="164" mappedColumnId="0"/>
+<inputColumn id="193" name="" description="" lineageId="128" usageType="readOnly" errorOrTruncationOperation="" errorRowDisposition="NotUsed" truncationRowDisposition="NotUsed" externalMetadataColumnId="165" mappedColumnId="0"/>
+<inputColumn id="194" name="" description="" lineageId="132" usageType="readOnly" errorOrTruncationOperation="" errorRowDisposition="NotUsed" truncationRowDisposition="NotUsed" externalMetadataColumnId="166" mappedColumnId="0"/>
+<inputColumn id="195" name="" description="" lineageId="136" usageType="readOnly" errorOrTruncationOperation="" errorRowDisposition="NotUsed" truncationRowDisposition="NotUsed" externalMetadataColumnId="167" mappedColumnId="0"/>
+<inputColumn id="196" name="" description="" lineageId="28" usageType="readOnly" errorOrTruncationOperation="" errorRowDisposition="NotUsed" truncationRowDisposition="NotUsed" externalMetadataColumnId="140" mappedColumnId="0"/>
+<inputColumn id="197" name="" description="" lineageId="32" usageType="readOnly" errorOrTruncationOperation="" errorRowDisposition="NotUsed" truncationRowDisposition="NotUsed" externalMetadataColumnId="141" mappedColumnId="0"/>
+</inputColumns><externalMetadataColumns isUsed="True">
+<externalMetadataColumn id="140" name="列 0" description="" precision="0" scale="0" length="50" dataType="str" codePage="936" mappedColumnId="0"/>
+<externalMetadataColumn id="141" name="列 1" description="" precision="0" scale="0" length="50" dataType="str" codePage="936" mappedColumnId="0"/>
+<externalMetadataColumn id="142" name="列 2" description="" precision="0" scale="0" length="50" dataType="str" codePage="936" mappedColumnId="0"/>
+<externalMetadataColumn id="143" name="列 3" description="" precision="0" scale="0" length="50" dataType="str" codePage="936" mappedColumnId="0"/>
+<externalMetadataColumn id="144" name="列 4" description="" precision="0" scale="0" length="50" dataType="str" codePage="936" mappedColumnId="0"/>
+<externalMetadataColumn id="145" name="列 5" description="" precision="0" scale="0" length="50" dataType="str" codePage="936" mappedColumnId="0"/>
+<externalMetadataColumn id="146" name="列 6" description="" precision="0" scale="0" length="50" dataType="str" codePage="936" mappedColumnId="0"/>
+<externalMetadataColumn id="147" name="列 7" description="" precision="0" scale="0" length="50" dataType="str" codePage="936" mappedColumnId="0"/>
+<externalMetadataColumn id="148" name="列 8" description="" precision="0" scale="0" length="50" dataType="str" codePage="936" mappedColumnId="0"/>
+<externalMetadataColumn id="149" name="列 9" description="" precision="0" scale="0" length="50" dataType="str" codePage="936" mappedColumnId="0"/>
+<externalMetadataColumn id="150" name="列 10" description="" precision="0" scale="0" length="50" dataType="str" codePage="936" mappedColumnId="0"/>
+<externalMetadataColumn id="151" name="列 11" description="" precision="0" scale="0" length="50" dataType="str" codePage="936" mappedColumnId="0"/>
+<externalMetadataColumn id="152" name="列 12" description="" precision="0" scale="0" length="50" dataType="str" codePage="936" mappedColumnId="0"/>
+<externalMetadataColumn id="153" name="列 13" description="" precision="0" scale="0" length="50" dataType="str" codePage="936" mappedColumnId="0"/>
+<externalMetadataColumn id="154" name="列 14" description="" precision="0" scale="0" length="50" dataType="str" codePage="936" mappedColumnId="0"/>
+<externalMetadataColumn id="155" name="列 15" description="" precision="0" scale="0" length="50" dataType="str" codePage="936" mappedColumnId="0"/>
+<externalMetadataColumn id="156" name="列 16" description="" precision="0" scale="0" length="50" dataType="str" codePage="936" mappedColumnId="0"/>
+<externalMetadataColumn id="157" name="列 17" description="" precision="0" scale="0" length="50" dataType="str" codePage="936" mappedColumnId="0"/>
+<externalMetadataColumn id="158" name="列 18" description="" precision="0" scale="0" length="50" dataType="str" codePage="936" mappedColumnId="0"/>
+<externalMetadataColumn id="159" name="列 19" description="" precision="0" scale="0" length="50" dataType="str" codePage="936" mappedColumnId="0"/>
+<externalMetadataColumn id="160" name="列 20" description="" precision="0" scale="0" length="50" dataType="str" codePage="936" mappedColumnId="0"/>
+<externalMetadataColumn id="161" name="列 21" description="" precision="0" scale="0" length="50" dataType="str" codePage="936" mappedColumnId="0"/>
+<externalMetadataColumn id="162" name="列 22" description="" precision="0" scale="0" length="50" dataType="str" codePage="936" mappedColumnId="0"/>
+<externalMetadataColumn id="163" name="列 23" description="" precision="0" scale="0" length="50" dataType="str" codePage="936" mappedColumnId="0"/>
+<externalMetadataColumn id="164" name="列 24" description="" precision="0" scale="0" length="50" dataType="str" codePage="936" mappedColumnId="0"/>
+<externalMetadataColumn id="165" name="列 25" description="" precision="0" scale="0" length="50" dataType="str" codePage="936" mappedColumnId="0"/>
+<externalMetadataColumn id="166" name="列 26" description="" precision="0" scale="0" length="50" dataType="str" codePage="936" mappedColumnId="0"/>
+<externalMetadataColumn id="167" name="列 27" description="" precision="0" scale="0" length="50" dataType="str" codePage="936" mappedColumnId="0"/></externalMetadataColumns></input>
+</inputs>
+</component>
+<component id="210" name="导入列" componentClassID="{C8AEEE54-67A0-41A8-821D-D1C8BED62C68}" description="将数据从文件导入数据集中的一些行。" localeId="-1" usesDispositions="true" validateExternalMetadata="True" version="0" pipelineVersion="0" contactInfo="导入列;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; 保留所有权利; http://www.microsoft.com/sql/support;0">
+<inputs>
+<input id="211" name="导入列输入" description="" hasSideEffects="false" dangling="false" errorOrTruncationOperation="" errorRowDisposition="NotUsed" truncationRowDisposition="NotUsed"><externalMetadataColumns isUsed="False"/></input>
+</inputs>
+<outputs>
+<output id="212" name="导入列输出" description="" exclusionGroup="1" synchronousInputId="211" deleteOutputOnPathDetached="false" hasSideEffects="false" dangling="false" isErrorOut="false" isSorted="false" errorOrTruncationOperation="" errorRowDisposition="NotUsed" truncationRowDisposition="NotUsed"><externalMetadataColumns isUsed="False"/></output>
+<output id="213" name="导入列错误输出" description="" exclusionGroup="1" synchronousInputId="211" deleteOutputOnPathDetached="false" hasSideEffects="false" dangling="false" isErrorOut="true" isSorted="false" errorOrTruncationOperation="" errorRowDisposition="NotUsed" truncationRowDisposition="NotUsed"><outputColumns>
+<outputColumn id="214" name="ErrorCode" description="" lineageId="214" precision="0" scale="0" length="0" dataType="i4" codePage="0" sortKeyPosition="0" comparisonFlags="0" specialFlags="1" errorOrTruncationOperation="" errorRowDisposition="NotUsed" truncationRowDisposition="NotUsed" externalMetadataColumnId="0" mappedColumnId="0"/>
+<outputColumn id="215" name="ErrorColumn" description="" lineageId="215" precision="0" scale="0" length="0" dataType="i4" codePage="0" sortKeyPosition="0" comparisonFlags="0" specialFlags="2" errorOrTruncationOperation="" errorRowDisposition="NotUsed" truncationRowDisposition="NotUsed" externalMetadataColumnId="0" mappedColumnId="0"/></outputColumns><externalMetadataColumns isUsed="False"/></output>
+</outputs>
+</component>
+</components>
+<paths>
+<path id="216" name="平面文件源输出" description="" startId="2" endId="211"/>
+<path id="301" name="导入列输出" description="" startId="212" endId="25"/>
+</paths></pipeline></DTS:ObjectData></DTS:Executable>
+<DTS:Property DTS:Name="ObjectName">Package</DTS:Property>
+<DTS:Property DTS:Name="DTSID">{CB36D090-55FD-4EF2-94D3-7E42C0FDAED3}</DTS:Property>
+<DTS:Property DTS:Name="Description"></DTS:Property>
+<DTS:Property DTS:Name="CreationName">SSIS.Package.2</DTS:Property>
+<DTS:Property DTS:Name="DisableEventHandlers">0</DTS:Property>
+<DTS:EventHandler>
+<DTS:Property DTS:Name="EventID">0</DTS:Property>
+<DTS:Property DTS:Name="EventName">OnError</DTS:Property>
+<DTS:Property DTS:Name="ForceExecValue">0</DTS:Property>
+<DTS:Property DTS:Name="ExecValue" DTS:DataType="3">0</DTS:Property>
+<DTS:Property DTS:Name="ForceExecutionResult">-1</DTS:Property>
+<DTS:Property DTS:Name="Disabled">0</DTS:Property>
+<DTS:Property DTS:Name="FailPackageOnFailure">0</DTS:Property>
+<DTS:Property DTS:Name="FailParentOnFailure">0</DTS:Property>
+<DTS:Property DTS:Name="MaxErrorCount">1</DTS:Property>
+<DTS:Property DTS:Name="ISOLevel">1048576</DTS:Property>
+<DTS:Property DTS:Name="LocaleID">-1</DTS:Property>
+<DTS:Property DTS:Name="TransactionOption">1</DTS:Property>
+<DTS:Property DTS:Name="DelayValidation">0</DTS:Property>
+<DTS:Variable>
+<DTS:Property DTS:Name="Expression"></DTS:Property>
+<DTS:Property DTS:Name="EvaluateAsExpression">0</DTS:Property>
+<DTS:Property DTS:Name="Namespace">System</DTS:Property>
+<DTS:Property DTS:Name="ReadOnly">0</DTS:Property>
+<DTS:Property DTS:Name="RaiseChangedEvent">0</DTS:Property>
+<DTS:Property DTS:Name="IncludeInDebugDump">6789</DTS:Property><DTS:VariableValue DTS:DataType="11">-1</DTS:VariableValue>
+<DTS:Property DTS:Name="ObjectName">Propagate</DTS:Property>
+<DTS:Property DTS:Name="DTSID">{0F9A6C5B-AF87-4BA8-955A-BAC8CDC6F4FC}</DTS:Property>
+<DTS:Property DTS:Name="Description">事件的传播属性</DTS:Property>
+<DTS:Property DTS:Name="CreationName"></DTS:Property></DTS:Variable>
+<DTS:LoggingOptions>
+<DTS:Property DTS:Name="LoggingMode">0</DTS:Property>
+<DTS:Property DTS:Name="FilterKind">1</DTS:Property>
+<DTS:Property DTS:Name="EventFilter" DTS:DataType="8"></DTS:Property></DTS:LoggingOptions>
+<DTS:Property DTS:Name="DTSID">{089292FA-2393-4EE1-A78B-DE0C0E0B7890}</DTS:Property>
+<DTS:Property DTS:Name="Description"></DTS:Property>
+<DTS:Property DTS:Name="CreationName">OnError</DTS:Property></DTS:EventHandler>
+<DTS:PackageVariable>
+<DTS:Property DTS:Name="PackageVariableValue" DTS:DataType="8">&lt;DtsEventHandler xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0"&gt;&lt;dwd:DtsEventHandlerDiagram&gt;&lt;dwd:Layout&gt;&lt;dds&gt;
+  &lt;diagram fontclsid="{0BE35203-8F91-11CE-9DE3-00AA004BB851}" mouseiconclsid="{0BE35204-8F91-11CE-9DE3-00AA004BB851}" defaultlayout="Microsoft.DataWarehouse.Layout.GraphLayout100" defaultlineroute="Microsoft.DataWarehouse.Layout.GraphLayout100" version="7" nextobject="3" scale="100" pagebreakanchorx="0" pagebreakanchory="0" pagebreaksizex="0" pagebreaksizey="0" scrollleft="0" scrolltop="0" gridx="150" gridy="150" marginx="1000" marginy="1000" zoom="100" x="32438" y="10742" backcolor="15334399" defaultpersistence="2" PrintPageNumbersMode="3" PrintMarginTop="0" PrintMarginBottom="635" PrintMarginLeft="0" PrintMarginRight="0" marqueeselectionmode="1" mousepointer="0" snaptogrid="0" autotypeannotation="1" showscrollbars="0" viewpagebreaks="0" donotforceconnectorsbehindshapes="1" backpictureclsid="{00000000-0000-0000-0000-000000000000}"&gt;
+    &lt;font&gt;
+      &lt;ddsxmlobjectstreamwrapper binary="010100009001905f010004cbcecce5" /&gt;
+    &lt;/font&gt;
+    &lt;mouseicon&gt;&lt;ddsxmlobjectstreamwrapper binary="6c74000000000000" /&gt;
+    &lt;/mouseicon&gt;
+  &lt;/diagram&gt;
+  &lt;layoutmanager&gt;&lt;ddsxmlobj /&gt;
+  &lt;/layoutmanager&gt;
+&lt;/dds&gt;&lt;/dwd:Layout&gt;&lt;/dwd:DtsEventHandlerDiagram&gt;&lt;/DtsEventHandler&gt;</DTS:Property>
+<DTS:Property DTS:Name="Namespace">dts-designer-1.0</DTS:Property>
+<DTS:Property DTS:Name="ObjectName">{089292FA-2393-4EE1-A78B-DE0C0E0B7890}</DTS:Property>
+<DTS:Property DTS:Name="DTSID">{6FD54E48-9F24-4794-AA54-D950CC7FEECF}</DTS:Property>
+<DTS:Property DTS:Name="Description"></DTS:Property>
+<DTS:Property DTS:Name="CreationName"></DTS:Property></DTS:PackageVariable>
+<DTS:PackageVariable>
+<DTS:Property DTS:Name="PackageVariableValue" DTS:DataType="8">&lt;TaskHost xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0"&gt;&lt;dwd:DtsDataFlowDiagram&gt;&lt;dwd:Layout&gt;&lt;dds&gt;
+  &lt;diagram fontclsid="{0BE35203-8F91-11CE-9DE3-00AA004BB851}" mouseiconclsid="{0BE35204-8F91-11CE-9DE3-00AA004BB851}" defaultlayout="Microsoft.DataWarehouse.Layout.GraphLayout100" defaultlineroute="Microsoft.DataWarehouse.Layout.GraphLayout100" version="7" nextobject="15" scale="100" pagebreakanchorx="0" pagebreakanchory="0" pagebreaksizex="0" pagebreaksizey="0" scrollleft="0" scrolltop="0" gridx="150" gridy="150" marginx="1000" marginy="1000" zoom="100" x="32438" y="11298" backcolor="15334399" defaultpersistence="2" PrintPageNumbersMode="3" PrintMarginTop="0" PrintMarginBottom="635" PrintMarginLeft="0" PrintMarginRight="0" marqueeselectionmode="1" mousepointer="0" snaptogrid="0" autotypeannotation="1" showscrollbars="0" viewpagebreaks="0" donotforceconnectorsbehindshapes="0" backpictureclsid="{00000000-0000-0000-0000-000000000000}"&gt;
+    &lt;font&gt;
+      &lt;ddsxmlobjectstreamwrapper binary="010100009001905f010004cbcecce5" /&gt;
+    &lt;/font&gt;
+    &lt;mouseicon&gt;
+      &lt;ddsxmlobjectstreamwrapper binary="6c74000000000000" /&gt;
+    &lt;/mouseicon&gt;
+  &lt;/diagram&gt;
+  &lt;layoutmanager&gt;
+    &lt;ddsxmlobj /&gt;
+  &lt;/layoutmanager&gt;
+  &lt;ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge.2" tooltip="平面文件源" left="53" top="1720" logicalid="6" controlid="1" masterid="0" hint1="0" hint2="0" width="3598" height="1164" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0"&gt;
+    &lt;control&gt;
+      &lt;ddsxmlobjectstreaminitwrapper binary="000800000e0e00008c040000" /&gt;
+    &lt;/control&gt;
+    &lt;layoutobject&gt;
+      &lt;ddsxmlobj&gt;
+        &lt;property name="LogicalObject" value="{654E24DB-131F-478E-B7AA-0975D8475922}/components/1" vartype="8" /&gt;
+        &lt;property name="ShowConnectorSource" value="0" vartype="2" /&gt;
+      &lt;/ddsxmlobj&gt;
+    &lt;/layoutobject&gt;
+    &lt;shape groupshapeid="0" groupnode="0" /&gt;
+  &lt;/ddscontrol&gt;
+  &lt;ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge.2" tooltip="SQL Server 目标" left="0" top="6323" logicalid="7" controlid="2" masterid="0" hint1="0" hint2="0" width="3598" height="1164" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0"&gt;
+    &lt;control&gt;
+      &lt;ddsxmlobjectstreaminitwrapper binary="000800000e0e00008c040000" /&gt;
+    &lt;/control&gt;
+    &lt;layoutobject&gt;
+      &lt;ddsxmlobj&gt;
+        &lt;property name="LogicalObject" value="{654E24DB-131F-478E-B7AA-0975D8475922}/components/9" vartype="8" /&gt;
+        &lt;property name="ShowConnectorSource" value="0" vartype="2" /&gt;
+      &lt;/ddsxmlobj&gt;
+    &lt;/layoutobject&gt;
+    &lt;shape groupshapeid="0" groupnode="0" /&gt;
+  &lt;/ddscontrol&gt;
+  &lt;ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge.2" tooltip="将数据从文件导入数据集中的一些行。" left="79" top="4101" logicalid="8" controlid="3" masterid="0" hint1="0" hint2="0" width="3598" height="1164" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0"&gt;
+    &lt;control&gt;
+      &lt;ddsxmlobjectstreaminitwrapper binary="000800000e0e00008c040000" /&gt;
+    &lt;/control&gt;
+    &lt;layoutobject&gt;
+      &lt;ddsxmlobj&gt;
+        &lt;property name="LogicalObject" value="{654E24DB-131F-478E-B7AA-0975D8475922}/components/210" vartype="8" /&gt;
+        &lt;property name="ShowConnectorSource" value="0" vartype="2" /&gt;
+      &lt;/ddsxmlobj&gt;
+    &lt;/layoutobject&gt;
+    &lt;shape groupshapeid="0" groupnode="0" /&gt;
+  &lt;/ddscontrol&gt;
+  &lt;ddscontrol controlprogid="MSDDS.Polyline" left="1453" top="2485" logicalid="9" controlid="4" masterid="0" hint1="0" hint2="0" width="825" height="2116" noresize="0" nomove="0" nodefaultattachpoints="1" autodrag="0" usedefaultiddshape="0" selectable="1" showselectionhandles="0" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0"&gt;
+    &lt;control&gt;
+      &lt;ddsxmlobj&gt;
+        &lt;polyline endtypedst="3" endtypesrc="1" usercolor="32768" linestyle="0" linerender="1" customendtypedstid="0" customendtypesrcid="0" adornsvisible="1" /&gt;
+      &lt;/ddsxmlobj&gt;
+    &lt;/control&gt;
+    &lt;layoutobject&gt;
+      &lt;ddsxmlobj&gt;
+        &lt;property name="LogicalObject" value="{654E24DB-131F-478E-B7AA-0975D8475922}/paths/216" vartype="8" /&gt;
+        &lt;property name="Virtual" value="0" vartype="11" /&gt;
+        &lt;property name="VisibleAP" value="0" vartype="3" /&gt;
+      &lt;/ddsxmlobj&gt;
+    &lt;/layoutobject&gt;
+    &lt;connector lineroutestyle="Microsoft.DataWarehouse.Layout.GraphLayout100" sourceid="1" destid="3" sourceattachpoint="7" destattachpoint="6" segmenteditmode="0" bendpointeditmode="0" bendpointvisibility="2" relatedid="0" virtual="0"&gt;
+      &lt;point x="1852" y="2884" /&gt;
+      &lt;point x="1852" y="3492" /&gt;
+      &lt;point x="1878" y="3492" /&gt;
+      &lt;point x="1878" y="4101" /&gt;
+    &lt;/connector&gt;
+  &lt;/ddscontrol&gt;
+  &lt;ddscontrol controlprogid="MSDDS.Polyline" left="1400" top="4866" logicalid="10" controlid="5" masterid="0" hint1="0" hint2="0" width="878" height="1957" noresize="0" nomove="0" nodefaultattachpoints="1" autodrag="0" usedefaultiddshape="0" selectable="1" showselectionhandles="0" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0"&gt;
+    &lt;control&gt;
+      &lt;ddsxmlobj&gt;
+        &lt;polyline endtypedst="3" endtypesrc="1" usercolor="32768" linestyle="0" linerender="1" customendtypedstid="0" customendtypesrcid="0" adornsvisible="1" /&gt;
+      &lt;/ddsxmlobj&gt;
+    &lt;/control&gt;
+    &lt;layoutobject&gt;
+      &lt;ddsxmlobj&gt;
+        &lt;property name="LogicalObject" value="{654E24DB-131F-478E-B7AA-0975D8475922}/paths/301" vartype="8" /&gt;
+        &lt;property name="Virtual" value="0" vartype="11" /&gt;
+        &lt;property name="VisibleAP" value="0" vartype="3" /&gt;
+      &lt;/ddsxmlobj&gt;
+    &lt;/layoutobject&gt;
+    &lt;connector lineroutestyle="Microsoft.DataWarehouse.Layout.GraphLayout100" sourceid="3" destid="2" sourceattachpoint="7" destattachpoint="6" segmenteditmode="0" bendpointeditmode="0" bendpointvisibility="2" relatedid="0" virtual="0"&gt;
+      &lt;point x="1878" y="5265" /&gt;
+      &lt;point x="1878" y="5794" /&gt;
+      &lt;point x="1799" y="5794" /&gt;
+      &lt;point x="1799" y="6323" /&gt;
+    &lt;/connector&gt;
+  &lt;/ddscontrol&gt;
+&lt;/dds&gt;&lt;/dwd:Layout&gt;&lt;/dwd:DtsDataFlowDiagram&gt;&lt;dwd:DtsComponentDesignerPropertiesList&gt;&lt;dwd:DtsComponentDesignTimeProperty&gt;&lt;dwd:key xsi:type="xsd:string"&gt;9	DataSourceViewID&lt;/dwd:key&gt;&lt;/dwd:DtsComponentDesignTimeProperty&gt;&lt;/dwd:DtsComponentDesignerPropertiesList&gt;&lt;/TaskHost&gt;</DTS:Property>
+<DTS:Property DTS:Name="Namespace">dts-designer-1.0</DTS:Property>
+<DTS:Property DTS:Name="ObjectName">{654E24DB-131F-478E-B7AA-0975D8475922}</DTS:Property>
+<DTS:Property DTS:Name="DTSID">{D6A0FBA3-7E57-40B8-9138-1991418F45FC}</DTS:Property>
+<DTS:Property DTS:Name="Description"></DTS:Property>
+<DTS:Property DTS:Name="CreationName"></DTS:Property></DTS:PackageVariable>
+<DTS:PackageVariable>
+<DTS:Property DTS:Name="PackageVariableValue" DTS:DataType="8">&lt;PipelinePath xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0"&gt;&lt;dwd:SourceName&gt;平面文件源输出&lt;/dwd:SourceName&gt;&lt;dwd:DestinationName&gt;导入列输入&lt;/dwd:DestinationName&gt;&lt;/PipelinePath&gt;</DTS:Property>
+<DTS:Property DTS:Name="Namespace">dts-designer-1.0</DTS:Property>
+<DTS:Property DTS:Name="ObjectName">{654E24DB-131F-478E-B7AA-0975D8475922}-216</DTS:Property>
+<DTS:Property DTS:Name="DTSID">{B540A4A7-7DBB-41CA-93B5-91BAECA1E785}</DTS:Property>
+<DTS:Property DTS:Name="Description"></DTS:Property>
+<DTS:Property DTS:Name="CreationName"></DTS:Property></DTS:PackageVariable>
+<DTS:PackageVariable>
+<DTS:Property DTS:Name="PackageVariableValue" DTS:DataType="8">&lt;PipelinePath xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0"&gt;&lt;dwd:SourceName&gt;导入列输出&lt;/dwd:SourceName&gt;&lt;dwd:DestinationName&gt;SQL Server 目标输入&lt;/dwd:DestinationName&gt;&lt;/PipelinePath&gt;</DTS:Property>
+<DTS:Property DTS:Name="Namespace">dts-designer-1.0</DTS:Property>
+<DTS:Property DTS:Name="ObjectName">{654E24DB-131F-478E-B7AA-0975D8475922}-301</DTS:Property>
+<DTS:Property DTS:Name="DTSID">{246702CE-E209-4CD5-B8E3-D6EB24C1DD0B}</DTS:Property>
+<DTS:Property DTS:Name="Description"></DTS:Property>
+<DTS:Property DTS:Name="CreationName"></DTS:Property></DTS:PackageVariable>
+<DTS:PackageVariable>
+<DTS:Property DTS:Name="PackageVariableValue" DTS:DataType="8">&lt;Package xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0"&gt;&lt;dwd:DtsControlFlowDiagram&gt;&lt;dwd:Layout&gt;&lt;dds&gt;
+  &lt;diagram fontclsid="{0BE35203-8F91-11CE-9DE3-00AA004BB851}" mouseiconclsid="{0BE35204-8F91-11CE-9DE3-00AA004BB851}" defaultlayout="Microsoft.DataWarehouse.Layout.GraphLayout100" defaultlineroute="Microsoft.DataWarehouse.Layout.GraphLayout100" version="7" nextobject="5" scale="100" pagebreakanchorx="0" pagebreakanchory="0" pagebreaksizex="0" pagebreaksizey="0" scrollleft="0" scrolltop="0" gridx="150" gridy="150" marginx="1000" marginy="1000" zoom="100" x="32438" y="12330" backcolor="15334399" defaultpersistence="2" PrintPageNumbersMode="3" PrintMarginTop="0" PrintMarginBottom="635" PrintMarginLeft="0" PrintMarginRight="0" marqueeselectionmode="1" mousepointer="0" snaptogrid="0" autotypeannotation="1" showscrollbars="0" viewpagebreaks="0" donotforceconnectorsbehindshapes="1" backpictureclsid="{00000000-0000-0000-0000-000000000000}"&gt;
+    &lt;font&gt;
+      &lt;ddsxmlobjectstreamwrapper binary="010100009001905f010004cbcecce5" /&gt;
+    &lt;/font&gt;
+    &lt;mouseicon&gt;
+      &lt;ddsxmlobjectstreamwrapper binary="6c74000000000000" /&gt;
+    &lt;/mouseicon&gt;
+  &lt;/diagram&gt;
+  &lt;layoutmanager&gt;
+    &lt;ddsxmlobj /&gt;
+  &lt;/layoutmanager&gt;
+  &lt;ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge.2" tooltip="数据流任务" left="0" top="4641" logicalid="2" controlid="1" masterid="0" hint1="0" hint2="0" width="3598" height="1164" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0"&gt;
+    &lt;control&gt;
+      &lt;ddsxmlobjectstreaminitwrapper binary="000800000e0e00008c040000" /&gt;
+    &lt;/control&gt;
+    &lt;layoutobject&gt;
+      &lt;ddsxmlobj&gt;
+        &lt;property name="LogicalObject" value="{654E24DB-131F-478E-B7AA-0975D8475922}" vartype="8" /&gt;
+        &lt;property name="ShowConnectorSource" value="0" vartype="2" /&gt;
+      &lt;/ddsxmlobj&gt;
+    &lt;/layoutobject&gt;
+    &lt;shape groupshapeid="0" groupnode="0" /&gt;
+  &lt;/ddscontrol&gt;
+&lt;/dds&gt;&lt;/dwd:Layout&gt;&lt;/dwd:DtsControlFlowDiagram&gt;&lt;/Package&gt;</DTS:Property>
+<DTS:Property DTS:Name="Namespace">dts-designer-1.0</DTS:Property>
+<DTS:Property DTS:Name="ObjectName">{CB36D090-55FD-4EF2-94D3-7E42C0FDAED3}</DTS:Property>
+<DTS:Property DTS:Name="DTSID">{9DA32473-BCC6-42CF-860A-8579EBF04DDC}</DTS:Property>
+<DTS:Property DTS:Name="Description"></DTS:Property>
+<DTS:Property DTS:Name="CreationName"></DTS:Property></DTS:PackageVariable>
+<DTS:PackageVariable>
+<DTS:Property DTS:Name="PackageVariableValue" DTS:DataType="8">&lt;Package xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0"&gt;&lt;dwd:DtsControlFlowDiagram&gt;&lt;dwd:Layout&gt;&lt;dds&gt;
+  &lt;diagram fontclsid="{0BE35203-8F91-11CE-9DE3-00AA004BB851}" mouseiconclsid="{0BE35204-8F91-11CE-9DE3-00AA004BB851}" defaultlayout="Microsoft.DataWarehouse.Layout.GraphLayout100" defaultlineroute="Microsoft.DataWarehouse.Layout.GraphLayout100" version="7" nextobject="5" scale="100" pagebreakanchorx="0" pagebreakanchory="0" pagebreaksizex="0" pagebreaksizey="0" scrollleft="0" scrolltop="0" gridx="150" gridy="150" marginx="1000" marginy="1000" zoom="100" x="32438" y="12330" backcolor="15334399" defaultpersistence="2" PrintPageNumbersMode="3" PrintMarginTop="0" PrintMarginBottom="635" PrintMarginLeft="0" PrintMarginRight="0" marqueeselectionmode="1" mousepointer="0" snaptogrid="0" autotypeannotation="1" showscrollbars="0" viewpagebreaks="0" donotforceconnectorsbehindshapes="1" backpictureclsid="{00000000-0000-0000-0000-000000000000}"&gt;
+    &lt;font&gt;
+      &lt;ddsxmlobjectstreamwrapper binary="010100009001905f010004cbcecce5" /&gt;
+    &lt;/font&gt;
+    &lt;mouseicon&gt;
+      &lt;ddsxmlobjectstreamwrapper binary="6c74000000000000" /&gt;
+    &lt;/mouseicon&gt;
+  &lt;/diagram&gt;
+  &lt;layoutmanager&gt;
+    &lt;ddsxmlobj /&gt;
+  &lt;/layoutmanager&gt;
+  &lt;ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge.2" tooltip="数据流任务" left="0" top="4641" logicalid="2" controlid="1" masterid="0" hint1="0" hint2="0" width="3598" height="1164" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0"&gt;
+    &lt;control&gt;
+      &lt;ddsxmlobjectstreaminitwrapper binary="000800000e0e00008c040000" /&gt;
+    &lt;/control&gt;
+    &lt;layoutobject&gt;
+      &lt;ddsxmlobj&gt;
+        &lt;property name="LogicalObject" value="{654E24DB-131F-478E-B7AA-0975D8475922}" vartype="8" /&gt;
+        &lt;property name="ShowConnectorSource" value="0" vartype="2" /&gt;
+      &lt;/ddsxmlobj&gt;
+    &lt;/layoutobject&gt;
+    &lt;shape groupshapeid="0" groupnode="0" /&gt;
+  &lt;/ddscontrol&gt;
+&lt;/dds&gt;&lt;/dwd:Layout&gt;&lt;/dwd:DtsControlFlowDiagram&gt;&lt;/Package&gt;</DTS:Property>
+<DTS:Property DTS:Name="Namespace">dts-designer-1.0</DTS:Property>
+<DTS:Property DTS:Name="ObjectName">package-diagram</DTS:Property>
+<DTS:Property DTS:Name="DTSID">{5BB1C427-7186-4A56-97F3-F6B50A3A08AE}</DTS:Property>
+<DTS:Property DTS:Name="Description"></DTS:Property>
+<DTS:Property DTS:Name="CreationName"></DTS:Property></DTS:PackageVariable></DTS:Executable>

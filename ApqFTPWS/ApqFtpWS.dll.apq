@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Root>
 	<!-- 类配置文档 -->
-	<ApqFtpWS.App_Code.FtpQueue FtpFile="D:\Desktop\FtpFile.xml"/>
+	<ApqFtpWS.App_Code.FtpQueue FtpFile="D:\DBA\ApqFtpWS\FtpFile.xml"/>
+	<ApqFtpWS.Global Sleep="1000"/>
 </Root>

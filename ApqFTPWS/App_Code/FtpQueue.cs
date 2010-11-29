@@ -33,7 +33,7 @@ namespace ApqFtpWS.App_Code
 				// 加载Ftp队列数据
 				if (FtpFile != null && File.Exists(FtpQueue.FtpFile)) FtpQueue.dsFtp.ReadXml(FtpQueue.FtpFile);
 			}
-			if (FtpFile.Length < 1)
+			if (FtpFile == null || FtpFile.Length < 1)
 			{
 				throw new Exception("无法保存队列,请检查队列文件设置");
 			}
@@ -102,8 +102,7 @@ namespace ApqFtpWS.App_Code
 				}
 
 				FtpClient fc = new FtpClient(FtpSrv, FtpPort, FtpFolder, FtpU, FtpP);
-				fc.Upload(Folder + "_up" + FileName);
-				fc.Rename("_up" + FileName, FileName);
+				fc.Upload(Folder + FileName);
 
 				// 出队
 				for (int i = dsFtp.Tables[0].Rows.Count - 1; i >= 0; i--)
@@ -118,9 +117,13 @@ namespace ApqFtpWS.App_Code
 				// 存回文件
 				dsFtp.WriteXml(FtpFile, System.Data.XmlWriteMode.WriteSchema);
 			}
-			catch
+			catch(Exception ex)
 			{
-				// 截获所有异常
+				using (StreamWriter sr = new StreamWriter(AppDomain.CurrentDomain.BaseDirectory + @"\log\Error.log", true))
+				{
+					sr.WriteLine(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+					sr.WriteLine(ex.Message);
+				}
 			}
 		}
 	}

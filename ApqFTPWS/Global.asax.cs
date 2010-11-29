@@ -65,7 +65,10 @@ namespace ApqFtpWS
 			{
 				try
 				{
-					Apq.GlobalObject.ApqLog.Debug("测试执行");
+					using (StreamWriter sr = new StreamWriter(AppDomain.CurrentDomain.BaseDirectory + @"\log\Running.log", false))
+					{
+						sr.WriteLine(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+					}
 					if (FtpQueue.dsFtp.Tables.Count > 0)
 					{
 						for (int i = FtpQueue.dsFtp.Tables[0].Rows.Count - 1; i >= 0; i--)
@@ -76,11 +79,9 @@ namespace ApqFtpWS
 					}
 				}
 				catch { }
-#if DEBUG
-				Thread.Sleep(1000);//1秒一次
-#else
-				Thread.Sleep(300000);//5分钟一次
-#endif
+
+				int ms = Apq.Convert.ChangeType<int>(GlobalObject.XmlConfigChain[typeof(Global), "Sleep"], 300000);
+				Thread.Sleep(ms);
 			}
 		}
 	}
