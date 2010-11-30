@@ -1,7 +1,7 @@
-﻿IF( OBJECT_ID('dbo.Stat_PV_R1', 'P') IS NULL )
-	EXEC sp_executesql N'CREATE PROCEDURE dbo.Stat_PV_R1 AS BEGIN RETURN END';
+﻿IF( OBJECT_ID('dbo.Stat_PV_R2', 'P') IS NULL )
+	EXEC sp_executesql N'CREATE PROCEDURE dbo.Stat_PV_R2 AS BEGIN RETURN END';
 GO
-ALTER PROC dbo.Stat_PV_R1
+ALTER PROC dbo.Stat_PV_R2
 	 @StartTime	datetime
 	,@EndTime	datetime
 	,@IsAgain	tinyint = 0
@@ -13,7 +13,7 @@ AS
 -- 功能: 按预定时间加载BCP接收表
 -- 示例:
 DECLARE @rtn int;
-EXEC @rtn = dbo.Stat_PV_R1 '20101105','20101106';
+EXEC @rtn = dbo.Stat_PV_R2 '20101105','20101106';
 SELECT @rtn;
 -- =============================================
 */
@@ -182,10 +182,10 @@ BEGIN--一天约10分钟
 		 ) l ON t.Imei = l.Imei AND t.LogType = l.LogType
 	 WHERE t._LastImeiLogIDTemp_Time < @EndTime
 END
--- 记录时间点061
+-- 记录时间点7
 SELECT @Now = getdate();
 SELECT @strNow = Convert(nvarchar(50),@Now,121)
-EXEC dbo.Apq_Ext_Set 'PV_Stat',0,'_Time061',@strNow;
+EXEC dbo.Apq_Ext_Set 'PV_Stat',0,'_Time07',@strNow;
 WHILE(1=1)
 BEGIN
 	UPDATE TOP(10000) t
@@ -207,10 +207,10 @@ BEGIN
 	IF(@@ROWCOUNT = 0) BREAK;
 END
 
--- 记录时间点7
+-- 记录时间点8
 SELECT @Now = getdate();
 SELECT @strNow = Convert(nvarchar(50),@Now,121)
-EXEC dbo.Apq_Ext_Set 'PV_Stat',0,'_Time07',@strNow;
+EXEC dbo.Apq_Ext_Set 'PV_Stat',0,'_Time08',@strNow;
 -- =================================================================================================
 
 -- PV_Imei -----------------------------------------------------------------------------------------
@@ -225,10 +225,10 @@ BEGIN
 END
 PRINT '[2]'+Convert(nvarchar(21),@BID)+','+Convert(nvarchar(21),@CID)+','+Convert(nvarchar(21),@EID)
 
--- 记录时间点8
+-- 记录时间点9
 SELECT @Now = getdate();
 SELECT @strNow = Convert(nvarchar(50),@Now,121)
-EXEC dbo.Apq_Ext_Set 'PV_Stat',0,'_Time08',@strNow;
+EXEC dbo.Apq_Ext_Set 'PV_Stat',0,'_Time09',@strNow;
 
 IF(@CID < @EID)
 BEGIN
@@ -243,10 +243,10 @@ BEGIN
 	PRINT @sql_Drop
 END
 
--- 记录时间点9
+-- 记录时间点10
 SELECT @Now = getdate();
 SELECT @strNow = Convert(nvarchar(50),@Now,121)
-EXEC dbo.Apq_Ext_Set 'PV_Stat',0,'_Time09',@strNow;
+EXEC dbo.Apq_Ext_Set 'PV_Stat',0,'_Time10',@strNow;
 
 -- 加入新增用户
 IF(@IsAgain = 1)
@@ -287,10 +287,10 @@ END
 -- 插入完成,记录最后ID
 EXEC dbo.Apq_Ext_Set 'PV_Stat',0,'CID_PV_Imei',@EID;
 
--- 记录时间点10
+-- 记录时间点11
 SELECT @Now = getdate();
 SELECT @strNow = Convert(nvarchar(50),@Now,121)
-EXEC dbo.Apq_Ext_Set 'PV_Stat',0,'_Time10',@strNow;
+EXEC dbo.Apq_Ext_Set 'PV_Stat',0,'_Time11',@strNow;
 
 -- 插入完成后按需创建索引
 IF(LEN(@sql_Create)>1) EXEC sp_executesql @sql_Create;
@@ -309,10 +309,10 @@ BEGIN
 	END
 END
 
--- 记录时间点11
+-- 记录时间点12
 SELECT @Now = getdate();
 SELECT @strNow = Convert(nvarchar(50),@Now,121)
-EXEC dbo.Apq_Ext_Set 'PV_Stat',0,'_Time11',@strNow;
+EXEC dbo.Apq_Ext_Set 'PV_Stat',0,'_Time12',@strNow;
 
 -- PV
 WHILE(1=1)
@@ -329,10 +329,10 @@ BEGIN
 	IF(@@ROWCOUNT = 0) BREAK;
 END
 
--- 记录时间点12
+-- 记录时间点13
 SELECT @Now = getdate();
 SELECT @strNow = Convert(nvarchar(50),@Now,121)
-EXEC dbo.Apq_Ext_Set 'PV_Stat',0,'_Time12',@strNow;
+EXEC dbo.Apq_Ext_Set 'PV_Stat',0,'_Time13',@strNow;
 
 -- Last
 IF(@IsAgain = 1 OR NOT EXISTS(SELECT TOP 1 1 FROM dbo.PV_Imei t(NOLOCK) WHERE _LastPVTimeTemp_Time = @EndTime))
@@ -348,10 +348,10 @@ BEGIN
 		 ) l ON t.Imei = l.Imei
 	 WHERE t._LastPVTimeTemp_Time < @EndTime
 END
--- 记录时间点121
+-- 记录时间点14
 SELECT @Now = getdate();
 SELECT @strNow = Convert(nvarchar(50),@Now,121)
-EXEC dbo.Apq_Ext_Set 'PV_Stat',0,'_Time121',@strNow;
+EXEC dbo.Apq_Ext_Set 'PV_Stat',0,'_Time14',@strNow;
 WHILE(1=1)
 BEGIN
 	UPDATE TOP(10000) t
@@ -375,10 +375,10 @@ BEGIN
 	IF(@@ROWCOUNT = 0) BREAK;
 END
 
--- 记录时间点13
+-- 记录时间点15
 SELECT @Now = getdate();
 SELECT @strNow = Convert(nvarchar(50),@Now,121)
-EXEC dbo.Apq_Ext_Set 'PV_Stat',0,'_Time13',@strNow;
+EXEC dbo.Apq_Ext_Set 'PV_Stat',0,'_Time15',@strNow;
 -- =================================================================================================
 
 RETURN 1;
