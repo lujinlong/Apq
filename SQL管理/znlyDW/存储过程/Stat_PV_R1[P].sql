@@ -169,16 +169,19 @@ SELECT @strNow = Convert(nvarchar(50),@Now,121)
 EXEC dbo.Apq_Ext_Set 'PV_Stat',0,'_Time06',@strNow;
 
 -- Last
-UPDATE t
-   SET _Time = getdate(), _LastImeiLogIDTemp_Time = @EndTime
-	,t._LastImeiLogIDTemp = l.LastID
-  FROM dbo.PV_Imei_LogType t INNER JOIN 
-	(SELECT Imei, LogType, LastID=Max(ID)
-	   FROM log.ImeiLog(NOLOCK)
-	  WHERE LogTime >= @StartTime AND LogTime < @EndTime
-	  GROUP BY Imei, LogType
-	 ) l ON t.Imei = l.Imei AND t.LogType = l.LogType
- WHERE t._LastImeiLogIDTemp_Time < @EndTime
+IF(@IsAgain = 1 OR NOT EXISTS(SELECT TOP 1 1 FROM dbo.PV_Imei_LogType t(NOLOCK) WHERE _LastImeiLogIDTemp_Time = @EndTime))
+BEGIN--一天约10分钟
+	UPDATE t
+	   SET _Time = getdate(), _LastImeiLogIDTemp_Time = @EndTime
+		,t._LastImeiLogIDTemp = l.LastID
+	  FROM dbo.PV_Imei_LogType t INNER JOIN 
+		(SELECT Imei, LogType, LastID=Max(ID)
+		   FROM log.ImeiLog(NOLOCK)
+		  WHERE LogTime >= @StartTime AND LogTime < @EndTime
+		  GROUP BY Imei, LogType
+		 ) l ON t.Imei = l.Imei AND t.LogType = l.LogType
+	 WHERE t._LastImeiLogIDTemp_Time < @EndTime
+END
 WHILE(1=1)
 BEGIN
 	UPDATE TOP(10000) t
@@ -328,16 +331,19 @@ SELECT @strNow = Convert(nvarchar(50),@Now,121)
 EXEC dbo.Apq_Ext_Set 'PV_Stat',0,'_Time12',@strNow;
 
 -- Last
-UPDATE t
-   SET _Time = getdate(), _LastPVTimeTemp_Time = @EndTime
-	,t._LastPVTimeTemp = l.LastTime
-  FROM dbo.PV_Imei t INNER JOIN 
-	(SELECT Imei, LastTime=Max(LastTime)
-	   FROM dbo.PV_Imei_LogType(NOLOCK)
-	  WHERE LastTime >= @StartTime AND LastTime < @EndTime
-	  GROUP BY Imei
-	 ) l ON t.Imei = l.Imei
- WHERE t._LastPVTimeTemp_Time < @EndTime
+IF(@IsAgain = 1 OR NOT EXISTS(SELECT TOP 1 1 FROM dbo.PV_Imei t(NOLOCK) WHERE _LastPVTimeTemp_Time = @EndTime))
+BEGIN
+	UPDATE t
+	   SET _Time = getdate(), _LastPVTimeTemp_Time = @EndTime
+		,t._LastPVTimeTemp = l.LastTime
+	  FROM dbo.PV_Imei t INNER JOIN 
+		(SELECT Imei, LastTime=Max(LastTime)
+		   FROM dbo.PV_Imei_LogType(NOLOCK)
+		  WHERE LastTime >= @StartTime AND LastTime < @EndTime
+		  GROUP BY Imei
+		 ) l ON t.Imei = l.Imei
+	 WHERE t._LastPVTimeTemp_Time < @EndTime
+END
 WHILE(1=1)
 BEGIN
 	UPDATE TOP(10000) t

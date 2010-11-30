@@ -28,5 +28,6 @@ Begin DataProject = "znlyDW"
    End
    Begin Folder = "|统计处理|7edf8ba159047406"
       Script = "Stat_PV.sql"
+      Script = "Stat_PV_View.sql"
    End
 End
