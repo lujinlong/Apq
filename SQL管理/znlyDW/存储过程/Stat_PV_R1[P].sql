@@ -182,6 +182,10 @@ BEGIN--一天约10分钟
 		 ) l ON t.Imei = l.Imei AND t.LogType = l.LogType
 	 WHERE t._LastImeiLogIDTemp_Time < @EndTime
 END
+-- 记录时间点061
+SELECT @Now = getdate();
+SELECT @strNow = Convert(nvarchar(50),@Now,121)
+EXEC dbo.Apq_Ext_Set 'PV_Stat',0,'_Time061',@strNow;
 WHILE(1=1)
 BEGIN
 	UPDATE TOP(10000) t
@@ -344,6 +348,10 @@ BEGIN
 		 ) l ON t.Imei = l.Imei
 	 WHERE t._LastPVTimeTemp_Time < @EndTime
 END
+-- 记录时间点121
+SELECT @Now = getdate();
+SELECT @strNow = Convert(nvarchar(50),@Now,121)
+EXEC dbo.Apq_Ext_Set 'PV_Stat',0,'_Time121',@strNow;
 WHILE(1=1)
 BEGIN
 	UPDATE TOP(10000) t
