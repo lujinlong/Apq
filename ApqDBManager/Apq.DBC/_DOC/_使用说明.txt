@@ -1,0 +1,26 @@
+﻿必需的文件列表:
+	Apq.dll
+	Apq.DBC.dll
+	Apq.dll.config
+	配置文件:
+		Apq.DBC.dll.apq
+	其余文件可为编程提供提示功能等辅助作用,非运行必需.
+
+程序调用方法:
+1.直接引用两个dll文件
+2.将apq.dll.config,Apq.DBC.dll.apq,Apq.dll.log4net放到项目根目录下
+	选定以上文件,右键属性中设置 "复制到输出目录:如果较新则复制"
+3.WebConfig中指定dll配置文件目录(.apq文件存放目录),必须以\结尾[注意分配读写权限给Network Service帐号].
+	<add key="Apq.Config.ApqConfigs.XmlConfigFolder" value="apq配置文件目录,可以每个程序一个目录,也可共享\"/>
+	重点:此项配置不能漏掉.
+4.Apq.DBC.dll.apq 修改配置:
+	csFile:指定连接字符串文件路径(绝对路径)[注意分配读取权限给Network Service帐号].
+5.调用Apq.DBC.Common.GetConnectoinString(string Name)返回连接字符串.
+	此Name一般传入数据库名
+
+部署方法:
+1.同项目一起发布所有文件.
+2.站点的Web.Config中指定dll配置文件目录(.apq文件存放目录),必须以\结尾[注意分配读写权限给Network Service帐号].
+	<add key="Apq.Config.ApqConfigs.XmlConfigFolder" value="apq配置文件目录,可以每个程序一个目录,也可共享\"/>
+3.将Apq.DBC.dll.apq文件复制到上面设定的文件夹,并修改配置:
+	csFile:指定连接字符串文件路径(绝对路径)[注意分配读取权限给Network Service帐号].
