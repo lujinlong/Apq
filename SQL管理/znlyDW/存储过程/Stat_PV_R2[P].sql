@@ -36,40 +36,22 @@ DECLARE @BID bigint, @EID bigint, @CID bigint, @CIDE bigint;
 DECLARE @ExMsg nvarchar(max),@sql_Create nvarchar(max), @sql_Drop nvarchar(max)
 
 --SELECT @BTimeWeek, @BTimeDWeek,@BTimeMonth,@BTimeNMonth;
--- 记录时间点0
+-- 记录时间点1
 SELECT @Now = getdate();
 SELECT @strNow = Convert(nvarchar(50),@Now,121)
-EXEC dbo.Apq_Ext_Set 'PV_Stat',0,'_Time00',@strNow;
+EXEC dbo.Apq_Ext_Set 'PV_Stat',0,'_Time01',@strNow;
 
 -- PV_Imei_LogType ---------------------------------------------------------------------------------
 SELECT @CID = -1,@sql_Create='',@sql_Drop='';
 SELECT @BID = min(l.ID),@EID = max(l.ID) FROM log.ImeiLog l(NOLOCK) WHERE l.LogTime >= @StartTime AND l.LogTime < @EndTime;
 IF(@BID IS NULL OR @EID IS NULL) RETURN -1;
-IF(@IsAgain = 0) SELECT @CID = ISNULL(dbo.Apq_Ext_Get('PV_Stat',0,'CID_PV_Imei_LogType'),@BID);
+IF(@IsAgain = 0) SELECT @CID = ISNULL(dbo.Apq_Ext_Get('PV_Stat',0,'PV_Imei_LogType_First_CID_ImeiLog'),@BID);
 IF(@IsAgain = 1) SELECT @CID = @BID;
 IF(NOT @CID BETWEEN @BID AND @EID)
 BEGIN
 	SELECT @CID = @BID;
 END
 PRINT '[1]'+Convert(nvarchar(21),@BID)+','+Convert(nvarchar(21),@CID)+','+Convert(nvarchar(21),@EID)
-
--- 记录时间点1
-SELECT @Now = getdate();
-SELECT @strNow = Convert(nvarchar(50),@Now,121)
-EXEC dbo.Apq_Ext_Set 'PV_Stat',0,'_Time01',@strNow;
-
-IF(@CID < @EID)
-BEGIN
-	-- 开始插入前去掉索引
-	EXEC dbo.Apq_DropIndex @ExMsg OUT, 'dbo', 'PV_Imei_LogType', @sql_Create OUT, @sql_Drop OUT, 1
-	IF(Len(@sql_Create)>1) EXEC dbo.Apq_Ext_Set 'PV_Imei_LogType', 0, 'Apq_CreateIndex',@sql_Create; -- 有索引时存档
-	ELSE SELECT @sql_Create = dbo.Apq_Ext_Get('PV_Imei_LogType', 0, 'Apq_CreateIndex');	-- 否则读档
-
-	PRINT '-- 创建索引 ---------------------------------------------------------------------------------'
-	PRINT @sql_Create
-	PRINT '-- 删除索引 ---------------------------------------------------------------------------------'
-	PRINT @sql_Drop
-END
 
 -- 记录时间点2
 SELECT @Now = getdate();
@@ -82,8 +64,8 @@ BEGIN
 	WHILE(1=1)
 	BEGIN
 		DELETE TOP(10000) t
-		  FROM dbo.PV_Imei_LogType t
-		 WHERE t.FirstTime >= @StartTime-- AND t.FirstTime < @EndTime
+		  FROM dbo.PV_Imei_LogType_First t
+		 WHERE t.FirstTime >= @StartTime
 		IF(@@ROWCOUNT = 0) BREAK;
 	END
 END
@@ -97,57 +79,59 @@ WHILE(@CID <= @EID)
 BEGIN
 	--SELECT 1,@BID,@CID,@EID;
 	PRINT '[1]'+Convert(nvarchar(21),@CID);
-	EXEC dbo.Apq_Ext_Set 'PV_Stat',0,'CID_PV_Imei_LogType',@CID;
+	EXEC dbo.Apq_Ext_Set 'PV_Stat',0,'PV_Imei_LogType_First_CID_ImeiLog',@CID;
 	
-	TRUNCATE TABLE dbo.PV_Imei_LogType1;
+	TRUNCATE TABLE dbo.PV_Imei_LogType_First1;
 	
 	SELECT @CIDE = @CID + 10000;
-	INSERT dbo.PV_Imei_LogType1 ( Imei,LogType,FirstTime,FirstPlatform,FirstSMSC,FirstProvince,FristPlatformDate )
-	SELECT l.Imei,l.LogType,l.LogTime,l.[Platform],l.SMSC,l.Province,PlatformDate
+	INSERT dbo.PV_Imei_LogType_First1 ( Imei,LogType,FirstTime,FirstPlatform,FirstSMSC,FirstProvince,FristPlatformDate,FirstImeiLogID )
+	SELECT l.Imei,l.LogType,l.LogTime,l.[Platform],l.SMSC,l.Province,PlatformDate,l.ID
 	  FROM log.ImeiLog l(NOLOCK)
-	 WHERE NOT EXISTS(SELECT TOP 1 1 FROM dbo.PV_Imei_LogType d WHERE d.LogType = l.LogType AND d.Imei = l.Imei)
+	 WHERE NOT EXISTS(SELECT TOP 1 1 FROM dbo.PV_Imei_LogType_First d WHERE d.LogType = l.LogType AND d.Imei = l.Imei)
 		AND l.LogTime >= @StartTime AND l.LogTime < @EndTime
 		AND l.ID >= @CID AND l.ID < @CIDE
-		AND l.Imei IS NOT NULL AND l.LogType IS NOT NULL;
-	INSERT dbo.PV_Imei_LogType ( Imei,LogType,FirstTime,FirstPlatform,FirstSMSC,FirstProvince,FristPlatformDate )
-	SELECT Imei,LogType,FirstTime,FirstPlatform,FirstSMSC,FirstProvince,FristPlatformDate
-	  FROM dbo.PV_Imei_LogType1 l
+		AND l.Imei IS NOT NULL AND l.LogType IS NOT NULL
+	 ORDER BY l.LogTime;
+	INSERT dbo.PV_Imei_LogType_First ( Imei,LogType,FirstTime,FirstPlatform,FirstSMSC,FirstProvince,FristPlatformDate,FirstImeiLogID )
+	SELECT Imei,LogType,FirstTime,FirstPlatform,FirstSMSC,FirstProvince,FristPlatformDate,FirstImeiLogID
+	  FROM dbo.PV_Imei_LogType_First1 l
+	 WHERE NOT EXISTS(SELECT TOP 1 1 FROM dbo.PV_Imei_LogType_First d WHERE d.LogType = l.LogType AND d.Imei = l.Imei)
+	INSERT dbo.PV_Imei_LogType ( Imei,LogType )
+	SELECT Imei,LogType
+	  FROM dbo.PV_Imei_LogType_First1 l
 	 WHERE NOT EXISTS(SELECT TOP 1 1 FROM dbo.PV_Imei_LogType d WHERE d.LogType = l.LogType AND d.Imei = l.Imei)
-		
+	INSERT dbo.PV_Imei_LogType_Last ( Imei,LogType )
+	SELECT Imei,LogType
+	  FROM dbo.PV_Imei_LogType_First1 l
+	 WHERE NOT EXISTS(SELECT TOP 1 1 FROM dbo.PV_Imei_LogType_Last d WHERE d.LogType = l.LogType AND d.Imei = l.Imei)
+	INSERT dbo.PV_Imei_LogType_SLast ( Imei,LogType )
+	SELECT Imei,LogType
+	  FROM dbo.PV_Imei_LogType_First1 l
+	 WHERE NOT EXISTS(SELECT TOP 1 1 FROM dbo.PV_Imei_LogType_SLast d WHERE d.LogType = l.LogType AND d.Imei = l.Imei)
+	
 	SELECT @CID = @CIDE;
 END
 
 -- 插入完成,记录最后ID
-EXEC dbo.Apq_Ext_Set 'PV_Stat',0,'CID_PV_Imei_LogType',@EID;
+EXEC dbo.Apq_Ext_Set 'PV_Stat',0,'PV_Imei_LogType_First_CID_ImeiLog',@EID;
 
 -- 记录时间点4
 SELECT @Now = getdate();
 SELECT @strNow = Convert(nvarchar(50),@Now,121)
 EXEC dbo.Apq_Ext_Set 'PV_Stat',0,'_Time04',@strNow;
 
--- 插入完成后按需创建索引
-IF(LEN(@sql_Create)>1) EXEC sp_executesql @sql_Create;
-
--- 更新统计信息
+-- PV
 IF(@IsAgain = 1)
 BEGIN
 	WHILE(1=1)
 	BEGIN
 		UPDATE TOP(10000) t
 		   SET _Time = getdate(), VisitCount_Time = dateadd(n,-1,@EndTime)
-			,_LastImeiLogIDTemp_Time = dateadd(n,-1,@EndTime), _LastImeiLogID_Time = dateadd(n,-1,@EndTime)
 		  FROM dbo.PV_Imei_LogType t
 		WHERE t.VisitCount_Time >= @EndTime;
 		IF(@@ROWCOUNT = 0) BREAK;
 	END
 END
-
--- 记录时间点5
-SELECT @Now = getdate();
-SELECT @strNow = Convert(nvarchar(50),@Now,121)
-EXEC dbo.Apq_Ext_Set 'PV_Stat',0,'_Time05',@strNow;
-
--- PV
 WHILE(1=1)
 BEGIN
 	UPDATE TOP(10000) t
@@ -163,61 +147,66 @@ BEGIN
 	IF(@@ROWCOUNT = 0) BREAK;
 END
 
+-- 记录时间点5
+SELECT @Now = getdate();
+SELECT @strNow = Convert(nvarchar(50),@Now,121)
+EXEC dbo.Apq_Ext_Set 'PV_Stat',0,'_Time05',@strNow;
+
+-- Last
+TRUNCATE TABLE dbo.PV_Imei_LogType_Last1;
+INSERT dbo.PV_Imei_LogType_Last1(Imei, LogType, LastImeiLogID)
+SELECT Imei, LogType, Max(ID)
+  FROM log.ImeiLog(NOLOCK)
+ WHERE LogTime >= @StartTime AND LogTime < @EndTime
+	AND Imei IS NOT NULL AND LogType IS NOT NULL
+ GROUP BY Imei, LogType
+UPDATE t
+   SET t.LastTime = l.LogTime
+	,t.LastPlatform = l.[Platform]
+	,t.LastPlatformDate = l.PlatformDate
+	,t.LastSMSC = l.SMSC
+	,t.LastProvince = l.Province
+  FROM dbo.PV_Imei_LogType_Last1 t INNER JOIN log.ImeiLog l(NOLOCK) ON t.Imei = l.Imei AND t.LogType = l.LogType
 -- 记录时间点6
 SELECT @Now = getdate();
 SELECT @strNow = Convert(nvarchar(50),@Now,121)
 EXEC dbo.Apq_Ext_Set 'PV_Stat',0,'_Time06',@strNow;
+UPDATE t
+   SET _Time = getdate()
+	,t.LastImeiLogID = l.LastImeiLogID
+	,t.SLastImeiLogID = t.LastImeiLogID
+  FROM dbo.PV_Imei_LogType_Last t INNER JOIN dbo.PV_Imei_LogType_Last1 l(NOLOCK) ON t.Imei = l.Imei AND t.LogType = l.LogType
+ WHERE t.LastImeiLogID <> l.LastImeiLogID
+UPDATE t	-- SLast
+   SET _Time = getdate()
+	,t.SLastImeiLogID = l.LastImeiLogID
+	,t.SLastTime = l.LastTime
+	,t.SLastPlatform = l.LastPlatform
+	,t.SLastPlatformDate = l.LastPlatformDate
+	,t.SLastSMSC = l.LastSMSC
+	,t.SLastProvince = l.LastProvince
+  FROM dbo.PV_Imei_LogType_SLast t INNER JOIN dbo.PV_Imei_LogType_Last l(NOLOCK) ON t.Imei = l.Imei AND t.LogType = l.LogType
+ WHERE l.LastImeiLogID <> l.SLastImeiLogID
+UPDATE t
+   SET _Time = getdate()
+	,t.LastTime = l.LastTime
+	,t.LastPlatform = l.LastPlatform
+	,t.LastPlatformDate = l.LastPlatformDate
+	,t.LastSMSC = l.LastSMSC
+	,t.LastProvince = l.LastProvince
+  FROM dbo.PV_Imei_LogType_Last t INNER JOIN dbo.PV_Imei_LogType_Last1 l(NOLOCK) ON t.Imei = l.Imei AND t.LogType = l.LogType
 
--- Last
-IF(@IsAgain = 1 OR NOT EXISTS(SELECT TOP 1 1 FROM dbo.PV_Imei_LogType t(NOLOCK) WHERE _LastImeiLogIDTemp_Time = @EndTime))
-BEGIN--一天约10分钟
-	UPDATE t
-	   SET _Time = getdate(), _LastImeiLogIDTemp_Time = @EndTime
-		,t._LastImeiLogIDTemp = l.LastID
-	  FROM dbo.PV_Imei_LogType t INNER JOIN 
-		(SELECT Imei, LogType, LastID=Max(ID)
-		   FROM log.ImeiLog(NOLOCK)
-		  WHERE LogTime >= @StartTime AND LogTime < @EndTime
-		  GROUP BY Imei, LogType
-		 ) l ON t.Imei = l.Imei AND t.LogType = l.LogType
-	 WHERE t._LastImeiLogIDTemp_Time < @EndTime
-END
 -- 记录时间点7
 SELECT @Now = getdate();
 SELECT @strNow = Convert(nvarchar(50),@Now,121)
 EXEC dbo.Apq_Ext_Set 'PV_Stat',0,'_Time07',@strNow;
-WHILE(1=1)
-BEGIN
-	UPDATE TOP(10000) t
-	   SET _Time = getdate(), _LastImeiLogID_Time = @EndTime
-		,t.LastTime = l.LogTime
-		,t.LastPlatform = l.[Platform]
-		,t.LastPlatformDate = l.PlatformDate
-		,t.LastSMSC = l.SMSC
-		,t.LastProvince = l.Province
-		
-		,t.SLastTime = t.LastTime
-		,t.SLastPlatform = t.LastPlatform
-		,t.SLastPlatformDate = t.LastPlatformDate
-		,t.SLastSMSC = t.LastSMSC
-		,t.SLastProvince = t.LastProvince
-	  FROM dbo.PV_Imei_LogType t INNER JOIN log.ImeiLog l(NOLOCK) ON l.ID = t._LastImeiLogIDTemp
-	 WHERE t._LastImeiLogID_Time < @EndTime
-		AND t._LastImeiLogIDTemp_Time = @EndTime
-	IF(@@ROWCOUNT = 0) BREAK;
-END
-
--- 记录时间点8
-SELECT @Now = getdate();
-SELECT @strNow = Convert(nvarchar(50),@Now,121)
-EXEC dbo.Apq_Ext_Set 'PV_Stat',0,'_Time08',@strNow;
 -- =================================================================================================
 
 -- PV_Imei -----------------------------------------------------------------------------------------
 SELECT @CID = -1;
-SELECT @BID = min(l.ID),@EID = max(l.ID) FROM dbo.PV_Imei_LogType l(NOLOCK) WHERE l.FirstTime >= @StartTime AND l.FirstTime < @EndTime;
+SELECT @BID = min(l.ID),@EID = max(l.ID) FROM dbo.PV_Imei_LogType_First l(NOLOCK) WHERE l.FirstTime >= @StartTime AND l.FirstTime < @EndTime;
 IF(@BID IS NULL OR @EID IS NULL) RETURN -1;
-IF(@IsAgain = 0) SELECT @CID = ISNULL(dbo.Apq_Ext_Get('PV_Stat',0,'CID_PV_Imei'),@BID);
+IF(@IsAgain = 0) SELECT @CID = ISNULL(dbo.Apq_Ext_Get('PV_Stat',0,'PV_Imei_First_CID_ImeiLog'),@BID);
 IF(@IsAgain = 1) SELECT @CID = @BID;
 IF(NOT @CID BETWEEN @BID AND @EID)
 BEGIN
@@ -225,28 +214,10 @@ BEGIN
 END
 PRINT '[2]'+Convert(nvarchar(21),@BID)+','+Convert(nvarchar(21),@CID)+','+Convert(nvarchar(21),@EID)
 
--- 记录时间点9
+-- 记录时间点8
 SELECT @Now = getdate();
 SELECT @strNow = Convert(nvarchar(50),@Now,121)
-EXEC dbo.Apq_Ext_Set 'PV_Stat',0,'_Time09',@strNow;
-
-IF(@CID < @EID)
-BEGIN
-	-- 开始插入前去掉索引
-	EXEC dbo.Apq_DropIndex @ExMsg OUT, 'dbo', 'PV_Imei', @sql_Create OUT, @sql_Drop OUT, 1
-	IF(Len(@sql_Create)>1) EXEC dbo.Apq_Ext_Set 'PV_Imei', 0, 'Apq_CreateIndex',@sql_Create; -- 有索引时存档
-	ELSE SELECT @sql_Create = dbo.Apq_Ext_Get('PV_Imei', 0, 'Apq_CreateIndex');	-- 否则读档
-
-	PRINT '-- 创建索引 ---------------------------------------------------------------------------------'
-	PRINT @sql_Create
-	PRINT '-- 删除索引 ---------------------------------------------------------------------------------'
-	PRINT @sql_Drop
-END
-
--- 记录时间点10
-SELECT @Now = getdate();
-SELECT @strNow = Convert(nvarchar(50),@Now,121)
-EXEC dbo.Apq_Ext_Set 'PV_Stat',0,'_Time10',@strNow;
+EXEC dbo.Apq_Ext_Set 'PV_Stat',0,'_Time08',@strNow;
 
 -- 加入新增用户
 IF(@IsAgain = 1)
@@ -254,7 +225,7 @@ BEGIN
 	WHILE(1=1)
 	BEGIN
 		DELETE TOP(10000) t
-		  FROM dbo.PV_Imei t
+		  FROM dbo.PV_Imei_First t
 		 WHERE t.FirstTime >= @StartTime-- AND t.FirstTime < @EndTime
 		IF(@@ROWCOUNT = 0) BREAK;
 	END
@@ -264,57 +235,58 @@ WHILE(@CID <= @EID)
 BEGIN
 	--SELECT 2,@BID,@CID,@EID;
 	PRINT '[2]'+Convert(nvarchar(21),@CID);
-	EXEC dbo.Apq_Ext_Set 'PV_Stat',0,'CID_PV_Imei',@CID;
+	EXEC dbo.Apq_Ext_Set 'PV_Stat',0,'PV_Imei_First_CID_ImeiLog',@CID;
 	
-	TRUNCATE TABLE dbo.PV_Imei1
+	TRUNCATE TABLE dbo.PV_Imei_First1;
 	
 	SELECT @CIDE = @CID + 10000;
-	INSERT dbo.PV_Imei1 ( Imei,FirstLogType,FirstTime,FirstPlatform,FristPlatformDate,FirstSMSC,FirstProvince )
-	SELECT t.Imei,ISNULL(LogType,0),FirstTime,FirstPlatform,FristPlatformDate,FirstSMSC,FirstProvince
-	  FROM dbo.PV_Imei_LogType t(NOLOCK)
+	INSERT dbo.PV_Imei_First1 ( Imei,FirstLogType,FirstTime,FirstPlatform,FristPlatformDate,FirstSMSC,FirstProvince,FristImeiLogID )
+	SELECT t.Imei,ISNULL(LogType,0),FirstTime,FirstPlatform,FristPlatformDate,FirstSMSC,FirstProvince,FirstImeiLogID
+	  FROM dbo.PV_Imei_LogType_First t(NOLOCK)
 	 WHERE NOT EXISTS(SELECT TOP 1 1 FROM dbo.PV_Imei d(NOLOCK) WHERE d.Imei = t.Imei)
 		AND t.FirstTime >= @StartTime AND t.FirstTime < @EndTime
 		AND t.ID >= @CID AND t.ID < @CIDE
 	 ORDER BY t.FirstTime;
-	INSERT dbo.PV_Imei ( Imei,FirstLogType,FirstTime,FirstPlatform,FristPlatformDate,FirstSMSC,FirstProvince )
-	SELECT Imei,FirstLogType,FirstTime,FirstPlatform,FristPlatformDate,FirstSMSC,FirstProvince
-	  FROM dbo.PV_Imei1 t(NOLOCK)
-	 WHERE NOT EXISTS(SELECT TOP 1 1 FROM dbo.PV_Imei d(NOLOCK) WHERE d.Imei = t.Imei)
+	INSERT dbo.PV_Imei_First ( Imei, FristImeiLogID, FirstLogType, FirstTime, FirstPlatform, FristPlatformDate, FirstSMSC, FirstProvince )
+	SELECT Imei, FristImeiLogID, FirstLogType, FirstTime, FirstPlatform, FristPlatformDate, FirstSMSC, FirstProvince
+	  FROM dbo.PV_Imei_First1 l
+	 WHERE NOT EXISTS(SELECT TOP 1 1 FROM dbo.PV_Imei_First d WHERE d.Imei = l.Imei)
+	INSERT dbo.PV_Imei ( Imei )
+	SELECT Imei
+	  FROM dbo.PV_Imei_First1 l
+	 WHERE NOT EXISTS(SELECT TOP 1 1 FROM dbo.PV_Imei d WHERE d.Imei = l.Imei)
+	INSERT dbo.PV_Imei_Last ( Imei )
+	SELECT Imei
+	  FROM dbo.PV_Imei_First1 l
+	 WHERE NOT EXISTS(SELECT TOP 1 1 FROM dbo.PV_Imei_Last d WHERE d.Imei = l.Imei)
+	INSERT dbo.PV_Imei_SLast ( Imei )
+	SELECT Imei
+	  FROM dbo.PV_Imei_First1 l
+	 WHERE NOT EXISTS(SELECT TOP 1 1 FROM dbo.PV_Imei_SLast d WHERE d.Imei = l.Imei)
 	 
 	SELECT @CID = @CIDE;
 END
 
 -- 插入完成,记录最后ID
-EXEC dbo.Apq_Ext_Set 'PV_Stat',0,'CID_PV_Imei',@EID;
+EXEC dbo.Apq_Ext_Set 'PV_Stat',0,'PV_Imei_First_CID_ImeiLog',@EID;
 
--- 记录时间点11
+-- 记录时间点9
 SELECT @Now = getdate();
 SELECT @strNow = Convert(nvarchar(50),@Now,121)
-EXEC dbo.Apq_Ext_Set 'PV_Stat',0,'_Time11',@strNow;
+EXEC dbo.Apq_Ext_Set 'PV_Stat',0,'_Time09',@strNow;
 
--- 插入完成后按需创建索引
-IF(LEN(@sql_Create)>1) EXEC sp_executesql @sql_Create;
-
--- 更新统计信息
+-- PV
 IF(@IsAgain = 1)
 BEGIN
 	WHILE(1=1)
 	BEGIN
 		UPDATE TOP(10000) t
 		   SET _Time = getdate(), VisitCount_Time = dateadd(n,-1,@EndTime)
-			,_LastPVTimeTemp_Time = dateadd(n,-1,@EndTime), _LastPVTime_Time = dateadd(n,-1,@EndTime)
 		  FROM dbo.PV_Imei t
 		WHERE t.VisitCount_Time >= @EndTime;
 		IF(@@ROWCOUNT = 0) BREAK;
 	END
 END
-
--- 记录时间点12
-SELECT @Now = getdate();
-SELECT @strNow = Convert(nvarchar(50),@Now,121)
-EXEC dbo.Apq_Ext_Set 'PV_Stat',0,'_Time12',@strNow;
-
--- PV
 WHILE(1=1)
 BEGIN
 	UPDATE TOP(10000) t
@@ -329,56 +301,61 @@ BEGIN
 	IF(@@ROWCOUNT = 0) BREAK;
 END
 
--- 记录时间点13
+-- 记录时间点10
 SELECT @Now = getdate();
 SELECT @strNow = Convert(nvarchar(50),@Now,121)
-EXEC dbo.Apq_Ext_Set 'PV_Stat',0,'_Time13',@strNow;
+EXEC dbo.Apq_Ext_Set 'PV_Stat',0,'_Time10',@strNow;
 
 -- Last
-IF(@IsAgain = 1 OR NOT EXISTS(SELECT TOP 1 1 FROM dbo.PV_Imei t(NOLOCK) WHERE _LastPVTimeTemp_Time = @EndTime))
-BEGIN
-	UPDATE t
-	   SET _Time = getdate(), _LastPVTimeTemp_Time = @EndTime
-		,t._LastPVTimeTemp = l.LastTime
-	  FROM dbo.PV_Imei t INNER JOIN 
-		(SELECT Imei, LastTime=Max(LastTime)
-		   FROM dbo.PV_Imei_LogType(NOLOCK)
-		  WHERE LastTime >= @StartTime AND LastTime < @EndTime
-		  GROUP BY Imei
-		 ) l ON t.Imei = l.Imei
-	 WHERE t._LastPVTimeTemp_Time < @EndTime
-END
--- 记录时间点14
+TRUNCATE TABLE dbo.PV_Imei_Last1;
+INSERT dbo.PV_Imei_Last1(Imei, LastImeiLogID)
+SELECT Imei, Max(LastImeiLogID)
+  FROM dbo.PV_Imei_LogType_Last(NOLOCK)
+ WHERE LastTime >= @StartTime AND LastTime < @EndTime
+ GROUP BY Imei
+UPDATE t
+   SET t.LastLogType = l.LogType
+	,t.LastTime = l.LastTime
+	,t.LastPlatform = l.LastPlatform
+	,t.LastPlatformDate = l.LastPlatformDate
+	,t.LastSMSC = l.LastSMSC
+	,t.LastProvince = l.LastProvince
+  FROM dbo.PV_Imei_Last1 t INNER JOIN dbo.PV_Imei_LogType_Last l(NOLOCK) ON t.Imei = l.Imei AND t.LastImeiLogID = l.LastImeiLogID
+-- 记录时间点11
 SELECT @Now = getdate();
 SELECT @strNow = Convert(nvarchar(50),@Now,121)
-EXEC dbo.Apq_Ext_Set 'PV_Stat',0,'_Time14',@strNow;
-WHILE(1=1)
-BEGIN
-	UPDATE TOP(10000) t
-	   SET _Time = getdate(), _LastPVTime_Time = @EndTime
-		,t.LastLogType = l.LogType
-		,t.LastTime = l.LastTime
-		,t.LastPlatform = l.LastPlatform
-		,t.LastPlatformDate = l.LastPlatformDate
-		,t.LastSMSC = l.LastSMSC
-		,t.LastProvince = l.LastProvince
-		
-		,t.SLastLogType = t.LastLogType
-		,t.SLastTime = t.LastTime
-		,t.SLastPlatform = t.LastPlatform
-		,t.SLastPlatformDate = t.LastPlatformDate
-		,t.SLastSMSC = t.LastSMSC
-		,t.SLastProvince = t.LastProvince
-	  FROM dbo.PV_Imei t INNER JOIN dbo.PV_Imei_LogType l(NOLOCK) ON l.Imei = t.Imei AND l.LastTime = t._LastPVTimeTemp
-	 WHERE t._LastPVTime_Time < @EndTime
-		AND t._LastPVTimeTemp_Time = @EndTime
-	IF(@@ROWCOUNT = 0) BREAK;
-END
+EXEC dbo.Apq_Ext_Set 'PV_Stat',0,'_Time11',@strNow;
+UPDATE t
+   SET _Time = getdate()
+	,t.LastImeiLogID = l.LastImeiLogID
+	,t.SLastImeiLogID = t.LastImeiLogID
+  FROM dbo.PV_Imei_Last t INNER JOIN dbo.PV_Imei_Last1 l(NOLOCK) ON t.Imei = l.Imei
+ WHERE t.LastImeiLogID <> l.LastImeiLogID
+UPDATE t	-- SLast
+   SET _Time = getdate()
+	,t.SLastLogType = l.LastLogType
+	,t.SLastImeiLogID = l.LastImeiLogID
+	,t.SLastTime = l.LastTime
+	,t.SLastPlatform = l.LastPlatform
+	,t.SLastPlatformDate = l.LastPlatformDate
+	,t.SLastSMSC = l.LastSMSC
+	,t.SLastProvince = l.LastProvince
+  FROM dbo.PV_Imei_SLast t INNER JOIN dbo.PV_Imei_Last l(NOLOCK) ON t.Imei = l.Imei
+ WHERE l.LastImeiLogID <> l.SLastImeiLogID
+UPDATE t
+   SET _Time = getdate()
+	,t.LastLogType = l.LastLogType
+	,t.LastTime = l.LastTime
+	,t.LastPlatform = l.LastPlatform
+	,t.LastPlatformDate = l.LastPlatformDate
+	,t.LastSMSC = l.LastSMSC
+	,t.LastProvince = l.LastProvince
+  FROM dbo.PV_Imei_Last t INNER JOIN dbo.PV_Imei_Last1 l(NOLOCK) ON t.Imei = l.Imei
 
--- 记录时间点15
+-- 记录时间点12
 SELECT @Now = getdate();
 SELECT @strNow = Convert(nvarchar(50),@Now,121)
-EXEC dbo.Apq_Ext_Set 'PV_Stat',0,'_Time15',@strNow;
+EXEC dbo.Apq_Ext_Set 'PV_Stat',0,'_Time12',@strNow;
 -- =================================================================================================
 
 RETURN 1;

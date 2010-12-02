@@ -23,6 +23,7 @@ SET NOCOUNT ON;
 DECLARE @rtn int, @SPBeginTime datetime, @BakFileName nvarchar(256), @BakFileFullName nvarchar(4000)
 	,@cmd nvarchar(4000)
 	,@sql nvarchar(4000)
+	,@sqlDB nvarchar(4000)
 	,@ID bigint
 	,@BakFolder nvarchar(4000)
 	,@FTPFolder nvarchar(4000)
@@ -84,5 +85,13 @@ EXEC master..xp_cmdshell @cmd;
 -- =================================================================================================
 
 SELECT BakFileName = @BakFileName;
+
+-- 尝试收缩日志文件
+SELECT @sqlDB = '
+DECLARE @LogName nvarchar(512)
+SELECT @LogName = @DBName + ''_Log'';
+DBCC SHRINKFILE(@LogName,0)';
+SELECT @sql = 'EXEC [' + @DBName + ']..sp_executesql @sqlDB, N''@DBName nvarchar(256)'',@DBName = @DBName;'
+EXEC @rtn = sp_executesql @sql, N'@sqlDB nvarchar(4000),@DBName nvarchar(256)', @sqlDB = @sqlDB, @DBName = @DBName;
 RETURN 1;
 GO
