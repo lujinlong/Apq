@@ -95,7 +95,7 @@ namespace ApqDBManager.XmlServersCfg
 				{
 					_RegSysConfig = new Apq.Config.RegConfig();
 					_RegSysConfig.Path = "$reg$LocalMachine";
-					_RegSysConfig.Root = @"\SOFTWARE\Apq\ApqDBManager";
+					_RegSysConfig.Root = @"SOFTWARE\Apq\ApqDBManager";
 				}
 				return _RegSysConfig;
 			}
@@ -115,7 +115,7 @@ namespace ApqDBManager.XmlServersCfg
 				{
 					_RegUserConfig = new Apq.Config.RegConfig();
 					_RegUserConfig.Path = "$reg$CurrentUser";
-					_RegUserConfig.Root = @"\SOFTWARE\Apq\ApqDBManager";
+					_RegUserConfig.Root = @"SOFTWARE\Apq\ApqDBManager";
 				}
 				return _RegUserConfig;
 			}
