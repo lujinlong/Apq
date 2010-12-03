@@ -100,8 +100,7 @@ namespace Apq.Config
 			{
 				if (rkRoot != null)
 				{
-					rkRoot.CreateSubKey(ClassName, RegistryKeyPermissionCheck.ReadWriteSubTree);
-					RegistryKey rk1 = rkRoot.OpenSubKey(ClassName);
+					RegistryKey rk1 = rkRoot.CreateSubKey(ClassName, RegistryKeyPermissionCheck.ReadWriteSubTree);
 					if (rk1 != null)
 					{
 						object value = rk1.GetValue(PropertyName);
