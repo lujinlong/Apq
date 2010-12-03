@@ -63,6 +63,7 @@ BEGIN
 	SELECT @FullTableName = '[' + @DBName + '].[' + @SchemaName + '].[' + @TName + ']';
 	
 	-- BcpIn前删除索引
+	SELECT @sql_Create = '', @sql_Drop = '';
 	SELECT @sqlDB = '
 DECLARE @ExMsg nvarchar(max);
 EXEC dbo.Apq_DropIndex @ExMsg OUT, @SchemaName, @TName, @sql_Create OUT, @sql_Drop OUT, 1
@@ -70,10 +71,12 @@ IF(Len(@sql_Create)>1) EXEC dbo.Apq_Ext_Set @TName, 0, ''Apq_DropIndex'',@sql_Cr
 ELSE SELECT @sql_Create = dbo.Apq_Ext_Get(@TName, 0, ''Apq_DropIndex'');	-- 否则读档
 ';
 	SELECT @sql = '
+DECLARE @sql_Create1 nvarchar(4000), @sql_Drop1 nvarchar(4000)
 EXEC [' + @DBName + ']..sp_executesql @sqlDB
 	,N''@SchemaName nvarchar(256), @TName nvarchar(256), @sql_Create nvarchar(4000) out, @sql_Drop nvarchar(4000) out''
-	,@SchemaName = @SchemaName, @TName = @TName, @sql_Create = @sql_Create out, @sql_Drop = @sql_Drop out
+	,@SchemaName = @SchemaName, @TName = @TName, @sql_Create = @sql_Create1 out, @sql_Drop = @sql_Drop1 out
 	;
+SELECT @sql_Create = @sql_Create1, @sql_Drop = @sql_Drop1;
 ';
 	EXEC sp_executesql @sql
 		,N'@sqlDB nvarchar(4000),@SchemaName nvarchar(256), @TName nvarchar(256), @sql_Create nvarchar(4000) out, @sql_Drop nvarchar(4000) out'

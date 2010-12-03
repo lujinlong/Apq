@@ -17,6 +17,8 @@ DECLARE @SchemaName nvarchar(128)
 DECLARE @TableName nvarchar(128)
 DECLARE @ColumnName nvarchar(128)
 DECLARE @Defname nvarchar(128)
+DECLARE @DefnameNew nvarchar(128)
+DECLARE @DefIDNew int;
 DECLARE @Definition nvarchar(128)
 DECLARE @sql nvarchar(max)
 
@@ -31,12 +33,21 @@ OPEN @csr_Constraints ;
 FETCH NEXT FROM @csr_Constraints INTO @SchemaName,@TableName,@ColumnName,@Defname,@Definition ;
 WHILE ( @@FETCH_STATUS = 0 ) 
 BEGIN
-    SELECT  @sql = 'ALTER TABLE [' + @SchemaName + '].[' + @TableName + '] DROP CONSTRAINT [' + @Defname + ']'
-    EXEC sp_executesql @sql
+	SELECT @DefnameNew = 'DF_' + @TableName + '_' + @ColumnName;
+	
+	IF(@Defname <> @DefnameNew)
+	BEGIN
+		SELECT @DefIDNew = object_id(@DefnameNew);
+		IF(@DefIDNew IS NULL)
+		BEGIN
+			SELECT  @sql = 'ALTER TABLE [' + @SchemaName + '].[' + @TableName + '] DROP CONSTRAINT [' + @Defname + ']';
+			EXEC sp_executesql @sql;
 
-    SELECT  @sql = 'ALTER TABLE [' + @SchemaName + '].[' + @TableName + '] ADD CONSTRAINT DF_' + @TableName + '_' + @ColumnName + ' DEFAULT '
-            + @Definition + ' FOR [' + @ColumnName + ']'
-    EXEC sp_executesql @sql
+			SELECT  @sql = 'ALTER TABLE [' + @SchemaName + '].[' + @TableName + '] ADD CONSTRAINT [' + @DefnameNew + '] DEFAULT '
+					+ @Definition + ' FOR [' + @ColumnName + ']';
+			EXEC sp_executesql @sql;
+		END
+    END
 
     FETCH NEXT FROM @csr_Constraints INTO @SchemaName,@TableName,@ColumnName,@Defname,@Definition ;
 END
