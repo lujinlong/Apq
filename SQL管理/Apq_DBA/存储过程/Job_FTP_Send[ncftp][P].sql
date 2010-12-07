@@ -106,7 +106,22 @@ BEGIN
 	END
 	
 	-- 上传成功
-	IF(@LSize = @RSize) UPDATE dbo.FTP_SendQueue SET _Time = getdate(), IsSuccess = 1 WHERE ID = @ID;
+	IF(@LSize = @RSize)
+	BEGIN
+		UPDATE dbo.FTP_SendQueue SET _Time = getdate(), IsSuccess = 1 WHERE ID = @ID;
+	END
+	
+	-- 记录传送行为已发生
+	INSERT log.FTP_SendQueue (ID, Folder, FileName, Enabled, FTPSrv, U, P, FTPFolder, FTPFolderTmp, _InTime, _Time, LSize, RSize, IsSuccess, FTPPort)
+	SELECT ID, Folder, FileName, Enabled, FTPSrv, U, P, FTPFolder, FTPFolderTmp, _InTime, _Time, LSize, RSize, IsSuccess, FTPPort
+	  FROM dbo.FTP_SendQueue
+	 WHERE ID = @ID;
+	
+	-- 移除已成功的上传
+	IF(@LSize = @RSize)
+	BEGIN
+		DELETE dbo.FTP_SendQueue WHERE ID = @ID;
+	END
 	-- =============================================================================================
 	
 	NEXT_Row:
