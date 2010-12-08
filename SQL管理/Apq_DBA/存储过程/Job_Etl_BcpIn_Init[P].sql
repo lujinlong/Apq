@@ -113,8 +113,8 @@ BEGIN
 		INSERT etl.BcpInQueue ( EtlName, Folder, FileName, DBName, SchemaName, TName, t, r )
 		SELECT @EtlName,@FullFolder,s,@DBName,@SchemaName,@TName,@t,@r
 		  FROM #t
-		 WHERE Left(s,Len(@FileName)) = @FileName
-			AND (@PeriodType = 0 OR NOT EXISTS(SELECT TOP 1 * FROM etl.BcpInQueue t WHERE EtlName = @EtlName AND Folder = @FullFolder AND Left(s,Len(FileName)) = FileName))
+		 WHERE (@PeriodType = 0 AND Left(s,Len(@FileName)+1) = @FileName+'.')
+			OR (@PeriodType > 0 AND Left(s,Len(@FileName)+1) = @FileName+'[' AND NOT EXISTS(SELECT TOP 1 * FROM etl.BcpInQueue t WHERE EtlName = @EtlName AND Folder = @FullFolder AND Left(s,Len(FileName)) = FileName))
 		-- =====================================================================================
 		
 		IF(@PeriodType = 0) SELECT @CTime = @ETime;
