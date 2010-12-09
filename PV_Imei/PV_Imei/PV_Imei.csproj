@@ -56,6 +56,8 @@
     <Content Include="ws.asmx" />
     <Content Include="test.aspx" />
     <Content Include="Web.config" />
+    <Content Include="PV_Imei.aspx" />
+    <Content Include="PV_Imei_LogType.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ws.asmx.cs">
@@ -69,6 +71,20 @@
     </Compile>
     <Compile Include="test.aspx.designer.cs">
       <DependentUpon>test.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PV_Imei.aspx.cs">
+      <DependentUpon>PV_Imei.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PV_Imei.aspx.designer.cs">
+      <DependentUpon>PV_Imei.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PV_Imei_LogType.aspx.cs">
+      <DependentUpon>PV_Imei_LogType.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PV_Imei_LogType.aspx.designer.cs">
+      <DependentUpon>PV_Imei_LogType.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
