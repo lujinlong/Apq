@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.IO;
+using System.Configuration;
 
 namespace Apq.DBC
 {
@@ -21,7 +22,7 @@ namespace Apq.DBC
 		static Common()
 		{
 			fsw.Changed += new FileSystemEventHandler(fsw_Changed);
-			_csFilePath = GlobalObject.XmlConfigChain[typeof(Apq.DBC.Common), "csFile"];
+			_csFilePath = ConfigurationManager.AppSettings["Apq.DBC.csFile"] ?? @"D:\DBC\cs.res";
 			string strFolder = Path.GetDirectoryName(_csFilePath);
 			string strFileName = Path.GetFileName(_csFilePath);
 			if (fsw.Path != strFolder)
