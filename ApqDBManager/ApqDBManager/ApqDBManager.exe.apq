@@ -3,8 +3,8 @@
 	<!-- 类配置文档 -->
 	<ApqDBManager.GlobalObject XmlServers="XmlServers.xml"/>
 	<ApqDBManager.Controls.MainOption.Favorites CFolder="Favorites" />
-	<ApqDBManager.MainForm Text="远征"/>
-	<ApqDBManager.SqlEdit cbDBName="Apq_DBA" cbDBName_Items="Apq,Apq_DBA,GameDB,GameDBLog,Passport"/>
+	<ApqDBManager.MainForm Text="UM"/>
+	<ApqDBManager.SqlEdit cbDBName="Apq_DBA" cbDBName_Items="Apq_DBA"/>
 	<ApqDBManager.Forms.FileUp DBFolder_Up="D:\Apq_DBA\FileUp" />
 	<ApqDBManager.Forms.FileTrans CFolder_Out="D:\Apq_DBA\FileOut" DBFolder_In="D:\Apq_DBA\FileIn" DBFolder_Out="D:\Apq_DBA\FileOut" CFolder_In="D:\Apq_DBA\FileIn" />
 	<ApqDBManager.Forms.FTPFileTrans CFTPFolder_Out="D:\Apq_DBA\FileOut" DBFTPFolder_In="/" DBFTPFolder_Out="/" CFTPFolder_In="D:\Apq_DBA\FileIn" />

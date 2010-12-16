@@ -65,6 +65,7 @@
 			this.menuFileTrans = new DevExpress.XtraBars.BarButtonItem();
 			this.menuFTP = new DevExpress.XtraBars.BarButtonItem();
 			this.menuFTPFileUp = new DevExpress.XtraBars.BarButtonItem();
+			this.menuDBC = new DevExpress.XtraBars.BarButtonItem();
 			this.bsiWindow = new DevExpress.XtraBars.BarSubItem();
 			this.menuCloseAll = new DevExpress.XtraBars.BarButtonItem();
 			this.menuNewApp = new DevExpress.XtraBars.BarButtonItem();
@@ -79,7 +80,7 @@
 			this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
 			this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
 			this.dockPanel1 = new WeifenLuo.WinFormsUI.Docking.DockPanel();
-			this.menuDBC = new DevExpress.XtraBars.BarButtonItem();
+			this.menuDBCList = new DevExpress.XtraBars.BarButtonItem();
 			((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
 			this.SuspendLayout();
 			// 
@@ -135,9 +136,10 @@
             this.menuErrList,
             this.menuFTPFileUp,
             this.menuRSAKey,
-            this.menuDBC});
+            this.menuDBC,
+            this.menuDBCList});
 			this.barManager1.MainMenu = this.bar2;
-			this.barManager1.MaxItemId = 14;
+			this.barManager1.MaxItemId = 15;
 			this.barManager1.StatusBar = this.bar3;
 			// 
 			// bar1
@@ -376,7 +378,8 @@
             new DevExpress.XtraBars.LinkPersistInfo(this.menuFileTrans),
             new DevExpress.XtraBars.LinkPersistInfo(this.menuFTP),
             new DevExpress.XtraBars.LinkPersistInfo(this.menuFTPFileUp),
-            new DevExpress.XtraBars.LinkPersistInfo(this.menuDBC)});
+            new DevExpress.XtraBars.LinkPersistInfo(this.menuDBC),
+            new DevExpress.XtraBars.LinkPersistInfo(this.menuDBCList)});
 			this.bsiTool.Name = "bsiTool";
 			// 
 			// menuOption
@@ -436,6 +439,13 @@
 			this.menuFTPFileUp.Id = 11;
 			this.menuFTPFileUp.Name = "menuFTPFileUp";
 			this.menuFTPFileUp.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.menuFTPFileUp_ItemClick);
+			// 
+			// menuDBC
+			// 
+			this.menuDBC.Caption = "DB连接加解密(&C)";
+			this.menuDBC.Id = 13;
+			this.menuDBC.Name = "menuDBC";
+			this.menuDBC.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.menuDBC_ItemClick);
 			// 
 			// bsiWindow
 			// 
@@ -527,12 +537,12 @@
 			this.dockPanel1.Size = new System.Drawing.Size(1036, 425);
 			this.dockPanel1.TabIndex = 5;
 			// 
-			// menuDBC
+			// menuDBCList
 			// 
-			this.menuDBC.Caption = "DB连接加解密(&C)";
-			this.menuDBC.Id = 13;
-			this.menuDBC.Name = "menuDBC";
-			this.menuDBC.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.menuDBC_ItemClick);
+			this.menuDBCList.Caption = "DB连接(&L)";
+			this.menuDBCList.Id = 14;
+			this.menuDBCList.Name = "menuDBCList";
+			this.menuDBCList.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.menuDBCList_ItemClick);
 			// 
 			// MainForm
 			// 
@@ -608,5 +618,6 @@
 		private DevExpress.XtraBars.BarButtonItem menuFTPFileUp;
 		private DevExpress.XtraBars.BarButtonItem menuRSAKey;
 		private DevExpress.XtraBars.BarButtonItem menuDBC;
+		private DevExpress.XtraBars.BarButtonItem menuDBCList;
 	}
 }

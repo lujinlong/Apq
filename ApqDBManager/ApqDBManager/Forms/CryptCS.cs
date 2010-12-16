@@ -23,12 +23,12 @@ namespace ApqDBManager.Forms
 			string EncryptFile = GlobalObject.XmlConfigChain[this.GetType(), "EncryptFile"];
 			if (EncryptFile != null)
 			{
-				beInput.Text = EncryptFile;
+				beDFile.Text = EncryptFile;
 			}
 			string DecryptFile = GlobalObject.XmlConfigChain[this.GetType(), "DecryptFile"];
 			if (DecryptFile != null)
 			{
-				beOutput.Text = DecryptFile;
+				beEFile.Text = DecryptFile;
 			}
 			string CDString = GlobalObject.XmlConfigChain[this.GetType(), "CDString"];
 			if (CDString != null)
@@ -37,14 +37,14 @@ namespace ApqDBManager.Forms
 			}
 		}
 
-		private void beInput_EditValueChanged(object sender, EventArgs e)
+		private void beDFile_EditValueChanged(object sender, EventArgs e)
 		{
-			GlobalObject.XmlUserConfig.SetValue("EncryptFile", beInput.Text);
+			GlobalObject.XmlUserConfig.SetValue("EncryptFile", beDFile.Text);
 		}
 
-		private void beOutput_EditValueChanged(object sender, EventArgs e)
+		private void beEFile_EditValueChanged(object sender, EventArgs e)
 		{
-			GlobalObject.XmlUserConfig.SetValue("DecryptFile", beOutput.Text);
+			GlobalObject.XmlUserConfig.SetValue("DecryptFile", beEFile.Text);
 		}
 
 		private void meInput_EditValueChanged(object sender, EventArgs e)
@@ -52,27 +52,27 @@ namespace ApqDBManager.Forms
 			GlobalObject.XmlUserConfig.SetValue("CDString", meInput.Text);
 		}
 
-		private void beInput_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
+		private void beDFile_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
 		{
-			if (beInput.Text.Trim().Length > 0)
+			if (beDFile.Text.Trim().Length > 0)
 			{
-				openFileDialog1.FileName = beInput.Text.Trim();
+				openFileDialog1.FileName = beDFile.Text.Trim();
 			}
 			if (openFileDialog1.ShowDialog(this) == DialogResult.OK)
 			{
-				beInput.Text = openFileDialog1.FileName;
+				beDFile.Text = openFileDialog1.FileName;
 			}
 		}
 
-		private void beOutput_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
+		private void beEFile_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
 		{
-			if (beOutput.Text.Trim().Length > 0)
+			if (beEFile.Text.Trim().Length > 0)
 			{
-				saveFileDialog1.FileName = beInput.Text.Trim();
+				saveFileDialog1.FileName = beDFile.Text.Trim();
 			}
 			if (saveFileDialog1.ShowDialog(this) == DialogResult.OK)
 			{
-				beOutput.Text = saveFileDialog1.FileName;
+				beEFile.Text = saveFileDialog1.FileName;
 			}
 		}
 
@@ -80,9 +80,9 @@ namespace ApqDBManager.Forms
 		{
 			string desKey = GlobalObject.RegConfigChain["Crypt", "DESKey"];
 			string desIV = GlobalObject.RegConfigChain["Crypt", "DESIV"];
-			string str = File.ReadAllText(beInput.Text);
+			string str = File.ReadAllText(beDFile.Text);
 			string strCs = Apq.Security.Cryptography.DESHelper.EncryptString(str, desKey, desIV);
-			File.WriteAllText(beOutput.Text, strCs, Encoding.UTF8);
+			File.WriteAllText(beEFile.Text, strCs, Encoding.UTF8);
 			MessageBox.Show("加密完成");
 		}
 
@@ -90,9 +90,9 @@ namespace ApqDBManager.Forms
 		{
 			string desKey = GlobalObject.RegConfigChain["Crypt", "DESKey"];
 			string desIV = GlobalObject.RegConfigChain["Crypt", "DESIV"];
-			string strCs = File.ReadAllText(beInput.Text);
+			string strCs = File.ReadAllText(beEFile.Text);
 			string str = Apq.Security.Cryptography.DESHelper.DecryptString(strCs, desKey, desIV);
-			File.WriteAllText(beOutput.Text, str, Encoding.UTF8);
+			File.WriteAllText(beDFile.Text, str, Encoding.UTF8);
 			MessageBox.Show("解密完成");
 		}
 

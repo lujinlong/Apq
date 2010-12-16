@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.IO;
 using System.Configuration;
+using System.Data;
 
 namespace Apq.DBC
 {
@@ -17,10 +18,20 @@ namespace Apq.DBC
 		private static string _csStringCrypt = string.Empty;
 		private static string _csString = string.Empty;
 
-		private static System.Xml.XmlDocument xd = new System.Xml.XmlDocument();
+		private static System.Data.DataSet _ds = null;
 
 		static Common()
 		{
+			_ds = new System.Data.DataSet();
+			System.Data.DataTable dt = _ds.Tables.Add("DBC");
+			dt.Columns.Add("name");
+			dt.Columns.Add("value");
+			dt.Columns.Add("DBName");
+			dt.Columns.Add("ServerName");
+			dt.Columns.Add("UserId");
+			dt.Columns.Add("Pwd");
+			dt.Columns.Add("Option");
+
 			fsw.Changed += new FileSystemEventHandler(fsw_Changed);
 			_csFilePath = ConfigurationManager.AppSettings["Apq.DBC.csFile"] ?? @"D:\DBC\cs.res";
 			string strFolder = Path.GetDirectoryName(_csFilePath);
@@ -45,17 +56,29 @@ namespace Apq.DBC
 
 		private static void ReadFile()
 		{
-			_csStringCrypt = System.IO.File.ReadAllText(_csFilePath, Encoding.UTF8);
-
 			// 读取密钥
 			//string desKey = GlobalObject.XmlConfigChain[typeof(Apq.DBC.Common), "DESKey"];
 			//string desIV = GlobalObject.XmlConfigChain[typeof(Apq.DBC.Common), "DESIV"];
 			string desKey = "~JD7(1vy";
 			string desIV = "]$ik7WB)";
 
-			_csString = Apq.Security.Cryptography.DESHelper.DecryptString(_csStringCrypt, desKey, desIV);
-			//_csString = _csStringCrypt;
-			xd.LoadXml(_csString);
+			string strCs = File.ReadAllText(_csFilePath, Encoding.UTF8);
+			string str = Apq.Security.Cryptography.DESHelper.DecryptString(strCs, desKey, desIV);
+			StringReader sr = new StringReader(str);
+			_ds.Clear();
+			_ds.ReadXml(sr);
+
+			// 读取完成,计算所有连接字符串
+			foreach (DataRow dr in _ds.Tables[0].Rows)
+			{
+				dr["value"] = Apq.ConnectionStrings.SQLServer.SqlConnection.GetConnectionString(
+				   dr["ServerName"].ToString(),
+				   dr["UserId"].ToString(),
+				   dr["Pwd"].ToString(),
+				   dr["DBName"].ToString(),
+				   dr["Option"].ToString()
+			   );
+			}
 		}
 
 		/// <summary>
@@ -66,13 +89,10 @@ namespace Apq.DBC
 		{
 			string cs = string.Empty;
 
-			foreach (System.Xml.XmlNode xn in xd.DocumentElement.ChildNodes)
+			System.Data.DataRow[] drs = _ds.Tables[0].Select(string.Format("name={0}", Apq.Data.SqlClient.Common.ConvertToSqlON(Name)));
+			if (drs != null && drs.Length > 0)
 			{
-				if (Name.Equals(xn.Attributes["name"].Value))
-				{
-					cs = xn.Attributes["value"].Value;
-					break;
-				}
+				cs = drs[0]["value"].ToString();
 			}
 
 			return cs;

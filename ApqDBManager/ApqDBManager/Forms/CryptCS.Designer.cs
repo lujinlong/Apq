@@ -31,8 +31,8 @@
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CryptCS));
 			this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
 			this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
-			this.beInput = new DevExpress.XtraEditors.ButtonEdit();
-			this.beOutput = new DevExpress.XtraEditors.ButtonEdit();
+			this.beDFile = new DevExpress.XtraEditors.ButtonEdit();
+			this.beEFile = new DevExpress.XtraEditors.ButtonEdit();
 			this.xtraTabControl1 = new DevExpress.XtraTab.XtraTabControl();
 			this.xtraTabPage1 = new DevExpress.XtraTab.XtraTabPage();
 			this.btnDecryptFile = new DevExpress.XtraEditors.SimpleButton();
@@ -44,8 +44,8 @@
 			this.meInput = new DevExpress.XtraEditors.MemoEdit();
 			this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
 			this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
-			((System.ComponentModel.ISupportInitialize)(this.beInput.Properties)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.beOutput.Properties)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.beDFile.Properties)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.beEFile.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).BeginInit();
 			this.xtraTabControl1.SuspendLayout();
 			this.xtraTabPage1.SuspendLayout();
@@ -60,7 +60,7 @@
 			this.labelControl1.Name = "labelControl1";
 			this.labelControl1.Size = new System.Drawing.Size(48, 14);
 			this.labelControl1.TabIndex = 1;
-			this.labelControl1.Text = "输入文件";
+			this.labelControl1.Text = "明文文件";
 			// 
 			// labelControl2
 			// 
@@ -68,33 +68,33 @@
 			this.labelControl2.Name = "labelControl2";
 			this.labelControl2.Size = new System.Drawing.Size(48, 14);
 			this.labelControl2.TabIndex = 2;
-			this.labelControl2.Text = "输出文件";
+			this.labelControl2.Text = "密文文件";
 			// 
-			// beInput
+			// beDFile
 			// 
-			this.beInput.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+			this.beDFile.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
 						| System.Windows.Forms.AnchorStyles.Right)));
-			this.beInput.Location = new System.Drawing.Point(72, 47);
-			this.beInput.Name = "beInput";
-			this.beInput.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+			this.beDFile.Location = new System.Drawing.Point(72, 47);
+			this.beDFile.Name = "beDFile";
+			this.beDFile.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
-			this.beInput.Size = new System.Drawing.Size(495, 21);
-			this.beInput.TabIndex = 5;
-			this.beInput.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.beInput_ButtonClick);
-			this.beInput.EditValueChanged += new System.EventHandler(this.beInput_EditValueChanged);
+			this.beDFile.Size = new System.Drawing.Size(495, 21);
+			this.beDFile.TabIndex = 5;
+			this.beDFile.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.beDFile_ButtonClick);
+			this.beDFile.EditValueChanged += new System.EventHandler(this.beDFile_EditValueChanged);
 			// 
-			// beOutput
+			// beEFile
 			// 
-			this.beOutput.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+			this.beEFile.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
 						| System.Windows.Forms.AnchorStyles.Right)));
-			this.beOutput.Location = new System.Drawing.Point(72, 101);
-			this.beOutput.Name = "beOutput";
-			this.beOutput.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+			this.beEFile.Location = new System.Drawing.Point(72, 101);
+			this.beEFile.Name = "beEFile";
+			this.beEFile.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
-			this.beOutput.Size = new System.Drawing.Size(495, 21);
-			this.beOutput.TabIndex = 6;
-			this.beOutput.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.beOutput_ButtonClick);
-			this.beOutput.EditValueChanged += new System.EventHandler(this.beOutput_EditValueChanged);
+			this.beEFile.Size = new System.Drawing.Size(495, 21);
+			this.beEFile.TabIndex = 6;
+			this.beEFile.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.beEFile_ButtonClick);
+			this.beEFile.EditValueChanged += new System.EventHandler(this.beEFile_EditValueChanged);
 			// 
 			// xtraTabControl1
 			// 
@@ -114,8 +114,8 @@
 			// 
 			this.xtraTabPage1.Controls.Add(this.btnDecryptFile);
 			this.xtraTabPage1.Controls.Add(this.btnEncryptFile);
-			this.xtraTabPage1.Controls.Add(this.beInput);
-			this.xtraTabPage1.Controls.Add(this.beOutput);
+			this.xtraTabPage1.Controls.Add(this.beDFile);
+			this.xtraTabPage1.Controls.Add(this.beEFile);
 			this.xtraTabPage1.Controls.Add(this.labelControl1);
 			this.xtraTabPage1.Controls.Add(this.labelControl2);
 			this.xtraTabPage1.Name = "xtraTabPage1";
@@ -210,8 +210,8 @@
 			this.TabText = "CryptCS";
 			this.Text = "CryptCS";
 			this.Load += new System.EventHandler(this.CryptCS_Load);
-			((System.ComponentModel.ISupportInitialize)(this.beInput.Properties)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.beOutput.Properties)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.beDFile.Properties)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.beEFile.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).EndInit();
 			this.xtraTabControl1.ResumeLayout(false);
 			this.xtraTabPage1.ResumeLayout(false);
@@ -227,8 +227,8 @@
 
 		private DevExpress.XtraEditors.LabelControl labelControl1;
 		private DevExpress.XtraEditors.LabelControl labelControl2;
-		private DevExpress.XtraEditors.ButtonEdit beInput;
-		private DevExpress.XtraEditors.ButtonEdit beOutput;
+		private DevExpress.XtraEditors.ButtonEdit beDFile;
+		private DevExpress.XtraEditors.ButtonEdit beEFile;
 		private DevExpress.XtraTab.XtraTabControl xtraTabControl1;
 		private DevExpress.XtraTab.XtraTabPage xtraTabPage1;
 		private DevExpress.XtraEditors.SimpleButton btnDecryptFile;
