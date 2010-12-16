@@ -258,7 +258,7 @@
 			this.DockAreas = ((WeifenLuo.WinFormsUI.Docking.DockAreas)((WeifenLuo.WinFormsUI.Docking.DockAreas.Float | WeifenLuo.WinFormsUI.Docking.DockAreas.Document)));
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Name = "DBCList";
-			this.TabText = "CryptCS";
+			this.TabText = "DB连接";
 			this.Text = "DB连接";
 			this.Load += new System.EventHandler(this.DBCList_Load);
 			((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();

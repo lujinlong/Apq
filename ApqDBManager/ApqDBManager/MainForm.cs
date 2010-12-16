@@ -153,7 +153,7 @@ namespace ApqDBManager
 			{
 				SaveFileDialog saveFileDialog = new SaveFileDialog();
 				saveFileDialog.RestoreDirectory = true;
-				saveFileDialog.Filter = "文本文件(*.txt;*.sql)|*.txt;*.sql|所有文件(*.*)|*.*";
+				saveFileDialog.Filter = "所有文件(*.*)|*.*";
 				if (saveFileDialog.ShowDialog(this) == DialogResult.OK)
 				{
 					Editor.FileName = saveFileDialog.FileName;

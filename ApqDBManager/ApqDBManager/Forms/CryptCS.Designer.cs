@@ -42,8 +42,8 @@
 			this.btnEncryptString = new DevExpress.XtraEditors.SimpleButton();
 			this.meOutput = new DevExpress.XtraEditors.MemoEdit();
 			this.meInput = new DevExpress.XtraEditors.MemoEdit();
-			this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-			this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+			this.ofdDFile = new System.Windows.Forms.OpenFileDialog();
+			this.ofdEFile = new System.Windows.Forms.OpenFileDialog();
 			((System.ComponentModel.ISupportInitialize)(this.beDFile.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.beEFile.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).BeginInit();
@@ -188,15 +188,21 @@
 			this.meInput.TabIndex = 0;
 			this.meInput.EditValueChanged += new System.EventHandler(this.meInput_EditValueChanged);
 			// 
-			// openFileDialog1
+			// ofdDFile
 			// 
-			this.openFileDialog1.Filter = "所有文件(*.*)|*.*";
-			this.openFileDialog1.RestoreDirectory = true;
+			this.ofdDFile.CheckFileExists = false;
+			this.ofdDFile.CheckPathExists = false;
+			this.ofdDFile.DefaultExt = "xml";
+			this.ofdDFile.Filter = "所有文件(*.*)|*.*";
+			this.ofdDFile.RestoreDirectory = true;
 			// 
-			// saveFileDialog1
+			// ofdEFile
 			// 
-			this.saveFileDialog1.Filter = "所有文件(*.*)|*.*";
-			this.saveFileDialog1.RestoreDirectory = true;
+			this.ofdEFile.CheckFileExists = false;
+			this.ofdEFile.CheckPathExists = false;
+			this.ofdEFile.DefaultExt = "res";
+			this.ofdEFile.Filter = "所有文件(*.*)|*.*";
+			this.ofdEFile.RestoreDirectory = true;
 			// 
 			// CryptCS
 			// 
@@ -238,7 +244,7 @@
 		private DevExpress.XtraEditors.SimpleButton btnEncryptString;
 		private DevExpress.XtraEditors.MemoEdit meOutput;
 		private DevExpress.XtraEditors.MemoEdit meInput;
-		private System.Windows.Forms.OpenFileDialog openFileDialog1;
-		private System.Windows.Forms.SaveFileDialog saveFileDialog1;
+		private System.Windows.Forms.OpenFileDialog ofdDFile;
+		private System.Windows.Forms.OpenFileDialog ofdEFile;
 	}
 }

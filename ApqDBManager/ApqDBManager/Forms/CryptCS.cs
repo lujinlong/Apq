@@ -56,11 +56,11 @@ namespace ApqDBManager.Forms
 		{
 			if (beDFile.Text.Trim().Length > 0)
 			{
-				openFileDialog1.FileName = beDFile.Text.Trim();
+				ofdDFile.FileName = beDFile.Text.Trim();
 			}
-			if (openFileDialog1.ShowDialog(this) == DialogResult.OK)
+			if (ofdDFile.ShowDialog(this) == DialogResult.OK)
 			{
-				beDFile.Text = openFileDialog1.FileName;
+				beDFile.Text = ofdDFile.FileName;
 			}
 		}
 
@@ -68,11 +68,11 @@ namespace ApqDBManager.Forms
 		{
 			if (beEFile.Text.Trim().Length > 0)
 			{
-				saveFileDialog1.FileName = beDFile.Text.Trim();
+				ofdEFile.FileName = beDFile.Text.Trim();
 			}
-			if (saveFileDialog1.ShowDialog(this) == DialogResult.OK)
+			if (ofdEFile.ShowDialog(this) == DialogResult.OK)
 			{
-				beEFile.Text = saveFileDialog1.FileName;
+				beEFile.Text = ofdEFile.FileName;
 			}
 		}
 
