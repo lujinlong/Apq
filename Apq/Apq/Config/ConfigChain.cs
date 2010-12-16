@@ -124,6 +124,39 @@ namespace Apq.Config
 			return lst.ToArray();
 		}
 
+		/// <summary>
+		/// 获取表类型配置[仅支持XmlConfig]
+		/// </summary>
+		/// <param name="ClassName">类名</param>
+		/// <param name="TableElementName">表元素名</param>
+		/// <returns></returns>
+		public System.Data.DataTable GetTableConfig(string ClassName, string TableElementName)
+		{
+			XmlConfig AsmCfg = AsmConfig as XmlConfig;
+			XmlConfig UserCfg = UserConfig as XmlConfig;
+
+			if (AsmCfg != null && UserCfg != null)
+			{
+				System.Data.DataTable dtAsm = AsmCfg.GetTableConfig(ClassName, TableElementName);
+				System.Data.DataTable dtUser = UserCfg.GetTableConfig(ClassName, TableElementName);
+				if (dtAsm != null && dtUser != null)
+				{
+					dtUser.Merge(dtAsm);
+					return Apq.Data.DataTable.GetDistinct(dtUser, null);
+				}
+				if (dtAsm != null)
+				{
+					return dtAsm;
+				}
+				return dtUser;
+			}
+			if (AsmCfg != null)
+			{
+				return AsmCfg.GetTableConfig(ClassName, TableElementName);
+			}
+			return UserCfg.GetTableConfig(ClassName, TableElementName);
+		}
+
 		#region Obsolete
 		/// <summary>
 		/// 不可使用

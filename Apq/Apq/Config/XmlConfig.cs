@@ -255,7 +255,7 @@ namespace Apq.Config
 			}
 		}
 
-		#region 表配置[尚未测试]
+		#region 表配置
 		/// <summary>
 		/// 获取表类型配置
 		/// </summary>
@@ -270,7 +270,7 @@ namespace Apq.Config
 				if (xn1 != null)
 				{
 					System.Data.DataTable dt = new System.Data.DataTable(TableElementName);
-					StringReader sr = new StringReader(xn1.OuterXml);
+					StringReader sr = new StringReader(xn1.InnerXml);
 					System.Xml.XmlReader xr = System.Xml.XmlReader.Create(sr);
 					dt.ReadXml(xr);
 					return dt;
@@ -292,15 +292,28 @@ namespace Apq.Config
 				throw new System.Exception("请先设置 Root!");
 			}
 
-			System.Xml.XmlNode xn1 = xn.SelectSingleNode(ClassName + "/" + TableElementName);
-			if (xn1 != null && xn1.ChildNodes.Count > 0)
+			System.Xml.XmlNode xn1 = xn.SelectSingleNode(ClassName);
+			if (xn1 == null)
 			{
-				xn1.InnerXml = string.Empty;
+				xn1 = xd.CreateElement(ClassName);
+				xn.AppendChild(xn1);
+			}
+
+			System.Xml.XmlNode xn2 = xn1.SelectSingleNode(TableElementName);
+			if (xn2 == null)
+			{
+				xn2 = xd.CreateElement(TableElementName);
+				xn1.AppendChild(xn2);
+			}
+
+			if (xn2 != null && xn2.ChildNodes.Count > 0)
+			{
+				xn2.InnerXml = string.Empty;
 			}
 
 			StringWriter sw = new StringWriter();
-			dt.WriteXml(sw);
-			xn1.InnerXml = sw.ToString();
+			dt.WriteXml(sw, System.Data.XmlWriteMode.WriteSchema);
+			xn2.InnerXml = sw.ToString();
 		}
 		#endregion
 	}

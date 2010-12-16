@@ -38,6 +38,21 @@ namespace Apq.ConnectionStrings.SQLServer
 		{
 			return string.Format(ConnectionStringFormat, dataSource, UserName, pwd, dbName);
 		}
+		/// <summary>
+		/// 获取连接字符串
+		/// </summary>
+		/// <param name="dataSource">服务器地址</param>
+		/// <param name="UserName">用户名</param>
+		/// <param name="pwd">密码</param>
+		/// <param name="dbName">默认数据库名</param>
+		/// <param name="Option">其余选项</param>
+		/// <returns></returns>
+		public static string GetConnectionString(string dataSource, string UserName, string pwd, string dbName, string Option)
+		{
+			string str = string.Format(ConnectionStringFormat, dataSource, UserName, pwd, dbName);
+			str += Option;
+			return str;
+		}
 		#endregion
 	}
 }

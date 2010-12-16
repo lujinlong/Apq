@@ -64,6 +64,11 @@ namespace Apq.Data
 		/// <returns></returns>
 		public static System.Data.DataTable GetDistinct(System.Data.DataTable dtSrc, string[] DataColumnNames)
 		{
+			if (DataColumnNames == null || DataColumnNames.Length == 0)
+			{
+				DataColumnNames = GetColNames(dtSrc);
+			}
+
 			System.Data.DataTable dt = dtSrc.Copy();
 			dt.Constraints.Clear();
 
