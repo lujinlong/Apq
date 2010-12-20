@@ -1,0 +1,37 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title></title>
+</head>
+<body>
+
+	<script type="text/javascript">
+
+		function ppp() {
+			var n;
+
+			while (true) {
+				n = window.prompt("请输入一个数字", 1);
+				if (n == null) return;
+				if (n.length > 1) {
+					alert("只能输入一个数字!");
+					continue;
+				}
+				n = parseInt(n);
+				if (n >= 0 && n <= 9) break;
+				alert("只能输入一个数字!");
+			}
+
+			for (var e = n; e < 10; e++) {
+				for (var i = n; i <= e; i++) {
+					document.write(i);
+				}
+				document.writeln("<br>");
+			}
+		}
+
+		ppp();
+	</script>
+
+</body>
+</html>

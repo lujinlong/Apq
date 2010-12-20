@@ -4,22 +4,32 @@ EXEC sys.sp_configure N'show advanced options', N'1'
 RECONFIGURE
 GO
 
+-- 命令行
 EXEC sys.sp_configure N'xp_cmdshell', 1
 RECONFIGURE
 GO
 
+-- OAP
 EXEC sys.sp_configure N'Ole Automation Procedures', 1
 RECONFIGURE
 GO
 
+-- 分布式查询
 EXEC sys.sp_configure N'Ad Hoc Distributed Queries', 1
 RECONFIGURE
 GO
 
+-- 程序集
+EXEC sys.sp_configure N'clr enabled', 1
+RECONFIGURE
+GO
+
+-- SQL邮件
 EXEC sys.sp_configure N'Database mail XPs', 1
 RECONFIGURE
 GO
 
+-- 大内存
 EXEC sys.sp_configure N'awe enabled', N'1'
 RECONFIGURE
 GO

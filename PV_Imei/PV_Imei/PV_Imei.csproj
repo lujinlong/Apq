@@ -53,6 +53,7 @@
     <Reference Include="System.Web.Mobile" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="HTMLPage1.htm" />
     <Content Include="ws.asmx" />
     <Content Include="test.aspx" />
     <Content Include="Web.config" />
