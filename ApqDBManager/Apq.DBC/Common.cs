@@ -28,6 +28,8 @@ namespace Apq.DBC
 			dt.Columns.Add("value");
 			dt.Columns.Add("DBName");
 			dt.Columns.Add("ServerName");
+			dt.Columns.Add("Mirror");
+			dt.Columns.Add("UseTrusted", typeof(bool));
 			dt.Columns.Add("UserId");
 			dt.Columns.Add("Pwd");
 			dt.Columns.Add("Option");
@@ -71,13 +73,15 @@ namespace Apq.DBC
 			// 读取完成,计算所有连接字符串
 			foreach (DataRow dr in _ds.Tables[0].Rows)
 			{
-				dr["value"] = Apq.ConnectionStrings.SQLServer.SqlConnection.GetConnectionString(
-				   dr["ServerName"].ToString(),
-				   dr["UserId"].ToString(),
-				   dr["Pwd"].ToString(),
-				   dr["DBName"].ToString(),
-				   dr["Option"].ToString()
-			   );
+				Apq.ConnectionStrings.SQLServer.SqlConnection sc = new Apq.ConnectionStrings.SQLServer.SqlConnection();
+				sc.ServerName = dr["ServerName"].ToString();
+				sc.DBName = dr["DBName"].ToString();
+				sc.Mirror = dr["Mirror"].ToString();
+				sc.UseTrusted = Apq.Convert.ChangeType<bool>(dr["UseTrusted"]);
+				sc.UserId = dr["UserId"].ToString();
+				sc.Pwd = dr["Pwd"].ToString();
+				sc.Option = dr["Option"].ToString();
+				dr["value"] = sc.GetConnectionString();
 			}
 		}
 

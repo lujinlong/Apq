@@ -37,6 +37,9 @@
 			this.ribeName = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
 			this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
+			this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
+			this.gridColumn8 = new DevExpress.XtraGrid.Columns.GridColumn();
+			this.riceUseTrusted = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
 			this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.ribePwd = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
@@ -49,7 +52,7 @@
 			this.bbiView = new DevExpress.XtraBars.BarButtonItem();
 			this.bbiDelete = new DevExpress.XtraBars.BarButtonItem();
 			this.bbiCs = new DevExpress.XtraBars.BarButtonItem();
-			this.bbiOld = new DevExpress.XtraBars.BarButtonItem();
+			this.bciShowPwd = new DevExpress.XtraBars.BarCheckItem();
 			this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
 			this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
 			this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
@@ -57,6 +60,7 @@
 			((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.ribeName)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.riceUseTrusted)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.ribePwd)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
 			this.SuspendLayout();
@@ -64,13 +68,14 @@
 			// gridControl1
 			// 
 			this.gridControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.gridControl1.Location = new System.Drawing.Point(0, 24);
+			this.gridControl1.Location = new System.Drawing.Point(0, 21);
 			this.gridControl1.MainView = this.gridView1;
 			this.gridControl1.Name = "gridControl1";
 			this.gridControl1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.ribePwd,
-            this.ribeName});
-			this.gridControl1.Size = new System.Drawing.Size(600, 377);
+            this.ribeName,
+            this.riceUseTrusted});
+			this.gridControl1.Size = new System.Drawing.Size(600, 381);
 			this.gridControl1.TabIndex = 4;
 			this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -81,12 +86,15 @@
             this.gridColumn1,
             this.gridColumn2,
             this.gridColumn6,
+            this.gridColumn7,
+            this.gridColumn8,
             this.gridColumn3,
             this.gridColumn4,
             this.gridColumn5});
 			this.gridView1.GridControl = this.gridControl1;
 			this.gridView1.Name = "gridView1";
 			this.gridView1.OptionsBehavior.CopyToClipboardWithColumnHeaders = false;
+			this.gridView1.OptionsView.NewItemRowPosition = DevExpress.XtraGrid.Views.Grid.NewItemRowPosition.Bottom;
 			this.gridView1.OptionsView.ShowGroupPanel = false;
 			// 
 			// gridColumn1
@@ -116,11 +124,33 @@
 			// 
 			// gridColumn6
 			// 
-			this.gridColumn6.Caption = "服务器名";
+			this.gridColumn6.Caption = "服务器";
 			this.gridColumn6.FieldName = "ServerName";
 			this.gridColumn6.Name = "gridColumn6";
 			this.gridColumn6.Visible = true;
 			this.gridColumn6.VisibleIndex = 2;
+			// 
+			// gridColumn7
+			// 
+			this.gridColumn7.Caption = "镜像";
+			this.gridColumn7.FieldName = "Mirror";
+			this.gridColumn7.Name = "gridColumn7";
+			this.gridColumn7.Visible = true;
+			this.gridColumn7.VisibleIndex = 3;
+			// 
+			// gridColumn8
+			// 
+			this.gridColumn8.Caption = "信任连接";
+			this.gridColumn8.ColumnEdit = this.riceUseTrusted;
+			this.gridColumn8.FieldName = "UseTrusted";
+			this.gridColumn8.Name = "gridColumn8";
+			this.gridColumn8.Visible = true;
+			this.gridColumn8.VisibleIndex = 4;
+			// 
+			// riceUseTrusted
+			// 
+			this.riceUseTrusted.AutoHeight = false;
+			this.riceUseTrusted.Name = "riceUseTrusted";
 			// 
 			// gridColumn3
 			// 
@@ -128,7 +158,7 @@
 			this.gridColumn3.FieldName = "UserId";
 			this.gridColumn3.Name = "gridColumn3";
 			this.gridColumn3.Visible = true;
-			this.gridColumn3.VisibleIndex = 3;
+			this.gridColumn3.VisibleIndex = 5;
 			// 
 			// gridColumn4
 			// 
@@ -137,7 +167,7 @@
 			this.gridColumn4.FieldName = "Pwd";
 			this.gridColumn4.Name = "gridColumn4";
 			this.gridColumn4.Visible = true;
-			this.gridColumn4.VisibleIndex = 4;
+			this.gridColumn4.VisibleIndex = 6;
 			// 
 			// ribePwd
 			// 
@@ -154,7 +184,7 @@
 			this.gridColumn5.FieldName = "Option";
 			this.gridColumn5.Name = "gridColumn5";
 			this.gridColumn5.Visible = true;
-			this.gridColumn5.VisibleIndex = 5;
+			this.gridColumn5.VisibleIndex = 7;
 			// 
 			// barManager1
 			// 
@@ -172,8 +202,8 @@
             this.bbiView,
             this.bbiDelete,
             this.bbiCs,
-            this.bbiOld});
-			this.barManager1.MaxItemId = 6;
+            this.bciShowPwd});
+			this.barManager1.MaxItemId = 8;
 			this.barManager1.StatusBar = this.bar3;
 			// 
 			// bar3
@@ -200,7 +230,7 @@
             new DevExpress.XtraBars.LinkPersistInfo(this.bbiView),
             new DevExpress.XtraBars.LinkPersistInfo(this.bbiDelete),
             new DevExpress.XtraBars.LinkPersistInfo(this.bbiCs, true),
-            new DevExpress.XtraBars.LinkPersistInfo(this.bbiOld)});
+            new DevExpress.XtraBars.LinkPersistInfo(this.bciShowPwd)});
 			this.bar1.Text = "Custom 4";
 			// 
 			// bbiAdd
@@ -238,12 +268,12 @@
 			this.bbiCs.Name = "bbiCs";
 			this.bbiCs.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiCs_ItemClick);
 			// 
-			// bbiOld
+			// bciShowPwd
 			// 
-			this.bbiOld.Caption = "另存为旧版文件";
-			this.bbiOld.Id = 1;
-			this.bbiOld.Name = "bbiOld";
-			this.bbiOld.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiOld_ItemClick);
+			this.bciShowPwd.Caption = "显示密码";
+			this.bciShowPwd.Id = 7;
+			this.bciShowPwd.Name = "bciShowPwd";
+			this.bciShowPwd.CheckedChanged += new DevExpress.XtraBars.ItemClickEventHandler(this.bciShowPwd_CheckedChanged);
 			// 
 			// DBCList
 			// 
@@ -264,6 +294,7 @@
 			((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.ribeName)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.riceUseTrusted)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.ribePwd)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
 			this.ResumeLayout(false);
@@ -291,10 +322,13 @@
 		private DevExpress.XtraBars.BarDockControl barDockControlLeft;
 		private DevExpress.XtraBars.BarDockControl barDockControl1;
 		private DevExpress.XtraBars.Bar bar1;
-		private DevExpress.XtraBars.BarButtonItem bbiOld;
 		private DevExpress.XtraBars.BarButtonItem bbiEdit;
 		private DevExpress.XtraBars.BarButtonItem bbiView;
 		private DevExpress.XtraBars.BarButtonItem bbiCs;
 		private DevExpress.XtraBars.BarButtonItem bbiDelete;
+		private DevExpress.XtraGrid.Columns.GridColumn gridColumn7;
+		private DevExpress.XtraGrid.Columns.GridColumn gridColumn8;
+		private DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit riceUseTrusted;
+		private DevExpress.XtraBars.BarCheckItem bciShowPwd;
 	}
 }

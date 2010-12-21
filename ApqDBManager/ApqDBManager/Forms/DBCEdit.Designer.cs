@@ -42,14 +42,18 @@
 			this.txtPwd = new DevExpress.XtraEditors.TextEdit();
 			this.txtOption = new DevExpress.XtraEditors.TextEdit();
 			this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
+			this.cbMirror = new System.Windows.Forms.ComboBox();
+			this.labelControl7 = new DevExpress.XtraEditors.LabelControl();
+			this.ceUseTrusted = new DevExpress.XtraEditors.CheckEdit();
 			((System.ComponentModel.ISupportInitialize)(this.beName.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.txtPwd.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.txtOption.Properties)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.ceUseTrusted.Properties)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// btnConfirm
 			// 
-			this.btnConfirm.Location = new System.Drawing.Point(96, 181);
+			this.btnConfirm.Location = new System.Drawing.Point(97, 236);
 			this.btnConfirm.Name = "btnConfirm";
 			this.btnConfirm.Size = new System.Drawing.Size(75, 23);
 			this.btnConfirm.TabIndex = 0;
@@ -58,7 +62,7 @@
 			// 
 			// btnCancel
 			// 
-			this.btnCancel.Location = new System.Drawing.Point(228, 181);
+			this.btnCancel.Location = new System.Drawing.Point(229, 236);
 			this.btnCancel.Name = "btnCancel";
 			this.btnCancel.Size = new System.Drawing.Size(75, 23);
 			this.btnCancel.TabIndex = 1;
@@ -101,7 +105,7 @@
 			// 
 			// labelControl4
 			// 
-			this.labelControl4.Location = new System.Drawing.Point(30, 95);
+			this.labelControl4.Location = new System.Drawing.Point(30, 146);
 			this.labelControl4.Name = "labelControl4";
 			this.labelControl4.Size = new System.Drawing.Size(36, 14);
 			this.labelControl4.TabIndex = 8;
@@ -109,7 +113,7 @@
 			// 
 			// labelControl5
 			// 
-			this.labelControl5.Location = new System.Drawing.Point(30, 121);
+			this.labelControl5.Location = new System.Drawing.Point(30, 172);
 			this.labelControl5.Name = "labelControl5";
 			this.labelControl5.Size = new System.Drawing.Size(24, 14);
 			this.labelControl5.TabIndex = 10;
@@ -136,7 +140,7 @@
 			// cbUserId
 			// 
 			this.cbUserId.FormattingEnabled = true;
-			this.cbUserId.Location = new System.Drawing.Point(130, 92);
+			this.cbUserId.Location = new System.Drawing.Point(130, 143);
 			this.cbUserId.Name = "cbUserId";
 			this.cbUserId.Size = new System.Drawing.Size(244, 20);
 			this.cbUserId.TabIndex = 14;
@@ -144,7 +148,7 @@
 			// 
 			// txtPwd
 			// 
-			this.txtPwd.Location = new System.Drawing.Point(130, 118);
+			this.txtPwd.Location = new System.Drawing.Point(130, 169);
 			this.txtPwd.Name = "txtPwd";
 			this.txtPwd.Properties.PasswordChar = '*';
 			this.txtPwd.Size = new System.Drawing.Size(244, 21);
@@ -152,24 +156,54 @@
 			// 
 			// txtOption
 			// 
-			this.txtOption.Location = new System.Drawing.Point(130, 145);
+			this.txtOption.Location = new System.Drawing.Point(130, 196);
 			this.txtOption.Name = "txtOption";
 			this.txtOption.Size = new System.Drawing.Size(244, 21);
 			this.txtOption.TabIndex = 17;
 			// 
 			// labelControl6
 			// 
-			this.labelControl6.Location = new System.Drawing.Point(30, 148);
+			this.labelControl6.Location = new System.Drawing.Point(30, 199);
 			this.labelControl6.Name = "labelControl6";
 			this.labelControl6.Size = new System.Drawing.Size(24, 14);
 			this.labelControl6.TabIndex = 16;
 			this.labelControl6.Text = "选项";
 			// 
+			// cbMirror
+			// 
+			this.cbMirror.FormattingEnabled = true;
+			this.cbMirror.Location = new System.Drawing.Point(130, 91);
+			this.cbMirror.Name = "cbMirror";
+			this.cbMirror.Size = new System.Drawing.Size(244, 20);
+			this.cbMirror.TabIndex = 19;
+			this.cbMirror.DropDown += new System.EventHandler(this.cbMirror_DropDown);
+			// 
+			// labelControl7
+			// 
+			this.labelControl7.Location = new System.Drawing.Point(30, 94);
+			this.labelControl7.Name = "labelControl7";
+			this.labelControl7.Size = new System.Drawing.Size(60, 14);
+			this.labelControl7.TabIndex = 18;
+			this.labelControl7.Text = "镜像服务器";
+			// 
+			// ceUseTrusted
+			// 
+			this.ceUseTrusted.Location = new System.Drawing.Point(130, 118);
+			this.ceUseTrusted.Name = "ceUseTrusted";
+			this.ceUseTrusted.Properties.AutoWidth = true;
+			this.ceUseTrusted.Properties.Caption = "使用信任连接";
+			this.ceUseTrusted.Size = new System.Drawing.Size(95, 19);
+			this.ceUseTrusted.TabIndex = 20;
+			this.ceUseTrusted.CheckedChanged += new System.EventHandler(this.ceUseTrusted_CheckedChanged);
+			// 
 			// DBCEdit
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(410, 227);
+			this.ClientSize = new System.Drawing.Size(410, 276);
+			this.Controls.Add(this.ceUseTrusted);
+			this.Controls.Add(this.cbMirror);
+			this.Controls.Add(this.labelControl7);
 			this.Controls.Add(this.txtOption);
 			this.Controls.Add(this.labelControl6);
 			this.Controls.Add(this.txtPwd);
@@ -184,12 +218,16 @@
 			this.Controls.Add(this.labelControl1);
 			this.Controls.Add(this.btnCancel);
 			this.Controls.Add(this.btnConfirm);
+			this.MaximumSize = new System.Drawing.Size(418, 310);
+			this.MinimumSize = new System.Drawing.Size(418, 310);
 			this.Name = "DBCEdit";
+			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
 			this.Text = "连接设置";
 			this.Load += new System.EventHandler(this.DBCEdit_Load);
 			((System.ComponentModel.ISupportInitialize)(this.beName.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.txtPwd.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.txtOption.Properties)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.ceUseTrusted.Properties)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -211,5 +249,8 @@
 		private DevExpress.XtraEditors.TextEdit txtPwd;
 		private DevExpress.XtraEditors.TextEdit txtOption;
 		private DevExpress.XtraEditors.LabelControl labelControl6;
+		private System.Windows.Forms.ComboBox cbMirror;
+		private DevExpress.XtraEditors.LabelControl labelControl7;
+		private DevExpress.XtraEditors.CheckEdit ceUseTrusted;
 	}
 }

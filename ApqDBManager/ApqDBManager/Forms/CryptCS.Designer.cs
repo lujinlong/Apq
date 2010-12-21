@@ -128,7 +128,7 @@
 			this.btnDecryptFile.Name = "btnDecryptFile";
 			this.btnDecryptFile.Size = new System.Drawing.Size(75, 23);
 			this.btnDecryptFile.TabIndex = 8;
-			this.btnDecryptFile.Text = "解密";
+			this.btnDecryptFile.Text = "解密↑";
 			this.btnDecryptFile.Click += new System.EventHandler(this.btnDecryptFile_Click);
 			// 
 			// btnEncryptFile
@@ -137,7 +137,7 @@
 			this.btnEncryptFile.Name = "btnEncryptFile";
 			this.btnEncryptFile.Size = new System.Drawing.Size(75, 23);
 			this.btnEncryptFile.TabIndex = 7;
-			this.btnEncryptFile.Text = "加密";
+			this.btnEncryptFile.Text = "加密↓";
 			this.btnEncryptFile.Click += new System.EventHandler(this.btnEncryptFile_Click);
 			// 
 			// xtraTabPage2
