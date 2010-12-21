@@ -24,7 +24,7 @@ namespace PV_Imei
 		{
 			DataSet ds = new DataSet();
 
-			SqlDataAdapter sda = new SqlDataAdapter("dbo.Wb_PV_List", ConfigurationManager.ConnectionStrings["znlyDW"].ConnectionString);
+			SqlDataAdapter sda = new SqlDataAdapter("dbo.Wb_PV_List", Apq.DBC.Common.GetConnectoinString("znlyDW_Rst"));
 			sda.SelectCommand.CommandType = CommandType.StoredProcedure;
 			sda.SelectCommand.Parameters.Add("rtn", SqlDbType.Int);
 			sda.SelectCommand.Parameters.Add("ExMsg", SqlDbType.NVarChar, -1);
@@ -51,7 +51,7 @@ namespace PV_Imei
 		{
 			DataSet ds = new DataSet();
 
-			SqlDataAdapter sda = new SqlDataAdapter("dbo.Wb_PV_LogType_List", ConfigurationManager.ConnectionStrings["znlyDW"].ConnectionString);
+			SqlDataAdapter sda = new SqlDataAdapter("dbo.Wb_PV_LogType_List", Apq.DBC.Common.GetConnectoinString("znlyDW_Rst"));
 			sda.SelectCommand.CommandType = CommandType.StoredProcedure;
 			sda.SelectCommand.Parameters.Add("rtn", SqlDbType.Int);
 			sda.SelectCommand.Parameters.Add("ExMsg", SqlDbType.NVarChar, -1);

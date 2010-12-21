@@ -11,6 +11,7 @@
     <RootNamespace>PV_Imei</RootNamespace>
     <AssemblyName>PV_Imei</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <RunPostBuildEvent>OnOutputUpdated</RunPostBuildEvent>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -30,6 +31,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Apq, Version=0.3.4002.35623, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Dlls\Apq.dll</HintPath>
+    </Reference>
+    <Reference Include="Apq.DBC, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Dlls\Apq.DBC.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -47,7 +56,6 @@
     </Reference>
     <Reference Include="System.Web" />
     <Reference Include="System.Xml" />
-    <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
     <Reference Include="System.Web.Mobile" />
@@ -119,4 +127,22 @@
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>
+  <PropertyGroup>
+    <PreBuildEvent>if "%25Reference%25" == "" goto End
+if "" == "" goto EndConfig
+xcopy "%25Reference%25\$(ConfigurationName)\Config\Apq.dll.config" "$(ProjectDir)" /c /q /g /h /r /k /y
+xcopy "%25Reference%25\$(ConfigurationName)\Config\Apq.dll.apq" "$(ProjectDir)" /c /q /g /h /r /k /y
+xcopy "%25Reference%25\$(ConfigurationName)\Config\Apq.dll.log4net" "$(ProjectDir)" /c /q /g /h /r /k /y
+:EndConfig
+
+xcopy "%25Reference%25\$(ConfigurationName)\Apq.dll" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+xcopy "%25Reference%25\$(ConfigurationName)\Apq.xml" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+xcopy "%25Reference%25\$(ConfigurationName)\Apq.pdb" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+
+xcopy "%25Reference%25\$(ConfigurationName)\Apq.DBC.dll" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+xcopy "%25Reference%25\$(ConfigurationName)\Apq.DBC.xml" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+xcopy "%25Reference%25\$(ConfigurationName)\Apq.DBC.pdb" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+:End
+</PreBuildEvent>
+  </PropertyGroup>
 </Project>
