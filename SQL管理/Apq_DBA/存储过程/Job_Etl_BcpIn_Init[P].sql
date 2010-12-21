@@ -3,7 +3,6 @@
 GO
 ALTER PROC etl.Job_Etl_BcpIn_Init
 	@CfgRowCount	int = 10000	-- 从配置中最多读取的行数
-	,@BcpPeriod		datetime = NULL
 AS
 /* =============================================
 -- 作者: 黄宗银
@@ -18,9 +17,8 @@ SELECT @rtn;
 SET NOCOUNT ON;
 
 SELECT @CfgRowCount = ISNULL(@CfgRowCount,10000);
-SELECT @BcpPeriod = ISNULL(@BcpPeriod,getdate());
 
-DECLARE @rtn int, @SPBeginTime datetime, @BCPDay datetime
+DECLARE @rtn int, @SPBeginTime datetime
 	,@yyyy int, @mm int, @dd int, @hh int, @mi int
 	,@ww int
 	,@yyyyStr nvarchar(50), @mmStr nvarchar(50), @ddStr nvarchar(50), @hhStr nvarchar(50), @miStr nvarchar(50)
@@ -29,7 +27,6 @@ DECLARE @rtn int, @SPBeginTime datetime, @BCPDay datetime
 	;
 
 SELECT @SPBeginTime = getdate();
-SELECT @BCPDay = dateadd(dd,0,datediff(dd,0,@BcpPeriod));	-- 数据传送时间(一般当天传送上一周期的全部数据)
 
 DECLARE @ID bigint,
 	@EtlName nvarchar(256),	-- 配置名
@@ -42,12 +39,18 @@ DECLARE @ID bigint,
 	@r nvarchar(10),
 	@t nvarchar(10)
 	
+	,@strPeriod nvarchar(50)
+	,@LastFileName nvarchar(512)
+	
 	,@BTime datetime, @ETime datetime, @CTime datetime
 	,@FullFolder nvarchar(512)-- 目录(含时期)
 	--,@BcpInFullTableName nvarchar(512)-- BcpIn到的完整表名(数据库名.架构名.表名)
+	,@FileName_tmp nvarchar(512)
+	,@idxTimeB int,@idxTimeE int, @FilePeriod datetime, @FileNo int
+	,@strFilePeriod nvarchar(50)
 	;
 
-DECLARE @csr CURSOR
+DECLARE @csr CURSOR, @csrFile CURSOR;
 SET @csr = CURSOR STATIC FOR
 SELECT TOP(@CfgRowCount) ID, EtlName, Folder, PeriodType, FileName, DBName, SchemaName, TName, r, t
   FROM etl.EtlCfg
@@ -55,80 +58,100 @@ SELECT TOP(@CfgRowCount) ID, EtlName, Folder, PeriodType, FileName, DBName, Sche
 
 DECLARE @DataPeriod datetime;
 CREATE TABLE #t(s nvarchar(4000));
+CREATE TABLE #FileExist(
+	FileExist tinyint,
+	IsFolder tinyint,
+	ParentExist tinyint
+);
 
 OPEN @csr;
 FETCH NEXT FROM @csr INTO @ID,@EtlName,@Folder,@PeriodType,@FileName,@DBName,@SchemaName,@TName,@r,@t;
 WHILE(@@FETCH_STATUS=0)
 BEGIN
 	IF(RIGHT(@Folder,1)<>'\') SELECT @Folder = @Folder+'\';
-	SELECT @FullFolder = @Folder;
+	SELECT @FullFolder = @Folder, @strPeriod = '',@LastFileName = @FileName;
+	SELECT @FullFolder = @FullFolder + @FileName;
 	
-	-- 从当前时间计算应该获取的数据时间(往前推一周期,最小为日) -------------------------------------
-	SELECT @DataPeriod = dateadd(dd,-1,@BCPDay); -- 默认取前1天
-	IF(@PeriodType = 1) SELECT @DataPeriod = dateadd(yyyy,-1,@BCPDay);
-	IF(@PeriodType = 2) SELECT @DataPeriod = dateadd(mm,-6,@BCPDay);
-	IF(@PeriodType = 3) SELECT @DataPeriod = dateadd(mm,-3,@BCPDay);
-	IF(@PeriodType = 4) SELECT @DataPeriod = dateadd(mm,-1,@BCPDay);
-	-- =============================================================================================
-	
-	-- 循环检查数据目录 ----------------------------------------------------------------------------
-	SELECT @BTime = @DataPeriod
-	SELECT @ETime = @BCPDay
-	SELECT @CTime = @BTime;
-	
-	WHILE(@CTime < @ETime)
+	-- 独立完整文件:直接将配置的文件名入队
+	IF(@PeriodType = 0)
 	BEGIN
-		IF(@PeriodType > 0)
+		TRUNCATE TABLE #FileExist;
+		SELECT @FileName_tmp = @FullFolder + @FileName + '.txt';
+		INSERT #FileExist
+		EXEC sys.xp_fileexist @FileName_tmp;
+		
+		IF(EXISTS(SELECT TOP 1 1 FROM #FileExist WHERE FileExist = 1))
 		BEGIN
-			SELECT @yyyy = datepart(yyyy,@CTime)
-				,@mm = datepart(mm,@CTime)
-				,@dd = datepart(dd,@CTime)
-				,@hh = datepart(hh,@CTime)
-				,@mi = datepart(n,@CTime)
-				;
-				
-			SELECT @yyyyStr = Convert(nvarchar(50),@yyyy)
-				,@mmStr = CASE WHEN @mm < 10 THEN '0' ELSE '' END + Convert(nvarchar(50),@mm)
-				,@ddStr = CASE WHEN @dd < 10 THEN '0' ELSE '' END + Convert(nvarchar(50),@dd)
-				,@hhStr = CASE WHEN @hh < 10 THEN '0' ELSE '' END + Convert(nvarchar(50),@hh)
-				,@miStr = CASE WHEN @mi < 10 THEN '0' ELSE '' END + Convert(nvarchar(50),@mi)
-				;
-				
-			IF(@PeriodType = 1) SELECT @FullFolder = @Folder + @yyyyStr;
-			IF(@PeriodType IN (2,3,4)) SELECT @FullFolder = @Folder + @yyyyStr + @mmStr;
-			IF(@PeriodType = 5) SELECT @FullFolder = @Folder + @yyyyStr + '_' + @wwStr;
-			IF(@PeriodType = 6) SELECT @FullFolder = @Folder + @yyyyStr + @mmStr + @ddStr;
-			IF(@PeriodType = 7) SELECT @FullFolder = @Folder + @yyyyStr + @mmStr + @ddStr + '_' + @hhStr;
-			IF(@PeriodType = 8) SELECT @FullFolder = @Folder + @yyyyStr + @mmStr + @ddStr + '_' + @hhStr + @miStr;
+			INSERT etl.BcpInQueue ( EtlName, Folder, FileName, DBName, SchemaName, TName, t, r )
+			VALUES(@EtlName,@FullFolder,@FileName+'.txt',@DBName,@SchemaName,@TName,@t,@r);
 		END
 		
-		IF(RIGHT(@FullFolder,1)<>'\') SELECT @FullFolder = @FullFolder+'\';
-		
-		-- 入队 --------------------------------------------------------------------------------
-		TRUNCATE TABLE #t;
-		SELECT @cmd = 'dir /a:-d/b/o:n "' + @FullFolder + @FileName + '*.txt"';
-		--SELECT @cmd;
-		INSERT #t(s) EXEC master..xp_cmdshell @cmd;
-		
-		INSERT etl.BcpInQueue ( EtlName, Folder, FileName, DBName, SchemaName, TName, t, r )
-		SELECT @EtlName,@FullFolder,s,@DBName,@SchemaName,@TName,@t,@r
-		  FROM #t
-		 WHERE (@PeriodType = 0 AND Left(s,Len(@FileName)+1) = @FileName+'.')
-			OR (@PeriodType > 0 AND Left(s,Len(@FileName)+1) = @FileName+'[' AND NOT EXISTS(SELECT TOP 1 * FROM etl.BcpInQueue t WHERE EtlName = @EtlName AND Folder = @FullFolder AND Left(s,Len(FileName)) = FileName))
-		-- =====================================================================================
-		
-		IF(@PeriodType = 0) SELECT @CTime = @ETime;
-		IF(@PeriodType = 1) SELECT @CTime = dateadd(yyyy,1,@CTime);
-		IF(@PeriodType = 2) SELECT @CTime = dateadd(yyyy,6,@CTime);
-		IF(@PeriodType = 3) SELECT @CTime = dateadd(mm,3,@CTime);
-		IF(@PeriodType = 4) SELECT @CTime = dateadd(mm,1,@CTime);
-		IF(@PeriodType = 5) SELECT @CTime = dateadd(dd,7,@CTime);
-		IF(@PeriodType = 6) SELECT @CTime = dateadd(dd,1,@CTime);
-		IF(@PeriodType = 7) SELECT @CTime = dateadd(hh,1,@CTime);
-		IF(@PeriodType = 8) SELECT @CTime = dateadd(n,1,@CTime);
+		GOTO NEXT_Etl;
 	END
-	-- ================================================================================================
+	
+	-- 1.找出该数据的所有源文件
+	SELECT @FullFolder = @FullFolder + '[';
+	TRUNCATE TABLE #t;
+	SELECT @cmd = 'dir /a:-d/b/o:n "' + @FullFolder + '*.txt"';
+	--SELECT @cmd;
+	INSERT #t(s) EXEC master..xp_cmdshell @cmd;
+	
+	-- 2.计算待导入文件的时期和编号
+	SET @csrFile = CURSOR STATIC FOR
+	SELECT s FROM #t WHERE Left(s,Len(@FileName)+1) = @FileName+'[';
+	
+	OPEN @csrFile;
+	FETCH NEXT FROM @csrFile INTO @FileName_tmp;
+	WHILE(@@FETCH_STATUS = 0)
+	BEGIN
+		SELECT @idxTimeB = 0, @idxTimeE = 0;
+		SELECT @idxTimeB = charindex('[',@FileName_tmp);
+		IF(@idxTimeB > 1)
+		BEGIN
+			SELECT @idxTimeE = charindex(']',@FileName_tmp);
+		END
+		IF(@idxTimeE > 2 AND @idxTimeE > @idxTimeB)
+		BEGIN
+			SELECT @strFilePeriod = substring(@FileName_tmp,@idxTimeB+1,@idxTimeE-@idxTimeB-1);
+			IF(@PeriodType = 1) SELECT @FilePeriod = @strFilePeriod + '0101';
+			IF(@PeriodType IN (2,3,4)) SELECT @FilePeriod = @strFilePeriod + '01';
+			IF(@PeriodType = 5)
+			BEGIN
+				SELECT @FilePeriod = Left(@strFilePeriod,4) + '0101';
+				SELECT @FilePeriod = dateadd(ww,Convert(int,Right(@strFilePeriod,Len(@strFilePeriod)-5)),@FilePeriod);
+			END
+			IF(@PeriodType = 6) SELECT @FilePeriod = @strFilePeriod;
+			IF(@PeriodType = 7)
+			BEGIN
+				SELECT @FilePeriod = Left(@strFilePeriod,8);
+				SELECT @FilePeriod = dateadd(hh,Convert(int,Right(@strFilePeriod,Len(@strFilePeriod)-9)),@FilePeriod);
+			END
+			IF(@PeriodType = 8)
+			BEGIN
+				SELECT @FilePeriod = Left(@strFilePeriod,8);
+				SELECT @FilePeriod = dateadd(hh,Convert(int,substring(@strFilePeriod,9,2)),@FilePeriod);
+				SELECT @FilePeriod = dateadd(mi,Convert(int,Right(@strFilePeriod,2)),@FilePeriod);
+			END
+			
+			SELECT @idxTimeB = charindex('[',@FileName_tmp,@idxTimeE);
+			SELECT @idxTimeE = charindex(']',@FileName_tmp,@idxTimeB);
+			SELECT @FileNo = substring(@FileName_tmp,@idxTimeB+1,@idxTimeE-@idxTimeB-1);
+			
+			IF(NOT EXISTS(SELECT TOP 1 1 FROM log.BcpInInit WHERE EtlName = @EtlName AND FileNo = @FileNo AND strPeriod = @strFilePeriod))
+			BEGIN
+				INSERT etl.BcpInQueue ( EtlName, Folder, FileName, DBName, SchemaName, TName, t, r, FileNo,Period )
+				VALUES(@EtlName,@Folder,@FileName_tmp,@DBName,@SchemaName,@TName,@t,@r,@FileNo,@strFilePeriod);
+				
+				INSERT log.BcpInInit (EtlName,Period,FileNo,strPeriod )
+				VALUES(@EtlName,@FilePeriod,@FileNo,@strFilePeriod);
+			END
+		END
+		
+		NEXT_File:
+		FETCH NEXT FROM @csrFile INTO @FileName_tmp;
+	END
 
+	NEXT_Etl:
 	FETCH NEXT FROM @csr INTO @ID,@EtlName,@Folder,@PeriodType,@FileName,@DBName,@SchemaName,@TName,@r,@t;
 END
 CLOSE @csr;

@@ -33,8 +33,7 @@ DECLARE @ID bigint,
 	@SchemaName nvarchar(256),
 	@TName nvarchar(256),
 	@r nvarchar(10),
-	@t nvarchar(10),
-	@DBID int
+	@t nvarchar(10)
 	
 	,@FullTableName nvarchar(512)-- 完整表名(数据库名.架构名.表名)
 	;
@@ -52,14 +51,6 @@ OPEN @csr;
 FETCH NEXT FROM @csr INTO @ID,@EtlName,@Folder,@FileName,@DBName,@SchemaName,@TName, @t, @r;
 WHILE(@@FETCH_STATUS=0)
 BEGIN
-	-- 解析出DBID
-	SELECT @sidx = Charindex('[',@FileName);
-	IF( @sidx > 0)
-	BEGIN
-		SELECT @DBID = substring(@FileName,@sidx+1,Charindex(']',@FileName,@sidx)-@sidx-1);
-		UPDATE etl.BcpInQueue SET DBID = @DBID WHERE ID = @ID;
-	END
-
 	SELECT @FullTableName = '[' + @DBName + '].[' + @SchemaName + '].[' + @TName + ']';
 	
 	-- BcpIn前删除索引
