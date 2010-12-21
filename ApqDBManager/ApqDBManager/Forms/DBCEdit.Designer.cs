@@ -218,9 +218,13 @@
 			this.Controls.Add(this.labelControl1);
 			this.Controls.Add(this.btnCancel);
 			this.Controls.Add(this.btnConfirm);
+			this.MaximizeBox = false;
 			this.MaximumSize = new System.Drawing.Size(418, 310);
+			this.MinimizeBox = false;
 			this.MinimumSize = new System.Drawing.Size(418, 310);
 			this.Name = "DBCEdit";
+			this.ShowIcon = false;
+			this.ShowInTaskbar = false;
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
 			this.Text = "连接设置";
 			this.Load += new System.EventHandler(this.DBCEdit_Load);

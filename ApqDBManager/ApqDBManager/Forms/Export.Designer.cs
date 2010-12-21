@@ -299,6 +299,7 @@
 			this.MinimizeBox = false;
 			this.MinimumSize = new System.Drawing.Size(411, 288);
 			this.Name = "Export";
+			this.ShowInTaskbar = false;
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "导出";
 			this.Load += new System.EventHandler(this.Export_Load);
