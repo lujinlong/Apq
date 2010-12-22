@@ -7,6 +7,29 @@
 
 	<script type="text/javascript">
 
+		function pp() {
+			var n;
+
+			while (true) {
+				n = window.prompt("请输入一个大于0的一位数", 1);
+				if (n == null) return;
+				if (n.length > 1) {
+					alert("只能输入一个大于0的一位数!");
+					continue;
+				}
+				n = parseInt(n);
+				if (n > 0 && n <= 9) break;
+				alert("只能输入一个大于0的一位数!");
+			}
+
+			for (var e = n; e > 0; e--) {
+				for (var i = e; i > 0; i--) {
+					document.write(i);
+				}
+				document.writeln("<br>");
+			}
+		}
+		
 		function ppp() {
 			var n;
 
@@ -30,7 +53,30 @@
 			}
 		}
 
-		ppp();
+		function pppp() {
+			var n;
+
+			while (true) {
+				n = window.prompt("请输入一个数字", 1);
+				if (n == null) return;
+				if (n.length > 1) {
+					alert("只能输入一个数字!");
+					continue;
+				}
+				n = parseInt(n);
+				if (n >= 0 && n <= 9) break;
+				alert("只能输入一个数字!");
+			}
+
+			for (var e = n; e < 10; e++) {
+				for (var i = e; i < 10; i++) {
+					document.write(i);
+				}
+				document.writeln("<br>");
+			}
+		}
+
+		pppp();
 	</script>
 
 </body>
