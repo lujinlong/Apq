@@ -33,14 +33,15 @@ DECLARE @ID bigint,
 	@SchemaName nvarchar(256),
 	@TName nvarchar(256),
 	@r nvarchar(10),
-	@t nvarchar(10)
+	@t nvarchar(10),
+	@PeriodType int
 	
 	,@FullTableName nvarchar(512)-- 完整表名(数据库名.架构名.表名)
 	;
 
 DECLARE @csr CURSOR
 SET @csr = CURSOR FOR
-SELECT TOP(@TransRowCount) ID, EtlName, Folder, FileName, DBName, SchemaName, TName, t, r
+SELECT TOP(@TransRowCount) ID, EtlName, Folder, FileName, DBName, SchemaName, TName, t, r, PeriodType
   FROM etl.BcpInQueue
  WHERE Enabled = 1 AND IsFinished = 0;
 
@@ -48,10 +49,17 @@ DECLARE @sidx int;
 CREATE TABLE #t(s nvarchar(4000));
 
 OPEN @csr;
-FETCH NEXT FROM @csr INTO @ID,@EtlName,@Folder,@FileName,@DBName,@SchemaName,@TName, @t, @r;
+FETCH NEXT FROM @csr INTO @ID,@EtlName,@Folder,@FileName,@DBName,@SchemaName,@TName, @t, @r, @PeriodType;
 WHILE(@@FETCH_STATUS=0)
 BEGIN
 	SELECT @FullTableName = '[' + @DBName + '].[' + @SchemaName + '].[' + @TName + ']';
+	
+	-- 导入完整文件前清空表
+	IF(@PeriodType = 0)
+	BEGIN
+		SELECT @sql = 'TRUNCATE TABLE ' + @FullTableName;
+		EXEC sp_executesql @sql;
+	END
 	
 	-- BcpIn前删除索引
 	SELECT @sql_Create = '', @sql_Drop = '';
@@ -103,13 +111,19 @@ EXEC [' + @DBName + ']..sp_executesql @sqlDB
 		,@sqlDB = @sqlDB,@sql_Create = @sql_Create;
 	END
 	
+	-- 导入完整文件后切换表
+	IF(@PeriodType = 0)
+	BEGIN
+		EXEC etl.Etl_SwitchBcpTable @EtlName;
+	END
+	
 	Success:
 	UPDATE etl.BcpInQueue SET [_Time] = getdate(), IsFinished = 1 WHERE ID = @ID;
 	SELECT @cmd = 'del "' + @Folder + @FileName + '" /f /q';
 	EXEC xp_cmdshell @cmd;
 	
 	NEXT_File:
-	FETCH NEXT FROM @csr INTO @ID,@EtlName,@Folder,@FileName,@DBName,@SchemaName,@TName, @t, @r;
+	FETCH NEXT FROM @csr INTO @ID,@EtlName,@Folder,@FileName,@DBName,@SchemaName,@TName, @t, @r, @PeriodType;
 END
 CLOSE @csr;
 

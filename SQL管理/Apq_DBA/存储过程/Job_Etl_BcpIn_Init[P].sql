@@ -82,8 +82,8 @@ BEGIN
 			AND NOT EXISTS(SELECT TOP(1) 1 FROM etl.BcpInQueue WHERE Enabled = 1 AND EtlName = @EtlName AND IsFinished = 0)
 		)
 		BEGIN
-			INSERT etl.BcpInQueue ( EtlName, Folder, FileName, DBName, SchemaName, TName, t, r )
-			VALUES(@EtlName,@Folder,@FileName+'.txt',@DBName,@SchemaName,@TName,@t,@r);
+			INSERT etl.BcpInQueue ( EtlName, Folder, FileName, DBName, SchemaName, TName, t, r,PeriodType )
+			VALUES(@EtlName,@Folder,@FileName+'.txt',@DBName,@SchemaName,@TName,@t,@r,0);
 		END
 		
 		GOTO NEXT_Etl;
@@ -138,8 +138,8 @@ BEGIN
 			
 			IF(NOT EXISTS(SELECT TOP 1 1 FROM log.BcpInInit WHERE EtlName = @EtlName AND FileNo = @FileNo AND strPeriod = @strFilePeriod))
 			BEGIN
-				INSERT etl.BcpInQueue ( EtlName, Folder, FileName, DBName, SchemaName, TName, t, r, FileNo,Period )
-				VALUES(@EtlName,@Folder,@FileName_tmp,@DBName,@SchemaName,@TName,@t,@r,@FileNo,@strFilePeriod);
+				INSERT etl.BcpInQueue ( EtlName, Folder, FileName, DBName, SchemaName, TName, t, r, FileNo,Period,PeriodType )
+				VALUES(@EtlName,@Folder,@FileName_tmp,@DBName,@SchemaName,@TName,@t,@r,@FileNo,@strFilePeriod,@PeriodType);
 				
 				INSERT log.BcpInInit (EtlName,Period,FileNo,strPeriod )
 				VALUES(@EtlName,@FilePeriod,@FileNo,@strFilePeriod);
