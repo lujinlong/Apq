@@ -637,8 +637,12 @@
     <Content Include="XmlServers.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="_Doc\安装说明.txt" />
     <Content Include="_Doc\计划.txt" />
     <Content Include="_Doc\说明.txt" />
+    <None Include="ApqDBManager[冰川].reg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
