@@ -43,7 +43,6 @@ DECLARE @ID bigint,
 	,@LastFileName nvarchar(512)
 	
 	,@BTime datetime, @ETime datetime, @CTime datetime
-	,@FullFolder nvarchar(512)-- 目录(含时期)
 	--,@BcpInFullTableName nvarchar(512)-- BcpIn到的完整表名(数据库名.架构名.表名)
 	,@FileName_tmp nvarchar(512)
 	,@idxTimeB int,@idxTimeE int, @FilePeriod datetime, @FileNo int
@@ -69,30 +68,30 @@ FETCH NEXT FROM @csr INTO @ID,@EtlName,@Folder,@PeriodType,@FileName,@DBName,@Sc
 WHILE(@@FETCH_STATUS=0)
 BEGIN
 	IF(RIGHT(@Folder,1)<>'\') SELECT @Folder = @Folder+'\';
-	SELECT @FullFolder = @Folder, @strPeriod = '',@LastFileName = @FileName;
-	SELECT @FullFolder = @FullFolder + @FileName;
+	SELECT @strPeriod = '',@LastFileName = @FileName;
 	
 	-- 独立完整文件:直接将配置的文件名入队
 	IF(@PeriodType = 0)
 	BEGIN
 		TRUNCATE TABLE #FileExist;
-		SELECT @FileName_tmp = @FullFolder + @FileName + '.txt';
+		SELECT @FileName_tmp = @Folder + @FileName + '.txt';
 		INSERT #FileExist
 		EXEC sys.xp_fileexist @FileName_tmp;
 		
-		IF(EXISTS(SELECT TOP 1 1 FROM #FileExist WHERE FileExist = 1))
+		IF(EXISTS(SELECT TOP(1) 1 FROM #FileExist WHERE FileExist = 1)
+			AND NOT EXISTS(SELECT TOP(1) 1 FROM etl.BcpInQueue WHERE Enabled = 1 AND EtlName = @EtlName AND IsFinished = 0)
+		)
 		BEGIN
 			INSERT etl.BcpInQueue ( EtlName, Folder, FileName, DBName, SchemaName, TName, t, r )
-			VALUES(@EtlName,@FullFolder,@FileName+'.txt',@DBName,@SchemaName,@TName,@t,@r);
+			VALUES(@EtlName,@Folder,@FileName+'.txt',@DBName,@SchemaName,@TName,@t,@r);
 		END
 		
 		GOTO NEXT_Etl;
 	END
 	
 	-- 1.找出该数据的所有源文件
-	SELECT @FullFolder = @FullFolder + '[';
 	TRUNCATE TABLE #t;
-	SELECT @cmd = 'dir /a:-d/b/o:n "' + @FullFolder + '*.txt"';
+	SELECT @cmd = 'dir /a:-d/b/o:n "' + @Folder + @FileName + '[*.txt"';
 	--SELECT @cmd;
 	INSERT #t(s) EXEC master..xp_cmdshell @cmd;
 	

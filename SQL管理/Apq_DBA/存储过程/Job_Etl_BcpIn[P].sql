@@ -82,6 +82,7 @@ SELECT @sql_Create = @sql_Create1, @sql_Drop = @sql_Drop1;
 	BEGIN
 		GOTO NEXT_File;
 	END
+	SELECT * FROM #t;
 	IF(EXISTS(SELECT TOP 1 * FROM #t WHERE left(s,7) = 'Error ='))
 	BEGIN
 		GOTO NEXT_File;
