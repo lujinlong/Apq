@@ -215,32 +215,33 @@ namespace ApqDBManager
 		}
 		private bool ExportToExcel()
 		{
-			// 整理数据集
-			Apq.Data.DataSet.BuildupTabelForMaxrow(ds, ExcelMaxRowNumber);
-
-			DataSet dsExcel = new DataSet();
-			dsExcel.DataSetName = ds.DataSetName;
-			foreach (DataTable dt in ds.Tables)
-			{
-				DataTable dtExcel = Apq.Data.DataTable.CloneToStringTable(dt);
-				foreach (DataRow dr in dt.Rows)
-				{
-					DataRow drExcel = dtExcel.NewRow();
-					foreach (DataColumn dc in dt.Columns)
-					{
-						drExcel[dc.ColumnName] = Apq.Data.SqlClient.Common.ConvertToSqlON(dr[dc]);
-					}
-					dtExcel.Rows.Add(drExcel);
-
-					beiProcess.EditValue = Apq.Convert.ChangeType<int>(beiProcess.EditValue) + 1;
-					Application.DoEvents();
-				}
-				dsExcel.Tables.Add(dtExcel);
-			}
-
 			try
 			{
 				FileStream fs = new FileStream(saveFile1.FileName, FileMode.Create);
+
+				// 整理数据集
+				Apq.Data.DataSet.BuildupTabelForMaxrow(ds, ExcelMaxRowNumber);
+
+				DataSet dsExcel = new DataSet();
+				dsExcel.DataSetName = ds.DataSetName;
+				foreach (DataTable dt in ds.Tables)
+				{
+					DataTable dtExcel = Apq.Data.DataTable.CloneToStringTable(dt);
+					foreach (DataRow dr in dt.Rows)
+					{
+						DataRow drExcel = dtExcel.NewRow();
+						foreach (DataColumn dc in dt.Columns)
+						{
+							drExcel[dc.ColumnName] = Apq.Data.SqlClient.Common.ConvertToSqlON(dr[dc]);
+						}
+						dtExcel.Rows.Add(drExcel);
+
+						beiProcess.EditValue = Apq.Convert.ChangeType<int>(beiProcess.EditValue) + 1;
+						Application.DoEvents();
+					}
+					dsExcel.Tables.Add(dtExcel);
+				}
+
 				org.in2bits.MyXls.XlsDocument xd = new org.in2bits.MyXls.XlsDocument(dsExcel);
 				xd.Save(fs);
 				fs.Flush();
