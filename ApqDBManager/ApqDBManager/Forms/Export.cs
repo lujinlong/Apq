@@ -113,11 +113,11 @@ namespace ApqDBManager
 
 			if (cbExportType.Text == cbExportType.Properties.Items[0].ToString())
 			{
-				ExportToText();
+				if (!ExportToText()) return;
 			}
 			if (cbExportType.Text == cbExportType.Properties.Items[1].ToString())
 			{
-				ExportToExcel();
+				if (!ExportToExcel()) return;
 			}
 			bsiStatus.Caption = "导出完成";
 
@@ -131,7 +131,7 @@ namespace ApqDBManager
 			this.Close();
 		}
 
-		private void ExportToText()
+		private bool ExportToText()
 		{
 			ripb.Maximum += ceContainsColName.Checked ? ds.Tables.Count : 0;
 
@@ -142,13 +142,13 @@ namespace ApqDBManager
 			{
 				MessageBox.Show("请设置正确的列分隔符");
 				cbColSpliter.Focus();
-				return;
+				return false;
 			}
 			if (strRowSpliter.Length < 1)
 			{
 				MessageBox.Show("请设置正确的行分隔符");
 				cbRowSpliter.Focus();
-				return;
+				return false;
 			}
 
 			//分隔符转换
@@ -166,8 +166,9 @@ namespace ApqDBManager
 			}
 
 			// 执行导出
-			using (StreamWriter sw = File.CreateText(saveFile1.FileName))
+			try
 			{
+				StreamWriter sw = File.CreateText(saveFile1.FileName);
 				foreach (DataTable dt in ds.Tables)
 				{
 					if (ceContainsColName.Checked)
@@ -204,9 +205,15 @@ namespace ApqDBManager
 						Application.DoEvents();
 					}
 				}
+				return true;
+			}
+			catch (System.IO.DirectoryNotFoundException)
+			{
+				MessageBox.Show("文件路径不正确", "输入错误");
+				return false;
 			}
 		}
-		private void ExportToExcel()
+		private bool ExportToExcel()
 		{
 			// 整理数据集
 			Apq.Data.DataSet.BuildupTabelForMaxrow(ds, ExcelMaxRowNumber);
@@ -231,11 +238,20 @@ namespace ApqDBManager
 				dsExcel.Tables.Add(dtExcel);
 			}
 
-			FileStream fs = new FileStream(saveFile1.FileName, FileMode.Create);
-			org.in2bits.MyXls.XlsDocument xd = new org.in2bits.MyXls.XlsDocument(dsExcel);
-			xd.Save(fs);
-			fs.Flush();
-			fs.Close();
+			try
+			{
+				FileStream fs = new FileStream(saveFile1.FileName, FileMode.Create);
+				org.in2bits.MyXls.XlsDocument xd = new org.in2bits.MyXls.XlsDocument(dsExcel);
+				xd.Save(fs);
+				fs.Flush();
+				fs.Close();
+				return true;
+			}
+			catch (System.IO.DirectoryNotFoundException)
+			{
+				MessageBox.Show("文件路径不正确", "输入错误");
+				return false;
+			}
 		}
 
 		// 取消

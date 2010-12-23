@@ -701,7 +701,10 @@ UNION ALL SELECT 2,2;";
 
 				lock (rtLock0)
 				{
-					lstds.Add(ds);
+					Apq.Windows.Delegates.Action_UI<BarStaticItem>(this, bsiState, delegate(BarStaticItem ctrl)
+					{
+						lstds.Add(ds);
+					});
 				}
 
 				// 4.显示结果
