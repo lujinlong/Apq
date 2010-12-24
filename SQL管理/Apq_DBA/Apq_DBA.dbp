@@ -32,6 +32,11 @@ Begin DataProject = "Apq_DBA"
       Script = "|[Job]例行维护[S].sql|005b004a006f0062005d4f8b884c7ef462a4005b0053005d002e00730071006c"
       Script = "|[Job]例行维护_Init[S].sql|005b004a006f0062005d4f8b884c7ef462a4005f0049006e00690074005b0053005d002e00730071006c"
    End
+   Begin Folder = "_Doc"
+      Script = "|[00_01]备份.sql|005b00300030005f00300031005d59074efd002e00730071006c"
+      Script = "[00_02]FTP.sql"
+      Script = "|[00_03]还原.sql|005b00300030005f00300033005d8fd8539f002e00730071006c"
+   End
    Begin Folder = "Apq_DTS"
       Script = "|[DataSync]说明.sql|005b004400610074006100530079006e0063005d8bf4660e002e00730071006c"
       Script = "[DataTrans]bcp.GameActor.sql"
