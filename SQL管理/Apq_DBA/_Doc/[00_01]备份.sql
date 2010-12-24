@@ -46,6 +46,7 @@
 	
 	DBName			数据库名
 	Folder			备份文件目录
+	
 	FTPSrv			FTP服务器(IP)
 	FTPPort			FTP端口
 	U				用户名
