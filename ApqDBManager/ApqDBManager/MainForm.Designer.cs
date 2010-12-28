@@ -29,6 +29,12 @@
 		private void InitializeComponent()
 		{
 			this.components = new System.ComponentModel.Container();
+			DevExpress.Utils.SuperToolTip superToolTip1 = new DevExpress.Utils.SuperToolTip();
+			DevExpress.Utils.ToolTipItem toolTipItem1 = new DevExpress.Utils.ToolTipItem();
+			DevExpress.Utils.SuperToolTip superToolTip2 = new DevExpress.Utils.SuperToolTip();
+			DevExpress.Utils.ToolTipItem toolTipItem2 = new DevExpress.Utils.ToolTipItem();
+			DevExpress.Utils.SuperToolTip superToolTip3 = new DevExpress.Utils.SuperToolTip();
+			DevExpress.Utils.ToolTipItem toolTipItem3 = new DevExpress.Utils.ToolTipItem();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
 			this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
 			this.bar1 = new DevExpress.XtraBars.Bar();
@@ -38,7 +44,8 @@
 			this.bar2 = new DevExpress.XtraBars.Bar();
 			this.bsiFile = new DevExpress.XtraBars.BarSubItem();
 			this.menuNew = new DevExpress.XtraBars.BarButtonItem();
-			this.menuOpen = new DevExpress.XtraBars.BarButtonItem();
+			this.bsiOpen = new DevExpress.XtraBars.BarSubItem();
+			this.menuOpenSql = new DevExpress.XtraBars.BarButtonItem();
 			this.menuSave = new DevExpress.XtraBars.BarButtonItem();
 			this.menuSaveAs = new DevExpress.XtraBars.BarButtonItem();
 			this.menuExit = new DevExpress.XtraBars.BarButtonItem();
@@ -66,6 +73,7 @@
 			this.menuFTP = new DevExpress.XtraBars.BarButtonItem();
 			this.menuFTPFileUp = new DevExpress.XtraBars.BarButtonItem();
 			this.menuDBC = new DevExpress.XtraBars.BarButtonItem();
+			this.menuDBCList = new DevExpress.XtraBars.BarButtonItem();
 			this.bsiWindow = new DevExpress.XtraBars.BarSubItem();
 			this.menuCloseAll = new DevExpress.XtraBars.BarButtonItem();
 			this.menuNewApp = new DevExpress.XtraBars.BarButtonItem();
@@ -80,7 +88,6 @@
 			this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
 			this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
 			this.dockPanel1 = new WeifenLuo.WinFormsUI.Docking.DockPanel();
-			this.menuDBCList = new DevExpress.XtraBars.BarButtonItem();
 			((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
 			this.SuspendLayout();
 			// 
@@ -98,7 +105,6 @@
 			this.barManager1.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
             this.bsiFile,
             this.menuNew,
-            this.menuOpen,
             this.bsiEdit,
             this.menuUndo,
             this.menuRedo,
@@ -137,9 +143,11 @@
             this.menuFTPFileUp,
             this.menuRSAKey,
             this.menuDBC,
-            this.menuDBCList});
+            this.menuDBCList,
+            this.bsiOpen,
+            this.menuOpenSql});
 			this.barManager1.MainMenu = this.bar2;
-			this.barManager1.MaxItemId = 15;
+			this.barManager1.MaxItemId = 17;
 			this.barManager1.StatusBar = this.bar3;
 			// 
 			// bar1
@@ -159,6 +167,9 @@
 			this.blbiNew.Caption = "新建";
 			this.blbiNew.Id = 43;
 			this.blbiNew.Name = "blbiNew";
+			toolTipItem1.Text = "新建SqlEdit窗口";
+			superToolTip1.Items.Add(toolTipItem1);
+			this.blbiNew.SuperTip = superToolTip1;
 			this.blbiNew.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.menuNew_ItemClick);
 			// 
 			// blbiOpen
@@ -166,13 +177,19 @@
 			this.blbiOpen.Caption = "打开";
 			this.blbiOpen.Id = 44;
 			this.blbiOpen.Name = "blbiOpen";
-			this.blbiOpen.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.menuOpen_ItemClick);
+			toolTipItem2.Text = "打开Sql文件";
+			superToolTip2.Items.Add(toolTipItem2);
+			this.blbiOpen.SuperTip = superToolTip2;
+			this.blbiOpen.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.menuOpenSql_ItemClick);
 			// 
 			// blbiSave
 			// 
 			this.blbiSave.Caption = "保存";
 			this.blbiSave.Id = 47;
 			this.blbiSave.Name = "blbiSave";
+			toolTipItem3.Text = "保存";
+			superToolTip3.Items.Add(toolTipItem3);
+			this.blbiSave.SuperTip = superToolTip3;
 			this.blbiSave.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.menuSave_ItemClick);
 			// 
 			// bar2
@@ -198,10 +215,10 @@
 			this.bsiFile.Id = 0;
 			this.bsiFile.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
             new DevExpress.XtraBars.LinkPersistInfo(this.menuNew),
-            new DevExpress.XtraBars.LinkPersistInfo(this.menuOpen),
-            new DevExpress.XtraBars.LinkPersistInfo(this.menuSave),
+            new DevExpress.XtraBars.LinkPersistInfo(this.bsiOpen),
+            new DevExpress.XtraBars.LinkPersistInfo(this.menuSave, true),
             new DevExpress.XtraBars.LinkPersistInfo(this.menuSaveAs),
-            new DevExpress.XtraBars.LinkPersistInfo(this.menuExit)});
+            new DevExpress.XtraBars.LinkPersistInfo(this.menuExit, true)});
 			this.bsiFile.Name = "bsiFile";
 			// 
 			// menuNew
@@ -212,13 +229,21 @@
 			this.menuNew.Name = "menuNew";
 			this.menuNew.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.menuNew_ItemClick);
 			// 
-			// menuOpen
+			// bsiOpen
 			// 
-			this.menuOpen.Caption = "打开(&O)";
-			this.menuOpen.Id = 11;
-			this.menuOpen.ItemShortcut = new DevExpress.XtraBars.BarShortcut((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O));
-			this.menuOpen.Name = "menuOpen";
-			this.menuOpen.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.menuOpen_ItemClick);
+			this.bsiOpen.Caption = "打开(&O)";
+			this.bsiOpen.Id = 15;
+			this.bsiOpen.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
+            new DevExpress.XtraBars.LinkPersistInfo(this.menuOpenSql)});
+			this.bsiOpen.Name = "bsiOpen";
+			// 
+			// menuOpenSql
+			// 
+			this.menuOpenSql.Caption = "Sql文件(&S)";
+			this.menuOpenSql.Id = 16;
+			this.menuOpenSql.ItemShortcut = new DevExpress.XtraBars.BarShortcut((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O));
+			this.menuOpenSql.Name = "menuOpenSql";
+			this.menuOpenSql.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.menuOpenSql_ItemClick);
 			// 
 			// menuSave
 			// 
@@ -320,7 +345,7 @@
 			this.bsiView.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
             new DevExpress.XtraBars.LinkPersistInfo(this.menuToolBar),
             new DevExpress.XtraBars.LinkPersistInfo(this.menuStatusBar),
-            new DevExpress.XtraBars.LinkPersistInfo(this.menuSolution),
+            new DevExpress.XtraBars.LinkPersistInfo(this.menuSolution, true),
             new DevExpress.XtraBars.LinkPersistInfo(this.menuFavorites),
             new DevExpress.XtraBars.LinkPersistInfo(this.menuErrList)});
 			this.bsiView.Name = "bsiView";
@@ -447,6 +472,13 @@
 			this.menuDBC.Name = "menuDBC";
 			this.menuDBC.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.menuDBC_ItemClick);
 			// 
+			// menuDBCList
+			// 
+			this.menuDBCList.Caption = "DB连接(&L)";
+			this.menuDBCList.Id = 14;
+			this.menuDBCList.Name = "menuDBCList";
+			this.menuDBCList.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.menuDBCList_ItemClick);
+			// 
 			// bsiWindow
 			// 
 			this.bsiWindow.Caption = "窗口(&W)";
@@ -480,7 +512,7 @@
             new DevExpress.XtraBars.LinkPersistInfo(this.menuContents),
             new DevExpress.XtraBars.LinkPersistInfo(this.menuIndex),
             new DevExpress.XtraBars.LinkPersistInfo(this.menuSearch),
-            new DevExpress.XtraBars.LinkPersistInfo(this.menuAbout)});
+            new DevExpress.XtraBars.LinkPersistInfo(this.menuAbout, true)});
 			this.bsiHelp.Name = "bsiHelp";
 			// 
 			// menuContents
@@ -537,13 +569,6 @@
 			this.dockPanel1.Size = new System.Drawing.Size(1036, 425);
 			this.dockPanel1.TabIndex = 5;
 			// 
-			// menuDBCList
-			// 
-			this.menuDBCList.Caption = "DB连接(&L)";
-			this.menuDBCList.Id = 14;
-			this.menuDBCList.Name = "menuDBCList";
-			this.menuDBCList.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.menuDBCList_ItemClick);
-			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -578,7 +603,6 @@
 		private DevExpress.XtraBars.BarDockControl barDockControlRight;
 		private DevExpress.XtraBars.BarSubItem bsiFile;
 		private DevExpress.XtraBars.BarButtonItem menuNew;
-		private DevExpress.XtraBars.BarButtonItem menuOpen;
 		private DevExpress.XtraBars.BarButtonItem menuSave;
 		private DevExpress.XtraBars.BarButtonItem menuSaveAs;
 		private DevExpress.XtraBars.BarButtonItem menuExit;
@@ -619,5 +643,7 @@
 		private DevExpress.XtraBars.BarButtonItem menuRSAKey;
 		private DevExpress.XtraBars.BarButtonItem menuDBC;
 		private DevExpress.XtraBars.BarButtonItem menuDBCList;
+		private DevExpress.XtraBars.BarSubItem bsiOpen;
+		private DevExpress.XtraBars.BarButtonItem menuOpenSql;
 	}
 }

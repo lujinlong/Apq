@@ -80,7 +80,7 @@ namespace ApqDBManager
 			this.blbiOpen.Glyph = System.Drawing.Image.FromFile(@"Res\png\File\Open.png");
 			this.blbiSave.Glyph = System.Drawing.Image.FromFile(@"Res\png\File\Save.png");
 			this.menuNew.Glyph = System.Drawing.Image.FromFile(@"Res\png\File\New.png");
-			this.menuOpen.Glyph = System.Drawing.Image.FromFile(@"Res\png\File\Open.png");
+			this.bsiOpen.Glyph = System.Drawing.Image.FromFile(@"Res\png\File\Open.png");
 			this.menuSave.Glyph = System.Drawing.Image.FromFile(@"Res\png\File\Save.png");
 			this.menuUndo.Glyph = System.Drawing.Image.FromFile(@"Res\png\Editor\Undo.png");
 			this.menuRedo.Glyph = System.Drawing.Image.FromFile(@"Res\png\Editor\Redo.png");
@@ -122,8 +122,8 @@ namespace ApqDBManager
 			childForm.Show(dockPanel1);
 			childForm.Activate();
 		}
-		//打开
-		private void menuOpen_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+		//打开Sql文件
+		private void menuOpenSql_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
 		{
 			if (!(ActiveMdiChild is Apq.Editor.IFileLoader))
 			{
