@@ -38,8 +38,6 @@ namespace ApqDBManager.Forms
 			dt.Columns.Add("Pwd");
 			dt.Columns.Add("Option");
 
-			//dt.RowChanged += new DataRowChangeEventHandler(dt_RowChanged);
-
 			// 设置绑定
 			gridControl1.DataSource = ds;
 			gridControl1.DataMember = "DBC";
@@ -48,18 +46,6 @@ namespace ApqDBManager.Forms
 			Apq.Xtra.Grid.Common.AddBehaivor(gridView1);
 
 		}
-
-		//void dt_RowChanged(object sender, DataRowChangeEventArgs e)
-		//{
-		//    if (gridView1.FocusedRowHandle > -1)
-		//    {
-		//        if (Apq.Convert.ChangeType<bool>(e.Row["UseTrusted"]))
-		//        {
-		//            GridRow gr = gridView1.GetFocusedRow() as GridRow;
-		//            gridView1.set
-		//        }
-		//    }
-		//}
 
 		#region IFileLoader 成员
 
