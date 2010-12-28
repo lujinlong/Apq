@@ -132,10 +132,17 @@ namespace Apq.ConnectionStrings.SQLServer
 		public string GetConnectionString()
 		{
 			string str = string.Empty;
-			str = string.Format(@"Data Source={0};Initial Catalog={1};", ServerName, DBName);
+			if (ServerName != null && ServerName.Length > 0)
+			{
+				str += string.Format("Data Source={0};", ServerName);
+			}
+			if (DBName != null && DBName.Length > 0)
+			{
+				str += string.Format("Initial Catalog={0};", DBName);
+			}
 			if (Mirror != null && Mirror.Length > 0)
 			{
-				str += string.Format(@"Failover Partner={0};", Mirror);
+				str += string.Format("Failover Partner={0};", Mirror);
 			}
 			if (UseTrusted)
 			{
@@ -143,7 +150,7 @@ namespace Apq.ConnectionStrings.SQLServer
 			}
 			else
 			{
-				str += string.Format(@"User Id={0};Password={1};", UserId, Pwd);
+				str += string.Format("User Id={0};Password={1};", UserId, Pwd);
 			}
 			if (Option != null && Option.Length > 0) str += Option;
 
