@@ -53,25 +53,25 @@
 			// 
 			// btnConfirm
 			// 
-			this.btnConfirm.Location = new System.Drawing.Point(97, 236);
+			this.btnConfirm.Location = new System.Drawing.Point(113, 275);
 			this.btnConfirm.Name = "btnConfirm";
-			this.btnConfirm.Size = new System.Drawing.Size(75, 23);
+			this.btnConfirm.Size = new System.Drawing.Size(87, 27);
 			this.btnConfirm.TabIndex = 0;
 			this.btnConfirm.Text = "确定";
 			this.btnConfirm.Click += new System.EventHandler(this.btnConfirm_Click);
 			// 
 			// btnCancel
 			// 
-			this.btnCancel.Location = new System.Drawing.Point(229, 236);
+			this.btnCancel.Location = new System.Drawing.Point(267, 275);
 			this.btnCancel.Name = "btnCancel";
-			this.btnCancel.Size = new System.Drawing.Size(75, 23);
+			this.btnCancel.Size = new System.Drawing.Size(87, 27);
 			this.btnCancel.TabIndex = 1;
 			this.btnCancel.Text = "取消";
 			this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
 			// 
 			// labelControl1
 			// 
-			this.labelControl1.Location = new System.Drawing.Point(30, 13);
+			this.labelControl1.Location = new System.Drawing.Point(35, 15);
 			this.labelControl1.Name = "labelControl1";
 			this.labelControl1.Size = new System.Drawing.Size(24, 14);
 			this.labelControl1.TabIndex = 2;
@@ -79,17 +79,17 @@
 			// 
 			// beName
 			// 
-			this.beName.Location = new System.Drawing.Point(130, 10);
+			this.beName.Location = new System.Drawing.Point(152, 12);
 			this.beName.Name = "beName";
 			this.beName.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Undo)});
-			this.beName.Size = new System.Drawing.Size(244, 21);
+			this.beName.Size = new System.Drawing.Size(285, 21);
 			this.beName.TabIndex = 3;
 			this.beName.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.beName_ButtonClick);
 			// 
 			// labelControl2
 			// 
-			this.labelControl2.Location = new System.Drawing.Point(30, 41);
+			this.labelControl2.Location = new System.Drawing.Point(35, 48);
 			this.labelControl2.Name = "labelControl2";
 			this.labelControl2.Size = new System.Drawing.Size(48, 14);
 			this.labelControl2.TabIndex = 4;
@@ -97,7 +97,7 @@
 			// 
 			// labelControl3
 			// 
-			this.labelControl3.Location = new System.Drawing.Point(30, 68);
+			this.labelControl3.Location = new System.Drawing.Point(35, 79);
 			this.labelControl3.Name = "labelControl3";
 			this.labelControl3.Size = new System.Drawing.Size(36, 14);
 			this.labelControl3.TabIndex = 6;
@@ -105,7 +105,7 @@
 			// 
 			// labelControl4
 			// 
-			this.labelControl4.Location = new System.Drawing.Point(30, 146);
+			this.labelControl4.Location = new System.Drawing.Point(35, 170);
 			this.labelControl4.Name = "labelControl4";
 			this.labelControl4.Size = new System.Drawing.Size(36, 14);
 			this.labelControl4.TabIndex = 8;
@@ -113,7 +113,7 @@
 			// 
 			// labelControl5
 			// 
-			this.labelControl5.Location = new System.Drawing.Point(30, 172);
+			this.labelControl5.Location = new System.Drawing.Point(35, 201);
 			this.labelControl5.Name = "labelControl5";
 			this.labelControl5.Size = new System.Drawing.Size(24, 14);
 			this.labelControl5.TabIndex = 10;
@@ -122,48 +122,48 @@
 			// cbDBName
 			// 
 			this.cbDBName.FormattingEnabled = true;
-			this.cbDBName.Location = new System.Drawing.Point(130, 38);
+			this.cbDBName.Location = new System.Drawing.Point(152, 44);
 			this.cbDBName.Name = "cbDBName";
-			this.cbDBName.Size = new System.Drawing.Size(244, 20);
+			this.cbDBName.Size = new System.Drawing.Size(284, 22);
 			this.cbDBName.TabIndex = 12;
 			this.cbDBName.DropDown += new System.EventHandler(this.cbDBName_DropDown);
 			// 
 			// cbServerName
 			// 
 			this.cbServerName.FormattingEnabled = true;
-			this.cbServerName.Location = new System.Drawing.Point(130, 65);
+			this.cbServerName.Location = new System.Drawing.Point(152, 76);
 			this.cbServerName.Name = "cbServerName";
-			this.cbServerName.Size = new System.Drawing.Size(244, 20);
+			this.cbServerName.Size = new System.Drawing.Size(284, 22);
 			this.cbServerName.TabIndex = 13;
 			this.cbServerName.DropDown += new System.EventHandler(this.cbServerName_DropDown);
 			// 
 			// cbUserId
 			// 
 			this.cbUserId.FormattingEnabled = true;
-			this.cbUserId.Location = new System.Drawing.Point(130, 143);
+			this.cbUserId.Location = new System.Drawing.Point(152, 167);
 			this.cbUserId.Name = "cbUserId";
-			this.cbUserId.Size = new System.Drawing.Size(244, 20);
+			this.cbUserId.Size = new System.Drawing.Size(284, 22);
 			this.cbUserId.TabIndex = 14;
 			this.cbUserId.DropDown += new System.EventHandler(this.cbUserId_DropDown);
 			// 
 			// txtPwd
 			// 
-			this.txtPwd.Location = new System.Drawing.Point(130, 169);
+			this.txtPwd.Location = new System.Drawing.Point(152, 197);
 			this.txtPwd.Name = "txtPwd";
 			this.txtPwd.Properties.PasswordChar = '*';
-			this.txtPwd.Size = new System.Drawing.Size(244, 21);
+			this.txtPwd.Size = new System.Drawing.Size(285, 21);
 			this.txtPwd.TabIndex = 15;
 			// 
 			// txtOption
 			// 
-			this.txtOption.Location = new System.Drawing.Point(130, 196);
+			this.txtOption.Location = new System.Drawing.Point(152, 229);
 			this.txtOption.Name = "txtOption";
-			this.txtOption.Size = new System.Drawing.Size(244, 21);
+			this.txtOption.Size = new System.Drawing.Size(285, 21);
 			this.txtOption.TabIndex = 17;
 			// 
 			// labelControl6
 			// 
-			this.labelControl6.Location = new System.Drawing.Point(30, 199);
+			this.labelControl6.Location = new System.Drawing.Point(35, 232);
 			this.labelControl6.Name = "labelControl6";
 			this.labelControl6.Size = new System.Drawing.Size(24, 14);
 			this.labelControl6.TabIndex = 16;
@@ -172,15 +172,15 @@
 			// cbMirror
 			// 
 			this.cbMirror.FormattingEnabled = true;
-			this.cbMirror.Location = new System.Drawing.Point(130, 91);
+			this.cbMirror.Location = new System.Drawing.Point(152, 106);
 			this.cbMirror.Name = "cbMirror";
-			this.cbMirror.Size = new System.Drawing.Size(244, 20);
+			this.cbMirror.Size = new System.Drawing.Size(284, 22);
 			this.cbMirror.TabIndex = 19;
 			this.cbMirror.DropDown += new System.EventHandler(this.cbMirror_DropDown);
 			// 
 			// labelControl7
 			// 
-			this.labelControl7.Location = new System.Drawing.Point(30, 94);
+			this.labelControl7.Location = new System.Drawing.Point(35, 110);
 			this.labelControl7.Name = "labelControl7";
 			this.labelControl7.Size = new System.Drawing.Size(60, 14);
 			this.labelControl7.TabIndex = 18;
@@ -188,7 +188,7 @@
 			// 
 			// ceUseTrusted
 			// 
-			this.ceUseTrusted.Location = new System.Drawing.Point(130, 118);
+			this.ceUseTrusted.Location = new System.Drawing.Point(152, 138);
 			this.ceUseTrusted.Name = "ceUseTrusted";
 			this.ceUseTrusted.Properties.AutoWidth = true;
 			this.ceUseTrusted.Properties.Caption = "使用信任连接";
@@ -198,9 +198,9 @@
 			// 
 			// DBCEdit
 			// 
-			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(410, 276);
+			this.ClientSize = new System.Drawing.Size(464, 320);
 			this.Controls.Add(this.ceUseTrusted);
 			this.Controls.Add(this.cbMirror);
 			this.Controls.Add(this.labelControl7);
@@ -219,9 +219,9 @@
 			this.Controls.Add(this.btnCancel);
 			this.Controls.Add(this.btnConfirm);
 			this.MaximizeBox = false;
-			this.MaximumSize = new System.Drawing.Size(418, 310);
+			this.MaximumSize = new System.Drawing.Size(472, 354);
 			this.MinimizeBox = false;
-			this.MinimumSize = new System.Drawing.Size(418, 310);
+			this.MinimumSize = new System.Drawing.Size(472, 354);
 			this.Name = "DBCEdit";
 			this.ShowIcon = false;
 			this.ShowInTaskbar = false;

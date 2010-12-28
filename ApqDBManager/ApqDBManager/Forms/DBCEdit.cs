@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace ApqDBManager.Forms
 {
-	public partial class DBCEdit : Form
+	public partial class DBCEdit : Apq.Windows.Forms.ImeForm
 	{
 		public DBCEdit()
 		{
