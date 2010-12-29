@@ -110,6 +110,15 @@ SELECT @sql_Drop = @sql_Drop + Sql_DROP + '; '
 SELECT @sql_Create = @sql_Create + Sql_CREATE + '; '
   FROM #Apq_DropIndex_t_helpindex
  ORDER BY IsClustered DESC;
+ 
+IF(object_id('dbo.Apq_Ext_Get') > 0 AND Len(@sql_Create) < 1)
+BEGIN--表无索引时查找记录表
+	SELECT @sql_Create = dbo.Apq_Ext_Get(@FullTableName,0,'Apq_DropIndex');
+END
+IF(object_id('dbo.Apq_Ext_Set') > 0 AND Len(@sql_Create) > 1)
+BEGIN--记录索引创建语句
+	EXEC dbo.Apq_Ext_Set @FullTableName, 0, 'Apq_DropIndex',@sql_Create;
+END
 
 TRUNCATE TABLE #Apq_DropIndex_t_helpindex;
 TRUNCATE TABLE #Apq_DropIndex_t_index_PSColumn;
