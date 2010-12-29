@@ -10,13 +10,14 @@
 	
 3.主要表:
 	bak.BakCfg				备份配置
+	log.Bak					备份启动日志
 	bak.FTP_PutBak			发送配置
 	
 4.存储过程:
-	bak.Apq_Bak_Full		执行完整备份
-	bak.Apq_Bak_Trn			执行日志备份
 	bak.Job_Apq_Bak_Init	备份作业调用,确定备份动作并记录在备份配置表
 	bak.Job_Apq_Bak			备份作业调用,启动相应备份动作
+	bak.Apq_Bak				执行备份
+	
 	bak.Job_Apq_Bak_FTP_Enqueue	备份文件发送作业调用,备份文件存入FTP发送队列
 	
 5.作业:
@@ -29,7 +30,6 @@
 	DBName			数据库名
 	FTPFolder		备份文件最终转入该目录以便FTP传送
 	BakFolder		备份目录(需要高性能,可为共享目录)
-	FTPFolderT		中转文件夹(性能不定,需要与FTPFolder位于同一分区)
 	
 	FullTime		首次完整备份时间(5分钟的倍数时间点)
 	FullCycle		完整备份周期(天)
