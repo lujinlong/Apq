@@ -179,8 +179,8 @@ UNION ALL SELECT 2,2;";
 		{
 			// 从ControlValues设置页面服务器列表,页面改变时,同时改变ControlValues里的值
 			Forms.SolutionExplorer.UIState UISolution = Apq.Windows.Controls.ControlExtension.GetControlValues(this, "UISolution") as Forms.SolutionExplorer.UIState;
-			GlobalObject.SolutionExplorer.SetServers(_Servers, UISolution);
-			GlobalObject.ErrList.Set_ErrList(_UI);
+			GlobalObject.SolutionExplorer.SetServers(dsServers, UISolution);
+			GlobalObject.ErrList.Set_ErrList(dsUI);
 		}
 
 		private void SqlEdit_Deactivate(object sender, EventArgs e)
@@ -480,7 +480,7 @@ UNION ALL SELECT 2,2;";
 		/// </summary>
 		private void MainBackThread_Start()
 		{
-			DataView dv = new DataView(_Servers.dtServers);
+			DataView dv = new DataView(dsServers.dtServers);
 			dv.RowFilter = "CheckState = 1 AND ID > 1";
 			if (dv.Count == 0)
 			{
@@ -489,10 +489,10 @@ UNION ALL SELECT 2,2;";
 
 			Apq.Windows.Delegates.Action_UI<BarStaticItem>(this, bsiState, delegate(BarStaticItem ctrl)
 			{
-				_UI.ErrList.Clear();
-				_UI.ErrList.AcceptChanges();
+				dsUI.ErrList.Clear();
+				dsUI.ErrList.AcceptChanges();
 			});
-			foreach (DataRow dr in _Servers.dtServers.Rows)
+			foreach (DataRow dr in dsServers.dtServers.Rows)
 			{
 				dr["Err"] = false;
 				dr["IsReadyToGo"] = false;
@@ -501,7 +501,7 @@ UNION ALL SELECT 2,2;";
 			{
 				drv["IsReadyToGo"] = true;
 			}
-			_Servers.dtServers.AcceptChanges();
+			dsServers.dtServers.AcceptChanges();
 
 			if (bciSingleThread.Checked)
 			{
@@ -570,7 +570,7 @@ UNION ALL SELECT 2,2;";
 			try
 			{
 				#region 获取服务器列表
-				DataView dv = new DataView(_Servers.dtServers);
+				DataView dv = new DataView(dsServers.dtServers);
 				dv.RowFilter = "CheckState = 1 AND ID > 1";
 				#endregion
 
@@ -634,7 +634,7 @@ UNION ALL SELECT 2,2;";
 			object rtLock = GetLock(ServerID.ToString());
 
 			int nServerID = Apq.Convert.ChangeType<int>(ServerID);
-			DataView dv = new DataView(_Servers.dtServers);
+			DataView dv = new DataView(dsServers.dtServers);
 			dv.RowFilter = "ID = " + nServerID;
 			if (dv.Count == 0)
 			{
@@ -651,7 +651,7 @@ UNION ALL SELECT 2,2;";
 				{
 					Apq.Windows.Delegates.Action_UI<BarStaticItem>(this, bsiState, delegate(BarStaticItem ctrl)
 					{
-						GlobalObject.ErrList.Set_ErrList(_UI);
+						GlobalObject.ErrList.Set_ErrList(dsUI);
 
 						XtraTabPage xtp = xtraTabControl1.TabPages.Add(dr["Name"].ToString());
 						rt = new ResultTable();
@@ -666,10 +666,14 @@ UNION ALL SELECT 2,2;";
 
 			SqlConnection sc = null;
 			DataSet ds = null;
-			int nRows = 0;
+			//int nRows = 0;
 			try
 			{
 				sc = new SqlConnection(dr["ConnectionString"].ToString());
+				sc.StatisticsEnabled = true;// 启用统计
+				sc.FireInfoMessageEventOnUserErrors = true;// 启用消息事件
+				sc.InfoMessage += new SqlInfoMessageEventHandler(rt.sc_InfoMessage);
+
 				SqlDataAdapter sda = new SqlDataAdapter(string.Empty, sc);
 				sda.SelectCommand.CommandTimeout = 86400;//3600*24
 
@@ -689,7 +693,8 @@ UNION ALL SELECT 2,2;";
 					{
 						DataSet ds1 = new DataSet();
 						sda.SelectCommand.CommandText = arySql[i];
-						nRows += sda.Fill(ds1);
+						//nRows += 
+						sda.Fill(ds1);	// 连接对象启用消息事件后一般不会引发异常
 
 						foreach (DataTable ds1Table in ds1.Tables)
 						{
@@ -717,7 +722,7 @@ UNION ALL SELECT 2,2;";
 							if (ds != null)
 							{
 								rt.BackDataSet = ds;
-								rt.teMsg.Text += string.Format("影响的行数: {0}", nRows);
+								//rt.teMsg.Text += string.Format("影响的行数: {0}", nRows);
 							}
 						});
 					}
@@ -737,8 +742,8 @@ UNION ALL SELECT 2,2;";
 								rtSingleDisplay.BackDataSet.Merge(ds);
 							}
 
-							nSingleDisplayRowCount += nRows;
-							rtSingleDisplay.teMsg.Text = string.Format("影响的行数: {0}", nSingleDisplayRowCount);
+							//nSingleDisplayRowCount += nRows;
+							//rtSingleDisplay.teMsg.Text = string.Format("影响的行数: {0}", nSingleDisplayRowCount);
 						});
 					}
 				}
@@ -751,7 +756,7 @@ UNION ALL SELECT 2,2;";
 			//}
 			catch (Exception ex)
 			{
-				DataView dvErr = new DataView(_Servers.dtServers);
+				DataView dvErr = new DataView(dsServers.dtServers);
 				dvErr.RowFilter = "ID = " + nServerID;
 				// 标记本服执行出错
 				if (dvErr.Count > 0)
@@ -760,11 +765,11 @@ UNION ALL SELECT 2,2;";
 					{
 						Apq.Windows.Delegates.Action_UI<BarStaticItem>(this, bsiState, delegate(BarStaticItem ctrl)
 						{
-							XSD.UI.ErrListRow drErrList = _UI.ErrList.NewErrListRow();
+							XSD.UI.ErrListRow drErrList = dsUI.ErrList.NewErrListRow();
 							drErrList.RSrvID = nServerID;
 							drErrList["__ServerName"] = dvErr[0]["Name"];
 							drErrList.s = ex.Message;
-							_UI.ErrList.Rows.Add(drErrList);
+							dsUI.ErrList.Rows.Add(drErrList);
 
 							dvErr[0]["Err"] = true;
 						});
@@ -784,13 +789,13 @@ UNION ALL SELECT 2,2;";
 							beiProgressBar.EditValue = Apq.Convert.ChangeType<int>(beiProgressBar.EditValue) + 1;
 							if (Apq.Convert.ChangeType<int>(beiProgressBar.EditValue) == ripb.Maximum)
 							{
-								_Servers.dtServers.AcceptChanges();
-								_UI.ErrList.AcceptChanges();
+								dsServers.dtServers.AcceptChanges();
+								dsUI.ErrList.AcceptChanges();
 								bsiState.Caption = "已全部完成";
 								btnCancel.Enabled = false;
 								btnExec.Enabled = true;
 
-								DataView dvErr = new DataView(_Servers.dtServers);
+								DataView dvErr = new DataView(dsServers.dtServers);
 								dvErr.RowFilter = "Err = 1";
 								// 标记本服执行出错
 								if (dvErr.Count > 0)
@@ -872,8 +877,8 @@ UNION ALL SELECT 2,2;";
 		/// </summary>
 		public void ReloadServers()
 		{
-			_Servers.dtServers.Clear();
-			_Servers.dtServers.Merge(GlobalObject.Servers.dtServers);
+			dsServers.dtServers.Clear();
+			dsServers.dtServers.Merge(GlobalObject.Servers.dtServers);
 		}
 	}
 }

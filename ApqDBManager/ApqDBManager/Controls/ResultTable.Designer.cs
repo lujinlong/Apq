@@ -36,11 +36,14 @@
 			this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
 			this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
 			this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
-			this.teMsg = new DevExpress.XtraEditors.TextEdit();
 			this.panel1 = new System.Windows.Forms.Panel();
+			this.tcRt = new DevExpress.XtraTab.XtraTabControl();
+			this.tpRt = new DevExpress.XtraTab.XtraTabPage();
+			this.tpInfo = new DevExpress.XtraTab.XtraTabPage();
 			((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.teMsg.Properties)).BeginInit();
 			this.panel1.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.tcRt)).BeginInit();
+			this.tcRt.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// barManager1
@@ -76,34 +79,47 @@
 			this.btnExport.Name = "btnExport";
 			this.btnExport.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnExport_ItemClick);
 			// 
-			// teMsg
-			// 
-			this.teMsg.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-						| System.Windows.Forms.AnchorStyles.Right)));
-			this.teMsg.EditValue = "";
-			this.teMsg.Location = new System.Drawing.Point(3, 3);
-			this.teMsg.Name = "teMsg";
-			this.teMsg.Properties.Appearance.BackColor = System.Drawing.SystemColors.Control;
-			this.teMsg.Properties.Appearance.Font = new System.Drawing.Font("新宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-			this.teMsg.Properties.Appearance.Options.UseBackColor = true;
-			this.teMsg.Properties.Appearance.Options.UseFont = true;
-			this.teMsg.Properties.ReadOnly = true;
-			this.teMsg.Size = new System.Drawing.Size(674, 20);
-			this.teMsg.TabIndex = 1;
-			// 
 			// panel1
 			// 
 			this.panel1.AutoScroll = true;
-			this.panel1.Controls.Add(this.teMsg);
+			this.panel1.Controls.Add(this.tcRt);
 			this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.panel1.Location = new System.Drawing.Point(0, 24);
 			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(680, 359);
+			this.panel1.Size = new System.Drawing.Size(680, 394);
 			this.panel1.TabIndex = 4;
+			// 
+			// tcRt
+			// 
+			this.tcRt.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.tcRt.Location = new System.Drawing.Point(0, 0);
+			this.tcRt.Name = "tcRt";
+			this.tcRt.SelectedTabPage = this.tpRt;
+			this.tcRt.Size = new System.Drawing.Size(680, 394);
+			this.tcRt.TabIndex = 2;
+			this.tcRt.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
+            this.tpRt,
+            this.tpInfo});
+			// 
+			// tpRt
+			// 
+			this.tpRt.AutoScroll = true;
+			this.tpRt.Name = "tpRt";
+			this.tpRt.ShowCloseButton = DevExpress.Utils.DefaultBoolean.False;
+			this.tpRt.Size = new System.Drawing.Size(673, 364);
+			this.tpRt.Text = "结果";
+			// 
+			// tpInfo
+			// 
+			this.tpInfo.AutoScroll = true;
+			this.tpInfo.Name = "tpInfo";
+			this.tpInfo.ShowCloseButton = DevExpress.Utils.DefaultBoolean.False;
+			this.tpInfo.Size = new System.Drawing.Size(673, 367);
+			this.tpInfo.Text = "消息";
 			// 
 			// ResultTable
 			// 
-			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 11F);
+			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.Controls.Add(this.panel1);
 			this.Controls.Add(this.barDockControlLeft);
@@ -112,11 +128,12 @@
 			this.Controls.Add(this.barDockControlTop);
 			this.Margin = new System.Windows.Forms.Padding(0);
 			this.Name = "ResultTable";
-			this.Size = new System.Drawing.Size(680, 383);
+			this.Size = new System.Drawing.Size(680, 418);
 			this.Load += new System.EventHandler(this.ResultTable_Load);
 			((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.teMsg.Properties)).EndInit();
 			this.panel1.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.tcRt)).EndInit();
+			this.tcRt.ResumeLayout(false);
 			this.ResumeLayout(false);
 
 		}
@@ -130,7 +147,9 @@
 		private DevExpress.XtraBars.BarDockControl barDockControlLeft;
 		private DevExpress.XtraBars.BarDockControl barDockControlRight;
 		private DevExpress.XtraBars.BarLargeButtonItem btnExport;
-		public DevExpress.XtraEditors.TextEdit teMsg;
 		private System.Windows.Forms.Panel panel1;
+		private DevExpress.XtraTab.XtraTabControl tcRt;
+		private DevExpress.XtraTab.XtraTabPage tpRt;
+		private DevExpress.XtraTab.XtraTabPage tpInfo;
 	}
 }

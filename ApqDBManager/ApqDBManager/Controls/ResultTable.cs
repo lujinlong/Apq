@@ -13,6 +13,8 @@ using DevExpress.XtraEditors;
 using DevExpress.XtraGrid;
 using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraGrid.Columns;
+using System.Data.SqlClient;
+using DevExpress.XtraTab;
 
 namespace ApqDBManager.Controls
 {
@@ -142,7 +144,7 @@ namespace ApqDBManager.Controls
 					#endregion
 
 					// 显示表格
-					int nX = 3, nY = 9 + teMsg.Size.Height;
+					int nX = 3, nY = 9;// +teMsg.Size.Height;
 					for (int i = 0; i < _DisplayDataSet.Tables.Count; i++, nY += 206)
 					{
 						DataTable dtDisplay = _DisplayDataSet.Tables[i];
@@ -179,7 +181,7 @@ namespace ApqDBManager.Controls
 						gc.EndInit();
 						gv.EndInit();
 
-						panel1.Controls.Add(gc);
+						tpRt.Controls.Add(gc);
 						lstgc.Add(gc);
 
 						// 绑定数据
@@ -297,6 +299,94 @@ namespace ApqDBManager.Controls
 			// 第二步 --> 第一步
 			else if (nStep1 == 2 && nStep2 == 1)
 			{
+			}
+		}
+
+		/// <summary>
+		/// 获取数据库连接传回的消息并显示到界面
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
+		public void sc_InfoMessage(object sender, SqlInfoMessageEventArgs e)
+		{
+			foreach (SqlError r in e.Errors)
+			{
+				Apq.Windows.Delegates.Action_UI<DevExpress.XtraTab.XtraTabPage>(this, tpInfo, delegate(DevExpress.XtraTab.XtraTabPage ctrl)
+				{
+					if (r.Class > 0)
+					{
+						MemoEdit meMsg = new MemoEdit();
+						meMsg.Properties.ReadOnly = true;
+						meMsg.Properties.WordWrap = false;
+						meMsg.Properties.AcceptsTab = true;
+						meMsg.Properties.Appearance.BackColor = System.Drawing.SystemColors.Control;
+						meMsg.Properties.Appearance.Font = new System.Drawing.Font("新宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+						meMsg.Properties.Appearance.Options.UseBackColor = true;
+						meMsg.Properties.Appearance.Options.UseFont = true;
+						meMsg.Properties.ScrollBars = System.Windows.Forms.ScrollBars.None;
+
+						meMsg.Size = new System.Drawing.Size(tpInfo.TabControl.Width - 30, 20);
+						//meMsg.Anchor = AnchorStyles.Left | AnchorStyles.Top | AnchorStyles.Right;
+						int nY = 9;
+						foreach (Control c in tpInfo.Controls)
+						{
+							nY += c.Size.Height;
+							nY += 6;
+						}
+						meMsg.Location = new System.Drawing.Point(3, nY);
+
+						if (r.Class > 10)
+						{
+							meMsg.Size = new System.Drawing.Size(tpInfo.TabControl.Width - 30, 140);//7行
+							meMsg.Properties.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+							meMsg.Properties.Appearance.ForeColor = System.Drawing.Color.Red;
+							meMsg.Properties.Appearance.Options.UseForeColor = true;
+							meMsg.Text += string.Format("消息 {0}，级别 {1}，状态 {2}，第 {3} 行\r\n", r.Number, r.Class, r.State, r.LineNumber);
+						}
+
+						meMsg.Text += r.Message;
+
+						tpInfo.Controls.Add(meMsg);
+
+						// 将错误记录到 SqlEdit 的 dsServers 和 dsUI
+						SqlEdit se = null;
+						Control ctrlTmp = this;
+						int ServerID = 0;
+						while (ctrlTmp != null)
+						{
+							ctrlTmp = ctrlTmp.Parent;
+							se = ctrlTmp as SqlEdit;
+							if (se != null)
+							{
+								break;
+							}
+
+							XtraTabPage xtp = ctrlTmp as XtraTabPage;
+							if (xtp != null)
+							{
+								ServerID = Apq.Convert.ChangeType<int>(xtp.Tag);
+							}
+						}
+
+						DataView dvErr = new DataView(se.dsServers.dtServers);
+						dvErr.RowFilter = "ID = " + ServerID;
+						// 标记本服执行出错
+						if (dvErr.Count > 0)
+						{
+							object rtLock = se.GetLock(ServerID.ToString());
+							lock (rtLock)
+							{
+								XSD.UI.ErrListRow drErrList = se.dsUI.ErrList.NewErrListRow();
+								drErrList.RSrvID = ServerID;
+								drErrList["__ServerName"] = dvErr[0]["Name"];
+								drErrList.s = r.Message;
+								se.dsUI.ErrList.Rows.Add(drErrList);
+
+								dvErr[0]["Err"] = true;
+							}
+						}
+					}
+				});
 			}
 		}
 	}

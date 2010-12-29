@@ -66,8 +66,8 @@
 			this.repositoryItemComboBox1 = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
 			this.popupMenu2 = new DevExpress.XtraBars.PopupMenu(this.components);
 			this.popupMenu1 = new DevExpress.XtraBars.PopupMenu(this.components);
-			this._Servers = new ApqDBManager.XSD.Servers();
-			this._UI = new ApqDBManager.XSD.UI();
+			this.dsServers = new ApqDBManager.XSD.Servers();
+			this.dsUI = new ApqDBManager.XSD.UI();
 			((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.ricbDBName)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.ripb)).BeginInit();
@@ -80,8 +80,8 @@
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.popupMenu2)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.popupMenu1)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this._Servers)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this._UI)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.dsServers)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.dsUI)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// bar1
@@ -389,13 +389,13 @@
 			// 
 			// _Servers
 			// 
-			this._Servers.DataSetName = "Servers";
-			this._Servers.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+			this.dsServers.DataSetName = "Servers";
+			this.dsServers.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
 			// 
 			// _UI
 			// 
-			this._UI.DataSetName = "UI";
-			this._UI.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+			this.dsUI.DataSetName = "UI";
+			this.dsUI.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
 			// 
 			// SqlEdit
 			// 
@@ -429,8 +429,8 @@
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox1)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.popupMenu2)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.popupMenu1)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this._Servers)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this._UI)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.dsServers)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.dsUI)).EndInit();
 			this.ResumeLayout(false);
 
 		}
@@ -473,7 +473,7 @@
 		private DevExpress.XtraBars.Docking.DockPanel dockPanel1;
 		private DevExpress.XtraBars.Docking.ControlContainer dockPanel1_Container;
 		private DevExpress.XtraBars.BarButtonItem menuShowNode;
-		private ApqDBManager.XSD.Servers _Servers;
-		private ApqDBManager.XSD.UI _UI;
+		public ApqDBManager.XSD.Servers dsServers;
+		public ApqDBManager.XSD.UI dsUI;
 	}
 }
