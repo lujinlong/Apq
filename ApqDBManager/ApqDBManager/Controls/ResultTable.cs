@@ -309,9 +309,9 @@ namespace ApqDBManager.Controls
 		/// <param name="e"></param>
 		public void sc_InfoMessage(object sender, SqlInfoMessageEventArgs e)
 		{
-			foreach (SqlError r in e.Errors)
+			Apq.Windows.Delegates.Action_UI<DevExpress.XtraTab.XtraTabPage>(this, tpInfo, delegate(DevExpress.XtraTab.XtraTabPage ctrl)
 			{
-				Apq.Windows.Delegates.Action_UI<DevExpress.XtraTab.XtraTabPage>(this, tpInfo, delegate(DevExpress.XtraTab.XtraTabPage ctrl)
+				foreach (SqlError r in e.Errors)
 				{
 					if (r.Class > 0)
 					{
@@ -386,8 +386,8 @@ namespace ApqDBManager.Controls
 							}
 						}
 					}
-				});
-			}
+				}
+			});
 		}
 	}
 }
