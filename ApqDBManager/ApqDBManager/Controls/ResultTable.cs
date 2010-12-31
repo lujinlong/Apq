@@ -156,13 +156,12 @@ namespace ApqDBManager.Controls
 						//
 						// gc
 						//
-						gc.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
 						gc.EmbeddedNavigator.Name = "";
 						gc.Location = new System.Drawing.Point(nX, nY);
 						gc.MainView = gv;
 						//gc.Name = "gc";
-						//gc.Size = new System.Drawing.Size(674, 200);
-						gc.Size = new System.Drawing.Size(Width - 30, 200);
+						gc.Size = new System.Drawing.Size(this.Parent.Parent.Width - 40, 200);
+						//gc.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
 						gc.TabIndex = i + 100;
 						gc.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] { gv });
 
@@ -337,11 +336,11 @@ namespace ApqDBManager.Controls
 
 						if (r.Class > 10)
 						{
-							meMsg.Size = new System.Drawing.Size(tpInfo.TabControl.Width - 30, 140);//7行
+							meMsg.Size = new System.Drawing.Size(this.Parent.Parent.Width - 40, 140);//7行
 							meMsg.Properties.ScrollBars = System.Windows.Forms.ScrollBars.Both;
 							meMsg.Properties.Appearance.ForeColor = System.Drawing.Color.Red;
 							meMsg.Properties.Appearance.Options.UseForeColor = true;
-							meMsg.Text += string.Format("消息 {0}，级别 {1}，状态 {2}，第 {3} 行\r\n", r.Number, r.Class, r.State, r.LineNumber);
+							meMsg.Text += string.Format("消息 {0}, 级别 {1}, 状态 {2}, 第 {3} 行\r\n", r.Number, r.Class, r.State, r.LineNumber);
 						}
 
 						meMsg.Text += r.Message;
