@@ -99,15 +99,7 @@ BEGIN
 				GOTO NEXT_DB;
 			END
 			
-			SELECT @ProductVersion = CONVERT(decimal,LEFT(Convert(nvarchar,SERVERPROPERTY('ProductVersion')),2));
-			IF(@ProductVersion<10)
-			BEGIN
-				SELECT @sql='BACKUP LOG '+@DBName_R+' WITH NO_LOG';
-				EXEC sp_executesql @sql;
-				SELECT @sqlDB = 'DBCC SHRINKFILE(''' + @DBName + '_Log'',10)'
-				SELECT @sql = 'EXEC [' + @DBName_R + ']..sp_executesql @sqlDB';
-				EXEC sp_executesql @sql,N'@sqlDB nvarchar(4000)',@sqlDB=@sqlDB;
-			END
+			EXEC dbo.Apq_ShrinkLog @DBName_R;
 		END
 		
 		-- 恢复日志备份到备用数据库
