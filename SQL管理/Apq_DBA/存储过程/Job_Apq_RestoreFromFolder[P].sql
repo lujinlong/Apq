@@ -99,7 +99,7 @@ BEGIN
 				GOTO NEXT_DB;
 			END
 			
-			EXEC dbo.Apq_ShrinkLog @DBName_R;
+			EXEC dbo.Apq_ShrinkLog @DBName_R, 1;
 		END
 		
 		-- 恢复日志备份到备用数据库
