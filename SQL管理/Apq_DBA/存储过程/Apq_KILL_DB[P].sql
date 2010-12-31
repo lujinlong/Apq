@@ -30,12 +30,12 @@ CREATE TABLE #sp_who(
 
 INSERT #sp_who EXEC sp_who;
 SELECT * FROM #sp_who
- WHERE dbname = @DBName;
+ WHERE dbname = @DBName AND spid > 50 AND spid <> @@spid;
 
 SET	@pSession = CURSOR FOR
 SELECT DISTINCT N'KILL ' + CAST(spid AS nvarchar)
   FROM #sp_who
- WHERE spid > 50 AND dbname = @DBName;
+ WHERE dbname = @DBName AND spid > 50 AND spid <> @@spid;
 
 OPEN @pSession;
 FETCH NEXT FROM @pSession INTO @stmt;

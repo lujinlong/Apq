@@ -4,57 +4,60 @@ GO
 /* =============================================
 -- 作者: 黄宗银
 -- 日期: 2010-04-13
--- 描述: 断开某用户数据库的所有连接
+-- 描述: 断开某登录的所有连接
 -- 示例:
 EXEC dbo.Apq_KILL_Login N'LoginName'
 -- =============================================
+-1:不存在的登录名!
 */
 ALTER PROC dbo.Apq_KILL_Login
     @LoginName nvarchar(256)
 AS 
 SET NOCOUNT ON ;
 
-DECLARE @LoginID int
+IF(Len(@LoginName) < 1) SELECT @LoginName = NULL ;
 
-IF ( Len(@LoginName) < 1 ) 
-    SELECT  @LoginName = NULL ;
+SELECT TOP(1) 1
+  FROM master.sys.syslogins
+ WHERE name = @LoginName;
+IF(@@ROWCOUNT = 0)
+BEGIN
+	PRINT '不存在的登录名!';
+	RETURN -1 ;
+END
 
-SELECT  @LoginID = principal_id
-FROM    master.sys.login_token
-WHERE   name = @LoginName ;
-IF ( @LoginID IS NULL
-     OR @LoginID < 4
-   ) 
-    RETURN -2 ;
+DECLARE	@stmt nvarchar(max), @pSession cursor;
 
-DECLARE @stmt nvarchar(max)
-   ,@pSession CURSOR ;
+CREATE TABLE #sp_who(
+	spid	smallint,
+	ecid	smallint,
+	status	nvarchar(30),
+	loginame	nvarchar(128),
+	hostname	nvarchar(128),
+	blk		int,
+	dbname	nvarchar(128),
+	cmd		nvarchar(16),
+	request_id	int
+);
 
-CREATE TABLE #t_who (
-     spid smallint
-    ,ecid smallint
-    ,status nvarchar(30)
-    ,loginame nvarchar(128)
-    ,hostname nvarchar(128)
-    ,blk nvarchar(5)
-    ,DBName nvarchar(128)
-    ,cmd nvarchar(16)
-    ,request_id int
-    ) ;
+INSERT #sp_who EXEC sp_who @LoginName;
+SELECT * FROM #sp_who
+ WHERE spid > 50 AND spid <> @@spid;
 
-INSERT  #t_who
-        EXEC sp_who @LoginName
+SET	@pSession = CURSOR FOR
+SELECT DISTINCT N'KILL ' + CAST(spid AS nvarchar)
+  FROM #sp_who
+ WHERE spid > 50 AND spid <> @@spid;
 
-SET @pSession = CURSOR FOR
-SELECT N'KILL ' + CAST(spid AS nvarchar) FROM #t_who;
+OPEN @pSession;
+FETCH NEXT FROM @pSession INTO @stmt;
+WHILE( @@FETCH_STATUS = 0 )
+BEGIN
+	EXEC sp_executesql @stmt;
 
-OPEN @pSession ;
-FETCH NEXT FROM @pSession INTO @stmt ;
-WHILE ( @@FETCH_STATUS = 0 ) 
-    BEGIN
-        EXEC sp_executesql @stmt ;
+	FETCH NEXT FROM @pSession INTO @stmt;
+END
+CLOSE @pSession;
 
-        FETCH NEXT FROM @pSession INTO @stmt ;
-    END
-CLOSE @pSession ;
+DROP TABLE #sp_who;
 GO
