@@ -18,8 +18,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_说明", "_说明", "{40D4
 		AssemblyInfo.txt = AssemblyInfo.txt
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Apq.DBC", "Apq.DBC\Apq.DBC.csproj", "{40669BE4-5C1F-4C76-84C7-35649167BAF9}"
-EndProject
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "ApqDBManager_Setup", "ApqDBManager_Setup\ApqDBManager_Setup.vdproj", "{102C478D-0E13-411C-813C-C325612C2C85}"
 EndProject
 Global
@@ -65,15 +63,6 @@ Global
 		{BE686065-520F-4352-8846-BCBA8AADBBEC}.Release|Any CPU.Build.0 = Release|Any CPU
 		{BE686065-520F-4352-8846-BCBA8AADBBEC}.Release|x86.ActiveCfg = Release|x86
 		{BE686065-520F-4352-8846-BCBA8AADBBEC}.Release|x86.Build.0 = Release|x86
-		{40669BE4-5C1F-4C76-84C7-35649167BAF9}.Debug_Home|Any CPU.ActiveCfg = Debug|Any CPU
-		{40669BE4-5C1F-4C76-84C7-35649167BAF9}.Debug_Home|Any CPU.Build.0 = Debug|Any CPU
-		{40669BE4-5C1F-4C76-84C7-35649167BAF9}.Debug_Home|x86.ActiveCfg = Debug|Any CPU
-		{40669BE4-5C1F-4C76-84C7-35649167BAF9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{40669BE4-5C1F-4C76-84C7-35649167BAF9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{40669BE4-5C1F-4C76-84C7-35649167BAF9}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{40669BE4-5C1F-4C76-84C7-35649167BAF9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{40669BE4-5C1F-4C76-84C7-35649167BAF9}.Release|Any CPU.Build.0 = Release|Any CPU
-		{40669BE4-5C1F-4C76-84C7-35649167BAF9}.Release|x86.ActiveCfg = Release|Any CPU
 		{102C478D-0E13-411C-813C-C325612C2C85}.Debug_Home|Any CPU.ActiveCfg = Debug
 		{102C478D-0E13-411C-813C-C325612C2C85}.Debug_Home|x86.ActiveCfg = Debug
 		{102C478D-0E13-411C-813C-C325612C2C85}.Debug|Any CPU.ActiveCfg = Debug

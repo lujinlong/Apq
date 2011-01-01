@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using ICSharpCode.TextEditor.Document;
+using System.Security.Cryptography;
 
 namespace ApqDBManager.Forms
 {
@@ -16,31 +17,57 @@ namespace ApqDBManager.Forms
 		{
 			InitializeComponent();
 
-			txtRSAKey.Encoding = System.Text.Encoding.Default;
+			txtRSAUKey.Encoding = System.Text.Encoding.Default;
 		}
 
 		private void RSAKey_Load(object sender, EventArgs e)
 		{
-			txtRSAKey.Document.HighlightingStrategy = HighlightingStrategyFactory.CreateHighlightingStrategy("XML");
-			txtRSAKey.ShowEOLMarkers = false;
-			txtRSAKey.ShowSpaces = false;
-			txtRSAKey.ShowTabs = false;
-			txtRSAKey.ShowVRuler = false;
+			txtRSAUKey.Document.HighlightingStrategy = HighlightingStrategyFactory.CreateHighlightingStrategy("XML");
+			txtRSAUKey.ShowEOLMarkers = false;
+			txtRSAUKey.ShowSpaces = false;
+			txtRSAUKey.ShowTabs = false;
+			txtRSAUKey.ShowVRuler = false;
+
+			txtRSAPKey.Document.HighlightingStrategy = HighlightingStrategyFactory.CreateHighlightingStrategy("XML");
+			txtRSAPKey.ShowEOLMarkers = false;
+			txtRSAPKey.ShowSpaces = false;
+			txtRSAPKey.ShowTabs = false;
+			txtRSAPKey.ShowVRuler = false;
 		}
 
 		private void btnCreate_Click(object sender, EventArgs e)
 		{
-			txtRSAKey.Text = Apq.Security.Cryptography.RSAHelper.CreateKey(ceContainsPKey.Checked);
+			txtRSAUKey.Text = string.Empty;
+			txtRSAPKey.Text = string.Empty;
+			txtRSAPKey.Refresh();
+
+			RSACryptoServiceProvider rsa = new RSACryptoServiceProvider();
+			txtRSAUKey.Text = rsa.ToXmlString(false);
+			if (ceContainsPKey.Checked)
+			{
+				txtRSAPKey.Text = rsa.ToXmlString(true);
+			}
 		}
 
-		private void btnSaveToFile_Click(object sender, EventArgs e)
+		private void btnSaveUToFile_Click(object sender, EventArgs e)
 		{
 			SaveFileDialog saveFileDialog = new SaveFileDialog();
 			saveFileDialog.RestoreDirectory = true;
 			saveFileDialog.Filter = "XML文件(*.xml)|*.xml|所有文件(*.*)|*.*";
 			if (saveFileDialog.ShowDialog(this) == DialogResult.OK)
 			{
-				txtRSAKey.SaveFile(saveFileDialog.FileName);
+				txtRSAUKey.SaveFile(saveFileDialog.FileName);
+			}
+		}
+
+		private void btnSavePToFile_Click(object sender, EventArgs e)
+		{
+			SaveFileDialog saveFileDialog = new SaveFileDialog();
+			saveFileDialog.RestoreDirectory = true;
+			saveFileDialog.Filter = "XML文件(*.xml)|*.xml|所有文件(*.*)|*.*";
+			if (saveFileDialog.ShowDialog(this) == DialogResult.OK)
+			{
+				txtRSAPKey.SaveFile(saveFileDialog.FileName);
 			}
 		}
 	}

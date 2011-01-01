@@ -96,6 +96,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Dlls\Apq.DB.dll</HintPath>
     </Reference>
+    <Reference Include="Apq.Reg.Client, Version=0.3.4018.43148, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Dlls\Apq.Reg.Client.dll</HintPath>
+    </Reference>
     <Reference Include="Apq.Win, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Dlls\Apq.Win.dll</HintPath>
@@ -640,6 +644,12 @@
     <Content Include="_Doc\安装说明.txt" />
     <Content Include="_Doc\计划.txt" />
     <Content Include="_Doc\说明.txt" />
+    <None Include="ApqDBManager.dll.apq">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="ApqDBManager.dll.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="ApqDBManager[冰川].reg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -673,6 +683,9 @@ xcopy "%25Reference%25\$(ConfigurationName)\Config\Apq.Win.dll.apq" "$(ProjectDi
 
 xcopy "%25Reference%25\$(ConfigurationName)\Config\szDomain.ResConvert.dll.config" "$(ProjectDir)" /c /q /g /h /r /k /y
 xcopy "%25Reference%25\$(ConfigurationName)\Config\szDomain.ResConvert.dll.apq" "$(ProjectDir)" /c /q /g /h /r /k /y
+
+xcopy "%25Reference%25\$(ConfigurationName)\Config\Apq.Reg.Client.dll.config" "$(ProjectDir)" /c /q /g /h /r /k /y
+xcopy "%25Reference%25\$(ConfigurationName)\Config\Apq.Reg.Client.dll.apq" "$(ProjectDir)" /c /q /g /h /r /k /y
 :EndConfig
 
 xcopy "%25Reference%25\$(ConfigurationName)\Apq.dll" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
@@ -701,6 +714,9 @@ xcopy "%25Reference%25\$(ConfigurationName)\Apq.Win.pdb" "$(ProjectDir)Dlls\" /c
 
 xcopy "%25Reference%25\$(ConfigurationName)\ApqDBManager.XSD.dll" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
 xcopy "%25Reference%25\$(ConfigurationName)\ApqDBManager.XSD.pdb" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+
+xcopy "%25Reference%25\$(ConfigurationName)\Apq.Reg.Client.dll" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+xcopy "%25Reference%25\$(ConfigurationName)\Apq.Reg.Client.pdb" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
 
 :xcopy "%25Reference%25\Release\szDomain.ResConvert.dll" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
 :xcopy "%25Reference%25\Release\szDomain.ResConvert.xml" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
