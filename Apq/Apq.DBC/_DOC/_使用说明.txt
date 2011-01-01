@@ -1,0 +1,25 @@
+﻿必需的文件列表:
+	Apq.dll
+	Apq.DBC.dll
+	XML文件可为编程提供提示功能等辅助作用,非运行必需.
+
+程序调用方法:
+1.直接引用两个dll文件
+2.WebConfig中指定DBC文件完整路径,如果不设置默认为:"D:\DBC\cs.res"
+		<!-- 注意:请使用绝对路径,并为Network Service帐号分配将该目录的读取权限 -->
+		<add key="Apq.DBC.csFile" value="D:\DBA\cs\cs.res"/>
+3.调用Apq.DBC.Common.GetConnectoinString(string Name)返回连接字符串.
+	此Name一般传入数据库名
+
+部署方法:
+1.Apq.dll,Apq.DBC.dll部署到bin目录.
+2.站点的Web.Config中指定DBC文件完整路径
+
+
+优点:
+1.加密保存,安全性提高.
+2.集中管理,便于查错与纠正.
+3.修改连接字符串程序无需重启即可失效.
+
+管理方法:
+每台业务服务器确定一文件夹用来存放连接文件(可以所有业务共享同一文件,也可多个文件,为方便管理,统一使用一个文件,该文件命名为cs.res)

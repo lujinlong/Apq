@@ -10,6 +10,7 @@ namespace Apq.Security.Cryptography
 	/// <summary>
 	/// DSA助手(数字签名)
 	/// </summary>
+	[Obsolete("实现有错误")]
 	public class DSAHelper
 	{
 		/// <summary>
@@ -97,7 +98,7 @@ namespace Apq.Security.Cryptography
 		/// DSA签名
 		/// </summary>
 		/// <param name="PlainText">原始字符串</param>
-		/// <param name="xmlString">密钥(至少含私钥)</param>
+		/// <param name="xmlString">密钥(公钥私钥俱有)</param>
 		/// <returns>Base64编码后的已签名字符串</returns>
 		public static string SignString(string PlainText, string xmlString)
 		{
@@ -105,7 +106,10 @@ namespace Apq.Security.Cryptography
 			dsa.FromXmlString(xmlString);
 
 			byte[] bText = System.Text.Encoding.UTF8.GetBytes(PlainText.ToCharArray());
-			byte[] bEnc = dsa.SignData(bText);
+
+			DSASignatureFormatter DSAFormatter = new DSASignatureFormatter(dsa);
+			DSAFormatter.SetHashAlgorithm("SHA1");
+			byte[] bEnc = DSAFormatter.CreateSignature(bText);
 
 			return System.Convert.ToBase64String(bEnc);
 		}
@@ -114,7 +118,7 @@ namespace Apq.Security.Cryptography
 		/// DSA验证
 		/// </summary>
 		/// <param name="CypherText">签名后的Base64字符串</param>
-		/// <param name="xmlString">密钥(公钥私钥俱有)</param>
+		/// <param name="xmlString">密钥(至少含公钥)</param>
 		/// <param name="signString">签名串</param>
 		public static bool VerifyString(string CypherText, string xmlString, string signString)
 		{
@@ -124,7 +128,9 @@ namespace Apq.Security.Cryptography
 			byte[] bEnc = System.Convert.FromBase64String(CypherText);
 			byte[] bText = System.Text.Encoding.UTF8.GetBytes(signString.ToCharArray());
 
-			return dsa.VerifyData(bEnc, bText);
+			DSASignatureDeformatter DSADeformatter = new DSASignatureDeformatter(dsa);
+			DSADeformatter.SetHashAlgorithm("SHA1");
+			return DSADeformatter.VerifySignature(bEnc, bText);
 		}
 		#endregion
 	}

@@ -105,7 +105,7 @@ namespace Apq.Security.Cryptography
 			RSACryptoServiceProvider rsa = new RSACryptoServiceProvider();
 			rsa.FromXmlString(xmlString);
 
-			byte[] bText = System.Text.Encoding.UTF8.GetBytes(PlainText.ToCharArray());
+			byte[] bText = System.Text.Encoding.UTF8.GetBytes(PlainText);
 			byte[] bEnc = rsa.Encrypt(bText, false);
 
 			return System.Convert.ToBase64String(bEnc);
