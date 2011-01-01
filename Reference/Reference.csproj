@@ -101,6 +101,7 @@
     <None Include="CuteEditor\Bin\es-MX.dic" />
     <None Include="CuteEditor\Bin\fr-FR.dic" />
     <None Include="CuteEditor\Bin\it-IT.dic" />
+    <Content Include="bccrypto-net-1.6.1\BouncyCastle.Crypto.dll" />
     <Content Include="DockPanel\V2.2.txt" />
     <Content Include="ICSharpCode\TextEditor_2.2\ICSharpCode.TextEditor.dll" />
     <Content Include="ICSharpCode\TextEditor_2.2\ICSharpCode.TextEditor.XML" />
@@ -119,6 +120,10 @@
     <Content Include="My97DatePicker4.2\My97DatePicker\skin\whyGreen\img.gif" />
     <Content Include="My97DatePicker4.2\My97DatePicker\WdatePicker.js" />
     <Content Include="My97DatePicker4.2\readme.txt" />
+    <Content Include="myxls-0.6.3\License.MIT.txt" />
+    <Content Include="myxls-0.6.3\org.in2bits.MyXls.dll" />
+    <Content Include="myxls-0.6.3\org.in2bits.MyXls.pdb" />
+    <Content Include="myxls-0.6.3\org.in2bits.MyXls.XML" />
     <Content Include="Res\Common\png\CheckBox\UnChecked.png" />
     <Content Include="Res\Common\png\CheckBox\Checked.png" />
     <Content Include="Res\Common\png\CheckBox\Indeterminate.png" />
