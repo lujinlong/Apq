@@ -282,6 +282,16 @@ UNION ALL SELECT 2,2;";
 
 			if (!string.IsNullOrEmpty(strSql))
 			{
+				#region 注册检测
+				DataView dv = new DataView(dsServers.dtServers);
+				dv.RowFilter = "CheckState = 1 AND ID > 1";
+				if (dv.Count > 3 && !Apq.Reg.Client.Common.IsRegistration)
+				{
+					MessageBox.Show("谢谢您支持共享软件!共享版最多支持同时连接3个服务器,要获得更多的连接支持,请注册,谢谢使用","注册提示");
+					return;
+				}
+				#endregion
+
 				btnExec.Enabled = false;
 
 				// 将线程中需要的控件值取到变量

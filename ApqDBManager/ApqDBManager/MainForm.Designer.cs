@@ -88,6 +88,7 @@
 			this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
 			this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
 			this.dockPanel1 = new WeifenLuo.WinFormsUI.Docking.DockPanel();
+			this.menuSN = new DevExpress.XtraBars.BarButtonItem();
 			((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
 			this.SuspendLayout();
 			// 
@@ -145,9 +146,10 @@
             this.menuDBC,
             this.menuDBCList,
             this.bsiOpen,
-            this.menuOpenSql});
+            this.menuOpenSql,
+            this.menuSN});
 			this.barManager1.MainMenu = this.bar2;
-			this.barManager1.MaxItemId = 17;
+			this.barManager1.MaxItemId = 18;
 			this.barManager1.StatusBar = this.bar3;
 			// 
 			// bar1
@@ -512,7 +514,8 @@
             new DevExpress.XtraBars.LinkPersistInfo(this.menuContents),
             new DevExpress.XtraBars.LinkPersistInfo(this.menuIndex),
             new DevExpress.XtraBars.LinkPersistInfo(this.menuSearch),
-            new DevExpress.XtraBars.LinkPersistInfo(this.menuAbout, true)});
+            new DevExpress.XtraBars.LinkPersistInfo(this.menuSN, true),
+            new DevExpress.XtraBars.LinkPersistInfo(this.menuAbout)});
 			this.bsiHelp.Name = "bsiHelp";
 			// 
 			// menuContents
@@ -568,6 +571,13 @@
 			this.dockPanel1.Name = "dockPanel1";
 			this.dockPanel1.Size = new System.Drawing.Size(1036, 425);
 			this.dockPanel1.TabIndex = 5;
+			// 
+			// menuSN
+			// 
+			this.menuSN.Caption = "注册信息(&R)";
+			this.menuSN.Id = 17;
+			this.menuSN.Name = "menuSN";
+			this.menuSN.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.menuSN_ItemClick);
 			// 
 			// MainForm
 			// 
@@ -645,5 +655,6 @@
 		private DevExpress.XtraBars.BarButtonItem menuDBCList;
 		private DevExpress.XtraBars.BarSubItem bsiOpen;
 		private DevExpress.XtraBars.BarButtonItem menuOpenSql;
+		private DevExpress.XtraBars.BarButtonItem menuSN;
 	}
 }

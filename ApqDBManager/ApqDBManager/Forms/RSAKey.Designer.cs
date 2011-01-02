@@ -116,6 +116,7 @@
 			this.Controls.Add(this.ceContainsPKey);
 			this.Controls.Add(this.btnSaveUToFile);
 			this.Controls.Add(this.btnCreate);
+			this.DockAreas = ((WeifenLuo.WinFormsUI.Docking.DockAreas)((WeifenLuo.WinFormsUI.Docking.DockAreas.Float | WeifenLuo.WinFormsUI.Docking.DockAreas.Document)));
 			this.Name = "RSAKey";
 			this.TabText = "RSAKey";
 			this.Text = "RSA密钥对";

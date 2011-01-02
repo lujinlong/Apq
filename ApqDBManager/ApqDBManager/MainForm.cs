@@ -362,6 +362,12 @@ namespace ApqDBManager
 
 		}
 
+		private void menuSN_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+		{
+			Form f = new Apq.Reg.Client.Win.RegForm();
+			f.ShowDialog(this);
+		}
+
 		private void menuAbout_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
 		{
 
