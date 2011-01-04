@@ -47,5 +47,28 @@ namespace Apq.Reg.Client
 			return f.VerifySignature(bEnc, bText);
 		}
 		#endregion
+
+		#region 验证注册码
+		/// <summary>
+		/// 获取是否已注册
+		/// </summary>
+		public static bool IsRegistration
+		{
+			get
+			{
+				try
+				{
+					string xmlString = GetKey();
+					string strName = GlobalObject.XmlAsmConfig[typeof(Apq.Reg.Client.Common), "Name"];
+					string strSN = GlobalObject.XmlAsmConfig[typeof(Apq.Reg.Client.Common), "SN"];
+					return VerifyString(strSN, xmlString, strName);
+				}
+				catch
+				{
+					return false;
+				}
+			}
+		}
+		#endregion
 	}
 }
