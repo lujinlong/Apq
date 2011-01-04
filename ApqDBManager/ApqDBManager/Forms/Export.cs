@@ -217,8 +217,6 @@ namespace ApqDBManager
 		{
 			try
 			{
-				FileStream fs = new FileStream(saveFile1.FileName, FileMode.Create);
-
 				// 整理数据集
 				Apq.Data.DataSet.BuildupTabelForMaxrow(ds, ExcelMaxRowNumber);
 
@@ -243,6 +241,7 @@ namespace ApqDBManager
 				}
 
 				org.in2bits.MyXls.XlsDocument xd = new org.in2bits.MyXls.XlsDocument(dsExcel);
+				FileStream fs = new FileStream(saveFile1.FileName, FileMode.Create);
 				xd.Save(fs);
 				fs.Flush();
 				fs.Close();

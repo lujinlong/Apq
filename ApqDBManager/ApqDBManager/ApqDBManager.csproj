@@ -641,9 +641,13 @@
     <Content Include="XmlServers.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="_Doc\安装说明.txt" />
+    <Content Include="_Doc\安装说明.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="_Doc\计划.txt" />
-    <Content Include="_Doc\说明.txt" />
+    <Content Include="_Doc\说明.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="ApqDBManager.dll.apq">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

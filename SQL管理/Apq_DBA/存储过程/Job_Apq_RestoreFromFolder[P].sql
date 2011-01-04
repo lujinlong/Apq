@@ -92,7 +92,7 @@ BEGIN
 				EXEC sp_executesql @sql;
 			END
 			
-			EXEC @rtn = bak.Apq_Restore 1,@DBName_R,@LFullName,1,@RestoreFolder,2
+			EXEC @rtn = bak.Apq_Restore 1,@DBName_R,@LFullName,1,@RestoreFolder,0
 			IF(@@ERROR <> 0 OR @rtn <> 1)
 			BEGIN
 				CLOSE @csrFile;
