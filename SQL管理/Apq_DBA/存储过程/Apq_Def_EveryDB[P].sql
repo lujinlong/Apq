@@ -186,10 +186,12 @@ DECLARE @csr CURSOR
 SET @csr = CURSOR STATIC FOR
 SELECT name
   FROM master.sys.databases
- WHERE is_read_only = 0
-	--AND database_id = db_id('Agiltron')	-- 只进入测试库
-	AND database_id <> db_id() AND database_id <> db_id('tempdb') AND is_read_only = 0 AND state = 0
-	AND (@ToMsDB <> 0 OR database_id > 4);
+ WHERE name = 'model'
+	OR (is_read_only = 0
+		--AND database_id = db_id('Agiltron')	-- 只进入测试库
+		AND database_id <> db_id() AND database_id <> db_id('tempdb') AND is_read_only = 0 AND state = 0
+		AND (@ToMsDB <> 0 OR database_id > 4)
+	);
 	
 OPEN @csr;
 FETCH NEXT FROM @csr INTO @DBName;
@@ -316,7 +318,9 @@ DROP TABLE ' + @FullName;
 			IF(EXISTS(SELECT TOP 1 1 FROM @DicFC WHERE is_identity = 1)
 				AND EXISTS(SELECT TOP 1 1 FROM @DicFC f INNER JOIN @DicTC t ON f.name = t.NAME WHERE f.is_identity = 1))
 			BEGIN
-				SELECT @sql_SI = 'SET IDENTITY_INSERT ' + @FullName + ' ON';
+				SELECT @sql_SI = '
+SET IDENTITY_INSERT ' + @FullName + ' ON;
+';
 			END
 			ELSE
 			BEGIN
@@ -332,7 +336,9 @@ DROP TABLE [' + @SchemaName + '].' + @objName +'_apqtmpt;
 			IF(EXISTS(SELECT TOP 1 1 FROM @DicFC WHERE is_identity = 1)
 				AND EXISTS(SELECT TOP 1 1 FROM @DicFC f INNER JOIN @DicTC t ON f.name = t.NAME WHERE f.is_identity = 1))
 			BEGIN
-				SELECT @sql_SI = @sql_SI + 'SET IDENTITY_INSERT ' + @FullName + ' OFF';
+				SELECT @sql_SI = @sql_SI + '
+SET IDENTITY_INSERT ' + @FullName + ' OFF;
+';
 			END
 			SELECT @sqlDB = 'EXEC [' + @DBName + ']..sp_executesql @sql_SI';
 			EXEC sp_executesql @sqlDB,N'@sql_SI nvarchar(max)',@sql_SI = @sql_SI
