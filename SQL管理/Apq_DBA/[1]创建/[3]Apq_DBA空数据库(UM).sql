@@ -14,6 +14,7 @@ CREATE DATABASE Apq_DBA ON  PRIMARY
 ( NAME = N''Apq_DBA_log'', FILENAME = N''' + @DBFolder + '\Apq_DBA_log.ldf'' , SIZE = 1024KB , FILEGROWTH = 1024KB)
 ';
 EXEC sp_executesql @sql;
+GO
 
 -- 数据库设置 --------------------------------------------------------------------------------------
 USE [Apq_DBA]
