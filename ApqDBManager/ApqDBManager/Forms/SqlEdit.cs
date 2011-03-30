@@ -37,7 +37,6 @@ namespace ApqDBManager
 		private List<DataSet> lstds = new List<DataSet>();
 
 		private ResultTable rtSingleDisplay;
-		private long nSingleDisplayRowCount = 0;
 
 		#region ResultTableLocks
 		private Dictionary<string, object> _ResultTableLocks;
@@ -548,7 +547,6 @@ UNION ALL SELECT 2,2;";
 				{
 					rtSingleDisplay.BackDataSet.Clear();
 					rtSingleDisplay.BackDataSet.Tables.Clear();
-					nSingleDisplayRowCount = 0;
 				}
 				foreach (DataSet item in lstds)
 				{
