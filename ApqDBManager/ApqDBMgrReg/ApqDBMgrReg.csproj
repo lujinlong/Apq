@@ -184,9 +184,6 @@
     <None Include="Apq.WorkFlow.dll.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="license.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Include="ApqDBMgrReg.exe.apq">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
