@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Security.Cryptography;
+using System.Data;
 
 namespace Apq.Reg.Server
 {
@@ -24,6 +25,25 @@ namespace Apq.Reg.Server
 				GlobalObject.XmlAsmConfig.Save();
 			}
 			return xmlString;
+		}
+
+		/// <summary>
+		/// 按产品和版本获取密钥对(XmlString),包含私钥
+		/// </summary>
+		/// <returns></returns>
+		public static string GetKey(string Product, string Version)
+		{
+			DataTable xmlStrings = GlobalObject.XmlAsmConfig.GetTableConfig("Apq.Reg.Server", "RSAKeys");
+			DataView dv = new DataView(xmlStrings);
+			dv.RowFilter = string.Format("Product={0} AND Version={1}",
+				Apq.Data.SqlClient.Common.ConvertToSqlON(Product),
+				Apq.Data.SqlClient.Common.ConvertToSqlON(Version));
+
+			if (dv.Count > 0)
+			{
+				return Apq.Convert.ChangeType<string>(dv[0]["RSAKey"]);
+			}
+			return string.Empty;
 		}
 		#endregion
 

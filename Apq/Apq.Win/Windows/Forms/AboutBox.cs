@@ -7,7 +7,10 @@ using System.Reflection;
 
 namespace Apq.Windows.Forms
 {
-	partial class AboutBox : ImeForm
+	/// <summary>
+	/// 关于对话框
+	/// </summary>
+	public partial class AboutBox : ImeForm
 	{
 		/// <summary>
 		/// 显示关于 asm
@@ -29,12 +32,18 @@ namespace Apq.Windows.Forms
 			ShowForm(Parent, Apq.Win.GlobalObject.TheAssembly);
 		}
 
+		/// <summary>
+		/// 关于对话框
+		/// </summary>
 		public AboutBox()
 		{
 			InitializeComponent();
 		}
 
 		private Assembly _Asm;
+		/// <summary>
+		/// 获取或设置程序集
+		/// </summary>
 		public Assembly Asm
 		{
 			get { return _Asm; }
@@ -54,6 +63,9 @@ namespace Apq.Windows.Forms
 
 		#region 程序集属性访问器
 
+		/// <summary>
+		/// 获取程序集标题
+		/// </summary>
 		public string AssemblyTitle
 		{
 			get
@@ -74,6 +86,9 @@ namespace Apq.Windows.Forms
 			}
 		}
 
+		/// <summary>
+		/// 获取程序集版本
+		/// </summary>
 		public string AssemblyVersion
 		{
 			get
@@ -82,6 +97,9 @@ namespace Apq.Windows.Forms
 			}
 		}
 
+		/// <summary>
+		/// 获取程序集描述
+		/// </summary>
 		public string AssemblyDescription
 		{
 			get
@@ -96,6 +114,9 @@ namespace Apq.Windows.Forms
 			}
 		}
 
+		/// <summary>
+		/// 获取程序集产品
+		/// </summary>
 		public string AssemblyProduct
 		{
 			get
@@ -110,6 +131,9 @@ namespace Apq.Windows.Forms
 			}
 		}
 
+		/// <summary>
+		/// 获取程序集版权
+		/// </summary>
 		public string AssemblyCopyright
 		{
 			get
@@ -124,6 +148,9 @@ namespace Apq.Windows.Forms
 			}
 		}
 
+		/// <summary>
+		/// 获取程序集公司
+		/// </summary>
 		public string AssemblyCompany
 		{
 			get
@@ -138,11 +165,19 @@ namespace Apq.Windows.Forms
 			}
 		}
 
+		/// <summary>
+		/// 获取程序集Logo图片
+		/// </summary>
 		public System.Drawing.Image AssemblyLogoPicture
 		{
 			get
 			{
-				return System.Drawing.Image.FromFile(System.IO.Path.GetFullPath(Asm.Location) + "Res/Pic/Logo.png");
+				string FileFullPath = System.IO.Path.GetFullPath(Asm.Location) + "Res/Pic/Logo.png";
+				if (System.IO.File.Exists(FileFullPath))
+				{
+					return System.Drawing.Image.FromFile(FileFullPath);
+				}
+				return null;
 			}
 		}
 		#endregion
