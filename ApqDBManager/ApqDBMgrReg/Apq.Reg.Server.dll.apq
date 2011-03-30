@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Root>
+	<!-- 类配置文档 -->
+
+	<!-- SqlConnectionString:含数据库名 -->
+	<Apq.DB.GlobalObject SqlConnectionString="Data Source=(local);Initial Catalog=pdbp;User Id=sa;Password=f;">
+		<SqlConnectionStrings>
+			<SqlConnectionString name="SqlConnectionString1">Data Source=127.0.0.1;Initial Catalog=Apq;User Id=sa;Password=f;</SqlConnectionString>
+			<SqlConnectionString name="SqlConnectionString2">Data Source=127.0.0.1;Initial Catalog=dtxc;User Id=sa;Password=f;</SqlConnectionString>
+		</SqlConnectionStrings>
+	</Apq.DB.GlobalObject>
+	<Apq.Reg.Server>
+		<RSAKeys>
+			<NewDataSet>
+				<xs:schema id="NewDataSet" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+					<xs:element name="NewDataSet" msdata:IsDataSet="true" msdata:MainDataTable="RSAKeys" msdata:UseCurrentLocale="true">
+						<xs:complexType>
+							<xs:choice minOccurs="0" maxOccurs="unbounded">
+								<xs:element name="RSAKeys">
+									<xs:complexType>
+										<xs:sequence>
+											<xs:element name="Product" type="xs:string" minOccurs="0" />
+											<xs:element name="Version" type="xs:string" minOccurs="0" />
+											<xs:element name="RSAKey" type="xs:string" minOccurs="0" />
+										</xs:sequence>
+									</xs:complexType>
+								</xs:element>
+							</xs:choice>
+						</xs:complexType>
+					</xs:element>
+				</xs:schema>
+				<RSAKeys>
+					<Product>ApqDBManager</Product>
+					<Version>0.0</Version>
+					<RSAKey>&lt;RSAKeyValue&gt;&lt;Modulus&gt;ncidmJi2/tb77mi8trEpqeejyhRTJDm/uZ7CGYa67+2yoKyLJoaEtq4SQphRjUIvH0p7dson8pst5GeFrZd5D0ZTUtmZylU4ISo1BKT6380QP82AtlARME8a3CjIuYTLTSMcjFSTmAE0ID1TG8vWdsr/qg6kxQJcgsRJWYhAUDU=&lt;/Modulus&gt;&lt;Exponent&gt;AQAB&lt;/Exponent&gt;&lt;P&gt;06iHXfs5Vg0G9DwzAJQBxcp3tSVNV+2ZCuEepieUsAjMzaKhp/lDXFe39nbhSnLEIB80IAuSE2/XFzGkwxTU7w==&lt;/P&gt;&lt;Q&gt;vta6kDhMXlk9oZkBX59xa28rHRpne/m7wBELJd98pKewxWqcxnuQFIkpvKjLFqvdntbZDUN0/tFBDOLsrE3VGw==&lt;/Q&gt;&lt;DP&gt;j9zPzZhRW2TVYjJ8tBrlrYu1m+Fz1Z0AVf23uFXU4WXJ1seAu0xYda6FsrcQ4GprVi3/XvyeWCm/d9tdUt+Y7w==&lt;/DP&gt;&lt;DQ&gt;SwgT6/YmmIXPxIRq1NTUfCAGPHgQLd8/YUGSN37J+9bumn/TSfp06I4ROdrHlo9WIEhqqFtYWYOeZtmlog0r9w==&lt;/DQ&gt;&lt;InverseQ&gt;AgMvKhm3qoOUj/W8dcRZuTQba7hyBA5Kp7yKrNq7HWpxtR5LnNYD8dMTlLNCmhZk1TMEwbN7H/LWbp2tskLKag==&lt;/InverseQ&gt;&lt;D&gt;OcnXRqNwKogMv3Xm4Dak3tCzIXkuNk9cVBy8VGMPJn71dHmdgV+1Tb8VewSUodsCrUA3VfuWg/mn5kawJDMdKBKb8hJ1Y19PXa2OJhZ6v+GXyekQFv4lyntt+F2WpAXyW+EUaeCFllKR2o79Zao9aC8/ehDhuW4ubG/+xOauj4U=&lt;/D&gt;&lt;/RSAKeyValue&gt;</RSAKey>
+				</RSAKeys>
+				<RSAKeys>
+					<Product>ApqDBManager</Product>
+					<Version>0.1</Version>
+					<RSAKey>&lt;RSAKeyValue&gt;&lt;Modulus&gt;ncidmJi2/tb77mi8trEpqeejyhRTJDm/uZ7CGYa67+2yoKyLJoaEtq4SQphRjUIvH0p7dson8pst5GeFrZd5D0ZTUtmZylU4ISo1BKT6380QP82AtlARME8a3CjIuYTLTSMcjFSTmAE0ID1TG8vWdsr/qg6kxQJcgsRJWYhAUDU=&lt;/Modulus&gt;&lt;Exponent&gt;AQAB&lt;/Exponent&gt;&lt;P&gt;06iHXfs5Vg0G9DwzAJQBxcp3tSVNV+2ZCuEepieUsAjMzaKhp/lDXFe39nbhSnLEIB80IAuSE2/XFzGkwxTU7w==&lt;/P&gt;&lt;Q&gt;vta6kDhMXlk9oZkBX59xa28rHRpne/m7wBELJd98pKewxWqcxnuQFIkpvKjLFqvdntbZDUN0/tFBDOLsrE3VGw==&lt;/Q&gt;&lt;DP&gt;j9zPzZhRW2TVYjJ8tBrlrYu1m+Fz1Z0AVf23uFXU4WXJ1seAu0xYda6FsrcQ4GprVi3/XvyeWCm/d9tdUt+Y7w==&lt;/DP&gt;&lt;DQ&gt;SwgT6/YmmIXPxIRq1NTUfCAGPHgQLd8/YUGSN37J+9bumn/TSfp06I4ROdrHlo9WIEhqqFtYWYOeZtmlog0r9w==&lt;/DQ&gt;&lt;InverseQ&gt;AgMvKhm3qoOUj/W8dcRZuTQba7hyBA5Kp7yKrNq7HWpxtR5LnNYD8dMTlLNCmhZk1TMEwbN7H/LWbp2tskLKag==&lt;/InverseQ&gt;&lt;D&gt;OcnXRqNwKogMv3Xm4Dak3tCzIXkuNk9cVBy8VGMPJn71dHmdgV+1Tb8VewSUodsCrUA3VfuWg/mn5kawJDMdKBKb8hJ1Y19PXa2OJhZ6v+GXyekQFv4lyntt+F2WpAXyW+EUaeCFllKR2o79Zao9aC8/ehDhuW4ubG/+xOauj4U=&lt;/D&gt;&lt;/RSAKeyValue&gt;</RSAKey>
+				</RSAKeys>
+				<RSAKeys>
+					<Product>ApqDBManager</Product>
+					<Version>0.2</Version>
+					<RSAKey>&lt;RSAKeyValue&gt;&lt;Modulus&gt;ncidmJi2/tb77mi8trEpqeejyhRTJDm/uZ7CGYa67+2yoKyLJoaEtq4SQphRjUIvH0p7dson8pst5GeFrZd5D0ZTUtmZylU4ISo1BKT6380QP82AtlARME8a3CjIuYTLTSMcjFSTmAE0ID1TG8vWdsr/qg6kxQJcgsRJWYhAUDU=&lt;/Modulus&gt;&lt;Exponent&gt;AQAB&lt;/Exponent&gt;&lt;P&gt;06iHXfs5Vg0G9DwzAJQBxcp3tSVNV+2ZCuEepieUsAjMzaKhp/lDXFe39nbhSnLEIB80IAuSE2/XFzGkwxTU7w==&lt;/P&gt;&lt;Q&gt;vta6kDhMXlk9oZkBX59xa28rHRpne/m7wBELJd98pKewxWqcxnuQFIkpvKjLFqvdntbZDUN0/tFBDOLsrE3VGw==&lt;/Q&gt;&lt;DP&gt;j9zPzZhRW2TVYjJ8tBrlrYu1m+Fz1Z0AVf23uFXU4WXJ1seAu0xYda6FsrcQ4GprVi3/XvyeWCm/d9tdUt+Y7w==&lt;/DP&gt;&lt;DQ&gt;SwgT6/YmmIXPxIRq1NTUfCAGPHgQLd8/YUGSN37J+9bumn/TSfp06I4ROdrHlo9WIEhqqFtYWYOeZtmlog0r9w==&lt;/DQ&gt;&lt;InverseQ&gt;AgMvKhm3qoOUj/W8dcRZuTQba7hyBA5Kp7yKrNq7HWpxtR5LnNYD8dMTlLNCmhZk1TMEwbN7H/LWbp2tskLKag==&lt;/InverseQ&gt;&lt;D&gt;OcnXRqNwKogMv3Xm4Dak3tCzIXkuNk9cVBy8VGMPJn71dHmdgV+1Tb8VewSUodsCrUA3VfuWg/mn5kawJDMdKBKb8hJ1Y19PXa2OJhZ6v+GXyekQFv4lyntt+F2WpAXyW+EUaeCFllKR2o79Zao9aC8/ehDhuW4ubG/+xOauj4U=&lt;/D&gt;&lt;/RSAKeyValue&gt;</RSAKey>
+				</RSAKeys>
+				<RSAKeys>
+					<Product>ApqDBManager</Product>
+					<Version>0.3</Version>
+					<RSAKey>&lt;RSAKeyValue&gt;&lt;Modulus&gt;ncidmJi2/tb77mi8trEpqeejyhRTJDm/uZ7CGYa67+2yoKyLJoaEtq4SQphRjUIvH0p7dson8pst5GeFrZd5D0ZTUtmZylU4ISo1BKT6380QP82AtlARME8a3CjIuYTLTSMcjFSTmAE0ID1TG8vWdsr/qg6kxQJcgsRJWYhAUDU=&lt;/Modulus&gt;&lt;Exponent&gt;AQAB&lt;/Exponent&gt;&lt;P&gt;06iHXfs5Vg0G9DwzAJQBxcp3tSVNV+2ZCuEepieUsAjMzaKhp/lDXFe39nbhSnLEIB80IAuSE2/XFzGkwxTU7w==&lt;/P&gt;&lt;Q&gt;vta6kDhMXlk9oZkBX59xa28rHRpne/m7wBELJd98pKewxWqcxnuQFIkpvKjLFqvdntbZDUN0/tFBDOLsrE3VGw==&lt;/Q&gt;&lt;DP&gt;j9zPzZhRW2TVYjJ8tBrlrYu1m+Fz1Z0AVf23uFXU4WXJ1seAu0xYda6FsrcQ4GprVi3/XvyeWCm/d9tdUt+Y7w==&lt;/DP&gt;&lt;DQ&gt;SwgT6/YmmIXPxIRq1NTUfCAGPHgQLd8/YUGSN37J+9bumn/TSfp06I4ROdrHlo9WIEhqqFtYWYOeZtmlog0r9w==&lt;/DQ&gt;&lt;InverseQ&gt;AgMvKhm3qoOUj/W8dcRZuTQba7hyBA5Kp7yKrNq7HWpxtR5LnNYD8dMTlLNCmhZk1TMEwbN7H/LWbp2tskLKag==&lt;/InverseQ&gt;&lt;D&gt;OcnXRqNwKogMv3Xm4Dak3tCzIXkuNk9cVBy8VGMPJn71dHmdgV+1Tb8VewSUodsCrUA3VfuWg/mn5kawJDMdKBKb8hJ1Y19PXa2OJhZ6v+GXyekQFv4lyntt+F2WpAXyW+EUaeCFllKR2o79Zao9aC8/ehDhuW4ubG/+xOauj4U=&lt;/D&gt;&lt;/RSAKeyValue&gt;</RSAKey>
+				</RSAKeys>
+				<RSAKeys>
+					<Product>ApqDBManager</Product>
+					<Version>0.4</Version>
+					<RSAKey>&lt;RSAKeyValue&gt;&lt;Modulus&gt;ncidmJi2/tb77mi8trEpqeejyhRTJDm/uZ7CGYa67+2yoKyLJoaEtq4SQphRjUIvH0p7dson8pst5GeFrZd5D0ZTUtmZylU4ISo1BKT6380QP82AtlARME8a3CjIuYTLTSMcjFSTmAE0ID1TG8vWdsr/qg6kxQJcgsRJWYhAUDU=&lt;/Modulus&gt;&lt;Exponent&gt;AQAB&lt;/Exponent&gt;&lt;P&gt;06iHXfs5Vg0G9DwzAJQBxcp3tSVNV+2ZCuEepieUsAjMzaKhp/lDXFe39nbhSnLEIB80IAuSE2/XFzGkwxTU7w==&lt;/P&gt;&lt;Q&gt;vta6kDhMXlk9oZkBX59xa28rHRpne/m7wBELJd98pKewxWqcxnuQFIkpvKjLFqvdntbZDUN0/tFBDOLsrE3VGw==&lt;/Q&gt;&lt;DP&gt;j9zPzZhRW2TVYjJ8tBrlrYu1m+Fz1Z0AVf23uFXU4WXJ1seAu0xYda6FsrcQ4GprVi3/XvyeWCm/d9tdUt+Y7w==&lt;/DP&gt;&lt;DQ&gt;SwgT6/YmmIXPxIRq1NTUfCAGPHgQLd8/YUGSN37J+9bumn/TSfp06I4ROdrHlo9WIEhqqFtYWYOeZtmlog0r9w==&lt;/DQ&gt;&lt;InverseQ&gt;AgMvKhm3qoOUj/W8dcRZuTQba7hyBA5Kp7yKrNq7HWpxtR5LnNYD8dMTlLNCmhZk1TMEwbN7H/LWbp2tskLKag==&lt;/InverseQ&gt;&lt;D&gt;OcnXRqNwKogMv3Xm4Dak3tCzIXkuNk9cVBy8VGMPJn71dHmdgV+1Tb8VewSUodsCrUA3VfuWg/mn5kawJDMdKBKb8hJ1Y19PXa2OJhZ6v+GXyekQFv4lyntt+F2WpAXyW+EUaeCFllKR2o79Zao9aC8/ehDhuW4ubG/+xOauj4U=&lt;/D&gt;&lt;/RSAKeyValue&gt;</RSAKey>
+				</RSAKeys>
+				<RSAKeys>
+					<Product>ApqDBManager</Product>
+					<Version>0.5</Version>
+					<RSAKey>&lt;RSAKeyValue&gt;&lt;Modulus&gt;ncidmJi2/tb77mi8trEpqeejyhRTJDm/uZ7CGYa67+2yoKyLJoaEtq4SQphRjUIvH0p7dson8pst5GeFrZd5D0ZTUtmZylU4ISo1BKT6380QP82AtlARME8a3CjIuYTLTSMcjFSTmAE0ID1TG8vWdsr/qg6kxQJcgsRJWYhAUDU=&lt;/Modulus&gt;&lt;Exponent&gt;AQAB&lt;/Exponent&gt;&lt;P&gt;06iHXfs5Vg0G9DwzAJQBxcp3tSVNV+2ZCuEepieUsAjMzaKhp/lDXFe39nbhSnLEIB80IAuSE2/XFzGkwxTU7w==&lt;/P&gt;&lt;Q&gt;vta6kDhMXlk9oZkBX59xa28rHRpne/m7wBELJd98pKewxWqcxnuQFIkpvKjLFqvdntbZDUN0/tFBDOLsrE3VGw==&lt;/Q&gt;&lt;DP&gt;j9zPzZhRW2TVYjJ8tBrlrYu1m+Fz1Z0AVf23uFXU4WXJ1seAu0xYda6FsrcQ4GprVi3/XvyeWCm/d9tdUt+Y7w==&lt;/DP&gt;&lt;DQ&gt;SwgT6/YmmIXPxIRq1NTUfCAGPHgQLd8/YUGSN37J+9bumn/TSfp06I4ROdrHlo9WIEhqqFtYWYOeZtmlog0r9w==&lt;/DQ&gt;&lt;InverseQ&gt;AgMvKhm3qoOUj/W8dcRZuTQba7hyBA5Kp7yKrNq7HWpxtR5LnNYD8dMTlLNCmhZk1TMEwbN7H/LWbp2tskLKag==&lt;/InverseQ&gt;&lt;D&gt;OcnXRqNwKogMv3Xm4Dak3tCzIXkuNk9cVBy8VGMPJn71dHmdgV+1Tb8VewSUodsCrUA3VfuWg/mn5kawJDMdKBKb8hJ1Y19PXa2OJhZ6v+GXyekQFv4lyntt+F2WpAXyW+EUaeCFllKR2o79Zao9aC8/ehDhuW4ubG/+xOauj4U=&lt;/D&gt;&lt;/RSAKeyValue&gt;</RSAKey>
+				</RSAKeys>
+				<RSAKeys>
+					<Product>ApqDBManager</Product>
+					<Version>0.6</Version>
+					<RSAKey>&lt;RSAKeyValue&gt;&lt;Modulus&gt;ncidmJi2/tb77mi8trEpqeejyhRTJDm/uZ7CGYa67+2yoKyLJoaEtq4SQphRjUIvH0p7dson8pst5GeFrZd5D0ZTUtmZylU4ISo1BKT6380QP82AtlARME8a3CjIuYTLTSMcjFSTmAE0ID1TG8vWdsr/qg6kxQJcgsRJWYhAUDU=&lt;/Modulus&gt;&lt;Exponent&gt;AQAB&lt;/Exponent&gt;&lt;P&gt;06iHXfs5Vg0G9DwzAJQBxcp3tSVNV+2ZCuEepieUsAjMzaKhp/lDXFe39nbhSnLEIB80IAuSE2/XFzGkwxTU7w==&lt;/P&gt;&lt;Q&gt;vta6kDhMXlk9oZkBX59xa28rHRpne/m7wBELJd98pKewxWqcxnuQFIkpvKjLFqvdntbZDUN0/tFBDOLsrE3VGw==&lt;/Q&gt;&lt;DP&gt;j9zPzZhRW2TVYjJ8tBrlrYu1m+Fz1Z0AVf23uFXU4WXJ1seAu0xYda6FsrcQ4GprVi3/XvyeWCm/d9tdUt+Y7w==&lt;/DP&gt;&lt;DQ&gt;SwgT6/YmmIXPxIRq1NTUfCAGPHgQLd8/YUGSN37J+9bumn/TSfp06I4ROdrHlo9WIEhqqFtYWYOeZtmlog0r9w==&lt;/DQ&gt;&lt;InverseQ&gt;AgMvKhm3qoOUj/W8dcRZuTQba7hyBA5Kp7yKrNq7HWpxtR5LnNYD8dMTlLNCmhZk1TMEwbN7H/LWbp2tskLKag==&lt;/InverseQ&gt;&lt;D&gt;OcnXRqNwKogMv3Xm4Dak3tCzIXkuNk9cVBy8VGMPJn71dHmdgV+1Tb8VewSUodsCrUA3VfuWg/mn5kawJDMdKBKb8hJ1Y19PXa2OJhZ6v+GXyekQFv4lyntt+F2WpAXyW+EUaeCFllKR2o79Zao9aC8/ehDhuW4ubG/+xOauj4U=&lt;/D&gt;&lt;/RSAKeyValue&gt;</RSAKey>
+				</RSAKeys>
+				<RSAKeys>
+					<Product>ApqDBManager</Product>
+					<Version>0.7</Version>
+					<RSAKey>&lt;RSAKeyValue&gt;&lt;Modulus&gt;ncidmJi2/tb77mi8trEpqeejyhRTJDm/uZ7CGYa67+2yoKyLJoaEtq4SQphRjUIvH0p7dson8pst5GeFrZd5D0ZTUtmZylU4ISo1BKT6380QP82AtlARME8a3CjIuYTLTSMcjFSTmAE0ID1TG8vWdsr/qg6kxQJcgsRJWYhAUDU=&lt;/Modulus&gt;&lt;Exponent&gt;AQAB&lt;/Exponent&gt;&lt;P&gt;06iHXfs5Vg0G9DwzAJQBxcp3tSVNV+2ZCuEepieUsAjMzaKhp/lDXFe39nbhSnLEIB80IAuSE2/XFzGkwxTU7w==&lt;/P&gt;&lt;Q&gt;vta6kDhMXlk9oZkBX59xa28rHRpne/m7wBELJd98pKewxWqcxnuQFIkpvKjLFqvdntbZDUN0/tFBDOLsrE3VGw==&lt;/Q&gt;&lt;DP&gt;j9zPzZhRW2TVYjJ8tBrlrYu1m+Fz1Z0AVf23uFXU4WXJ1seAu0xYda6FsrcQ4GprVi3/XvyeWCm/d9tdUt+Y7w==&lt;/DP&gt;&lt;DQ&gt;SwgT6/YmmIXPxIRq1NTUfCAGPHgQLd8/YUGSN37J+9bumn/TSfp06I4ROdrHlo9WIEhqqFtYWYOeZtmlog0r9w==&lt;/DQ&gt;&lt;InverseQ&gt;AgMvKhm3qoOUj/W8dcRZuTQba7hyBA5Kp7yKrNq7HWpxtR5LnNYD8dMTlLNCmhZk1TMEwbN7H/LWbp2tskLKag==&lt;/InverseQ&gt;&lt;D&gt;OcnXRqNwKogMv3Xm4Dak3tCzIXkuNk9cVBy8VGMPJn71dHmdgV+1Tb8VewSUodsCrUA3VfuWg/mn5kawJDMdKBKb8hJ1Y19PXa2OJhZ6v+GXyekQFv4lyntt+F2WpAXyW+EUaeCFllKR2o79Zao9aC8/ehDhuW4ubG/+xOauj4U=&lt;/D&gt;&lt;/RSAKeyValue&gt;</RSAKey>
+				</RSAKeys>
+				<RSAKeys>
+					<Product>ApqDBManager</Product>
+					<Version>0.8</Version>
+					<RSAKey>&lt;RSAKeyValue&gt;&lt;Modulus&gt;ncidmJi2/tb77mi8trEpqeejyhRTJDm/uZ7CGYa67+2yoKyLJoaEtq4SQphRjUIvH0p7dson8pst5GeFrZd5D0ZTUtmZylU4ISo1BKT6380QP82AtlARME8a3CjIuYTLTSMcjFSTmAE0ID1TG8vWdsr/qg6kxQJcgsRJWYhAUDU=&lt;/Modulus&gt;&lt;Exponent&gt;AQAB&lt;/Exponent&gt;&lt;P&gt;06iHXfs5Vg0G9DwzAJQBxcp3tSVNV+2ZCuEepieUsAjMzaKhp/lDXFe39nbhSnLEIB80IAuSE2/XFzGkwxTU7w==&lt;/P&gt;&lt;Q&gt;vta6kDhMXlk9oZkBX59xa28rHRpne/m7wBELJd98pKewxWqcxnuQFIkpvKjLFqvdntbZDUN0/tFBDOLsrE3VGw==&lt;/Q&gt;&lt;DP&gt;j9zPzZhRW2TVYjJ8tBrlrYu1m+Fz1Z0AVf23uFXU4WXJ1seAu0xYda6FsrcQ4GprVi3/XvyeWCm/d9tdUt+Y7w==&lt;/DP&gt;&lt;DQ&gt;SwgT6/YmmIXPxIRq1NTUfCAGPHgQLd8/YUGSN37J+9bumn/TSfp06I4ROdrHlo9WIEhqqFtYWYOeZtmlog0r9w==&lt;/DQ&gt;&lt;InverseQ&gt;AgMvKhm3qoOUj/W8dcRZuTQba7hyBA5Kp7yKrNq7HWpxtR5LnNYD8dMTlLNCmhZk1TMEwbN7H/LWbp2tskLKag==&lt;/InverseQ&gt;&lt;D&gt;OcnXRqNwKogMv3Xm4Dak3tCzIXkuNk9cVBy8VGMPJn71dHmdgV+1Tb8VewSUodsCrUA3VfuWg/mn5kawJDMdKBKb8hJ1Y19PXa2OJhZ6v+GXyekQFv4lyntt+F2WpAXyW+EUaeCFllKR2o79Zao9aC8/ehDhuW4ubG/+xOauj4U=&lt;/D&gt;&lt;/RSAKeyValue&gt;</RSAKey>
+				</RSAKeys>
+				<RSAKeys>
+					<Product>ApqDBManager</Product>
+					<Version>0.9</Version>
+					<RSAKey>&lt;RSAKeyValue&gt;&lt;Modulus&gt;ncidmJi2/tb77mi8trEpqeejyhRTJDm/uZ7CGYa67+2yoKyLJoaEtq4SQphRjUIvH0p7dson8pst5GeFrZd5D0ZTUtmZylU4ISo1BKT6380QP82AtlARME8a3CjIuYTLTSMcjFSTmAE0ID1TG8vWdsr/qg6kxQJcgsRJWYhAUDU=&lt;/Modulus&gt;&lt;Exponent&gt;AQAB&lt;/Exponent&gt;&lt;P&gt;06iHXfs5Vg0G9DwzAJQBxcp3tSVNV+2ZCuEepieUsAjMzaKhp/lDXFe39nbhSnLEIB80IAuSE2/XFzGkwxTU7w==&lt;/P&gt;&lt;Q&gt;vta6kDhMXlk9oZkBX59xa28rHRpne/m7wBELJd98pKewxWqcxnuQFIkpvKjLFqvdntbZDUN0/tFBDOLsrE3VGw==&lt;/Q&gt;&lt;DP&gt;j9zPzZhRW2TVYjJ8tBrlrYu1m+Fz1Z0AVf23uFXU4WXJ1seAu0xYda6FsrcQ4GprVi3/XvyeWCm/d9tdUt+Y7w==&lt;/DP&gt;&lt;DQ&gt;SwgT6/YmmIXPxIRq1NTUfCAGPHgQLd8/YUGSN37J+9bumn/TSfp06I4ROdrHlo9WIEhqqFtYWYOeZtmlog0r9w==&lt;/DQ&gt;&lt;InverseQ&gt;AgMvKhm3qoOUj/W8dcRZuTQba7hyBA5Kp7yKrNq7HWpxtR5LnNYD8dMTlLNCmhZk1TMEwbN7H/LWbp2tskLKag==&lt;/InverseQ&gt;&lt;D&gt;OcnXRqNwKogMv3Xm4Dak3tCzIXkuNk9cVBy8VGMPJn71dHmdgV+1Tb8VewSUodsCrUA3VfuWg/mn5kawJDMdKBKb8hJ1Y19PXa2OJhZ6v+GXyekQFv4lyntt+F2WpAXyW+EUaeCFllKR2o79Zao9aC8/ehDhuW4ubG/+xOauj4U=&lt;/D&gt;&lt;/RSAKeyValue&gt;</RSAKey>
+				</RSAKeys>
+			</NewDataSet>
+		</RSAKeys>
+	</Apq.Reg.Server>
+</Root>

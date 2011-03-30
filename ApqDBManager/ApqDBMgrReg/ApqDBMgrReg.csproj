@@ -244,6 +244,9 @@
     <Content Include="_Doc\说明.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="Apq.Reg.Server.dll.apq">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="ApqDBMgrReg.dll.apq">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

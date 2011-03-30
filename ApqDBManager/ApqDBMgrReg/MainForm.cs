@@ -27,7 +27,7 @@ namespace ApqDBManager
 			#endregion
 
 			#region 读取RsaKey
-			txtRsaKey.Text = Apq.Reg.Server.Common.GetKey();
+			txtRsaKey.Text = Apq.Reg.Server.Common.GetKey("ApqDBManager","0.3");
 			#endregion
 		}
 
