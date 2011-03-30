@@ -61,8 +61,15 @@ namespace Apq.DBC
 			// 读取密钥
 			//string desKey = GlobalObject.XmlConfigChain[typeof(Apq.DBC.Common), "DESKey"];
 			//string desIV = GlobalObject.XmlConfigChain[typeof(Apq.DBC.Common), "DESIV"];
-			string desKey = "~JD7(1vy";
-			string desIV = "]$ik7WB)";
+
+			// UM
+			//string desKey = "~JD7(1vy";
+			//string desIV = "]$ik7WB)";
+
+			// 雪羽
+			string desKey = "pD?y/Mn^";
+			string desIV = "$`5iNL8j";
+
 
 			string strCs = File.ReadAllText(_csFilePath, Encoding.UTF8);
 			string str = Apq.Security.Cryptography.DESHelper.DecryptString(strCs, desKey, desIV);

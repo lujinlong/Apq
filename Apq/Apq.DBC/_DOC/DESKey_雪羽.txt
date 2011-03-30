@@ -1,0 +1,3 @@
+﻿
+string desKey = "pD?y/Mn^";
+string desIV = "$`5iNL8j";
