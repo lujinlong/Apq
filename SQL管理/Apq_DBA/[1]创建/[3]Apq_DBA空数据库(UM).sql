@@ -19,9 +19,9 @@ GO
 -- 数据库设置 --------------------------------------------------------------------------------------
 USE [Apq_DBA]
 GO
-ALTER DATABASE Apq_DBA SET DB_CHAINING ON;
+ALTER DATABASE Apq_DBA SET DB_CHAINING ON; -- 跨数据库所有权
 ALTER DATABASE Apq_DBA SET READ_COMMITTED_SNAPSHOT ON WITH ROLLBACK IMMEDIATE; -- 需要单连接,因此在迁移/维护时才能做
-ALTER DATABASE Apq_DBA SET AUTO_UPDATE_STATISTICS_ASYNC ON WITH ROLLBACK IMMEDIATE; -- 自动更新为异步方式(要求打开上一个选项)
+ALTER DATABASE Apq_DBA SET AUTO_UPDATE_STATISTICS_ASYNC ON WITH ROLLBACK IMMEDIATE; -- 自动更新统计信息为异步方式(要求打开自动更新统计信息选项)
 ALTER DATABASE Apq_DBA SET AUTO_SHRINK ON WITH ROLLBACK IMMEDIATE;	-- 一般不设置该项
 GO
 -- =================================================================================================
