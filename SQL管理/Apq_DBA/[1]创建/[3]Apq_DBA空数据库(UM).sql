@@ -3,7 +3,7 @@ GO
 
 DECLARE @cmd nvarchar(4000), @sql nvarchar(4000)
 	,@DBFolder nvarchar(4000);
-SELECT @DBFolder = 'D:\DB\Apq_DBA';
+SELECT @DBFolder = 'D:\DBA\DB\Apq_DBA';
 SELECT @cmd = 'md "' + @DBFolder + '"';
 EXEC xp_cmdshell @cmd;
 

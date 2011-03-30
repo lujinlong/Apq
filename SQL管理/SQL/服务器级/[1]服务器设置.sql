@@ -1,5 +1,11 @@
 
 -- 数据库内部设置 ----------------------------------------------------------------------------------
+-- 代理日志行数最大
+-- 2005以上
+EXEC msdb.dbo.sp_set_sqlagent_properties @jobhistory_max_rows=999999, 
+		@jobhistory_max_rows_per_job=10000
+GO
+
 EXEC sys.sp_configure N'show advanced options', N'1'
 RECONFIGURE
 GO
@@ -45,14 +51,21 @@ EXEC sys.sp_configure N'max server memory', 5120
 RECONFIGURE
 GO
 
+/*
+--启用跨数据库所有权链接
+EXEC sp_configure N'cross db ownership chaining', 1
+RECONFIGURE
+GO
+*/
+
 --[实际用处不大]网络包改为8K
 EXEC sys.sp_configure N'network packet size (B)', 8192
 RECONFIGURE
 GO
 
--- 登录审核(2000)
+-- 登录审核(2008R2)
 EXEC xp_regwrite @rootkey='HKEY_LOCAL_MACHINE', 
-	@key='Software\Microsoft\MSSQLServer\MSSQLServer', 
+	@key='SOFTWARE\Microsoft\Microsoft SQL Server\MSSQL10_50.MSSQLSERVER\MSSQLServer', 
 	@value_name='AuditLevel', 
 	@type='REG_DWORD',
 	@value=3
@@ -77,12 +90,6 @@ GO
 ALTER DATABASE tempdb MODIFY FILE (NAME='tempdev',SIZE=2000MB,FILEGROWTH=200MB)
 ALTER DATABASE tempdb MODIFY FILE (NAME='templog',SIZE=1000MB,FILEGROWTH=200MB)
 GO
-
--- 代理日志行数最大
--- 2005以上
-EXEC msdb.dbo.sp_set_sqlagent_properties @jobhistory_max_rows=999999, 
-		@jobhistory_max_rows_per_job=10000
-GO
 -- =================================================================================================
 
 -- 数据库外部设置 ----------------------------------------------------------------------------------
@@ -93,6 +100,8 @@ EXEC xp_regwrite @rootkey='HKEY_LOCAL_MACHINE',
 	@type='REG_SZ',
 	@value='1'
 GO
+
+/*
 -- 远程桌面端口改为33189
 EXEC xp_regwrite @rootkey='HKEY_LOCAL_MACHINE', 
 	@key='SYSTEM\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp', 
@@ -105,6 +114,7 @@ EXEC xp_regwrite @rootkey='HKEY_LOCAL_MACHINE',
 	@type='REG_DWORD',
 	@value=33189
 GO
+*/
 
 -- ODBC数据源添加 local<Apq_DBA>
 EXEC xp_regwrite @rootkey=N'HKEY_LOCAL_MACHINE',
