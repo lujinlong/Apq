@@ -370,7 +370,8 @@ namespace ApqDBManager
 
 		private void menuAbout_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
 		{
-
+			GlobalObject.AboutBox.Asm = GlobalObject.TheAssembly;
+			GlobalObject.AboutBox.ShowDialog(this);
 		}
 		#endregion
 	}

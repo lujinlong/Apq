@@ -283,5 +283,23 @@ namespace ApqDBManager
 			}
 		}
 		#endregion
+
+		#region AboutBox
+		private static Apq.Windows.Forms.AboutBox _AboutBox;
+		/// <summary>
+		/// 获取选项窗口
+		/// </summary>
+		public static Apq.Windows.Forms.AboutBox AboutBox
+		{
+			get
+			{
+				if (_AboutBox == null)
+				{
+					_AboutBox = new Apq.Windows.Forms.AboutBox();
+				}
+				return _AboutBox;
+			}
+		}
+		#endregion
 	}
 }
