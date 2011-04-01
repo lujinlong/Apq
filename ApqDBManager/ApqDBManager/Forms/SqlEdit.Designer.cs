@@ -66,8 +66,8 @@
 			this.repositoryItemComboBox1 = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
 			this.popupMenu2 = new DevExpress.XtraBars.PopupMenu(this.components);
 			this.popupMenu1 = new DevExpress.XtraBars.PopupMenu(this.components);
-			this.dsServers = new ApqDBManager.XSD.Servers();
 			this.dsUI = new ApqDBManager.XSD.UI();
+			this._Sqls = new Apq.DBC.XSD();
 			((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.ricbDBName)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.ripb)).BeginInit();
@@ -80,8 +80,8 @@
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.popupMenu2)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.popupMenu1)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.dsServers)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.dsUI)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this._Sqls)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// bar1
@@ -296,6 +296,10 @@
 			this.txtSql.Location = new System.Drawing.Point(0, 25);
 			this.txtSql.Name = "txtSql";
 			this.barManager1.SetPopupContextMenu(this.txtSql, this.popupMenu1);
+			this.txtSql.ShowEOLMarkers = true;
+			this.txtSql.ShowSpaces = true;
+			this.txtSql.ShowTabs = true;
+			this.txtSql.ShowVRuler = true;
 			this.txtSql.Size = new System.Drawing.Size(760, 68);
 			this.txtSql.TabIndex = 0;
 			// 
@@ -387,15 +391,15 @@
 			this.popupMenu1.Manager = this.barManager1;
 			this.popupMenu1.Name = "popupMenu1";
 			// 
-			// _Servers
-			// 
-			this.dsServers.DataSetName = "Servers";
-			this.dsServers.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-			// 
-			// _UI
+			// dsUI
 			// 
 			this.dsUI.DataSetName = "UI";
 			this.dsUI.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+			// 
+			// _Sqls
+			// 
+			this._Sqls.DataSetName = "Sqls";
+			this._Sqls.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
 			// 
 			// SqlEdit
 			// 
@@ -429,8 +433,8 @@
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox1)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.popupMenu2)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.popupMenu1)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.dsServers)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.dsUI)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this._Sqls)).EndInit();
 			this.ResumeLayout(false);
 
 		}
@@ -473,7 +477,7 @@
 		private DevExpress.XtraBars.Docking.DockPanel dockPanel1;
 		private DevExpress.XtraBars.Docking.ControlContainer dockPanel1_Container;
 		private DevExpress.XtraBars.BarButtonItem menuShowNode;
-		public ApqDBManager.XSD.Servers dsServers;
 		public ApqDBManager.XSD.UI dsUI;
+		public Apq.DBC.XSD _Sqls;
 	}
 }

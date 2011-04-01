@@ -41,7 +41,7 @@ namespace ApqDBManager.Controls.MainOption
 			}
 			if (lbcRDBTypes.Items.Count == 0)
 			{
-				string[] lstRDBTypes = cfg[typeof(ApqDBManager.Forms.SolutionExplorer), "RDBTypes"].Split(',');
+				string[] lstRDBTypes = cfg[typeof(ApqDBManager.Forms.SqlIns), "RDBTypes"].Split(',');
 				foreach (string strRDBType in lstRDBTypes)
 				{
 					lbcRDBTypes.Items.Add(strRDBType);
@@ -62,7 +62,7 @@ namespace ApqDBManager.Controls.MainOption
 				{
 					lstRDBTypes[i] = lbcRDBTypes.Items[i] as string;
 				}
-				cfg[typeof(ApqDBManager.Forms.SolutionExplorer), "RDBTypes"] = string.Join(",", lstRDBTypes);
+				cfg[typeof(ApqDBManager.Forms.SqlIns), "RDBTypes"] = string.Join(",", lstRDBTypes);
 			}
 			cfg.UserConfig.Save();
 		}

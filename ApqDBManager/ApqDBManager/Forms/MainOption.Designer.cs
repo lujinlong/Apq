@@ -33,6 +33,7 @@
 			this.navBarControl1 = new DevExpress.XtraNavBar.NavBarControl();
 			this.navBarGroup1 = new DevExpress.XtraNavBar.NavBarGroup();
 			this.nbiXmlServers = new DevExpress.XtraNavBar.NavBarItem();
+			this.nbiDBC = new DevExpress.XtraNavBar.NavBarItem();
 			this.nbiFavorites = new DevExpress.XtraNavBar.NavBarItem();
 			this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
 			this.btnConfirm = new DevExpress.XtraEditors.SimpleButton();
@@ -78,7 +79,8 @@
             this.navBarGroup1});
 			this.navBarControl1.Items.AddRange(new DevExpress.XtraNavBar.NavBarItem[] {
             this.nbiXmlServers,
-            this.nbiFavorites});
+            this.nbiFavorites,
+            this.nbiDBC});
 			this.navBarControl1.Location = new System.Drawing.Point(0, 0);
 			this.navBarControl1.Name = "navBarControl1";
 			this.navBarControl1.OptionsNavPane.ExpandedWidth = 164;
@@ -92,6 +94,7 @@
 			this.navBarGroup1.Expanded = true;
 			this.navBarGroup1.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
             new DevExpress.XtraNavBar.NavBarItemLink(this.nbiXmlServers),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.nbiDBC),
             new DevExpress.XtraNavBar.NavBarItemLink(this.nbiFavorites)});
 			this.navBarGroup1.Name = "navBarGroup1";
 			// 
@@ -100,6 +103,12 @@
 			this.nbiXmlServers.Caption = "服务器列表";
 			this.nbiXmlServers.Name = "nbiXmlServers";
 			this.nbiXmlServers.LinkPressed += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.nbiXmlServers_LinkPressed);
+			// 
+			// nbiDBC
+			// 
+			this.nbiDBC.Caption = "设置管理库";
+			this.nbiDBC.Name = "nbiDBC";
+			this.nbiDBC.LinkPressed += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.nbiDBC_LinkPressed);
 			// 
 			// nbiFavorites
 			// 
@@ -154,11 +163,12 @@
 		private DevExpress.XtraEditors.SplitContainerControl splitContainerControl1;
 		private DevExpress.XtraEditors.PanelControl panelControl1;
 		private DevExpress.XtraNavBar.NavBarControl navBarControl1;
-		private DevExpress.XtraNavBar.NavBarGroup navBarGroup1;
 		private DevExpress.XtraEditors.SimpleButton btnCancel;
 		private DevExpress.XtraEditors.SimpleButton btnConfirm;
 		private DevExpress.XtraNavBar.NavBarItem nbiXmlServers;
 		private DevExpress.XtraNavBar.NavBarItem nbiFavorites;
+		private DevExpress.XtraNavBar.NavBarGroup navBarGroup1;
+		private DevExpress.XtraNavBar.NavBarItem nbiDBC;
 
 
 

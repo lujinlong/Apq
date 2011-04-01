@@ -7,13 +7,13 @@ using System.Text;
 using System.Windows.Forms;
 using WeifenLuo.WinFormsUI.Docking;
 
-namespace ApqDBManager.Forms
+namespace ApqDBManager.Forms.SrvsMgr
 {
-	public partial class SrvsMgr : Apq.Windows.Forms.DockForm
+	public partial class DB : Apq.Windows.Forms.DockForm
 	{
 		protected string _FileName = string.Empty;
 
-		public SrvsMgr()
+		public DB()
 		{
 			InitializeComponent();
 		}
@@ -21,8 +21,6 @@ namespace ApqDBManager.Forms
 		private void Random_Load(object sender, EventArgs e)
 		{
 			Apq.Xtra.Grid.Common.AddBehaivor(gridView1);
-			Apq.Xtra.Grid.Common.AddBehaivor(gridView2);
-			Apq.Xtra.Grid.Common.AddBehaivor(gridView3);
 		}
 
 		private void btnSaveToDB_Click(object sender, EventArgs e)

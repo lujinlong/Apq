@@ -49,12 +49,12 @@
 			this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
 			this.beDBFolder_Up = new DevExpress.XtraEditors.ButtonEdit();
 			this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
-			this._Servers = new ApqDBManager.XSD.Servers();
+			this._Sqls = new Apq.DBC.XSD();
 			((System.ComponentModel.ISupportInitialize)(this.treeList1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.ripb)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.beDBFolder_Up.Properties)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this._Servers)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this._Sqls)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// treeList1
@@ -216,10 +216,10 @@
 			this.labelControl3.TabIndex = 11;
 			this.labelControl3.Text = "远程写入根目录";
 			// 
-			// _Servers
+			// _Sqls
 			// 
-			this._Servers.DataSetName = "Servers";
-			this._Servers.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+			this._Sqls.DataSetName = "Sqls";
+			this._Sqls.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
 			// 
 			// FileUp
 			// 
@@ -247,7 +247,7 @@
 			((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.ripb)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.beDBFolder_Up.Properties)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this._Servers)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this._Sqls)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -274,7 +274,7 @@
 		private DevExpress.XtraEditors.Repository.RepositoryItemProgressBar ripb;
 		private DevExpress.XtraEditors.ButtonEdit beDBFolder_Up;
 		private DevExpress.XtraEditors.LabelControl labelControl3;
-		private ApqDBManager.XSD.Servers _Servers;
+		private Apq.DBC.XSD _Sqls;
 
 	}
 }

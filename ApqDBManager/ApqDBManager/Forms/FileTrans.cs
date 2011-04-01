@@ -52,13 +52,13 @@ namespace ApqDBManager.Forms
 		private void FileTrans_Activated(object sender, EventArgs e)
 		{
 			// 从ControlValues设置页面服务器列表,页面改变时,同时改变ControlValues里的值
-			Forms.SolutionExplorer.UIState UISolution = Apq.Windows.Controls.ControlExtension.GetControlValues(this, "UISolution") as Forms.SolutionExplorer.UIState;
-			GlobalObject.SolutionExplorer.SetServers(_Servers, UISolution);
+			Forms.SqlIns.UIState UISolution = Apq.Windows.Controls.ControlExtension.GetControlValues(this, "UISolution") as Forms.SqlIns.UIState;
+			GlobalObject.SolutionExplorer.SetServers(_Sqls, UISolution);
 		}
 
 		private void FileTrans_Deactivate(object sender, EventArgs e)
 		{
-			ApqDBManager.Forms.SolutionExplorer.UIState State = GlobalObject.SolutionExplorer.GetUIState();
+			ApqDBManager.Forms.SqlIns.UIState State = GlobalObject.SolutionExplorer.GetUIState();
 			Apq.Windows.Controls.ControlExtension.SetControlValues(this, "UISolution", State);
 		}
 		#endregion
@@ -212,7 +212,7 @@ namespace ApqDBManager.Forms
 		/// </summary>
 		private void MainBackThread_StartDistribute()
 		{
-			DataView dv = new DataView(_Servers.dtServers);
+			DataView dv = new DataView(_Sqls.SqlInstance);
 			dv.RowFilter = "CheckState = 1 AND ID > 1";
 			if (dv.Count == 0)
 			{
@@ -220,11 +220,11 @@ namespace ApqDBManager.Forms
 				return;
 			}
 
-			foreach (DataRow dr in _Servers.dtServers.Rows)
+			foreach (DataRow dr in _Sqls.SqlInstance.Rows)
 			{
 				dr["Err"] = false;
 			}
-			_Servers.dtServers.AcceptChanges();
+			_Sqls.SqlInstance.AcceptChanges();
 
 			Workers_Stop();
 			Workers_StartDistribute();
@@ -239,7 +239,7 @@ namespace ApqDBManager.Forms
 			try
 			{
 				#region 获取服务器列表
-				DataView dv = new DataView(_Servers.dtServers);
+				DataView dv = new DataView(_Sqls.SqlInstance);
 				dv.RowFilter = "CheckState = 1 AND ID > 1";
 				#endregion
 
@@ -291,7 +291,7 @@ namespace ApqDBManager.Forms
 			object rtLock = GetLock(ServerID.ToString());
 
 			int nServerID = Apq.Convert.ChangeType<int>(ServerID);
-			DataView dv = new DataView(_Servers.dtServers);
+			DataView dv = new DataView(_Sqls.SqlInstance);
 			dv.RowFilter = "ID = " + nServerID;
 			if (dv.Count == 0)
 			{
@@ -342,13 +342,13 @@ namespace ApqDBManager.Forms
 			}
 			catch (DbException)
 			{
-				DataView dvErr = new DataView(_Servers.dtServers);
+				DataView dvErr = new DataView(_Sqls.SqlInstance);
 				dvErr.RowFilter = "ID = " + nServerID;
 				// 标记本服执行出错
 				if (dvErr.Count > 0)
 				{
 					dvErr[0]["Err"] = true;
-					_Servers.dtServers.AcceptChanges();
+					_Sqls.SqlInstance.AcceptChanges();
 				}
 			}
 			catch (Exception ex)
@@ -370,7 +370,7 @@ namespace ApqDBManager.Forms
 								bsiState.Caption = "已全部完成";
 								UIEnable(true);
 
-								DataView dvErr = new DataView(_Servers.dtServers);
+								DataView dvErr = new DataView(_Sqls.SqlInstance);
 								dvErr.RowFilter = "Err = 1";
 								// 标记本服执行出错
 								if (dvErr.Count > 0)
@@ -402,7 +402,7 @@ namespace ApqDBManager.Forms
 		/// </summary>
 		private void MainBackThread_StartCollect()
 		{
-			DataView dv = new DataView(_Servers.dtServers);
+			DataView dv = new DataView(_Sqls.SqlInstance);
 			dv.RowFilter = "CheckState = 1 AND ID > 1";
 			if (dv.Count == 0)
 			{
@@ -410,11 +410,11 @@ namespace ApqDBManager.Forms
 				return;
 			}
 
-			foreach (DataRow dr in _Servers.dtServers.Rows)
+			foreach (DataRow dr in _Sqls.SqlInstance.Rows)
 			{
 				dr["Err"] = false;
 			}
-			_Servers.dtServers.AcceptChanges();
+			_Sqls.SqlInstance.AcceptChanges();
 
 			Workers_Stop();
 			Workers_StartCollect();
@@ -429,7 +429,7 @@ namespace ApqDBManager.Forms
 			try
 			{
 				#region 获取服务器列表
-				DataView dv = new DataView(_Servers.dtServers);
+				DataView dv = new DataView(_Sqls.SqlInstance);
 				dv.RowFilter = "CheckState = 1 AND ID > 1";
 				#endregion
 
@@ -481,7 +481,7 @@ namespace ApqDBManager.Forms
 			object rtLock = GetLock(ServerID.ToString());
 
 			int nServerID = Apq.Convert.ChangeType<int>(ServerID);
-			DataView dv = new DataView(_Servers.dtServers);
+			DataView dv = new DataView(_Sqls.SqlInstance);
 			dv.RowFilter = "ID = " + nServerID;
 			if (dv.Count == 0)
 			{
@@ -525,13 +525,13 @@ namespace ApqDBManager.Forms
 			}
 			catch (DbException)
 			{
-				DataView dvErr = new DataView(_Servers.dtServers);
+				DataView dvErr = new DataView(_Sqls.SqlInstance);
 				dvErr.RowFilter = "ID = " + nServerID;
 				// 标记本服执行出错
 				if (dvErr.Count > 0)
 				{
 					dvErr[0]["Err"] = true;
-					_Servers.dtServers.AcceptChanges();
+					_Sqls.SqlInstance.AcceptChanges();
 				}
 			}
 			catch (Exception ex)
@@ -553,7 +553,7 @@ namespace ApqDBManager.Forms
 								bsiState.Caption = "已全部完成";
 								UIEnable(true);
 
-								DataView dvErr = new DataView(_Servers.dtServers);
+								DataView dvErr = new DataView(_Sqls.SqlInstance);
 								dvErr.RowFilter = "Err = 1";
 								// 标记本服执行出错
 								if (dvErr.Count > 0)
@@ -575,8 +575,8 @@ namespace ApqDBManager.Forms
 		/// </summary>
 		public void ReloadServers()
 		{
-			_Servers.dtServers.Clear();
-			_Servers.dtServers.Merge(GlobalObject.Servers.dtServers);
+			_Sqls.SqlInstance.Clear();
+			_Sqls.SqlInstance.Merge(GlobalObject.Sqls.SqlInstance);
 		}
 	}
 }

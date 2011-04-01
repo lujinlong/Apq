@@ -11,9 +11,9 @@ using WeifenLuo.WinFormsUI.Docking;
 
 namespace ApqDBManager.Forms
 {
-	public partial class SolutionExplorer : Apq.Windows.Forms.DockForm
+	public partial class SqlIns : Apq.Windows.Forms.DockForm
 	{
-		public SolutionExplorer()
+		public SqlIns()
 		{
 			InitializeComponent();
 		}
@@ -53,14 +53,14 @@ namespace ApqDBManager.Forms
 				string[] aryCheckedServerNames = cfgCheckedNames.Split(',');
 				foreach (string strCheckedName in aryCheckedServerNames)
 				{
-					DataView dv = new DataView(_Servers.dtServers);
+					DataView dv = new DataView(_Sqls.SqlInstance);
 					dv.RowFilter = "[Name] = " + Apq.Data.SqlClient.Common.ConvertToSqlON(SqlDbType.VarChar, strCheckedName);
 					foreach (DataRowView dr in dv)
 					{
 						dr["CheckState"] = 1;
 					}
 				}
-				_Servers.dtServers.AcceptChanges();
+				_Sqls.SqlInstance.AcceptChanges();
 			}
 			#endregion
 
@@ -86,7 +86,7 @@ namespace ApqDBManager.Forms
 				int idx = Apq.Convert.ChangeType<int>(bci.Caption.Substring(idxBegin, idxLength), -1);
 
 				treeList1.BeginUpdate();
-				DataView dv = new DataView(_Servers.dtServers);
+				DataView dv = new DataView(_Sqls.SqlInstance);
 				dv.RowFilter = "Type = " + idx;
 				if (idx == 0) dv.RowFilter = dv.RowFilter + " OR Type IS NULL";
 
@@ -95,7 +95,7 @@ namespace ApqDBManager.Forms
 					drv["CheckState"] = Apq.Convert.ChangeType<int>(bci.Checked);
 				}
 
-				_Servers.dtServers.AcceptChanges();
+				_Sqls.SqlInstance.AcceptChanges();
 				treeList1.EndUpdate();
 			}
 		}
@@ -103,18 +103,18 @@ namespace ApqDBManager.Forms
 		private void bbiSelectAll_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
 		{
 			treeList1.BeginUpdate();
-			foreach (DataRow dr in _Servers.dtServers.Rows)
+			foreach (DataRow dr in _Sqls.SqlInstance.Rows)
 			{
 				dr["CheckState"] = 1;
 			}
-			_Servers.dtServers.AcceptChanges();
+			_Sqls.SqlInstance.AcceptChanges();
 			treeList1.EndUpdate();
 		}
 		//反选
 		private void bbiReverse_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
 		{
 			treeList1.BeginUpdate();
-			foreach (DataRow dr in _Servers.dtServers.Rows)
+			foreach (DataRow dr in _Sqls.SqlInstance.Rows)
 			{
 				int check = Apq.Convert.ChangeType<int>(dr["CheckState"]);
 				if (check == 2 || check == 0)
@@ -127,8 +127,13 @@ namespace ApqDBManager.Forms
 				}
 				dr["CheckState"] = check;
 			}
-			_Servers.dtServers.AcceptChanges();
+			_Sqls.SqlInstance.AcceptChanges();
 			treeList1.EndUpdate();
+		}
+		//重新加载
+		private void bbiReload_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+		{
+
 		}
 		//全部展开
 		private void bbiExpandAll_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -150,36 +155,36 @@ namespace ApqDBManager.Forms
 		private void bbiFail_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
 		{
 			treeList1.BeginUpdate();
-			foreach (DataRow dr in _Servers.dtServers.Rows)
+			foreach (DataRow dr in _Sqls.SqlInstance.Rows)
 			{
 				dr["CheckState"] = 0;
 			}
 
-			DataView dv = new DataView(_Servers.dtServers);
+			DataView dv = new DataView(_Sqls.SqlInstance);
 			dv.RowFilter = "Err = 1";
 			foreach (DataRowView drv in dv)
 			{
 				drv["CheckState"] = 1;
 			}
-			_Servers.dtServers.AcceptChanges();
+			_Sqls.SqlInstance.AcceptChanges();
 			treeList1.EndUpdate();
 		}
 		//结果
 		private void bbiResult_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
 		{
 			treeList1.BeginUpdate();
-			foreach (DataRow dr in _Servers.dtServers.Rows)
+			foreach (DataRow dr in _Sqls.SqlInstance.Rows)
 			{
 				dr["CheckState"] = 0;
 			}
 
-			DataView dv = new DataView(_Servers.dtServers);
+			DataView dv = new DataView(_Sqls.SqlInstance);
 			dv.RowFilter = "IsReadyToGo = 1";
 			foreach (DataRowView drv in dv)
 			{
 				drv["CheckState"] = 1;
 			}
-			_Servers.dtServers.AcceptChanges();
+			_Sqls.SqlInstance.AcceptChanges();
 			treeList1.EndUpdate();
 		}
 
@@ -209,7 +214,7 @@ namespace ApqDBManager.Forms
 			{
 				SetCheckedChildNodes(node, Checked);
 			}
-			_Servers.dtServers.AcceptChanges();
+			_Sqls.SqlInstance.AcceptChanges();
 			treeList1.EndUpdate();
 		}
 		private void SetCheckedChildNodes(TreeListNode node, int Checked)
@@ -327,7 +332,7 @@ namespace ApqDBManager.Forms
 			if (treeList1.FocusedNode != null)
 			{
 				State.FocusedServerID = Apq.Convert.ChangeType<int>(treeList1.FocusedNode["ID"]);
-				foreach (DataRow dr in _Servers.dtServers.Rows)
+				foreach (DataRow dr in _Sqls.SqlInstance.Rows)
 				{
 					int ID = Apq.Convert.ChangeType<int>(dr["ID"]);
 					TreeListNode tln = treeList1.FindNodeByFieldValue("ID", ID);
@@ -343,9 +348,9 @@ namespace ApqDBManager.Forms
 		/// <summary>
 		/// 改变服务器列表
 		/// </summary>
-		public void SetServers(ApqDBManager.XSD.Servers Servers, UIState UIState)
+		public void SetServers(Apq.DBC.XSD Sqls, UIState UIState)
 		{
-			treeList1.DataSource = _Servers = Servers;
+			treeList1.DataSource = _Sqls = Sqls;
 
 			// 设置新状态
 			if (UIState != null)

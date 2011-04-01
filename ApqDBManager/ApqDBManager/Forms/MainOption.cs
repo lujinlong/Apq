@@ -18,6 +18,7 @@ namespace ApqDBManager.Forms
 
 		ApqDBManager.Controls.MainOption.XmlServers xs = new ApqDBManager.Controls.MainOption.XmlServers();
 		ApqDBManager.Controls.MainOption.Favorites fav = new ApqDBManager.Controls.MainOption.Favorites();
+		ApqDBManager.Controls.MainOption.DBC dbc = new ApqDBManager.Controls.MainOption.DBC();
 
 		private void MainOption_FormClosing(object sender, FormClosingEventArgs e)
 		{
@@ -51,6 +52,14 @@ namespace ApqDBManager.Forms
 			panelControl1.Controls.Add(fav);
 			fav.Dock = DockStyle.Fill;
 			fav.InitValue(GlobalObject.XmlConfigChain);
+		}
+
+		public void nbiDBC_LinkPressed(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
+		{
+			panelControl1.Controls.Clear();
+			panelControl1.Controls.Add(dbc);
+			dbc.Dock = DockStyle.Fill;
+			dbc.InitValue(GlobalObject.XmlConfigChain);
 		}
 	}
 }

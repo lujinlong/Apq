@@ -55,7 +55,7 @@
 			this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
 			this.fbdCFolder_Out = new System.Windows.Forms.FolderBrowserDialog();
 			this.fbdCFolder_In = new System.Windows.Forms.FolderBrowserDialog();
-			this._Servers = new ApqDBManager.XSD.Servers();
+			this._Sqls = new Apq.DBC.XSD();
 			((System.ComponentModel.ISupportInitialize)(this.beDBFolder_Out.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.beCFolder_Out.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.beDBFolder_In.Properties)).BeginInit();
@@ -66,7 +66,7 @@
 			this.groupControl2.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.ripb)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this._Servers)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this._Sqls)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// beDBFolder_Out
@@ -276,10 +276,10 @@
 			// 
 			this.ripb.Name = "ripb";
 			// 
-			// _Servers
+			// _Sqls
 			// 
-			this._Servers.DataSetName = "Servers";
-			this._Servers.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+			this._Sqls.DataSetName = "Sqls";
+			this._Sqls.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
 			// 
 			// FileTrans
 			// 
@@ -312,7 +312,7 @@
 			this.groupControl2.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.ripb)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this._Servers)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this._Sqls)).EndInit();
 			this.ResumeLayout(false);
 
 		}
@@ -344,6 +344,6 @@
 		private System.Windows.Forms.FolderBrowserDialog fbdCFolder_In;
 		private DevExpress.XtraEditors.LabelControl labelControl5;
 		private DevExpress.XtraEditors.LabelControl labelControl6;
-		private ApqDBManager.XSD.Servers _Servers;
+		private Apq.DBC.XSD _Sqls;
 	}
 }

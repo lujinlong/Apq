@@ -177,14 +177,14 @@ UNION ALL SELECT 2,2;";
 		private void SqlEdit_Activated(object sender, EventArgs e)
 		{
 			// 从ControlValues设置页面服务器列表,页面改变时,同时改变ControlValues里的值
-			Forms.SolutionExplorer.UIState UISolution = Apq.Windows.Controls.ControlExtension.GetControlValues(this, "UISolution") as Forms.SolutionExplorer.UIState;
-			GlobalObject.SolutionExplorer.SetServers(dsServers, UISolution);
+			Forms.SqlIns.UIState UISolution = Apq.Windows.Controls.ControlExtension.GetControlValues(this, "UISolution") as Forms.SqlIns.UIState;
+			GlobalObject.SolutionExplorer.SetServers(_Sqls, UISolution);
 			GlobalObject.ErrList.Set_ErrList(dsUI);
 		}
 
 		private void SqlEdit_Deactivate(object sender, EventArgs e)
 		{
-			ApqDBManager.Forms.SolutionExplorer.UIState State = GlobalObject.SolutionExplorer.GetUIState();
+			ApqDBManager.Forms.SqlIns.UIState State = GlobalObject.SolutionExplorer.GetUIState();
 			Apq.Windows.Controls.ControlExtension.SetControlValues(this, "UISolution", State);
 		}
 
@@ -282,7 +282,7 @@ UNION ALL SELECT 2,2;";
 			if (!string.IsNullOrEmpty(strSql))
 			{
 				#region 注册检测
-				DataView dv = new DataView(dsServers.dtServers);
+				DataView dv = new DataView(_Sqls.SqlInstance);
 				dv.RowFilter = "CheckState = 1 AND ID > 1";
 				if (dv.Count > 3 && !Apq.Reg.Client.Common.IsRegistration)
 				{
@@ -489,7 +489,7 @@ UNION ALL SELECT 2,2;";
 		/// </summary>
 		private void MainBackThread_Start()
 		{
-			DataView dv = new DataView(dsServers.dtServers);
+			DataView dv = new DataView(_Sqls.SqlInstance);
 			dv.RowFilter = "CheckState = 1 AND ID > 1";
 			if (dv.Count == 0)
 			{
@@ -501,7 +501,7 @@ UNION ALL SELECT 2,2;";
 				dsUI.ErrList.Clear();
 				dsUI.ErrList.AcceptChanges();
 			});
-			foreach (DataRow dr in dsServers.dtServers.Rows)
+			foreach (DataRow dr in _Sqls.SqlInstance.Rows)
 			{
 				dr["Err"] = false;
 				dr["IsReadyToGo"] = false;
@@ -510,7 +510,7 @@ UNION ALL SELECT 2,2;";
 			{
 				drv["IsReadyToGo"] = true;
 			}
-			dsServers.dtServers.AcceptChanges();
+			_Sqls.SqlInstance.AcceptChanges();
 
 			if (bciSingleThread.Checked)
 			{
@@ -578,7 +578,7 @@ UNION ALL SELECT 2,2;";
 			try
 			{
 				#region 获取服务器列表
-				DataView dv = new DataView(dsServers.dtServers);
+				DataView dv = new DataView(_Sqls.SqlInstance);
 				dv.RowFilter = "CheckState = 1 AND ID > 1";
 				#endregion
 
@@ -642,7 +642,7 @@ UNION ALL SELECT 2,2;";
 			object rtLock = GetLock(ServerID.ToString());
 
 			int nServerID = Apq.Convert.ChangeType<int>(ServerID);
-			DataView dv = new DataView(dsServers.dtServers);
+			DataView dv = new DataView(_Sqls.SqlInstance);
 			dv.RowFilter = "ID = " + nServerID;
 			if (dv.Count == 0)
 			{
@@ -764,7 +764,7 @@ UNION ALL SELECT 2,2;";
 			//}
 			catch (Exception ex)
 			{
-				DataView dvErr = new DataView(dsServers.dtServers);
+				DataView dvErr = new DataView(_Sqls.SqlInstance);
 				dvErr.RowFilter = "ID = " + nServerID;
 				// 标记本服执行出错
 				if (dvErr.Count > 0)
@@ -797,13 +797,13 @@ UNION ALL SELECT 2,2;";
 							beiProgressBar.EditValue = Apq.Convert.ChangeType<int>(beiProgressBar.EditValue) + 1;
 							if (Apq.Convert.ChangeType<int>(beiProgressBar.EditValue) == ripb.Maximum)
 							{
-								dsServers.dtServers.AcceptChanges();
+								_Sqls.SqlInstance.AcceptChanges();
 								dsUI.ErrList.AcceptChanges();
 								bsiState.Caption = "已全部完成";
 								btnCancel.Enabled = false;
 								btnExec.Enabled = true;
 
-								DataView dvErr = new DataView(dsServers.dtServers);
+								DataView dvErr = new DataView(_Sqls.SqlInstance);
 								dvErr.RowFilter = "Err = 1";
 								// 标记本服执行出错
 								if (dvErr.Count > 0)
@@ -885,8 +885,8 @@ UNION ALL SELECT 2,2;";
 		/// </summary>
 		public void ReloadServers()
 		{
-			dsServers.dtServers.Clear();
-			dsServers.dtServers.Merge(GlobalObject.Servers.dtServers);
+			_Sqls.SqlInstance.Clear();
+			_Sqls.SqlInstance.Merge(GlobalObject.Sqls.SqlInstance);
 		}
 	}
 }

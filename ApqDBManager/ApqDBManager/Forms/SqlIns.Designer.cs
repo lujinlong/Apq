@@ -1,6 +1,6 @@
 ﻿namespace ApqDBManager.Forms
 {
-	partial class SolutionExplorer
+	partial class SqlIns
 	{
 		/// <summary>
 		/// Required designer variable.
@@ -28,12 +28,12 @@
 		private void InitializeComponent()
 		{
 			this.components = new System.ComponentModel.Container();
-			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SolutionExplorer));
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SqlIns));
 			this.treeList1 = new DevExpress.XtraTreeList.TreeList();
 			this.treeListColumn1 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
 			this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.tsmiCopy = new System.Windows.Forms.ToolStripMenuItem();
-			this._Servers = new ApqDBManager.XSD.Servers();
+			this._Sqls = new Apq.DBC.XSD();
 			this.repositoryItemCheckEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
 			this.imageList1 = new System.Windows.Forms.ImageList(this.components);
 			this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
@@ -41,17 +41,20 @@
 			this.bsiSelect = new DevExpress.XtraBars.BarSubItem();
 			this.bbiSelectAll = new DevExpress.XtraBars.BarButtonItem();
 			this.bbiReverse = new DevExpress.XtraBars.BarButtonItem();
+			this.bbiReload = new DevExpress.XtraBars.BarButtonItem();
 			this.bar1 = new DevExpress.XtraBars.Bar();
 			this.bbiExpandAll = new DevExpress.XtraBars.BarButtonItem();
 			this.bbiFail = new DevExpress.XtraBars.BarButtonItem();
 			this.bbiResult = new DevExpress.XtraBars.BarButtonItem();
+			this.bar4 = new DevExpress.XtraBars.Bar();
+			this.bsiInfo = new DevExpress.XtraBars.BarStaticItem();
 			this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
 			this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
 			this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
 			this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
 			((System.ComponentModel.ISupportInitialize)(this.treeList1)).BeginInit();
 			this.contextMenuStrip1.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this._Servers)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this._Sqls)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
 			this.SuspendLayout();
@@ -61,15 +64,16 @@
 			this.treeList1.Columns.AddRange(new DevExpress.XtraTreeList.Columns.TreeListColumn[] {
             this.treeListColumn1});
 			this.treeList1.ContextMenuStrip = this.contextMenuStrip1;
-			this.treeList1.DataMember = "dtServers";
-			this.treeList1.DataSource = this._Servers;
+			this.treeList1.DataMember = "SqlInstance";
+			this.treeList1.DataSource = this._Sqls;
 			this.treeList1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.treeList1.Location = new System.Drawing.Point(0, 21);
+			this.treeList1.KeyFieldName = "SqlID";
+			this.treeList1.Location = new System.Drawing.Point(0, 24);
 			this.treeList1.Name = "treeList1";
 			this.treeList1.OptionsBehavior.Editable = false;
 			this.treeList1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemCheckEdit1});
-			this.treeList1.Size = new System.Drawing.Size(292, 371);
+			this.treeList1.Size = new System.Drawing.Size(300, 345);
 			this.treeList1.StateImageList = this.imageList1;
 			this.treeList1.TabIndex = 0;
 			this.treeList1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.treeList1_KeyDown);
@@ -82,7 +86,7 @@
 			// treeListColumn1
 			// 
 			this.treeListColumn1.Caption = "名称";
-			this.treeListColumn1.FieldName = "Name";
+			this.treeListColumn1.FieldName = "SqlName";
 			this.treeListColumn1.MinWidth = 37;
 			this.treeListColumn1.Name = "treeListColumn1";
 			this.treeListColumn1.OptionsColumn.AllowMove = false;
@@ -105,10 +109,10 @@
 			this.tsmiCopy.Text = "复制(&C)";
 			this.tsmiCopy.Click += new System.EventHandler(this.tsmiCopy_Click);
 			// 
-			// _Servers
+			// _Sqls
 			// 
-			this._Servers.DataSetName = "Servers";
-			this._Servers.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+			this._Sqls.DataSetName = "Sqls";
+			this._Sqls.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
 			// 
 			// repositoryItemCheckEdit1
 			// 
@@ -127,7 +131,8 @@
 			// 
 			this.barManager1.Bars.AddRange(new DevExpress.XtraBars.Bar[] {
             this.bar2,
-            this.bar1});
+            this.bar1,
+            this.bar4});
 			this.barManager1.DockControls.Add(this.barDockControlTop);
 			this.barManager1.DockControls.Add(this.barDockControlBottom);
 			this.barManager1.DockControls.Add(this.barDockControlLeft);
@@ -139,9 +144,12 @@
             this.bbiFail,
             this.bbiResult,
             this.bbiExpandAll,
-            this.bsiSelect});
+            this.bsiSelect,
+            this.bbiReload,
+            this.bsiInfo});
 			this.barManager1.MainMenu = this.bar2;
-			this.barManager1.MaxItemId = 21;
+			this.barManager1.MaxItemId = 23;
+			this.barManager1.StatusBar = this.bar4;
 			// 
 			// bar2
 			// 
@@ -152,7 +160,8 @@
 			this.bar2.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
             new DevExpress.XtraBars.LinkPersistInfo(this.bsiSelect),
             new DevExpress.XtraBars.LinkPersistInfo(this.bbiSelectAll),
-            new DevExpress.XtraBars.LinkPersistInfo(this.bbiReverse)});
+            new DevExpress.XtraBars.LinkPersistInfo(this.bbiReverse),
+            new DevExpress.XtraBars.LinkPersistInfo(this.bbiReload)});
 			this.bar2.OptionsBar.MultiLine = true;
 			this.bar2.OptionsBar.UseWholeRow = true;
 			this.bar2.Text = "Main menu";
@@ -177,11 +186,18 @@
 			this.bbiReverse.Name = "bbiReverse";
 			this.bbiReverse.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiReverse_ItemClick);
 			// 
+			// bbiReload
+			// 
+			this.bbiReload.Caption = "重新加载(&R)";
+			this.bbiReload.Id = 21;
+			this.bbiReload.Name = "bbiReload";
+			this.bbiReload.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiReload_ItemClick);
+			// 
 			// bar1
 			// 
 			this.bar1.BarName = "Custom 1";
 			this.bar1.DockCol = 0;
-			this.bar1.DockRow = 0;
+			this.bar1.DockRow = 1;
 			this.bar1.DockStyle = DevExpress.XtraBars.BarDockStyle.Bottom;
 			this.bar1.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
             new DevExpress.XtraBars.LinkPersistInfo(this.bbiExpandAll),
@@ -211,9 +227,31 @@
 			this.bbiResult.Name = "bbiResult";
 			this.bbiResult.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiResult_ItemClick);
 			// 
-			// SolutionExplorer
+			// bar4
 			// 
-			this.ClientSize = new System.Drawing.Size(292, 416);
+			this.bar4.BarName = "Custom 5";
+			this.bar4.CanDockStyle = DevExpress.XtraBars.BarCanDockStyle.Bottom;
+			this.bar4.DockCol = 0;
+			this.bar4.DockRow = 0;
+			this.bar4.DockStyle = DevExpress.XtraBars.BarDockStyle.Bottom;
+			this.bar4.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
+            new DevExpress.XtraBars.LinkPersistInfo(this.bsiInfo)});
+			this.bar4.OptionsBar.AllowQuickCustomization = false;
+			this.bar4.OptionsBar.DrawDragBorder = false;
+			this.bar4.OptionsBar.UseWholeRow = true;
+			this.bar4.Text = "Custom 5";
+			// 
+			// bsiInfo
+			// 
+			this.bsiInfo.AutoSize = DevExpress.XtraBars.BarStaticItemSize.None;
+			this.bsiInfo.Id = 22;
+			this.bsiInfo.Name = "bsiInfo";
+			this.bsiInfo.TextAlignment = System.Drawing.StringAlignment.Near;
+			this.bsiInfo.Width = 300;
+			// 
+			// SqlIns
+			// 
+			this.ClientSize = new System.Drawing.Size(300, 416);
 			this.Controls.Add(this.treeList1);
 			this.Controls.Add(this.barDockControlLeft);
 			this.Controls.Add(this.barDockControlRight);
@@ -225,15 +263,15 @@
 						| WeifenLuo.WinFormsUI.Docking.DockAreas.DockBottom)));
 			this.HideOnClose = true;
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-			this.Name = "SolutionExplorer";
+			this.Name = "SqlIns";
 			this.ShowHint = WeifenLuo.WinFormsUI.Docking.DockState.DockLeft;
-			this.TabText = "服务器";
-			this.Text = "服务器";
+			this.TabText = "Sql实例";
+			this.Text = "Sql实例";
 			this.Load += new System.EventHandler(this.SolutionExplorer_Load);
 			this.Shown += new System.EventHandler(this.SolutionExplorer_Shown);
 			((System.ComponentModel.ISupportInitialize)(this.treeList1)).EndInit();
 			this.contextMenuStrip1.ResumeLayout(false);
-			((System.ComponentModel.ISupportInitialize)(this._Servers)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this._Sqls)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit1)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
 			this.ResumeLayout(false);
@@ -260,7 +298,10 @@
 		private System.Windows.Forms.ToolStripMenuItem tsmiCopy;
 		private DevExpress.XtraTreeList.Columns.TreeListColumn treeListColumn1;
 		private DevExpress.XtraBars.BarSubItem bsiSelect;
-		private ApqDBManager.XSD.Servers _Servers;
+		private Apq.DBC.XSD _Sqls;
+		private DevExpress.XtraBars.BarButtonItem bbiReload;
+		private DevExpress.XtraBars.Bar bar4;
+		private DevExpress.XtraBars.BarStaticItem bsiInfo;
 
 	}
 }

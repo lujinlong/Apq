@@ -55,8 +55,8 @@
 			this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
 			this.fbdCFTPFolder_Out = new System.Windows.Forms.FolderBrowserDialog();
 			this.fbdCFolder_In = new System.Windows.Forms.FolderBrowserDialog();
-			this._Servers = new ApqDBManager.XSD.Servers();
 			this._UI = new ApqDBManager.XSD.UI();
+			this._Sqls = new Apq.DBC.XSD();
 			((System.ComponentModel.ISupportInitialize)(this.beDBFTPFolder_Out.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.beCFTPFolder_Out.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.beDBFTPFolder_In.Properties)).BeginInit();
@@ -67,8 +67,8 @@
 			this.groupControl2.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.ripb)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this._Servers)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this._UI)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this._Sqls)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// beDBFTPFolder_Out
@@ -278,15 +278,15 @@
 			// 
 			this.ripb.Name = "ripb";
 			// 
-			// _Servers
-			// 
-			this._Servers.DataSetName = "Servers";
-			this._Servers.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-			// 
 			// _UI
 			// 
 			this._UI.DataSetName = "UI";
 			this._UI.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+			// 
+			// _Sqls
+			// 
+			this._Sqls.DataSetName = "Sqls";
+			this._Sqls.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
 			// 
 			// FTPFileTrans
 			// 
@@ -319,8 +319,8 @@
 			this.groupControl2.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.ripb)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this._Servers)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this._UI)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this._Sqls)).EndInit();
 			this.ResumeLayout(false);
 
 		}
@@ -352,7 +352,7 @@
 		private System.Windows.Forms.FolderBrowserDialog fbdCFolder_In;
 		private DevExpress.XtraEditors.LabelControl labelControl5;
 		private DevExpress.XtraEditors.LabelControl labelControl6;
-		private ApqDBManager.XSD.Servers _Servers;
 		private ApqDBManager.XSD.UI _UI;
+		private Apq.DBC.XSD _Sqls;
 	}
 }

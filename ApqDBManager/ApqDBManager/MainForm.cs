@@ -30,7 +30,7 @@ namespace ApqDBManager
 		/// <returns></returns>
 		private IDockContent GetContentFromPersistString(string persistString)
 		{
-			if (persistString == typeof(ApqDBManager.Forms.SolutionExplorer).ToString())
+			if (persistString == typeof(ApqDBManager.Forms.SqlIns).ToString())
 			{
 				return GlobalObject.SolutionExplorer;
 			}
@@ -271,7 +271,7 @@ namespace ApqDBManager
 		#endregion
 
 		#region 工具
-		private void menuOption_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+		public void menuOption_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
 		{
 			GlobalObject.MainOption.ShowDialog(this);
 		}

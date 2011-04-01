@@ -46,6 +46,7 @@
 			// 
 			// beXmlServers
 			// 
+			this.beXmlServers.Enabled = false;
 			this.beXmlServers.Location = new System.Drawing.Point(105, 22);
 			this.beXmlServers.Name = "beXmlServers";
 			this.beXmlServers.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {

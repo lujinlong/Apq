@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Text;
 using System.Data;
 using ApqDBManager.Forms;
+using System.Data.SqlClient;
+using System.Windows.Forms;
 
 namespace ApqDBManager
 {
@@ -160,17 +162,17 @@ namespace ApqDBManager
 		#endregion
 
 		#region SolutionExplorer
-		private static SolutionExplorer _SolutionExplorer;
+		private static SqlIns _SolutionExplorer;
 		/// <summary>
 		/// 获取解决方案视图
 		/// </summary>
-		public static SolutionExplorer SolutionExplorer
+		public static SqlIns SolutionExplorer
 		{
 			get
 			{
 				if (_SolutionExplorer == null)
 				{
-					_SolutionExplorer = new SolutionExplorer();
+					_SolutionExplorer = new SqlIns();
 				}
 				return _SolutionExplorer;
 			}
@@ -213,56 +215,96 @@ namespace ApqDBManager
 		}
 		#endregion
 
-		#region Servers
-		private static XSD.Servers _Servers;
+		#region SqlInstances
+		private static Apq.DBC.XSD _Sqls;
 		/// <summary>
 		/// 获取服务器集
 		/// </summary>
-		public static XSD.Servers Servers
+		public static Apq.DBC.XSD Sqls
 		{
 			get
 			{
-				if (_Servers == null)
+				if (_Sqls == null)
 				{
-					ServersReload();
+					SqlsReload();
 				}
-				return _Servers;
+				return _Sqls;
 			}
 		}
 
-		public static void ServersReload()
+		public static void SqlsReload()
 		{
-			if (_Servers == null)
+			#region 从数据库加载实例列表
+			Apq.ConnectionStrings.SQLServer.SqlConnection scHelper = new Apq.ConnectionStrings.SQLServer.SqlConnection();
+			scHelper.DBName = GlobalObject.XmlConfigChain["ApqDBManager.Controls.MainOption.DBC", "DBName"];
+			scHelper.ServerName = GlobalObject.XmlConfigChain["ApqDBManager.Controls.MainOption.DBC", "ServerName"];
+			scHelper.UserId = GlobalObject.XmlConfigChain["ApqDBManager.Controls.MainOption.DBC", "UserId"];
+			string PwdC = GlobalObject.XmlConfigChain["ApqDBManager.Controls.MainOption.DBC", "Pwd"];
+			string PwdD = Apq.Security.Cryptography.DESHelper.DecryptString(PwdC, GlobalObject.RegConfigChain["Crypt", "DESKey"], GlobalObject.RegConfigChain["Crypt", "DESIV"]);
+			scHelper.Pwd = PwdD;
+			try
 			{
-				_Servers = new XSD.Servers();
-				_Servers.dtServers.Columns.Add("ConnectionString");
+				scHelper.TestAvailable();
 			}
-			_Servers.Clear();
+			catch
+			{
+				MessageBox.Show("请重新设置管理库", "异常");
+				MainOption.nbiDBC_LinkPressed(null, null);
+				MainForm.menuOption_ItemClick(null, null);
+				return;
+			}
+			string strMgrDBConnectionString = scHelper.GetConnectionString();
 
-			_Servers.dtServers.ReadXml(GlobalObject.XmlConfigChain[typeof(GlobalObject), "XmlServers"]);//此文件中密码已加密
+			if (_Sqls == null)
+			{
+				_Sqls = new Apq.DBC.XSD();
+				_Sqls.SqlInstance.Columns.Add("CheckState", typeof(int));
+				_Sqls.SqlInstance.Columns.Add("IsReadyToGo", typeof(bool));
+				_Sqls.SqlInstance.Columns.Add("Err", typeof(bool));
+				_Sqls.SqlInstance.Columns.Add("DBConnectionString");
+			}
+			_Sqls.Clear();
+
+			try
+			{
+				SqlDataAdapter sda = new SqlDataAdapter("dbo.ApqDBMgr_SqlInstance_List", strMgrDBConnectionString);
+				sda.Fill(_Sqls.SqlInstance);
+			}
+			catch
+			{
+				return;
+			}
+
+			#endregion
+
 			//解密密码,生成连接字符串
-			foreach (XSD.Servers.dtServersRow dr in _Servers.dtServers.Rows)
+			foreach (Apq.DBC.XSD.SqlInstanceRow dr in _Sqls.SqlInstance.Rows)
 			{
 				if (!Apq.Convert.LikeDBNull(dr["PwdC"]))
 				{
 					dr.PwdD = Apq.Security.Cryptography.DESHelper.DecryptString(dr.PwdC, GlobalObject.RegConfigChain["Crypt", "DESKey"], GlobalObject.RegConfigChain["Crypt", "DESIV"]);
-					dr["ConnectionString"] = string.Format("Data Source={0},{1};User Id={2};Password={3};", dr.IPWan1, dr.SqlPort, dr.UID, dr.PwdD);
-				}
-				if (!Apq.Convert.LikeDBNull(dr["FTPPC"]))
-				{
-					dr.FTPPD = Apq.Security.Cryptography.DESHelper.DecryptString(dr.FTPPC, GlobalObject.RegConfigChain["Crypt", "DESKey"], GlobalObject.RegConfigChain["Crypt", "DESIV"]);
+					Apq.ConnectionStrings.SQLServer.SqlConnection scHelper1 = new Apq.ConnectionStrings.SQLServer.SqlConnection();
+					scHelper1.DBName = "master";
+					scHelper1.ServerName = dr.IP;
+					if (dr.SqlPort > 0)
+					{
+						scHelper1.ServerName += "," + dr.SqlPort;
+					}
+					scHelper1.UserId = dr.UserId;
+					scHelper1.Pwd = dr.PwdD;
+					dr["DBConnectionString"] = scHelper1.GetConnectionString();
 				}
 			}
 
 #if Debug_Home
-			foreach (XSD.Servers.dtServersRow dr in _Servers.dtServers.Rows)
+			foreach (Apq.DBC.XSD.SqlInstanceRow dr in _Sqls.SqlInstance.Rows)
 			{
-				dr["ConnectionString"] = "Data Source=.;User ID=apq;Password=f;";
+				dr["DBConnectionString"] = "Data Source=.;User ID=apq;Password=f;";
 				dr.IPWan1 = "127.0.0.1";
 			}
 #endif
 
-			_Servers.dtServers.AcceptChanges();
+			_Sqls.SqlInstance.AcceptChanges();
 		}
 		#endregion
 

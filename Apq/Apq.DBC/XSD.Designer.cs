@@ -294,6 +294,8 @@ namespace Apq.DBC {
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
         public partial class DBCDataTable : global::System.Data.TypedTableBase<DBCRow> {
             
+            private global::System.Data.DataColumn columnComputerID;
+            
             private global::System.Data.DataColumn columnSqlID;
             
             private global::System.Data.DataColumn columnDBID;
@@ -344,6 +346,13 @@ namespace Apq.DBC {
             protected DBCDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                     base(info, context) {
                 this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn ComputerIDColumn {
+                get {
+                    return this.columnComputerID;
+                }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -452,9 +461,10 @@ namespace Apq.DBC {
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public DBCRow AddDBCRow(int SqlID, int DBID, int DBCType, string ServerName, string DBName, string Mirror, bool UseTrusted, string UserId, string PwdC, string PwdD, string Option) {
+            public DBCRow AddDBCRow(int ComputerID, int SqlID, int DBID, int DBCType, string ServerName, string DBName, string Mirror, bool UseTrusted, string UserId, string PwdC, string PwdD, string Option) {
                 DBCRow rowDBCRow = ((DBCRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
+                        ComputerID,
                         SqlID,
                         DBID,
                         DBCType,
@@ -491,6 +501,7 @@ namespace Apq.DBC {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             internal void InitVars() {
+                this.columnComputerID = base.Columns["ComputerID"];
                 this.columnSqlID = base.Columns["SqlID"];
                 this.columnDBID = base.Columns["DBID"];
                 this.columnDBCType = base.Columns["DBCType"];
@@ -506,6 +517,8 @@ namespace Apq.DBC {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             private void InitClass() {
+                this.columnComputerID = new global::System.Data.DataColumn("ComputerID", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnComputerID);
                 this.columnSqlID = new global::System.Data.DataColumn("SqlID", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnSqlID);
                 this.columnDBID = new global::System.Data.DataColumn("DBID", typeof(int), null, global::System.Data.MappingType.Element);
@@ -1015,6 +1028,21 @@ namespace Apq.DBC {
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public int ComputerID {
+                get {
+                    try {
+                        return ((int)(this[this.tableDBC.ComputerIDColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("表“DBC”中列“ComputerID”的值为 DBNull。", e);
+                    }
+                }
+                set {
+                    this[this.tableDBC.ComputerIDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public int SqlID {
                 get {
                     try {
@@ -1167,6 +1195,16 @@ namespace Apq.DBC {
                 set {
                     this[this.tableDBC.OptionColumn] = value;
                 }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public bool IsComputerIDNull() {
+                return this.IsNull(this.tableDBC.ComputerIDColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void SetComputerIDNull() {
+                this[this.tableDBC.ComputerIDColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]

@@ -367,7 +367,7 @@ namespace ApqDBManager.Controls
 							}
 						}
 
-						DataView dvErr = new DataView(se.dsServers.dtServers);
+						DataView dvErr = new DataView(se._Sqls.SqlInstance);
 						dvErr.RowFilter = "ID = " + ServerID;
 						// 标记本服执行出错
 						if (dvErr.Count > 0)

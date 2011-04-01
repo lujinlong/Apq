@@ -156,6 +156,25 @@ namespace Apq.ConnectionStrings.SQLServer
 
 			return str;
 		}
+
+		/// <summary>
+		/// 测试连接可用性
+		/// </summary>
+		/// <returns>成功返回true,否则抛出异常</returns>
+		public bool TestAvailable()
+		{
+			string strCs = this.GetConnectionString();
+			System.Data.SqlClient.SqlConnection sc = new System.Data.SqlClient.SqlConnection(strCs);
+			try
+			{
+				sc.Open();
+				return true;
+			}
+			finally
+			{
+				Apq.Data.Common.DbConnectionHelper.Close(sc);
+			}
+		}
 		#endregion
 	}
 }
