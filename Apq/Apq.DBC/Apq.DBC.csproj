@@ -55,6 +55,15 @@
   <ItemGroup>
     <Compile Include="Common.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="XSD.cs">
+      <DependentUpon>XSD.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="XSD.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>XSD.xsd</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Apq.DBC.dll.apq">
@@ -64,6 +73,17 @@
     <None Include="Apq.dll.config">
     </None>
     <None Include="Apq.dll.log4net">
+    </None>
+    <None Include="XSD.xsc">
+      <DependentUpon>XSD.xsd</DependentUpon>
+    </None>
+    <None Include="XSD.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>XSD.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="XSD.xss">
+      <DependentUpon>XSD.xsd</DependentUpon>
     </None>
     <Content Include="cs.xml" />
     <Content Include="Web.config">
