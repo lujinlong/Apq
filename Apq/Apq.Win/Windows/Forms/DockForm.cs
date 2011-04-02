@@ -17,7 +17,7 @@ namespace Apq.Windows.Forms
 	///		//配置文件
 	/// </summary>
 	/// <remarks>注意:ImeForm与此基本相同,修改时应考虑同步修改相应部分</remarks>
-	public partial class DockForm : DockContent
+	public partial class DockForm : DockContent, Apq.Interfaces.IDataShow
 	{
 		/// <summary>
 		/// DockForm
@@ -30,17 +30,78 @@ namespace Apq.Windows.Forms
 		private void DockForm_Load(object sender, EventArgs e)
 		{
 			Apq.Windows.Controls.Control.AddImeHandler(this);
+
+			Apq.Interfaces.IDataShow DataShowForm = this as Apq.Interfaces.IDataShow;
+			DataShowForm.InitDataBefore();
+			DataShowForm.InitData(FormDataSet);
+			DataShowForm.LoadData(FormDataSet);
+			DataShowForm.ShowData();
 		}
 
 		#region MainBackThread
 		/// <summary>
-		/// 获取或设置主后台线程(记录于Tag中)
+		/// 主后台线程
 		/// </summary>
-		public Thread MainBackThread
+		public Thread MainBackThread = null;
+		#endregion
+
+		#region FormDataSet
+		private DataSet _FormDataSet = null;
+		/// <summary>
+		/// 获取或设置数据集(存放所有表)
+		/// </summary>
+		[
+		Browsable(true),
+		Category("Data"),
+		Description("获取或设置数据集"),
+			//Editor(typeof(System.Web.UI.Design.XslUrlEditor), typeof(System.Drawing.Design.UITypeEditor))
+		]
+		public virtual DataSet FormDataSet
 		{
-			get { return this.GetControlValues("__MainBackThread") as Thread; }
-			set { this.SetControlValues("__MainBackThread", value); }
+			get
+			{
+				if (_FormDataSet == null)
+				{
+					_FormDataSet = new DataSet();
+					_FormDataSet.DataSetName = "DataSet_" + this.Text;
+				}
+				return _FormDataSet;
+			}
+			set
+			{
+				_FormDataSet = value;
+			}
 		}
+		#endregion
+
+		#region IDataShow 成员
+		/// <summary>
+		/// 前期准备(如数据库连接或文件等)
+		/// </summary>
+		public virtual void InitDataBefore()
+		{
+		}
+		/// <summary>
+		/// 初始数据(如Lookup数据等)
+		/// </summary>
+		/// <param name="ds"></param>
+		public virtual void InitData(DataSet ds)
+		{
+		}
+		/// <summary>
+		/// 加载数据
+		/// </summary>
+		/// <param name="ds"></param>
+		public virtual void LoadData(DataSet ds)
+		{
+		}
+		/// <summary>
+		/// 显示数据
+		/// </summary>
+		public virtual void ShowData()
+		{
+		}
+
 		#endregion
 	}
 }

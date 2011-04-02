@@ -520,12 +520,6 @@ namespace Apq.DBC {
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public ComputerRow FindByComputerID(int ComputerID) {
-                return ((ComputerRow)(this.Rows.Find(new object[] {
-                            ComputerID})));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public override global::System.Data.DataTable Clone() {
                 ComputerDataTable cln = ((ComputerDataTable)(base.Clone()));
                 cln.InitVars();
@@ -552,10 +546,7 @@ namespace Apq.DBC {
                 base.Columns.Add(this.columnComputerName);
                 this.columnComputerType = new global::System.Data.DataColumn("ComputerType", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnComputerType);
-                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
-                                this.columnComputerID}, true));
                 this.columnComputerID.AllowDBNull = false;
-                this.columnComputerID.Unique = true;
                 this.columnComputerName.AllowDBNull = false;
                 this.columnComputerName.MaxLength = 50;
                 this.columnComputerType.AllowDBNull = false;
@@ -852,12 +843,6 @@ namespace Apq.DBC {
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public SqlInstanceRow FindBySqlID(int SqlID) {
-                return ((SqlInstanceRow)(this.Rows.Find(new object[] {
-                            SqlID})));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public override global::System.Data.DataTable Clone() {
                 SqlInstanceDataTable cln = ((SqlInstanceDataTable)(base.Clone()));
                 cln.InitVars();
@@ -905,11 +890,8 @@ namespace Apq.DBC {
                 base.Columns.Add(this.columnPwdC);
                 this.columnPwdD = new global::System.Data.DataColumn("PwdD", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnPwdD);
-                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
-                                this.columnSqlID}, true));
                 this.columnComputerID.AllowDBNull = false;
                 this.columnSqlID.AllowDBNull = false;
-                this.columnSqlID.Unique = true;
                 this.columnSqlName.AllowDBNull = false;
                 this.columnSqlName.MaxLength = 50;
                 this.columnSqlType.AllowDBNull = false;
@@ -1035,7 +1017,7 @@ namespace Apq.DBC {
                 xs.Add(dsSchema);
                 return type;
             }
-        }
+		}
         
         /// <summary>
         ///Represents the strongly named DataTable class.
@@ -1233,12 +1215,6 @@ namespace Apq.DBC {
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public DBCRow FindByDBID(int DBID) {
-                return ((DBCRow)(this.Rows.Find(new object[] {
-                            DBID})));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public override global::System.Data.DataTable Clone() {
                 DBCDataTable cln = ((DBCDataTable)(base.Clone()));
                 cln.InitVars();
@@ -1292,12 +1268,9 @@ namespace Apq.DBC {
                 base.Columns.Add(this.columnPwdD);
                 this.columnServerName = new global::System.Data.DataColumn("ServerName", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnServerName);
-                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
-                                this.columnDBID}, true));
                 this.columnComputerID.AllowDBNull = false;
                 this.columnSqlID.AllowDBNull = false;
                 this.columnDBID.AllowDBNull = false;
-                this.columnDBID.Unique = true;
                 this.columnDBCType.AllowDBNull = false;
                 this.columnUseTrusted.AllowDBNull = false;
                 this.columnDBName.AllowDBNull = false;
@@ -3152,13 +3125,6 @@ SELECT ComputerID, ComputerName, ComputerType FROM Computer WHERE (ComputerID = 
                 }
             }
         }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string ComputerName, int ComputerType, int Original_ComputerID, string Original_ComputerName, int Original_ComputerType) {
-            return this.Update(Original_ComputerID, ComputerName, ComputerType, Original_ComputerID, Original_ComputerName, Original_ComputerType);
-        }
     }
     
     /// <summary>
@@ -3620,30 +3586,6 @@ SELECT ComputerID, SqlID, SqlName, ParentID, SqlType, IP, SqlPort, UserId, PwdC 
                 }
             }
         }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(
-                    int ComputerID, 
-                    string SqlName, 
-                    global::System.Nullable<int> ParentID, 
-                    int SqlType, 
-                    string IP, 
-                    int SqlPort, 
-                    string UserId, 
-                    string PwdC, 
-                    int Original_ComputerID, 
-                    int Original_SqlID, 
-                    string Original_SqlName, 
-                    global::System.Nullable<int> Original_ParentID, 
-                    int Original_SqlType, 
-                    string Original_IP, 
-                    int Original_SqlPort, 
-                    string Original_UserId, 
-                    string Original_PwdC) {
-            return this.Update(ComputerID, Original_SqlID, SqlName, ParentID, SqlType, IP, SqlPort, UserId, PwdC, Original_ComputerID, Original_SqlID, Original_SqlName, Original_ParentID, Original_SqlType, Original_IP, Original_SqlPort, Original_UserId, Original_PwdC);
-        }
     }
     
     /// <summary>
@@ -4084,30 +4026,6 @@ SELECT ComputerID, SqlID, DBID, DBCType, UseTrusted, DBName, UserId, PwdC, Mirro
                     this.Adapter.UpdateCommand.Connection.Close();
                 }
             }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(
-                    int ComputerID, 
-                    int SqlID, 
-                    int DBCType, 
-                    byte UseTrusted, 
-                    string DBName, 
-                    string UserId, 
-                    string PwdC, 
-                    string Mirror, 
-                    int Original_ComputerID, 
-                    int Original_SqlID, 
-                    int Original_DBID, 
-                    int Original_DBCType, 
-                    byte Original_UseTrusted, 
-                    string Original_DBName, 
-                    string Original_UserId, 
-                    string Original_PwdC, 
-                    string Original_Mirror) {
-            return this.Update(ComputerID, SqlID, Original_DBID, DBCType, UseTrusted, DBName, UserId, PwdC, Mirror, Original_ComputerID, Original_SqlID, Original_DBID, Original_DBCType, Original_UseTrusted, Original_DBName, Original_UserId, Original_PwdC, Original_Mirror);
         }
     }
     

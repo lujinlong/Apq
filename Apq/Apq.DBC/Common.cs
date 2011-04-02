@@ -89,7 +89,7 @@ namespace Apq.DBC
 				Apq.ConnectionStrings.SQLServer.SqlConnection sc = new Apq.ConnectionStrings.SQLServer.SqlConnection();
 				XSD.SqlInstanceRow sqlInstance = _xsd.SqlInstance.FindBySqlID(dr.SqlID);
 				sc.ServerName = sqlInstance.IP;
-				if (sqlInstance.SqlPort > 0)
+				if (sqlInstance != null && sqlInstance.SqlPort > 0)
 				{
 					sc.ServerName += "," + sqlInstance.SqlPort;
 				}

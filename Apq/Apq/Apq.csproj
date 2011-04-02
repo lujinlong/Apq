@@ -198,6 +198,7 @@
     <Compile Include="Drawing\GraphicsHelper.cs" />
     <Compile Include="Editor\ITextEditor.cs" />
     <Compile Include="Editor\IFileLoader.cs" />
+    <Compile Include="Interfaces\IDataShow.cs" />
     <Compile Include="IO\FileSystem.cs" />
     <Compile Include="Net\FtpClient.cs" />
     <Compile Include="Net\HttpWebRequest.cs" />

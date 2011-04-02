@@ -4,18 +4,16 @@ GO
 /* =============================================
 -- 作者: 黄宗银
 -- 日期: 2011-04-01
--- 描述: 保存Sql实例
+-- 描述: (UPDATE/INSERT)保存数据库
 -- 示例:
 EXEC dbo.ApqDBMgr_DBC_Save 1
 	,-1,-1,'测试数据',0,-1,'172.16.0.20',1433,'apq', 'f'
 -- =============================================
 */
 ALTER PROC dbo.ApqDBMgr_DBC_Save
-	 @SaveType		int				-- 1:UPDATE/INSERT,2:DELETE
-
-	,@ComputerID	int
+	 @ComputerID	int
 	,@SqlID			int
-	,@DBID			int
+	,@DBID			int out
 	,@DBCType		int
 	,@UseTrusted	tinyint
 	,@DBName		nvarchar(50)
@@ -26,21 +24,27 @@ ALTER PROC dbo.ApqDBMgr_DBC_Save
 AS
 SET NOCOUNT ON ;
 
-IF(@SaveType = 1)
+DECLARE @ExMsg nvarchar(max);
+
+UPDATE dbo.DBC
+   SET ComputerID = @ComputerID, SqlID = @SqlID, DBCType = @DBCType, UseTrusted = @UseTrusted, DBName = @DBName
+	,UserId = @UserId, PwdC = @PwdC, Mirror = @Mirror, [Option] = @Option
+ WHERE [DBID] = @DBID;
+IF(@@ROWCOUNT = 0)
 BEGIN
-	UPDATE dbo.DBC
-	   SET ComputerID = @ComputerID, SqlID = @SqlID, DBCType = @DBCType, UseTrusted = @UseTrusted, DBName = @DBName
-		,UserId = @UserId, PwdC = @PwdC, Mirror = @Mirror, [Option] = @Option
-	 WHERE [DBID] = @DBID;
-	IF(@@ROWCOUNT = 0)
+	IF(@DBID >= 0)
 	BEGIN
-		INSERT dbo.DBC ( ComputerID, SqlID, [DBID], DBCType, UseTrusted, DBName, UserId, PwdC, Mirror, [Option] )
-		VALUES ( @ComputerID,@SqlID,@DBID,@DBCType,@UseTrusted,@DBName,@UserId,@PwdC,@Mirror,@Option );
-	END	
+		DECLARE @DB_DBID int;
+		EXEC dbo.Apq_Identifier @ExMsg out, 'dbo.DBC',1,@DB_DBID OUT;
+		SELECT @DBID = @DB_DBID;
+	END
+
+	INSERT dbo.DBC ( ComputerID, SqlID, [DBID], DBCType, UseTrusted, DBName, UserId, PwdC, Mirror, [Option] )
+	VALUES ( @ComputerID,@SqlID,@DBID,@DBCType,@UseTrusted,@DBName,@UserId,@PwdC,@Mirror,@Option );
+	
 END
 
-IF(@SaveType = 2)
-BEGIN
-	DELETE dbo.DBC WHERE [DBID] = @DBID;
-END
+SELECT ComputerID, SqlID, [DBID], DBCType, UseTrusted, DBName, UserId, PwdC, Mirror, [Option]
+  FROM dbo.DBC
+ WHERE [DBID] = @DBID;
 GO
