@@ -25,9 +25,17 @@ namespace Apq.DBC {
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.DataSet")]
     public partial class XSD : global::System.Data.DataSet {
         
-        private DBCDataTable tableDBC;
+        private ComputerDataTable tableComputer;
         
         private SqlInstanceDataTable tableSqlInstance;
+        
+        private DBCDataTable tableDBC;
+        
+        private DBCTypeDataTable tableDBCType;
+        
+        private SqlTypeDataTable tableSqlType;
+        
+        private ComputerTypeDataTable tableComputerType;
         
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
@@ -55,11 +63,23 @@ namespace Apq.DBC {
             if ((this.DetermineSchemaSerializationMode(info, context) == global::System.Data.SchemaSerializationMode.IncludeSchema)) {
                 global::System.Data.DataSet ds = new global::System.Data.DataSet();
                 ds.ReadXmlSchema(new global::System.Xml.XmlTextReader(new global::System.IO.StringReader(strSchema)));
-                if ((ds.Tables["DBC"] != null)) {
-                    base.Tables.Add(new DBCDataTable(ds.Tables["DBC"]));
+                if ((ds.Tables["Computer"] != null)) {
+                    base.Tables.Add(new ComputerDataTable(ds.Tables["Computer"]));
                 }
                 if ((ds.Tables["SqlInstance"] != null)) {
                     base.Tables.Add(new SqlInstanceDataTable(ds.Tables["SqlInstance"]));
+                }
+                if ((ds.Tables["DBC"] != null)) {
+                    base.Tables.Add(new DBCDataTable(ds.Tables["DBC"]));
+                }
+                if ((ds.Tables["DBCType"] != null)) {
+                    base.Tables.Add(new DBCTypeDataTable(ds.Tables["DBCType"]));
+                }
+                if ((ds.Tables["SqlType"] != null)) {
+                    base.Tables.Add(new SqlTypeDataTable(ds.Tables["SqlType"]));
+                }
+                if ((ds.Tables["ComputerType"] != null)) {
+                    base.Tables.Add(new ComputerTypeDataTable(ds.Tables["ComputerType"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -82,9 +102,9 @@ namespace Apq.DBC {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Browsable(false)]
         [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public DBCDataTable DBC {
+        public ComputerDataTable Computer {
             get {
-                return this.tableDBC;
+                return this.tableComputer;
             }
         }
         
@@ -94,6 +114,42 @@ namespace Apq.DBC {
         public SqlInstanceDataTable SqlInstance {
             get {
                 return this.tableSqlInstance;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.ComponentModel.Browsable(false)]
+        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
+        public DBCDataTable DBC {
+            get {
+                return this.tableDBC;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.ComponentModel.Browsable(false)]
+        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
+        public DBCTypeDataTable DBCType {
+            get {
+                return this.tableDBCType;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.ComponentModel.Browsable(false)]
+        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
+        public SqlTypeDataTable SqlType {
+            get {
+                return this.tableSqlType;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.ComponentModel.Browsable(false)]
+        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
+        public ComputerTypeDataTable ComputerType {
+            get {
+                return this.tableComputerType;
             }
         }
         
@@ -156,11 +212,23 @@ namespace Apq.DBC {
                 this.Reset();
                 global::System.Data.DataSet ds = new global::System.Data.DataSet();
                 ds.ReadXml(reader);
-                if ((ds.Tables["DBC"] != null)) {
-                    base.Tables.Add(new DBCDataTable(ds.Tables["DBC"]));
+                if ((ds.Tables["Computer"] != null)) {
+                    base.Tables.Add(new ComputerDataTable(ds.Tables["Computer"]));
                 }
                 if ((ds.Tables["SqlInstance"] != null)) {
                     base.Tables.Add(new SqlInstanceDataTable(ds.Tables["SqlInstance"]));
+                }
+                if ((ds.Tables["DBC"] != null)) {
+                    base.Tables.Add(new DBCDataTable(ds.Tables["DBC"]));
+                }
+                if ((ds.Tables["DBCType"] != null)) {
+                    base.Tables.Add(new DBCTypeDataTable(ds.Tables["DBCType"]));
+                }
+                if ((ds.Tables["SqlType"] != null)) {
+                    base.Tables.Add(new SqlTypeDataTable(ds.Tables["SqlType"]));
+                }
+                if ((ds.Tables["ComputerType"] != null)) {
+                    base.Tables.Add(new ComputerTypeDataTable(ds.Tables["ComputerType"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -192,16 +260,40 @@ namespace Apq.DBC {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         internal void InitVars(bool initTable) {
-            this.tableDBC = ((DBCDataTable)(base.Tables["DBC"]));
+            this.tableComputer = ((ComputerDataTable)(base.Tables["Computer"]));
             if ((initTable == true)) {
-                if ((this.tableDBC != null)) {
-                    this.tableDBC.InitVars();
+                if ((this.tableComputer != null)) {
+                    this.tableComputer.InitVars();
                 }
             }
             this.tableSqlInstance = ((SqlInstanceDataTable)(base.Tables["SqlInstance"]));
             if ((initTable == true)) {
                 if ((this.tableSqlInstance != null)) {
                     this.tableSqlInstance.InitVars();
+                }
+            }
+            this.tableDBC = ((DBCDataTable)(base.Tables["DBC"]));
+            if ((initTable == true)) {
+                if ((this.tableDBC != null)) {
+                    this.tableDBC.InitVars();
+                }
+            }
+            this.tableDBCType = ((DBCTypeDataTable)(base.Tables["DBCType"]));
+            if ((initTable == true)) {
+                if ((this.tableDBCType != null)) {
+                    this.tableDBCType.InitVars();
+                }
+            }
+            this.tableSqlType = ((SqlTypeDataTable)(base.Tables["SqlType"]));
+            if ((initTable == true)) {
+                if ((this.tableSqlType != null)) {
+                    this.tableSqlType.InitVars();
+                }
+            }
+            this.tableComputerType = ((ComputerTypeDataTable)(base.Tables["ComputerType"]));
+            if ((initTable == true)) {
+                if ((this.tableComputerType != null)) {
+                    this.tableComputerType.InitVars();
                 }
             }
         }
@@ -213,10 +305,28 @@ namespace Apq.DBC {
             this.Namespace = "http://tempuri.org/XSD.xsd";
             this.EnforceConstraints = true;
             this.SchemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
-            this.tableDBC = new DBCDataTable();
-            base.Tables.Add(this.tableDBC);
+            this.tableComputer = new ComputerDataTable();
+            base.Tables.Add(this.tableComputer);
             this.tableSqlInstance = new SqlInstanceDataTable();
             base.Tables.Add(this.tableSqlInstance);
+            this.tableDBC = new DBCDataTable();
+            base.Tables.Add(this.tableDBC);
+            this.tableDBCType = new DBCTypeDataTable();
+            base.Tables.Add(this.tableDBCType);
+            this.tableSqlType = new SqlTypeDataTable();
+            base.Tables.Add(this.tableSqlType);
+            this.tableComputerType = new ComputerTypeDataTable();
+            base.Tables.Add(this.tableComputerType);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        private bool ShouldSerializeComputer() {
+            return false;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        private bool ShouldSerializeSqlInstance() {
+            return false;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -225,7 +335,17 @@ namespace Apq.DBC {
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        private bool ShouldSerializeSqlInstance() {
+        private bool ShouldSerializeDBCType() {
+            return false;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        private bool ShouldSerializeSqlType() {
+            return false;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        private bool ShouldSerializeComputerType() {
             return false;
         }
         
@@ -282,9 +402,640 @@ namespace Apq.DBC {
             return type;
         }
         
-        public delegate void DBCRowChangeEventHandler(object sender, DBCRowChangeEvent e);
+        public delegate void ComputerRowChangeEventHandler(object sender, ComputerRowChangeEvent e);
         
         public delegate void SqlInstanceRowChangeEventHandler(object sender, SqlInstanceRowChangeEvent e);
+        
+        public delegate void DBCRowChangeEventHandler(object sender, DBCRowChangeEvent e);
+        
+        public delegate void DBCTypeRowChangeEventHandler(object sender, DBCTypeRowChangeEvent e);
+        
+        public delegate void SqlTypeRowChangeEventHandler(object sender, SqlTypeRowChangeEvent e);
+        
+        public delegate void ComputerTypeRowChangeEventHandler(object sender, ComputerTypeRowChangeEvent e);
+        
+        /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class ComputerDataTable : global::System.Data.TypedTableBase<ComputerRow> {
+            
+            private global::System.Data.DataColumn columnComputerID;
+            
+            private global::System.Data.DataColumn columnComputerName;
+            
+            private global::System.Data.DataColumn columnComputerType;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public ComputerDataTable() {
+                this.TableName = "Computer";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            internal ComputerDataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected ComputerDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn ComputerIDColumn {
+                get {
+                    return this.columnComputerID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn ComputerNameColumn {
+                get {
+                    return this.columnComputerName;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn ComputerTypeColumn {
+                get {
+                    return this.columnComputerType;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public ComputerRow this[int index] {
+                get {
+                    return ((ComputerRow)(this.Rows[index]));
+                }
+            }
+            
+            public event ComputerRowChangeEventHandler ComputerRowChanging;
+            
+            public event ComputerRowChangeEventHandler ComputerRowChanged;
+            
+            public event ComputerRowChangeEventHandler ComputerRowDeleting;
+            
+            public event ComputerRowChangeEventHandler ComputerRowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void AddComputerRow(ComputerRow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public ComputerRow AddComputerRow(int ComputerID, string ComputerName, int ComputerType) {
+                ComputerRow rowComputerRow = ((ComputerRow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        ComputerID,
+                        ComputerName,
+                        ComputerType};
+                rowComputerRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowComputerRow);
+                return rowComputerRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public ComputerRow FindByComputerID(int ComputerID) {
+                return ((ComputerRow)(this.Rows.Find(new object[] {
+                            ComputerID})));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public override global::System.Data.DataTable Clone() {
+                ComputerDataTable cln = ((ComputerDataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new ComputerDataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            internal void InitVars() {
+                this.columnComputerID = base.Columns["ComputerID"];
+                this.columnComputerName = base.Columns["ComputerName"];
+                this.columnComputerType = base.Columns["ComputerType"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            private void InitClass() {
+                this.columnComputerID = new global::System.Data.DataColumn("ComputerID", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnComputerID);
+                this.columnComputerName = new global::System.Data.DataColumn("ComputerName", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnComputerName);
+                this.columnComputerType = new global::System.Data.DataColumn("ComputerType", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnComputerType);
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
+                                this.columnComputerID}, true));
+                this.columnComputerID.AllowDBNull = false;
+                this.columnComputerID.Unique = true;
+                this.columnComputerName.AllowDBNull = false;
+                this.columnComputerName.MaxLength = 50;
+                this.columnComputerType.AllowDBNull = false;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public ComputerRow NewComputerRow() {
+                return ((ComputerRow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new ComputerRow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected override global::System.Type GetRowType() {
+                return typeof(ComputerRow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.ComputerRowChanged != null)) {
+                    this.ComputerRowChanged(this, new ComputerRowChangeEvent(((ComputerRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.ComputerRowChanging != null)) {
+                    this.ComputerRowChanging(this, new ComputerRowChangeEvent(((ComputerRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.ComputerRowDeleted != null)) {
+                    this.ComputerRowDeleted(this, new ComputerRowChangeEvent(((ComputerRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.ComputerRowDeleting != null)) {
+                    this.ComputerRowDeleting(this, new ComputerRowChangeEvent(((ComputerRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void RemoveComputerRow(ComputerRow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                XSD ds = new XSD();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "ComputerDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class SqlInstanceDataTable : global::System.Data.TypedTableBase<SqlInstanceRow> {
+            
+            private global::System.Data.DataColumn columnComputerID;
+            
+            private global::System.Data.DataColumn columnSqlID;
+            
+            private global::System.Data.DataColumn columnSqlName;
+            
+            private global::System.Data.DataColumn columnParentID;
+            
+            private global::System.Data.DataColumn columnSqlType;
+            
+            private global::System.Data.DataColumn columnIP;
+            
+            private global::System.Data.DataColumn columnSqlPort;
+            
+            private global::System.Data.DataColumn columnUserId;
+            
+            private global::System.Data.DataColumn columnPwdC;
+            
+            private global::System.Data.DataColumn columnPwdD;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public SqlInstanceDataTable() {
+                this.TableName = "SqlInstance";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            internal SqlInstanceDataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected SqlInstanceDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn ComputerIDColumn {
+                get {
+                    return this.columnComputerID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn SqlIDColumn {
+                get {
+                    return this.columnSqlID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn SqlNameColumn {
+                get {
+                    return this.columnSqlName;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn ParentIDColumn {
+                get {
+                    return this.columnParentID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn SqlTypeColumn {
+                get {
+                    return this.columnSqlType;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn IPColumn {
+                get {
+                    return this.columnIP;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn SqlPortColumn {
+                get {
+                    return this.columnSqlPort;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn UserIdColumn {
+                get {
+                    return this.columnUserId;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn PwdCColumn {
+                get {
+                    return this.columnPwdC;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn PwdDColumn {
+                get {
+                    return this.columnPwdD;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public SqlInstanceRow this[int index] {
+                get {
+                    return ((SqlInstanceRow)(this.Rows[index]));
+                }
+            }
+            
+            public event SqlInstanceRowChangeEventHandler SqlInstanceRowChanging;
+            
+            public event SqlInstanceRowChangeEventHandler SqlInstanceRowChanged;
+            
+            public event SqlInstanceRowChangeEventHandler SqlInstanceRowDeleting;
+            
+            public event SqlInstanceRowChangeEventHandler SqlInstanceRowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void AddSqlInstanceRow(SqlInstanceRow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public SqlInstanceRow AddSqlInstanceRow(int ComputerID, int SqlID, string SqlName, int ParentID, int SqlType, string IP, int SqlPort, string UserId, string PwdC, string PwdD) {
+                SqlInstanceRow rowSqlInstanceRow = ((SqlInstanceRow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        ComputerID,
+                        SqlID,
+                        SqlName,
+                        ParentID,
+                        SqlType,
+                        IP,
+                        SqlPort,
+                        UserId,
+                        PwdC,
+                        PwdD};
+                rowSqlInstanceRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowSqlInstanceRow);
+                return rowSqlInstanceRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public SqlInstanceRow FindBySqlID(int SqlID) {
+                return ((SqlInstanceRow)(this.Rows.Find(new object[] {
+                            SqlID})));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public override global::System.Data.DataTable Clone() {
+                SqlInstanceDataTable cln = ((SqlInstanceDataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new SqlInstanceDataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            internal void InitVars() {
+                this.columnComputerID = base.Columns["ComputerID"];
+                this.columnSqlID = base.Columns["SqlID"];
+                this.columnSqlName = base.Columns["SqlName"];
+                this.columnParentID = base.Columns["ParentID"];
+                this.columnSqlType = base.Columns["SqlType"];
+                this.columnIP = base.Columns["IP"];
+                this.columnSqlPort = base.Columns["SqlPort"];
+                this.columnUserId = base.Columns["UserId"];
+                this.columnPwdC = base.Columns["PwdC"];
+                this.columnPwdD = base.Columns["PwdD"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            private void InitClass() {
+                this.columnComputerID = new global::System.Data.DataColumn("ComputerID", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnComputerID);
+                this.columnSqlID = new global::System.Data.DataColumn("SqlID", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSqlID);
+                this.columnSqlName = new global::System.Data.DataColumn("SqlName", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSqlName);
+                this.columnParentID = new global::System.Data.DataColumn("ParentID", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnParentID);
+                this.columnSqlType = new global::System.Data.DataColumn("SqlType", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSqlType);
+                this.columnIP = new global::System.Data.DataColumn("IP", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnIP);
+                this.columnSqlPort = new global::System.Data.DataColumn("SqlPort", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSqlPort);
+                this.columnUserId = new global::System.Data.DataColumn("UserId", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnUserId);
+                this.columnPwdC = new global::System.Data.DataColumn("PwdC", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPwdC);
+                this.columnPwdD = new global::System.Data.DataColumn("PwdD", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPwdD);
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
+                                this.columnSqlID}, true));
+                this.columnComputerID.AllowDBNull = false;
+                this.columnSqlID.AllowDBNull = false;
+                this.columnSqlID.Unique = true;
+                this.columnSqlName.AllowDBNull = false;
+                this.columnSqlName.MaxLength = 50;
+                this.columnSqlType.AllowDBNull = false;
+                this.columnIP.AllowDBNull = false;
+                this.columnIP.MaxLength = 50;
+                this.columnSqlPort.AllowDBNull = false;
+                this.columnUserId.AllowDBNull = false;
+                this.columnUserId.MaxLength = 50;
+                this.columnPwdC.AllowDBNull = false;
+                this.columnPwdC.MaxLength = 500;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public SqlInstanceRow NewSqlInstanceRow() {
+                return ((SqlInstanceRow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new SqlInstanceRow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected override global::System.Type GetRowType() {
+                return typeof(SqlInstanceRow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.SqlInstanceRowChanged != null)) {
+                    this.SqlInstanceRowChanged(this, new SqlInstanceRowChangeEvent(((SqlInstanceRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.SqlInstanceRowChanging != null)) {
+                    this.SqlInstanceRowChanging(this, new SqlInstanceRowChangeEvent(((SqlInstanceRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.SqlInstanceRowDeleted != null)) {
+                    this.SqlInstanceRowDeleted(this, new SqlInstanceRowChangeEvent(((SqlInstanceRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.SqlInstanceRowDeleting != null)) {
+                    this.SqlInstanceRowDeleting(this, new SqlInstanceRowChangeEvent(((SqlInstanceRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void RemoveSqlInstanceRow(SqlInstanceRow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                XSD ds = new XSD();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "SqlInstanceDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
         
         /// <summary>
         ///Represents the strongly named DataTable class.
@@ -302,21 +1053,21 @@ namespace Apq.DBC {
             
             private global::System.Data.DataColumn columnDBCType;
             
-            private global::System.Data.DataColumn columnServerName;
+            private global::System.Data.DataColumn columnUseTrusted;
             
             private global::System.Data.DataColumn columnDBName;
-            
-            private global::System.Data.DataColumn columnMirror;
-            
-            private global::System.Data.DataColumn columnUseTrusted;
             
             private global::System.Data.DataColumn columnUserId;
             
             private global::System.Data.DataColumn columnPwdC;
             
-            private global::System.Data.DataColumn columnPwdD;
+            private global::System.Data.DataColumn columnMirror;
             
             private global::System.Data.DataColumn columnOption;
+            
+            private global::System.Data.DataColumn columnPwdD;
+            
+            private global::System.Data.DataColumn columnServerName;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public DBCDataTable() {
@@ -377,9 +1128,9 @@ namespace Apq.DBC {
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn ServerNameColumn {
+            public global::System.Data.DataColumn UseTrustedColumn {
                 get {
-                    return this.columnServerName;
+                    return this.columnUseTrusted;
                 }
             }
             
@@ -387,20 +1138,6 @@ namespace Apq.DBC {
             public global::System.Data.DataColumn DBNameColumn {
                 get {
                     return this.columnDBName;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn MirrorColumn {
-                get {
-                    return this.columnMirror;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn UseTrustedColumn {
-                get {
-                    return this.columnUseTrusted;
                 }
             }
             
@@ -419,9 +1156,9 @@ namespace Apq.DBC {
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn PwdDColumn {
+            public global::System.Data.DataColumn MirrorColumn {
                 get {
-                    return this.columnPwdD;
+                    return this.columnMirror;
                 }
             }
             
@@ -429,6 +1166,20 @@ namespace Apq.DBC {
             public global::System.Data.DataColumn OptionColumn {
                 get {
                     return this.columnOption;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn PwdDColumn {
+                get {
+                    return this.columnPwdD;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn ServerNameColumn {
+                get {
+                    return this.columnServerName;
                 }
             }
             
@@ -461,21 +1212,21 @@ namespace Apq.DBC {
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public DBCRow AddDBCRow(int ComputerID, int SqlID, int DBID, int DBCType, string ServerName, string DBName, string Mirror, bool UseTrusted, string UserId, string PwdC, string PwdD, string Option) {
+            public DBCRow AddDBCRow(int ComputerID, int SqlID, int DBID, int DBCType, byte UseTrusted, string DBName, string UserId, string PwdC, string Mirror, string Option, string PwdD, string ServerName) {
                 DBCRow rowDBCRow = ((DBCRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         ComputerID,
                         SqlID,
                         DBID,
                         DBCType,
-                        ServerName,
-                        DBName,
-                        Mirror,
                         UseTrusted,
+                        DBName,
                         UserId,
                         PwdC,
+                        Mirror,
+                        Option,
                         PwdD,
-                        Option};
+                        ServerName};
                 rowDBCRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowDBCRow);
                 return rowDBCRow;
@@ -505,14 +1256,14 @@ namespace Apq.DBC {
                 this.columnSqlID = base.Columns["SqlID"];
                 this.columnDBID = base.Columns["DBID"];
                 this.columnDBCType = base.Columns["DBCType"];
-                this.columnServerName = base.Columns["ServerName"];
-                this.columnDBName = base.Columns["DBName"];
-                this.columnMirror = base.Columns["Mirror"];
                 this.columnUseTrusted = base.Columns["UseTrusted"];
+                this.columnDBName = base.Columns["DBName"];
                 this.columnUserId = base.Columns["UserId"];
                 this.columnPwdC = base.Columns["PwdC"];
-                this.columnPwdD = base.Columns["PwdD"];
+                this.columnMirror = base.Columns["Mirror"];
                 this.columnOption = base.Columns["Option"];
+                this.columnPwdD = base.Columns["PwdD"];
+                this.columnServerName = base.Columns["ServerName"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -525,27 +1276,38 @@ namespace Apq.DBC {
                 base.Columns.Add(this.columnDBID);
                 this.columnDBCType = new global::System.Data.DataColumn("DBCType", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnDBCType);
-                this.columnServerName = new global::System.Data.DataColumn("ServerName", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnServerName);
+                this.columnUseTrusted = new global::System.Data.DataColumn("UseTrusted", typeof(byte), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnUseTrusted);
                 this.columnDBName = new global::System.Data.DataColumn("DBName", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnDBName);
-                this.columnMirror = new global::System.Data.DataColumn("Mirror", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnMirror);
-                this.columnUseTrusted = new global::System.Data.DataColumn("UseTrusted", typeof(bool), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnUseTrusted);
                 this.columnUserId = new global::System.Data.DataColumn("UserId", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnUserId);
                 this.columnPwdC = new global::System.Data.DataColumn("PwdC", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnPwdC);
-                this.columnPwdD = new global::System.Data.DataColumn("PwdD", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnPwdD);
+                this.columnMirror = new global::System.Data.DataColumn("Mirror", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnMirror);
                 this.columnOption = new global::System.Data.DataColumn("Option", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnOption);
+                this.columnPwdD = new global::System.Data.DataColumn("PwdD", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPwdD);
+                this.columnServerName = new global::System.Data.DataColumn("ServerName", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnServerName);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnDBID}, true));
+                this.columnComputerID.AllowDBNull = false;
+                this.columnSqlID.AllowDBNull = false;
                 this.columnDBID.AllowDBNull = false;
                 this.columnDBID.Unique = true;
+                this.columnDBCType.AllowDBNull = false;
+                this.columnUseTrusted.AllowDBNull = false;
                 this.columnDBName.AllowDBNull = false;
+                this.columnDBName.MaxLength = 50;
+                this.columnUserId.AllowDBNull = false;
+                this.columnUserId.MaxLength = 50;
+                this.columnPwdC.AllowDBNull = false;
+                this.columnPwdC.MaxLength = 500;
+                this.columnMirror.MaxLength = 1000;
+                this.columnOption.MaxLength = 1000;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -669,38 +1431,22 @@ namespace Apq.DBC {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
         [global::System.Serializable()]
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class SqlInstanceDataTable : global::System.Data.TypedTableBase<SqlInstanceRow> {
+        public partial class DBCTypeDataTable : global::System.Data.TypedTableBase<DBCTypeRow> {
             
-            private global::System.Data.DataColumn columnComputerID;
+            private global::System.Data.DataColumn columnDBCType;
             
-            private global::System.Data.DataColumn columnSqlID;
-            
-            private global::System.Data.DataColumn columnSqlName;
-            
-            private global::System.Data.DataColumn columnParentID;
-            
-            private global::System.Data.DataColumn columnSqlType;
-            
-            private global::System.Data.DataColumn columnIP;
-            
-            private global::System.Data.DataColumn columnSqlPort;
-            
-            private global::System.Data.DataColumn columnUserId;
-            
-            private global::System.Data.DataColumn columnPwdD;
-            
-            private global::System.Data.DataColumn columnPwdC;
+            private global::System.Data.DataColumn columnTypeCaption;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public SqlInstanceDataTable() {
-                this.TableName = "SqlInstance";
+            public DBCTypeDataTable() {
+                this.TableName = "DBCType";
                 this.BeginInit();
                 this.InitClass();
                 this.EndInit();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            internal SqlInstanceDataTable(global::System.Data.DataTable table) {
+            internal DBCTypeDataTable(global::System.Data.DataTable table) {
                 this.TableName = table.TableName;
                 if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
                     this.CaseSensitive = table.CaseSensitive;
@@ -716,78 +1462,22 @@ namespace Apq.DBC {
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected SqlInstanceDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+            protected DBCTypeDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                     base(info, context) {
                 this.InitVars();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn ComputerIDColumn {
+            public global::System.Data.DataColumn DBCTypeColumn {
                 get {
-                    return this.columnComputerID;
+                    return this.columnDBCType;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn SqlIDColumn {
+            public global::System.Data.DataColumn TypeCaptionColumn {
                 get {
-                    return this.columnSqlID;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn SqlNameColumn {
-                get {
-                    return this.columnSqlName;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn ParentIDColumn {
-                get {
-                    return this.columnParentID;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn SqlTypeColumn {
-                get {
-                    return this.columnSqlType;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn IPColumn {
-                get {
-                    return this.columnIP;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn SqlPortColumn {
-                get {
-                    return this.columnSqlPort;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn UserIdColumn {
-                get {
-                    return this.columnUserId;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn PwdDColumn {
-                get {
-                    return this.columnPwdD;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn PwdCColumn {
-                get {
-                    return this.columnPwdC;
+                    return this.columnTypeCaption;
                 }
             }
             
@@ -800,153 +1490,123 @@ namespace Apq.DBC {
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public SqlInstanceRow this[int index] {
+            public DBCTypeRow this[int index] {
                 get {
-                    return ((SqlInstanceRow)(this.Rows[index]));
+                    return ((DBCTypeRow)(this.Rows[index]));
                 }
             }
             
-            public event SqlInstanceRowChangeEventHandler SqlInstanceRowChanging;
+            public event DBCTypeRowChangeEventHandler DBCTypeRowChanging;
             
-            public event SqlInstanceRowChangeEventHandler SqlInstanceRowChanged;
+            public event DBCTypeRowChangeEventHandler DBCTypeRowChanged;
             
-            public event SqlInstanceRowChangeEventHandler SqlInstanceRowDeleting;
+            public event DBCTypeRowChangeEventHandler DBCTypeRowDeleting;
             
-            public event SqlInstanceRowChangeEventHandler SqlInstanceRowDeleted;
+            public event DBCTypeRowChangeEventHandler DBCTypeRowDeleted;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void AddSqlInstanceRow(SqlInstanceRow row) {
+            public void AddDBCTypeRow(DBCTypeRow row) {
                 this.Rows.Add(row);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public SqlInstanceRow AddSqlInstanceRow(int ComputerID, int SqlID, string SqlName, int ParentID, int SqlType, string IP, int SqlPort, string UserId, string PwdD, string PwdC) {
-                SqlInstanceRow rowSqlInstanceRow = ((SqlInstanceRow)(this.NewRow()));
+            public DBCTypeRow AddDBCTypeRow(int DBCType, string TypeCaption) {
+                DBCTypeRow rowDBCTypeRow = ((DBCTypeRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        ComputerID,
-                        SqlID,
-                        SqlName,
-                        ParentID,
-                        SqlType,
-                        IP,
-                        SqlPort,
-                        UserId,
-                        PwdD,
-                        PwdC};
-                rowSqlInstanceRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowSqlInstanceRow);
-                return rowSqlInstanceRow;
+                        DBCType,
+                        TypeCaption};
+                rowDBCTypeRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowDBCTypeRow);
+                return rowDBCTypeRow;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public SqlInstanceRow FindBySqlID(int SqlID) {
-                return ((SqlInstanceRow)(this.Rows.Find(new object[] {
-                            SqlID})));
+            public DBCTypeRow FindByDBCType(int DBCType) {
+                return ((DBCTypeRow)(this.Rows.Find(new object[] {
+                            DBCType})));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public override global::System.Data.DataTable Clone() {
-                SqlInstanceDataTable cln = ((SqlInstanceDataTable)(base.Clone()));
+                DBCTypeDataTable cln = ((DBCTypeDataTable)(base.Clone()));
                 cln.InitVars();
                 return cln;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             protected override global::System.Data.DataTable CreateInstance() {
-                return new SqlInstanceDataTable();
+                return new DBCTypeDataTable();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             internal void InitVars() {
-                this.columnComputerID = base.Columns["ComputerID"];
-                this.columnSqlID = base.Columns["SqlID"];
-                this.columnSqlName = base.Columns["SqlName"];
-                this.columnParentID = base.Columns["ParentID"];
-                this.columnSqlType = base.Columns["SqlType"];
-                this.columnIP = base.Columns["IP"];
-                this.columnSqlPort = base.Columns["SqlPort"];
-                this.columnUserId = base.Columns["UserId"];
-                this.columnPwdD = base.Columns["PwdD"];
-                this.columnPwdC = base.Columns["PwdC"];
+                this.columnDBCType = base.Columns["DBCType"];
+                this.columnTypeCaption = base.Columns["TypeCaption"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             private void InitClass() {
-                this.columnComputerID = new global::System.Data.DataColumn("ComputerID", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnComputerID);
-                this.columnSqlID = new global::System.Data.DataColumn("SqlID", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnSqlID);
-                this.columnSqlName = new global::System.Data.DataColumn("SqlName", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnSqlName);
-                this.columnParentID = new global::System.Data.DataColumn("ParentID", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnParentID);
-                this.columnSqlType = new global::System.Data.DataColumn("SqlType", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnSqlType);
-                this.columnIP = new global::System.Data.DataColumn("IP", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnIP);
-                this.columnSqlPort = new global::System.Data.DataColumn("SqlPort", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnSqlPort);
-                this.columnUserId = new global::System.Data.DataColumn("UserId", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnUserId);
-                this.columnPwdD = new global::System.Data.DataColumn("PwdD", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnPwdD);
-                this.columnPwdC = new global::System.Data.DataColumn("PwdC", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnPwdC);
+                this.columnDBCType = new global::System.Data.DataColumn("DBCType", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDBCType);
+                this.columnTypeCaption = new global::System.Data.DataColumn("TypeCaption", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTypeCaption);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
-                                this.columnSqlID}, true));
-                this.columnSqlID.AllowDBNull = false;
-                this.columnSqlID.Unique = true;
+                                this.columnDBCType}, true));
+                this.columnDBCType.AllowDBNull = false;
+                this.columnDBCType.Unique = true;
+                this.columnTypeCaption.AllowDBNull = false;
+                this.columnTypeCaption.MaxLength = 50;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public SqlInstanceRow NewSqlInstanceRow() {
-                return ((SqlInstanceRow)(this.NewRow()));
+            public DBCTypeRow NewDBCTypeRow() {
+                return ((DBCTypeRow)(this.NewRow()));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new SqlInstanceRow(builder);
+                return new DBCTypeRow(builder);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             protected override global::System.Type GetRowType() {
-                return typeof(SqlInstanceRow);
+                return typeof(DBCTypeRow);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanged(e);
-                if ((this.SqlInstanceRowChanged != null)) {
-                    this.SqlInstanceRowChanged(this, new SqlInstanceRowChangeEvent(((SqlInstanceRow)(e.Row)), e.Action));
+                if ((this.DBCTypeRowChanged != null)) {
+                    this.DBCTypeRowChanged(this, new DBCTypeRowChangeEvent(((DBCTypeRow)(e.Row)), e.Action));
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanging(e);
-                if ((this.SqlInstanceRowChanging != null)) {
-                    this.SqlInstanceRowChanging(this, new SqlInstanceRowChangeEvent(((SqlInstanceRow)(e.Row)), e.Action));
+                if ((this.DBCTypeRowChanging != null)) {
+                    this.DBCTypeRowChanging(this, new DBCTypeRowChangeEvent(((DBCTypeRow)(e.Row)), e.Action));
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleted(e);
-                if ((this.SqlInstanceRowDeleted != null)) {
-                    this.SqlInstanceRowDeleted(this, new SqlInstanceRowChangeEvent(((SqlInstanceRow)(e.Row)), e.Action));
+                if ((this.DBCTypeRowDeleted != null)) {
+                    this.DBCTypeRowDeleted(this, new DBCTypeRowChangeEvent(((DBCTypeRow)(e.Row)), e.Action));
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleting(e);
-                if ((this.SqlInstanceRowDeleting != null)) {
-                    this.SqlInstanceRowDeleting(this, new SqlInstanceRowChangeEvent(((SqlInstanceRow)(e.Row)), e.Action));
+                if ((this.DBCTypeRowDeleting != null)) {
+                    this.DBCTypeRowDeleting(this, new DBCTypeRowChangeEvent(((DBCTypeRow)(e.Row)), e.Action));
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void RemoveSqlInstanceRow(SqlInstanceRow row) {
+            public void RemoveDBCTypeRow(DBCTypeRow row) {
                 this.Rows.Remove(row);
             }
             
@@ -972,7 +1632,503 @@ namespace Apq.DBC {
                 type.Attributes.Add(attribute1);
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "SqlInstanceDataTable";
+                attribute2.FixedValue = "DBCTypeDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class SqlTypeDataTable : global::System.Data.TypedTableBase<SqlTypeRow> {
+            
+            private global::System.Data.DataColumn columnSqlType;
+            
+            private global::System.Data.DataColumn columnTypeCaption;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public SqlTypeDataTable() {
+                this.TableName = "SqlType";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            internal SqlTypeDataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected SqlTypeDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn SqlTypeColumn {
+                get {
+                    return this.columnSqlType;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn TypeCaptionColumn {
+                get {
+                    return this.columnTypeCaption;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public SqlTypeRow this[int index] {
+                get {
+                    return ((SqlTypeRow)(this.Rows[index]));
+                }
+            }
+            
+            public event SqlTypeRowChangeEventHandler SqlTypeRowChanging;
+            
+            public event SqlTypeRowChangeEventHandler SqlTypeRowChanged;
+            
+            public event SqlTypeRowChangeEventHandler SqlTypeRowDeleting;
+            
+            public event SqlTypeRowChangeEventHandler SqlTypeRowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void AddSqlTypeRow(SqlTypeRow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public SqlTypeRow AddSqlTypeRow(int SqlType, string TypeCaption) {
+                SqlTypeRow rowSqlTypeRow = ((SqlTypeRow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        SqlType,
+                        TypeCaption};
+                rowSqlTypeRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowSqlTypeRow);
+                return rowSqlTypeRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public SqlTypeRow FindBySqlType(int SqlType) {
+                return ((SqlTypeRow)(this.Rows.Find(new object[] {
+                            SqlType})));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public override global::System.Data.DataTable Clone() {
+                SqlTypeDataTable cln = ((SqlTypeDataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new SqlTypeDataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            internal void InitVars() {
+                this.columnSqlType = base.Columns["SqlType"];
+                this.columnTypeCaption = base.Columns["TypeCaption"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            private void InitClass() {
+                this.columnSqlType = new global::System.Data.DataColumn("SqlType", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSqlType);
+                this.columnTypeCaption = new global::System.Data.DataColumn("TypeCaption", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTypeCaption);
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
+                                this.columnSqlType}, true));
+                this.columnSqlType.AllowDBNull = false;
+                this.columnSqlType.Unique = true;
+                this.columnTypeCaption.AllowDBNull = false;
+                this.columnTypeCaption.MaxLength = 50;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public SqlTypeRow NewSqlTypeRow() {
+                return ((SqlTypeRow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new SqlTypeRow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected override global::System.Type GetRowType() {
+                return typeof(SqlTypeRow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.SqlTypeRowChanged != null)) {
+                    this.SqlTypeRowChanged(this, new SqlTypeRowChangeEvent(((SqlTypeRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.SqlTypeRowChanging != null)) {
+                    this.SqlTypeRowChanging(this, new SqlTypeRowChangeEvent(((SqlTypeRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.SqlTypeRowDeleted != null)) {
+                    this.SqlTypeRowDeleted(this, new SqlTypeRowChangeEvent(((SqlTypeRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.SqlTypeRowDeleting != null)) {
+                    this.SqlTypeRowDeleting(this, new SqlTypeRowChangeEvent(((SqlTypeRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void RemoveSqlTypeRow(SqlTypeRow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                XSD ds = new XSD();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "SqlTypeDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class ComputerTypeDataTable : global::System.Data.TypedTableBase<ComputerTypeRow> {
+            
+            private global::System.Data.DataColumn columnComputerType;
+            
+            private global::System.Data.DataColumn columnTypeCaption;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public ComputerTypeDataTable() {
+                this.TableName = "ComputerType";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            internal ComputerTypeDataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected ComputerTypeDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn ComputerTypeColumn {
+                get {
+                    return this.columnComputerType;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn TypeCaptionColumn {
+                get {
+                    return this.columnTypeCaption;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public ComputerTypeRow this[int index] {
+                get {
+                    return ((ComputerTypeRow)(this.Rows[index]));
+                }
+            }
+            
+            public event ComputerTypeRowChangeEventHandler ComputerTypeRowChanging;
+            
+            public event ComputerTypeRowChangeEventHandler ComputerTypeRowChanged;
+            
+            public event ComputerTypeRowChangeEventHandler ComputerTypeRowDeleting;
+            
+            public event ComputerTypeRowChangeEventHandler ComputerTypeRowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void AddComputerTypeRow(ComputerTypeRow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public ComputerTypeRow AddComputerTypeRow(int ComputerType, string TypeCaption) {
+                ComputerTypeRow rowComputerTypeRow = ((ComputerTypeRow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        ComputerType,
+                        TypeCaption};
+                rowComputerTypeRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowComputerTypeRow);
+                return rowComputerTypeRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public ComputerTypeRow FindByComputerType(int ComputerType) {
+                return ((ComputerTypeRow)(this.Rows.Find(new object[] {
+                            ComputerType})));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public override global::System.Data.DataTable Clone() {
+                ComputerTypeDataTable cln = ((ComputerTypeDataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new ComputerTypeDataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            internal void InitVars() {
+                this.columnComputerType = base.Columns["ComputerType"];
+                this.columnTypeCaption = base.Columns["TypeCaption"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            private void InitClass() {
+                this.columnComputerType = new global::System.Data.DataColumn("ComputerType", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnComputerType);
+                this.columnTypeCaption = new global::System.Data.DataColumn("TypeCaption", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTypeCaption);
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
+                                this.columnComputerType}, true));
+                this.columnComputerType.AllowDBNull = false;
+                this.columnComputerType.Unique = true;
+                this.columnTypeCaption.AllowDBNull = false;
+                this.columnTypeCaption.MaxLength = 50;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public ComputerTypeRow NewComputerTypeRow() {
+                return ((ComputerTypeRow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new ComputerTypeRow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected override global::System.Type GetRowType() {
+                return typeof(ComputerTypeRow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.ComputerTypeRowChanged != null)) {
+                    this.ComputerTypeRowChanged(this, new ComputerTypeRowChangeEvent(((ComputerTypeRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.ComputerTypeRowChanging != null)) {
+                    this.ComputerTypeRowChanging(this, new ComputerTypeRowChangeEvent(((ComputerTypeRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.ComputerTypeRowDeleted != null)) {
+                    this.ComputerTypeRowDeleted(this, new ComputerTypeRowChangeEvent(((ComputerTypeRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.ComputerTypeRowDeleting != null)) {
+                    this.ComputerTypeRowDeleting(this, new ComputerTypeRowChangeEvent(((ComputerTypeRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void RemoveComputerTypeRow(ComputerTypeRow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                XSD ds = new XSD();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "ComputerTypeDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -1017,284 +2173,44 @@ namespace Apq.DBC {
         ///Represents strongly named DataRow class.
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
-        public partial class DBCRow : global::System.Data.DataRow {
+        public partial class ComputerRow : global::System.Data.DataRow {
             
-            private DBCDataTable tableDBC;
+            private ComputerDataTable tableComputer;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            internal DBCRow(global::System.Data.DataRowBuilder rb) : 
+            internal ComputerRow(global::System.Data.DataRowBuilder rb) : 
                     base(rb) {
-                this.tableDBC = ((DBCDataTable)(this.Table));
+                this.tableComputer = ((ComputerDataTable)(this.Table));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public int ComputerID {
                 get {
-                    try {
-                        return ((int)(this[this.tableDBC.ComputerIDColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("表“DBC”中列“ComputerID”的值为 DBNull。", e);
-                    }
+                    return ((int)(this[this.tableComputer.ComputerIDColumn]));
                 }
                 set {
-                    this[this.tableDBC.ComputerIDColumn] = value;
+                    this[this.tableComputer.ComputerIDColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public int SqlID {
+            public string ComputerName {
                 get {
-                    try {
-                        return ((int)(this[this.tableDBC.SqlIDColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("表“DBC”中列“SqlID”的值为 DBNull。", e);
-                    }
+                    return ((string)(this[this.tableComputer.ComputerNameColumn]));
                 }
                 set {
-                    this[this.tableDBC.SqlIDColumn] = value;
+                    this[this.tableComputer.ComputerNameColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public int DBID {
+            public int ComputerType {
                 get {
-                    return ((int)(this[this.tableDBC.DBIDColumn]));
+                    return ((int)(this[this.tableComputer.ComputerTypeColumn]));
                 }
                 set {
-                    this[this.tableDBC.DBIDColumn] = value;
+                    this[this.tableComputer.ComputerTypeColumn] = value;
                 }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public int DBCType {
-                get {
-                    try {
-                        return ((int)(this[this.tableDBC.DBCTypeColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("表“DBC”中列“DBCType”的值为 DBNull。", e);
-                    }
-                }
-                set {
-                    this[this.tableDBC.DBCTypeColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public string ServerName {
-                get {
-                    try {
-                        return ((string)(this[this.tableDBC.ServerNameColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("表“DBC”中列“ServerName”的值为 DBNull。", e);
-                    }
-                }
-                set {
-                    this[this.tableDBC.ServerNameColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public string DBName {
-                get {
-                    return ((string)(this[this.tableDBC.DBNameColumn]));
-                }
-                set {
-                    this[this.tableDBC.DBNameColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public string Mirror {
-                get {
-                    try {
-                        return ((string)(this[this.tableDBC.MirrorColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("表“DBC”中列“Mirror”的值为 DBNull。", e);
-                    }
-                }
-                set {
-                    this[this.tableDBC.MirrorColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public bool UseTrusted {
-                get {
-                    try {
-                        return ((bool)(this[this.tableDBC.UseTrustedColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("表“DBC”中列“UseTrusted”的值为 DBNull。", e);
-                    }
-                }
-                set {
-                    this[this.tableDBC.UseTrustedColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public string UserId {
-                get {
-                    try {
-                        return ((string)(this[this.tableDBC.UserIdColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("表“DBC”中列“UserId”的值为 DBNull。", e);
-                    }
-                }
-                set {
-                    this[this.tableDBC.UserIdColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public string PwdC {
-                get {
-                    try {
-                        return ((string)(this[this.tableDBC.PwdCColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("表“DBC”中列“PwdC”的值为 DBNull。", e);
-                    }
-                }
-                set {
-                    this[this.tableDBC.PwdCColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public string PwdD {
-                get {
-                    try {
-                        return ((string)(this[this.tableDBC.PwdDColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("表“DBC”中列“PwdD”的值为 DBNull。", e);
-                    }
-                }
-                set {
-                    this[this.tableDBC.PwdDColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public string Option {
-                get {
-                    try {
-                        return ((string)(this[this.tableDBC.OptionColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("表“DBC”中列“Option”的值为 DBNull。", e);
-                    }
-                }
-                set {
-                    this[this.tableDBC.OptionColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public bool IsComputerIDNull() {
-                return this.IsNull(this.tableDBC.ComputerIDColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void SetComputerIDNull() {
-                this[this.tableDBC.ComputerIDColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public bool IsSqlIDNull() {
-                return this.IsNull(this.tableDBC.SqlIDColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void SetSqlIDNull() {
-                this[this.tableDBC.SqlIDColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public bool IsDBCTypeNull() {
-                return this.IsNull(this.tableDBC.DBCTypeColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void SetDBCTypeNull() {
-                this[this.tableDBC.DBCTypeColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public bool IsServerNameNull() {
-                return this.IsNull(this.tableDBC.ServerNameColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void SetServerNameNull() {
-                this[this.tableDBC.ServerNameColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public bool IsMirrorNull() {
-                return this.IsNull(this.tableDBC.MirrorColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void SetMirrorNull() {
-                this[this.tableDBC.MirrorColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public bool IsUseTrustedNull() {
-                return this.IsNull(this.tableDBC.UseTrustedColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void SetUseTrustedNull() {
-                this[this.tableDBC.UseTrustedColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public bool IsUserIdNull() {
-                return this.IsNull(this.tableDBC.UserIdColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void SetUserIdNull() {
-                this[this.tableDBC.UserIdColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public bool IsPwdCNull() {
-                return this.IsNull(this.tableDBC.PwdCColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void SetPwdCNull() {
-                this[this.tableDBC.PwdCColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public bool IsPwdDNull() {
-                return this.IsNull(this.tableDBC.PwdDColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void SetPwdDNull() {
-                this[this.tableDBC.PwdDColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public bool IsOptionNull() {
-                return this.IsNull(this.tableDBC.OptionColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void SetOptionNull() {
-                this[this.tableDBC.OptionColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -1315,12 +2231,7 @@ namespace Apq.DBC {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public int ComputerID {
                 get {
-                    try {
-                        return ((int)(this[this.tableSqlInstance.ComputerIDColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("表“SqlInstance”中列“ComputerID”的值为 DBNull。", e);
-                    }
+                    return ((int)(this[this.tableSqlInstance.ComputerIDColumn]));
                 }
                 set {
                     this[this.tableSqlInstance.ComputerIDColumn] = value;
@@ -1340,12 +2251,7 @@ namespace Apq.DBC {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public string SqlName {
                 get {
-                    try {
-                        return ((string)(this[this.tableSqlInstance.SqlNameColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("表“SqlInstance”中列“SqlName”的值为 DBNull。", e);
-                    }
+                    return ((string)(this[this.tableSqlInstance.SqlNameColumn]));
                 }
                 set {
                     this[this.tableSqlInstance.SqlNameColumn] = value;
@@ -1370,12 +2276,7 @@ namespace Apq.DBC {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public int SqlType {
                 get {
-                    try {
-                        return ((int)(this[this.tableSqlInstance.SqlTypeColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("表“SqlInstance”中列“SqlType”的值为 DBNull。", e);
-                    }
+                    return ((int)(this[this.tableSqlInstance.SqlTypeColumn]));
                 }
                 set {
                     this[this.tableSqlInstance.SqlTypeColumn] = value;
@@ -1385,12 +2286,7 @@ namespace Apq.DBC {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public string IP {
                 get {
-                    try {
-                        return ((string)(this[this.tableSqlInstance.IPColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("表“SqlInstance”中列“IP”的值为 DBNull。", e);
-                    }
+                    return ((string)(this[this.tableSqlInstance.IPColumn]));
                 }
                 set {
                     this[this.tableSqlInstance.IPColumn] = value;
@@ -1400,12 +2296,7 @@ namespace Apq.DBC {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public int SqlPort {
                 get {
-                    try {
-                        return ((int)(this[this.tableSqlInstance.SqlPortColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("表“SqlInstance”中列“SqlPort”的值为 DBNull。", e);
-                    }
+                    return ((int)(this[this.tableSqlInstance.SqlPortColumn]));
                 }
                 set {
                     this[this.tableSqlInstance.SqlPortColumn] = value;
@@ -1415,15 +2306,20 @@ namespace Apq.DBC {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public string UserId {
                 get {
-                    try {
-                        return ((string)(this[this.tableSqlInstance.UserIdColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("表“SqlInstance”中列“UserId”的值为 DBNull。", e);
-                    }
+                    return ((string)(this[this.tableSqlInstance.UserIdColumn]));
                 }
                 set {
                     this[this.tableSqlInstance.UserIdColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public string PwdC {
+                get {
+                    return ((string)(this[this.tableSqlInstance.PwdCColumn]));
+                }
+                set {
+                    this[this.tableSqlInstance.PwdCColumn] = value;
                 }
             }
             
@@ -1443,41 +2339,6 @@ namespace Apq.DBC {
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public string PwdC {
-                get {
-                    try {
-                        return ((string)(this[this.tableSqlInstance.PwdCColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("表“SqlInstance”中列“PwdC”的值为 DBNull。", e);
-                    }
-                }
-                set {
-                    this[this.tableSqlInstance.PwdCColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public bool IsComputerIDNull() {
-                return this.IsNull(this.tableSqlInstance.ComputerIDColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void SetComputerIDNull() {
-                this[this.tableSqlInstance.ComputerIDColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public bool IsSqlNameNull() {
-                return this.IsNull(this.tableSqlInstance.SqlNameColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void SetSqlNameNull() {
-                this[this.tableSqlInstance.SqlNameColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public bool IsParentIDNull() {
                 return this.IsNull(this.tableSqlInstance.ParentIDColumn);
             }
@@ -1485,46 +2346,6 @@ namespace Apq.DBC {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public void SetParentIDNull() {
                 this[this.tableSqlInstance.ParentIDColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public bool IsSqlTypeNull() {
-                return this.IsNull(this.tableSqlInstance.SqlTypeColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void SetSqlTypeNull() {
-                this[this.tableSqlInstance.SqlTypeColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public bool IsIPNull() {
-                return this.IsNull(this.tableSqlInstance.IPColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void SetIPNull() {
-                this[this.tableSqlInstance.IPColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public bool IsSqlPortNull() {
-                return this.IsNull(this.tableSqlInstance.SqlPortColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void SetSqlPortNull() {
-                this[this.tableSqlInstance.SqlPortColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public bool IsUserIdNull() {
-                return this.IsNull(this.tableSqlInstance.UserIdColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void SetUserIdNull() {
-                this[this.tableSqlInstance.UserIdColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1536,15 +2357,305 @@ namespace Apq.DBC {
             public void SetPwdDNull() {
                 this[this.tableSqlInstance.PwdDColumn] = global::System.Convert.DBNull;
             }
+        }
+        
+        /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
+        public partial class DBCRow : global::System.Data.DataRow {
+            
+            private DBCDataTable tableDBC;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public bool IsPwdCNull() {
-                return this.IsNull(this.tableSqlInstance.PwdCColumn);
+            internal DBCRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tableDBC = ((DBCDataTable)(this.Table));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void SetPwdCNull() {
-                this[this.tableSqlInstance.PwdCColumn] = global::System.Convert.DBNull;
+            public int ComputerID {
+                get {
+                    return ((int)(this[this.tableDBC.ComputerIDColumn]));
+                }
+                set {
+                    this[this.tableDBC.ComputerIDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public int SqlID {
+                get {
+                    return ((int)(this[this.tableDBC.SqlIDColumn]));
+                }
+                set {
+                    this[this.tableDBC.SqlIDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public int DBID {
+                get {
+                    return ((int)(this[this.tableDBC.DBIDColumn]));
+                }
+                set {
+                    this[this.tableDBC.DBIDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public int DBCType {
+                get {
+                    return ((int)(this[this.tableDBC.DBCTypeColumn]));
+                }
+                set {
+                    this[this.tableDBC.DBCTypeColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public byte UseTrusted {
+                get {
+                    return ((byte)(this[this.tableDBC.UseTrustedColumn]));
+                }
+                set {
+                    this[this.tableDBC.UseTrustedColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public string DBName {
+                get {
+                    return ((string)(this[this.tableDBC.DBNameColumn]));
+                }
+                set {
+                    this[this.tableDBC.DBNameColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public string UserId {
+                get {
+                    return ((string)(this[this.tableDBC.UserIdColumn]));
+                }
+                set {
+                    this[this.tableDBC.UserIdColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public string PwdC {
+                get {
+                    return ((string)(this[this.tableDBC.PwdCColumn]));
+                }
+                set {
+                    this[this.tableDBC.PwdCColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public string Mirror {
+                get {
+                    try {
+                        return ((string)(this[this.tableDBC.MirrorColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("表“DBC”中列“Mirror”的值为 DBNull。", e);
+                    }
+                }
+                set {
+                    this[this.tableDBC.MirrorColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public string Option {
+                get {
+                    try {
+                        return ((string)(this[this.tableDBC.OptionColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("表“DBC”中列“Option”的值为 DBNull。", e);
+                    }
+                }
+                set {
+                    this[this.tableDBC.OptionColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public string PwdD {
+                get {
+                    try {
+                        return ((string)(this[this.tableDBC.PwdDColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("表“DBC”中列“PwdD”的值为 DBNull。", e);
+                    }
+                }
+                set {
+                    this[this.tableDBC.PwdDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public string ServerName {
+                get {
+                    try {
+                        return ((string)(this[this.tableDBC.ServerNameColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("表“DBC”中列“ServerName”的值为 DBNull。", e);
+                    }
+                }
+                set {
+                    this[this.tableDBC.ServerNameColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public bool IsMirrorNull() {
+                return this.IsNull(this.tableDBC.MirrorColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void SetMirrorNull() {
+                this[this.tableDBC.MirrorColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public bool IsOptionNull() {
+                return this.IsNull(this.tableDBC.OptionColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void SetOptionNull() {
+                this[this.tableDBC.OptionColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public bool IsPwdDNull() {
+                return this.IsNull(this.tableDBC.PwdDColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void SetPwdDNull() {
+                this[this.tableDBC.PwdDColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public bool IsServerNameNull() {
+                return this.IsNull(this.tableDBC.ServerNameColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void SetServerNameNull() {
+                this[this.tableDBC.ServerNameColumn] = global::System.Convert.DBNull;
+            }
+        }
+        
+        /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
+        public partial class DBCTypeRow : global::System.Data.DataRow {
+            
+            private DBCTypeDataTable tableDBCType;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            internal DBCTypeRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tableDBCType = ((DBCTypeDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public int DBCType {
+                get {
+                    return ((int)(this[this.tableDBCType.DBCTypeColumn]));
+                }
+                set {
+                    this[this.tableDBCType.DBCTypeColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public string TypeCaption {
+                get {
+                    return ((string)(this[this.tableDBCType.TypeCaptionColumn]));
+                }
+                set {
+                    this[this.tableDBCType.TypeCaptionColumn] = value;
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
+        public partial class SqlTypeRow : global::System.Data.DataRow {
+            
+            private SqlTypeDataTable tableSqlType;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            internal SqlTypeRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tableSqlType = ((SqlTypeDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public int SqlType {
+                get {
+                    return ((int)(this[this.tableSqlType.SqlTypeColumn]));
+                }
+                set {
+                    this[this.tableSqlType.SqlTypeColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public string TypeCaption {
+                get {
+                    return ((string)(this[this.tableSqlType.TypeCaptionColumn]));
+                }
+                set {
+                    this[this.tableSqlType.TypeCaptionColumn] = value;
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
+        public partial class ComputerTypeRow : global::System.Data.DataRow {
+            
+            private ComputerTypeDataTable tableComputerType;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            internal ComputerTypeRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tableComputerType = ((ComputerTypeDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public int ComputerType {
+                get {
+                    return ((int)(this[this.tableComputerType.ComputerTypeColumn]));
+                }
+                set {
+                    this[this.tableComputerType.ComputerTypeColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public string TypeCaption {
+                get {
+                    return ((string)(this[this.tableComputerType.TypeCaptionColumn]));
+                }
+                set {
+                    this[this.tableComputerType.TypeCaptionColumn] = value;
+                }
             }
         }
         
@@ -1552,20 +2663,20 @@ namespace Apq.DBC {
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
-        public class DBCRowChangeEvent : global::System.EventArgs {
+        public class ComputerRowChangeEvent : global::System.EventArgs {
             
-            private DBCRow eventRow;
+            private ComputerRow eventRow;
             
             private global::System.Data.DataRowAction eventAction;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public DBCRowChangeEvent(DBCRow row, global::System.Data.DataRowAction action) {
+            public ComputerRowChangeEvent(ComputerRow row, global::System.Data.DataRowAction action) {
                 this.eventRow = row;
                 this.eventAction = action;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public DBCRow Row {
+            public ComputerRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -1607,6 +2718,3011 @@ namespace Apq.DBC {
                 get {
                     return this.eventAction;
                 }
+            }
+        }
+        
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
+        public class DBCRowChangeEvent : global::System.EventArgs {
+            
+            private DBCRow eventRow;
+            
+            private global::System.Data.DataRowAction eventAction;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public DBCRowChangeEvent(DBCRow row, global::System.Data.DataRowAction action) {
+                this.eventRow = row;
+                this.eventAction = action;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public DBCRow Row {
+                get {
+                    return this.eventRow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataRowAction Action {
+                get {
+                    return this.eventAction;
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
+        public class DBCTypeRowChangeEvent : global::System.EventArgs {
+            
+            private DBCTypeRow eventRow;
+            
+            private global::System.Data.DataRowAction eventAction;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public DBCTypeRowChangeEvent(DBCTypeRow row, global::System.Data.DataRowAction action) {
+                this.eventRow = row;
+                this.eventAction = action;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public DBCTypeRow Row {
+                get {
+                    return this.eventRow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataRowAction Action {
+                get {
+                    return this.eventAction;
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
+        public class SqlTypeRowChangeEvent : global::System.EventArgs {
+            
+            private SqlTypeRow eventRow;
+            
+            private global::System.Data.DataRowAction eventAction;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public SqlTypeRowChangeEvent(SqlTypeRow row, global::System.Data.DataRowAction action) {
+                this.eventRow = row;
+                this.eventAction = action;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public SqlTypeRow Row {
+                get {
+                    return this.eventRow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataRowAction Action {
+                get {
+                    return this.eventAction;
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
+        public class ComputerTypeRowChangeEvent : global::System.EventArgs {
+            
+            private ComputerTypeRow eventRow;
+            
+            private global::System.Data.DataRowAction eventAction;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public ComputerTypeRowChangeEvent(ComputerTypeRow row, global::System.Data.DataRowAction action) {
+                this.eventRow = row;
+                this.eventAction = action;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public ComputerTypeRow Row {
+                get {
+                    return this.eventRow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataRowAction Action {
+                get {
+                    return this.eventAction;
+                }
+            }
+        }
+    }
+}
+namespace Apq.DBC.XSDTableAdapters {
+    
+    
+    /// <summary>
+    ///Represents the connection and commands used to retrieve and save data.
+    ///</summary>
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
+    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
+    [global::System.ComponentModel.ToolboxItem(true)]
+    [global::System.ComponentModel.DataObjectAttribute(true)]
+    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
+        ", Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
+    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+    public partial class ComputerTableAdapter : global::System.ComponentModel.Component {
+        
+        private global::System.Data.SqlClient.SqlDataAdapter _adapter;
+        
+        private global::System.Data.SqlClient.SqlConnection _connection;
+        
+        private global::System.Data.SqlClient.SqlTransaction _transaction;
+        
+        private global::System.Data.SqlClient.SqlCommand[] _commandCollection;
+        
+        private bool _clearBeforeFill;
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public ComputerTableAdapter() {
+            this.ClearBeforeFill = true;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        protected internal global::System.Data.SqlClient.SqlDataAdapter Adapter {
+            get {
+                if ((this._adapter == null)) {
+                    this.InitAdapter();
+                }
+                return this._adapter;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        internal global::System.Data.SqlClient.SqlConnection Connection {
+            get {
+                if ((this._connection == null)) {
+                    this.InitConnection();
+                }
+                return this._connection;
+            }
+            set {
+                this._connection = value;
+                if ((this.Adapter.InsertCommand != null)) {
+                    this.Adapter.InsertCommand.Connection = value;
+                }
+                if ((this.Adapter.DeleteCommand != null)) {
+                    this.Adapter.DeleteCommand.Connection = value;
+                }
+                if ((this.Adapter.UpdateCommand != null)) {
+                    this.Adapter.UpdateCommand.Connection = value;
+                }
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    if ((this.CommandCollection[i] != null)) {
+                        ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[i])).Connection = value;
+                    }
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        internal global::System.Data.SqlClient.SqlTransaction Transaction {
+            get {
+                return this._transaction;
+            }
+            set {
+                this._transaction = value;
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    this.CommandCollection[i].Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.DeleteCommand != null))) {
+                    this.Adapter.DeleteCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.InsertCommand != null))) {
+                    this.Adapter.InsertCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.UpdateCommand != null))) {
+                    this.Adapter.UpdateCommand.Transaction = this._transaction;
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        protected global::System.Data.SqlClient.SqlCommand[] CommandCollection {
+            get {
+                if ((this._commandCollection == null)) {
+                    this.InitCommandCollection();
+                }
+                return this._commandCollection;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public bool ClearBeforeFill {
+            get {
+                return this._clearBeforeFill;
+            }
+            set {
+                this._clearBeforeFill = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        private void InitAdapter() {
+            this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
+            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
+            tableMapping.SourceTable = "Table";
+            tableMapping.DataSetTable = "Computer";
+            tableMapping.ColumnMappings.Add("ComputerID", "ComputerID");
+            tableMapping.ColumnMappings.Add("ComputerName", "ComputerName");
+            tableMapping.ColumnMappings.Add("ComputerType", "ComputerType");
+            this._adapter.TableMappings.Add(tableMapping);
+            this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
+            this._adapter.DeleteCommand.Connection = this.Connection;
+            this._adapter.DeleteCommand.CommandText = "DELETE FROM [dbo].[Computer] WHERE (([ComputerID] = @Original_ComputerID) AND ([C" +
+                "omputerName] = @Original_ComputerName) AND ([ComputerType] = @Original_ComputerT" +
+                "ype))";
+            this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ComputerID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ComputerID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ComputerName", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ComputerName", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ComputerType", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ComputerType", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
+            this._adapter.InsertCommand.Connection = this.Connection;
+            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[Computer] ([ComputerID], [ComputerName], [ComputerType]) VALUE" +
+                "S (@ComputerID, @ComputerName, @ComputerType);\r\nSELECT ComputerID, ComputerName," +
+                " ComputerType FROM Computer WHERE (ComputerID = @ComputerID)";
+            this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ComputerID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ComputerID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ComputerName", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ComputerName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ComputerType", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ComputerType", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
+            this._adapter.UpdateCommand.Connection = this.Connection;
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[Computer] SET [ComputerID] = @ComputerID, [ComputerName] = @ComputerName, [ComputerType] = @ComputerType WHERE (([ComputerID] = @Original_ComputerID) AND ([ComputerName] = @Original_ComputerName) AND ([ComputerType] = @Original_ComputerType));
+SELECT ComputerID, ComputerName, ComputerType FROM Computer WHERE (ComputerID = @ComputerID)";
+            this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ComputerID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ComputerID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ComputerName", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ComputerName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ComputerType", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ComputerType", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ComputerID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ComputerID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ComputerName", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ComputerName", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ComputerType", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ComputerType", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        private void InitConnection() {
+            this._connection = new global::System.Data.SqlClient.SqlConnection();
+            this._connection.ConnectionString = global::Apq.DBC.Properties.Settings.Default.Apq_DBAConnectionString;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        private void InitCommandCollection() {
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
+            this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[0].Connection = this.Connection;
+            this._commandCollection[0].CommandText = "SELECT ComputerID, ComputerName, ComputerType FROM dbo.Computer";
+            this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
+        public virtual int Fill(XSD.ComputerDataTable dataTable) {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
+        public virtual XSD.ComputerDataTable GetData() {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            XSD.ComputerDataTable dataTable = new XSD.ComputerDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(XSD.ComputerDataTable dataTable) {
+            return this.Adapter.Update(dataTable);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(XSD dataSet) {
+            return this.Adapter.Update(dataSet, "Computer");
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(global::System.Data.DataRow dataRow) {
+            return this.Adapter.Update(new global::System.Data.DataRow[] {
+                        dataRow});
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(global::System.Data.DataRow[] dataRows) {
+            return this.Adapter.Update(dataRows);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
+        public virtual int Delete(int Original_ComputerID, string Original_ComputerName, int Original_ComputerType) {
+            this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_ComputerID));
+            if ((Original_ComputerName == null)) {
+                throw new global::System.ArgumentNullException("Original_ComputerName");
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[1].Value = ((string)(Original_ComputerName));
+            }
+            this.Adapter.DeleteCommand.Parameters[2].Value = ((int)(Original_ComputerType));
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
+            if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.DeleteCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.DeleteCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.DeleteCommand.Connection.Close();
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
+        public virtual int Insert(int ComputerID, string ComputerName, int ComputerType) {
+            this.Adapter.InsertCommand.Parameters[0].Value = ((int)(ComputerID));
+            if ((ComputerName == null)) {
+                throw new global::System.ArgumentNullException("ComputerName");
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[1].Value = ((string)(ComputerName));
+            }
+            this.Adapter.InsertCommand.Parameters[2].Value = ((int)(ComputerType));
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
+            if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.InsertCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.InsertCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.InsertCommand.Connection.Close();
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
+        public virtual int Update(int ComputerID, string ComputerName, int ComputerType, int Original_ComputerID, string Original_ComputerName, int Original_ComputerType) {
+            this.Adapter.UpdateCommand.Parameters[0].Value = ((int)(ComputerID));
+            if ((ComputerName == null)) {
+                throw new global::System.ArgumentNullException("ComputerName");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[1].Value = ((string)(ComputerName));
+            }
+            this.Adapter.UpdateCommand.Parameters[2].Value = ((int)(ComputerType));
+            this.Adapter.UpdateCommand.Parameters[3].Value = ((int)(Original_ComputerID));
+            if ((Original_ComputerName == null)) {
+                throw new global::System.ArgumentNullException("Original_ComputerName");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[4].Value = ((string)(Original_ComputerName));
+            }
+            this.Adapter.UpdateCommand.Parameters[5].Value = ((int)(Original_ComputerType));
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
+            if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.UpdateCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.UpdateCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.UpdateCommand.Connection.Close();
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
+        public virtual int Update(string ComputerName, int ComputerType, int Original_ComputerID, string Original_ComputerName, int Original_ComputerType) {
+            return this.Update(Original_ComputerID, ComputerName, ComputerType, Original_ComputerID, Original_ComputerName, Original_ComputerType);
+        }
+    }
+    
+    /// <summary>
+    ///Represents the connection and commands used to retrieve and save data.
+    ///</summary>
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
+    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
+    [global::System.ComponentModel.ToolboxItem(true)]
+    [global::System.ComponentModel.DataObjectAttribute(true)]
+    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
+        ", Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
+    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+    public partial class SqlInstanceTableAdapter : global::System.ComponentModel.Component {
+        
+        private global::System.Data.SqlClient.SqlDataAdapter _adapter;
+        
+        private global::System.Data.SqlClient.SqlConnection _connection;
+        
+        private global::System.Data.SqlClient.SqlTransaction _transaction;
+        
+        private global::System.Data.SqlClient.SqlCommand[] _commandCollection;
+        
+        private bool _clearBeforeFill;
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public SqlInstanceTableAdapter() {
+            this.ClearBeforeFill = true;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        protected internal global::System.Data.SqlClient.SqlDataAdapter Adapter {
+            get {
+                if ((this._adapter == null)) {
+                    this.InitAdapter();
+                }
+                return this._adapter;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        internal global::System.Data.SqlClient.SqlConnection Connection {
+            get {
+                if ((this._connection == null)) {
+                    this.InitConnection();
+                }
+                return this._connection;
+            }
+            set {
+                this._connection = value;
+                if ((this.Adapter.InsertCommand != null)) {
+                    this.Adapter.InsertCommand.Connection = value;
+                }
+                if ((this.Adapter.DeleteCommand != null)) {
+                    this.Adapter.DeleteCommand.Connection = value;
+                }
+                if ((this.Adapter.UpdateCommand != null)) {
+                    this.Adapter.UpdateCommand.Connection = value;
+                }
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    if ((this.CommandCollection[i] != null)) {
+                        ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[i])).Connection = value;
+                    }
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        internal global::System.Data.SqlClient.SqlTransaction Transaction {
+            get {
+                return this._transaction;
+            }
+            set {
+                this._transaction = value;
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    this.CommandCollection[i].Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.DeleteCommand != null))) {
+                    this.Adapter.DeleteCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.InsertCommand != null))) {
+                    this.Adapter.InsertCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.UpdateCommand != null))) {
+                    this.Adapter.UpdateCommand.Transaction = this._transaction;
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        protected global::System.Data.SqlClient.SqlCommand[] CommandCollection {
+            get {
+                if ((this._commandCollection == null)) {
+                    this.InitCommandCollection();
+                }
+                return this._commandCollection;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public bool ClearBeforeFill {
+            get {
+                return this._clearBeforeFill;
+            }
+            set {
+                this._clearBeforeFill = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        private void InitAdapter() {
+            this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
+            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
+            tableMapping.SourceTable = "Table";
+            tableMapping.DataSetTable = "SqlInstance";
+            tableMapping.ColumnMappings.Add("ComputerID", "ComputerID");
+            tableMapping.ColumnMappings.Add("SqlID", "SqlID");
+            tableMapping.ColumnMappings.Add("SqlName", "SqlName");
+            tableMapping.ColumnMappings.Add("ParentID", "ParentID");
+            tableMapping.ColumnMappings.Add("SqlType", "SqlType");
+            tableMapping.ColumnMappings.Add("IP", "IP");
+            tableMapping.ColumnMappings.Add("SqlPort", "SqlPort");
+            tableMapping.ColumnMappings.Add("UserId", "UserId");
+            tableMapping.ColumnMappings.Add("PwdC", "PwdC");
+            this._adapter.TableMappings.Add(tableMapping);
+            this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
+            this._adapter.DeleteCommand.Connection = this.Connection;
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [dbo].[SqlInstance] WHERE (([ComputerID] = @Original_ComputerID) AND ([SqlID] = @Original_SqlID) AND ([SqlName] = @Original_SqlName) AND ((@IsNull_ParentID = 1 AND [ParentID] IS NULL) OR ([ParentID] = @Original_ParentID)) AND ([SqlType] = @Original_SqlType) AND ([IP] = @Original_IP) AND ([SqlPort] = @Original_SqlPort) AND ([UserId] = @Original_UserId) AND ([PwdC] = @Original_PwdC))";
+            this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ComputerID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ComputerID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_SqlID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SqlID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_SqlName", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SqlName", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_ParentID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ParentID", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ParentID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ParentID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_SqlType", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SqlType", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_IP", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IP", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_SqlPort", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SqlPort", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_UserId", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "UserId", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_PwdC", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "PwdC", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
+            this._adapter.InsertCommand.Connection = this.Connection;
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [dbo].[SqlInstance] ([ComputerID], [SqlID], [SqlName], [ParentID], [SqlType], [IP], [SqlPort], [UserId], [PwdC]) VALUES (@ComputerID, @SqlID, @SqlName, @ParentID, @SqlType, @IP, @SqlPort, @UserId, @PwdC);
+SELECT ComputerID, SqlID, SqlName, ParentID, SqlType, IP, SqlPort, UserId, PwdC FROM SqlInstance WHERE (SqlID = @SqlID)";
+            this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ComputerID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ComputerID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@SqlID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SqlID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@SqlName", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SqlName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ParentID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ParentID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@SqlType", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SqlType", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IP", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IP", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@SqlPort", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SqlPort", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@UserId", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "UserId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@PwdC", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "PwdC", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
+            this._adapter.UpdateCommand.Connection = this.Connection;
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[SqlInstance] SET [ComputerID] = @ComputerID, [SqlID] = @SqlID, [SqlName] = @SqlName, [ParentID] = @ParentID, [SqlType] = @SqlType, [IP] = @IP, [SqlPort] = @SqlPort, [UserId] = @UserId, [PwdC] = @PwdC WHERE (([ComputerID] = @Original_ComputerID) AND ([SqlID] = @Original_SqlID) AND ([SqlName] = @Original_SqlName) AND ((@IsNull_ParentID = 1 AND [ParentID] IS NULL) OR ([ParentID] = @Original_ParentID)) AND ([SqlType] = @Original_SqlType) AND ([IP] = @Original_IP) AND ([SqlPort] = @Original_SqlPort) AND ([UserId] = @Original_UserId) AND ([PwdC] = @Original_PwdC));
+SELECT ComputerID, SqlID, SqlName, ParentID, SqlType, IP, SqlPort, UserId, PwdC FROM SqlInstance WHERE (SqlID = @SqlID)";
+            this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ComputerID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ComputerID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@SqlID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SqlID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@SqlName", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SqlName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ParentID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ParentID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@SqlType", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SqlType", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IP", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IP", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@SqlPort", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SqlPort", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@UserId", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "UserId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@PwdC", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "PwdC", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ComputerID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ComputerID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_SqlID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SqlID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_SqlName", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SqlName", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_ParentID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ParentID", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ParentID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ParentID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_SqlType", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SqlType", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_IP", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IP", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_SqlPort", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SqlPort", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_UserId", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "UserId", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_PwdC", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "PwdC", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        private void InitConnection() {
+            this._connection = new global::System.Data.SqlClient.SqlConnection();
+            this._connection.ConnectionString = global::Apq.DBC.Properties.Settings.Default.Apq_DBAConnectionString;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        private void InitCommandCollection() {
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
+            this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[0].Connection = this.Connection;
+            this._commandCollection[0].CommandText = "SELECT ComputerID, SqlID, SqlName, ParentID, SqlType, IP, SqlPort, UserId, PwdC F" +
+                "ROM dbo.SqlInstance";
+            this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
+        public virtual int Fill(XSD.SqlInstanceDataTable dataTable) {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
+        public virtual XSD.SqlInstanceDataTable GetData() {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            XSD.SqlInstanceDataTable dataTable = new XSD.SqlInstanceDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(XSD.SqlInstanceDataTable dataTable) {
+            return this.Adapter.Update(dataTable);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(XSD dataSet) {
+            return this.Adapter.Update(dataSet, "SqlInstance");
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(global::System.Data.DataRow dataRow) {
+            return this.Adapter.Update(new global::System.Data.DataRow[] {
+                        dataRow});
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(global::System.Data.DataRow[] dataRows) {
+            return this.Adapter.Update(dataRows);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
+        public virtual int Delete(int Original_ComputerID, int Original_SqlID, string Original_SqlName, global::System.Nullable<int> Original_ParentID, int Original_SqlType, string Original_IP, int Original_SqlPort, string Original_UserId, string Original_PwdC) {
+            this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_ComputerID));
+            this.Adapter.DeleteCommand.Parameters[1].Value = ((int)(Original_SqlID));
+            if ((Original_SqlName == null)) {
+                throw new global::System.ArgumentNullException("Original_SqlName");
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[2].Value = ((string)(Original_SqlName));
+            }
+            if ((Original_ParentID.HasValue == true)) {
+                this.Adapter.DeleteCommand.Parameters[3].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[4].Value = ((int)(Original_ParentID.Value));
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[3].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[4].Value = global::System.DBNull.Value;
+            }
+            this.Adapter.DeleteCommand.Parameters[5].Value = ((int)(Original_SqlType));
+            if ((Original_IP == null)) {
+                throw new global::System.ArgumentNullException("Original_IP");
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[6].Value = ((string)(Original_IP));
+            }
+            this.Adapter.DeleteCommand.Parameters[7].Value = ((int)(Original_SqlPort));
+            if ((Original_UserId == null)) {
+                throw new global::System.ArgumentNullException("Original_UserId");
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[8].Value = ((string)(Original_UserId));
+            }
+            if ((Original_PwdC == null)) {
+                throw new global::System.ArgumentNullException("Original_PwdC");
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[9].Value = ((string)(Original_PwdC));
+            }
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
+            if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.DeleteCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.DeleteCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.DeleteCommand.Connection.Close();
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
+        public virtual int Insert(int ComputerID, int SqlID, string SqlName, global::System.Nullable<int> ParentID, int SqlType, string IP, int SqlPort, string UserId, string PwdC) {
+            this.Adapter.InsertCommand.Parameters[0].Value = ((int)(ComputerID));
+            this.Adapter.InsertCommand.Parameters[1].Value = ((int)(SqlID));
+            if ((SqlName == null)) {
+                throw new global::System.ArgumentNullException("SqlName");
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[2].Value = ((string)(SqlName));
+            }
+            if ((ParentID.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[3].Value = ((int)(ParentID.Value));
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[3].Value = global::System.DBNull.Value;
+            }
+            this.Adapter.InsertCommand.Parameters[4].Value = ((int)(SqlType));
+            if ((IP == null)) {
+                throw new global::System.ArgumentNullException("IP");
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[5].Value = ((string)(IP));
+            }
+            this.Adapter.InsertCommand.Parameters[6].Value = ((int)(SqlPort));
+            if ((UserId == null)) {
+                throw new global::System.ArgumentNullException("UserId");
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[7].Value = ((string)(UserId));
+            }
+            if ((PwdC == null)) {
+                throw new global::System.ArgumentNullException("PwdC");
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[8].Value = ((string)(PwdC));
+            }
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
+            if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.InsertCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.InsertCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.InsertCommand.Connection.Close();
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
+        public virtual int Update(
+                    int ComputerID, 
+                    int SqlID, 
+                    string SqlName, 
+                    global::System.Nullable<int> ParentID, 
+                    int SqlType, 
+                    string IP, 
+                    int SqlPort, 
+                    string UserId, 
+                    string PwdC, 
+                    int Original_ComputerID, 
+                    int Original_SqlID, 
+                    string Original_SqlName, 
+                    global::System.Nullable<int> Original_ParentID, 
+                    int Original_SqlType, 
+                    string Original_IP, 
+                    int Original_SqlPort, 
+                    string Original_UserId, 
+                    string Original_PwdC) {
+            this.Adapter.UpdateCommand.Parameters[0].Value = ((int)(ComputerID));
+            this.Adapter.UpdateCommand.Parameters[1].Value = ((int)(SqlID));
+            if ((SqlName == null)) {
+                throw new global::System.ArgumentNullException("SqlName");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[2].Value = ((string)(SqlName));
+            }
+            if ((ParentID.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[3].Value = ((int)(ParentID.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[3].Value = global::System.DBNull.Value;
+            }
+            this.Adapter.UpdateCommand.Parameters[4].Value = ((int)(SqlType));
+            if ((IP == null)) {
+                throw new global::System.ArgumentNullException("IP");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[5].Value = ((string)(IP));
+            }
+            this.Adapter.UpdateCommand.Parameters[6].Value = ((int)(SqlPort));
+            if ((UserId == null)) {
+                throw new global::System.ArgumentNullException("UserId");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[7].Value = ((string)(UserId));
+            }
+            if ((PwdC == null)) {
+                throw new global::System.ArgumentNullException("PwdC");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[8].Value = ((string)(PwdC));
+            }
+            this.Adapter.UpdateCommand.Parameters[9].Value = ((int)(Original_ComputerID));
+            this.Adapter.UpdateCommand.Parameters[10].Value = ((int)(Original_SqlID));
+            if ((Original_SqlName == null)) {
+                throw new global::System.ArgumentNullException("Original_SqlName");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[11].Value = ((string)(Original_SqlName));
+            }
+            if ((Original_ParentID.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[12].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[13].Value = ((int)(Original_ParentID.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[12].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[13].Value = global::System.DBNull.Value;
+            }
+            this.Adapter.UpdateCommand.Parameters[14].Value = ((int)(Original_SqlType));
+            if ((Original_IP == null)) {
+                throw new global::System.ArgumentNullException("Original_IP");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[15].Value = ((string)(Original_IP));
+            }
+            this.Adapter.UpdateCommand.Parameters[16].Value = ((int)(Original_SqlPort));
+            if ((Original_UserId == null)) {
+                throw new global::System.ArgumentNullException("Original_UserId");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[17].Value = ((string)(Original_UserId));
+            }
+            if ((Original_PwdC == null)) {
+                throw new global::System.ArgumentNullException("Original_PwdC");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[18].Value = ((string)(Original_PwdC));
+            }
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
+            if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.UpdateCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.UpdateCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.UpdateCommand.Connection.Close();
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
+        public virtual int Update(
+                    int ComputerID, 
+                    string SqlName, 
+                    global::System.Nullable<int> ParentID, 
+                    int SqlType, 
+                    string IP, 
+                    int SqlPort, 
+                    string UserId, 
+                    string PwdC, 
+                    int Original_ComputerID, 
+                    int Original_SqlID, 
+                    string Original_SqlName, 
+                    global::System.Nullable<int> Original_ParentID, 
+                    int Original_SqlType, 
+                    string Original_IP, 
+                    int Original_SqlPort, 
+                    string Original_UserId, 
+                    string Original_PwdC) {
+            return this.Update(ComputerID, Original_SqlID, SqlName, ParentID, SqlType, IP, SqlPort, UserId, PwdC, Original_ComputerID, Original_SqlID, Original_SqlName, Original_ParentID, Original_SqlType, Original_IP, Original_SqlPort, Original_UserId, Original_PwdC);
+        }
+    }
+    
+    /// <summary>
+    ///Represents the connection and commands used to retrieve and save data.
+    ///</summary>
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
+    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
+    [global::System.ComponentModel.ToolboxItem(true)]
+    [global::System.ComponentModel.DataObjectAttribute(true)]
+    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
+        ", Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
+    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+    public partial class DBCTableAdapter : global::System.ComponentModel.Component {
+        
+        private global::System.Data.SqlClient.SqlDataAdapter _adapter;
+        
+        private global::System.Data.SqlClient.SqlConnection _connection;
+        
+        private global::System.Data.SqlClient.SqlTransaction _transaction;
+        
+        private global::System.Data.SqlClient.SqlCommand[] _commandCollection;
+        
+        private bool _clearBeforeFill;
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public DBCTableAdapter() {
+            this.ClearBeforeFill = true;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        protected internal global::System.Data.SqlClient.SqlDataAdapter Adapter {
+            get {
+                if ((this._adapter == null)) {
+                    this.InitAdapter();
+                }
+                return this._adapter;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        internal global::System.Data.SqlClient.SqlConnection Connection {
+            get {
+                if ((this._connection == null)) {
+                    this.InitConnection();
+                }
+                return this._connection;
+            }
+            set {
+                this._connection = value;
+                if ((this.Adapter.InsertCommand != null)) {
+                    this.Adapter.InsertCommand.Connection = value;
+                }
+                if ((this.Adapter.DeleteCommand != null)) {
+                    this.Adapter.DeleteCommand.Connection = value;
+                }
+                if ((this.Adapter.UpdateCommand != null)) {
+                    this.Adapter.UpdateCommand.Connection = value;
+                }
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    if ((this.CommandCollection[i] != null)) {
+                        ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[i])).Connection = value;
+                    }
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        internal global::System.Data.SqlClient.SqlTransaction Transaction {
+            get {
+                return this._transaction;
+            }
+            set {
+                this._transaction = value;
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    this.CommandCollection[i].Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.DeleteCommand != null))) {
+                    this.Adapter.DeleteCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.InsertCommand != null))) {
+                    this.Adapter.InsertCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.UpdateCommand != null))) {
+                    this.Adapter.UpdateCommand.Transaction = this._transaction;
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        protected global::System.Data.SqlClient.SqlCommand[] CommandCollection {
+            get {
+                if ((this._commandCollection == null)) {
+                    this.InitCommandCollection();
+                }
+                return this._commandCollection;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public bool ClearBeforeFill {
+            get {
+                return this._clearBeforeFill;
+            }
+            set {
+                this._clearBeforeFill = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        private void InitAdapter() {
+            this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
+            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
+            tableMapping.SourceTable = "Table";
+            tableMapping.DataSetTable = "DBC";
+            tableMapping.ColumnMappings.Add("ComputerID", "ComputerID");
+            tableMapping.ColumnMappings.Add("SqlID", "SqlID");
+            tableMapping.ColumnMappings.Add("DBID", "DBID");
+            tableMapping.ColumnMappings.Add("DBCType", "DBCType");
+            tableMapping.ColumnMappings.Add("UseTrusted", "UseTrusted");
+            tableMapping.ColumnMappings.Add("DBName", "DBName");
+            tableMapping.ColumnMappings.Add("UserId", "UserId");
+            tableMapping.ColumnMappings.Add("PwdC", "PwdC");
+            tableMapping.ColumnMappings.Add("Mirror", "Mirror");
+            this._adapter.TableMappings.Add(tableMapping);
+            this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
+            this._adapter.DeleteCommand.Connection = this.Connection;
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [DBC] WHERE (([ComputerID] = @Original_ComputerID) AND ([SqlID] = @Original_SqlID) AND ([DBID] = @Original_DBID) AND ([DBCType] = @Original_DBCType) AND ([UseTrusted] = @Original_UseTrusted) AND ([DBName] = @Original_DBName) AND ([UserId] = @Original_UserId) AND ([PwdC] = @Original_PwdC) AND ((@IsNull_Mirror = 1 AND [Mirror] IS NULL) OR ([Mirror] = @Original_Mirror)))";
+            this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ComputerID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ComputerID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_SqlID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SqlID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_DBID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DBID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_DBCType", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DBCType", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_UseTrusted", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "UseTrusted", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_DBName", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DBName", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_UserId", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "UserId", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_PwdC", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "PwdC", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_Mirror", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Mirror", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Mirror", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Mirror", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
+            this._adapter.InsertCommand.Connection = this.Connection;
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [DBC] ([ComputerID], [SqlID], [DBID], [DBCType], [UseTrusted], [DBName], [UserId], [PwdC], [Mirror]) VALUES (@ComputerID, @SqlID, @DBID, @DBCType, @UseTrusted, @DBName, @UserId, @PwdC, @Mirror);
+SELECT ComputerID, SqlID, DBID, DBCType, UseTrusted, DBName, UserId, PwdC, Mirror FROM DBC WHERE (DBID = @DBID)";
+            this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ComputerID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ComputerID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@SqlID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SqlID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@DBID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DBID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@DBCType", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DBCType", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@UseTrusted", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "UseTrusted", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@DBName", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DBName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@UserId", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "UserId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@PwdC", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "PwdC", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Mirror", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Mirror", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
+            this._adapter.UpdateCommand.Connection = this.Connection;
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [DBC] SET [ComputerID] = @ComputerID, [SqlID] = @SqlID, [DBID] = @DBID, [DBCType] = @DBCType, [UseTrusted] = @UseTrusted, [DBName] = @DBName, [UserId] = @UserId, [PwdC] = @PwdC, [Mirror] = @Mirror WHERE (([ComputerID] = @Original_ComputerID) AND ([SqlID] = @Original_SqlID) AND ([DBID] = @Original_DBID) AND ([DBCType] = @Original_DBCType) AND ([UseTrusted] = @Original_UseTrusted) AND ([DBName] = @Original_DBName) AND ([UserId] = @Original_UserId) AND ([PwdC] = @Original_PwdC) AND ((@IsNull_Mirror = 1 AND [Mirror] IS NULL) OR ([Mirror] = @Original_Mirror)));
+SELECT ComputerID, SqlID, DBID, DBCType, UseTrusted, DBName, UserId, PwdC, Mirror FROM DBC WHERE (DBID = @DBID)";
+            this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ComputerID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ComputerID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@SqlID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SqlID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@DBID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DBID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@DBCType", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DBCType", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@UseTrusted", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "UseTrusted", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@DBName", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DBName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@UserId", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "UserId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@PwdC", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "PwdC", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Mirror", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Mirror", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ComputerID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ComputerID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_SqlID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SqlID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_DBID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DBID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_DBCType", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DBCType", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_UseTrusted", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "UseTrusted", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_DBName", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DBName", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_UserId", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "UserId", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_PwdC", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "PwdC", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_Mirror", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Mirror", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Mirror", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Mirror", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        private void InitConnection() {
+            this._connection = new global::System.Data.SqlClient.SqlConnection();
+            this._connection.ConnectionString = global::Apq.DBC.Properties.Settings.Default.Apq_DBAConnectionString;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        private void InitCommandCollection() {
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
+            this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[0].Connection = this.Connection;
+            this._commandCollection[0].CommandText = "SELECT ComputerID, SqlID, DBID, DBCType, UseTrusted, DBName, UserId, PwdC, Mirror" +
+                " FROM DBC";
+            this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
+        public virtual int Fill(XSD.DBCDataTable dataTable) {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
+        public virtual XSD.DBCDataTable GetData() {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            XSD.DBCDataTable dataTable = new XSD.DBCDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(XSD.DBCDataTable dataTable) {
+            return this.Adapter.Update(dataTable);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(XSD dataSet) {
+            return this.Adapter.Update(dataSet, "DBC");
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(global::System.Data.DataRow dataRow) {
+            return this.Adapter.Update(new global::System.Data.DataRow[] {
+                        dataRow});
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(global::System.Data.DataRow[] dataRows) {
+            return this.Adapter.Update(dataRows);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
+        public virtual int Delete(int Original_ComputerID, int Original_SqlID, int Original_DBID, int Original_DBCType, byte Original_UseTrusted, string Original_DBName, string Original_UserId, string Original_PwdC, string Original_Mirror) {
+            this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_ComputerID));
+            this.Adapter.DeleteCommand.Parameters[1].Value = ((int)(Original_SqlID));
+            this.Adapter.DeleteCommand.Parameters[2].Value = ((int)(Original_DBID));
+            this.Adapter.DeleteCommand.Parameters[3].Value = ((int)(Original_DBCType));
+            this.Adapter.DeleteCommand.Parameters[4].Value = ((byte)(Original_UseTrusted));
+            if ((Original_DBName == null)) {
+                throw new global::System.ArgumentNullException("Original_DBName");
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[5].Value = ((string)(Original_DBName));
+            }
+            if ((Original_UserId == null)) {
+                throw new global::System.ArgumentNullException("Original_UserId");
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[6].Value = ((string)(Original_UserId));
+            }
+            if ((Original_PwdC == null)) {
+                throw new global::System.ArgumentNullException("Original_PwdC");
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[7].Value = ((string)(Original_PwdC));
+            }
+            if ((Original_Mirror == null)) {
+                this.Adapter.DeleteCommand.Parameters[8].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[9].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[8].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[9].Value = ((string)(Original_Mirror));
+            }
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
+            if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.DeleteCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.DeleteCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.DeleteCommand.Connection.Close();
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
+        public virtual int Insert(int ComputerID, int SqlID, int DBID, int DBCType, byte UseTrusted, string DBName, string UserId, string PwdC, string Mirror) {
+            this.Adapter.InsertCommand.Parameters[0].Value = ((int)(ComputerID));
+            this.Adapter.InsertCommand.Parameters[1].Value = ((int)(SqlID));
+            this.Adapter.InsertCommand.Parameters[2].Value = ((int)(DBID));
+            this.Adapter.InsertCommand.Parameters[3].Value = ((int)(DBCType));
+            this.Adapter.InsertCommand.Parameters[4].Value = ((byte)(UseTrusted));
+            if ((DBName == null)) {
+                throw new global::System.ArgumentNullException("DBName");
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[5].Value = ((string)(DBName));
+            }
+            if ((UserId == null)) {
+                throw new global::System.ArgumentNullException("UserId");
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[6].Value = ((string)(UserId));
+            }
+            if ((PwdC == null)) {
+                throw new global::System.ArgumentNullException("PwdC");
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[7].Value = ((string)(PwdC));
+            }
+            if ((Mirror == null)) {
+                this.Adapter.InsertCommand.Parameters[8].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[8].Value = ((string)(Mirror));
+            }
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
+            if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.InsertCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.InsertCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.InsertCommand.Connection.Close();
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
+        public virtual int Update(
+                    int ComputerID, 
+                    int SqlID, 
+                    int DBID, 
+                    int DBCType, 
+                    byte UseTrusted, 
+                    string DBName, 
+                    string UserId, 
+                    string PwdC, 
+                    string Mirror, 
+                    int Original_ComputerID, 
+                    int Original_SqlID, 
+                    int Original_DBID, 
+                    int Original_DBCType, 
+                    byte Original_UseTrusted, 
+                    string Original_DBName, 
+                    string Original_UserId, 
+                    string Original_PwdC, 
+                    string Original_Mirror) {
+            this.Adapter.UpdateCommand.Parameters[0].Value = ((int)(ComputerID));
+            this.Adapter.UpdateCommand.Parameters[1].Value = ((int)(SqlID));
+            this.Adapter.UpdateCommand.Parameters[2].Value = ((int)(DBID));
+            this.Adapter.UpdateCommand.Parameters[3].Value = ((int)(DBCType));
+            this.Adapter.UpdateCommand.Parameters[4].Value = ((byte)(UseTrusted));
+            if ((DBName == null)) {
+                throw new global::System.ArgumentNullException("DBName");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[5].Value = ((string)(DBName));
+            }
+            if ((UserId == null)) {
+                throw new global::System.ArgumentNullException("UserId");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[6].Value = ((string)(UserId));
+            }
+            if ((PwdC == null)) {
+                throw new global::System.ArgumentNullException("PwdC");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[7].Value = ((string)(PwdC));
+            }
+            if ((Mirror == null)) {
+                this.Adapter.UpdateCommand.Parameters[8].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[8].Value = ((string)(Mirror));
+            }
+            this.Adapter.UpdateCommand.Parameters[9].Value = ((int)(Original_ComputerID));
+            this.Adapter.UpdateCommand.Parameters[10].Value = ((int)(Original_SqlID));
+            this.Adapter.UpdateCommand.Parameters[11].Value = ((int)(Original_DBID));
+            this.Adapter.UpdateCommand.Parameters[12].Value = ((int)(Original_DBCType));
+            this.Adapter.UpdateCommand.Parameters[13].Value = ((byte)(Original_UseTrusted));
+            if ((Original_DBName == null)) {
+                throw new global::System.ArgumentNullException("Original_DBName");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[14].Value = ((string)(Original_DBName));
+            }
+            if ((Original_UserId == null)) {
+                throw new global::System.ArgumentNullException("Original_UserId");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[15].Value = ((string)(Original_UserId));
+            }
+            if ((Original_PwdC == null)) {
+                throw new global::System.ArgumentNullException("Original_PwdC");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[16].Value = ((string)(Original_PwdC));
+            }
+            if ((Original_Mirror == null)) {
+                this.Adapter.UpdateCommand.Parameters[17].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[18].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[17].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[18].Value = ((string)(Original_Mirror));
+            }
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
+            if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.UpdateCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.UpdateCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.UpdateCommand.Connection.Close();
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
+        public virtual int Update(
+                    int ComputerID, 
+                    int SqlID, 
+                    int DBCType, 
+                    byte UseTrusted, 
+                    string DBName, 
+                    string UserId, 
+                    string PwdC, 
+                    string Mirror, 
+                    int Original_ComputerID, 
+                    int Original_SqlID, 
+                    int Original_DBID, 
+                    int Original_DBCType, 
+                    byte Original_UseTrusted, 
+                    string Original_DBName, 
+                    string Original_UserId, 
+                    string Original_PwdC, 
+                    string Original_Mirror) {
+            return this.Update(ComputerID, SqlID, Original_DBID, DBCType, UseTrusted, DBName, UserId, PwdC, Mirror, Original_ComputerID, Original_SqlID, Original_DBID, Original_DBCType, Original_UseTrusted, Original_DBName, Original_UserId, Original_PwdC, Original_Mirror);
+        }
+    }
+    
+    /// <summary>
+    ///Represents the connection and commands used to retrieve and save data.
+    ///</summary>
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
+    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
+    [global::System.ComponentModel.ToolboxItem(true)]
+    [global::System.ComponentModel.DataObjectAttribute(true)]
+    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
+        ", Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
+    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+    public partial class DBCTypeTableAdapter : global::System.ComponentModel.Component {
+        
+        private global::System.Data.SqlClient.SqlDataAdapter _adapter;
+        
+        private global::System.Data.SqlClient.SqlConnection _connection;
+        
+        private global::System.Data.SqlClient.SqlTransaction _transaction;
+        
+        private global::System.Data.SqlClient.SqlCommand[] _commandCollection;
+        
+        private bool _clearBeforeFill;
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public DBCTypeTableAdapter() {
+            this.ClearBeforeFill = true;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        protected internal global::System.Data.SqlClient.SqlDataAdapter Adapter {
+            get {
+                if ((this._adapter == null)) {
+                    this.InitAdapter();
+                }
+                return this._adapter;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        internal global::System.Data.SqlClient.SqlConnection Connection {
+            get {
+                if ((this._connection == null)) {
+                    this.InitConnection();
+                }
+                return this._connection;
+            }
+            set {
+                this._connection = value;
+                if ((this.Adapter.InsertCommand != null)) {
+                    this.Adapter.InsertCommand.Connection = value;
+                }
+                if ((this.Adapter.DeleteCommand != null)) {
+                    this.Adapter.DeleteCommand.Connection = value;
+                }
+                if ((this.Adapter.UpdateCommand != null)) {
+                    this.Adapter.UpdateCommand.Connection = value;
+                }
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    if ((this.CommandCollection[i] != null)) {
+                        ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[i])).Connection = value;
+                    }
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        internal global::System.Data.SqlClient.SqlTransaction Transaction {
+            get {
+                return this._transaction;
+            }
+            set {
+                this._transaction = value;
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    this.CommandCollection[i].Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.DeleteCommand != null))) {
+                    this.Adapter.DeleteCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.InsertCommand != null))) {
+                    this.Adapter.InsertCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.UpdateCommand != null))) {
+                    this.Adapter.UpdateCommand.Transaction = this._transaction;
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        protected global::System.Data.SqlClient.SqlCommand[] CommandCollection {
+            get {
+                if ((this._commandCollection == null)) {
+                    this.InitCommandCollection();
+                }
+                return this._commandCollection;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public bool ClearBeforeFill {
+            get {
+                return this._clearBeforeFill;
+            }
+            set {
+                this._clearBeforeFill = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        private void InitAdapter() {
+            this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
+            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
+            tableMapping.SourceTable = "Table";
+            tableMapping.DataSetTable = "DBCType";
+            tableMapping.ColumnMappings.Add("DBCType", "DBCType");
+            tableMapping.ColumnMappings.Add("TypeCaption", "TypeCaption");
+            this._adapter.TableMappings.Add(tableMapping);
+            this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
+            this._adapter.DeleteCommand.Connection = this.Connection;
+            this._adapter.DeleteCommand.CommandText = "DELETE FROM [dic].[DBCType] WHERE (([DBCType] = @Original_DBCType) AND ([TypeCapt" +
+                "ion] = @Original_TypeCaption))";
+            this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_DBCType", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DBCType", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_TypeCaption", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TypeCaption", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
+            this._adapter.InsertCommand.Connection = this.Connection;
+            this._adapter.InsertCommand.CommandText = "INSERT INTO [dic].[DBCType] ([DBCType], [TypeCaption]) VALUES (@DBCType, @TypeCap" +
+                "tion);\r\nSELECT DBCType, TypeCaption FROM dic.DBCType WHERE (DBCType = @DBCType)";
+            this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@DBCType", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DBCType", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@TypeCaption", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TypeCaption", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
+            this._adapter.UpdateCommand.Connection = this.Connection;
+            this._adapter.UpdateCommand.CommandText = "UPDATE [dic].[DBCType] SET [DBCType] = @DBCType, [TypeCaption] = @TypeCaption WHE" +
+                "RE (([DBCType] = @Original_DBCType) AND ([TypeCaption] = @Original_TypeCaption))" +
+                ";\r\nSELECT DBCType, TypeCaption FROM dic.DBCType WHERE (DBCType = @DBCType)";
+            this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@DBCType", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DBCType", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@TypeCaption", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TypeCaption", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_DBCType", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DBCType", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_TypeCaption", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TypeCaption", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        private void InitConnection() {
+            this._connection = new global::System.Data.SqlClient.SqlConnection();
+            this._connection.ConnectionString = global::Apq.DBC.Properties.Settings.Default.Apq_DBAConnectionString;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        private void InitCommandCollection() {
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
+            this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[0].Connection = this.Connection;
+            this._commandCollection[0].CommandText = "SELECT DBCType, TypeCaption FROM dic.DBCType";
+            this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
+        public virtual int Fill(XSD.DBCTypeDataTable dataTable) {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
+        public virtual XSD.DBCTypeDataTable GetData() {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            XSD.DBCTypeDataTable dataTable = new XSD.DBCTypeDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(XSD.DBCTypeDataTable dataTable) {
+            return this.Adapter.Update(dataTable);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(XSD dataSet) {
+            return this.Adapter.Update(dataSet, "DBCType");
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(global::System.Data.DataRow dataRow) {
+            return this.Adapter.Update(new global::System.Data.DataRow[] {
+                        dataRow});
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(global::System.Data.DataRow[] dataRows) {
+            return this.Adapter.Update(dataRows);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
+        public virtual int Delete(int Original_DBCType, string Original_TypeCaption) {
+            this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_DBCType));
+            if ((Original_TypeCaption == null)) {
+                throw new global::System.ArgumentNullException("Original_TypeCaption");
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[1].Value = ((string)(Original_TypeCaption));
+            }
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
+            if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.DeleteCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.DeleteCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.DeleteCommand.Connection.Close();
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
+        public virtual int Insert(int DBCType, string TypeCaption) {
+            this.Adapter.InsertCommand.Parameters[0].Value = ((int)(DBCType));
+            if ((TypeCaption == null)) {
+                throw new global::System.ArgumentNullException("TypeCaption");
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[1].Value = ((string)(TypeCaption));
+            }
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
+            if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.InsertCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.InsertCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.InsertCommand.Connection.Close();
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
+        public virtual int Update(int DBCType, string TypeCaption, int Original_DBCType, string Original_TypeCaption) {
+            this.Adapter.UpdateCommand.Parameters[0].Value = ((int)(DBCType));
+            if ((TypeCaption == null)) {
+                throw new global::System.ArgumentNullException("TypeCaption");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[1].Value = ((string)(TypeCaption));
+            }
+            this.Adapter.UpdateCommand.Parameters[2].Value = ((int)(Original_DBCType));
+            if ((Original_TypeCaption == null)) {
+                throw new global::System.ArgumentNullException("Original_TypeCaption");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[3].Value = ((string)(Original_TypeCaption));
+            }
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
+            if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.UpdateCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.UpdateCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.UpdateCommand.Connection.Close();
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
+        public virtual int Update(string TypeCaption, int Original_DBCType, string Original_TypeCaption) {
+            return this.Update(Original_DBCType, TypeCaption, Original_DBCType, Original_TypeCaption);
+        }
+    }
+    
+    /// <summary>
+    ///Represents the connection and commands used to retrieve and save data.
+    ///</summary>
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
+    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
+    [global::System.ComponentModel.ToolboxItem(true)]
+    [global::System.ComponentModel.DataObjectAttribute(true)]
+    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
+        ", Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
+    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+    public partial class SqlTypeTableAdapter : global::System.ComponentModel.Component {
+        
+        private global::System.Data.SqlClient.SqlDataAdapter _adapter;
+        
+        private global::System.Data.SqlClient.SqlConnection _connection;
+        
+        private global::System.Data.SqlClient.SqlTransaction _transaction;
+        
+        private global::System.Data.SqlClient.SqlCommand[] _commandCollection;
+        
+        private bool _clearBeforeFill;
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public SqlTypeTableAdapter() {
+            this.ClearBeforeFill = true;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        protected internal global::System.Data.SqlClient.SqlDataAdapter Adapter {
+            get {
+                if ((this._adapter == null)) {
+                    this.InitAdapter();
+                }
+                return this._adapter;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        internal global::System.Data.SqlClient.SqlConnection Connection {
+            get {
+                if ((this._connection == null)) {
+                    this.InitConnection();
+                }
+                return this._connection;
+            }
+            set {
+                this._connection = value;
+                if ((this.Adapter.InsertCommand != null)) {
+                    this.Adapter.InsertCommand.Connection = value;
+                }
+                if ((this.Adapter.DeleteCommand != null)) {
+                    this.Adapter.DeleteCommand.Connection = value;
+                }
+                if ((this.Adapter.UpdateCommand != null)) {
+                    this.Adapter.UpdateCommand.Connection = value;
+                }
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    if ((this.CommandCollection[i] != null)) {
+                        ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[i])).Connection = value;
+                    }
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        internal global::System.Data.SqlClient.SqlTransaction Transaction {
+            get {
+                return this._transaction;
+            }
+            set {
+                this._transaction = value;
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    this.CommandCollection[i].Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.DeleteCommand != null))) {
+                    this.Adapter.DeleteCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.InsertCommand != null))) {
+                    this.Adapter.InsertCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.UpdateCommand != null))) {
+                    this.Adapter.UpdateCommand.Transaction = this._transaction;
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        protected global::System.Data.SqlClient.SqlCommand[] CommandCollection {
+            get {
+                if ((this._commandCollection == null)) {
+                    this.InitCommandCollection();
+                }
+                return this._commandCollection;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public bool ClearBeforeFill {
+            get {
+                return this._clearBeforeFill;
+            }
+            set {
+                this._clearBeforeFill = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        private void InitAdapter() {
+            this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
+            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
+            tableMapping.SourceTable = "Table";
+            tableMapping.DataSetTable = "SqlType";
+            tableMapping.ColumnMappings.Add("SqlType", "SqlType");
+            tableMapping.ColumnMappings.Add("TypeCaption", "TypeCaption");
+            this._adapter.TableMappings.Add(tableMapping);
+            this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
+            this._adapter.DeleteCommand.Connection = this.Connection;
+            this._adapter.DeleteCommand.CommandText = "DELETE FROM [dic].[SqlType] WHERE (([SqlType] = @Original_SqlType) AND ([TypeCapt" +
+                "ion] = @Original_TypeCaption))";
+            this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_SqlType", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SqlType", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_TypeCaption", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TypeCaption", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
+            this._adapter.InsertCommand.Connection = this.Connection;
+            this._adapter.InsertCommand.CommandText = "INSERT INTO [dic].[SqlType] ([SqlType], [TypeCaption]) VALUES (@SqlType, @TypeCap" +
+                "tion);\r\nSELECT SqlType, TypeCaption FROM dic.SqlType WHERE (SqlType = @SqlType)";
+            this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@SqlType", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SqlType", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@TypeCaption", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TypeCaption", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
+            this._adapter.UpdateCommand.Connection = this.Connection;
+            this._adapter.UpdateCommand.CommandText = "UPDATE [dic].[SqlType] SET [SqlType] = @SqlType, [TypeCaption] = @TypeCaption WHE" +
+                "RE (([SqlType] = @Original_SqlType) AND ([TypeCaption] = @Original_TypeCaption))" +
+                ";\r\nSELECT SqlType, TypeCaption FROM dic.SqlType WHERE (SqlType = @SqlType)";
+            this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@SqlType", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SqlType", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@TypeCaption", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TypeCaption", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_SqlType", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SqlType", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_TypeCaption", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TypeCaption", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        private void InitConnection() {
+            this._connection = new global::System.Data.SqlClient.SqlConnection();
+            this._connection.ConnectionString = global::Apq.DBC.Properties.Settings.Default.Apq_DBAConnectionString;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        private void InitCommandCollection() {
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
+            this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[0].Connection = this.Connection;
+            this._commandCollection[0].CommandText = "SELECT SqlType, TypeCaption FROM dic.SqlType";
+            this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
+        public virtual int Fill(XSD.SqlTypeDataTable dataTable) {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
+        public virtual XSD.SqlTypeDataTable GetData() {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            XSD.SqlTypeDataTable dataTable = new XSD.SqlTypeDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(XSD.SqlTypeDataTable dataTable) {
+            return this.Adapter.Update(dataTable);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(XSD dataSet) {
+            return this.Adapter.Update(dataSet, "SqlType");
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(global::System.Data.DataRow dataRow) {
+            return this.Adapter.Update(new global::System.Data.DataRow[] {
+                        dataRow});
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(global::System.Data.DataRow[] dataRows) {
+            return this.Adapter.Update(dataRows);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
+        public virtual int Delete(int Original_SqlType, string Original_TypeCaption) {
+            this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_SqlType));
+            if ((Original_TypeCaption == null)) {
+                throw new global::System.ArgumentNullException("Original_TypeCaption");
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[1].Value = ((string)(Original_TypeCaption));
+            }
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
+            if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.DeleteCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.DeleteCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.DeleteCommand.Connection.Close();
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
+        public virtual int Insert(int SqlType, string TypeCaption) {
+            this.Adapter.InsertCommand.Parameters[0].Value = ((int)(SqlType));
+            if ((TypeCaption == null)) {
+                throw new global::System.ArgumentNullException("TypeCaption");
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[1].Value = ((string)(TypeCaption));
+            }
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
+            if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.InsertCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.InsertCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.InsertCommand.Connection.Close();
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
+        public virtual int Update(int SqlType, string TypeCaption, int Original_SqlType, string Original_TypeCaption) {
+            this.Adapter.UpdateCommand.Parameters[0].Value = ((int)(SqlType));
+            if ((TypeCaption == null)) {
+                throw new global::System.ArgumentNullException("TypeCaption");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[1].Value = ((string)(TypeCaption));
+            }
+            this.Adapter.UpdateCommand.Parameters[2].Value = ((int)(Original_SqlType));
+            if ((Original_TypeCaption == null)) {
+                throw new global::System.ArgumentNullException("Original_TypeCaption");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[3].Value = ((string)(Original_TypeCaption));
+            }
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
+            if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.UpdateCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.UpdateCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.UpdateCommand.Connection.Close();
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
+        public virtual int Update(string TypeCaption, int Original_SqlType, string Original_TypeCaption) {
+            return this.Update(Original_SqlType, TypeCaption, Original_SqlType, Original_TypeCaption);
+        }
+    }
+    
+    /// <summary>
+    ///Represents the connection and commands used to retrieve and save data.
+    ///</summary>
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
+    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
+    [global::System.ComponentModel.ToolboxItem(true)]
+    [global::System.ComponentModel.DataObjectAttribute(true)]
+    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
+        ", Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
+    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+    public partial class ComputerTypeTableAdapter : global::System.ComponentModel.Component {
+        
+        private global::System.Data.SqlClient.SqlDataAdapter _adapter;
+        
+        private global::System.Data.SqlClient.SqlConnection _connection;
+        
+        private global::System.Data.SqlClient.SqlTransaction _transaction;
+        
+        private global::System.Data.SqlClient.SqlCommand[] _commandCollection;
+        
+        private bool _clearBeforeFill;
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public ComputerTypeTableAdapter() {
+            this.ClearBeforeFill = true;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        protected internal global::System.Data.SqlClient.SqlDataAdapter Adapter {
+            get {
+                if ((this._adapter == null)) {
+                    this.InitAdapter();
+                }
+                return this._adapter;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        internal global::System.Data.SqlClient.SqlConnection Connection {
+            get {
+                if ((this._connection == null)) {
+                    this.InitConnection();
+                }
+                return this._connection;
+            }
+            set {
+                this._connection = value;
+                if ((this.Adapter.InsertCommand != null)) {
+                    this.Adapter.InsertCommand.Connection = value;
+                }
+                if ((this.Adapter.DeleteCommand != null)) {
+                    this.Adapter.DeleteCommand.Connection = value;
+                }
+                if ((this.Adapter.UpdateCommand != null)) {
+                    this.Adapter.UpdateCommand.Connection = value;
+                }
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    if ((this.CommandCollection[i] != null)) {
+                        ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[i])).Connection = value;
+                    }
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        internal global::System.Data.SqlClient.SqlTransaction Transaction {
+            get {
+                return this._transaction;
+            }
+            set {
+                this._transaction = value;
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    this.CommandCollection[i].Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.DeleteCommand != null))) {
+                    this.Adapter.DeleteCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.InsertCommand != null))) {
+                    this.Adapter.InsertCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.UpdateCommand != null))) {
+                    this.Adapter.UpdateCommand.Transaction = this._transaction;
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        protected global::System.Data.SqlClient.SqlCommand[] CommandCollection {
+            get {
+                if ((this._commandCollection == null)) {
+                    this.InitCommandCollection();
+                }
+                return this._commandCollection;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public bool ClearBeforeFill {
+            get {
+                return this._clearBeforeFill;
+            }
+            set {
+                this._clearBeforeFill = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        private void InitAdapter() {
+            this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
+            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
+            tableMapping.SourceTable = "Table";
+            tableMapping.DataSetTable = "ComputerType";
+            tableMapping.ColumnMappings.Add("ComputerType", "ComputerType");
+            tableMapping.ColumnMappings.Add("TypeCaption", "TypeCaption");
+            this._adapter.TableMappings.Add(tableMapping);
+            this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
+            this._adapter.DeleteCommand.Connection = this.Connection;
+            this._adapter.DeleteCommand.CommandText = "DELETE FROM [dic].[ComputerType] WHERE (([ComputerType] = @Original_ComputerType)" +
+                " AND ([TypeCaption] = @Original_TypeCaption))";
+            this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ComputerType", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ComputerType", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_TypeCaption", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TypeCaption", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
+            this._adapter.InsertCommand.Connection = this.Connection;
+            this._adapter.InsertCommand.CommandText = "INSERT INTO [dic].[ComputerType] ([ComputerType], [TypeCaption]) VALUES (@Compute" +
+                "rType, @TypeCaption);\r\nSELECT ComputerType, TypeCaption FROM dic.ComputerType WH" +
+                "ERE (ComputerType = @ComputerType)";
+            this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ComputerType", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ComputerType", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@TypeCaption", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TypeCaption", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
+            this._adapter.UpdateCommand.Connection = this.Connection;
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [dic].[ComputerType] SET [ComputerType] = @ComputerType, [TypeCaption] = @TypeCaption WHERE (([ComputerType] = @Original_ComputerType) AND ([TypeCaption] = @Original_TypeCaption));
+SELECT ComputerType, TypeCaption FROM dic.ComputerType WHERE (ComputerType = @ComputerType)";
+            this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ComputerType", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ComputerType", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@TypeCaption", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TypeCaption", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ComputerType", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ComputerType", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_TypeCaption", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TypeCaption", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        private void InitConnection() {
+            this._connection = new global::System.Data.SqlClient.SqlConnection();
+            this._connection.ConnectionString = global::Apq.DBC.Properties.Settings.Default.Apq_DBAConnectionString;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        private void InitCommandCollection() {
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
+            this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[0].Connection = this.Connection;
+            this._commandCollection[0].CommandText = "SELECT ComputerType, TypeCaption FROM dic.ComputerType";
+            this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
+        public virtual int Fill(XSD.ComputerTypeDataTable dataTable) {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
+        public virtual XSD.ComputerTypeDataTable GetData() {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            XSD.ComputerTypeDataTable dataTable = new XSD.ComputerTypeDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(XSD.ComputerTypeDataTable dataTable) {
+            return this.Adapter.Update(dataTable);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(XSD dataSet) {
+            return this.Adapter.Update(dataSet, "ComputerType");
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(global::System.Data.DataRow dataRow) {
+            return this.Adapter.Update(new global::System.Data.DataRow[] {
+                        dataRow});
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(global::System.Data.DataRow[] dataRows) {
+            return this.Adapter.Update(dataRows);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
+        public virtual int Delete(int Original_ComputerType, string Original_TypeCaption) {
+            this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_ComputerType));
+            if ((Original_TypeCaption == null)) {
+                throw new global::System.ArgumentNullException("Original_TypeCaption");
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[1].Value = ((string)(Original_TypeCaption));
+            }
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
+            if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.DeleteCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.DeleteCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.DeleteCommand.Connection.Close();
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
+        public virtual int Insert(int ComputerType, string TypeCaption) {
+            this.Adapter.InsertCommand.Parameters[0].Value = ((int)(ComputerType));
+            if ((TypeCaption == null)) {
+                throw new global::System.ArgumentNullException("TypeCaption");
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[1].Value = ((string)(TypeCaption));
+            }
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
+            if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.InsertCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.InsertCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.InsertCommand.Connection.Close();
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
+        public virtual int Update(int ComputerType, string TypeCaption, int Original_ComputerType, string Original_TypeCaption) {
+            this.Adapter.UpdateCommand.Parameters[0].Value = ((int)(ComputerType));
+            if ((TypeCaption == null)) {
+                throw new global::System.ArgumentNullException("TypeCaption");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[1].Value = ((string)(TypeCaption));
+            }
+            this.Adapter.UpdateCommand.Parameters[2].Value = ((int)(Original_ComputerType));
+            if ((Original_TypeCaption == null)) {
+                throw new global::System.ArgumentNullException("Original_TypeCaption");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[3].Value = ((string)(Original_TypeCaption));
+            }
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
+            if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.UpdateCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.UpdateCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.UpdateCommand.Connection.Close();
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
+        public virtual int Update(string TypeCaption, int Original_ComputerType, string Original_TypeCaption) {
+            return this.Update(Original_ComputerType, TypeCaption, Original_ComputerType, Original_TypeCaption);
+        }
+    }
+    
+    /// <summary>
+    ///TableAdapterManager is used to coordinate TableAdapters in the dataset to enable Hierarchical Update scenarios
+    ///</summary>
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
+    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
+    [global::System.ComponentModel.ToolboxItem(true)]
+    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerDesigner, Microsoft.VSD" +
+        "esigner, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
+    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapterManager")]
+    public partial class TableAdapterManager : global::System.ComponentModel.Component {
+        
+        private UpdateOrderOption _updateOrder;
+        
+        private ComputerTableAdapter _computerTableAdapter;
+        
+        private SqlInstanceTableAdapter _sqlInstanceTableAdapter;
+        
+        private DBCTableAdapter _dBCTableAdapter;
+        
+        private DBCTypeTableAdapter _dBCTypeTableAdapter;
+        
+        private SqlTypeTableAdapter _sqlTypeTableAdapter;
+        
+        private ComputerTypeTableAdapter _computerTypeTableAdapter;
+        
+        private bool _backupDataSetBeforeUpdate;
+        
+        private global::System.Data.IDbConnection _connection;
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public UpdateOrderOption UpdateOrder {
+            get {
+                return this._updateOrder;
+            }
+            set {
+                this._updateOrder = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso" +
+            "ft.VSDesigner, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" +
+            "", "System.Drawing.Design.UITypeEditor")]
+        public ComputerTableAdapter ComputerTableAdapter {
+            get {
+                return this._computerTableAdapter;
+            }
+            set {
+                this._computerTableAdapter = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso" +
+            "ft.VSDesigner, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" +
+            "", "System.Drawing.Design.UITypeEditor")]
+        public SqlInstanceTableAdapter SqlInstanceTableAdapter {
+            get {
+                return this._sqlInstanceTableAdapter;
+            }
+            set {
+                this._sqlInstanceTableAdapter = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso" +
+            "ft.VSDesigner, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" +
+            "", "System.Drawing.Design.UITypeEditor")]
+        public DBCTableAdapter DBCTableAdapter {
+            get {
+                return this._dBCTableAdapter;
+            }
+            set {
+                this._dBCTableAdapter = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso" +
+            "ft.VSDesigner, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" +
+            "", "System.Drawing.Design.UITypeEditor")]
+        public DBCTypeTableAdapter DBCTypeTableAdapter {
+            get {
+                return this._dBCTypeTableAdapter;
+            }
+            set {
+                this._dBCTypeTableAdapter = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso" +
+            "ft.VSDesigner, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" +
+            "", "System.Drawing.Design.UITypeEditor")]
+        public SqlTypeTableAdapter SqlTypeTableAdapter {
+            get {
+                return this._sqlTypeTableAdapter;
+            }
+            set {
+                this._sqlTypeTableAdapter = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso" +
+            "ft.VSDesigner, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" +
+            "", "System.Drawing.Design.UITypeEditor")]
+        public ComputerTypeTableAdapter ComputerTypeTableAdapter {
+            get {
+                return this._computerTypeTableAdapter;
+            }
+            set {
+                this._computerTypeTableAdapter = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public bool BackupDataSetBeforeUpdate {
+            get {
+                return this._backupDataSetBeforeUpdate;
+            }
+            set {
+                this._backupDataSetBeforeUpdate = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.ComponentModel.Browsable(false)]
+        public global::System.Data.IDbConnection Connection {
+            get {
+                if ((this._connection != null)) {
+                    return this._connection;
+                }
+                if (((this._computerTableAdapter != null) 
+                            && (this._computerTableAdapter.Connection != null))) {
+                    return this._computerTableAdapter.Connection;
+                }
+                if (((this._sqlInstanceTableAdapter != null) 
+                            && (this._sqlInstanceTableAdapter.Connection != null))) {
+                    return this._sqlInstanceTableAdapter.Connection;
+                }
+                if (((this._dBCTableAdapter != null) 
+                            && (this._dBCTableAdapter.Connection != null))) {
+                    return this._dBCTableAdapter.Connection;
+                }
+                if (((this._dBCTypeTableAdapter != null) 
+                            && (this._dBCTypeTableAdapter.Connection != null))) {
+                    return this._dBCTypeTableAdapter.Connection;
+                }
+                if (((this._sqlTypeTableAdapter != null) 
+                            && (this._sqlTypeTableAdapter.Connection != null))) {
+                    return this._sqlTypeTableAdapter.Connection;
+                }
+                if (((this._computerTypeTableAdapter != null) 
+                            && (this._computerTypeTableAdapter.Connection != null))) {
+                    return this._computerTypeTableAdapter.Connection;
+                }
+                return null;
+            }
+            set {
+                this._connection = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.ComponentModel.Browsable(false)]
+        public int TableAdapterInstanceCount {
+            get {
+                int count = 0;
+                if ((this._computerTableAdapter != null)) {
+                    count = (count + 1);
+                }
+                if ((this._sqlInstanceTableAdapter != null)) {
+                    count = (count + 1);
+                }
+                if ((this._dBCTableAdapter != null)) {
+                    count = (count + 1);
+                }
+                if ((this._dBCTypeTableAdapter != null)) {
+                    count = (count + 1);
+                }
+                if ((this._sqlTypeTableAdapter != null)) {
+                    count = (count + 1);
+                }
+                if ((this._computerTypeTableAdapter != null)) {
+                    count = (count + 1);
+                }
+                return count;
+            }
+        }
+        
+        /// <summary>
+        ///Update rows in top-down order.
+        ///</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        private int UpdateUpdatedRows(XSD dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
+            int result = 0;
+            if ((this._dBCTypeTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.DBCType.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._dBCTypeTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
+            if ((this._sqlTypeTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.SqlType.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._sqlTypeTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
+            if ((this._computerTypeTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.ComputerType.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._computerTypeTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
+            if ((this._computerTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.Computer.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._computerTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
+            if ((this._sqlInstanceTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.SqlInstance.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._sqlInstanceTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
+            if ((this._dBCTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.DBC.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._dBCTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
+            return result;
+        }
+        
+        /// <summary>
+        ///Insert rows in top-down order.
+        ///</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        private int UpdateInsertedRows(XSD dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
+            int result = 0;
+            if ((this._dBCTypeTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.DBCType.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._dBCTypeTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
+            if ((this._sqlTypeTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.SqlType.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._sqlTypeTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
+            if ((this._computerTypeTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.ComputerType.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._computerTypeTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
+            if ((this._computerTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.Computer.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._computerTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
+            if ((this._sqlInstanceTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.SqlInstance.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._sqlInstanceTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
+            if ((this._dBCTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.DBC.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._dBCTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
+            return result;
+        }
+        
+        /// <summary>
+        ///Delete rows in bottom-up order.
+        ///</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        private int UpdateDeletedRows(XSD dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows) {
+            int result = 0;
+            if ((this._dBCTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.DBC.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._dBCTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
+            if ((this._sqlInstanceTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.SqlInstance.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._sqlInstanceTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
+            if ((this._computerTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.Computer.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._computerTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
+            if ((this._computerTypeTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.ComputerType.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._computerTypeTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
+            if ((this._sqlTypeTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.SqlType.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._sqlTypeTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
+            if ((this._dBCTypeTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.DBCType.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._dBCTypeTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
+            return result;
+        }
+        
+        /// <summary>
+        ///Remove inserted rows that become updated rows after calling TableAdapter.Update(inserted rows) first
+        ///</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        private global::System.Data.DataRow[] GetRealUpdatedRows(global::System.Data.DataRow[] updatedRows, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
+            if (((updatedRows == null) 
+                        || (updatedRows.Length < 1))) {
+                return updatedRows;
+            }
+            if (((allAddedRows == null) 
+                        || (allAddedRows.Count < 1))) {
+                return updatedRows;
+            }
+            global::System.Collections.Generic.List<global::System.Data.DataRow> realUpdatedRows = new global::System.Collections.Generic.List<global::System.Data.DataRow>();
+            for (int i = 0; (i < updatedRows.Length); i = (i + 1)) {
+                global::System.Data.DataRow row = updatedRows[i];
+                if ((allAddedRows.Contains(row) == false)) {
+                    realUpdatedRows.Add(row);
+                }
+            }
+            return realUpdatedRows.ToArray();
+        }
+        
+        /// <summary>
+        ///Update all changes to the dataset.
+        ///</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public virtual int UpdateAll(XSD dataSet) {
+            if ((dataSet == null)) {
+                throw new global::System.ArgumentNullException("dataSet");
+            }
+            if ((dataSet.HasChanges() == false)) {
+                return 0;
+            }
+            if (((this._computerTableAdapter != null) 
+                        && (this.MatchTableAdapterConnection(this._computerTableAdapter.Connection) == false))) {
+                throw new global::System.ArgumentException("由 TableAdapterManager 管理的所有 TableAdapter 必须使用相同的连接字符串。");
+            }
+            if (((this._sqlInstanceTableAdapter != null) 
+                        && (this.MatchTableAdapterConnection(this._sqlInstanceTableAdapter.Connection) == false))) {
+                throw new global::System.ArgumentException("由 TableAdapterManager 管理的所有 TableAdapter 必须使用相同的连接字符串。");
+            }
+            if (((this._dBCTableAdapter != null) 
+                        && (this.MatchTableAdapterConnection(this._dBCTableAdapter.Connection) == false))) {
+                throw new global::System.ArgumentException("由 TableAdapterManager 管理的所有 TableAdapter 必须使用相同的连接字符串。");
+            }
+            if (((this._dBCTypeTableAdapter != null) 
+                        && (this.MatchTableAdapterConnection(this._dBCTypeTableAdapter.Connection) == false))) {
+                throw new global::System.ArgumentException("由 TableAdapterManager 管理的所有 TableAdapter 必须使用相同的连接字符串。");
+            }
+            if (((this._sqlTypeTableAdapter != null) 
+                        && (this.MatchTableAdapterConnection(this._sqlTypeTableAdapter.Connection) == false))) {
+                throw new global::System.ArgumentException("由 TableAdapterManager 管理的所有 TableAdapter 必须使用相同的连接字符串。");
+            }
+            if (((this._computerTypeTableAdapter != null) 
+                        && (this.MatchTableAdapterConnection(this._computerTypeTableAdapter.Connection) == false))) {
+                throw new global::System.ArgumentException("由 TableAdapterManager 管理的所有 TableAdapter 必须使用相同的连接字符串。");
+            }
+            global::System.Data.IDbConnection workConnection = this.Connection;
+            if ((workConnection == null)) {
+                throw new global::System.ApplicationException("TableAdapterManager 不包含任何连接信息。请将每个 TableAdapterManager TableAdapter 属性设置为有效的 Tabl" +
+                        "eAdapter 实例。");
+            }
+            bool workConnOpened = false;
+            if (((workConnection.State & global::System.Data.ConnectionState.Broken) 
+                        == global::System.Data.ConnectionState.Broken)) {
+                workConnection.Close();
+            }
+            if ((workConnection.State == global::System.Data.ConnectionState.Closed)) {
+                workConnection.Open();
+                workConnOpened = true;
+            }
+            global::System.Data.IDbTransaction workTransaction = workConnection.BeginTransaction();
+            if ((workTransaction == null)) {
+                throw new global::System.ApplicationException("事务无法开始。当前的数据连接不支持事务或当前状态不允许事务开始。");
+            }
+            global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows = new global::System.Collections.Generic.List<global::System.Data.DataRow>();
+            global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows = new global::System.Collections.Generic.List<global::System.Data.DataRow>();
+            global::System.Collections.Generic.List<global::System.Data.Common.DataAdapter> adaptersWithAcceptChangesDuringUpdate = new global::System.Collections.Generic.List<global::System.Data.Common.DataAdapter>();
+            global::System.Collections.Generic.Dictionary<object, global::System.Data.IDbConnection> revertConnections = new global::System.Collections.Generic.Dictionary<object, global::System.Data.IDbConnection>();
+            int result = 0;
+            global::System.Data.DataSet backupDataSet = null;
+            if (this.BackupDataSetBeforeUpdate) {
+                backupDataSet = new global::System.Data.DataSet();
+                backupDataSet.Merge(dataSet);
+            }
+            try {
+                // ---- Prepare for update -----------
+                //
+                if ((this._computerTableAdapter != null)) {
+                    revertConnections.Add(this._computerTableAdapter, this._computerTableAdapter.Connection);
+                    this._computerTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(workConnection));
+                    this._computerTableAdapter.Transaction = ((global::System.Data.SqlClient.SqlTransaction)(workTransaction));
+                    if (this._computerTableAdapter.Adapter.AcceptChangesDuringUpdate) {
+                        this._computerTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
+                        adaptersWithAcceptChangesDuringUpdate.Add(this._computerTableAdapter.Adapter);
+                    }
+                }
+                if ((this._sqlInstanceTableAdapter != null)) {
+                    revertConnections.Add(this._sqlInstanceTableAdapter, this._sqlInstanceTableAdapter.Connection);
+                    this._sqlInstanceTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(workConnection));
+                    this._sqlInstanceTableAdapter.Transaction = ((global::System.Data.SqlClient.SqlTransaction)(workTransaction));
+                    if (this._sqlInstanceTableAdapter.Adapter.AcceptChangesDuringUpdate) {
+                        this._sqlInstanceTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
+                        adaptersWithAcceptChangesDuringUpdate.Add(this._sqlInstanceTableAdapter.Adapter);
+                    }
+                }
+                if ((this._dBCTableAdapter != null)) {
+                    revertConnections.Add(this._dBCTableAdapter, this._dBCTableAdapter.Connection);
+                    this._dBCTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(workConnection));
+                    this._dBCTableAdapter.Transaction = ((global::System.Data.SqlClient.SqlTransaction)(workTransaction));
+                    if (this._dBCTableAdapter.Adapter.AcceptChangesDuringUpdate) {
+                        this._dBCTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
+                        adaptersWithAcceptChangesDuringUpdate.Add(this._dBCTableAdapter.Adapter);
+                    }
+                }
+                if ((this._dBCTypeTableAdapter != null)) {
+                    revertConnections.Add(this._dBCTypeTableAdapter, this._dBCTypeTableAdapter.Connection);
+                    this._dBCTypeTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(workConnection));
+                    this._dBCTypeTableAdapter.Transaction = ((global::System.Data.SqlClient.SqlTransaction)(workTransaction));
+                    if (this._dBCTypeTableAdapter.Adapter.AcceptChangesDuringUpdate) {
+                        this._dBCTypeTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
+                        adaptersWithAcceptChangesDuringUpdate.Add(this._dBCTypeTableAdapter.Adapter);
+                    }
+                }
+                if ((this._sqlTypeTableAdapter != null)) {
+                    revertConnections.Add(this._sqlTypeTableAdapter, this._sqlTypeTableAdapter.Connection);
+                    this._sqlTypeTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(workConnection));
+                    this._sqlTypeTableAdapter.Transaction = ((global::System.Data.SqlClient.SqlTransaction)(workTransaction));
+                    if (this._sqlTypeTableAdapter.Adapter.AcceptChangesDuringUpdate) {
+                        this._sqlTypeTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
+                        adaptersWithAcceptChangesDuringUpdate.Add(this._sqlTypeTableAdapter.Adapter);
+                    }
+                }
+                if ((this._computerTypeTableAdapter != null)) {
+                    revertConnections.Add(this._computerTypeTableAdapter, this._computerTypeTableAdapter.Connection);
+                    this._computerTypeTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(workConnection));
+                    this._computerTypeTableAdapter.Transaction = ((global::System.Data.SqlClient.SqlTransaction)(workTransaction));
+                    if (this._computerTypeTableAdapter.Adapter.AcceptChangesDuringUpdate) {
+                        this._computerTypeTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
+                        adaptersWithAcceptChangesDuringUpdate.Add(this._computerTypeTableAdapter.Adapter);
+                    }
+                }
+                // 
+                //---- Perform updates -----------
+                //
+                if ((this.UpdateOrder == UpdateOrderOption.UpdateInsertDelete)) {
+                    result = (result + this.UpdateUpdatedRows(dataSet, allChangedRows, allAddedRows));
+                    result = (result + this.UpdateInsertedRows(dataSet, allAddedRows));
+                }
+                else {
+                    result = (result + this.UpdateInsertedRows(dataSet, allAddedRows));
+                    result = (result + this.UpdateUpdatedRows(dataSet, allChangedRows, allAddedRows));
+                }
+                result = (result + this.UpdateDeletedRows(dataSet, allChangedRows));
+                // 
+                //---- Commit updates -----------
+                //
+                workTransaction.Commit();
+                if ((0 < allAddedRows.Count)) {
+                    global::System.Data.DataRow[] rows = new System.Data.DataRow[allAddedRows.Count];
+                    allAddedRows.CopyTo(rows);
+                    for (int i = 0; (i < rows.Length); i = (i + 1)) {
+                        global::System.Data.DataRow row = rows[i];
+                        row.AcceptChanges();
+                    }
+                }
+                if ((0 < allChangedRows.Count)) {
+                    global::System.Data.DataRow[] rows = new System.Data.DataRow[allChangedRows.Count];
+                    allChangedRows.CopyTo(rows);
+                    for (int i = 0; (i < rows.Length); i = (i + 1)) {
+                        global::System.Data.DataRow row = rows[i];
+                        row.AcceptChanges();
+                    }
+                }
+            }
+            catch (global::System.Exception ex) {
+                workTransaction.Rollback();
+                // ---- Restore the dataset -----------
+                if (this.BackupDataSetBeforeUpdate) {
+                    global::System.Diagnostics.Debug.Assert((backupDataSet != null));
+                    dataSet.Clear();
+                    dataSet.Merge(backupDataSet);
+                }
+                else {
+                    if ((0 < allAddedRows.Count)) {
+                        global::System.Data.DataRow[] rows = new System.Data.DataRow[allAddedRows.Count];
+                        allAddedRows.CopyTo(rows);
+                        for (int i = 0; (i < rows.Length); i = (i + 1)) {
+                            global::System.Data.DataRow row = rows[i];
+                            row.AcceptChanges();
+                            row.SetAdded();
+                        }
+                    }
+                }
+                throw ex;
+            }
+            finally {
+                if (workConnOpened) {
+                    workConnection.Close();
+                }
+                if ((this._computerTableAdapter != null)) {
+                    this._computerTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._computerTableAdapter]));
+                    this._computerTableAdapter.Transaction = null;
+                }
+                if ((this._sqlInstanceTableAdapter != null)) {
+                    this._sqlInstanceTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._sqlInstanceTableAdapter]));
+                    this._sqlInstanceTableAdapter.Transaction = null;
+                }
+                if ((this._dBCTableAdapter != null)) {
+                    this._dBCTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._dBCTableAdapter]));
+                    this._dBCTableAdapter.Transaction = null;
+                }
+                if ((this._dBCTypeTableAdapter != null)) {
+                    this._dBCTypeTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._dBCTypeTableAdapter]));
+                    this._dBCTypeTableAdapter.Transaction = null;
+                }
+                if ((this._sqlTypeTableAdapter != null)) {
+                    this._sqlTypeTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._sqlTypeTableAdapter]));
+                    this._sqlTypeTableAdapter.Transaction = null;
+                }
+                if ((this._computerTypeTableAdapter != null)) {
+                    this._computerTypeTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._computerTypeTableAdapter]));
+                    this._computerTypeTableAdapter.Transaction = null;
+                }
+                if ((0 < adaptersWithAcceptChangesDuringUpdate.Count)) {
+                    global::System.Data.Common.DataAdapter[] adapters = new System.Data.Common.DataAdapter[adaptersWithAcceptChangesDuringUpdate.Count];
+                    adaptersWithAcceptChangesDuringUpdate.CopyTo(adapters);
+                    for (int i = 0; (i < adapters.Length); i = (i + 1)) {
+                        global::System.Data.Common.DataAdapter adapter = adapters[i];
+                        adapter.AcceptChangesDuringUpdate = true;
+                    }
+                }
+            }
+            return result;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        protected virtual void SortSelfReferenceRows(global::System.Data.DataRow[] rows, global::System.Data.DataRelation relation, bool childFirst) {
+            global::System.Array.Sort<global::System.Data.DataRow>(rows, new SelfReferenceComparer(relation, childFirst));
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        protected virtual bool MatchTableAdapterConnection(global::System.Data.IDbConnection inputConnection) {
+            if ((this._connection != null)) {
+                return true;
+            }
+            if (((this.Connection == null) 
+                        || (inputConnection == null))) {
+                return true;
+            }
+            if (string.Equals(this.Connection.ConnectionString, inputConnection.ConnectionString, global::System.StringComparison.Ordinal)) {
+                return true;
+            }
+            return false;
+        }
+        
+        /// <summary>
+        ///Update Order Option
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
+        public enum UpdateOrderOption {
+            
+            InsertUpdateDelete = 0,
+            
+            UpdateInsertDelete = 1,
+        }
+        
+        /// <summary>
+        ///Used to sort self-referenced table's rows
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
+        private class SelfReferenceComparer : object, global::System.Collections.Generic.IComparer<global::System.Data.DataRow> {
+            
+            private global::System.Data.DataRelation _relation;
+            
+            private int _childFirst;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            internal SelfReferenceComparer(global::System.Data.DataRelation relation, bool childFirst) {
+                this._relation = relation;
+                if (childFirst) {
+                    this._childFirst = -1;
+                }
+                else {
+                    this._childFirst = 1;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            private bool IsChildAndParent(global::System.Data.DataRow child, global::System.Data.DataRow parent) {
+                global::System.Diagnostics.Debug.Assert((child != null));
+                global::System.Diagnostics.Debug.Assert((parent != null));
+                global::System.Data.DataRow newParent = child.GetParentRow(this._relation, global::System.Data.DataRowVersion.Default);
+                for (
+                ; ((newParent != null) 
+                            && ((object.ReferenceEquals(newParent, child) == false) 
+                            && (object.ReferenceEquals(newParent, parent) == false))); 
+                ) {
+                    newParent = newParent.GetParentRow(this._relation, global::System.Data.DataRowVersion.Default);
+                }
+                if ((newParent == null)) {
+                    for (newParent = child.GetParentRow(this._relation, global::System.Data.DataRowVersion.Original); ((newParent != null) 
+                                && ((object.ReferenceEquals(newParent, child) == false) 
+                                && (object.ReferenceEquals(newParent, parent) == false))); 
+                    ) {
+                        newParent = newParent.GetParentRow(this._relation, global::System.Data.DataRowVersion.Original);
+                    }
+                }
+                if (object.ReferenceEquals(newParent, parent)) {
+                    return true;
+                }
+                return false;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public int Compare(global::System.Data.DataRow row1, global::System.Data.DataRow row2) {
+                if (object.ReferenceEquals(row1, row2)) {
+                    return 0;
+                }
+                if ((row1 == null)) {
+                    return -1;
+                }
+                if ((row2 == null)) {
+                    return 1;
+                }
+
+                // Is row1 the child or grandchild of row2
+                if (this.IsChildAndParent(row1, row2)) {
+                    return this._childFirst;
+                }
+
+                // Is row2 the child or grandchild of row1
+                if (this.IsChildAndParent(row2, row1)) {
+                    return (-1 * this._childFirst);
+                }
+                return 0;
             }
         }
     }

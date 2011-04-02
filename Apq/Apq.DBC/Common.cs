@@ -95,7 +95,7 @@ namespace Apq.DBC
 				}
 				sc.DBName = dr.DBName;
 				sc.Mirror = dr.Mirror;
-				sc.UseTrusted = dr.UseTrusted;
+				sc.UseTrusted = Apq.Convert.ChangeType<bool>(dr.UseTrusted);
 				sc.UserId = dr.UserId;
 				sc.Pwd = dr.PwdD;
 				sc.Option = dr.Option;
