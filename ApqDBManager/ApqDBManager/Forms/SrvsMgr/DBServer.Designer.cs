@@ -35,6 +35,7 @@
 			this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
+			this.luComputerType = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
 			this.gridColumn18 = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.gridColumn19 = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.gridColumn20 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -46,11 +47,13 @@
 			this.gridColumn17 = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
 			this.bar1 = new DevExpress.XtraBars.Bar();
+			this.bbiRefresh = new DevExpress.XtraBars.BarButtonItem();
+			this.bbiSaveToDB = new DevExpress.XtraBars.BarButtonItem();
 			this.bbiSelectAll = new DevExpress.XtraBars.BarButtonItem();
 			this.beiStr = new DevExpress.XtraBars.BarEditItem();
 			this.repositoryItemTextEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
 			this.bbiSlts = new DevExpress.XtraBars.BarButtonItem();
-			this.bbiSaveToDB = new DevExpress.XtraBars.BarButtonItem();
+			this.bbiSqlInstance = new DevExpress.XtraBars.BarButtonItem();
 			this.bar3 = new DevExpress.XtraBars.Bar();
 			this.bsiOutInfo = new DevExpress.XtraBars.BarStaticItem();
 			this.bsiTest = new DevExpress.XtraBars.BarStaticItem();
@@ -70,25 +73,25 @@
 			this.scDelete = new System.Data.SqlClient.SqlCommand();
 			this.scInsert = new System.Data.SqlClient.SqlCommand();
 			this.scUpdate = new System.Data.SqlClient.SqlCommand();
-			this._Sqls = new Apq.DBC.XSD();
-			this.cmGridMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
-			this.tsmiSqlInstance = new System.Windows.Forms.ToolStripMenuItem();
+			this.computerTypeTableAdapter1 = new Apq.DBC.XSDTableAdapters.ComputerTypeTableAdapter();
+			this.sqlTypeTableAdapter1 = new Apq.DBC.XSDTableAdapters.SqlTypeTableAdapter();
+			this.dbcTypeTableAdapter1 = new Apq.DBC.XSDTableAdapters.DBCTypeTableAdapter();
 			((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.luComputerType)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit1)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this._Sqls)).BeginInit();
-			this.cmGridMenu.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// gridControl1
 			// 
-			this.gridControl1.ContextMenuStrip = this.cmGridMenu;
 			this.gridControl1.DataMember = "Computer";
 			this.gridControl1.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.gridControl1.Location = new System.Drawing.Point(0, 25);
 			this.gridControl1.MainView = this.gridView1;
 			this.gridControl1.Name = "gridControl1";
+			this.gridControl1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
+            this.luComputerType});
 			this.gridControl1.Size = new System.Drawing.Size(692, 316);
 			this.gridControl1.TabIndex = 4;
 			this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -126,10 +129,20 @@
 			// gridColumn1
 			// 
 			this.gridColumn1.Caption = "服务器类型";
+			this.gridColumn1.ColumnEdit = this.luComputerType;
 			this.gridColumn1.FieldName = "ComputerType";
 			this.gridColumn1.Name = "gridColumn1";
 			this.gridColumn1.Visible = true;
 			this.gridColumn1.VisibleIndex = 2;
+			// 
+			// luComputerType
+			// 
+			this.luComputerType.AutoHeight = false;
+			this.luComputerType.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+			this.luComputerType.DisplayMember = "ComputerType.TypeCaption";
+			this.luComputerType.Name = "luComputerType";
+			this.luComputerType.ValueMember = "ComputerType.ComputerType";
 			// 
 			// gridColumn18
 			// 
@@ -183,8 +196,10 @@
             this.beiStr,
             this.bbiSlts,
             this.bsiOutInfo,
-            this.bsiTest});
-			this.barManager1.MaxItemId = 9;
+            this.bsiTest,
+            this.bbiSqlInstance,
+            this.bbiRefresh});
+			this.barManager1.MaxItemId = 11;
 			this.barManager1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemTextEdit1});
 			this.barManager1.StatusBar = this.bar3;
@@ -196,11 +211,27 @@
 			this.bar1.DockRow = 0;
 			this.bar1.DockStyle = DevExpress.XtraBars.BarDockStyle.Top;
 			this.bar1.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
-            new DevExpress.XtraBars.LinkPersistInfo(this.bbiSelectAll),
+            new DevExpress.XtraBars.LinkPersistInfo(this.bbiRefresh),
+            new DevExpress.XtraBars.LinkPersistInfo(this.bbiSaveToDB),
+            new DevExpress.XtraBars.LinkPersistInfo(this.bbiSelectAll, true),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.Width, this.beiStr, "", false, true, true, 235),
             new DevExpress.XtraBars.LinkPersistInfo(this.bbiSlts),
-            new DevExpress.XtraBars.LinkPersistInfo(this.bbiSaveToDB, true)});
+            new DevExpress.XtraBars.LinkPersistInfo(this.bbiSqlInstance, true)});
 			this.bar1.Text = "Tools";
+			// 
+			// bbiRefresh
+			// 
+			this.bbiRefresh.Caption = "刷新";
+			this.bbiRefresh.Id = 10;
+			this.bbiRefresh.Name = "bbiRefresh";
+			this.bbiRefresh.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiRefresh_ItemClick);
+			// 
+			// bbiSaveToDB
+			// 
+			this.bbiSaveToDB.Caption = "保存";
+			this.bbiSaveToDB.Id = 1;
+			this.bbiSaveToDB.Name = "bbiSaveToDB";
+			this.bbiSaveToDB.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiSaveToDB_ItemClick);
 			// 
 			// bbiSelectAll
 			// 
@@ -228,12 +259,12 @@
 			this.bbiSlts.Name = "bbiSlts";
 			this.bbiSlts.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiSlts_ItemClick);
 			// 
-			// bbiSaveToDB
+			// bbiSqlInstance
 			// 
-			this.bbiSaveToDB.Caption = "保存";
-			this.bbiSaveToDB.Id = 1;
-			this.bbiSaveToDB.Name = "bbiSaveToDB";
-			this.bbiSaveToDB.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiSaveToDB_ItemClick);
+			this.bbiSqlInstance.Caption = "实例管理";
+			this.bbiSqlInstance.Id = 9;
+			this.bbiSqlInstance.Name = "bbiSqlInstance";
+			this.bbiSqlInstance.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiSqlInstance_ItemClick);
 			// 
 			// bar3
 			// 
@@ -305,23 +336,17 @@
 			this.sda.SelectCommand = this.scSelect;
 			this.sda.UpdateCommand = this.scUpdate;
 			// 
-			// _Sqls
+			// computerTypeTableAdapter1
 			// 
-			this._Sqls.DataSetName = "Sqls";
-			this._Sqls.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+			this.computerTypeTableAdapter1.ClearBeforeFill = true;
 			// 
-			// cmGridMenu
+			// sqlTypeTableAdapter1
 			// 
-			this.cmGridMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmiSqlInstance});
-			this.cmGridMenu.Name = "cmGridMenu";
-			this.cmGridMenu.Size = new System.Drawing.Size(137, 26);
+			this.sqlTypeTableAdapter1.ClearBeforeFill = true;
 			// 
-			// tsmiSqlInstance
+			// dbcTypeTableAdapter1
 			// 
-			this.tsmiSqlInstance.Name = "tsmiSqlInstance";
-			this.tsmiSqlInstance.Size = new System.Drawing.Size(136, 22);
-			this.tsmiSqlInstance.Text = "实例管理(&I)";
+			this.dbcTypeTableAdapter1.ClearBeforeFill = true;
 			// 
 			// DBServer
 			// 
@@ -341,10 +366,9 @@
 			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.DBServer_FormClosing);
 			((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.luComputerType)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit1)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this._Sqls)).EndInit();
-			this.cmGridMenu.ResumeLayout(false);
 			this.ResumeLayout(false);
 
 		}
@@ -391,8 +415,11 @@
 		private System.Data.SqlClient.SqlCommand scDelete;
 		private System.Data.SqlClient.SqlCommand scInsert;
 		private System.Data.SqlClient.SqlCommand scUpdate;
-		private Apq.DBC.XSD _Sqls;
-		private System.Windows.Forms.ContextMenuStrip cmGridMenu;
-		private System.Windows.Forms.ToolStripMenuItem tsmiSqlInstance;
+		private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit luComputerType;
+		private Apq.DBC.XSDTableAdapters.ComputerTypeTableAdapter computerTypeTableAdapter1;
+		private Apq.DBC.XSDTableAdapters.SqlTypeTableAdapter sqlTypeTableAdapter1;
+		private Apq.DBC.XSDTableAdapters.DBCTypeTableAdapter dbcTypeTableAdapter1;
+		private DevExpress.XtraBars.BarButtonItem bbiSqlInstance;
+		private DevExpress.XtraBars.BarButtonItem bbiRefresh;
 	}
 }

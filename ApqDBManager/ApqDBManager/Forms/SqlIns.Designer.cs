@@ -52,6 +52,11 @@
 			this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
 			this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
 			this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
+			this.scSelect = new System.Data.SqlClient.SqlCommand();
+			this.scInsert = new System.Data.SqlClient.SqlCommand();
+			this.scUpdate = new System.Data.SqlClient.SqlCommand();
+			this.scDelete = new System.Data.SqlClient.SqlCommand();
+			this.sda = new System.Data.SqlClient.SqlDataAdapter();
 			((System.ComponentModel.ISupportInitialize)(this.treeList1)).BeginInit();
 			this.contextMenuStrip1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this._Sqls)).BeginInit();
@@ -249,6 +254,13 @@
 			this.bsiInfo.TextAlignment = System.Drawing.StringAlignment.Near;
 			this.bsiInfo.Width = 300;
 			// 
+			// sda
+			// 
+			this.sda.DeleteCommand = this.scDelete;
+			this.sda.InsertCommand = this.scInsert;
+			this.sda.SelectCommand = this.scSelect;
+			this.sda.UpdateCommand = this.scUpdate;
+			// 
 			// SqlIns
 			// 
 			this.ClientSize = new System.Drawing.Size(300, 416);
@@ -267,7 +279,7 @@
 			this.ShowHint = WeifenLuo.WinFormsUI.Docking.DockState.DockLeft;
 			this.TabText = "Sql实例";
 			this.Text = "Sql实例";
-			this.Load += new System.EventHandler(this.SolutionExplorer_Load);
+			this.Load += new System.EventHandler(this.SqlIns_Load);
 			this.Shown += new System.EventHandler(this.SolutionExplorer_Shown);
 			((System.ComponentModel.ISupportInitialize)(this.treeList1)).EndInit();
 			this.contextMenuStrip1.ResumeLayout(false);
@@ -302,6 +314,11 @@
 		private DevExpress.XtraBars.BarButtonItem bbiReload;
 		private DevExpress.XtraBars.Bar bar4;
 		private DevExpress.XtraBars.BarStaticItem bsiInfo;
+		private System.Data.SqlClient.SqlCommand scSelect;
+		private System.Data.SqlClient.SqlCommand scInsert;
+		private System.Data.SqlClient.SqlCommand scUpdate;
+		private System.Data.SqlClient.SqlCommand scDelete;
+		private System.Data.SqlClient.SqlDataAdapter sda;
 
 	}
 }

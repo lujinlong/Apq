@@ -161,6 +161,29 @@ namespace ApqDBManager
 		}
 		#endregion
 
+		#region 管理库连接字符串
+		/// <summary>
+		/// 获取管理库连接字符串
+		/// </summary>
+		public static string SqlConn
+		{
+			get
+			{
+				Apq.ConnectionStrings.SQLServer.SqlConnection scHelper = new Apq.ConnectionStrings.SQLServer.SqlConnection();
+				scHelper.DBName = GlobalObject.XmlConfigChain["ApqDBManager.Controls.MainOption.DBC", "DBName"];
+				scHelper.ServerName = GlobalObject.XmlConfigChain["ApqDBManager.Controls.MainOption.DBC", "ServerName"];
+				scHelper.UserId = GlobalObject.XmlConfigChain["ApqDBManager.Controls.MainOption.DBC", "UserId"];
+				string PwdC = GlobalObject.XmlConfigChain["ApqDBManager.Controls.MainOption.DBC", "Pwd"];
+				if (!string.IsNullOrEmpty(PwdC))
+				{
+					string PwdD = Apq.Security.Cryptography.DESHelper.DecryptString(PwdC, GlobalObject.RegConfigChain["Crypt", "DESKey"], GlobalObject.RegConfigChain["Crypt", "DESIV"]);
+					scHelper.Pwd = PwdD;
+				}
+				return scHelper.GetConnectionString();
+			}
+		}
+		#endregion
+
 		#region SolutionExplorer
 		private static SqlIns _SolutionExplorer;
 		/// <summary>

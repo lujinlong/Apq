@@ -30,6 +30,7 @@ namespace ApqDBManager.Forms
 		{
 			xs.Confirm(GlobalObject.XmlConfigChain);
 			fav.Confirm(GlobalObject.XmlConfigChain);
+			dbc.Confirm(GlobalObject.XmlConfigChain);
 			this.Close();
 		}
 

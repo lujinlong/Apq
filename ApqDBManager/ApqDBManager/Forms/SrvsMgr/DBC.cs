@@ -9,11 +9,11 @@ using WeifenLuo.WinFormsUI.Docking;
 
 namespace ApqDBManager.Forms.SrvsMgr
 {
-	public partial class DB : Apq.Windows.Forms.DockForm
+	public partial class DBC : Apq.Windows.Forms.DockForm
 	{
 		protected string _FileName = string.Empty;
 
-		public DB()
+		public DBC()
 		{
 			InitializeComponent();
 		}

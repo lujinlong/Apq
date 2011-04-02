@@ -1,6 +1,6 @@
 ﻿namespace ApqDBManager.Forms.SrvsMgr
 {
-	partial class SQLInstance
+	partial class SqlInstance
 	{
 		/// <summary>
 		/// 必需的设计器变量。
@@ -29,17 +29,19 @@
 		private void InitializeComponent()
 		{
 			this.components = new System.ComponentModel.Container();
-			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SQLInstance));
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SqlInstance));
 			this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
 			this.bar2 = new DevExpress.XtraBars.Bar();
+			this.bbiRefresh = new DevExpress.XtraBars.BarButtonItem();
 			this.bbiSelectAll = new DevExpress.XtraBars.BarButtonItem();
 			this.bbiReverse = new DevExpress.XtraBars.BarButtonItem();
 			this.beiStr = new DevExpress.XtraBars.BarEditItem();
 			this.repositoryItemTextEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
 			this.bbiSlts = new DevExpress.XtraBars.BarButtonItem();
-			this.bbiExpandAll = new DevExpress.XtraBars.BarButtonItem();
-			this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
+			this.bbiSaveToDB = new DevExpress.XtraBars.BarButtonItem();
+			this.bbiDBC = new DevExpress.XtraBars.BarButtonItem();
 			this.bar3 = new DevExpress.XtraBars.Bar();
+			this.bbiExpandAll = new DevExpress.XtraBars.BarButtonItem();
 			this.bsiOutInfo = new DevExpress.XtraBars.BarStaticItem();
 			this.bsiTest = new DevExpress.XtraBars.BarStaticItem();
 			this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
@@ -48,31 +50,34 @@
 			this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
 			this.treeList1 = new DevExpress.XtraTreeList.TreeList();
 			this.treeListColumn2 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
-			this.treeListColumn1 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
+			this.treeListColumn8 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
+			this.luComputer = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
+			this.treeListColumn10 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
 			this.treeListColumn4 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
 			this.treeListColumn5 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
 			this.luSqlType = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
 			this.treeListColumn7 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
 			this.treeListColumn6 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
-			this.treeListColumn10 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
 			this.treeListColumn12 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
-			this.repositoryItemCheckEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
+			this.treeListColumn1 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
 			this.cmTreeMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.tsmiTestOpen = new System.Windows.Forms.ToolStripMenuItem();
 			this.tsmiAdd = new System.Windows.Forms.ToolStripMenuItem();
 			this.tsmiDel = new System.Windows.Forms.ToolStripMenuItem();
-			this._Sqls = new Apq.DBC.XSD();
-			this.treeListColumn8 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
-			this.luComputer = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
+			this.repositoryItemCheckEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
 			this.ritePwdD = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
+			this.sda = new System.Data.SqlClient.SqlDataAdapter();
+			this.scDelete = new System.Data.SqlClient.SqlCommand();
+			this.scInsert = new System.Data.SqlClient.SqlCommand();
+			this.scSelect = new System.Data.SqlClient.SqlCommand();
+			this.scUpdate = new System.Data.SqlClient.SqlCommand();
 			((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.treeList1)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.luSqlType)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit1)).BeginInit();
-			this.cmTreeMenu.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this._Sqls)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.luComputer)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.luSqlType)).BeginInit();
+			this.cmTreeMenu.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.ritePwdD)).BeginInit();
 			this.SuspendLayout();
 			// 
@@ -94,9 +99,11 @@
             this.bsiOutInfo,
             this.bsiTest,
             this.bbiExpandAll,
-            this.barButtonItem1});
+            this.bbiSaveToDB,
+            this.bbiDBC,
+            this.bbiRefresh});
 			this.barManager1.MainMenu = this.bar2;
-			this.barManager1.MaxItemId = 10;
+			this.barManager1.MaxItemId = 12;
 			this.barManager1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemTextEdit1});
 			this.barManager1.StatusBar = this.bar3;
@@ -108,27 +115,37 @@
 			this.bar2.DockRow = 0;
 			this.bar2.DockStyle = DevExpress.XtraBars.BarDockStyle.Top;
 			this.bar2.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
-            new DevExpress.XtraBars.LinkPersistInfo(this.bbiSelectAll),
+            new DevExpress.XtraBars.LinkPersistInfo(this.bbiRefresh),
+            new DevExpress.XtraBars.LinkPersistInfo(this.bbiSelectAll, true),
             new DevExpress.XtraBars.LinkPersistInfo(this.bbiReverse),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.Width, this.beiStr, "", false, true, true, 195),
             new DevExpress.XtraBars.LinkPersistInfo(this.bbiSlts),
-            new DevExpress.XtraBars.LinkPersistInfo(this.bbiExpandAll),
-            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem1, true)});
+            new DevExpress.XtraBars.LinkPersistInfo(this.bbiSaveToDB, true),
+            new DevExpress.XtraBars.LinkPersistInfo(this.bbiDBC, true)});
 			this.bar2.OptionsBar.MultiLine = true;
 			this.bar2.OptionsBar.UseWholeRow = true;
 			this.bar2.Text = "Main menu";
+			// 
+			// bbiRefresh
+			// 
+			this.bbiRefresh.Caption = "刷新";
+			this.bbiRefresh.Id = 11;
+			this.bbiRefresh.Name = "bbiRefresh";
+			this.bbiRefresh.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiRefresh_ItemClick);
 			// 
 			// bbiSelectAll
 			// 
 			this.bbiSelectAll.Caption = "全选";
 			this.bbiSelectAll.Id = 0;
 			this.bbiSelectAll.Name = "bbiSelectAll";
+			this.bbiSelectAll.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiSelectAll_ItemClick);
 			// 
 			// bbiReverse
 			// 
 			this.bbiReverse.Caption = "反选";
 			this.bbiReverse.Id = 1;
 			this.bbiReverse.Name = "bbiReverse";
+			this.bbiReverse.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiReverse_ItemClick);
 			// 
 			// beiStr
 			// 
@@ -147,18 +164,21 @@
 			this.bbiSlts.Caption = "设置多行";
 			this.bbiSlts.Id = 4;
 			this.bbiSlts.Name = "bbiSlts";
+			this.bbiSlts.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiSlts_ItemClick);
 			// 
-			// bbiExpandAll
+			// bbiSaveToDB
 			// 
-			this.bbiExpandAll.Caption = "全部展开";
-			this.bbiExpandAll.Id = 7;
-			this.bbiExpandAll.Name = "bbiExpandAll";
+			this.bbiSaveToDB.Caption = "保存";
+			this.bbiSaveToDB.Id = 8;
+			this.bbiSaveToDB.Name = "bbiSaveToDB";
+			this.bbiSaveToDB.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiSaveToDB_ItemClick);
 			// 
-			// barButtonItem1
+			// bbiDBC
 			// 
-			this.barButtonItem1.Caption = "保存";
-			this.barButtonItem1.Id = 8;
-			this.barButtonItem1.Name = "barButtonItem1";
+			this.bbiDBC.Caption = "数据库连接管理";
+			this.bbiDBC.Id = 10;
+			this.bbiDBC.Name = "bbiDBC";
+			this.bbiDBC.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiDBC_ItemClick);
 			// 
 			// bar3
 			// 
@@ -168,12 +188,20 @@
 			this.bar3.DockRow = 0;
 			this.bar3.DockStyle = DevExpress.XtraBars.BarDockStyle.Bottom;
 			this.bar3.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
+            new DevExpress.XtraBars.LinkPersistInfo(this.bbiExpandAll),
             new DevExpress.XtraBars.LinkPersistInfo(this.bsiOutInfo),
             new DevExpress.XtraBars.LinkPersistInfo(this.bsiTest)});
 			this.bar3.OptionsBar.AllowQuickCustomization = false;
 			this.bar3.OptionsBar.DrawDragBorder = false;
 			this.bar3.OptionsBar.UseWholeRow = true;
 			this.bar3.Text = "Status bar";
+			// 
+			// bbiExpandAll
+			// 
+			this.bbiExpandAll.Caption = "全部展开";
+			this.bbiExpandAll.Id = 7;
+			this.bbiExpandAll.Name = "bbiExpandAll";
+			this.bbiExpandAll.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiExpandAll_ItemClick);
 			// 
 			// bsiOutInfo
 			// 
@@ -235,16 +263,32 @@
 			this.treeListColumn2.VisibleIndex = 0;
 			this.treeListColumn2.Width = 55;
 			// 
-			// treeListColumn1
+			// treeListColumn8
 			// 
-			this.treeListColumn1.Caption = "Sql端口";
-			this.treeListColumn1.FieldName = "SqlPort";
-			this.treeListColumn1.Name = "treeListColumn1";
-			this.treeListColumn1.OptionsColumn.AllowMove = false;
-			this.treeListColumn1.OptionsColumn.AllowSort = false;
-			this.treeListColumn1.Visible = true;
-			this.treeListColumn1.VisibleIndex = 8;
-			this.treeListColumn1.Width = 56;
+			this.treeListColumn8.Caption = "服务器";
+			this.treeListColumn8.ColumnEdit = this.luComputer;
+			this.treeListColumn8.FieldName = "ComputerID";
+			this.treeListColumn8.Name = "treeListColumn8";
+			this.treeListColumn8.Visible = true;
+			this.treeListColumn8.VisibleIndex = 1;
+			// 
+			// luComputer
+			// 
+			this.luComputer.AutoHeight = false;
+			this.luComputer.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+			this.luComputer.DisplayMember = "ComputerName";
+			this.luComputer.Name = "luComputer";
+			this.luComputer.ValueMember = "ComputerID";
+			// 
+			// treeListColumn10
+			// 
+			this.treeListColumn10.Caption = "登录名";
+			this.treeListColumn10.FieldName = "UserId";
+			this.treeListColumn10.Name = "treeListColumn10";
+			this.treeListColumn10.Visible = true;
+			this.treeListColumn10.VisibleIndex = 2;
+			this.treeListColumn10.Width = 56;
 			// 
 			// treeListColumn4
 			// 
@@ -286,28 +330,17 @@
 			this.treeListColumn7.Caption = "ParentID";
 			this.treeListColumn7.FieldName = "ParentID";
 			this.treeListColumn7.Name = "treeListColumn7";
-			this.treeListColumn7.Visible = true;
-			this.treeListColumn7.VisibleIndex = 5;
 			this.treeListColumn7.Width = 56;
 			// 
 			// treeListColumn6
 			// 
-			this.treeListColumn6.Caption = "SqlID";
+			this.treeListColumn6.Caption = "实例ID";
 			this.treeListColumn6.FieldName = "SqlID";
 			this.treeListColumn6.Name = "treeListColumn6";
 			this.treeListColumn6.OptionsColumn.ReadOnly = true;
 			this.treeListColumn6.Visible = true;
-			this.treeListColumn6.VisibleIndex = 6;
+			this.treeListColumn6.VisibleIndex = 5;
 			this.treeListColumn6.Width = 56;
-			// 
-			// treeListColumn10
-			// 
-			this.treeListColumn10.Caption = "登录名";
-			this.treeListColumn10.FieldName = "UserId";
-			this.treeListColumn10.Name = "treeListColumn10";
-			this.treeListColumn10.Visible = true;
-			this.treeListColumn10.VisibleIndex = 2;
-			this.treeListColumn10.Width = 56;
 			// 
 			// treeListColumn12
 			// 
@@ -315,13 +348,19 @@
 			this.treeListColumn12.FieldName = "IP";
 			this.treeListColumn12.Name = "treeListColumn12";
 			this.treeListColumn12.Visible = true;
-			this.treeListColumn12.VisibleIndex = 7;
+			this.treeListColumn12.VisibleIndex = 6;
 			this.treeListColumn12.Width = 56;
 			// 
-			// repositoryItemCheckEdit1
+			// treeListColumn1
 			// 
-			this.repositoryItemCheckEdit1.AutoHeight = false;
-			this.repositoryItemCheckEdit1.Name = "repositoryItemCheckEdit1";
+			this.treeListColumn1.Caption = "Sql端口";
+			this.treeListColumn1.FieldName = "SqlPort";
+			this.treeListColumn1.Name = "treeListColumn1";
+			this.treeListColumn1.OptionsColumn.AllowMove = false;
+			this.treeListColumn1.OptionsColumn.AllowSort = false;
+			this.treeListColumn1.Visible = true;
+			this.treeListColumn1.VisibleIndex = 7;
+			this.treeListColumn1.Width = 56;
 			// 
 			// cmTreeMenu
 			// 
@@ -353,28 +392,10 @@
 			this.tsmiDel.Text = "删除(&D)";
 			this.tsmiDel.Click += new System.EventHandler(this.tsmiDel_Click);
 			// 
-			// _Sqls
+			// repositoryItemCheckEdit1
 			// 
-			this._Sqls.DataSetName = "Sqls";
-			this._Sqls.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-			// 
-			// treeListColumn8
-			// 
-			this.treeListColumn8.Caption = "服务器";
-			this.treeListColumn8.ColumnEdit = this.luComputer;
-			this.treeListColumn8.FieldName = "ComputerID";
-			this.treeListColumn8.Name = "treeListColumn8";
-			this.treeListColumn8.Visible = true;
-			this.treeListColumn8.VisibleIndex = 1;
-			// 
-			// luComputer
-			// 
-			this.luComputer.AutoHeight = false;
-			this.luComputer.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-			this.luComputer.DisplayMember = "ComputerName";
-			this.luComputer.Name = "luComputer";
-			this.luComputer.ValueMember = "ComputerID";
+			this.repositoryItemCheckEdit1.AutoHeight = false;
+			this.repositoryItemCheckEdit1.Name = "repositoryItemCheckEdit1";
 			// 
 			// ritePwdD
 			// 
@@ -382,7 +403,20 @@
 			this.ritePwdD.Name = "ritePwdD";
 			this.ritePwdD.PasswordChar = '*';
 			// 
-			// SQLInstance
+			// sda
+			// 
+			this.sda.DeleteCommand = this.scDelete;
+			this.sda.InsertCommand = this.scInsert;
+			this.sda.SelectCommand = this.scSelect;
+			this.sda.UpdateCommand = this.scUpdate;
+			// 
+			// scSelect
+			// 
+			this.scSelect.CommandText = "\r\nSELECT * FROM dic_SQLInstanceType;\r\nSELECT * FROM dic_IPType;\r\nSELECT * FROM DB" +
+				"Server;\r\nSELECT * FROM SQLInstance;\r\nSELECT * FROM DBC;\r\nSELECT * FROM DBServerI" +
+				"P;";
+			// 
+			// SqlInstance
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
 			this.ClientSize = new System.Drawing.Size(692, 366);
@@ -393,19 +427,18 @@
 			this.Controls.Add(this.barDockControlTop);
 			this.DockAreas = ((WeifenLuo.WinFormsUI.Docking.DockAreas)((WeifenLuo.WinFormsUI.Docking.DockAreas.Float | WeifenLuo.WinFormsUI.Docking.DockAreas.Document)));
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-			this.Name = "SQLInstance";
+			this.Name = "SqlInstance";
 			this.TabText = "实例管理";
 			this.Text = "实例管理";
-			this.Load += new System.EventHandler(this.Random_Load);
-			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Random_FormClosing);
+			this.Load += new System.EventHandler(this.SqlInstance_Load);
+			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.SqlInstance_FormClosing);
 			((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit1)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.treeList1)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.luSqlType)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit1)).EndInit();
-			this.cmTreeMenu.ResumeLayout(false);
-			((System.ComponentModel.ISupportInitialize)(this._Sqls)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.luComputer)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.luSqlType)).EndInit();
+			this.cmTreeMenu.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit1)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.ritePwdD)).EndInit();
 			this.ResumeLayout(false);
 
@@ -439,15 +472,21 @@
 		private DevExpress.XtraBars.BarStaticItem bsiOutInfo;
 		private DevExpress.XtraBars.BarStaticItem bsiTest;
 		private DevExpress.XtraBars.BarButtonItem bbiExpandAll;
-		private DevExpress.XtraBars.BarButtonItem barButtonItem1;
+		private DevExpress.XtraBars.BarButtonItem bbiSaveToDB;
 		private System.Windows.Forms.ContextMenuStrip cmTreeMenu;
 		private System.Windows.Forms.ToolStripMenuItem tsmiTestOpen;
 		private System.Windows.Forms.ToolStripMenuItem tsmiAdd;
 		private System.Windows.Forms.ToolStripMenuItem tsmiDel;
-		private Apq.DBC.XSD _Sqls;
 		private DevExpress.XtraTreeList.Columns.TreeListColumn treeListColumn8;
 		private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit luComputer;
 		private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit ritePwdD;
+		private DevExpress.XtraBars.BarButtonItem bbiDBC;
+		private System.Data.SqlClient.SqlDataAdapter sda;
+		private System.Data.SqlClient.SqlCommand scDelete;
+		private System.Data.SqlClient.SqlCommand scInsert;
+		private System.Data.SqlClient.SqlCommand scSelect;
+		private System.Data.SqlClient.SqlCommand scUpdate;
+		private DevExpress.XtraBars.BarButtonItem bbiRefresh;
 
 	}
 }

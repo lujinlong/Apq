@@ -37,8 +37,8 @@ namespace ApqDBManager.Controls.MainOption
 			if (Apq.Convert.HasMean(txtDBName.Text))
 			{
 				cfg[this.GetType(), "DBName"] = txtDBName.Text.Trim();
-				cfg[this.GetType(), "ServerName"] = txtDBName.Text.Trim();
-				cfg[this.GetType(), "UserId"] = txtDBName.Text.Trim();
+				cfg[this.GetType(), "ServerName"] = txtServerName.Text.Trim();
+				cfg[this.GetType(), "UserId"] = txtUserId.Text.Trim();
 				string PwdD = txtPwd.Text;
 				if (!string.IsNullOrEmpty(PwdD))
 				{

@@ -12,27 +12,55 @@ using System.Data.SqlClient;
 
 namespace ApqDBManager.Forms.SrvsMgr
 {
-	public partial class SQLInstance : Apq.Windows.Forms.DockForm
+	public partial class SqlInstance : Apq.Windows.Forms.DockForm
 	{
-		protected string _FileName = string.Empty;
+		//数据库连接
+		private SqlConnection _SqlConn = new SqlConnection();
+		public Apq.DBC.XSD Sqls
+		{
+			get
+			{
+				if (!(FormDataSet is Apq.DBC.XSD))
+				{
+					FormDataSet = new Apq.DBC.XSD();
+				}
+				return FormDataSet as Apq.DBC.XSD;
+			}
+		}
 
-		public SQLInstance()
+		public SqlInstance()
 		{
 			InitializeComponent();
 		}
 
-		private void Random_Load(object sender, EventArgs e)
+		private void SqlInstance_Load(object sender, EventArgs e)
 		{
+			#region 添加图标
+			this.bbiSaveToDB.Glyph = System.Drawing.Image.FromFile(@"Res\png\File\Save.png");
+			#endregion
+
+			Apq.Xtra.TreeList.Common.AddBehaivor(treeList1);
+
+			Sqls.SqlInstance.TableNewRow += new DataTableNewRowEventHandler(SqlInstance_TableNewRow);
 		}
 
-		private void btnSaveToDB_Click(object sender, EventArgs e)
+		void SqlInstance_TableNewRow(object sender, DataTableNewRowEventArgs e)
 		{
+			e.Row["ComputerID"] = 0;
+			e.Row["SqlID"] = 0;
+			if (treeList1.FocusedNode != null)
+			{
+				e.Row["ParentID"] = treeList1.FocusedNode["SqlID"];
+			}
+			e.Row["SqlName"] = "新建服务器[名称]";
+			e.Row["SqlType"] = 1;
+			e.Row["IP"] = string.Empty;
+			e.Row["SqlPort"] = 0;
+			e.Row["UserId"] = "apq";
+			e.Row["PwdD"] = "f";
 		}
 
-		private void Random_FormClosing(object sender, FormClosingEventArgs e)
-		{
-		}
-		private void btnLoadFromDB_Click(object sender, EventArgs e)
+		private void SqlInstance_FormClosing(object sender, FormClosingEventArgs e)
 		{
 		}
 
@@ -60,7 +88,7 @@ namespace ApqDBManager.Forms.SrvsMgr
 			{
 				SetCheckedChildNodes(node, Checked);
 			}
-			_Sqls.SqlInstance.AcceptChanges();
+			Sqls.SqlInstance.AcceptChanges();
 			treeList1.EndUpdate();
 		}
 		private void SetCheckedChildNodes(TreeListNode node, int Checked)
@@ -140,8 +168,8 @@ namespace ApqDBManager.Forms.SrvsMgr
 
 		private void tsmiAdd_Click(object sender, EventArgs e)
 		{
-			DataRow dr = _Sqls.SqlInstance.NewRow();
-			_Sqls.SqlInstance.Rows.Add(dr);
+			DataRow dr = Sqls.SqlInstance.NewRow();
+			Sqls.SqlInstance.Rows.Add(dr);
 		}
 
 		private void tsmiDel_Click(object sender, EventArgs e)
@@ -177,5 +205,166 @@ namespace ApqDBManager.Forms.SrvsMgr
 			}
 		}
 		#endregion
+
+		private void bbiDBC_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+		{
+			Form win = Apq.Windows.Forms.SingletonForms.GetInstance(typeof(DBC));
+			DBC f = win as DBC;
+			f.Sqls = Sqls;
+			win.Show(GlobalObject.MainForm.dockPanel1);
+		}
+
+		#region IDataShow 成员
+		/// <summary>
+		/// 前期准备(如数据库连接或文件等)
+		/// </summary>
+		public override void InitDataBefore()
+		{
+			#region 数据库连接
+			Apq.ConnectionStrings.SQLServer.SqlConnection scHelper = new Apq.ConnectionStrings.SQLServer.SqlConnection();
+			scHelper.DBName = GlobalObject.XmlConfigChain["ApqDBManager.Controls.MainOption.DBC", "DBName"];
+			scHelper.ServerName = GlobalObject.XmlConfigChain["ApqDBManager.Controls.MainOption.DBC", "ServerName"];
+			scHelper.UserId = GlobalObject.XmlConfigChain["ApqDBManager.Controls.MainOption.DBC", "UserId"];
+			string PwdC = GlobalObject.XmlConfigChain["ApqDBManager.Controls.MainOption.DBC", "Pwd"];
+			string PwdD = Apq.Security.Cryptography.DESHelper.DecryptString(PwdC, GlobalObject.RegConfigChain["Crypt", "DESKey"], GlobalObject.RegConfigChain["Crypt", "DESIV"]);
+			scHelper.Pwd = PwdD;
+			_SqlConn.ConnectionString = scHelper.GetConnectionString();
+			#endregion
+
+			// 为sda设置SqlCommand
+			scSelect.CommandText = "dbo.ApqDBMgr_SqlInstance_List;";
+			scSelect.CommandType = CommandType.StoredProcedure;
+			scSelect.Connection = _SqlConn;
+
+			scDelete.CommandText = "dbo.ApqDBMgr_SqlInstance_Delete";
+			scDelete.CommandType = CommandType.StoredProcedure;
+			scDelete.Parameters.Add("@SqlInstanceID", SqlDbType.Int, 4, "SqlInstanceID");
+			scDelete.Connection = _SqlConn;
+
+			scUpdate.CommandText = "dbo.ApqDBMgr_SqlInstance_Save";
+			scUpdate.CommandType = CommandType.StoredProcedure;
+			scUpdate.Parameters.Add("@ComputerID", SqlDbType.Int, 4, "ComputerID");
+			scUpdate.Parameters.Add("@ComputerName", SqlDbType.NVarChar, 50, "ComputerName");
+			scUpdate.Parameters.Add("@ComputerType", SqlDbType.Int, 4, "ComputerType");
+			scUpdate.Parameters["@ComputerID"].Direction = ParameterDirection.InputOutput;
+			scUpdate.Connection = _SqlConn;
+
+			scInsert.CommandText = "dbo.ApqDBMgr_SqlInstance_Save";
+			scInsert.CommandType = CommandType.StoredProcedure;
+			scInsert.Parameters.Add("@ComputerID", SqlDbType.Int, 4, "ComputerID");
+			scInsert.Parameters.Add("@ComputerName", SqlDbType.NVarChar, 50, "ComputerName");
+			scInsert.Parameters.Add("@ComputerType", SqlDbType.Int, 4, "ComputerType");
+			scInsert.Parameters["@ComputerID"].Direction = ParameterDirection.InputOutput;
+			scInsert.Connection = _SqlConn;
+		}
+		/// <summary>
+		/// 初始数据(如Lookup数据等)
+		/// </summary>
+		/// <param name="ds"></param>
+		public override void InitData(DataSet ds)
+		{
+			#region 准备数据集结构
+			#endregion
+
+			#region 加载所有字典表
+			//computerTypeTableAdapter1.Fill(Sqls.ComputerType);
+			//sqlTypeTableAdapter1.Fill(Sqls.SqlType);
+			//dbcTypeTableAdapter1.Fill(Sqls.DBCType);
+			#endregion
+		}
+		/// <summary>
+		/// 加载数据
+		/// </summary>
+		/// <param name="ds"></param>
+		public override void LoadData(DataSet ds)
+		{
+			sda.Fill(Sqls.SqlInstance);
+			bsiOutInfo.Caption = "加载成功";
+		}
+		/// <summary>
+		/// 显示数据
+		/// </summary>
+		public override void ShowData()
+		{
+			#region 设置Lookup
+			luComputer.DataSource = Sqls;
+			luComputer.DisplayMember = "Computer.ComputerName";
+			luComputer.ValueMember = "Computer.ComputerID";
+			luSqlType.DataSource = Sqls;
+			luSqlType.DisplayMember = "SqlType.SqlType";
+			luSqlType.ValueMember = "SqlType.TypeCaption";
+			#endregion
+
+			treeList1.DataSource = Sqls;
+			treeList1.DataMember = "SqlInstance";
+		}
+
+		#endregion
+
+		private void bbiSelectAll_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+		{
+			treeList1.BeginUpdate();
+			foreach (DataRow dr in Sqls.SqlInstance.Rows)
+			{
+				dr["CheckState"] = 1;
+			}
+			treeList1.EndUpdate();
+		}
+
+		private void bbiReverse_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+		{
+			treeList1.BeginUpdate();
+			foreach (DataRow dr in Sqls.SqlInstance.Rows)
+			{
+				int check = Apq.Convert.ChangeType<int>(dr["CheckState"]);
+				if (check == 2 || check == 0)
+				{
+					check = 1;
+				}
+				else
+				{
+					check = 0;
+				}
+				dr["CheckState"] = check;
+			}
+			treeList1.EndUpdate();
+		}
+
+		private void bbiSlts_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+		{
+
+		}
+
+		//刷新
+		private void bbiRefresh_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+		{
+			LoadData(FormDataSet);
+		}
+
+		//保存
+		private void bbiSaveToDB_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+		{
+			if (sda == null) return;
+
+			sda.Update(Sqls.SqlInstance);
+			Sqls.SqlInstance.AcceptChanges();
+			bsiOutInfo.Caption = "更新成功";
+		}
+
+		private void bbiExpandAll_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+		{
+			if (bbiExpandAll.Caption == "全部展开(&D)")
+			{
+				treeList1.ExpandAll();
+				bbiExpandAll.Caption = "全部收起(&D)";
+				return;
+			}
+			if (bbiExpandAll.Caption == "全部收起(&D)")
+			{
+				treeList1.CollapseAll();
+				bbiExpandAll.Caption = "全部展开(&D)";
+				return;
+			}
+		}
 	}
 }

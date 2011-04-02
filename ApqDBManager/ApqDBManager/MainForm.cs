@@ -329,6 +329,12 @@ namespace ApqDBManager
 			Forms.RSAKey win = new ApqDBManager.Forms.RSAKey();
 			win.Show(dockPanel1);
 		}
+
+		private void menuDBServer_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+		{
+			Form win = Apq.Windows.Forms.SingletonForms.GetInstance(typeof(Forms.SrvsMgr.DBServer));
+			win.Show(dockPanel1);
+		}
 		#endregion
 
 		#region 窗口

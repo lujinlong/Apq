@@ -67,6 +67,11 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="Servers.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Servers.xsd</DependentUpon>
+    </Compile>
     <Compile Include="SrvsMgr.cs">
       <DependentUpon>SrvsMgr.xsd</DependentUpon>
       <SubType>Component</SubType>
@@ -87,6 +92,17 @@
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Servers.xsc">
+      <DependentUpon>Servers.xsd</DependentUpon>
+    </None>
+    <None Include="Servers.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Servers.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Servers.xss">
+      <DependentUpon>Servers.xsd</DependentUpon>
     </None>
     <None Include="SrvsMgr.xsc">
       <DependentUpon>SrvsMgr.xsd</DependentUpon>

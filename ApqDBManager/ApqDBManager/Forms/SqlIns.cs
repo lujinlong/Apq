@@ -8,11 +8,26 @@ using System.Windows.Forms;
 using DevExpress.XtraTreeList;
 using DevExpress.XtraTreeList.Nodes;
 using WeifenLuo.WinFormsUI.Docking;
+using System.Data.SqlClient;
 
 namespace ApqDBManager.Forms
 {
 	public partial class SqlIns : Apq.Windows.Forms.DockForm
 	{
+		//数据库连接
+		private SqlConnection _SqlConn = new SqlConnection();
+		public Apq.DBC.XSD Sqls
+		{
+			get
+			{
+				if (!(FormDataSet is Apq.DBC.XSD))
+				{
+					FormDataSet = new Apq.DBC.XSD();
+				}
+				return FormDataSet as Apq.DBC.XSD;
+			}
+		}
+
 		public SqlIns()
 		{
 			InitializeComponent();
@@ -34,7 +49,7 @@ namespace ApqDBManager.Forms
 		}
 
 		#region UI线程
-		private void SolutionExplorer_Load(object sender, EventArgs e)
+		private void SqlIns_Load(object sender, EventArgs e)
 		{
 			// 加载选择菜单
 			string[] bciNames = GlobalObject.XmlConfigChain[this.GetType(), "RDBTypes"].Split(',');
@@ -363,6 +378,92 @@ namespace ApqDBManager.Forms
 			}
 			SolutionExplorer_Shown(null, null);
 		}
+		#endregion
+
+		#region IDataShow 成员
+		/// <summary>
+		/// 前期准备(如数据库连接或文件等)
+		/// </summary>
+		public override void InitDataBefore()
+		{
+			#region 数据库连接
+			_SqlConn.ConnectionString = GlobalObject.SqlConn;
+			#endregion
+
+			// 为sda设置SqlCommand
+			scSelect.Connection = _SqlConn;
+			scSelect.CommandText = "dbo.ApqDBMgr_Computer_List";
+			scSelect.CommandType = CommandType.StoredProcedure;
+
+			scDelete.Connection = _SqlConn;
+			scDelete.CommandText = "dbo.ApqDBMgr_Computer_Delete";
+			scDelete.CommandType = CommandType.StoredProcedure;
+			scDelete.Parameters.Add("@ComputerID", SqlDbType.Int, 4, "ComputerID");
+
+			scUpdate.Connection = _SqlConn;
+			scUpdate.CommandText = "dbo.ApqDBMgr_Computer_Save";
+			scUpdate.CommandType = CommandType.StoredProcedure;
+			scUpdate.Parameters.Add("@ComputerID", SqlDbType.Int, 4, "ComputerID");
+			scUpdate.Parameters.Add("@ComputerName", SqlDbType.NVarChar, 50, "ComputerName");
+			scUpdate.Parameters.Add("@ComputerType", SqlDbType.Int, 4, "ComputerType");
+			scUpdate.Parameters["@ComputerID"].Direction = ParameterDirection.InputOutput;
+
+			scInsert.Connection = _SqlConn;
+			scInsert.CommandText = "dbo.ApqDBMgr_Computer_Save";
+			scInsert.CommandType = CommandType.StoredProcedure;
+			scInsert.Parameters.Add("@ComputerID", SqlDbType.Int, 4, "ComputerID");
+			scInsert.Parameters.Add("@ComputerName", SqlDbType.NVarChar, 50, "ComputerName");
+			scInsert.Parameters.Add("@ComputerType", SqlDbType.Int, 4, "ComputerType");
+			scInsert.Parameters["@ComputerID"].Direction = ParameterDirection.InputOutput;
+		}
+		/// <summary>
+		/// 初始数据(如Lookup数据等)
+		/// </summary>
+		/// <param name="ds"></param>
+		public override void InitData(DataSet ds)
+		{
+			#region 准备数据集结构
+			#endregion
+
+			#region 加载所有字典表
+			//computerTypeTableAdapter1.Fill(Sqls.ComputerType);
+			//sqlTypeTableAdapter1.Fill(Sqls.SqlType);
+			//dbcTypeTableAdapter1.Fill(Sqls.DBCType);
+			#endregion
+		}
+		/// <summary>
+		/// 加载数据
+		/// </summary>
+		/// <param name="ds"></param>
+		public override void LoadData(DataSet ds)
+		{
+			/* 多表填充示例代码
+			sda = new SqlDataAdapter(@"
+EXEC dbo.ApqDBMgr_Computer_List;
+EXEC dbo.ApqDBMgr_SqlInstance_List;
+EXEC dbo.ApqDBMgr_DBC_List;
+", _SqlConn);
+			sda.TableMappings.Add("Computer1", "SqlInstance");
+			sda.TableMappings.Add("Computer2", "DBC");
+			 * */
+			sda.Fill(Sqls.Computer);
+			bsiInfo.Caption = "加载成功";
+		}
+		/// <summary>
+		/// 显示数据
+		/// </summary>
+		public override void ShowData()
+		{
+			#region 设置Lookup
+			//luComputerType.DataSource = Sqls;
+			//luComputerType.DisplayMember = "ComputerType.TypeCaption";
+			//luComputerType.ValueMember = "ComputerType.ComputerType";
+			#endregion
+
+			//gridControl1.DataSource = Sqls;
+			//gridControl1.DataMember = "Computer";
+		}
+
 		#endregion
 	}
 }

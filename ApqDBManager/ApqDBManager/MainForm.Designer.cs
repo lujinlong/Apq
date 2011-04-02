@@ -81,6 +81,7 @@
 			this.menuContents = new DevExpress.XtraBars.BarButtonItem();
 			this.menuIndex = new DevExpress.XtraBars.BarButtonItem();
 			this.menuSearch = new DevExpress.XtraBars.BarButtonItem();
+			this.menuSN = new DevExpress.XtraBars.BarButtonItem();
 			this.menuAbout = new DevExpress.XtraBars.BarButtonItem();
 			this.bar3 = new DevExpress.XtraBars.Bar();
 			this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
@@ -88,7 +89,7 @@
 			this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
 			this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
 			this.dockPanel1 = new WeifenLuo.WinFormsUI.Docking.DockPanel();
-			this.menuSN = new DevExpress.XtraBars.BarButtonItem();
+			this.menuDBServer = new DevExpress.XtraBars.BarButtonItem();
 			((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
 			this.SuspendLayout();
 			// 
@@ -147,9 +148,10 @@
             this.menuDBCList,
             this.bsiOpen,
             this.menuOpenSql,
-            this.menuSN});
+            this.menuSN,
+            this.menuDBServer});
 			this.barManager1.MainMenu = this.bar2;
-			this.barManager1.MaxItemId = 18;
+			this.barManager1.MaxItemId = 19;
 			this.barManager1.StatusBar = this.bar3;
 			// 
 			// bar1
@@ -406,7 +408,8 @@
             new DevExpress.XtraBars.LinkPersistInfo(this.menuFTP),
             new DevExpress.XtraBars.LinkPersistInfo(this.menuFTPFileUp),
             new DevExpress.XtraBars.LinkPersistInfo(this.menuDBC),
-            new DevExpress.XtraBars.LinkPersistInfo(this.menuDBCList)});
+            new DevExpress.XtraBars.LinkPersistInfo(this.menuDBCList),
+            new DevExpress.XtraBars.LinkPersistInfo(this.menuDBServer)});
 			this.bsiTool.Name = "bsiTool";
 			// 
 			// menuOption
@@ -540,6 +543,13 @@
 			this.menuSearch.Name = "menuSearch";
 			this.menuSearch.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.menuSearch_ItemClick);
 			// 
+			// menuSN
+			// 
+			this.menuSN.Caption = "注册信息(&R)";
+			this.menuSN.Id = 17;
+			this.menuSN.Name = "menuSN";
+			this.menuSN.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.menuSN_ItemClick);
+			// 
 			// menuAbout
 			// 
 			this.menuAbout.Caption = "关于(&A)";
@@ -572,12 +582,12 @@
 			this.dockPanel1.Size = new System.Drawing.Size(1036, 425);
 			this.dockPanel1.TabIndex = 5;
 			// 
-			// menuSN
+			// menuDBServer
 			// 
-			this.menuSN.Caption = "注册信息(&R)";
-			this.menuSN.Id = 17;
-			this.menuSN.Name = "menuSN";
-			this.menuSN.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.menuSN_ItemClick);
+			this.menuDBServer.Caption = "服务器管理(&M)";
+			this.menuDBServer.Id = 18;
+			this.menuDBServer.Name = "menuDBServer";
+			this.menuDBServer.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.menuDBServer_ItemClick);
 			// 
 			// MainForm
 			// 
@@ -640,7 +650,6 @@
 		private DevExpress.XtraBars.BarLargeButtonItem blbiNew;
 		private DevExpress.XtraBars.BarLargeButtonItem blbiOpen;
 		private DevExpress.XtraBars.BarLargeButtonItem blbiSave;
-		private WeifenLuo.WinFormsUI.Docking.DockPanel dockPanel1;
 		private DevExpress.XtraBars.BarButtonItem menuNewApp;
 		private DevExpress.XtraBars.BarButtonItem menuDES;
 		private DevExpress.XtraBars.BarButtonItem menuFileUp;
@@ -656,5 +665,7 @@
 		private DevExpress.XtraBars.BarSubItem bsiOpen;
 		private DevExpress.XtraBars.BarButtonItem menuOpenSql;
 		private DevExpress.XtraBars.BarButtonItem menuSN;
+		public WeifenLuo.WinFormsUI.Docking.DockPanel dockPanel1;
+		private DevExpress.XtraBars.BarButtonItem menuDBServer;
 	}
 }
