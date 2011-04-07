@@ -14,19 +14,7 @@ namespace ApqDBManager.Forms
 {
 	public partial class SqlIns : Apq.Windows.Forms.DockForm
 	{
-		//数据库连接
-		private SqlConnection _SqlConn = new SqlConnection();
-		public Apq.DBC.XSD Sqls
-		{
-			get
-			{
-				if (!(FormDataSet is Apq.DBC.XSD))
-				{
-					FormDataSet = new Apq.DBC.XSD();
-				}
-				return FormDataSet as Apq.DBC.XSD;
-			}
-		}
+		private Apq.DBC.XSD _Sqls = null;
 
 		public SqlIns()
 		{
@@ -69,7 +57,7 @@ namespace ApqDBManager.Forms
 				foreach (string strCheckedName in aryCheckedServerNames)
 				{
 					DataView dv = new DataView(_Sqls.SqlInstance);
-					dv.RowFilter = "[Name] = " + Apq.Data.SqlClient.Common.ConvertToSqlON(SqlDbType.VarChar, strCheckedName);
+					dv.RowFilter = "SqlName = " + Apq.Data.SqlClient.Common.ConvertToSqlON(SqlDbType.VarChar, strCheckedName);
 					foreach (DataRowView dr in dv)
 					{
 						dr["CheckState"] = 1;
@@ -102,8 +90,8 @@ namespace ApqDBManager.Forms
 
 				treeList1.BeginUpdate();
 				DataView dv = new DataView(_Sqls.SqlInstance);
-				dv.RowFilter = "Type = " + idx;
-				if (idx == 0) dv.RowFilter = dv.RowFilter + " OR Type IS NULL";
+				dv.RowFilter = "SqlType = " + idx;
+				if (idx == 0) dv.RowFilter = dv.RowFilter + " OR SqlType IS NULL";
 
 				foreach (DataRowView drv in dv)
 				{
@@ -144,11 +132,6 @@ namespace ApqDBManager.Forms
 			}
 			_Sqls.SqlInstance.AcceptChanges();
 			treeList1.EndUpdate();
-		}
-		//重新加载
-		private void bbiRefresh_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-		{
-			LoadData(FormDataSet);
 		}
 		//全部展开
 		private void bbiExpandAll_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -378,106 +361,6 @@ namespace ApqDBManager.Forms
 			}
 			SolutionExplorer_Shown(null, null);
 		}
-		#endregion
-
-		#region IDataShow 成员
-		/// <summary>
-		/// 前期准备(如数据库连接或文件等)
-		/// </summary>
-		public override void InitDataBefore()
-		{
-			#region 数据库连接
-			_SqlConn.ConnectionString = GlobalObject.SqlConn;
-			#endregion
-
-			// 为sda设置SqlCommand
-			scSelect.Connection = _SqlConn;
-			scSelect.CommandText = "dbo.ApqDBMgr_SqlInstance_List";
-			scSelect.CommandType = CommandType.StoredProcedure;
-
-			scDelete.Connection = _SqlConn;
-			scDelete.CommandText = "dbo.ApqDBMgr_SqlInstance_Delete";
-			scDelete.CommandType = CommandType.StoredProcedure;
-			scDelete.Parameters.Add("@SqlID", SqlDbType.Int, 4, "SqlID");
-
-			scUpdate.Connection = _SqlConn;
-			scUpdate.CommandText = "dbo.ApqDBMgr_SqlInstance_Save";
-			scUpdate.CommandType = CommandType.StoredProcedure;
-			scUpdate.Parameters.Add("@ComputerID", SqlDbType.Int, 4, "ComputerID");
-			scUpdate.Parameters.Add("@SqlID", SqlDbType.Int, 4, "SqlID");
-			scUpdate.Parameters.Add("@SqlName", SqlDbType.NVarChar, 50, "SqlName");
-			scUpdate.Parameters.Add("@ParentID", SqlDbType.Int, 4, "ParentID");
-			scUpdate.Parameters.Add("@SqlType", SqlDbType.Int, 4, "SqlType");
-			scUpdate.Parameters.Add("@IP", SqlDbType.NVarChar, 50, "IP");
-			scUpdate.Parameters.Add("@SqlPort", SqlDbType.Int, 4, "SqlPort");
-			scUpdate.Parameters.Add("@UserId", SqlDbType.NVarChar, 50, "UserId");
-			scUpdate.Parameters.Add("@PwdC", SqlDbType.NVarChar, 500, "PwdC");
-			scUpdate.Parameters["@SqlID"].Direction = ParameterDirection.InputOutput;
-
-			scInsert.Connection = _SqlConn;
-			scInsert.CommandText = "dbo.ApqDBMgr_SqlInstance_Save";
-			scInsert.CommandType = CommandType.StoredProcedure;
-			scInsert.Parameters.Add("@ComputerID", SqlDbType.Int, 4, "ComputerID");
-			scInsert.Parameters.Add("@SqlID", SqlDbType.Int, 4, "SqlID");
-			scInsert.Parameters.Add("@SqlName", SqlDbType.NVarChar, 50, "SqlName");
-			scInsert.Parameters.Add("@ParentID", SqlDbType.Int, 4, "ParentID");
-			scInsert.Parameters.Add("@SqlType", SqlDbType.Int, 4, "SqlType");
-			scInsert.Parameters.Add("@IP", SqlDbType.NVarChar, 50, "IP");
-			scInsert.Parameters.Add("@SqlPort", SqlDbType.Int, 4, "SqlPort");
-			scInsert.Parameters.Add("@UserId", SqlDbType.NVarChar, 50, "UserId");
-			scInsert.Parameters.Add("@PwdC", SqlDbType.NVarChar, 500, "PwdC");
-			scInsert.Parameters["@SqlID"].Direction = ParameterDirection.InputOutput;
-		}
-		/// <summary>
-		/// 初始数据(如Lookup数据等)
-		/// </summary>
-		/// <param name="ds"></param>
-		public override void InitData(DataSet ds)
-		{
-			#region 准备数据集结构
-			#endregion
-
-			#region 加载所有字典表
-			//computerTypeTableAdapter1.Fill(Sqls.ComputerType);
-			//sqlTypeTableAdapter1.Fill(Sqls.SqlType);
-			//dbcTypeTableAdapter1.Fill(Sqls.DBCType);
-			#endregion
-		}
-		/// <summary>
-		/// 加载数据
-		/// </summary>
-		/// <param name="ds"></param>
-		public override void LoadData(DataSet ds)
-		{
-			/* 多表填充示例代码
-			sda = new SqlDataAdapter(@"
-EXEC dbo.ApqDBMgr_Computer_List;
-EXEC dbo.ApqDBMgr_SqlInstance_List;
-EXEC dbo.ApqDBMgr_DBC_List;
-", _SqlConn);
-			sda.TableMappings.Add("Computer1", "SqlInstance");
-			sda.TableMappings.Add("Computer2", "DBC");
-			 * */
-			Sqls.SqlInstance.Clear();
-			sda.Fill(Sqls.SqlInstance);
-			Sqls.SqlInstance.AcceptChanges();
-			bsiInfo.Caption = "加载成功";
-		}
-		/// <summary>
-		/// 显示数据
-		/// </summary>
-		public override void ShowData()
-		{
-			#region 设置Lookup
-			//luComputerType.DataSource = Sqls;
-			//luComputerType.DisplayMember = "ComputerType.TypeCaption";
-			//luComputerType.ValueMember = "ComputerType.ComputerType";
-			#endregion
-
-			//gridControl1.DataSource = Sqls;
-			//gridControl1.DataMember = "Computer";
-		}
-
 		#endregion
 	}
 }

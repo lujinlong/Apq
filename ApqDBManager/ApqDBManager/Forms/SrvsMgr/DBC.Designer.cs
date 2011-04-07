@@ -41,6 +41,7 @@
 			this.beiStr = new DevExpress.XtraBars.BarEditItem();
 			this.repositoryItemTextEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
 			this.bbiSlts = new DevExpress.XtraBars.BarButtonItem();
+			this.bsiCreateCSFile = new DevExpress.XtraBars.BarSubItem();
 			this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
 			this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
 			this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
@@ -70,7 +71,6 @@
 			this.scInsert = new System.Data.SqlClient.SqlCommand();
 			this.scSelect = new System.Data.SqlClient.SqlCommand();
 			this.scUpdate = new System.Data.SqlClient.SqlCommand();
-			this.bsiCreateCSFile = new DevExpress.XtraBars.BarSubItem();
 			((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
@@ -193,6 +193,12 @@
 			this.bbiSlts.Name = "bbiSlts";
 			this.bbiSlts.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiSlts_ItemClick);
 			// 
+			// bsiCreateCSFile
+			// 
+			this.bsiCreateCSFile.Caption = "生成文件";
+			this.bsiCreateCSFile.Id = 9;
+			this.bsiCreateCSFile.Name = "bsiCreateCSFile";
+			// 
 			// gridControl1
 			// 
 			this.gridControl1.ContextMenuStrip = this.cmGridMenu;
@@ -257,9 +263,8 @@
 			// 
 			this.gridColumn6.Caption = "服务器";
 			this.gridColumn6.ColumnEdit = this.luComputer;
-			this.gridColumn6.FieldName = "ComputerName";
+			this.gridColumn6.FieldName = "ComputerID";
 			this.gridColumn6.Name = "gridColumn6";
-			this.gridColumn6.OptionsColumn.AllowEdit = false;
 			this.gridColumn6.OptionsColumn.ReadOnly = true;
 			this.gridColumn6.Visible = true;
 			this.gridColumn6.VisibleIndex = 0;
@@ -270,13 +275,12 @@
 			this.luComputer.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
 			this.luComputer.Name = "luComputer";
-			this.luComputer.ReadOnly = true;
 			// 
 			// gridColumn2
 			// 
 			this.gridColumn2.Caption = "实例名";
 			this.gridColumn2.ColumnEdit = this.luSqlInstance;
-			this.gridColumn2.FieldName = "SqlName";
+			this.gridColumn2.FieldName = "SqlID";
 			this.gridColumn2.Name = "gridColumn2";
 			this.gridColumn2.Visible = true;
 			this.gridColumn2.VisibleIndex = 1;
@@ -286,6 +290,9 @@
 			this.luSqlInstance.AutoHeight = false;
 			this.luSqlInstance.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+			this.luSqlInstance.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("SqlID", "实例"),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("SqlName", "实例名")});
 			this.luSqlInstance.Name = "luSqlInstance";
 			// 
 			// gridColumn1
@@ -386,12 +393,6 @@
 			this.scSelect.CommandText = "\r\nSELECT * FROM dic_SQLInstanceType;\r\nSELECT * FROM dic_IPType;\r\nSELECT * FROM DB" +
 				"Server;\r\nSELECT * FROM SQLInstance;\r\nSELECT * FROM DBC;\r\nSELECT * FROM DBServerI" +
 				"P;";
-			// 
-			// bsiCreateCSFile
-			// 
-			this.bsiCreateCSFile.Caption = "生成文件";
-			this.bsiCreateCSFile.Id = 9;
-			this.bsiCreateCSFile.Name = "bsiCreateCSFile";
 			// 
 			// DBC
 			// 

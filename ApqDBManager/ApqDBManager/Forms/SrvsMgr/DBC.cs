@@ -102,16 +102,16 @@ namespace ApqDBManager.Forms.SrvsMgr
 			scInsert.Connection = _SqlConn;
 			scInsert.CommandText = "dbo.ApqDBMgr_DBC_Save";
 			scInsert.CommandType = CommandType.StoredProcedure;
-			scUpdate.Parameters.Add("@SqlID", SqlDbType.Int, 4, "SqlID");
-			scUpdate.Parameters.Add("@DBID", SqlDbType.Int, 4, "DBID");
-			scUpdate.Parameters.Add("@DBCType", SqlDbType.Int, 4, "DBCType");
-			scUpdate.Parameters.Add("@UseTrusted", SqlDbType.TinyInt, 1, "UseTrusted");
-			scUpdate.Parameters.Add("@DBName", SqlDbType.NVarChar, 50, "DBName");
-			scUpdate.Parameters.Add("@UserId", SqlDbType.NVarChar, 50, "UserId");
-			scUpdate.Parameters.Add("@PwdC", SqlDbType.NVarChar, 500, "PwdC");
-			scUpdate.Parameters.Add("@Mirror", SqlDbType.NVarChar, 1000, "Mirror");
-			scUpdate.Parameters.Add("@Option", SqlDbType.NVarChar, 1000, "Option");
-			scUpdate.Parameters["@DBID"].Direction = ParameterDirection.InputOutput;
+			scInsert.Parameters.Add("@SqlID", SqlDbType.Int, 4, "SqlID");
+			scInsert.Parameters.Add("@DBID", SqlDbType.Int, 4, "DBID");
+			scInsert.Parameters.Add("@DBCType", SqlDbType.Int, 4, "DBCType");
+			scInsert.Parameters.Add("@UseTrusted", SqlDbType.TinyInt, 1, "UseTrusted");
+			scInsert.Parameters.Add("@DBName", SqlDbType.NVarChar, 50, "DBName");
+			scInsert.Parameters.Add("@UserId", SqlDbType.NVarChar, 50, "UserId");
+			scInsert.Parameters.Add("@PwdC", SqlDbType.NVarChar, 500, "PwdC");
+			scInsert.Parameters.Add("@Mirror", SqlDbType.NVarChar, 1000, "Mirror");
+			scInsert.Parameters.Add("@Option", SqlDbType.NVarChar, 1000, "Option");
+			scInsert.Parameters["@DBID"].Direction = ParameterDirection.InputOutput;
 		}
 		/// <summary>
 		/// 初始数据(如Lookup数据等)

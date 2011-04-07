@@ -320,8 +320,8 @@ namespace ApqDBManager
 
 		private void menuDBCList_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
 		{
-			Forms.DBCList win = new Forms.DBCList();
-			win.Show(dockPanel1);
+			//Forms.DBCList win = new Forms.DBCList();
+			//win.Show(dockPanel1);
 		}
 
 		private void menuRSAKey_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)

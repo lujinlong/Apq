@@ -54,10 +54,10 @@
 			this.luComputer = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
 			this.treeListColumn10 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
 			this.treeListColumn4 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
+			this.ritePwdD = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
 			this.treeListColumn5 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
 			this.luSqlType = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
 			this.treeListColumn7 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
-			this.treeListColumn6 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
 			this.treeListColumn12 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
 			this.treeListColumn1 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
 			this.cmTreeMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -65,7 +65,6 @@
 			this.tsmiAdd = new System.Windows.Forms.ToolStripMenuItem();
 			this.tsmiDel = new System.Windows.Forms.ToolStripMenuItem();
 			this.repositoryItemCheckEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
-			this.ritePwdD = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
 			this.imageList1 = new System.Windows.Forms.ImageList(this.components);
 			this.sda = new System.Data.SqlClient.SqlDataAdapter();
 			this.scDelete = new System.Data.SqlClient.SqlCommand();
@@ -76,10 +75,10 @@
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.treeList1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.luComputer)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.ritePwdD)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.luSqlType)).BeginInit();
 			this.cmTreeMenu.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit1)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.ritePwdD)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// barManager1
@@ -116,7 +115,6 @@
 			this.bar3.DockRow = 0;
 			this.bar3.DockStyle = DevExpress.XtraBars.BarDockStyle.Bottom;
 			this.bar3.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
-            new DevExpress.XtraBars.LinkPersistInfo(this.bbiExpandAll),
             new DevExpress.XtraBars.LinkPersistInfo(this.bsiOutInfo),
             new DevExpress.XtraBars.LinkPersistInfo(this.bsiTest)});
 			this.bar3.OptionsBar.AllowQuickCustomization = false;
@@ -126,7 +124,7 @@
 			// 
 			// bbiExpandAll
 			// 
-			this.bbiExpandAll.Caption = "全部展开";
+			this.bbiExpandAll.Caption = "全部展开(&D)";
 			this.bbiExpandAll.Id = 7;
 			this.bbiExpandAll.Name = "bbiExpandAll";
 			this.bbiExpandAll.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiExpandAll_ItemClick);
@@ -156,6 +154,7 @@
             new DevExpress.XtraBars.LinkPersistInfo(this.bbiSaveToDB),
             new DevExpress.XtraBars.LinkPersistInfo(this.bbiSelectAll, true),
             new DevExpress.XtraBars.LinkPersistInfo(this.bbiReverse),
+            new DevExpress.XtraBars.LinkPersistInfo(this.bbiExpandAll),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.Width, this.beiStr, "", false, true, true, 195),
             new DevExpress.XtraBars.LinkPersistInfo(this.bbiSlts),
             new DevExpress.XtraBars.LinkPersistInfo(this.bbiDBC, true)});
@@ -225,11 +224,11 @@
             this.treeListColumn4,
             this.treeListColumn5,
             this.treeListColumn7,
-            this.treeListColumn6,
             this.treeListColumn12,
             this.treeListColumn1});
 			this.treeList1.ContextMenuStrip = this.cmTreeMenu;
 			this.treeList1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.treeList1.KeyFieldName = "SqlID";
 			this.treeList1.Location = new System.Drawing.Point(0, 25);
 			this.treeList1.Name = "treeList1";
 			this.treeList1.OptionsBehavior.AllowExpandOnDblClick = false;
@@ -299,6 +298,12 @@
 			this.treeListColumn4.VisibleIndex = 3;
 			this.treeListColumn4.Width = 56;
 			// 
+			// ritePwdD
+			// 
+			this.ritePwdD.AutoHeight = false;
+			this.ritePwdD.Name = "ritePwdD";
+			this.ritePwdD.PasswordChar = '*';
+			// 
 			// treeListColumn5
 			// 
 			this.treeListColumn5.Caption = "实例类型";
@@ -325,23 +330,13 @@
 			this.treeListColumn7.Name = "treeListColumn7";
 			this.treeListColumn7.Width = 56;
 			// 
-			// treeListColumn6
-			// 
-			this.treeListColumn6.Caption = "实例ID";
-			this.treeListColumn6.FieldName = "SqlID";
-			this.treeListColumn6.Name = "treeListColumn6";
-			this.treeListColumn6.OptionsColumn.ReadOnly = true;
-			this.treeListColumn6.Visible = true;
-			this.treeListColumn6.VisibleIndex = 5;
-			this.treeListColumn6.Width = 56;
-			// 
 			// treeListColumn12
 			// 
 			this.treeListColumn12.Caption = "IP";
 			this.treeListColumn12.FieldName = "IP";
 			this.treeListColumn12.Name = "treeListColumn12";
 			this.treeListColumn12.Visible = true;
-			this.treeListColumn12.VisibleIndex = 6;
+			this.treeListColumn12.VisibleIndex = 5;
 			this.treeListColumn12.Width = 56;
 			// 
 			// treeListColumn1
@@ -352,7 +347,7 @@
 			this.treeListColumn1.OptionsColumn.AllowMove = false;
 			this.treeListColumn1.OptionsColumn.AllowSort = false;
 			this.treeListColumn1.Visible = true;
-			this.treeListColumn1.VisibleIndex = 7;
+			this.treeListColumn1.VisibleIndex = 6;
 			this.treeListColumn1.Width = 56;
 			// 
 			// cmTreeMenu
@@ -389,12 +384,6 @@
 			// 
 			this.repositoryItemCheckEdit1.AutoHeight = false;
 			this.repositoryItemCheckEdit1.Name = "repositoryItemCheckEdit1";
-			// 
-			// ritePwdD
-			// 
-			this.ritePwdD.AutoHeight = false;
-			this.ritePwdD.Name = "ritePwdD";
-			this.ritePwdD.PasswordChar = '*';
 			// 
 			// imageList1
 			// 
@@ -437,10 +426,10 @@
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit1)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.treeList1)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.luComputer)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.ritePwdD)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.luSqlType)).EndInit();
 			this.cmTreeMenu.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit1)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.ritePwdD)).EndInit();
 			this.ResumeLayout(false);
 
 		}
@@ -465,7 +454,6 @@
 		private DevExpress.XtraTreeList.Columns.TreeListColumn treeListColumn5;
 		private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit luSqlType;
 		private DevExpress.XtraTreeList.Columns.TreeListColumn treeListColumn7;
-		private DevExpress.XtraTreeList.Columns.TreeListColumn treeListColumn6;
 		private DevExpress.XtraTreeList.Columns.TreeListColumn treeListColumn10;
 		private DevExpress.XtraTreeList.Columns.TreeListColumn treeListColumn12;
 		private DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit repositoryItemCheckEdit1;

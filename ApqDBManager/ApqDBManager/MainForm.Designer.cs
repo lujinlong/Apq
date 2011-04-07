@@ -480,7 +480,7 @@
 			// 
 			// menuDBCList
 			// 
-			this.menuDBCList.Caption = "DB连接(&L)";
+			this.menuDBCList.Caption = "(已去掉)DB连接(&L)";
 			this.menuDBCList.Id = 14;
 			this.menuDBCList.Name = "menuDBCList";
 			this.menuDBCList.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.menuDBCList_ItemClick);

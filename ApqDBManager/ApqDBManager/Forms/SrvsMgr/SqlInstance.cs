@@ -48,18 +48,18 @@ namespace ApqDBManager.Forms.SrvsMgr
 
 		void SqlInstance_TableNewRow(object sender, DataTableNewRowEventArgs e)
 		{
-			e.Row["ComputerID"] = 0;
-			e.Row["SqlID"] = 0;
+			//e.Row["ComputerID"] = 0;
+			//e.Row["SqlID"] = 0;
 			if (treeList1.FocusedNode != null)
 			{
 				e.Row["ParentID"] = treeList1.FocusedNode["SqlID"];
 			}
-			e.Row["SqlName"] = "新建实例[名称]";
-			e.Row["SqlType"] = 1;
-			e.Row["IP"] = string.Empty;
-			e.Row["SqlPort"] = 0;
-			e.Row["UserId"] = "apq";
-			e.Row["PwdD"] = "f";
+			//e.Row["SqlName"] = "新建实例[名称]";
+			//e.Row["SqlType"] = 1;
+			//e.Row["IP"] = string.Empty;
+			//e.Row["SqlPort"] = 0;
+			//e.Row["UserId"] = "apq";
+			//e.Row["PwdD"] = "f";
 		}
 
 		private void SqlInstance_FormClosing(object sender, FormClosingEventArgs e)
@@ -321,6 +321,8 @@ namespace ApqDBManager.Forms.SrvsMgr
 			#endregion
 			Sqls.SqlInstance.AcceptChanges();
 			bsiOutInfo.Caption = "加载成功";
+
+			treeList1.ExpandAll();
 		}
 		/// <summary>
 		/// 显示数据
