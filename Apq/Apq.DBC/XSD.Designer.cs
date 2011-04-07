@@ -547,9 +547,12 @@ namespace Apq.DBC {
                 this.columnComputerType = new global::System.Data.DataColumn("ComputerType", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnComputerType);
                 this.columnComputerID.AllowDBNull = false;
+                this.columnComputerID.Caption = "服务器";
                 this.columnComputerName.AllowDBNull = false;
+                this.columnComputerName.Caption = "服务器名称";
                 this.columnComputerName.MaxLength = 50;
                 this.columnComputerType.AllowDBNull = false;
+                this.columnComputerType.Caption = "服务器类型";
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -891,17 +894,26 @@ namespace Apq.DBC {
                 this.columnPwdD = new global::System.Data.DataColumn("PwdD", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnPwdD);
                 this.columnComputerID.AllowDBNull = false;
+                this.columnComputerID.Caption = "服务器";
                 this.columnSqlID.AllowDBNull = false;
+                this.columnSqlID.Caption = "实例";
                 this.columnSqlName.AllowDBNull = false;
+                this.columnSqlName.Caption = "实例名称";
                 this.columnSqlName.MaxLength = 50;
+                this.columnParentID.Caption = "上级";
                 this.columnSqlType.AllowDBNull = false;
+                this.columnSqlType.Caption = "实例类型";
                 this.columnIP.AllowDBNull = false;
                 this.columnIP.MaxLength = 50;
                 this.columnSqlPort.AllowDBNull = false;
+                this.columnSqlPort.Caption = "实例端口";
                 this.columnUserId.AllowDBNull = false;
+                this.columnUserId.Caption = "用户名";
                 this.columnUserId.MaxLength = 50;
                 this.columnPwdC.AllowDBNull = false;
+                this.columnPwdC.Caption = "密码(密文)";
                 this.columnPwdC.MaxLength = 500;
+                this.columnPwdD.Caption = "密码(明文)";
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1017,7 +1029,7 @@ namespace Apq.DBC {
                 xs.Add(dsSchema);
                 return type;
             }
-		}
+        }
         
         /// <summary>
         ///Represents the strongly named DataTable class.
@@ -1527,7 +1539,9 @@ namespace Apq.DBC {
                                 this.columnDBCType}, true));
                 this.columnDBCType.AllowDBNull = false;
                 this.columnDBCType.Unique = true;
+                this.columnDBCType.Caption = "数据库类型";
                 this.columnTypeCaption.AllowDBNull = false;
+                this.columnTypeCaption.Caption = "类型名称";
                 this.columnTypeCaption.MaxLength = 50;
             }
             
@@ -1775,7 +1789,9 @@ namespace Apq.DBC {
                                 this.columnSqlType}, true));
                 this.columnSqlType.AllowDBNull = false;
                 this.columnSqlType.Unique = true;
+                this.columnSqlType.Caption = "实例类型";
                 this.columnTypeCaption.AllowDBNull = false;
+                this.columnTypeCaption.Caption = "类型名称";
                 this.columnTypeCaption.MaxLength = 50;
             }
             
@@ -2023,7 +2039,9 @@ namespace Apq.DBC {
                                 this.columnComputerType}, true));
                 this.columnComputerType.AllowDBNull = false;
                 this.columnComputerType.Unique = true;
+                this.columnComputerType.Caption = "服务器类型";
                 this.columnTypeCaption.AllowDBNull = false;
+                this.columnTypeCaption.Caption = "类型名称";
                 this.columnTypeCaption.MaxLength = 50;
             }
             
