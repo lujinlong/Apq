@@ -548,11 +548,14 @@ namespace Apq.DBC {
                 base.Columns.Add(this.columnComputerType);
                 this.columnComputerID.AllowDBNull = false;
                 this.columnComputerID.Caption = "服务器";
+                this.columnComputerID.DefaultValue = ((int)(0));
                 this.columnComputerName.AllowDBNull = false;
                 this.columnComputerName.Caption = "服务器名称";
+                this.columnComputerName.DefaultValue = ((string)("新建服务器"));
                 this.columnComputerName.MaxLength = 50;
                 this.columnComputerType.AllowDBNull = false;
                 this.columnComputerType.Caption = "服务器类型";
+                this.columnComputerType.DefaultValue = ((int)(1));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -895,22 +898,29 @@ namespace Apq.DBC {
                 base.Columns.Add(this.columnPwdD);
                 this.columnComputerID.AllowDBNull = false;
                 this.columnComputerID.Caption = "服务器";
+                this.columnComputerID.DefaultValue = ((int)(0));
                 this.columnSqlID.AllowDBNull = false;
                 this.columnSqlID.Caption = "实例";
+                this.columnSqlID.DefaultValue = ((int)(0));
                 this.columnSqlName.AllowDBNull = false;
                 this.columnSqlName.Caption = "实例名称";
+                this.columnSqlName.DefaultValue = ((string)("新建实例"));
                 this.columnSqlName.MaxLength = 50;
                 this.columnParentID.Caption = "上级";
+                this.columnParentID.DefaultValue = ((int)(0));
                 this.columnSqlType.AllowDBNull = false;
                 this.columnSqlType.Caption = "实例类型";
+                this.columnSqlType.DefaultValue = ((int)(1));
                 this.columnIP.AllowDBNull = false;
+                this.columnIP.DefaultValue = ((string)(""));
                 this.columnIP.MaxLength = 50;
                 this.columnSqlPort.AllowDBNull = false;
                 this.columnSqlPort.Caption = "实例端口";
+                this.columnSqlPort.DefaultValue = ((int)(1433));
                 this.columnUserId.AllowDBNull = false;
                 this.columnUserId.Caption = "用户名";
+                this.columnUserId.DefaultValue = ((string)("sa"));
                 this.columnUserId.MaxLength = 50;
-                this.columnPwdC.AllowDBNull = false;
                 this.columnPwdC.Caption = "密码(密文)";
                 this.columnPwdC.MaxLength = 500;
                 this.columnPwdD.Caption = "密码(明文)";
@@ -1061,8 +1071,6 @@ namespace Apq.DBC {
             
             private global::System.Data.DataColumn columnPwdD;
             
-            private global::System.Data.DataColumn columnServerName;
-            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public DBCDataTable() {
                 this.TableName = "DBC";
@@ -1171,13 +1179,6 @@ namespace Apq.DBC {
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn ServerNameColumn {
-                get {
-                    return this.columnServerName;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -1206,7 +1207,7 @@ namespace Apq.DBC {
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public DBCRow AddDBCRow(int ComputerID, int SqlID, int DBID, int DBCType, byte UseTrusted, string DBName, string UserId, string PwdC, string Mirror, string Option, string PwdD, string ServerName) {
+            public DBCRow AddDBCRow(int ComputerID, int SqlID, int DBID, int DBCType, byte UseTrusted, string DBName, string UserId, string PwdC, string Mirror, string Option, string PwdD) {
                 DBCRow rowDBCRow = ((DBCRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         ComputerID,
@@ -1219,8 +1220,7 @@ namespace Apq.DBC {
                         PwdC,
                         Mirror,
                         Option,
-                        PwdD,
-                        ServerName};
+                        PwdD};
                 rowDBCRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowDBCRow);
                 return rowDBCRow;
@@ -1251,7 +1251,6 @@ namespace Apq.DBC {
                 this.columnMirror = base.Columns["Mirror"];
                 this.columnOption = base.Columns["Option"];
                 this.columnPwdD = base.Columns["PwdD"];
-                this.columnServerName = base.Columns["ServerName"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1278,18 +1277,23 @@ namespace Apq.DBC {
                 base.Columns.Add(this.columnOption);
                 this.columnPwdD = new global::System.Data.DataColumn("PwdD", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnPwdD);
-                this.columnServerName = new global::System.Data.DataColumn("ServerName", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnServerName);
                 this.columnComputerID.AllowDBNull = false;
+                this.columnComputerID.DefaultValue = ((int)(0));
                 this.columnSqlID.AllowDBNull = false;
+                this.columnSqlID.DefaultValue = ((int)(0));
                 this.columnDBID.AllowDBNull = false;
+                this.columnDBID.DefaultValue = ((int)(0));
                 this.columnDBCType.AllowDBNull = false;
+                this.columnDBCType.DefaultValue = ((int)(1));
                 this.columnUseTrusted.AllowDBNull = false;
+                this.columnUseTrusted.DefaultValue = ((byte)(0));
                 this.columnDBName.AllowDBNull = false;
+                this.columnDBName.DefaultValue = ((string)("新建连接"));
                 this.columnDBName.MaxLength = 50;
                 this.columnUserId.AllowDBNull = false;
+                this.columnUserId.DefaultValue = ((string)("sa"));
                 this.columnUserId.MaxLength = 50;
-                this.columnPwdC.AllowDBNull = false;
+                this.columnPwdC.DefaultValue = ((string)(""));
                 this.columnPwdC.MaxLength = 500;
                 this.columnMirror.MaxLength = 1000;
                 this.columnOption.MaxLength = 1000;
@@ -2307,7 +2311,12 @@ namespace Apq.DBC {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public string PwdC {
                 get {
-                    return ((string)(this[this.tableSqlInstance.PwdCColumn]));
+                    try {
+                        return ((string)(this[this.tableSqlInstance.PwdCColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("表“SqlInstance”中列“PwdC”的值为 DBNull。", e);
+                    }
                 }
                 set {
                     this[this.tableSqlInstance.PwdCColumn] = value;
@@ -2337,6 +2346,16 @@ namespace Apq.DBC {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public void SetParentIDNull() {
                 this[this.tableSqlInstance.ParentIDColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public bool IsPwdCNull() {
+                return this.IsNull(this.tableSqlInstance.PwdCColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void SetPwdCNull() {
+                this[this.tableSqlInstance.PwdCColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2437,7 +2456,12 @@ namespace Apq.DBC {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public string PwdC {
                 get {
-                    return ((string)(this[this.tableDBC.PwdCColumn]));
+                    try {
+                        return ((string)(this[this.tableDBC.PwdCColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("表“DBC”中列“PwdC”的值为 DBNull。", e);
+                    }
                 }
                 set {
                     this[this.tableDBC.PwdCColumn] = value;
@@ -2490,18 +2514,13 @@ namespace Apq.DBC {
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public string ServerName {
-                get {
-                    try {
-                        return ((string)(this[this.tableDBC.ServerNameColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("表“DBC”中列“ServerName”的值为 DBNull。", e);
-                    }
-                }
-                set {
-                    this[this.tableDBC.ServerNameColumn] = value;
-                }
+            public bool IsPwdCNull() {
+                return this.IsNull(this.tableDBC.PwdCColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void SetPwdCNull() {
+                this[this.tableDBC.PwdCColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2532,16 +2551,6 @@ namespace Apq.DBC {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public void SetPwdDNull() {
                 this[this.tableDBC.PwdDColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public bool IsServerNameNull() {
-                return this.IsNull(this.tableDBC.ServerNameColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void SetServerNameNull() {
-                this[this.tableDBC.ServerNameColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -3422,7 +3431,7 @@ SELECT ComputerID, SqlID, SqlName, ParentID, SqlType, IP, SqlPort, UserId, PwdC 
                 this.Adapter.DeleteCommand.Parameters[8].Value = ((string)(Original_UserId));
             }
             if ((Original_PwdC == null)) {
-                throw new global::System.ArgumentNullException("Original_PwdC");
+                this.Adapter.DeleteCommand.Parameters[9].Value = global::System.DBNull.Value;
             }
             else {
                 this.Adapter.DeleteCommand.Parameters[9].Value = ((string)(Original_PwdC));
@@ -3476,7 +3485,7 @@ SELECT ComputerID, SqlID, SqlName, ParentID, SqlType, IP, SqlPort, UserId, PwdC 
                 this.Adapter.InsertCommand.Parameters[7].Value = ((string)(UserId));
             }
             if ((PwdC == null)) {
-                throw new global::System.ArgumentNullException("PwdC");
+                this.Adapter.InsertCommand.Parameters[8].Value = global::System.DBNull.Value;
             }
             else {
                 this.Adapter.InsertCommand.Parameters[8].Value = ((string)(PwdC));
@@ -3548,7 +3557,7 @@ SELECT ComputerID, SqlID, SqlName, ParentID, SqlType, IP, SqlPort, UserId, PwdC 
                 this.Adapter.UpdateCommand.Parameters[7].Value = ((string)(UserId));
             }
             if ((PwdC == null)) {
-                throw new global::System.ArgumentNullException("PwdC");
+                this.Adapter.UpdateCommand.Parameters[8].Value = global::System.DBNull.Value;
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[8].Value = ((string)(PwdC));
@@ -3584,7 +3593,7 @@ SELECT ComputerID, SqlID, SqlName, ParentID, SqlType, IP, SqlPort, UserId, PwdC 
                 this.Adapter.UpdateCommand.Parameters[17].Value = ((string)(Original_UserId));
             }
             if ((Original_PwdC == null)) {
-                throw new global::System.ArgumentNullException("Original_PwdC");
+                this.Adapter.UpdateCommand.Parameters[18].Value = global::System.DBNull.Value;
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[18].Value = ((string)(Original_PwdC));
@@ -3870,7 +3879,7 @@ SELECT ComputerID, SqlID, DBID, DBCType, UseTrusted, DBName, UserId, PwdC, Mirro
                 this.Adapter.DeleteCommand.Parameters[6].Value = ((string)(Original_UserId));
             }
             if ((Original_PwdC == null)) {
-                throw new global::System.ArgumentNullException("Original_PwdC");
+                this.Adapter.DeleteCommand.Parameters[7].Value = global::System.DBNull.Value;
             }
             else {
                 this.Adapter.DeleteCommand.Parameters[7].Value = ((string)(Original_PwdC));
@@ -3921,7 +3930,7 @@ SELECT ComputerID, SqlID, DBID, DBCType, UseTrusted, DBName, UserId, PwdC, Mirro
                 this.Adapter.InsertCommand.Parameters[6].Value = ((string)(UserId));
             }
             if ((PwdC == null)) {
-                throw new global::System.ArgumentNullException("PwdC");
+                this.Adapter.InsertCommand.Parameters[7].Value = global::System.DBNull.Value;
             }
             else {
                 this.Adapter.InsertCommand.Parameters[7].Value = ((string)(PwdC));
@@ -3988,7 +3997,7 @@ SELECT ComputerID, SqlID, DBID, DBCType, UseTrusted, DBName, UserId, PwdC, Mirro
                 this.Adapter.UpdateCommand.Parameters[6].Value = ((string)(UserId));
             }
             if ((PwdC == null)) {
-                throw new global::System.ArgumentNullException("PwdC");
+                this.Adapter.UpdateCommand.Parameters[7].Value = global::System.DBNull.Value;
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[7].Value = ((string)(PwdC));
@@ -4017,7 +4026,7 @@ SELECT ComputerID, SqlID, DBID, DBCType, UseTrusted, DBName, UserId, PwdC, Mirro
                 this.Adapter.UpdateCommand.Parameters[15].Value = ((string)(Original_UserId));
             }
             if ((Original_PwdC == null)) {
-                throw new global::System.ArgumentNullException("Original_PwdC");
+                this.Adapter.UpdateCommand.Parameters[16].Value = global::System.DBNull.Value;
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[16].Value = ((string)(Original_PwdC));
