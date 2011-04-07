@@ -258,26 +258,6 @@ namespace ApqDBManager
 		public static void SqlsReload()
 		{
 			#region 从数据库加载实例列表
-			Apq.ConnectionStrings.SQLServer.SqlConnection scHelper = new Apq.ConnectionStrings.SQLServer.SqlConnection();
-			scHelper.DBName = GlobalObject.XmlConfigChain["ApqDBManager.Controls.MainOption.DBC", "DBName"];
-			scHelper.ServerName = GlobalObject.XmlConfigChain["ApqDBManager.Controls.MainOption.DBC", "ServerName"];
-			scHelper.UserId = GlobalObject.XmlConfigChain["ApqDBManager.Controls.MainOption.DBC", "UserId"];
-			string PwdC = GlobalObject.XmlConfigChain["ApqDBManager.Controls.MainOption.DBC", "Pwd"];
-			string PwdD = Apq.Security.Cryptography.DESHelper.DecryptString(PwdC, GlobalObject.RegConfigChain["Crypt", "DESKey"], GlobalObject.RegConfigChain["Crypt", "DESIV"]);
-			scHelper.Pwd = PwdD;
-			try
-			{
-				scHelper.TestAvailable();
-			}
-			catch
-			{
-				MessageBox.Show("请重新设置管理库", "异常");
-				MainOption.nbiDBC_LinkPressed(null, null);
-				MainForm.menuOption_ItemClick(null, null);
-				return;
-			}
-			string strMgrDBConnectionString = scHelper.GetConnectionString();
-
 			if (_Sqls == null)
 			{
 				_Sqls = new Apq.DBC.XSD();
@@ -285,12 +265,16 @@ namespace ApqDBManager
 				_Sqls.SqlInstance.Columns.Add("IsReadyToGo", typeof(bool));
 				_Sqls.SqlInstance.Columns.Add("Err", typeof(bool));
 				_Sqls.SqlInstance.Columns.Add("DBConnectionString");
+
+				_Sqls.SqlInstance.Columns["CheckState"].DefaultValue = 0;
+				_Sqls.SqlInstance.Columns["IsReadyToGo"].DefaultValue = false;
+				_Sqls.SqlInstance.Columns["Err"].DefaultValue = false;
 			}
-			_Sqls.Clear();
+			_Sqls.SqlInstance.Clear();
 
 			try
 			{
-				SqlDataAdapter sda = new SqlDataAdapter("dbo.ApqDBMgr_SqlInstance_List", strMgrDBConnectionString);
+				SqlDataAdapter sda = new SqlDataAdapter("dbo.ApqDBMgr_SqlInstance_List", SqlConn);
 				sda.Fill(_Sqls.SqlInstance);
 			}
 			catch
@@ -306,16 +290,16 @@ namespace ApqDBManager
 				if (!Apq.Convert.LikeDBNull(dr["PwdC"]))
 				{
 					dr.PwdD = Apq.Security.Cryptography.DESHelper.DecryptString(dr.PwdC, GlobalObject.RegConfigChain["Crypt", "DESKey"], GlobalObject.RegConfigChain["Crypt", "DESIV"]);
-					Apq.ConnectionStrings.SQLServer.SqlConnection scHelper1 = new Apq.ConnectionStrings.SQLServer.SqlConnection();
-					scHelper1.DBName = "master";
-					scHelper1.ServerName = dr.IP;
+					Apq.ConnectionStrings.SQLServer.SqlConnection scHelper = new Apq.ConnectionStrings.SQLServer.SqlConnection();
+					scHelper.DBName = "master";
+					scHelper.ServerName = dr.IP;
 					if (dr.SqlPort > 0)
 					{
-						scHelper1.ServerName += "," + dr.SqlPort;
+						scHelper.ServerName += "," + dr.SqlPort;
 					}
-					scHelper1.UserId = dr.UserId;
-					scHelper1.Pwd = dr.PwdD;
-					dr["DBConnectionString"] = scHelper1.GetConnectionString();
+					scHelper.UserId = dr.UserId;
+					scHelper.Pwd = dr.PwdD;
+					dr["DBConnectionString"] = scHelper.GetConnectionString();
 				}
 			}
 

@@ -25,6 +25,7 @@ namespace ApqDBManager.Forms.SrvsMgr
 				return FormDataSet as Apq.DBC.XSD;
 			}
 		}
+		private Form formSqlInstance = null;
 
 		public DBServer()
 		{
@@ -39,8 +40,7 @@ namespace ApqDBManager.Forms.SrvsMgr
 
 			Apq.Xtra.Grid.Common.AddBehaivor(gridView1);
 
-			gridView1.NewItemRowText = "0,新建服务器[名称],1";
-			//Sqls.Computer.TableNewRow += new DataTableNewRowEventHandler(Computer_TableNewRow);
+			Sqls.Computer.TableNewRow += new DataTableNewRowEventHandler(Computer_TableNewRow);
 		}
 
 		void Computer_TableNewRow(object sender, DataTableNewRowEventArgs e)
@@ -52,10 +52,11 @@ namespace ApqDBManager.Forms.SrvsMgr
 
 		private void DBServer_FormClosing(object sender, FormClosingEventArgs e)
 		{
-			//foreach (SqlInstance form in SqlInstances)
-			//{
-			//    form.Close();
-			//}
+			if (formSqlInstance != null)
+			{
+				formSqlInstance.Close();
+			}
+			Apq.Windows.Forms.SingletonForms.ReleaseInstance(this.GetType());
 		}
 
 		//刷新
@@ -97,10 +98,12 @@ namespace ApqDBManager.Forms.SrvsMgr
 
 		private void bbiSqlInstance_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
 		{
-			Form win = Apq.Windows.Forms.SingletonForms.GetInstance(typeof(SqlInstance));
-			SqlInstance f = win as SqlInstance;
-			f.FormDataSet = Sqls;
-			win.Show(GlobalObject.MainForm.dockPanel1);
+			formSqlInstance = Apq.Windows.Forms.SingletonForms.GetInstance(typeof(SqlInstance));
+			SqlInstance f = formSqlInstance as SqlInstance;
+			if (f != null)
+			{
+				f.Show(GlobalObject.MainForm.dockPanel1);
+			}
 		}
 
 		#region IDataShow 成员
@@ -110,14 +113,7 @@ namespace ApqDBManager.Forms.SrvsMgr
 		public override void InitDataBefore()
 		{
 			#region 数据库连接
-			Apq.ConnectionStrings.SQLServer.SqlConnection scHelper = new Apq.ConnectionStrings.SQLServer.SqlConnection();
-			scHelper.DBName = GlobalObject.XmlConfigChain["ApqDBManager.Controls.MainOption.DBC", "DBName"];
-			scHelper.ServerName = GlobalObject.XmlConfigChain["ApqDBManager.Controls.MainOption.DBC", "ServerName"];
-			scHelper.UserId = GlobalObject.XmlConfigChain["ApqDBManager.Controls.MainOption.DBC", "UserId"];
-			string PwdC = GlobalObject.XmlConfigChain["ApqDBManager.Controls.MainOption.DBC", "Pwd"];
-			string PwdD = Apq.Security.Cryptography.DESHelper.DecryptString(PwdC, GlobalObject.RegConfigChain["Crypt", "DESKey"], GlobalObject.RegConfigChain["Crypt", "DESIV"]);
-			scHelper.Pwd = PwdD;
-			_SqlConn.ConnectionString = scHelper.GetConnectionString();
+			_SqlConn.ConnectionString = GlobalObject.SqlConn;
 			#endregion
 
 			// 为sda设置SqlCommand
@@ -153,6 +149,14 @@ namespace ApqDBManager.Forms.SrvsMgr
 		public override void InitData(DataSet ds)
 		{
 			#region 准备数据集结构
+			Sqls.SqlInstance.Columns.Add("CheckState", typeof(int));
+			Sqls.SqlInstance.Columns.Add("IsReadyToGo", typeof(bool));
+			Sqls.SqlInstance.Columns.Add("Err", typeof(bool));
+			Sqls.SqlInstance.Columns.Add("DBConnectionString");
+
+			Sqls.SqlInstance.Columns["CheckState"].DefaultValue = 0;
+			Sqls.SqlInstance.Columns["IsReadyToGo"].DefaultValue = false;
+			Sqls.SqlInstance.Columns["Err"].DefaultValue = false;
 			#endregion
 
 			#region 加载所有字典表
@@ -176,7 +180,9 @@ EXEC dbo.ApqDBMgr_DBC_List;
 			sda.TableMappings.Add("Computer1", "SqlInstance");
 			sda.TableMappings.Add("Computer2", "DBC");
 			 * */
+			Sqls.Computer.Clear();
 			sda.Fill(Sqls.Computer);
+			Sqls.Computer.AcceptChanges();
 			bsiOutInfo.Caption = "加载成功";
 		}
 		/// <summary>
@@ -185,9 +191,9 @@ EXEC dbo.ApqDBMgr_DBC_List;
 		public override void ShowData()
 		{
 			#region 设置Lookup
-			luComputerType.DataSource = Sqls;
-			luComputerType.DisplayMember = "ComputerType.TypeCaption";
-			luComputerType.ValueMember = "ComputerType.ComputerType";
+			luComputerType.DisplayMember = "TypeCaption";
+			luComputerType.ValueMember = "ComputerType";
+			luComputerType.DataSource = Sqls.ComputerType;
 			#endregion
 
 			gridControl1.DataSource = Sqls;
@@ -195,5 +201,16 @@ EXEC dbo.ApqDBMgr_DBC_List;
 		}
 
 		#endregion
+
+		private void tsmiDel_Click(object sender, EventArgs e)
+		{
+			if (gridView1.FocusedRowHandle > -1)
+			{
+				gridView1.BeginUpdate();
+				gridView1.DeleteRow(gridView1.FocusedRowHandle);
+				gridView1.EndUpdate();
+			}
+		}
+
 	}
 }

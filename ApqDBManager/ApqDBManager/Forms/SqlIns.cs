@@ -146,9 +146,9 @@ namespace ApqDBManager.Forms
 			treeList1.EndUpdate();
 		}
 		//重新加载
-		private void bbiReload_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+		private void bbiRefresh_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
 		{
-
+			LoadData(FormDataSet);
 		}
 		//全部展开
 		private void bbiExpandAll_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -349,8 +349,8 @@ namespace ApqDBManager.Forms
 				State.FocusedServerID = Apq.Convert.ChangeType<int>(treeList1.FocusedNode["ID"]);
 				foreach (DataRow dr in _Sqls.SqlInstance.Rows)
 				{
-					int ID = Apq.Convert.ChangeType<int>(dr["ID"]);
-					TreeListNode tln = treeList1.FindNodeByFieldValue("ID", ID);
+					int ID = Apq.Convert.ChangeType<int>(dr["SqlID"]);
+					TreeListNode tln = treeList1.FindNodeByFieldValue("SqlID", ID);
 					if (tln != null && tln.Expanded)
 					{
 						State.Node_Expanded.Add(ID);
@@ -392,29 +392,41 @@ namespace ApqDBManager.Forms
 
 			// 为sda设置SqlCommand
 			scSelect.Connection = _SqlConn;
-			scSelect.CommandText = "dbo.ApqDBMgr_Computer_List";
+			scSelect.CommandText = "dbo.ApqDBMgr_SqlInstance_List";
 			scSelect.CommandType = CommandType.StoredProcedure;
 
 			scDelete.Connection = _SqlConn;
-			scDelete.CommandText = "dbo.ApqDBMgr_Computer_Delete";
+			scDelete.CommandText = "dbo.ApqDBMgr_SqlInstance_Delete";
 			scDelete.CommandType = CommandType.StoredProcedure;
-			scDelete.Parameters.Add("@ComputerID", SqlDbType.Int, 4, "ComputerID");
+			scDelete.Parameters.Add("@SqlID", SqlDbType.Int, 4, "SqlID");
 
 			scUpdate.Connection = _SqlConn;
-			scUpdate.CommandText = "dbo.ApqDBMgr_Computer_Save";
+			scUpdate.CommandText = "dbo.ApqDBMgr_SqlInstance_Save";
 			scUpdate.CommandType = CommandType.StoredProcedure;
 			scUpdate.Parameters.Add("@ComputerID", SqlDbType.Int, 4, "ComputerID");
-			scUpdate.Parameters.Add("@ComputerName", SqlDbType.NVarChar, 50, "ComputerName");
-			scUpdate.Parameters.Add("@ComputerType", SqlDbType.Int, 4, "ComputerType");
-			scUpdate.Parameters["@ComputerID"].Direction = ParameterDirection.InputOutput;
+			scUpdate.Parameters.Add("@SqlID", SqlDbType.Int, 4, "SqlID");
+			scUpdate.Parameters.Add("@SqlName", SqlDbType.NVarChar, 50, "SqlName");
+			scUpdate.Parameters.Add("@ParentID", SqlDbType.Int, 4, "ParentID");
+			scUpdate.Parameters.Add("@SqlType", SqlDbType.Int, 4, "SqlType");
+			scUpdate.Parameters.Add("@IP", SqlDbType.NVarChar, 50, "IP");
+			scUpdate.Parameters.Add("@SqlPort", SqlDbType.Int, 4, "SqlPort");
+			scUpdate.Parameters.Add("@UserId", SqlDbType.NVarChar, 50, "UserId");
+			scUpdate.Parameters.Add("@PwdC", SqlDbType.NVarChar, 500, "PwdC");
+			scUpdate.Parameters["@SqlID"].Direction = ParameterDirection.InputOutput;
 
 			scInsert.Connection = _SqlConn;
-			scInsert.CommandText = "dbo.ApqDBMgr_Computer_Save";
+			scInsert.CommandText = "dbo.ApqDBMgr_SqlInstance_Save";
 			scInsert.CommandType = CommandType.StoredProcedure;
 			scInsert.Parameters.Add("@ComputerID", SqlDbType.Int, 4, "ComputerID");
-			scInsert.Parameters.Add("@ComputerName", SqlDbType.NVarChar, 50, "ComputerName");
-			scInsert.Parameters.Add("@ComputerType", SqlDbType.Int, 4, "ComputerType");
-			scInsert.Parameters["@ComputerID"].Direction = ParameterDirection.InputOutput;
+			scInsert.Parameters.Add("@SqlID", SqlDbType.Int, 4, "SqlID");
+			scInsert.Parameters.Add("@SqlName", SqlDbType.NVarChar, 50, "SqlName");
+			scInsert.Parameters.Add("@ParentID", SqlDbType.Int, 4, "ParentID");
+			scInsert.Parameters.Add("@SqlType", SqlDbType.Int, 4, "SqlType");
+			scInsert.Parameters.Add("@IP", SqlDbType.NVarChar, 50, "IP");
+			scInsert.Parameters.Add("@SqlPort", SqlDbType.Int, 4, "SqlPort");
+			scInsert.Parameters.Add("@UserId", SqlDbType.NVarChar, 50, "UserId");
+			scInsert.Parameters.Add("@PwdC", SqlDbType.NVarChar, 500, "PwdC");
+			scInsert.Parameters["@SqlID"].Direction = ParameterDirection.InputOutput;
 		}
 		/// <summary>
 		/// 初始数据(如Lookup数据等)
@@ -446,7 +458,9 @@ EXEC dbo.ApqDBMgr_DBC_List;
 			sda.TableMappings.Add("Computer1", "SqlInstance");
 			sda.TableMappings.Add("Computer2", "DBC");
 			 * */
-			sda.Fill(Sqls.Computer);
+			Sqls.SqlInstance.Clear();
+			sda.Fill(Sqls.SqlInstance);
+			Sqls.SqlInstance.AcceptChanges();
 			bsiInfo.Caption = "加载成功";
 		}
 		/// <summary>

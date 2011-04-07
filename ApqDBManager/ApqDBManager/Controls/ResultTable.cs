@@ -368,7 +368,7 @@ namespace ApqDBManager.Controls
 						}
 
 						DataView dvErr = new DataView(se._Sqls.SqlInstance);
-						dvErr.RowFilter = "ID = " + ServerID;
+						dvErr.RowFilter = "SqlID = " + ServerID;
 						// 标记本服执行出错
 						if (dvErr.Count > 0)
 						{
@@ -377,7 +377,7 @@ namespace ApqDBManager.Controls
 							{
 								XSD.UI.ErrListRow drErrList = se.dsUI.ErrList.NewErrListRow();
 								drErrList.RSrvID = ServerID;
-								drErrList["__ServerName"] = dvErr[0]["Name"];
+								drErrList["__ServerName"] = dvErr[0]["SqlName"];
 								drErrList.s = r.Message;
 								se.dsUI.ErrList.Rows.Add(drErrList);
 

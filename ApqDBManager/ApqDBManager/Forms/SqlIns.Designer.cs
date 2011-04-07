@@ -41,7 +41,7 @@
 			this.bsiSelect = new DevExpress.XtraBars.BarSubItem();
 			this.bbiSelectAll = new DevExpress.XtraBars.BarButtonItem();
 			this.bbiReverse = new DevExpress.XtraBars.BarButtonItem();
-			this.bbiReload = new DevExpress.XtraBars.BarButtonItem();
+			this.bbiRefresh = new DevExpress.XtraBars.BarButtonItem();
 			this.bar1 = new DevExpress.XtraBars.Bar();
 			this.bbiExpandAll = new DevExpress.XtraBars.BarButtonItem();
 			this.bbiFail = new DevExpress.XtraBars.BarButtonItem();
@@ -150,7 +150,7 @@
             this.bbiResult,
             this.bbiExpandAll,
             this.bsiSelect,
-            this.bbiReload,
+            this.bbiRefresh,
             this.bsiInfo});
 			this.barManager1.MainMenu = this.bar2;
 			this.barManager1.MaxItemId = 23;
@@ -166,7 +166,7 @@
             new DevExpress.XtraBars.LinkPersistInfo(this.bsiSelect),
             new DevExpress.XtraBars.LinkPersistInfo(this.bbiSelectAll),
             new DevExpress.XtraBars.LinkPersistInfo(this.bbiReverse),
-            new DevExpress.XtraBars.LinkPersistInfo(this.bbiReload)});
+            new DevExpress.XtraBars.LinkPersistInfo(this.bbiRefresh)});
 			this.bar2.OptionsBar.MultiLine = true;
 			this.bar2.OptionsBar.UseWholeRow = true;
 			this.bar2.Text = "Main menu";
@@ -191,12 +191,12 @@
 			this.bbiReverse.Name = "bbiReverse";
 			this.bbiReverse.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiReverse_ItemClick);
 			// 
-			// bbiReload
+			// bbiRefresh
 			// 
-			this.bbiReload.Caption = "重新加载(&R)";
-			this.bbiReload.Id = 21;
-			this.bbiReload.Name = "bbiReload";
-			this.bbiReload.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiReload_ItemClick);
+			this.bbiRefresh.Caption = "刷新(&R)";
+			this.bbiRefresh.Id = 21;
+			this.bbiRefresh.Name = "bbiRefresh";
+			this.bbiRefresh.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiRefresh_ItemClick);
 			// 
 			// bar1
 			// 
@@ -311,7 +311,7 @@
 		private DevExpress.XtraTreeList.Columns.TreeListColumn treeListColumn1;
 		private DevExpress.XtraBars.BarSubItem bsiSelect;
 		private Apq.DBC.XSD _Sqls;
-		private DevExpress.XtraBars.BarButtonItem bbiReload;
+		private DevExpress.XtraBars.BarButtonItem bbiRefresh;
 		private DevExpress.XtraBars.Bar bar4;
 		private DevExpress.XtraBars.BarStaticItem bsiInfo;
 		private System.Data.SqlClient.SqlCommand scSelect;

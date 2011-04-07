@@ -332,8 +332,11 @@ namespace ApqDBManager
 
 		private void menuDBServer_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
 		{
-			Form win = Apq.Windows.Forms.SingletonForms.GetInstance(typeof(Forms.SrvsMgr.DBServer));
-			win.Show(dockPanel1);
+			Forms.SrvsMgr.DBServer win = Apq.Windows.Forms.SingletonForms.GetInstance(typeof(Forms.SrvsMgr.DBServer)) as Forms.SrvsMgr.DBServer;
+			if (win != null)
+			{
+				win.Show(dockPanel1);
+			}
 		}
 		#endregion
 

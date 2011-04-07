@@ -22,11 +22,13 @@ namespace ApqDBManager.Forms.SrvsMgr
 			{
 				if (!(FormDataSet is Apq.DBC.XSD))
 				{
-					FormDataSet = new Apq.DBC.XSD();
+					DBServer dbServer = Apq.Windows.Forms.SingletonForms.GetInstance(typeof(DBServer)) as DBServer;
+					FormDataSet = dbServer.Sqls;
 				}
 				return FormDataSet as Apq.DBC.XSD;
 			}
 		}
+		private Form formDBC = null;
 
 		public SqlInstance()
 		{
@@ -52,7 +54,7 @@ namespace ApqDBManager.Forms.SrvsMgr
 			{
 				e.Row["ParentID"] = treeList1.FocusedNode["SqlID"];
 			}
-			e.Row["SqlName"] = "新建服务器[名称]";
+			e.Row["SqlName"] = "新建实例[名称]";
 			e.Row["SqlType"] = 1;
 			e.Row["IP"] = string.Empty;
 			e.Row["SqlPort"] = 0;
@@ -62,6 +64,11 @@ namespace ApqDBManager.Forms.SrvsMgr
 
 		private void SqlInstance_FormClosing(object sender, FormClosingEventArgs e)
 		{
+			if (formDBC != null)
+			{
+				formDBC.Close();
+			}
+			Apq.Windows.Forms.SingletonForms.ReleaseInstance(this.GetType());
 		}
 
 		#region treeList1
@@ -88,7 +95,6 @@ namespace ApqDBManager.Forms.SrvsMgr
 			{
 				SetCheckedChildNodes(node, Checked);
 			}
-			Sqls.SqlInstance.AcceptChanges();
 			treeList1.EndUpdate();
 		}
 		private void SetCheckedChildNodes(TreeListNode node, int Checked)
@@ -174,7 +180,12 @@ namespace ApqDBManager.Forms.SrvsMgr
 
 		private void tsmiDel_Click(object sender, EventArgs e)
 		{
-			treeList1.Nodes.Remove(treeList1.FocusedNode);
+			if (treeList1.FocusedNode != null)
+			{
+				treeList1.BeginUpdate();
+				treeList1.Nodes.Remove(treeList1.FocusedNode);
+				treeList1.EndUpdate();
+			}
 		}
 
 		private void tsmiTestOpen_Click(object sender, EventArgs e)
@@ -187,16 +198,26 @@ namespace ApqDBManager.Forms.SrvsMgr
 				{
 					strPwdD = Apq.Security.Cryptography.DESHelper.DecryptString(tln["PwdC"].ToString(), GlobalObject.RegConfigChain["Crypt", "DESKey"], GlobalObject.RegConfigChain["Crypt", "DESIV"]);
 				}
-				SqlConnection sc = new SqlConnection(string.Format("Data Source={0},{1};User Id={2};Password={3};",
-					tln["IPWan1"], tln["SqlPort"], tln["UID"], strPwdD));
+
+				string strServerName = Apq.Convert.ChangeType<string>(tln["IP"]);
+				if (Apq.Convert.ChangeType<int>(tln["SqlPort"]) > 0)
+				{
+					strServerName += "," + Apq.Convert.ChangeType<int>(tln["SqlPort"]);
+				}
+				string strConn = Apq.ConnectionStrings.SQLServer.SqlConnection.GetConnectionString(
+					strServerName,
+					Apq.Convert.ChangeType<string>(tln["UserId"]),
+					strPwdD
+					);
+				SqlConnection sc = new SqlConnection(strConn);
 				try
 				{
 					Apq.Data.Common.DbConnectionHelper.Open(sc);
-					bsiTest.Caption = tln.GetDisplayText("Name") + "-->连接成功.";
+					bsiTest.Caption = tln.GetDisplayText("SqlName") + "-->连接成功.";
 				}
 				catch
 				{
-					bsiTest.Caption = tln.GetDisplayText("Name") + "-X-连接失败!";
+					bsiTest.Caption = tln.GetDisplayText("SqlName") + "-X-连接失败!";
 				}
 				finally
 				{
@@ -208,10 +229,12 @@ namespace ApqDBManager.Forms.SrvsMgr
 
 		private void bbiDBC_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
 		{
-			Form win = Apq.Windows.Forms.SingletonForms.GetInstance(typeof(DBC));
-			DBC f = win as DBC;
-			f.Sqls = Sqls;
-			win.Show(GlobalObject.MainForm.dockPanel1);
+			formDBC = Apq.Windows.Forms.SingletonForms.GetInstance(typeof(DBC));
+			DBC f = formDBC as DBC;
+			if (f != null)
+			{
+				f.Show(GlobalObject.MainForm.dockPanel1);
+			}
 		}
 
 		#region IDataShow 成员
@@ -221,41 +244,47 @@ namespace ApqDBManager.Forms.SrvsMgr
 		public override void InitDataBefore()
 		{
 			#region 数据库连接
-			Apq.ConnectionStrings.SQLServer.SqlConnection scHelper = new Apq.ConnectionStrings.SQLServer.SqlConnection();
-			scHelper.DBName = GlobalObject.XmlConfigChain["ApqDBManager.Controls.MainOption.DBC", "DBName"];
-			scHelper.ServerName = GlobalObject.XmlConfigChain["ApqDBManager.Controls.MainOption.DBC", "ServerName"];
-			scHelper.UserId = GlobalObject.XmlConfigChain["ApqDBManager.Controls.MainOption.DBC", "UserId"];
-			string PwdC = GlobalObject.XmlConfigChain["ApqDBManager.Controls.MainOption.DBC", "Pwd"];
-			string PwdD = Apq.Security.Cryptography.DESHelper.DecryptString(PwdC, GlobalObject.RegConfigChain["Crypt", "DESKey"], GlobalObject.RegConfigChain["Crypt", "DESIV"]);
-			scHelper.Pwd = PwdD;
-			_SqlConn.ConnectionString = scHelper.GetConnectionString();
+			_SqlConn.ConnectionString = GlobalObject.SqlConn
+;
 			#endregion
 
 			// 为sda设置SqlCommand
-			scSelect.CommandText = "dbo.ApqDBMgr_SqlInstance_List;";
-			scSelect.CommandType = CommandType.StoredProcedure;
 			scSelect.Connection = _SqlConn;
+			scSelect.CommandText = "dbo.ApqDBMgr_SqlInstance_List";
+			scSelect.CommandType = CommandType.StoredProcedure;
 
+			scDelete.Connection = _SqlConn;
 			scDelete.CommandText = "dbo.ApqDBMgr_SqlInstance_Delete";
 			scDelete.CommandType = CommandType.StoredProcedure;
-			scDelete.Parameters.Add("@SqlInstanceID", SqlDbType.Int, 4, "SqlInstanceID");
-			scDelete.Connection = _SqlConn;
+			scDelete.Parameters.Add("@SqlID", SqlDbType.Int, 4, "SqlID");
 
+			scUpdate.Connection = _SqlConn;
 			scUpdate.CommandText = "dbo.ApqDBMgr_SqlInstance_Save";
 			scUpdate.CommandType = CommandType.StoredProcedure;
 			scUpdate.Parameters.Add("@ComputerID", SqlDbType.Int, 4, "ComputerID");
-			scUpdate.Parameters.Add("@ComputerName", SqlDbType.NVarChar, 50, "ComputerName");
-			scUpdate.Parameters.Add("@ComputerType", SqlDbType.Int, 4, "ComputerType");
-			scUpdate.Parameters["@ComputerID"].Direction = ParameterDirection.InputOutput;
-			scUpdate.Connection = _SqlConn;
+			scUpdate.Parameters.Add("@SqlID", SqlDbType.Int, 4, "SqlID");
+			scUpdate.Parameters.Add("@SqlName", SqlDbType.NVarChar, 50, "SqlName");
+			scUpdate.Parameters.Add("@ParentID", SqlDbType.Int, 4, "ParentID");
+			scUpdate.Parameters.Add("@SqlType", SqlDbType.Int, 4, "SqlType");
+			scUpdate.Parameters.Add("@IP", SqlDbType.NVarChar, 50, "IP");
+			scUpdate.Parameters.Add("@SqlPort", SqlDbType.Int, 4, "SqlPort");
+			scUpdate.Parameters.Add("@UserId", SqlDbType.NVarChar, 50, "UserId");
+			scUpdate.Parameters.Add("@PwdC", SqlDbType.NVarChar, 500, "PwdC");
+			scUpdate.Parameters["@SqlID"].Direction = ParameterDirection.InputOutput;
 
+			scInsert.Connection = _SqlConn;
 			scInsert.CommandText = "dbo.ApqDBMgr_SqlInstance_Save";
 			scInsert.CommandType = CommandType.StoredProcedure;
 			scInsert.Parameters.Add("@ComputerID", SqlDbType.Int, 4, "ComputerID");
-			scInsert.Parameters.Add("@ComputerName", SqlDbType.NVarChar, 50, "ComputerName");
-			scInsert.Parameters.Add("@ComputerType", SqlDbType.Int, 4, "ComputerType");
-			scInsert.Parameters["@ComputerID"].Direction = ParameterDirection.InputOutput;
-			scInsert.Connection = _SqlConn;
+			scInsert.Parameters.Add("@SqlID", SqlDbType.Int, 4, "SqlID");
+			scInsert.Parameters.Add("@SqlName", SqlDbType.NVarChar, 50, "SqlName");
+			scInsert.Parameters.Add("@ParentID", SqlDbType.Int, 4, "ParentID");
+			scInsert.Parameters.Add("@SqlType", SqlDbType.Int, 4, "SqlType");
+			scInsert.Parameters.Add("@IP", SqlDbType.NVarChar, 50, "IP");
+			scInsert.Parameters.Add("@SqlPort", SqlDbType.Int, 4, "SqlPort");
+			scInsert.Parameters.Add("@UserId", SqlDbType.NVarChar, 50, "UserId");
+			scInsert.Parameters.Add("@PwdC", SqlDbType.NVarChar, 500, "PwdC");
+			scInsert.Parameters["@SqlID"].Direction = ParameterDirection.InputOutput;
 		}
 		/// <summary>
 		/// 初始数据(如Lookup数据等)
@@ -278,7 +307,19 @@ namespace ApqDBManager.Forms.SrvsMgr
 		/// <param name="ds"></param>
 		public override void LoadData(DataSet ds)
 		{
+			Sqls.SqlInstance.Clear();
 			sda.Fill(Sqls.SqlInstance);
+			#region 密码解密
+			//解密密码,生成连接字符串
+			foreach (Apq.DBC.XSD.SqlInstanceRow dr in Sqls.SqlInstance.Rows)
+			{
+				if (!Apq.Convert.LikeDBNull(dr["PwdC"]))
+				{
+					dr.PwdD = Apq.Security.Cryptography.DESHelper.DecryptString(dr.PwdC, GlobalObject.RegConfigChain["Crypt", "DESKey"], GlobalObject.RegConfigChain["Crypt", "DESIV"]);
+				}
+			}
+			#endregion
+			Sqls.SqlInstance.AcceptChanges();
 			bsiOutInfo.Caption = "加载成功";
 		}
 		/// <summary>
@@ -287,16 +328,16 @@ namespace ApqDBManager.Forms.SrvsMgr
 		public override void ShowData()
 		{
 			#region 设置Lookup
-			luComputer.DataSource = Sqls;
-			luComputer.DisplayMember = "Computer.ComputerName";
-			luComputer.ValueMember = "Computer.ComputerID";
-			luSqlType.DataSource = Sqls;
-			luSqlType.DisplayMember = "SqlType.SqlType";
-			luSqlType.ValueMember = "SqlType.TypeCaption";
+			luComputer.DisplayMember = "ComputerName";
+			luComputer.ValueMember = "ComputerID";
+			luComputer.DataSource = Sqls.Computer;
+			luSqlType.DisplayMember = "TypeCaption";
+			luSqlType.ValueMember = "SqlType";
+			luSqlType.DataSource = Sqls.SqlType;
 			#endregion
 
-			treeList1.DataSource = Sqls;
 			treeList1.DataMember = "SqlInstance";
+			treeList1.DataSource = Sqls;
 		}
 
 		#endregion
@@ -346,8 +387,22 @@ namespace ApqDBManager.Forms.SrvsMgr
 		{
 			if (sda == null) return;
 
-			sda.Update(Sqls.SqlInstance);
-			Sqls.SqlInstance.AcceptChanges();
+			// 密码加密
+			DataRow[] drs = Sqls.SqlInstance.Select("1=1", "SqlID ASC", DataViewRowState.Added | DataViewRowState.ModifiedCurrent);
+			if (drs != null && drs.Length > 0)
+			{
+				foreach (DataRow dr in drs)
+				{
+					if (!Apq.Convert.LikeDBNull(dr["PwdD"]))
+					{
+						dr["PwdC"] = Apq.Security.Cryptography.DESHelper.EncryptString(Apq.Convert.ChangeType<string>(dr["PwdD"]),
+							GlobalObject.RegConfigChain["Crypt", "DESKey"], GlobalObject.RegConfigChain["Crypt", "DESIV"]);
+					}
+				}
+
+				sda.Update(Sqls.SqlInstance);
+				Sqls.SqlInstance.AcceptChanges();
+			}
 			bsiOutInfo.Caption = "更新成功";
 		}
 

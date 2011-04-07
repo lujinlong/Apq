@@ -74,6 +74,7 @@
 			this.menuFTPFileUp = new DevExpress.XtraBars.BarButtonItem();
 			this.menuDBC = new DevExpress.XtraBars.BarButtonItem();
 			this.menuDBCList = new DevExpress.XtraBars.BarButtonItem();
+			this.menuDBServer = new DevExpress.XtraBars.BarButtonItem();
 			this.bsiWindow = new DevExpress.XtraBars.BarSubItem();
 			this.menuCloseAll = new DevExpress.XtraBars.BarButtonItem();
 			this.menuNewApp = new DevExpress.XtraBars.BarButtonItem();
@@ -89,7 +90,6 @@
 			this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
 			this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
 			this.dockPanel1 = new WeifenLuo.WinFormsUI.Docking.DockPanel();
-			this.menuDBServer = new DevExpress.XtraBars.BarButtonItem();
 			((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
 			this.SuspendLayout();
 			// 
@@ -189,6 +189,7 @@
 			// blbiSave
 			// 
 			this.blbiSave.Caption = "保存";
+			this.blbiSave.Hint = "保存";
 			this.blbiSave.Id = 47;
 			this.blbiSave.Name = "blbiSave";
 			toolTipItem3.Text = "保存";
@@ -484,6 +485,13 @@
 			this.menuDBCList.Name = "menuDBCList";
 			this.menuDBCList.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.menuDBCList_ItemClick);
 			// 
+			// menuDBServer
+			// 
+			this.menuDBServer.Caption = "服务器管理(&M)";
+			this.menuDBServer.Id = 18;
+			this.menuDBServer.Name = "menuDBServer";
+			this.menuDBServer.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.menuDBServer_ItemClick);
+			// 
 			// bsiWindow
 			// 
 			this.bsiWindow.Caption = "窗口(&W)";
@@ -581,13 +589,6 @@
 			this.dockPanel1.Name = "dockPanel1";
 			this.dockPanel1.Size = new System.Drawing.Size(1036, 425);
 			this.dockPanel1.TabIndex = 5;
-			// 
-			// menuDBServer
-			// 
-			this.menuDBServer.Caption = "服务器管理(&M)";
-			this.menuDBServer.Id = 18;
-			this.menuDBServer.Name = "menuDBServer";
-			this.menuDBServer.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.menuDBServer_ItemClick);
 			// 
 			// MainForm
 			// 

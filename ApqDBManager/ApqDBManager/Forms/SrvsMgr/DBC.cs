@@ -6,37 +6,47 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using WeifenLuo.WinFormsUI.Docking;
+using System.Data.SqlClient;
 
 namespace ApqDBManager.Forms.SrvsMgr
 {
 	public partial class DBC : Apq.Windows.Forms.DockForm
 	{
-		protected string _FileName = string.Empty;
+		private SqlConnection _SqlConn = new SqlConnection();
+		public Apq.DBC.XSD Sqls
+		{
+			get
+			{
+				if (!(FormDataSet is Apq.DBC.XSD))
+				{
+					DBServer dbServer = Apq.Windows.Forms.SingletonForms.GetInstance(typeof(DBServer)) as DBServer;
+					FormDataSet = dbServer.Sqls;
+				}
+				return FormDataSet as Apq.DBC.XSD;
+			}
+		}
 
 		public DBC()
 		{
 			InitializeComponent();
 		}
 
-		private void Random_Load(object sender, EventArgs e)
+		private void DBC_Load(object sender, EventArgs e)
 		{
+			#region 添加图标
+			this.bbiSave.Glyph = System.Drawing.Image.FromFile(@"Res\png\File\Save.png");
+			#endregion
+
 			Apq.Xtra.Grid.Common.AddBehaivor(gridView1);
 		}
 
 		private void btnSaveToDB_Click(object sender, EventArgs e)
 		{
-			//string[] ary = Apq.String.Random(Apq.Convert.ChangeType<uint>(spinEdit2.Value, 10), Apq.Convert.ChangeType<int>(spinEdit1.Value, 16), false, null, textEdit1.Text);
-			//random1.DataTable1.Clear();
-			//random1.DataTable1.AcceptChanges();
+			if (sda == null) return;
 
-			//foreach (string str in ary)
-			//{
-			//    DataRow dr = random1.DataTable1.NewRow();
-			//    dr["str"] = str;
-			//    random1.DataTable1.Rows.Add(dr);
-			//}
-
-			//random1.DataTable1.AcceptChanges();
+			sda.Update(Sqls.DBC);
+			Sqls.DBC.AcceptChanges();
+			bsiOutInfo.Caption = "更新成功";
 		}
 
 		private void btnCopy_Click(object sender, EventArgs e)
@@ -45,46 +55,222 @@ namespace ApqDBManager.Forms.SrvsMgr
 			gridView1.CopyToClipboard();
 		}
 
-		private void Random_FormClosing(object sender, FormClosingEventArgs e)
+		private void DBC_FormClosing(object sender, FormClosingEventArgs e)
 		{
-			Apq.Windows.Forms.DelayConfirmBox dcb = new Apq.Windows.Forms.DelayConfirmBox(10, "确定退出");
-
-			// 以下两种方式任选一种均可
-			#region 事件方式
-			dcb.NoClick += new EventHandler(delegate(object sender1, EventArgs e1)
-			{
-				e.Cancel = true;
-			});
-			dcb.CancelClick += new EventHandler(delegate(object sender1, EventArgs e1)
-			{
-				e.Cancel = true;
-			});
-			#endregion
-			dcb.ShowDialog();
-			#region 直接方式
-			//if (dcb.ShowDialog() != DialogResult.Yes)
-			//{
-			//    e.Cancel = true;
-			//}
-			#endregion
+			Apq.Windows.Forms.SingletonForms.ReleaseInstance(this.GetType());
 		}
 
 		private void btnLoadFromDB_Click(object sender, EventArgs e)
 		{
-			//int nCount = Apq.Convert.ChangeType<int>(spinEdit2.Value, 10);
-			//string[] ary = new string[nCount];
-			//random1.DataTable1.Clear();
-			//random1.DataTable1.AcceptChanges();
-
-			//for (int i = 0; i < nCount; i++)
-			//{
-			//    string str = System.Guid.NewGuid().ToString();
-			//    DataRow dr = random1.DataTable1.NewRow();
-			//    dr["str"] = str;
-			//    random1.DataTable1.Rows.Add(dr);
-			//}
-
-			//random1.DataTable1.AcceptChanges();
+			LoadData(FormDataSet);
 		}
+
+		#region IDataShow 成员
+		/// <summary>
+		/// 前期准备(如数据库连接或文件等)
+		/// </summary>
+		public override void InitDataBefore()
+		{
+			#region 数据库连接
+			_SqlConn.ConnectionString = GlobalObject.SqlConn;
+			#endregion
+
+			// 为sda设置SqlCommand
+			scSelect.Connection = _SqlConn;
+			scSelect.CommandText = "dbo.ApqDBMgr_DBC_List";
+			scSelect.CommandType = CommandType.StoredProcedure;
+
+			scDelete.Connection = _SqlConn;
+			scDelete.CommandText = "dbo.ApqDBMgr_DBC_Delete";
+			scDelete.CommandType = CommandType.StoredProcedure;
+			scDelete.Parameters.Add("@DBID", SqlDbType.Int, 4, "DBID");
+
+			scUpdate.Connection = _SqlConn;
+			scUpdate.CommandText = "dbo.ApqDBMgr_DBC_Save";
+			scUpdate.CommandType = CommandType.StoredProcedure;
+			scUpdate.Parameters.Add("@SqlID", SqlDbType.Int, 4, "SqlID");
+			scUpdate.Parameters.Add("@DBID", SqlDbType.Int, 4, "DBID");
+			scUpdate.Parameters.Add("@DBCType", SqlDbType.Int, 4, "DBCType");
+			scUpdate.Parameters.Add("@UseTrusted", SqlDbType.TinyInt, 1, "UseTrusted");
+			scUpdate.Parameters.Add("@DBName", SqlDbType.NVarChar, 50, "DBName");
+			scUpdate.Parameters.Add("@UserId", SqlDbType.NVarChar, 50, "UserId");
+			scUpdate.Parameters.Add("@PwdC", SqlDbType.NVarChar, 500, "PwdC");
+			scUpdate.Parameters.Add("@Mirror", SqlDbType.NVarChar, 1000, "Mirror");
+			scUpdate.Parameters.Add("@Option", SqlDbType.NVarChar, 1000, "Option");
+			scUpdate.Parameters["@DBID"].Direction = ParameterDirection.InputOutput;
+
+			scInsert.Connection = _SqlConn;
+			scInsert.CommandText = "dbo.ApqDBMgr_DBC_Save";
+			scInsert.CommandType = CommandType.StoredProcedure;
+			scUpdate.Parameters.Add("@SqlID", SqlDbType.Int, 4, "SqlID");
+			scUpdate.Parameters.Add("@DBID", SqlDbType.Int, 4, "DBID");
+			scUpdate.Parameters.Add("@DBCType", SqlDbType.Int, 4, "DBCType");
+			scUpdate.Parameters.Add("@UseTrusted", SqlDbType.TinyInt, 1, "UseTrusted");
+			scUpdate.Parameters.Add("@DBName", SqlDbType.NVarChar, 50, "DBName");
+			scUpdate.Parameters.Add("@UserId", SqlDbType.NVarChar, 50, "UserId");
+			scUpdate.Parameters.Add("@PwdC", SqlDbType.NVarChar, 500, "PwdC");
+			scUpdate.Parameters.Add("@Mirror", SqlDbType.NVarChar, 1000, "Mirror");
+			scUpdate.Parameters.Add("@Option", SqlDbType.NVarChar, 1000, "Option");
+			scUpdate.Parameters["@DBID"].Direction = ParameterDirection.InputOutput;
+		}
+		/// <summary>
+		/// 初始数据(如Lookup数据等)
+		/// </summary>
+		/// <param name="ds"></param>
+		public override void InitData(DataSet ds)
+		{
+			#region 准备数据集结构
+			#endregion
+
+			#region 加载所有字典表
+			//computerTypeTableAdapter1.Fill(Sqls.ComputerType);
+			//sqlTypeTableAdapter1.Fill(Sqls.SqlType);
+			//dbcTypeTableAdapter1.Fill(Sqls.DBCType);
+			#endregion
+		}
+		/// <summary>
+		/// 加载数据
+		/// </summary>
+		/// <param name="ds"></param>
+		public override void LoadData(DataSet ds)
+		{
+			Sqls.DBC.Clear();
+			sda.Fill(Sqls.DBC);
+			#region 密码解密
+			//解密密码,生成连接字符串
+			foreach (Apq.DBC.XSD.DBCRow dr in Sqls.DBC.Rows)
+			{
+				if (!Apq.Convert.LikeDBNull(dr["PwdC"]))
+				{
+					dr.PwdD = Apq.Security.Cryptography.DESHelper.DecryptString(dr.PwdC, GlobalObject.RegConfigChain["Crypt", "DESKey"], GlobalObject.RegConfigChain["Crypt", "DESIV"]);
+				}
+			}
+			#endregion
+			Sqls.DBC.AcceptChanges();
+			bsiOutInfo.Caption = "加载成功";
+		}
+		/// <summary>
+		/// 显示数据
+		/// </summary>
+		public override void ShowData()
+		{
+			#region 设置Lookup
+			luComputer.DisplayMember = "ComputerName";
+			luComputer.ValueMember = "ComputerID";
+			luComputer.DataSource = Sqls.Computer;
+			luSqlInstance.DisplayMember = "SqlName";
+			luSqlInstance.ValueMember = "SqlID";
+			luSqlInstance.DataSource = Sqls.SqlInstance;
+			luDBCType.DisplayMember = "TypeCaption";
+			luDBCType.ValueMember = "DBCType";
+			luDBCType.DataSource = Sqls.DBCType;
+			#endregion
+
+			gridControl1.DataMember = "DBC";
+			gridControl1.DataSource = Sqls;
+		}
+
+		#endregion
+
+		//刷新
+		private void bbiRefresh_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+		{
+			LoadData(FormDataSet);
+		}
+
+		//保存
+		private void bbiSave_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+		{
+			if (sda == null) return;
+
+			// 密码加密
+			DataRow[] drs = Sqls.DBC.Select("1=1", "DBID ASC", DataViewRowState.Added | DataViewRowState.ModifiedCurrent);
+			if (drs != null && drs.Length > 0)
+			{
+				foreach (DataRow dr in drs)
+				{
+					if (!Apq.Convert.LikeDBNull(dr["PwdD"]))
+					{
+						dr["PwdC"] = Apq.Security.Cryptography.DESHelper.EncryptString(Apq.Convert.ChangeType<string>(dr["PwdD"]),
+							GlobalObject.RegConfigChain["Crypt", "DESKey"], GlobalObject.RegConfigChain["Crypt", "DESIV"]);
+					}
+				}
+
+				sda.Update(Sqls.DBC);
+				Sqls.DBC.AcceptChanges();
+			}
+			bsiOutInfo.Caption = "更新成功";
+		}
+
+		//全选
+		private void bbiSelectAll_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+		{
+			gridView1.SelectAll();
+		}
+
+		private void bbiSlts_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+		{
+			if (gridView1.SelectedRowsCount > 0)
+			{
+				gridView1.BeginUpdate();
+				int[] RowHandles = gridView1.GetSelectedRows();
+				foreach (int RowHandle in RowHandles)
+				{
+					gridView1.SetRowCellValue(RowHandle, gridView1.FocusedColumn, beiStr.EditValue);
+				}
+				gridView1.EndUpdate();
+			}
+		}
+
+		private void tsmiTestOpen_Click(object sender, EventArgs e)
+		{
+			if (gridView1.FocusedRowHandle > -1)
+			{
+				DataRow dr = gridView1.GetFocusedDataRow();
+				string strPwdD = Apq.Convert.ChangeType<string>(dr["PwdD"]);
+				if (string.IsNullOrEmpty(strPwdD))
+				{
+					strPwdD = Apq.Security.Cryptography.DESHelper.DecryptString(dr["PwdC"].ToString(), GlobalObject.RegConfigChain["Crypt", "DESKey"], GlobalObject.RegConfigChain["Crypt", "DESIV"]);
+				}
+
+				Apq.DBC.XSD.SqlInstanceRow sr = Sqls.SqlInstance.FindBySqlID(Apq.Convert.ChangeType<int>(dr["SqlID"]));
+				string strServerName = sr.IP;
+				if (sr.SqlPort > 0)
+				{
+					strServerName += "," + sr.SqlPort;
+				}
+				string strConn = Apq.ConnectionStrings.SQLServer.SqlConnection.GetConnectionString(
+					strServerName,
+					Apq.Convert.ChangeType<string>(dr["UserId"]),
+					strPwdD,
+					Apq.Convert.ChangeType<string>(dr["DBName"])
+					);
+				SqlConnection sc = new SqlConnection(strConn);
+				try
+				{
+					Apq.Data.Common.DbConnectionHelper.Open(sc);
+					bsiTest.Caption = dr["DBName"] + "-->连接成功.";
+				}
+				catch
+				{
+					bsiTest.Caption = dr["DBName"] + "-X-连接失败!";
+				}
+				finally
+				{
+					Apq.Data.Common.DbConnectionHelper.Close(sc);
+				}
+			}
+		}
+
+		private void tsmiDel_Click(object sender, EventArgs e)
+		{
+			if (gridView1.FocusedRowHandle > -1)
+			{
+				gridView1.BeginUpdate();
+				gridView1.DeleteRow(gridView1.FocusedRowHandle);
+				gridView1.EndUpdate();
+			}
+		}
+
 	}
 }

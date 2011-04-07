@@ -283,7 +283,7 @@ UNION ALL SELECT 2,2;";
 			{
 				#region 注册检测
 				DataView dv = new DataView(_Sqls.SqlInstance);
-				dv.RowFilter = "CheckState = 1 AND ID > 1";
+				dv.RowFilter = "CheckState = 1 AND SqlID > 1";
 				if (dv.Count > 3 && !Apq.Reg.Client.Common.IsRegistration)
 				{
 					MessageBox.Show("谢谢您支持共享软件!共享版最多支持同时连接3个服务器,要获得更多的连接支持,请注册,谢谢使用","注册提示");
@@ -490,7 +490,7 @@ UNION ALL SELECT 2,2;";
 		private void MainBackThread_Start()
 		{
 			DataView dv = new DataView(_Sqls.SqlInstance);
-			dv.RowFilter = "CheckState = 1 AND ID > 1";
+			dv.RowFilter = "CheckState = 1 AND SqlID > 1";
 			if (dv.Count == 0)
 			{
 				return;
@@ -579,7 +579,7 @@ UNION ALL SELECT 2,2;";
 			{
 				#region 获取服务器列表
 				DataView dv = new DataView(_Sqls.SqlInstance);
-				dv.RowFilter = "CheckState = 1 AND ID > 1";
+				dv.RowFilter = "CheckState = 1 AND SqlID > 1";
 				#endregion
 
 				#region 开始
@@ -609,10 +609,10 @@ UNION ALL SELECT 2,2;";
 					ParameterizedThreadStart pts = new ParameterizedThreadStart(Worker_Start);
 					try
 					{
-						Thread t = Apq.Threading.Thread.StartNewThread(pts, drv["ID"]);
-						if (!Convert.IsDBNull(drv["Name"]))
+						Thread t = Apq.Threading.Thread.StartNewThread(pts, drv["SqlID"]);
+						if (!Convert.IsDBNull(drv["SqlName"]))
 						{
-							t.Name = drv["Name"].ToString();
+							t.Name = drv["SqlName"].ToString();
 						}
 						thds.Add(t);
 					}
@@ -643,7 +643,7 @@ UNION ALL SELECT 2,2;";
 
 			int nServerID = Apq.Convert.ChangeType<int>(ServerID);
 			DataView dv = new DataView(_Sqls.SqlInstance);
-			dv.RowFilter = "ID = " + nServerID;
+			dv.RowFilter = "SqlID = " + nServerID;
 			if (dv.Count == 0)
 			{
 				return;
@@ -661,7 +661,7 @@ UNION ALL SELECT 2,2;";
 					{
 						GlobalObject.ErrList.Set_ErrList(dsUI);
 
-						XtraTabPage xtp = xtraTabControl1.TabPages.Add(dr["Name"].ToString());
+						XtraTabPage xtp = xtraTabControl1.TabPages.Add(dr["SqlName"].ToString());
 						rt = new ResultTable();
 						rt.Dock = System.Windows.Forms.DockStyle.Fill;
 						rt.Location = new System.Drawing.Point(0, 0);
@@ -677,7 +677,7 @@ UNION ALL SELECT 2,2;";
 			//int nRows = 0;
 			try
 			{
-				sc = new SqlConnection(dr["ConnectionString"].ToString());
+				sc = new SqlConnection(dr["DBConnectionString"].ToString());
 				sc.StatisticsEnabled = true;// 启用统计
 				sc.FireInfoMessageEventOnUserErrors = true;// 启用消息事件
 				sc.InfoMessage += new SqlInfoMessageEventHandler(rt.sc_InfoMessage);
@@ -691,7 +691,7 @@ UNION ALL SELECT 2,2;";
 
 				// 2.准备语句
 				string[] arySql = Apq.Windows.Controls.ControlExtension.GetControlValues(this, "arySql") as string[];
-				ds = new DataSet(dr["Name"].ToString());
+				ds = new DataSet(dr["SqlName"].ToString());
 
 				// 3.执行语句
 				if (arySql != null)
@@ -765,7 +765,7 @@ UNION ALL SELECT 2,2;";
 			catch (Exception ex)
 			{
 				DataView dvErr = new DataView(_Sqls.SqlInstance);
-				dvErr.RowFilter = "ID = " + nServerID;
+				dvErr.RowFilter = "SqlID = " + nServerID;
 				// 标记本服执行出错
 				if (dvErr.Count > 0)
 				{
@@ -775,7 +775,7 @@ UNION ALL SELECT 2,2;";
 						{
 							XSD.UI.ErrListRow drErrList = dsUI.ErrList.NewErrListRow();
 							drErrList.RSrvID = nServerID;
-							drErrList["__ServerName"] = dvErr[0]["Name"];
+							drErrList["__ServerName"] = dvErr[0]["SqlName"];
 							drErrList.s = ex.Message;
 							dsUI.ErrList.Rows.Add(drErrList);
 
@@ -783,7 +783,7 @@ UNION ALL SELECT 2,2;";
 						});
 					}
 				}
-				Apq.GlobalObject.ApqLog.Warn(dr["Name"], ex);
+				Apq.GlobalObject.ApqLog.Warn(dr["SqlName"], ex);
 			}
 			finally
 			{
@@ -809,7 +809,7 @@ UNION ALL SELECT 2,2;";
 								if (dvErr.Count > 0)
 								{
 									bsiState.Caption += ",但有错误发生,请查看";
-									GlobalObject.SolutionExplorer.FocusAndExpandByID(Apq.Convert.ChangeType<int>(dv[0]["ID"]));
+									GlobalObject.SolutionExplorer.FocusAndExpandByID(Apq.Convert.ChangeType<int>(dv[0]["SqlID"]));
 								}
 							}
 						}

@@ -76,15 +76,19 @@
 			this.computerTypeTableAdapter1 = new Apq.DBC.XSDTableAdapters.ComputerTypeTableAdapter();
 			this.sqlTypeTableAdapter1 = new Apq.DBC.XSDTableAdapters.SqlTypeTableAdapter();
 			this.dbcTypeTableAdapter1 = new Apq.DBC.XSDTableAdapters.DBCTypeTableAdapter();
+			this.cmGridMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+			this.tsmiDel = new System.Windows.Forms.ToolStripMenuItem();
 			((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.luComputerType)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit1)).BeginInit();
+			this.cmGridMenu.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// gridControl1
 			// 
+			this.gridControl1.ContextMenuStrip = this.cmGridMenu;
 			this.gridControl1.DataMember = "Computer";
 			this.gridControl1.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.gridControl1.Location = new System.Drawing.Point(0, 25);
@@ -142,7 +146,6 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
 			this.luComputerType.DisplayMember = "ComputerType.TypeCaption";
 			this.luComputerType.Name = "luComputerType";
-			this.luComputerType.ValueMember = "ComputerType.ComputerType";
 			// 
 			// gridColumn18
 			// 
@@ -229,6 +232,7 @@
 			// bbiSaveToDB
 			// 
 			this.bbiSaveToDB.Caption = "保存";
+			this.bbiSaveToDB.Hint = "保存";
 			this.bbiSaveToDB.Id = 1;
 			this.bbiSaveToDB.Name = "bbiSaveToDB";
 			this.bbiSaveToDB.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiSaveToDB_ItemClick);
@@ -325,9 +329,8 @@
 			// 
 			// scSelect
 			// 
-			this.scSelect.CommandText = "\r\nSELECT * FROM dic_SQLInstanceType;\r\nSELECT * FROM dic_IPType;\r\nSELECT * FROM DB" +
-				"Server;\r\nSELECT * FROM SQLInstance;\r\nSELECT * FROM DBC;\r\nSELECT * FROM DBServerI" +
-				"P;";
+			this.scSelect.CommandText = "\r\nSELECT * FROM dic_SQLType;\r\nSELECT * FROM dic_IPType;\r\nSELECT * FROM DBServer;\r" +
+				"\nSELECT * FROM SQLInstance;\r\nSELECT * FROM DBC;\r\nSELECT * FROM DBServerIP;";
 			// 
 			// sda
 			// 
@@ -347,6 +350,20 @@
 			// dbcTypeTableAdapter1
 			// 
 			this.dbcTypeTableAdapter1.ClearBeforeFill = true;
+			// 
+			// cmGridMenu
+			// 
+			this.cmGridMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiDel});
+			this.cmGridMenu.Name = "contextMenuStrip1";
+			this.cmGridMenu.Size = new System.Drawing.Size(153, 48);
+			// 
+			// tsmiDel
+			// 
+			this.tsmiDel.Name = "tsmiDel";
+			this.tsmiDel.Size = new System.Drawing.Size(152, 22);
+			this.tsmiDel.Text = "删除(&D)";
+			this.tsmiDel.Click += new System.EventHandler(this.tsmiDel_Click);
 			// 
 			// DBServer
 			// 
@@ -369,6 +386,7 @@
 			((System.ComponentModel.ISupportInitialize)(this.luComputerType)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit1)).EndInit();
+			this.cmGridMenu.ResumeLayout(false);
 			this.ResumeLayout(false);
 
 		}
@@ -421,5 +439,7 @@
 		private Apq.DBC.XSDTableAdapters.DBCTypeTableAdapter dbcTypeTableAdapter1;
 		private DevExpress.XtraBars.BarButtonItem bbiSqlInstance;
 		private DevExpress.XtraBars.BarButtonItem bbiRefresh;
+		private System.Windows.Forms.ContextMenuStrip cmGridMenu;
+		private System.Windows.Forms.ToolStripMenuItem tsmiDel;
 	}
 }
