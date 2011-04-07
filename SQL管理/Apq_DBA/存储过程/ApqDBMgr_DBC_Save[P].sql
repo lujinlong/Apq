@@ -11,8 +11,7 @@ EXEC dbo.ApqDBMgr_DBC_Save 1
 -- =============================================
 */
 ALTER PROC dbo.ApqDBMgr_DBC_Save
-	 @ComputerID	int
-	,@SqlID			int
+	 @SqlID			int
 	,@DBID			int out
 	,@DBCType		int
 	,@UseTrusted	tinyint
@@ -27,7 +26,7 @@ SET NOCOUNT ON ;
 DECLARE @ExMsg nvarchar(max);
 
 UPDATE dbo.DBC
-   SET ComputerID = @ComputerID, SqlID = @SqlID, DBCType = @DBCType, UseTrusted = @UseTrusted, DBName = @DBName
+   SET SqlID = @SqlID, DBCType = @DBCType, UseTrusted = @UseTrusted, DBName = @DBName
 	,UserId = @UserId, PwdC = @PwdC, Mirror = @Mirror, [Option] = @Option
  WHERE [DBID] = @DBID;
 IF(@@ROWCOUNT = 0)
@@ -39,12 +38,12 @@ BEGIN
 		SELECT @DBID = @DB_DBID;
 	END
 
-	INSERT dbo.DBC ( ComputerID, SqlID, [DBID], DBCType, UseTrusted, DBName, UserId, PwdC, Mirror, [Option] )
-	VALUES ( @ComputerID,@SqlID,@DBID,@DBCType,@UseTrusted,@DBName,@UserId,@PwdC,@Mirror,@Option );
+	INSERT dbo.DBC ( SqlID, [DBID], DBCType, UseTrusted, DBName, UserId, PwdC, Mirror, [Option] )
+	VALUES ( @SqlID,@DBID,@DBCType,@UseTrusted,@DBName,@UserId,@PwdC,@Mirror,@Option );
 	
 END
 
-SELECT ComputerID, SqlID, [DBID], DBCType, UseTrusted, DBName, UserId, PwdC, Mirror, [Option]
-  FROM dbo.DBC
+SELECT s.ComputerID, d.SqlID, [DBID], DBCType, UseTrusted, DBName, d.UserId, d.PwdC, Mirror, [Option]
+  FROM dbo.DBC d LEFT JOIN dbo.SqlInstance s ON d.SqlID = s.SqlID
  WHERE [DBID] = @DBID;
 GO

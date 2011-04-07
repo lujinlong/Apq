@@ -13,6 +13,6 @@ ALTER PROC dbo.ApqDBMgr_DBC_List
 AS 
 SET NOCOUNT ON ;
 
-SELECT ComputerID, SqlID, [DBID], DBCType, UseTrusted, DBName, UserId, PwdC, Mirror, [Option]
-  FROM dbo.DBC
+SELECT s.ComputerID, d.SqlID, [DBID], DBCType, UseTrusted, DBName, d.UserId, d.PwdC, Mirror, [Option]
+  FROM dbo.DBC d LEFT JOIN dbo.SqlInstance s ON d.SqlID = s.SqlID
 GO
