@@ -71,6 +71,7 @@ namespace Apq.DBC
 			_xsd.ReadXml(sr);
 
 			// 读取完成,计算所有连接字符串
+			/*
 			foreach (XSD.SqlInstanceRow dr in _xsd.SqlInstance.Rows)
 			{
 				Apq.ConnectionStrings.SQLServer.SqlConnection sc = new Apq.ConnectionStrings.SQLServer.SqlConnection();
@@ -84,6 +85,7 @@ namespace Apq.DBC
 				sc.Pwd = dr.PwdD;
 				dr["DBConnectionString"] = sc.GetConnectionString();
 			}
+			*/
 			foreach (XSD.DBCRow dr in _xsd.DBC.Rows)
 			{
 				Apq.ConnectionStrings.SQLServer.SqlConnection sc = new Apq.ConnectionStrings.SQLServer.SqlConnection();
@@ -135,6 +137,7 @@ namespace Apq.DBC
 		/// 获取实例连接字符串(Apq管理器使用)
 		/// </summary>
 		/// <returns></returns>
+		[Obsolete("无需使用")]
 		public static string GetInstanceConnectoinString(string SQLName)
 		{
 			string cs = string.Empty;
