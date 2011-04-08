@@ -58,7 +58,8 @@ namespace ApqDBManager.Forms.SrvsMgr
 			DevExpress.XtraBars.BarButtonItem bbi = e.Item as DevExpress.XtraBars.BarButtonItem;
 			if (bbi != null && sfd.ShowDialog(this) == DialogResult.OK)
 			{
-				DataSet ds = new DataSet();
+				DataSet ds = new DataSet("XSD");
+				ds.Namespace = Sqls.Namespace;
 				DataTable dt = Sqls.DBC.Copy();
 				ds.Tables.Add(dt);
 				for (int i = dt.Rows.Count - 1; i >= 0; i--)
@@ -73,6 +74,7 @@ namespace ApqDBManager.Forms.SrvsMgr
 				string desIV = GlobalObject.RegConfigChain["Crypt", "DESIV"];
 				string strCs = Apq.Security.Cryptography.DESHelper.EncryptString(csStr, desKey, desIV);
 				File.WriteAllText(sfd.FileName, strCs, Encoding.UTF8);
+				bsiOutInfo.Caption = "保存文件成功";
 			}
 		}
 
