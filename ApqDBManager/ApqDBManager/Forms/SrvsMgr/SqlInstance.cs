@@ -48,18 +48,10 @@ namespace ApqDBManager.Forms.SrvsMgr
 
 		void SqlInstance_TableNewRow(object sender, DataTableNewRowEventArgs e)
 		{
-			//e.Row["ComputerID"] = 0;
-			//e.Row["SqlID"] = 0;
 			if (treeList1.FocusedNode != null)
 			{
 				e.Row["ParentID"] = treeList1.FocusedNode["SqlID"];
 			}
-			//e.Row["SqlName"] = "新建实例[名称]";
-			//e.Row["SqlType"] = 1;
-			//e.Row["IP"] = string.Empty;
-			//e.Row["SqlPort"] = 0;
-			//e.Row["UserId"] = "apq";
-			//e.Row["PwdD"] = "f";
 		}
 
 		private void SqlInstance_FormClosing(object sender, FormClosingEventArgs e)
@@ -309,16 +301,8 @@ namespace ApqDBManager.Forms.SrvsMgr
 		{
 			Sqls.SqlInstance.Clear();
 			sda.Fill(Sqls.SqlInstance);
-			#region 密码解密
-			//解密密码,生成连接字符串
-			foreach (Apq.DBC.XSD.SqlInstanceRow dr in Sqls.SqlInstance.Rows)
-			{
-				if (!Apq.Convert.LikeDBNull(dr["PwdC"]))
-				{
-					dr.PwdD = Apq.Security.Cryptography.DESHelper.DecryptString(dr.PwdC, GlobalObject.RegConfigChain["Crypt", "DESKey"], GlobalObject.RegConfigChain["Crypt", "DESIV"]);
-				}
-			}
-			#endregion
+			// 密码解密
+			Common.PwdC2D(Sqls.SqlInstance);
 			Sqls.SqlInstance.AcceptChanges();
 			bsiOutInfo.Caption = "加载成功";
 
@@ -373,9 +357,33 @@ namespace ApqDBManager.Forms.SrvsMgr
 			treeList1.EndUpdate();
 		}
 
+		// 设置多行
 		private void bbiSlts_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
 		{
+			if (treeList1.FocusedColumn != null)
+			{
+				treeList1.BeginUpdate();
+				string strcn = treeList1.FocusedColumn.FieldName;
+				foreach (TreeListNode tln in treeList1.Nodes)
+				{
+					TreeList_SetMultiLine(tln, strcn, beiStr.EditValue);
+				}
+				treeList1.EndUpdate();
+			}
+		}
 
+		// 递归设置多行
+		private void TreeList_SetMultiLine(TreeListNode tln, string ColumnName, object Value)
+		{
+			if (Apq.Convert.ChangeType<int>(tln["CheckState"]) == 1)
+			{
+				tln[ColumnName] = Value;
+			}
+
+			foreach (TreeListNode tlnc in tln.Nodes)
+			{
+				TreeList_SetMultiLine(tlnc, ColumnName, Value);
+			}
 		}
 
 		//刷新

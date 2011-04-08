@@ -192,6 +192,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common.cs" />
     <Compile Include="Controls\MainOption\Favorites.cs">
       <SubType>UserControl</SubType>
     </Compile>

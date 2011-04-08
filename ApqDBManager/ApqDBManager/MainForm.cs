@@ -20,8 +20,6 @@ namespace ApqDBManager
 		}
 
 		private DeserializeDockContent m_deserializeDockContent;
-		private static string AsmDockPanelConfigFile = "DockPanel.config";
-		private static string UserDockPanelConfigFile = "DockPanel." + Environment.UserName + ".config";
 
 		/// <summary>
 		/// 根据上次退出时保存的界面状态,加载界面时调用
@@ -92,13 +90,13 @@ namespace ApqDBManager
 			#endregion
 
 			#region DockPanel.config
-			if (File.Exists(UserDockPanelConfigFile))
+			if (File.Exists(GlobalObject.UserDockPanalConfigFile))
 			{
-				dockPanel1.LoadFromXml(UserDockPanelConfigFile, m_deserializeDockContent);
+				dockPanel1.LoadFromXml(GlobalObject.UserDockPanalConfigFile, m_deserializeDockContent);
 			}
-			else if (File.Exists(AsmDockPanelConfigFile))
+			else if (File.Exists(GlobalObject.AsmDockPanalConfigFile))
 			{
-				dockPanel1.LoadFromXml(AsmDockPanelConfigFile, m_deserializeDockContent);
+				dockPanel1.LoadFromXml(GlobalObject.AsmDockPanalConfigFile, m_deserializeDockContent);
 			}
 			#endregion
 
@@ -111,7 +109,7 @@ namespace ApqDBManager
 
 		private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
 		{
-			dockPanel1.SaveAsXml(UserDockPanelConfigFile);
+			dockPanel1.SaveAsXml(GlobalObject.UserDockPanalConfigFile);
 		}
 
 		#region 文件

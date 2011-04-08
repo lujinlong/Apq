@@ -71,6 +71,7 @@
 			this.scInsert = new System.Data.SqlClient.SqlCommand();
 			this.scSelect = new System.Data.SqlClient.SqlCommand();
 			this.scUpdate = new System.Data.SqlClient.SqlCommand();
+			this.sfd = new System.Windows.Forms.SaveFileDialog();
 			((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
@@ -195,7 +196,7 @@
 			// 
 			// bsiCreateCSFile
 			// 
-			this.bsiCreateCSFile.Caption = "生成文件";
+			this.bsiCreateCSFile.Caption = "生成文件(&G)";
 			this.bsiCreateCSFile.Id = 9;
 			this.bsiCreateCSFile.Name = "bsiCreateCSFile";
 			// 
@@ -394,6 +395,10 @@
 				"Server;\r\nSELECT * FROM SQLInstance;\r\nSELECT * FROM DBC;\r\nSELECT * FROM DBServerI" +
 				"P;";
 			// 
+			// sfd
+			// 
+			this.sfd.Filter = "DBC文件(*.res)|*.res";
+			// 
 			// DBC
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
@@ -468,6 +473,7 @@
 		private System.Windows.Forms.ToolStripMenuItem tsmiTestOpen;
 		private System.Windows.Forms.ToolStripMenuItem tsmiDel;
 		private DevExpress.XtraBars.BarSubItem bsiCreateCSFile;
+		private System.Windows.Forms.SaveFileDialog sfd;
 
 	}
 }

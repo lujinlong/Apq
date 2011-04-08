@@ -7,6 +7,7 @@ using System.Text;
 using System.Windows.Forms;
 using WeifenLuo.WinFormsUI.Docking;
 using System.Data.SqlClient;
+using System.IO;
 
 namespace ApqDBManager.Forms.SrvsMgr
 {
@@ -37,7 +38,42 @@ namespace ApqDBManager.Forms.SrvsMgr
 			this.bbiSave.Glyph = System.Drawing.Image.FromFile(@"Res\png\File\Save.png");
 			#endregion
 
+			// 加载生成菜单
+			foreach (Apq.DBC.XSD.DBCTypeRow dr in Sqls.DBCType.Rows)
+			{
+				DevExpress.XtraBars.BarButtonItem bbi = new DevExpress.XtraBars.BarButtonItem();
+				bbi.Caption = dr.TypeCaption;
+				bbi.Tag = dr.DBCType;
+				bbi.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(bbi_ItemClick);
+				bsiCreateCSFile.AddItem(bbi);
+			}
+
 			Apq.Xtra.Grid.Common.AddBehaivor(gridView1);
+		}
+
+		// 生成数据库连接文件
+		void bbi_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+		{
+			int nDBCType = Apq.Convert.ChangeType<int>(e.Item.Tag);
+			DevExpress.XtraBars.BarButtonItem bbi = e.Item as DevExpress.XtraBars.BarButtonItem;
+			if (bbi != null && sfd.ShowDialog(this) == DialogResult.OK)
+			{
+				DataSet ds = new DataSet();
+				DataTable dt = Sqls.DBC.Copy();
+				ds.Tables.Add(dt);
+				for (int i = dt.Rows.Count - 1; i >= 0; i--)
+				{
+					if (Apq.Convert.ChangeType<int>(dt.Rows[i]["DBCType"]) != nDBCType)
+					{
+						dt.Rows.RemoveAt(i);
+					}
+				}
+				string csStr = ds.GetXml();
+				string desKey = GlobalObject.RegConfigChain["Crypt", "DESKey"];
+				string desIV = GlobalObject.RegConfigChain["Crypt", "DESIV"];
+				string strCs = Apq.Security.Cryptography.DESHelper.EncryptString(csStr, desKey, desIV);
+				File.WriteAllText(sfd.FileName, strCs, Encoding.UTF8);
+			}
 		}
 
 		private void btnSaveToDB_Click(object sender, EventArgs e)
@@ -136,16 +172,8 @@ namespace ApqDBManager.Forms.SrvsMgr
 		{
 			Sqls.DBC.Clear();
 			sda.Fill(Sqls.DBC);
-			#region 密码解密
-			//解密密码,生成连接字符串
-			foreach (Apq.DBC.XSD.DBCRow dr in Sqls.DBC.Rows)
-			{
-				if (!Apq.Convert.LikeDBNull(dr["PwdC"]))
-				{
-					dr.PwdD = Apq.Security.Cryptography.DESHelper.DecryptString(dr.PwdC, GlobalObject.RegConfigChain["Crypt", "DESKey"], GlobalObject.RegConfigChain["Crypt", "DESIV"]);
-				}
-			}
-			#endregion
+			//密码解密
+			Common.PwdC2D(Sqls.DBC);
 			Sqls.DBC.AcceptChanges();
 			bsiOutInfo.Caption = "加载成功";
 		}
@@ -184,21 +212,10 @@ namespace ApqDBManager.Forms.SrvsMgr
 			if (sda == null) return;
 
 			// 密码加密
-			DataRow[] drs = Sqls.DBC.Select("1=1", "DBID ASC", DataViewRowState.Added | DataViewRowState.ModifiedCurrent);
-			if (drs != null && drs.Length > 0)
-			{
-				foreach (DataRow dr in drs)
-				{
-					if (!Apq.Convert.LikeDBNull(dr["PwdD"]))
-					{
-						dr["PwdC"] = Apq.Security.Cryptography.DESHelper.EncryptString(Apq.Convert.ChangeType<string>(dr["PwdD"]),
-							GlobalObject.RegConfigChain["Crypt", "DESKey"], GlobalObject.RegConfigChain["Crypt", "DESIV"]);
-					}
-				}
+			Common.PwdD2C(Sqls.DBC);
 
-				sda.Update(Sqls.DBC);
-				Sqls.DBC.AcceptChanges();
-			}
+			sda.Update(Sqls.DBC);
+			Sqls.DBC.AcceptChanges();
 			bsiOutInfo.Caption = "更新成功";
 		}
 

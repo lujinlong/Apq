@@ -143,6 +143,42 @@ namespace ApqDBManager
 		}
 		#endregion
 
+		#region UserDockPanalConfigFile
+		private static string _UserDockPanalConfigFile;
+		/// <summary>
+		/// 用户DockPanal配置文件(DockPanel.登录名.config)
+		/// </summary>
+		public static string UserDockPanalConfigFile
+		{
+			get
+			{
+				if (_UserDockPanalConfigFile == null)
+				{
+					_UserDockPanalConfigFile = AppDomain.CurrentDomain.BaseDirectory + "DockPanel." + Environment.UserName + ".config";
+				}
+				return _UserDockPanalConfigFile;
+			}
+		}
+		#endregion
+
+		#region AsmDockPanalConfigFile
+		private static string _AsmDockPanalConfigFile;
+		/// <summary>
+		/// 用户DockPanal配置文件(DockPanel.config)
+		/// </summary>
+		public static string AsmDockPanalConfigFile
+		{
+			get
+			{
+				if (_AsmDockPanalConfigFile == null)
+				{
+					_AsmDockPanalConfigFile = AppDomain.CurrentDomain.BaseDirectory + "DockPanel.config";
+				}
+				return _AsmDockPanalConfigFile;
+			}
+		}
+		#endregion
+
 		#region MainForm
 		private static MainForm _MainForm;
 		/// <summary>
