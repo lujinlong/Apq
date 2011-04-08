@@ -117,6 +117,18 @@ namespace ApqDBManager.Forms.SrvsMgr
 			#endregion
 
 			// 为sda设置SqlCommand
+			sqlCommand1.CommandText = "SELECT ComputerType, TypeCaption FROM dic.ComputerType";
+			sqlCommand1.CommandType = CommandType.Text;
+			sqlCommand1.Connection = _SqlConn;
+
+			sqlCommand2.CommandText = "SELECT [SqlType],[TypeCaption] FROM [dic].[SqlType]";
+			sqlCommand2.CommandType = CommandType.Text;
+			sqlCommand2.Connection = _SqlConn;
+
+			sqlCommand3.CommandText = "SELECT [DBCType],[TypeCaption] FROM [dic].[DBCType]";
+			sqlCommand3.CommandType = CommandType.Text;
+			sqlCommand3.Connection = _SqlConn;
+
 			scSelect.CommandText = "dbo.ApqDBMgr_Computer_List";
 			scSelect.CommandType = CommandType.StoredProcedure;
 			scSelect.Connection = _SqlConn;
@@ -160,9 +172,9 @@ namespace ApqDBManager.Forms.SrvsMgr
 			#endregion
 
 			#region 加载所有字典表
-			computerTypeTableAdapter1.Fill(Sqls.ComputerType);
-			sqlTypeTableAdapter1.Fill(Sqls.SqlType);
-			dbcTypeTableAdapter1.Fill(Sqls.DBCType);
+			sqlDataAdapter1.Fill(Sqls.ComputerType);
+			sqlDataAdapter2.Fill(Sqls.SqlType);
+			sqlDataAdapter3.Fill(Sqls.DBCType);
 			#endregion
 		}
 		/// <summary>

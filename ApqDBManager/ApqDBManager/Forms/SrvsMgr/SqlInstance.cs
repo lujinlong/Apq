@@ -44,6 +44,8 @@ namespace ApqDBManager.Forms.SrvsMgr
 			Apq.Xtra.TreeList.Common.AddBehaivor(treeList1);
 
 			Sqls.SqlInstance.TableNewRow += new DataTableNewRowEventHandler(SqlInstance_TableNewRow);
+
+			treeList1.ExpandAll();
 		}
 
 		void SqlInstance_TableNewRow(object sender, DataTableNewRowEventArgs e)

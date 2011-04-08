@@ -31,6 +31,8 @@
 			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DBServer));
 			this.gridControl1 = new DevExpress.XtraGrid.GridControl();
+			this.cmGridMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+			this.tsmiDel = new System.Windows.Forms.ToolStripMenuItem();
 			this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
 			this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -73,17 +75,18 @@
 			this.scDelete = new System.Data.SqlClient.SqlCommand();
 			this.scInsert = new System.Data.SqlClient.SqlCommand();
 			this.scUpdate = new System.Data.SqlClient.SqlCommand();
-			this.computerTypeTableAdapter1 = new Apq.DBC.XSDTableAdapters.ComputerTypeTableAdapter();
-			this.sqlTypeTableAdapter1 = new Apq.DBC.XSDTableAdapters.SqlTypeTableAdapter();
-			this.dbcTypeTableAdapter1 = new Apq.DBC.XSDTableAdapters.DBCTypeTableAdapter();
-			this.cmGridMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
-			this.tsmiDel = new System.Windows.Forms.ToolStripMenuItem();
+			this.sqlCommand1 = new System.Data.SqlClient.SqlCommand();
+			this.sqlDataAdapter1 = new System.Data.SqlClient.SqlDataAdapter();
+			this.sqlDataAdapter2 = new System.Data.SqlClient.SqlDataAdapter();
+			this.sqlCommand2 = new System.Data.SqlClient.SqlCommand();
+			this.sqlDataAdapter3 = new System.Data.SqlClient.SqlDataAdapter();
+			this.sqlCommand3 = new System.Data.SqlClient.SqlCommand();
 			((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
+			this.cmGridMenu.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.luComputerType)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit1)).BeginInit();
-			this.cmGridMenu.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// gridControl1
@@ -100,6 +103,20 @@
 			this.gridControl1.TabIndex = 4;
 			this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
+			// 
+			// cmGridMenu
+			// 
+			this.cmGridMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiDel});
+			this.cmGridMenu.Name = "contextMenuStrip1";
+			this.cmGridMenu.Size = new System.Drawing.Size(113, 26);
+			// 
+			// tsmiDel
+			// 
+			this.tsmiDel.Name = "tsmiDel";
+			this.tsmiDel.Size = new System.Drawing.Size(112, 22);
+			this.tsmiDel.Text = "删除(&D)";
+			this.tsmiDel.Click += new System.EventHandler(this.tsmiDel_Click);
 			// 
 			// gridView1
 			// 
@@ -339,31 +356,29 @@
 			this.sda.SelectCommand = this.scSelect;
 			this.sda.UpdateCommand = this.scUpdate;
 			// 
-			// computerTypeTableAdapter1
+			// sqlDataAdapter1
 			// 
-			this.computerTypeTableAdapter1.ClearBeforeFill = true;
+			this.sqlDataAdapter1.SelectCommand = this.sqlCommand1;
+			this.sqlDataAdapter1.TableMappings.AddRange(new System.Data.Common.DataTableMapping[] {
+            new System.Data.Common.DataTableMapping("Table", "ComputerType", new System.Data.Common.DataColumnMapping[] {
+                        new System.Data.Common.DataColumnMapping("ComputerType", "ComputerType"),
+                        new System.Data.Common.DataColumnMapping("TypeCaption", "TypeCaption")})});
 			// 
-			// sqlTypeTableAdapter1
+			// sqlDataAdapter2
 			// 
-			this.sqlTypeTableAdapter1.ClearBeforeFill = true;
+			this.sqlDataAdapter2.SelectCommand = this.sqlCommand2;
+			this.sqlDataAdapter2.TableMappings.AddRange(new System.Data.Common.DataTableMapping[] {
+            new System.Data.Common.DataTableMapping("Table", "ComputerType", new System.Data.Common.DataColumnMapping[] {
+                        new System.Data.Common.DataColumnMapping("ComputerType", "ComputerType"),
+                        new System.Data.Common.DataColumnMapping("TypeCaption", "TypeCaption")})});
 			// 
-			// dbcTypeTableAdapter1
+			// sqlDataAdapter3
 			// 
-			this.dbcTypeTableAdapter1.ClearBeforeFill = true;
-			// 
-			// cmGridMenu
-			// 
-			this.cmGridMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmiDel});
-			this.cmGridMenu.Name = "contextMenuStrip1";
-			this.cmGridMenu.Size = new System.Drawing.Size(153, 48);
-			// 
-			// tsmiDel
-			// 
-			this.tsmiDel.Name = "tsmiDel";
-			this.tsmiDel.Size = new System.Drawing.Size(152, 22);
-			this.tsmiDel.Text = "删除(&D)";
-			this.tsmiDel.Click += new System.EventHandler(this.tsmiDel_Click);
+			this.sqlDataAdapter3.SelectCommand = this.sqlCommand3;
+			this.sqlDataAdapter3.TableMappings.AddRange(new System.Data.Common.DataTableMapping[] {
+            new System.Data.Common.DataTableMapping("Table", "ComputerType", new System.Data.Common.DataColumnMapping[] {
+                        new System.Data.Common.DataColumnMapping("ComputerType", "ComputerType"),
+                        new System.Data.Common.DataColumnMapping("TypeCaption", "TypeCaption")})});
 			// 
 			// DBServer
 			// 
@@ -382,11 +397,11 @@
 			this.Load += new System.EventHandler(this.DBServer_Load);
 			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.DBServer_FormClosing);
 			((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
+			this.cmGridMenu.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.luComputerType)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit1)).EndInit();
-			this.cmGridMenu.ResumeLayout(false);
 			this.ResumeLayout(false);
 
 		}
@@ -434,12 +449,15 @@
 		private System.Data.SqlClient.SqlCommand scInsert;
 		private System.Data.SqlClient.SqlCommand scUpdate;
 		private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit luComputerType;
-		private Apq.DBC.XSDTableAdapters.ComputerTypeTableAdapter computerTypeTableAdapter1;
-		private Apq.DBC.XSDTableAdapters.SqlTypeTableAdapter sqlTypeTableAdapter1;
-		private Apq.DBC.XSDTableAdapters.DBCTypeTableAdapter dbcTypeTableAdapter1;
 		private DevExpress.XtraBars.BarButtonItem bbiSqlInstance;
 		private DevExpress.XtraBars.BarButtonItem bbiRefresh;
 		private System.Windows.Forms.ContextMenuStrip cmGridMenu;
 		private System.Windows.Forms.ToolStripMenuItem tsmiDel;
+		private System.Data.SqlClient.SqlCommand sqlCommand1;
+		private System.Data.SqlClient.SqlDataAdapter sqlDataAdapter1;
+		private System.Data.SqlClient.SqlDataAdapter sqlDataAdapter2;
+		private System.Data.SqlClient.SqlCommand sqlCommand2;
+		private System.Data.SqlClient.SqlDataAdapter sqlDataAdapter3;
+		private System.Data.SqlClient.SqlCommand sqlCommand3;
 	}
 }
