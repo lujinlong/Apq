@@ -343,7 +343,7 @@ namespace ApqDBManager
 			foreach (Apq.DBC.XSD.SqlInstanceRow dr in _Sqls.SqlInstance.Rows)
 			{
 				dr["DBConnectionString"] = "Data Source=.;User ID=apq;Password=f;";
-				dr.IPWan1 = "127.0.0.1";
+				dr.IP = "127.0.0.1";
 			}
 #endif
 
