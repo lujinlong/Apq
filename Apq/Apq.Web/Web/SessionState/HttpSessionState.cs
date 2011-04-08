@@ -15,7 +15,7 @@ namespace Apq.Web.SessionState
 		public HttpSessionState(System.Web.SessionState.HttpSessionState Session)
 		{
 			_Session = Session;
-			Session["ApqUser"] = new ApqUser();
+			Session["ApqLogin"] = new ApqLogin();
 		}
 
 		private System.Web.SessionState.HttpSessionState _Session;
@@ -29,71 +29,43 @@ namespace Apq.Web.SessionState
 		}
 
 		/// <summary>
-		/// 获取或设置 是否为管理员
+		/// 在 Session 中获取或设置登录信息
 		/// </summary>
-		public bool IsAdmin
+		public ApqLogin ApqLogin
 		{
-			get { return Apq.Convert.ChangeType<bool>(Session["IsAdmin"]); }
-			set { Session["IsAdmin"] = value; }
-		}
-
-		/// <summary>
-		/// 获取或设置 UserID
-		/// </summary>
-		public long UserID
-		{
-			get { return Apq.Convert.ChangeType<long>(Session["UserID"]); }
-			set { Session["UserID"] = value; }
-		}
-
-		/// <summary>
-		/// 在 Session 中获取或设置用户昵称
-		/// </summary>
-		public string NickName
-		{
-			get { return Apq.Convert.ChangeType<string>(Session["NickName"]); }
-			set { Session["NickName"] = value; }
-		}
-
-		/// <summary>
-		/// 在 Session 中获取或设置登录名
-		/// </summary>
-		public string LoginName
-		{
-			get { return Apq.Convert.ChangeType<string>(Session["LoginName"]); }
-			set { Session["LoginName"] = value; }
-		}
-
-		/// <summary>
-		/// 在 Session 中获取或设置登录时间
-		/// </summary>
-		public DateTime LoginTime
-		{
-			get { return Apq.Convert.ChangeType<DateTime>(Session["LoginTime"], DateTime.Now.AddYears(1)); }
-			set { Session["Apq_User.LoginTime"] = value; }
-		}
-
-		/// <summary>
-		/// 获取权限系统用户信息
-		/// </summary>
-		public ApqUser ApqUser
-		{
-			get { return Session["ApqUser"] as ApqUser; }
+			get { return Session["ApqLogin"] as ApqLogin; }
+			set { Session["ApqLogin"] = value; }
 		}
 	}
 
 	/// <summary>
-	/// 权限系统用户信息
+	/// 登录信息
 	/// </summary>
-	public class ApqUser
+	public class ApqLogin
 	{
 		/// <summary>
-		/// UserID
+		/// LoginID
 		/// </summary>
-		public long UserID;
+		public long LoginID;
 		/// <summary>
-		/// UserSrc
+		/// 登录名
 		/// </summary>
-		public int UserSrc;
+		public int LoginName;
+		/// <summary>
+		/// 登录密码
+		/// </summary>
+		public byte[] LoginPwd;
+		/// <summary>
+		/// 密码过期时间
+		/// </summary>
+		public DateTime PwdExpire;
+		/// <summary>
+		/// 密码状态
+		/// </summary>
+		public int PwdStatus;
+		/// <summary>
+		/// 注册时间
+		/// </summary>
+		public DateTime RegTime;
 	}
 }
