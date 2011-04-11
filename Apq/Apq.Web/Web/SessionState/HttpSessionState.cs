@@ -50,7 +50,7 @@ namespace Apq.Web.SessionState
 		/// <summary>
 		/// 登录名
 		/// </summary>
-		public int LoginName;
+		public string LoginName;
 		/// <summary>
 		/// 登录密码
 		/// </summary>
@@ -67,5 +67,9 @@ namespace Apq.Web.SessionState
 		/// 注册时间
 		/// </summary>
 		public DateTime RegTime;
+		/// <summary>
+		/// 登录时间
+		/// </summary>
+		public DateTime LoginTime;
 	}
 }
