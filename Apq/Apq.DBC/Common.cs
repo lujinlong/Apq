@@ -20,8 +20,9 @@ namespace Apq.DBC
 		static Common()
 		{
 			_xsd = new XSD();
-			_xsd.SqlInstance.Columns.Add("DBConnectionString");
+			//_xsd.SqlInstance.Columns.Add("DBConnectionString");
 			_xsd.DBC.Columns.Add("DBConnectionString");
+			_xsd.DBC.Columns.Add("ServerName");
 
 			fsw.Changed += new FileSystemEventHandler(fsw_Changed);
 
@@ -86,36 +87,29 @@ namespace Apq.DBC
 				dr["DBConnectionString"] = sc.GetConnectionString();
 			}
 			*/
-			foreach (XSD.DBCRow dr in _xsd.DBC.Rows)
+			foreach (DataRow dr in _xsd.DBC.Rows)
 			{
 				Apq.ConnectionStrings.SQLServer.SqlConnection sc = new Apq.ConnectionStrings.SQLServer.SqlConnection();
+				/*
 				XSD.SqlInstanceRow sqlInstance = _xsd.SqlInstance.FindBySqlID(dr.SqlID);
 				sc.ServerName = sqlInstance.IP;
 				if (sqlInstance != null && sqlInstance.SqlPort > 0)
 				{
 					sc.ServerName += "," + sqlInstance.SqlPort;
 				}
-				sc.DBName = dr.DBName;
-				sc.Mirror = dr.Mirror;
-				sc.UseTrusted = Apq.Convert.ChangeType<bool>(dr.UseTrusted);
-				sc.UserId = dr.UserId;
-				sc.Pwd = dr.PwdD;
-				sc.Option = dr.Option;
+				*/
+				sc.ServerName = Apq.Convert.ChangeType<string>(dr["ServerName"]);
+				sc.DBName = Apq.Convert.ChangeType<string>(dr["DBName"]);
+				sc.Mirror = Apq.Convert.ChangeType<string>(dr["Mirror"]);
+				sc.UseTrusted = Apq.Convert.ChangeType<bool>(dr["UseTrusted"]);
+				sc.UserId = Apq.Convert.ChangeType<string>(dr["UserId"]);
+				sc.Pwd = Apq.Convert.ChangeType<string>(dr["PwdD"]);
+				sc.Option = Apq.Convert.ChangeType<string>(dr["Option"]);
 				dr["DBConnectionString"] = sc.GetConnectionString();
 			}
 		}
 
 		#region 获取连接字符串
-		/// <summary>
-		/// 获取数据库连接字符串
-		/// </summary>
-		/// <returns></returns>
-		[Obsolete("已过时,请使用GetDBConnectoinString")]
-		public static string GetConnectoinString(string DBName)
-		{
-			return GetDBConnectoinString(DBName);
-		}
-
 		/// <summary>
 		/// 获取数据库连接字符串
 		/// </summary>
