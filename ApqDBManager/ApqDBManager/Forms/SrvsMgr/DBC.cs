@@ -62,11 +62,23 @@ namespace ApqDBManager.Forms.SrvsMgr
 				ds.Namespace = Sqls.Namespace;
 				DataTable dt = Sqls.DBC.Copy();
 				ds.Tables.Add(dt);
+				dt.Columns.Add("ServerName");
+				dt.Columns.Remove("PwdC");
+
 				for (int i = dt.Rows.Count - 1; i >= 0; i--)
 				{
 					if (Apq.Convert.ChangeType<int>(dt.Rows[i]["DBCType"]) != nDBCType)
 					{
 						dt.Rows.RemoveAt(i);
+						continue;
+					}
+
+					// 计算ServerName
+					Apq.DBC.XSD.SqlInstanceRow sqlInstance = Sqls.SqlInstance.FindBySqlID(Apq.Convert.ChangeType<int>(dt.Rows[i]["SqlID"]));
+					dt.Rows[i]["ServerName"] = sqlInstance.IP;
+					if (sqlInstance != null && sqlInstance.SqlPort > 0)
+					{
+						dt.Rows[i]["ServerName"] += "," + sqlInstance.SqlPort;
 					}
 				}
 				string csStr = ds.GetXml();
