@@ -85,7 +85,7 @@ namespace Apq.DB
 
 		#region SqlConnectionString
 		/// <summary>
-		/// 该程序集配置文件(程序集名.后缀.xml)
+		/// 默认数据库连接字符串
 		/// </summary>
 		public static string SqlConnectionString
 		{
