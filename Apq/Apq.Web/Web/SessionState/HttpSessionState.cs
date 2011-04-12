@@ -15,7 +15,6 @@ namespace Apq.Web.SessionState
 		public HttpSessionState(System.Web.SessionState.HttpSessionState Session)
 		{
 			_Session = Session;
-			Session["ApqLogin"] = new ApqLogin();
 		}
 
 		private System.Web.SessionState.HttpSessionState _Session;
@@ -29,12 +28,19 @@ namespace Apq.Web.SessionState
 		}
 
 		/// <summary>
-		/// 在 Session 中获取或设置登录信息
+		/// 在 Session 中获取登录信息
 		/// </summary>
 		public ApqLogin ApqLogin
 		{
-			get { return Session["ApqLogin"] as ApqLogin; }
-			set { Session["ApqLogin"] = value; }
+			get
+			{
+				ApqLogin ApqLogin = Session["ApqLogin"] as ApqLogin;
+				if (ApqLogin == null)
+				{
+					Session["ApqLogin"] = ApqLogin = new ApqLogin();
+				}
+				return ApqLogin;
+			}
 		}
 	}
 

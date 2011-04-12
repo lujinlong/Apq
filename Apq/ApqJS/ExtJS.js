@@ -2,7 +2,38 @@
 /* ExtJS扩展
 * 2009-12-03 黄宗银
 * */
-/// Ext.Element -----------------------------------------------------------------------------------
+/// Ext.data.Types ---------------------------------------------------------------------------------
+// 支持WebService输出的Date类型JSON格式
+Ext.data.Types.DATE.convertExt = Ext.data.Types.DATE.convert; //保存原版
+Ext.data.Types.DATE.convert = function(v) {
+	var df = this.dateFormat;
+	if (!v) {
+		return null;
+	}
+	if (Ext.isDate(v)) {
+		return v;
+	}
+	if (df) {
+		if (df == 'timestamp') {
+			return new Date(v * 1000);
+		}
+		if (df == 'time') {
+			return new Date(parseInt(v, 10));
+		}
+		return Date.parseDate(v, df);
+	}
+	var parsed = Date.parse(v);
+	// 改变的部分 ---
+	if (parsed) return new Date(parsed);
+	
+	if (v.substr(0, 6) == '/Date(' && v.substring(v.length - 1) == '/') {
+		parsed = eval(v.substr(1, v.length - 2));
+	}
+	return parsed ? parsed : null;
+	// ===============
+};
+
+/// Ext.Element ------------------------------------------------------------------------------------
 // 改变:忽略execScript的异常
 Ext.Element.addMethods({
 	update: function(html, loadScripts, callback) {
