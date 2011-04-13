@@ -66,9 +66,9 @@ namespace Apq.Web.SessionState
 		/// </summary>
 		public DateTime PwdExpire;
 		/// <summary>
-		/// 密码状态
+		/// 登录状态(禁用,封号等)
 		/// </summary>
-		public int PwdStatus;
+		public int LoginStatus;
 		/// <summary>
 		/// 注册时间
 		/// </summary>
