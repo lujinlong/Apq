@@ -25,9 +25,9 @@ Ext.data.Types.DATE.convert = function(v) {
 	var parsed = Date.parse(v);
 	// 改变的部分 ---
 	if (parsed) return new Date(parsed);
-	
+
 	if (v.substr(0, 6) == '/Date(' && v.substring(v.length - 1) == '/') {
-		parsed = eval(v.substr(1, v.length - 2));
+		parsed = eval("new " + v.substr(1, v.length - 2));
 	}
 	return parsed ? parsed : null;
 	// ===============
