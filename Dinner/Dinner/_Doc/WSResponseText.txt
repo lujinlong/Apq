@@ -1,0 +1,22 @@
+﻿{"d":{
+	"__type":"Apq.STReturn",
+	"NReturn":1,
+	"ExMsg":"",
+	"FNReturn":{
+		"columns":[
+			{"name":"LoginID","dataType":"Number","defaultValue":null,"readOnly":false,"isKey":false},
+			{"name":"LoginName","dataType":"String","defaultValue":null,"readOnly":false,"isKey":false},
+			{"name":"LoginPwd","dataType":"Object","defaultValue":null,"readOnly":false,"isKey":false},
+			{"name":"PwdExpire","dataType":"Date","defaultValue":null,"readOnly":false,"isKey":false},
+			{"name":"PwdStatus","dataType":"Number","defaultValue":null,"readOnly":false,"isKey":false},
+			{"name":"RegTime","dataType":"Date","defaultValue":null,"readOnly":false,"isKey":false},
+			{"name":"EmID","dataType":"Number","defaultValue":null,"readOnly":false,"isKey":false},
+			{"name":"IsAdmin","dataType":"Number","defaultValue":null,"readOnly":false,"isKey":false},
+			{"name":"EmName","dataType":"String","defaultValue":null,"readOnly":false,"isKey":false}
+		],
+		"rows":[
+			{"LoginID":1,"LoginName":"apq","LoginPwd":[249,121,208,161,158,100,81,122,220,174,100,114,150,6,29,104,194,255,102,187,174,62,85,29,184,243,141,137,59,198,55,181,220,253,117,211,65,101,82,64,4,90,55,159,93,98,121,240,35,178,3,146,240,224,67,69,234,66,243,50,59,74,75,159],"PwdExpire":"\/Date(1303798004660)\/","PwdStatus":0,"RegTime":"\/Date(1302502004660)\/","EmID":1,"IsAdmin":1,"EmName":"黄宗银"}
+		]
+	},
+	"POuts":["0xf979d0a19e64517adcae647296061d68c2ff66bbae3e551db8f38d893bc637b5dcfd75d341655240045a379f5d6279f023b20392f0e04345ea42f3323b4a4b9f"]
+}}
