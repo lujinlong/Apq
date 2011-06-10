@@ -19,7 +19,7 @@ namespace Apq.Windows.Forms
 	///		//配置文件
 	/// </summary>
 	/// <remarks>注意:DockForm与此基本相同,修改时应考虑同步修改相应部分</remarks>
-	public partial class ImeForm : DevExpress.XtraEditors.XtraForm, Apq.Interfaces.IDataShow
+	public partial class ImeForm : Form, Apq.Interfaces.IDataShow
 	{
 		/// <summary>
 		/// ImeForm

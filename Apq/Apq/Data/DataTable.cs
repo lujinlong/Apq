@@ -223,6 +223,48 @@ namespace Apq.Data
 		}
 		#endregion
 
+		#region GetRootRows
+		/// <summary>
+		/// 获取根行
+		/// </summary>
+		/// <param name="dt">表</param>
+		/// <param name="Key">主键列名(一列)</param>
+		/// <param name="Parent">上级列名(一列)</param>
+		public static List<System.Data.DataRow> GetRootRows(System.Data.DataTable dt, string Key, string Parent)
+		{
+			List<System.Data.DataRow> Rows = new List<System.Data.DataRow>();
+			System.Data.DataView dv = new System.Data.DataView(dt);
+			//dv.RowFilter = ChildrenFilter;
+
+			foreach (System.Data.DataRow dr in dt.Rows)
+			{
+				if (Apq.Convert.LikeDBNull(dr[Parent]))
+				{
+					Rows.Add(dr);
+					continue;
+				}
+
+				string strSqlValue = Apq.Data.SqlClient.Common.ConvertToSqlON(dr[Parent]);
+				System.Data.DataRow[] p = dt.Select(Key + " = " + strSqlValue);
+				if (p == null || p.Length == 0)
+				{
+					Rows.Add(dr);
+				}
+			}
+			return Rows;
+		}
+
+		/// <summary>
+		/// 获取根行
+		/// </summary>
+		/// <param name="Key">主键列名(一列)</param>
+		/// <param name="Parent">上级列名(一列)</param>
+		public List<System.Data.DataRow> GetRootRows(string Key, string Parent)
+		{
+			return GetRootRows(_Table, Key, Parent);
+		}
+		#endregion
+
 		#region Excel
 
 		/// <summary>

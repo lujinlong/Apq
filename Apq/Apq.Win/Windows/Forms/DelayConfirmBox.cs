@@ -117,8 +117,8 @@ namespace Apq.Windows.Forms
 		#region 计时器
 		private void timer1_Tick(object sender, EventArgs e)
 		{
-			Apq.Windows.Delegates.Action_UI<DevExpress.XtraEditors.SimpleButton>(this, btnYes, new Action<DevExpress.XtraEditors.SimpleButton>(
-					delegate(DevExpress.XtraEditors.SimpleButton btn)
+			Apq.Windows.Delegates.Action_UI<System.Windows.Forms.Button>(this, btnYes, new Action<System.Windows.Forms.Button>(
+					delegate(System.Windows.Forms.Button btn)
 					{
 						btn.Text = string.Format("是({0})", _Current);
 					}
@@ -128,8 +128,8 @@ namespace Apq.Windows.Forms
 			if (_Current < 0)
 			{
 				timer1.Stop();
-				Apq.Windows.Delegates.Action_UI<DevExpress.XtraEditors.SimpleButton>(this, btnYes, new Action<DevExpress.XtraEditors.SimpleButton>(
-						delegate(DevExpress.XtraEditors.SimpleButton btn)
+				Apq.Windows.Delegates.Action_UI<System.Windows.Forms.Button>(this, btnYes, new Action<System.Windows.Forms.Button>(
+						delegate(System.Windows.Forms.Button btn)
 						{
 							btnYes_Click(sender, e);
 						}

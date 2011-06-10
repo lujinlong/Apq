@@ -31,9 +31,9 @@
 			this.components = new System.ComponentModel.Container();
 			this.lblMsg = new System.Windows.Forms.Label();
 			this.timer1 = new System.Windows.Forms.Timer(this.components);
-			this.btnYes = new DevExpress.XtraEditors.SimpleButton();
-			this.btnNo = new DevExpress.XtraEditors.SimpleButton();
-			this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
+			this.btnYes = new System.Windows.Forms.Button();
+			this.btnNo = new System.Windows.Forms.Button();
+			this.btnCancel = new System.Windows.Forms.Button();
 			this.SuspendLayout();
 			// 
 			// lblMsg
@@ -101,8 +101,8 @@
 
 		private System.Windows.Forms.Label lblMsg;
 		private System.Windows.Forms.Timer timer1;
-		private DevExpress.XtraEditors.SimpleButton btnYes;
-		private DevExpress.XtraEditors.SimpleButton btnNo;
-		private DevExpress.XtraEditors.SimpleButton btnCancel;
+		private System.Windows.Forms.Button btnYes;
+		private System.Windows.Forms.Button btnNo;
+		private System.Windows.Forms.Button btnCancel;
 	}
 }
