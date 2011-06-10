@@ -14,15 +14,11 @@ namespace ApqDBManager.Forms.SrvsMgr
 	{
 		//数据库连接
 		private SqlConnection _SqlConn = new SqlConnection();
-		public Apq.DBC.XSD Sqls
+		public SrvsMgr_XSD Sqls
 		{
 			get
 			{
-				if (!(FormDataSet is Apq.DBC.XSD))
-				{
-					FormDataSet = new Apq.DBC.XSD();
-				}
-				return FormDataSet as Apq.DBC.XSD;
+				return srvsMgr_XSD;
 			}
 		}
 		private Form formSqlInstance = null;
@@ -35,19 +31,8 @@ namespace ApqDBManager.Forms.SrvsMgr
 		private void DBServer_Load(object sender, EventArgs e)
 		{
 			#region 添加图标
-			this.bbiSaveToDB.Glyph = System.Drawing.Image.FromFile(@"Res\png\File\Save.png");
+			this.tsmiSave.Image = System.Drawing.Image.FromFile(@"Res\png\File\Save.png");
 			#endregion
-
-			Apq.Xtra.Grid.Common.AddBehaivor(gridView1);
-
-			Sqls.Computer.TableNewRow += new DataTableNewRowEventHandler(Computer_TableNewRow);
-		}
-
-		void Computer_TableNewRow(object sender, DataTableNewRowEventArgs e)
-		{
-			e.Row["ComputerID"] = 0;
-			e.Row["ComputerName"] = "新建服务器[名称]";
-			e.Row["ComputerType"] = 1;
 		}
 
 		private void DBServer_FormClosing(object sender, FormClosingEventArgs e)
@@ -60,43 +45,45 @@ namespace ApqDBManager.Forms.SrvsMgr
 		}
 
 		//刷新
-		private void bbiRefresh_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+		private void tsmiRefresh_Click(object sender, EventArgs e)
 		{
 			LoadData(FormDataSet);
 		}
 
 		//全选
-		private void bbiSelectAll_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+		private void tsmiSelectAll_Click(object sender, EventArgs e)
 		{
-			gridView1.SelectAll();
+			dataGridView1.SelectAll();
 		}
 
-		//设置多行
-		private void bbiSlts_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+		//设置选中格
+		private void tsmiSlts_Click(object sender, EventArgs e)
 		{
-			if (gridView1.SelectedRowsCount > 0)
+			if (tstbStr.Text.Trim().Length > 0 && dataGridView1.SelectedCells.Count > 0)
 			{
-				gridView1.BeginUpdate();
-				int[] RowHandles = gridView1.GetSelectedRows();
-				foreach (int RowHandle in RowHandles)
+				dataGridView1.BeginEdit(false);
+				foreach (DataGridViewCell dgvc in dataGridView1.SelectedCells)
 				{
-					gridView1.SetRowCellValue(RowHandle, gridView1.FocusedColumn, beiStr.EditValue);
+					if (!dgvc.ReadOnly && dataGridView1.Columns[dgvc.ColumnIndex] is DataGridViewTextBoxColumn)
+					{
+						dgvc.Value = tstbStr.Text;
+					}
 				}
-				gridView1.EndUpdate();
+				dataGridView1.EndEdit();
 			}
 		}
 
 		//保存
-		private void bbiSaveToDB_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+		private void tsmiSave_Click(object sender, EventArgs e)
 		{
 			if (sda == null) return;
 
-			sda.Update(Sqls.Computer);
-			Sqls.Computer.AcceptChanges();
-			bsiOutInfo.Caption = "更新成功";
+			sda.Update(srvsMgr_XSD.Computer);
+			srvsMgr_XSD.Computer.AcceptChanges();
+			tsslOutInfo.Text = "更新成功";
 		}
 
-		private void bbiSqlInstance_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+		private void tsmiSqlInstance_Click(object sender, EventArgs e)
 		{
 			formSqlInstance = Apq.Windows.Forms.SingletonForms.GetInstance(typeof(SqlInstance));
 			SqlInstance f = formSqlInstance as SqlInstance;
@@ -161,20 +148,20 @@ namespace ApqDBManager.Forms.SrvsMgr
 		public override void InitData(DataSet ds)
 		{
 			#region 准备数据集结构
-			Sqls.SqlInstance.Columns.Add("CheckState", typeof(int));
-			Sqls.SqlInstance.Columns.Add("IsReadyToGo", typeof(bool));
-			Sqls.SqlInstance.Columns.Add("Err", typeof(bool));
-			Sqls.SqlInstance.Columns.Add("DBConnectionString");
+			srvsMgr_XSD.SqlInstance.Columns.Add("CheckState", typeof(int));
+			srvsMgr_XSD.SqlInstance.Columns.Add("IsReadyToGo", typeof(bool));
+			srvsMgr_XSD.SqlInstance.Columns.Add("Err", typeof(bool));
+			srvsMgr_XSD.SqlInstance.Columns.Add("DBConnectionString");
 
-			Sqls.SqlInstance.Columns["CheckState"].DefaultValue = 0;
-			Sqls.SqlInstance.Columns["IsReadyToGo"].DefaultValue = false;
-			Sqls.SqlInstance.Columns["Err"].DefaultValue = false;
+			srvsMgr_XSD.SqlInstance.Columns["CheckState"].DefaultValue = 0;
+			srvsMgr_XSD.SqlInstance.Columns["IsReadyToGo"].DefaultValue = false;
+			srvsMgr_XSD.SqlInstance.Columns["Err"].DefaultValue = false;
 			#endregion
 
 			#region 加载所有字典表
-			sqlDataAdapter1.Fill(Sqls.ComputerType);
-			sqlDataAdapter2.Fill(Sqls.SqlType);
-			sqlDataAdapter3.Fill(Sqls.DBCType);
+			sqlDataAdapter1.Fill(srvsMgr_XSD.ComputerType);
+			sqlDataAdapter2.Fill(srvsMgr_XSD.SqlType);
+			sqlDataAdapter3.Fill(srvsMgr_XSD.DBCType);
 			#endregion
 		}
 		/// <summary>
@@ -192,36 +179,19 @@ EXEC dbo.ApqDBMgr_DBC_List;
 			sda.TableMappings.Add("Computer1", "SqlInstance");
 			sda.TableMappings.Add("Computer2", "DBC");
 			 * */
-			Sqls.Computer.Clear();
-			sda.Fill(Sqls.Computer);
-			Sqls.Computer.AcceptChanges();
-			bsiOutInfo.Caption = "加载成功";
-		}
-		/// <summary>
-		/// 显示数据
-		/// </summary>
-		public override void ShowData()
-		{
-			#region 设置Lookup
-			luComputerType.DisplayMember = "TypeCaption";
-			luComputerType.ValueMember = "ComputerType";
-			luComputerType.DataSource = Sqls.ComputerType;
-			#endregion
-
-			gridControl1.DataSource = Sqls;
-			gridControl1.DataMember = "Computer";
+			srvsMgr_XSD.Computer.Clear();
+			sda.Fill(srvsMgr_XSD.Computer);
+			srvsMgr_XSD.Computer.AcceptChanges();
+			tsslOutInfo.Text = "加载成功";
 		}
 
 		#endregion
 
-		private void tsmiDel_Click(object sender, EventArgs e)
+		private void dataGridView1_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
 		{
-			if (gridView1.FocusedRowHandle > -1)
-			{
-				gridView1.BeginUpdate();
-				gridView1.DeleteRow(gridView1.FocusedRowHandle);
-				gridView1.EndUpdate();
-			}
+			dataGridView1.ClearSelection();
+			//+选中整列
+			//dataGridView1.Columns[e.ColumnIndex].Selected = true;
 		}
 
 	}
