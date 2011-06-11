@@ -26,6 +26,7 @@ namespace Apq.TreeListView
 			_TreeListView = TreeListView;
 		}
 
+		#region TableMapping
 		private DataTableMapping _TableMapping = new DataTableMapping();
 		/// <summary>
 		/// 获取或设置映射表
@@ -54,6 +55,53 @@ namespace Apq.TreeListView
 
 			return TableMapping;
 		}
+		#endregion
+
+		#region HiddenColNames
+		private List<string> _HiddenColNames = new List<string>();
+		/// <summary>
+		/// 设置隐藏列
+		/// </summary>
+		public List<string> HiddenColNames
+		{
+			set { _HiddenColNames = value; }
+		}
+
+		/// <summary>
+		/// 获取隐藏到TreeListView的数据列名
+		/// </summary>
+		/// <param name="dt"></param>
+		/// <returns></returns>
+		public List<string> GetHiddenColumns(DataTable dt)
+		{
+			if (_HiddenColNames.Count > 0)
+			{
+				return _HiddenColNames;
+			}
+
+			DataTableMapping dtm = GetTableMapping(dt);
+
+			foreach (DataColumn dc in dt.Columns)
+			{
+				bool Exists = false;
+				foreach (DataColumnMapping dcm in dtm.ColumnMappings)
+				{
+					if (dcm.DataSetColumn == dc.ColumnName)
+					{
+						Exists = true;
+						break;
+					}
+				}
+
+				if (!Exists)
+				{
+					_HiddenColNames.Add(dc.ColumnName);
+				}
+			}
+
+			return _HiddenColNames;
+		}
+		#endregion
 
 		/// <summary>
 		/// 数据主键列名
@@ -63,13 +111,21 @@ namespace Apq.TreeListView
 		/// 数据上级列名
 		/// </summary>
 		public string Parent = "ParentID";
+		/// <summary>
+		/// 绑定时是否包含所有数据列(默认false. true:无对应列头的数据列按表中顺序添加到节点最后)
+		/// </summary>
+		public bool BindContainsAllDataColumns = false;
 
+		#region DataBind
 		/// <summary>
 		/// 绑定数据表
 		/// </summary>
 		public void BindDataTable(DataTable dt)
 		{
 			TreeListView.Items.Clear();
+
+			// 记录下需要添加的列
+			List<string> hCols = GetHiddenColumns(dt);
 
 			List<DataRow> Roots = Apq.Data.DataTable.GetRootRows(dt, Key, Parent);
 			foreach (DataRow dr in Roots)
@@ -87,6 +143,7 @@ namespace Apq.TreeListView
 		public void BindRow(System.Windows.Forms.TreeListViewItem node, DataRow dr)
 		{
 			DataTableMapping dtm = GetTableMapping(dr.Table);
+
 			for (int i = 0; i < TreeListView.Columns.Count; i++)
 			{
 				string nodeHeaderName = TreeListView.Columns[i].Text;
@@ -116,6 +173,13 @@ namespace Apq.TreeListView
 					}
 				}
 			}
+
+			// 添加隐藏数据
+			foreach (string ColName in _HiddenColNames)
+			{
+				string str = Apq.Convert.ChangeType<string>(dr[ColName], string.Empty);
+				node.SubItems.Add(str);
+			}
 		}
 
 		/// <summary>
@@ -137,5 +201,6 @@ namespace Apq.TreeListView
 				}
 			}
 		}
+		#endregion
 	}
 }
