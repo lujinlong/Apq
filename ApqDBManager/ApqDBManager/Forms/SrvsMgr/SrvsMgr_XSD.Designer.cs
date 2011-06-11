@@ -914,7 +914,7 @@ namespace ApqDBManager.Forms.SrvsMgr {
                 this.columnComputerID.DefaultValue = ((int)(0));
                 this.columnComputerName.AllowDBNull = false;
                 this.columnComputerName.Caption = "服务器名称";
-                this.columnComputerName.DefaultValue = ((string)("新建服务器"));
+                this.columnComputerName.DefaultValue = ((string)(""));
                 this.columnComputerName.MaxLength = 50;
                 this.columnSqlID.AllowDBNull = false;
                 this.columnSqlID.Caption = "实例编号";
@@ -941,6 +941,7 @@ namespace ApqDBManager.Forms.SrvsMgr {
                 this.columnPwdC.Caption = "密码(密文)";
                 this.columnPwdC.MaxLength = 500;
                 this.columnPwdD.Caption = "密码(明文)";
+                this.columnPwdD.DefaultValue = ((string)(""));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]

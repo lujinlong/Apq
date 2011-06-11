@@ -53,6 +53,75 @@ namespace ApqDBManager.Forms.SrvsMgr
 
 		#region treeListView1
 
+		#region 选中状态
+		#region SetCheckedNode
+		private void SetCheckedNode(TreeListViewItem node, bool Checked, bool checkParent, bool checkChildren)
+		{
+			treeListView1.EndUpdate();
+			node.Checked = Checked;
+
+			if (checkParent)
+			{
+				SetCheckedParentNodes(node, Checked);
+			}
+			if (checkChildren)
+			{
+				SetCheckedChildNodes(node, Checked);
+			}
+			treeListView1.EndUpdate();
+		}
+		private void SetCheckedChildNodes(TreeListViewItem node, bool Checked)
+		{
+			foreach (TreeListViewItem tln in node.Items)
+			{
+				tln.Checked = Checked;
+				SetCheckedChildNodes(tln, Checked);
+			}
+		}
+		private void SetCheckedParentNodes(TreeListViewItem node, bool Checked)
+		{
+			if (node.Parent != null)
+			{
+				node.Parent.Checked = Checked;
+				SetCheckedParentNodes(node.Parent, Checked);
+			}
+		}
+		#endregion
+		#region ChgCheckedNode
+		private void ChgCheckedNode(TreeListViewItem node, bool checkParent, bool checkChildren)
+		{
+			treeListView1.EndUpdate();
+			node.Checked = !node.Checked;
+
+			if (checkParent)
+			{
+				ChgCheckedParentNodes(node);
+			}
+			if (checkChildren)
+			{
+				ChgCheckedChildNodes(node);
+			}
+			treeListView1.EndUpdate();
+		}
+		private void ChgCheckedChildNodes(TreeListViewItem node)
+		{
+			foreach (TreeListViewItem tln in node.Items)
+			{
+				tln.Checked = !tln.Checked;
+				ChgCheckedChildNodes(tln);
+			}
+		}
+		private void ChgCheckedParentNodes(TreeListViewItem node)
+		{
+			if (node.Parent != null)
+			{
+				node.Parent.Checked = !node.Parent.Checked;
+				ChgCheckedParentNodes(node.Parent);
+			}
+		}
+		#endregion
+		#endregion
+
 		private void treeListView1_BeforeLabelEdit(object sender, TreeListViewBeforeLabelEditEventArgs e)
 		{
 			if (e.Item.ListView.Columns[e.ColumnIndex].Text == "服务器")
@@ -84,24 +153,98 @@ namespace ApqDBManager.Forms.SrvsMgr
 			}
 		}
 
-		private void treeListView1_AfterSelect(object sender, TreeViewEventArgs e)
+		#region 批量设置
+		// 登录名
+		private void tsmiSltsUserId_Click(object sender, EventArgs e)
 		{
-			if (e.Node != null)
+			int subIndex = Apq.Windows.Forms.ListViewHelper.IndexOfHeader(treeListView1.Columns, "登录名");
+
+			foreach (TreeListViewItem node in treeListView1.CheckedItems)
 			{
-				tsslOutInfo.Text = e.Node.Text;
+				long SqlID = Apq.Convert.ChangeType<long>(node.SubItems[treeListView1.Columns.Count].Text);
+				DataRow[] drs = Sqls.SqlInstance.Select("SqlID = " + SqlID);
+				if (drs.Length > 0)
+				{
+					try
+					{
+						drs[0]["UserId"] = tstbStr.Text;
+						node.SubItems[subIndex].Text = tstbStr.Text;
+					}
+					catch { }
+				}
 			}
 		}
 
+		// 密码
+		private void tsmiSltsPwdD_Click(object sender, EventArgs e)
+		{
+			int subIndex = Apq.Windows.Forms.ListViewHelper.IndexOfHeader(treeListView1.Columns, "密码");
+
+			foreach (TreeListViewItem node in treeListView1.CheckedItems)
+			{
+				long SqlID = Apq.Convert.ChangeType<long>(node.SubItems[treeListView1.Columns.Count].Text);
+				DataRow[] drs = Sqls.SqlInstance.Select("SqlID = " + SqlID);
+				if (drs.Length > 0)
+				{
+					try
+					{
+						drs[0]["PwdD"] = tstbStr.Text;
+						node.SubItems[subIndex].Text = tstbStr.Text;
+					}
+					catch { }
+				}
+			}
+		}
+
+		// SQL端口
+		private void tsmiSltsSqlPort_Click(object sender, EventArgs e)
+		{
+			int subIndex = Apq.Windows.Forms.ListViewHelper.IndexOfHeader(treeListView1.Columns, "SQL端口");
+
+			foreach (TreeListViewItem node in treeListView1.CheckedItems)
+			{
+				long SqlID = Apq.Convert.ChangeType<long>(node.SubItems[treeListView1.Columns.Count].Text);
+				DataRow[] drs = Sqls.SqlInstance.Select("SqlID = " + SqlID);
+				if (drs.Length > 0)
+				{
+					try
+					{
+						drs[0]["SqlPort"] = tstbStr.Text;
+						node.SubItems[subIndex].Text = tstbStr.Text;
+					}
+					catch { }
+				}
+			}
+		}
+		#endregion
+
 		private void tsmiAdd_Click(object sender, EventArgs e)
 		{
-			DataRow dr = Sqls.SqlInstance.NewRow();
-			Sqls.SqlInstance.Rows.Add(dr);
+			if (treeListView1.FocusedItem != null)
+			{
+				long SqlID = Apq.Convert.ChangeType<long>(treeListView1.FocusedItem.SubItems[treeListView1.Columns.Count].Text);
+				DataRow dr = Sqls.SqlInstance.NewRow();
+				dr["ParentID"] = SqlID;
+				Sqls.SqlInstance.Rows.Add(dr);
+
+				TreeListViewItem node = new TreeListViewItem();
+				treeListView1.FocusedItem.Items.Add(node);
+				tlvHelper.BindRow(node, dr);
+			}
 		}
 
 		private void tsmiDel_Click(object sender, EventArgs e)
 		{
 			if (treeListView1.FocusedItem != null)
 			{
+				long SqlID = Apq.Convert.ChangeType<long>(treeListView1.FocusedItem.SubItems[treeListView1.Columns.Count].Text);
+				DataRow[] drs = Sqls.SqlInstance.Select("SqlID = " + SqlID);
+				if (drs.Length > 0)
+				{
+					// 这里不能使用Remove方法
+					drs[0].Delete();
+				}
+
 				treeListView1.BeginUpdate();
 				treeListView1.Items.Remove(treeListView1.FocusedItem);
 				treeListView1.EndUpdate();
@@ -110,39 +253,51 @@ namespace ApqDBManager.Forms.SrvsMgr
 
 		private void tsmiTestOpen_Click(object sender, EventArgs e)
 		{
-			TreeListViewItem tln = treeListView1.FocusedItem;
-			if (tln != null && tln.Parent != null)
+			try
 			{
-				string strPwdD = Apq.Convert.ChangeType<string>(tln.SubItems["PwdD"]);
-				if (string.IsNullOrEmpty(strPwdD))
-				{
-					strPwdD = Apq.Security.Cryptography.DESHelper.DecryptString(tln.SubItems["PwdC"].ToString(), GlobalObject.RegConfigChain["Crypt", "DESKey"], GlobalObject.RegConfigChain["Crypt", "DESIV"]);
-				}
+				this.Cursor = Cursors.WaitCursor;
 
-				string strServerName = Apq.Convert.ChangeType<string>(tln.SubItems["IP"]);
-				if (Apq.Convert.ChangeType<int>(tln.SubItems["SqlPort"]) > 0)
+				TreeListViewItem tln = treeListView1.FocusedItem;
+				long SqlID = Apq.Convert.ChangeType<long>(treeListView1.FocusedItem.SubItems[treeListView1.Columns.Count].Text);
+				DataRow[] drs = Sqls.SqlInstance.Select("SqlID = " + SqlID);
+
+				if (drs.Length > 0 && tln != null && tln.Parent != null)
 				{
-					strServerName += "," + Apq.Convert.ChangeType<int>(tln.SubItems["SqlPort"]);
+					string strPwdD = Apq.Convert.ChangeType<string>(drs[0]["PwdD"]);
+					if (string.IsNullOrEmpty(strPwdD))
+					{
+						strPwdD = Apq.Security.Cryptography.DESHelper.DecryptString(drs[0]["PwdC"].ToString(), GlobalObject.RegConfigChain["Crypt", "DESKey"], GlobalObject.RegConfigChain["Crypt", "DESIV"]);
+					}
+
+					string strServerName = Apq.Convert.ChangeType<string>(drs[0]["IP"]);
+					if (Apq.Convert.ChangeType<int>(drs[0]["SqlPort"]) > 0)
+					{
+						strServerName += "," + Apq.Convert.ChangeType<int>(drs[0]["SqlPort"]);
+					}
+					string strConn = Apq.ConnectionStrings.SQLServer.SqlConnection.GetConnectionString(
+						strServerName,
+						Apq.Convert.ChangeType<string>(drs[0]["UserId"]),
+						strPwdD
+						);
+					SqlConnection sc = new SqlConnection(strConn);
+					try
+					{
+						Apq.Data.Common.DbConnectionHelper.Open(sc);
+						tsslTest.Text = drs[0]["SqlName"] + "-->连接成功.";
+					}
+					catch
+					{
+						tsslTest.Text = drs[0]["SqlName"] + "-X-连接失败!";
+					}
+					finally
+					{
+						Apq.Data.Common.DbConnectionHelper.Close(sc);
+					}
 				}
-				string strConn = Apq.ConnectionStrings.SQLServer.SqlConnection.GetConnectionString(
-					strServerName,
-					Apq.Convert.ChangeType<string>(tln.SubItems["UserId"]),
-					strPwdD
-					);
-				SqlConnection sc = new SqlConnection(strConn);
-				try
-				{
-					Apq.Data.Common.DbConnectionHelper.Open(sc);
-					tsslTest.Text = tln.SubItems["SqlName"] + "-->连接成功.";
-				}
-				catch
-				{
-					tsslTest.Text = tln.SubItems["SqlName"] + "-X-连接失败!";
-				}
-				finally
-				{
-					Apq.Data.Common.DbConnectionHelper.Close(sc);
-				}
+			}
+			finally
+			{
+				this.Cursor = Cursors.Default;
 			}
 		}
 		#endregion
@@ -244,41 +399,33 @@ namespace ApqDBManager.Forms.SrvsMgr
 			// 密码解密
 			Common.PwdC2D(Sqls.SqlInstance);
 			Sqls.SqlInstance.AcceptChanges();
-			tsslOutInfo.Text = "加载成功";
-		}
-		/// <summary>
-		/// 显示数据
-		/// </summary>
-		public override void ShowData()
-		{
-			#region 设置Lookup
-			//luComputer.DisplayMember = "ComputerName";
-			//luComputer.ValueMember = "ComputerID";
-			//luComputer.DataSource = Sqls.Computer;
-			//luSqlType.DisplayMember = "TypeCaption";
-			//luSqlType.ValueMember = "SqlType";
-			//luSqlType.DataSource = Sqls.SqlType;
-			#endregion
 
-			//treeListView1.DataMember = "SqlInstance";
-			//treeListView1.DataSource = Sqls;
-
+			// 绑定到TreeListView
 			treeListView1.Items.Clear();
 			if (Sqls.SqlInstance.Rows.Count > 0)
 			{
 				tlvHelper.BindDataTable(Sqls.SqlInstance);
 				treeListView1.ExpandAll();
 			}
-		}
 
+			tsslOutInfo.Text = "加载成功";
+		}
 		#endregion
 
 		private void tsbSelectAll_Click(object sender, EventArgs e)
 		{
+			foreach (TreeListViewItem root in treeListView1.Items)
+			{
+				SetCheckedNode(root, true, false, true);
+			}
 		}
 
 		private void tsbReverse_Click(object sender, EventArgs e)
 		{
+			foreach (TreeListViewItem root in treeListView1.Items)
+			{
+				ChgCheckedNode(root, false, true);
+			}
 		}
 
 		//刷新
@@ -293,22 +440,28 @@ namespace ApqDBManager.Forms.SrvsMgr
 			if (sda == null) return;
 
 			// 密码加密
-			DataRow[] drs = Sqls.SqlInstance.Select("1=1", "SqlID ASC", DataViewRowState.Added | DataViewRowState.ModifiedCurrent);
-			if (drs != null && drs.Length > 0)
+			DataRow[] drsModified = Sqls.SqlInstance.Select("1=1", "SqlID ASC", DataViewRowState.Added | DataViewRowState.ModifiedCurrent);
+			DataRow[] drsDeleted = Sqls.SqlInstance.Select("1=1", "SqlID ASC", DataViewRowState.Deleted);
+			if (drsModified.Length > 0 || drsDeleted.Length > 0)
 			{
-				foreach (DataRow dr in drs)
+				if (drsModified.Length > 0)
 				{
-					if (!Apq.Convert.LikeDBNull(dr["PwdD"]))
+					foreach (DataRow dr in drsModified)
 					{
-						dr["PwdC"] = Apq.Security.Cryptography.DESHelper.EncryptString(Apq.Convert.ChangeType<string>(dr["PwdD"]),
-							GlobalObject.RegConfigChain["Crypt", "DESKey"], GlobalObject.RegConfigChain["Crypt", "DESIV"]);
+						if (!Apq.Convert.LikeDBNull(dr["PwdD"]))
+						{
+							dr["PwdC"] = Apq.Security.Cryptography.DESHelper.EncryptString(Apq.Convert.ChangeType<string>(dr["PwdD"]),
+								GlobalObject.RegConfigChain["Crypt", "DESKey"], GlobalObject.RegConfigChain["Crypt", "DESIV"]);
+						}
 					}
 				}
 
 				sda.Update(Sqls.SqlInstance);
 				Sqls.SqlInstance.AcceptChanges();
+				tsslOutInfo.Text = "更新成功";
+				// 保存成功后刷新
+				tsbRefresh_Click(sender, null);
 			}
-			tsslOutInfo.Text = "更新成功";
 		}
 
 		private void tsbExpandAll_Click(object sender, EventArgs e)

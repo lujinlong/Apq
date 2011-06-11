@@ -411,8 +411,8 @@
 			this.DockAreas = ((WeifenLuo.WinFormsUI.Docking.DockAreas)((WeifenLuo.WinFormsUI.Docking.DockAreas.Float | WeifenLuo.WinFormsUI.Docking.DockAreas.Document)));
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Name = "DBC";
-			this.TabText = "数据库连接管理";
-			this.Text = "数据库连接管理";
+			this.TabText = "DB连接管理";
+			this.Text = "DB连接管理";
 			this.Load += new System.EventHandler(this.DBC_Load);
 			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.DBC_FormClosing);
 			((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
