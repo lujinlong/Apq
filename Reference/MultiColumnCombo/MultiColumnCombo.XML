@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>MultiColumnCombo</name>
+    </assembly>
+    <members>
+        <member name="T:MultiColumnCombo.InheritedCombo.AfterSelectEventHandler">
+            <summary>
+            Summary description for MultiColumnComboBox.
+            </summary>
+        </member>
+        <member name="F:MultiColumnCombo.InheritedCombo.MultiColumnComboBox.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:MultiColumnCombo.InheritedCombo.MultiColumnComboBox.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:MultiColumnCombo.MultiColumnComboPopup">
+            <summary>
+            Summary description for MultiColumnComboPopup.
+            </summary>
+        </member>
+        <member name="F:MultiColumnCombo.MultiColumnComboPopup.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:MultiColumnCombo.MultiColumnComboPopup.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+        </member>
+        <member name="M:MultiColumnCombo.MultiColumnComboPopup.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+    </members>
+</doc>
