@@ -29,7 +29,6 @@
 		private void InitializeComponent()
 		{
 			this.components = new System.ComponentModel.Container();
-			this.saveFile1 = new Apq.Windows.Controls.SaveFile();
 			this.btnConfirm = new DevExpress.XtraEditors.SimpleButton();
 			this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
 			this.cbExportType = new DevExpress.XtraEditors.ComboBoxEdit();
@@ -60,15 +59,6 @@
 			((System.ComponentModel.ISupportInitialize)(this.ripb)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.ceContainsColName.Properties)).BeginInit();
 			this.SuspendLayout();
-			// 
-			// saveFile1
-			// 
-			this.saveFile1.FileName = "";
-			this.saveFile1.Location = new System.Drawing.Point(119, 71);
-			this.saveFile1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-			this.saveFile1.Name = "saveFile1";
-			this.saveFile1.Size = new System.Drawing.Size(265, 21);
-			this.saveFile1.TabIndex = 0;
 			// 
 			// btnConfirm
 			// 
@@ -288,7 +278,6 @@
 			this.Controls.Add(this.cbExportType);
 			this.Controls.Add(this.btnCancel);
 			this.Controls.Add(this.btnConfirm);
-			this.Controls.Add(this.saveFile1);
 			this.Controls.Add(this.barDockControlLeft);
 			this.Controls.Add(this.barDockControlRight);
 			this.Controls.Add(this.barDockControlBottom);
@@ -322,7 +311,6 @@
 
 		private DevExpress.XtraEditors.SimpleButton btnConfirm;
 		private DevExpress.XtraEditors.SimpleButton btnCancel;
-		public Apq.Windows.Controls.SaveFile saveFile1;
 		private DevExpress.XtraEditors.ComboBoxEdit cbExportType;
 		private DevExpress.XtraEditors.ComboBoxEdit cbColSpliter;
 		private DevExpress.XtraEditors.ComboBoxEdit cbRowSpliter;

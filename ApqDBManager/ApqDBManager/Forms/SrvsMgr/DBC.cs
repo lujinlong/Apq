@@ -14,16 +14,12 @@ namespace ApqDBManager.Forms.SrvsMgr
 	public partial class DBC : Apq.Windows.Forms.DockForm
 	{
 		private SqlConnection _SqlConn = new SqlConnection();
-		public Apq.DBC.XSD Sqls
+		public SrvsMgr_XSD Sqls
 		{
 			get
 			{
-				if (!(FormDataSet is Apq.DBC.XSD))
-				{
-					DBServer dbServer = Apq.Windows.Forms.SingletonForms.GetInstance(typeof(DBServer)) as DBServer;
-					FormDataSet = dbServer.Sqls;
-				}
-				return FormDataSet as Apq.DBC.XSD;
+				DBServer dbServer = Apq.Windows.Forms.SingletonForms.GetInstance(typeof(DBServer)) as DBServer;
+				return dbServer.srvsMgr_XSD;
 			}
 		}
 
@@ -39,7 +35,7 @@ namespace ApqDBManager.Forms.SrvsMgr
 			#endregion
 
 			// 加载生成菜单
-			foreach (Apq.DBC.XSD.DBCTypeRow dr in Sqls.DBCType.Rows)
+			foreach (SrvsMgr_XSD.DBCTypeRow dr in Sqls.DBCType.Rows)
 			{
 				DevExpress.XtraBars.BarButtonItem bbi = new DevExpress.XtraBars.BarButtonItem();
 				bbi.Caption = dr.TypeCaption;
@@ -48,7 +44,7 @@ namespace ApqDBManager.Forms.SrvsMgr
 				bsiCreateCSFile.AddItem(bbi);
 			}
 
-			Apq.Xtra.Grid.Common.AddBehaivor(gridView1);
+			//Apq.Xtra.Grid.Common.AddBehaivor(gridView1);
 		}
 
 		// 生成数据库连接文件
@@ -74,7 +70,7 @@ namespace ApqDBManager.Forms.SrvsMgr
 					}
 
 					// 计算ServerName
-					Apq.DBC.XSD.SqlInstanceRow sqlInstance = Sqls.SqlInstance.FindBySqlID(Apq.Convert.ChangeType<int>(dt.Rows[i]["SqlID"]));
+					SrvsMgr_XSD.SqlInstanceRow sqlInstance = Sqls.SqlInstance.FindBySqlID(Apq.Convert.ChangeType<int>(dt.Rows[i]["SqlID"]));
 					dt.Rows[i]["ServerName"] = sqlInstance.IP;
 					if (sqlInstance != null && sqlInstance.SqlPort > 0)
 					{
@@ -264,7 +260,7 @@ namespace ApqDBManager.Forms.SrvsMgr
 					strPwdD = Apq.Security.Cryptography.DESHelper.DecryptString(dr["PwdC"].ToString(), GlobalObject.RegConfigChain["Crypt", "DESKey"], GlobalObject.RegConfigChain["Crypt", "DESIV"]);
 				}
 
-				Apq.DBC.XSD.SqlInstanceRow sr = Sqls.SqlInstance.FindBySqlID(Apq.Convert.ChangeType<int>(dr["SqlID"]));
+				SrvsMgr_XSD.SqlInstanceRow sr = Sqls.SqlInstance.FindBySqlID(Apq.Convert.ChangeType<int>(dr["SqlID"]));
 				string strServerName = sr.IP;
 				if (sr.SqlPort > 0)
 				{

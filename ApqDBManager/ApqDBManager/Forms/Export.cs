@@ -96,12 +96,12 @@ namespace ApqDBManager
 		private void btnConfirm_Click(object sender, EventArgs e)
 		{
 			// 输入检测:信息完整性
-			if (saveFile1.FileName.Length < 2)
-			{
-				MessageBox.Show("请选择正确的导出文件");
-				saveFile1.Focus();
-				return;
-			}
+			//if (saveFile1.FileName.Length < 2)
+			//{
+			//    MessageBox.Show("请选择正确的导出文件");
+			//    saveFile1.Focus();
+			//    return;
+			//}
 
 			bsiStatus.Caption = "导出中...";
 			int RowCount = 0;
@@ -124,7 +124,7 @@ namespace ApqDBManager
 			try
 			{
 				// 显示文件
-				Process.Start(Apq.Dos.Common.EncodeParam(saveFile1.FileName));
+				//Process.Start(Apq.Dos.Common.EncodeParam(saveFile1.FileName));
 			}
 			catch { }
 
@@ -168,7 +168,8 @@ namespace ApqDBManager
 			// 执行导出
 			try
 			{
-				StreamWriter sw = File.CreateText(saveFile1.FileName);
+				//StreamWriter sw = File.CreateText(saveFile1.FileName);
+				StreamWriter sw = File.CreateText("");
 				foreach (DataTable dt in ds.Tables)
 				{
 					if (ceContainsColName.Checked)
@@ -241,7 +242,8 @@ namespace ApqDBManager
 				}
 
 				org.in2bits.MyXls.XlsDocument xd = new org.in2bits.MyXls.XlsDocument(dsExcel);
-				FileStream fs = new FileStream(saveFile1.FileName, FileMode.Create);
+				//FileStream fs = new FileStream(saveFile1.FileName, FileMode.Create);
+				FileStream fs = new FileStream("", FileMode.Create);
 				xd.Save(fs);
 				fs.Flush();
 				fs.Close();
@@ -265,14 +267,14 @@ namespace ApqDBManager
 			GlobalObject.XmlConfigChain[this.GetType(), "cbExportType"] = cbExportType.Text;
 
 			// 设置过滤器
-			if (cbExportType.Text == "Excel文件")
-			{
-				saveFile1.SaveFileDialog.FilterIndex = 2;
-			}
-			else
-			{
-				saveFile1.SaveFileDialog.FilterIndex = 1;
-			}
+			//if (cbExportType.Text == "Excel文件")
+			//{
+			//    saveFile1.SaveFileDialog.FilterIndex = 2;
+			//}
+			//else
+			//{
+			//    saveFile1.SaveFileDialog.FilterIndex = 1;
+			//}
 		}
 
 		private void ceContainsColName_CheckedChanged(object sender, EventArgs e)

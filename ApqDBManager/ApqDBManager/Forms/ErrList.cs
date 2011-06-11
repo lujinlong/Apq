@@ -19,8 +19,8 @@ namespace ApqDBManager.Forms
 
 		private void ErrList_Load(object sender, EventArgs e)
 		{
-			Apq.Xtra.Grid.Common.AddBehaivor(gridView1);
-			this.gridView1.CustomDrawRowIndicator += new RowIndicatorCustomDrawEventHandler(Apq.Xtra.Grid.Common.gv_CustomDrawRowIndicator);
+			//Apq.Xtra.Grid.Common.AddBehaivor(gridView1);
+			//this.gridView1.CustomDrawRowIndicator += new RowIndicatorCustomDrawEventHandler(Apq.Xtra.Grid.Common.gv_CustomDrawRowIndicator);
 		}
 
 		#region UI 公开方法

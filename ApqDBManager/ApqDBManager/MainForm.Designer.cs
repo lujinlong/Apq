@@ -28,554 +28,66 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.components = new System.ComponentModel.Container();
-			DevExpress.Utils.SuperToolTip superToolTip1 = new DevExpress.Utils.SuperToolTip();
-			DevExpress.Utils.ToolTipItem toolTipItem1 = new DevExpress.Utils.ToolTipItem();
-			DevExpress.Utils.SuperToolTip superToolTip2 = new DevExpress.Utils.SuperToolTip();
-			DevExpress.Utils.ToolTipItem toolTipItem2 = new DevExpress.Utils.ToolTipItem();
-			DevExpress.Utils.SuperToolTip superToolTip3 = new DevExpress.Utils.SuperToolTip();
-			DevExpress.Utils.ToolTipItem toolTipItem3 = new DevExpress.Utils.ToolTipItem();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-			this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
-			this.bar1 = new DevExpress.XtraBars.Bar();
-			this.blbiNew = new DevExpress.XtraBars.BarLargeButtonItem();
-			this.blbiOpen = new DevExpress.XtraBars.BarLargeButtonItem();
-			this.blbiSave = new DevExpress.XtraBars.BarLargeButtonItem();
-			this.bar2 = new DevExpress.XtraBars.Bar();
-			this.bsiFile = new DevExpress.XtraBars.BarSubItem();
-			this.menuNew = new DevExpress.XtraBars.BarButtonItem();
-			this.bsiOpen = new DevExpress.XtraBars.BarSubItem();
-			this.menuOpenSql = new DevExpress.XtraBars.BarButtonItem();
-			this.menuSave = new DevExpress.XtraBars.BarButtonItem();
-			this.menuSaveAs = new DevExpress.XtraBars.BarButtonItem();
-			this.menuExit = new DevExpress.XtraBars.BarButtonItem();
-			this.bsiEdit = new DevExpress.XtraBars.BarSubItem();
-			this.menuUndo = new DevExpress.XtraBars.BarButtonItem();
-			this.menuRedo = new DevExpress.XtraBars.BarButtonItem();
-			this.menuCut = new DevExpress.XtraBars.BarButtonItem();
-			this.menuCopy = new DevExpress.XtraBars.BarButtonItem();
-			this.menuPaste = new DevExpress.XtraBars.BarButtonItem();
-			this.menuSelectAll = new DevExpress.XtraBars.BarButtonItem();
-			this.menuReverse = new DevExpress.XtraBars.BarButtonItem();
-			this.bsiView = new DevExpress.XtraBars.BarSubItem();
-			this.menuToolBar = new DevExpress.XtraBars.BarCheckItem();
-			this.menuStatusBar = new DevExpress.XtraBars.BarCheckItem();
-			this.menuSolution = new DevExpress.XtraBars.BarCheckItem();
-			this.menuFavorites = new DevExpress.XtraBars.BarCheckItem();
-			this.menuErrList = new DevExpress.XtraBars.BarCheckItem();
-			this.bsiTool = new DevExpress.XtraBars.BarSubItem();
-			this.menuOption = new DevExpress.XtraBars.BarButtonItem();
-			this.menuRSAKey = new DevExpress.XtraBars.BarButtonItem();
-			this.menuDES = new DevExpress.XtraBars.BarButtonItem();
-			this.menuRandom = new DevExpress.XtraBars.BarButtonItem();
-			this.menuFileUp = new DevExpress.XtraBars.BarButtonItem();
-			this.menuFileTrans = new DevExpress.XtraBars.BarButtonItem();
-			this.menuFTP = new DevExpress.XtraBars.BarButtonItem();
-			this.menuFTPFileUp = new DevExpress.XtraBars.BarButtonItem();
-			this.menuDBC = new DevExpress.XtraBars.BarButtonItem();
-			this.menuDBCList = new DevExpress.XtraBars.BarButtonItem();
-			this.menuDBServer = new DevExpress.XtraBars.BarButtonItem();
-			this.bsiWindow = new DevExpress.XtraBars.BarSubItem();
-			this.menuCloseAll = new DevExpress.XtraBars.BarButtonItem();
-			this.menuNewApp = new DevExpress.XtraBars.BarButtonItem();
-			this.bsiHelp = new DevExpress.XtraBars.BarSubItem();
-			this.menuContents = new DevExpress.XtraBars.BarButtonItem();
-			this.menuIndex = new DevExpress.XtraBars.BarButtonItem();
-			this.menuSearch = new DevExpress.XtraBars.BarButtonItem();
-			this.menuSN = new DevExpress.XtraBars.BarButtonItem();
-			this.menuAbout = new DevExpress.XtraBars.BarButtonItem();
-			this.bar3 = new DevExpress.XtraBars.Bar();
-			this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
-			this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
-			this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
-			this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
 			this.dockPanel1 = new WeifenLuo.WinFormsUI.Docking.DockPanel();
-			((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
+			this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+			this.tsmiFile = new System.Windows.Forms.ToolStripMenuItem();
+			this.tsmiNew = new System.Windows.Forms.ToolStripMenuItem();
+			this.tsmiOpen = new System.Windows.Forms.ToolStripMenuItem();
+			this.tsmiOpenSql = new System.Windows.Forms.ToolStripMenuItem();
+			this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+			this.tsmiSave = new System.Windows.Forms.ToolStripMenuItem();
+			this.tsmiSaveAs = new System.Windows.Forms.ToolStripMenuItem();
+			this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+			this.tsmiExit = new System.Windows.Forms.ToolStripMenuItem();
+			this.tsmiEdit = new System.Windows.Forms.ToolStripMenuItem();
+			this.tsmiUndo = new System.Windows.Forms.ToolStripMenuItem();
+			this.tsmiRedo = new System.Windows.Forms.ToolStripMenuItem();
+			this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+			this.tsmiCut = new System.Windows.Forms.ToolStripMenuItem();
+			this.tsmiCopy = new System.Windows.Forms.ToolStripMenuItem();
+			this.tsmiPaste = new System.Windows.Forms.ToolStripMenuItem();
+			this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
+			this.tsmiSelectAll = new System.Windows.Forms.ToolStripMenuItem();
+			this.tsmiReverse = new System.Windows.Forms.ToolStripMenuItem();
+			this.tsmiView = new System.Windows.Forms.ToolStripMenuItem();
+			this.tsmiToolBar = new System.Windows.Forms.ToolStripMenuItem();
+			this.tsmiStatusBar = new System.Windows.Forms.ToolStripMenuItem();
+			this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
+			this.tsmiInstances = new System.Windows.Forms.ToolStripMenuItem();
+			this.tsmiFavorites = new System.Windows.Forms.ToolStripMenuItem();
+			this.tsmiErrList = new System.Windows.Forms.ToolStripMenuItem();
+			this.tsmiTool = new System.Windows.Forms.ToolStripMenuItem();
+			this.tsmiOption = new System.Windows.Forms.ToolStripMenuItem();
+			this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
+			this.tsmiRSAKey = new System.Windows.Forms.ToolStripMenuItem();
+			this.tsmiDES = new System.Windows.Forms.ToolStripMenuItem();
+			this.tsmiDBC = new System.Windows.Forms.ToolStripMenuItem();
+			this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
+			this.tsmiRandom = new System.Windows.Forms.ToolStripMenuItem();
+			this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
+			this.tsmiFTP = new System.Windows.Forms.ToolStripMenuItem();
+			this.tsmiFTPFileUp = new System.Windows.Forms.ToolStripMenuItem();
+			this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
+			this.tsmiDBServer = new System.Windows.Forms.ToolStripMenuItem();
+			this.tsmiWindow = new System.Windows.Forms.ToolStripMenuItem();
+			this.tsmiCloseAll = new System.Windows.Forms.ToolStripMenuItem();
+			this.tsmiNewApp = new System.Windows.Forms.ToolStripMenuItem();
+			this.tsmiHelp = new System.Windows.Forms.ToolStripMenuItem();
+			this.tsmiContents = new System.Windows.Forms.ToolStripMenuItem();
+			this.tsmiIndex = new System.Windows.Forms.ToolStripMenuItem();
+			this.tsmiSearch = new System.Windows.Forms.ToolStripMenuItem();
+			this.toolStripSeparator10 = new System.Windows.Forms.ToolStripSeparator();
+			this.tsmiSN = new System.Windows.Forms.ToolStripMenuItem();
+			this.tsmiAbout = new System.Windows.Forms.ToolStripMenuItem();
+			this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+			this.tsbNew = new System.Windows.Forms.ToolStripButton();
+			this.tsbOpen = new System.Windows.Forms.ToolStripButton();
+			this.tsbSave = new System.Windows.Forms.ToolStripButton();
+			this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+			this.menuStrip1.SuspendLayout();
+			this.toolStrip1.SuspendLayout();
 			this.SuspendLayout();
-			// 
-			// barManager1
-			// 
-			this.barManager1.Bars.AddRange(new DevExpress.XtraBars.Bar[] {
-            this.bar1,
-            this.bar2,
-            this.bar3});
-			this.barManager1.DockControls.Add(this.barDockControlTop);
-			this.barManager1.DockControls.Add(this.barDockControlBottom);
-			this.barManager1.DockControls.Add(this.barDockControlLeft);
-			this.barManager1.DockControls.Add(this.barDockControlRight);
-			this.barManager1.Form = this;
-			this.barManager1.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
-            this.bsiFile,
-            this.menuNew,
-            this.bsiEdit,
-            this.menuUndo,
-            this.menuRedo,
-            this.menuCopy,
-            this.menuCut,
-            this.menuPaste,
-            this.menuSelectAll,
-            this.menuReverse,
-            this.menuSave,
-            this.menuSaveAs,
-            this.menuExit,
-            this.bsiView,
-            this.menuToolBar,
-            this.menuStatusBar,
-            this.bsiTool,
-            this.menuOption,
-            this.bsiWindow,
-            this.bsiHelp,
-            this.menuCloseAll,
-            this.menuContents,
-            this.menuIndex,
-            this.menuSearch,
-            this.menuAbout,
-            this.blbiNew,
-            this.blbiOpen,
-            this.menuRandom,
-            this.blbiSave,
-            this.menuNewApp,
-            this.menuDES,
-            this.menuFileUp,
-            this.menuFileTrans,
-            this.menuFavorites,
-            this.menuSolution,
-            this.menuFTP,
-            this.menuErrList,
-            this.menuFTPFileUp,
-            this.menuRSAKey,
-            this.menuDBC,
-            this.menuDBCList,
-            this.bsiOpen,
-            this.menuOpenSql,
-            this.menuSN,
-            this.menuDBServer});
-			this.barManager1.MainMenu = this.bar2;
-			this.barManager1.MaxItemId = 19;
-			this.barManager1.StatusBar = this.bar3;
-			// 
-			// bar1
-			// 
-			this.bar1.BarName = "Tools";
-			this.bar1.DockCol = 0;
-			this.bar1.DockRow = 1;
-			this.bar1.DockStyle = DevExpress.XtraBars.BarDockStyle.Top;
-			this.bar1.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
-            new DevExpress.XtraBars.LinkPersistInfo(this.blbiNew),
-            new DevExpress.XtraBars.LinkPersistInfo(this.blbiOpen),
-            new DevExpress.XtraBars.LinkPersistInfo(this.blbiSave)});
-			this.bar1.Text = "Tools";
-			// 
-			// blbiNew
-			// 
-			this.blbiNew.Caption = "新建";
-			this.blbiNew.Id = 43;
-			this.blbiNew.Name = "blbiNew";
-			toolTipItem1.Text = "新建SqlEdit窗口";
-			superToolTip1.Items.Add(toolTipItem1);
-			this.blbiNew.SuperTip = superToolTip1;
-			this.blbiNew.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.menuNew_ItemClick);
-			// 
-			// blbiOpen
-			// 
-			this.blbiOpen.Caption = "打开";
-			this.blbiOpen.Id = 44;
-			this.blbiOpen.Name = "blbiOpen";
-			toolTipItem2.Text = "打开Sql文件";
-			superToolTip2.Items.Add(toolTipItem2);
-			this.blbiOpen.SuperTip = superToolTip2;
-			this.blbiOpen.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.menuOpenSql_ItemClick);
-			// 
-			// blbiSave
-			// 
-			this.blbiSave.Caption = "保存";
-			this.blbiSave.Hint = "保存";
-			this.blbiSave.Id = 47;
-			this.blbiSave.Name = "blbiSave";
-			toolTipItem3.Text = "保存";
-			superToolTip3.Items.Add(toolTipItem3);
-			this.blbiSave.SuperTip = superToolTip3;
-			this.blbiSave.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.menuSave_ItemClick);
-			// 
-			// bar2
-			// 
-			this.bar2.BarName = "Main menu";
-			this.bar2.DockCol = 0;
-			this.bar2.DockRow = 0;
-			this.bar2.DockStyle = DevExpress.XtraBars.BarDockStyle.Top;
-			this.bar2.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
-            new DevExpress.XtraBars.LinkPersistInfo(this.bsiFile),
-            new DevExpress.XtraBars.LinkPersistInfo(this.bsiEdit),
-            new DevExpress.XtraBars.LinkPersistInfo(this.bsiView),
-            new DevExpress.XtraBars.LinkPersistInfo(this.bsiTool),
-            new DevExpress.XtraBars.LinkPersistInfo(this.bsiWindow),
-            new DevExpress.XtraBars.LinkPersistInfo(this.bsiHelp)});
-			this.bar2.OptionsBar.MultiLine = true;
-			this.bar2.OptionsBar.UseWholeRow = true;
-			this.bar2.Text = "Main menu";
-			// 
-			// bsiFile
-			// 
-			this.bsiFile.Caption = "文件(&F)";
-			this.bsiFile.Id = 0;
-			this.bsiFile.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
-            new DevExpress.XtraBars.LinkPersistInfo(this.menuNew),
-            new DevExpress.XtraBars.LinkPersistInfo(this.bsiOpen),
-            new DevExpress.XtraBars.LinkPersistInfo(this.menuSave, true),
-            new DevExpress.XtraBars.LinkPersistInfo(this.menuSaveAs),
-            new DevExpress.XtraBars.LinkPersistInfo(this.menuExit, true)});
-			this.bsiFile.Name = "bsiFile";
-			// 
-			// menuNew
-			// 
-			this.menuNew.Caption = "新建(&N)";
-			this.menuNew.Id = 10;
-			this.menuNew.ItemShortcut = new DevExpress.XtraBars.BarShortcut((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N));
-			this.menuNew.Name = "menuNew";
-			this.menuNew.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.menuNew_ItemClick);
-			// 
-			// bsiOpen
-			// 
-			this.bsiOpen.Caption = "打开(&O)";
-			this.bsiOpen.Id = 15;
-			this.bsiOpen.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
-            new DevExpress.XtraBars.LinkPersistInfo(this.menuOpenSql)});
-			this.bsiOpen.Name = "bsiOpen";
-			// 
-			// menuOpenSql
-			// 
-			this.menuOpenSql.Caption = "Sql文件(&S)";
-			this.menuOpenSql.Id = 16;
-			this.menuOpenSql.ItemShortcut = new DevExpress.XtraBars.BarShortcut((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O));
-			this.menuOpenSql.Name = "menuOpenSql";
-			this.menuOpenSql.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.menuOpenSql_ItemClick);
-			// 
-			// menuSave
-			// 
-			this.menuSave.Caption = "保存(&S)";
-			this.menuSave.Id = 20;
-			this.menuSave.ItemShortcut = new DevExpress.XtraBars.BarShortcut((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S));
-			this.menuSave.Name = "menuSave";
-			this.menuSave.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.menuSave_ItemClick);
-			// 
-			// menuSaveAs
-			// 
-			this.menuSaveAs.Caption = "另存为(&A)";
-			this.menuSaveAs.Id = 21;
-			this.menuSaveAs.Name = "menuSaveAs";
-			this.menuSaveAs.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.menuSaveAs_ItemClick);
-			// 
-			// menuExit
-			// 
-			this.menuExit.Caption = "退出(&X)";
-			this.menuExit.Id = 22;
-			this.menuExit.Name = "menuExit";
-			this.menuExit.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.menuExit_ItemClick);
-			// 
-			// bsiEdit
-			// 
-			this.bsiEdit.Caption = "编辑(&E)";
-			this.bsiEdit.Id = 12;
-			this.bsiEdit.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
-            new DevExpress.XtraBars.LinkPersistInfo(this.menuUndo),
-            new DevExpress.XtraBars.LinkPersistInfo(this.menuRedo),
-            new DevExpress.XtraBars.LinkPersistInfo(this.menuCut, true),
-            new DevExpress.XtraBars.LinkPersistInfo(this.menuCopy),
-            new DevExpress.XtraBars.LinkPersistInfo(this.menuPaste),
-            new DevExpress.XtraBars.LinkPersistInfo(this.menuSelectAll, true),
-            new DevExpress.XtraBars.LinkPersistInfo(this.menuReverse)});
-			this.bsiEdit.Name = "bsiEdit";
-			// 
-			// menuUndo
-			// 
-			this.menuUndo.Caption = "撤消(&U)";
-			this.menuUndo.Id = 13;
-			this.menuUndo.ItemShortcut = new DevExpress.XtraBars.BarShortcut((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Z));
-			this.menuUndo.Name = "menuUndo";
-			this.menuUndo.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.menuUndo_ItemClick);
-			// 
-			// menuRedo
-			// 
-			this.menuRedo.Caption = "重做(&R)";
-			this.menuRedo.Id = 14;
-			this.menuRedo.ItemShortcut = new DevExpress.XtraBars.BarShortcut((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Y));
-			this.menuRedo.Name = "menuRedo";
-			this.menuRedo.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.menuRedo_ItemClick);
-			// 
-			// menuCut
-			// 
-			this.menuCut.Caption = "剪切(&T)";
-			this.menuCut.Id = 16;
-			this.menuCut.ItemShortcut = new DevExpress.XtraBars.BarShortcut((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.X));
-			this.menuCut.Name = "menuCut";
-			this.menuCut.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.menuCut_ItemClick);
-			// 
-			// menuCopy
-			// 
-			this.menuCopy.Caption = "复制(&C)";
-			this.menuCopy.Id = 15;
-			this.menuCopy.ItemShortcut = new DevExpress.XtraBars.BarShortcut((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.C));
-			this.menuCopy.Name = "menuCopy";
-			this.menuCopy.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.menuCopy_ItemClick);
-			// 
-			// menuPaste
-			// 
-			this.menuPaste.Caption = "粘贴(&P)";
-			this.menuPaste.Id = 17;
-			this.menuPaste.ItemShortcut = new DevExpress.XtraBars.BarShortcut((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.V));
-			this.menuPaste.Name = "menuPaste";
-			this.menuPaste.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.menuPaste_ItemClick);
-			// 
-			// menuSelectAll
-			// 
-			this.menuSelectAll.Caption = "全选(&A)";
-			this.menuSelectAll.Id = 18;
-			this.menuSelectAll.ItemShortcut = new DevExpress.XtraBars.BarShortcut((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.A));
-			this.menuSelectAll.Name = "menuSelectAll";
-			this.menuSelectAll.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.menuSelectAll_ItemClick);
-			// 
-			// menuReverse
-			// 
-			this.menuReverse.Caption = "反选(&S)";
-			this.menuReverse.Enabled = false;
-			this.menuReverse.Id = 19;
-			this.menuReverse.ItemShortcut = new DevExpress.XtraBars.BarShortcut((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.R));
-			this.menuReverse.Name = "menuReverse";
-			this.menuReverse.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.menuReverse_ItemClick);
-			// 
-			// bsiView
-			// 
-			this.bsiView.Caption = "视图(&V)";
-			this.bsiView.Id = 24;
-			this.bsiView.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
-            new DevExpress.XtraBars.LinkPersistInfo(this.menuToolBar),
-            new DevExpress.XtraBars.LinkPersistInfo(this.menuStatusBar),
-            new DevExpress.XtraBars.LinkPersistInfo(this.menuSolution, true),
-            new DevExpress.XtraBars.LinkPersistInfo(this.menuFavorites),
-            new DevExpress.XtraBars.LinkPersistInfo(this.menuErrList)});
-			this.bsiView.Name = "bsiView";
-			// 
-			// menuToolBar
-			// 
-			this.menuToolBar.Caption = "工具栏(&T)";
-			this.menuToolBar.Checked = true;
-			this.menuToolBar.Id = 25;
-			this.menuToolBar.Name = "menuToolBar";
-			this.menuToolBar.CheckedChanged += new DevExpress.XtraBars.ItemClickEventHandler(this.menuToolBar_CheckedChanged);
-			// 
-			// menuStatusBar
-			// 
-			this.menuStatusBar.Caption = "状态栏(&S)";
-			this.menuStatusBar.Checked = true;
-			this.menuStatusBar.Id = 26;
-			this.menuStatusBar.Name = "menuStatusBar";
-			this.menuStatusBar.CheckedChanged += new DevExpress.XtraBars.ItemClickEventHandler(this.menuStatusBar_CheckedChanged);
-			// 
-			// menuSolution
-			// 
-			this.menuSolution.Caption = "解决方案(&P)";
-			this.menuSolution.Checked = true;
-			this.menuSolution.Id = 7;
-			this.menuSolution.Name = "menuSolution";
-			this.menuSolution.CheckedChanged += new DevExpress.XtraBars.ItemClickEventHandler(this.menuSolution_CheckedChanged);
-			// 
-			// menuFavorites
-			// 
-			this.menuFavorites.Caption = "收藏夹(&D)";
-			this.menuFavorites.Checked = true;
-			this.menuFavorites.Id = 6;
-			this.menuFavorites.Name = "menuFavorites";
-			this.menuFavorites.CheckedChanged += new DevExpress.XtraBars.ItemClickEventHandler(this.menuFavorites_CheckedChanged);
-			// 
-			// menuErrList
-			// 
-			this.menuErrList.Caption = "错误列表(&R)";
-			this.menuErrList.Checked = true;
-			this.menuErrList.Id = 10;
-			this.menuErrList.Name = "menuErrList";
-			this.menuErrList.CheckedChanged += new DevExpress.XtraBars.ItemClickEventHandler(this.menuErrList_CheckedChanged);
-			// 
-			// bsiTool
-			// 
-			this.bsiTool.Caption = "工具(&T)";
-			this.bsiTool.Id = 27;
-			this.bsiTool.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
-            new DevExpress.XtraBars.LinkPersistInfo(this.menuOption),
-            new DevExpress.XtraBars.LinkPersistInfo(this.menuRSAKey),
-            new DevExpress.XtraBars.LinkPersistInfo(this.menuDES),
-            new DevExpress.XtraBars.LinkPersistInfo(this.menuRandom),
-            new DevExpress.XtraBars.LinkPersistInfo(this.menuFileUp),
-            new DevExpress.XtraBars.LinkPersistInfo(this.menuFileTrans),
-            new DevExpress.XtraBars.LinkPersistInfo(this.menuFTP),
-            new DevExpress.XtraBars.LinkPersistInfo(this.menuFTPFileUp),
-            new DevExpress.XtraBars.LinkPersistInfo(this.menuDBC),
-            new DevExpress.XtraBars.LinkPersistInfo(this.menuDBCList),
-            new DevExpress.XtraBars.LinkPersistInfo(this.menuDBServer)});
-			this.bsiTool.Name = "bsiTool";
-			// 
-			// menuOption
-			// 
-			this.menuOption.Caption = "选项(&O)";
-			this.menuOption.Id = 28;
-			this.menuOption.Name = "menuOption";
-			this.menuOption.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.menuOption_ItemClick);
-			// 
-			// menuRSAKey
-			// 
-			this.menuRSAKey.Caption = "RSA密钥对(&R)";
-			this.menuRSAKey.Id = 12;
-			this.menuRSAKey.Name = "menuRSAKey";
-			this.menuRSAKey.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.menuRSAKey_ItemClick);
-			// 
-			// menuDES
-			// 
-			this.menuDES.Caption = "DES加解密(&D)";
-			this.menuDES.Id = 3;
-			this.menuDES.Name = "menuDES";
-			this.menuDES.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.menuDES_ItemClick);
-			// 
-			// menuRandom
-			// 
-			this.menuRandom.Caption = "随机串生成器(&R)";
-			this.menuRandom.Id = 50;
-			this.menuRandom.Name = "menuRandom";
-			this.menuRandom.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.menuRandom_ItemClick);
-			// 
-			// menuFileUp
-			// 
-			this.menuFileUp.Caption = "文件上传(&U)";
-			this.menuFileUp.Enabled = false;
-			this.menuFileUp.Id = 4;
-			this.menuFileUp.Name = "menuFileUp";
-			this.menuFileUp.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.menuFileUp_ItemClick);
-			// 
-			// menuFileTrans
-			// 
-			this.menuFileTrans.Caption = "文件传送(&T)";
-			this.menuFileTrans.Enabled = false;
-			this.menuFileTrans.Id = 5;
-			this.menuFileTrans.Name = "menuFileTrans";
-			this.menuFileTrans.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.menuFileTrans_ItemClick);
-			// 
-			// menuFTP
-			// 
-			this.menuFTP.Caption = "FTP传送(&F)";
-			this.menuFTP.Id = 8;
-			this.menuFTP.Name = "menuFTP";
-			this.menuFTP.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.menuFTP_ItemClick);
-			// 
-			// menuFTPFileUp
-			// 
-			this.menuFTPFileUp.Caption = "FTP上传(&P)";
-			this.menuFTPFileUp.Id = 11;
-			this.menuFTPFileUp.Name = "menuFTPFileUp";
-			this.menuFTPFileUp.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.menuFTPFileUp_ItemClick);
-			// 
-			// menuDBC
-			// 
-			this.menuDBC.Caption = "DB连接加解密(&C)";
-			this.menuDBC.Id = 13;
-			this.menuDBC.Name = "menuDBC";
-			this.menuDBC.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.menuDBC_ItemClick);
-			// 
-			// menuDBCList
-			// 
-			this.menuDBCList.Caption = "(已去掉)DB连接(&L)";
-			this.menuDBCList.Id = 14;
-			this.menuDBCList.Name = "menuDBCList";
-			this.menuDBCList.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.menuDBCList_ItemClick);
-			// 
-			// menuDBServer
-			// 
-			this.menuDBServer.Caption = "服务器管理(&M)";
-			this.menuDBServer.Id = 18;
-			this.menuDBServer.Name = "menuDBServer";
-			this.menuDBServer.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.menuDBServer_ItemClick);
-			// 
-			// bsiWindow
-			// 
-			this.bsiWindow.Caption = "窗口(&W)";
-			this.bsiWindow.Id = 29;
-			this.bsiWindow.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
-            new DevExpress.XtraBars.LinkPersistInfo(this.menuCloseAll),
-            new DevExpress.XtraBars.LinkPersistInfo(this.menuNewApp)});
-			this.bsiWindow.Name = "bsiWindow";
-			// 
-			// menuCloseAll
-			// 
-			this.menuCloseAll.Caption = "全部关闭(&L)";
-			this.menuCloseAll.Enabled = false;
-			this.menuCloseAll.Id = 35;
-			this.menuCloseAll.Name = "menuCloseAll";
-			this.menuCloseAll.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.menuCloseAll_ItemClick);
-			// 
-			// menuNewApp
-			// 
-			this.menuNewApp.Caption = "另开窗口(&N)";
-			this.menuNewApp.Id = 2;
-			this.menuNewApp.ItemShortcut = new DevExpress.XtraBars.BarShortcut(System.Windows.Forms.Keys.F12);
-			this.menuNewApp.Name = "menuNewApp";
-			this.menuNewApp.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.menuNewApp_ItemClick);
-			// 
-			// bsiHelp
-			// 
-			this.bsiHelp.Caption = "帮助(&H)";
-			this.bsiHelp.Id = 30;
-			this.bsiHelp.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
-            new DevExpress.XtraBars.LinkPersistInfo(this.menuContents),
-            new DevExpress.XtraBars.LinkPersistInfo(this.menuIndex),
-            new DevExpress.XtraBars.LinkPersistInfo(this.menuSearch),
-            new DevExpress.XtraBars.LinkPersistInfo(this.menuSN, true),
-            new DevExpress.XtraBars.LinkPersistInfo(this.menuAbout)});
-			this.bsiHelp.Name = "bsiHelp";
-			// 
-			// menuContents
-			// 
-			this.menuContents.Caption = "目录(&C)";
-			this.menuContents.Id = 37;
-			this.menuContents.ItemShortcut = new DevExpress.XtraBars.BarShortcut((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F1));
-			this.menuContents.Name = "menuContents";
-			this.menuContents.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.menuContents_ItemClick);
-			// 
-			// menuIndex
-			// 
-			this.menuIndex.Caption = "索引(&I)";
-			this.menuIndex.Id = 38;
-			this.menuIndex.Name = "menuIndex";
-			this.menuIndex.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.menuIndex_ItemClick);
-			// 
-			// menuSearch
-			// 
-			this.menuSearch.Caption = "搜索(&S)";
-			this.menuSearch.Id = 39;
-			this.menuSearch.Name = "menuSearch";
-			this.menuSearch.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.menuSearch_ItemClick);
-			// 
-			// menuSN
-			// 
-			this.menuSN.Caption = "注册信息(&R)";
-			this.menuSN.Id = 17;
-			this.menuSN.Name = "menuSN";
-			this.menuSN.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.menuSN_ItemClick);
-			// 
-			// menuAbout
-			// 
-			this.menuAbout.Caption = "关于(&A)";
-			this.menuAbout.Id = 40;
-			this.menuAbout.Name = "menuAbout";
-			this.menuAbout.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.menuAbout_ItemClick);
-			// 
-			// bar3
-			// 
-			this.bar3.BarName = "Status bar";
-			this.bar3.CanDockStyle = DevExpress.XtraBars.BarCanDockStyle.Bottom;
-			this.bar3.DockCol = 0;
-			this.bar3.DockRow = 0;
-			this.bar3.DockStyle = DevExpress.XtraBars.BarDockStyle.Bottom;
-			this.bar3.OptionsBar.AllowQuickCustomization = false;
-			this.bar3.OptionsBar.DrawDragBorder = false;
-			this.bar3.OptionsBar.UseWholeRow = true;
-			this.bar3.Text = "Status bar";
 			// 
 			// dockPanel1
 			// 
@@ -585,21 +97,480 @@
 			this.dockPanel1.DockLeftPortion = 200;
 			this.dockPanel1.DockRightPortion = 200;
 			this.dockPanel1.DockTopPortion = 150;
-			this.dockPanel1.Location = new System.Drawing.Point(0, 49);
+			this.dockPanel1.Location = new System.Drawing.Point(0, 0);
 			this.dockPanel1.Name = "dockPanel1";
-			this.dockPanel1.Size = new System.Drawing.Size(1036, 425);
+			this.dockPanel1.Size = new System.Drawing.Size(888, 425);
 			this.dockPanel1.TabIndex = 5;
+			// 
+			// menuStrip1
+			// 
+			this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiFile,
+            this.tsmiEdit,
+            this.tsmiView,
+            this.tsmiTool,
+            this.tsmiWindow,
+            this.tsmiHelp});
+			this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+			this.menuStrip1.Name = "menuStrip1";
+			this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
+			this.menuStrip1.Size = new System.Drawing.Size(888, 24);
+			this.menuStrip1.TabIndex = 8;
+			this.menuStrip1.Text = "menuStrip1";
+			// 
+			// tsmiFile
+			// 
+			this.tsmiFile.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiNew,
+            this.tsmiOpen,
+            this.toolStripSeparator1,
+            this.tsmiSave,
+            this.tsmiSaveAs,
+            this.toolStripSeparator2,
+            this.tsmiExit});
+			this.tsmiFile.Name = "tsmiFile";
+			this.tsmiFile.Size = new System.Drawing.Size(59, 20);
+			this.tsmiFile.Text = "文件(&F)";
+			// 
+			// tsmiNew
+			// 
+			this.tsmiNew.Name = "tsmiNew";
+			this.tsmiNew.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
+			this.tsmiNew.Size = new System.Drawing.Size(153, 22);
+			this.tsmiNew.Text = "新建(&N)";
+			this.tsmiNew.Click += new System.EventHandler(this.tsmiNew_Click);
+			// 
+			// tsmiOpen
+			// 
+			this.tsmiOpen.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiOpenSql});
+			this.tsmiOpen.Name = "tsmiOpen";
+			this.tsmiOpen.Size = new System.Drawing.Size(153, 22);
+			this.tsmiOpen.Text = "打开(&O)";
+			// 
+			// tsmiOpenSql
+			// 
+			this.tsmiOpenSql.Name = "tsmiOpenSql";
+			this.tsmiOpenSql.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
+			this.tsmiOpenSql.Size = new System.Drawing.Size(171, 22);
+			this.tsmiOpenSql.Text = "Sql文件(&S)";
+			this.tsmiOpenSql.Click += new System.EventHandler(this.tsmiOpenSql_Click);
+			// 
+			// toolStripSeparator1
+			// 
+			this.toolStripSeparator1.Name = "toolStripSeparator1";
+			this.toolStripSeparator1.Size = new System.Drawing.Size(150, 6);
+			// 
+			// tsmiSave
+			// 
+			this.tsmiSave.Name = "tsmiSave";
+			this.tsmiSave.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
+			this.tsmiSave.Size = new System.Drawing.Size(153, 22);
+			this.tsmiSave.Text = "保存(&S)";
+			this.tsmiSave.Click += new System.EventHandler(this.tsmiSave_Click);
+			// 
+			// tsmiSaveAs
+			// 
+			this.tsmiSaveAs.Name = "tsmiSaveAs";
+			this.tsmiSaveAs.Size = new System.Drawing.Size(153, 22);
+			this.tsmiSaveAs.Text = "另存为(&A)";
+			this.tsmiSaveAs.Click += new System.EventHandler(this.tsmiSaveAs_Click);
+			// 
+			// toolStripSeparator2
+			// 
+			this.toolStripSeparator2.Name = "toolStripSeparator2";
+			this.toolStripSeparator2.Size = new System.Drawing.Size(150, 6);
+			// 
+			// tsmiExit
+			// 
+			this.tsmiExit.Name = "tsmiExit";
+			this.tsmiExit.Size = new System.Drawing.Size(153, 22);
+			this.tsmiExit.Text = "退出(&X)";
+			this.tsmiExit.Click += new System.EventHandler(this.tsmiExit_Click);
+			// 
+			// tsmiEdit
+			// 
+			this.tsmiEdit.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiUndo,
+            this.tsmiRedo,
+            this.toolStripSeparator3,
+            this.tsmiCut,
+            this.tsmiCopy,
+            this.tsmiPaste,
+            this.toolStripSeparator4,
+            this.tsmiSelectAll,
+            this.tsmiReverse});
+			this.tsmiEdit.Name = "tsmiEdit";
+			this.tsmiEdit.Size = new System.Drawing.Size(59, 20);
+			this.tsmiEdit.Text = "编辑(&E)";
+			// 
+			// tsmiUndo
+			// 
+			this.tsmiUndo.Name = "tsmiUndo";
+			this.tsmiUndo.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Z)));
+			this.tsmiUndo.Size = new System.Drawing.Size(153, 22);
+			this.tsmiUndo.Text = "撤消(&U)";
+			this.tsmiUndo.Click += new System.EventHandler(this.tsmiUndo_Click);
+			// 
+			// tsmiRedo
+			// 
+			this.tsmiRedo.Name = "tsmiRedo";
+			this.tsmiRedo.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Y)));
+			this.tsmiRedo.Size = new System.Drawing.Size(153, 22);
+			this.tsmiRedo.Text = "重做(&R)";
+			this.tsmiRedo.Click += new System.EventHandler(this.tsmiRedo_Click);
+			// 
+			// toolStripSeparator3
+			// 
+			this.toolStripSeparator3.Name = "toolStripSeparator3";
+			this.toolStripSeparator3.Size = new System.Drawing.Size(150, 6);
+			// 
+			// tsmiCut
+			// 
+			this.tsmiCut.Name = "tsmiCut";
+			this.tsmiCut.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.X)));
+			this.tsmiCut.Size = new System.Drawing.Size(153, 22);
+			this.tsmiCut.Text = "剪切(&T)";
+			this.tsmiCut.Click += new System.EventHandler(this.tsmiCut_Click);
+			// 
+			// tsmiCopy
+			// 
+			this.tsmiCopy.Name = "tsmiCopy";
+			this.tsmiCopy.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.C)));
+			this.tsmiCopy.Size = new System.Drawing.Size(153, 22);
+			this.tsmiCopy.Text = "复制(&C)";
+			this.tsmiCopy.Click += new System.EventHandler(this.tsmiCopy_Click);
+			// 
+			// tsmiPaste
+			// 
+			this.tsmiPaste.Name = "tsmiPaste";
+			this.tsmiPaste.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.V)));
+			this.tsmiPaste.Size = new System.Drawing.Size(153, 22);
+			this.tsmiPaste.Text = "粘贴(&P)";
+			this.tsmiPaste.Click += new System.EventHandler(this.tsmiPaste_Click);
+			// 
+			// toolStripSeparator4
+			// 
+			this.toolStripSeparator4.Name = "toolStripSeparator4";
+			this.toolStripSeparator4.Size = new System.Drawing.Size(150, 6);
+			// 
+			// tsmiSelectAll
+			// 
+			this.tsmiSelectAll.Name = "tsmiSelectAll";
+			this.tsmiSelectAll.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.A)));
+			this.tsmiSelectAll.Size = new System.Drawing.Size(153, 22);
+			this.tsmiSelectAll.Text = "全选(&A)";
+			this.tsmiSelectAll.Click += new System.EventHandler(this.tsmiSelectAll_Click);
+			// 
+			// tsmiReverse
+			// 
+			this.tsmiReverse.Name = "tsmiReverse";
+			this.tsmiReverse.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.R)));
+			this.tsmiReverse.Size = new System.Drawing.Size(153, 22);
+			this.tsmiReverse.Text = "反选(&S)";
+			this.tsmiReverse.Click += new System.EventHandler(this.tsmiReverse_Click);
+			// 
+			// tsmiView
+			// 
+			this.tsmiView.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiToolBar,
+            this.tsmiStatusBar,
+            this.toolStripSeparator5,
+            this.tsmiInstances,
+            this.tsmiFavorites,
+            this.tsmiErrList});
+			this.tsmiView.Name = "tsmiView";
+			this.tsmiView.Size = new System.Drawing.Size(59, 20);
+			this.tsmiView.Text = "视图(&V)";
+			// 
+			// tsmiToolBar
+			// 
+			this.tsmiToolBar.Checked = true;
+			this.tsmiToolBar.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.tsmiToolBar.Name = "tsmiToolBar";
+			this.tsmiToolBar.Size = new System.Drawing.Size(136, 22);
+			this.tsmiToolBar.Text = "工具栏(&T)";
+			this.tsmiToolBar.CheckedChanged += new System.EventHandler(this.tsmiToolBar_CheckedChanged);
+			this.tsmiToolBar.Click += new System.EventHandler(this.tsmiToolBar_Click);
+			// 
+			// tsmiStatusBar
+			// 
+			this.tsmiStatusBar.Checked = true;
+			this.tsmiStatusBar.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.tsmiStatusBar.Name = "tsmiStatusBar";
+			this.tsmiStatusBar.Size = new System.Drawing.Size(136, 22);
+			this.tsmiStatusBar.Text = "状态栏(&U)";
+			this.tsmiStatusBar.CheckedChanged += new System.EventHandler(this.menuStatusBar_CheckedChanged);
+			this.tsmiStatusBar.Click += new System.EventHandler(this.tsmiStatusBar_Click);
+			// 
+			// toolStripSeparator5
+			// 
+			this.toolStripSeparator5.Name = "toolStripSeparator5";
+			this.toolStripSeparator5.Size = new System.Drawing.Size(133, 6);
+			// 
+			// tsmiInstances
+			// 
+			this.tsmiInstances.Checked = true;
+			this.tsmiInstances.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.tsmiInstances.Name = "tsmiInstances";
+			this.tsmiInstances.Size = new System.Drawing.Size(136, 22);
+			this.tsmiInstances.Text = "实例(&S)";
+			this.tsmiInstances.CheckedChanged += new System.EventHandler(this.menuSolution_CheckedChanged);
+			this.tsmiInstances.Click += new System.EventHandler(this.tsmiInstances_Click);
+			// 
+			// tsmiFavorites
+			// 
+			this.tsmiFavorites.Checked = true;
+			this.tsmiFavorites.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.tsmiFavorites.Name = "tsmiFavorites";
+			this.tsmiFavorites.Size = new System.Drawing.Size(136, 22);
+			this.tsmiFavorites.Text = "收藏夹(&D)";
+			this.tsmiFavorites.CheckedChanged += new System.EventHandler(this.menuFavorites_CheckedChanged);
+			this.tsmiFavorites.Click += new System.EventHandler(this.tsmiFavorites_Click);
+			// 
+			// tsmiErrList
+			// 
+			this.tsmiErrList.Checked = true;
+			this.tsmiErrList.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.tsmiErrList.Name = "tsmiErrList";
+			this.tsmiErrList.Size = new System.Drawing.Size(136, 22);
+			this.tsmiErrList.Text = "错误列表(&R)";
+			this.tsmiErrList.CheckedChanged += new System.EventHandler(this.menuErrList_CheckedChanged);
+			this.tsmiErrList.Click += new System.EventHandler(this.tsmiErrList_Click);
+			// 
+			// tsmiTool
+			// 
+			this.tsmiTool.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiOption,
+            this.toolStripSeparator6,
+            this.tsmiRSAKey,
+            this.tsmiDES,
+            this.tsmiDBC,
+            this.toolStripSeparator7,
+            this.tsmiRandom,
+            this.toolStripSeparator8,
+            this.tsmiFTP,
+            this.tsmiFTPFileUp,
+            this.toolStripSeparator9,
+            this.tsmiDBServer});
+			this.tsmiTool.Name = "tsmiTool";
+			this.tsmiTool.Size = new System.Drawing.Size(59, 20);
+			this.tsmiTool.Text = "工具(&T)";
+			// 
+			// tsmiOption
+			// 
+			this.tsmiOption.Name = "tsmiOption";
+			this.tsmiOption.Size = new System.Drawing.Size(160, 22);
+			this.tsmiOption.Text = "选项(&O)";
+			this.tsmiOption.Click += new System.EventHandler(this.tsmiOption_Click);
+			// 
+			// toolStripSeparator6
+			// 
+			this.toolStripSeparator6.Name = "toolStripSeparator6";
+			this.toolStripSeparator6.Size = new System.Drawing.Size(157, 6);
+			// 
+			// tsmiRSAKey
+			// 
+			this.tsmiRSAKey.Name = "tsmiRSAKey";
+			this.tsmiRSAKey.Size = new System.Drawing.Size(160, 22);
+			this.tsmiRSAKey.Text = "RSA密钥对(&R)";
+			this.tsmiRSAKey.Click += new System.EventHandler(this.tsmiRSAKey_Click);
+			// 
+			// tsmiDES
+			// 
+			this.tsmiDES.Name = "tsmiDES";
+			this.tsmiDES.Size = new System.Drawing.Size(160, 22);
+			this.tsmiDES.Text = "DES加解密(&D)";
+			this.tsmiDES.Click += new System.EventHandler(this.tsmiDES_Click);
+			// 
+			// tsmiDBC
+			// 
+			this.tsmiDBC.Name = "tsmiDBC";
+			this.tsmiDBC.Size = new System.Drawing.Size(160, 22);
+			this.tsmiDBC.Text = "DB连接加解密(&C)";
+			this.tsmiDBC.Click += new System.EventHandler(this.tsmiDBC_Click);
+			// 
+			// toolStripSeparator7
+			// 
+			this.toolStripSeparator7.Name = "toolStripSeparator7";
+			this.toolStripSeparator7.Size = new System.Drawing.Size(157, 6);
+			// 
+			// tsmiRandom
+			// 
+			this.tsmiRandom.Name = "tsmiRandom";
+			this.tsmiRandom.Size = new System.Drawing.Size(160, 22);
+			this.tsmiRandom.Text = "随机串生成器(&R)";
+			this.tsmiRandom.Click += new System.EventHandler(this.tsmiRandom_Click);
+			// 
+			// toolStripSeparator8
+			// 
+			this.toolStripSeparator8.Name = "toolStripSeparator8";
+			this.toolStripSeparator8.Size = new System.Drawing.Size(157, 6);
+			// 
+			// tsmiFTP
+			// 
+			this.tsmiFTP.Name = "tsmiFTP";
+			this.tsmiFTP.Size = new System.Drawing.Size(160, 22);
+			this.tsmiFTP.Text = "FTP传送(&F)";
+			this.tsmiFTP.Click += new System.EventHandler(this.tsmiFTP_Click);
+			// 
+			// tsmiFTPFileUp
+			// 
+			this.tsmiFTPFileUp.Name = "tsmiFTPFileUp";
+			this.tsmiFTPFileUp.Size = new System.Drawing.Size(160, 22);
+			this.tsmiFTPFileUp.Text = "FTP上传(&P)";
+			this.tsmiFTPFileUp.Click += new System.EventHandler(this.tsmiFTPFileUp_Click);
+			// 
+			// toolStripSeparator9
+			// 
+			this.toolStripSeparator9.Name = "toolStripSeparator9";
+			this.toolStripSeparator9.Size = new System.Drawing.Size(157, 6);
+			// 
+			// tsmiDBServer
+			// 
+			this.tsmiDBServer.Name = "tsmiDBServer";
+			this.tsmiDBServer.Size = new System.Drawing.Size(160, 22);
+			this.tsmiDBServer.Text = "服务器管理(&M)";
+			this.tsmiDBServer.Click += new System.EventHandler(this.tsmiDBServer_Click);
+			// 
+			// tsmiWindow
+			// 
+			this.tsmiWindow.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiCloseAll,
+            this.tsmiNewApp});
+			this.tsmiWindow.Name = "tsmiWindow";
+			this.tsmiWindow.Size = new System.Drawing.Size(59, 20);
+			this.tsmiWindow.Text = "窗口(&W)";
+			// 
+			// tsmiCloseAll
+			// 
+			this.tsmiCloseAll.Name = "tsmiCloseAll";
+			this.tsmiCloseAll.Size = new System.Drawing.Size(159, 22);
+			this.tsmiCloseAll.Text = "全部关闭(&L)";
+			this.tsmiCloseAll.Click += new System.EventHandler(this.tsmiCloseAll_Click);
+			// 
+			// tsmiNewApp
+			// 
+			this.tsmiNewApp.Name = "tsmiNewApp";
+			this.tsmiNewApp.ShortcutKeys = System.Windows.Forms.Keys.F12;
+			this.tsmiNewApp.Size = new System.Drawing.Size(159, 22);
+			this.tsmiNewApp.Text = "另开窗口(&N)";
+			this.tsmiNewApp.Click += new System.EventHandler(this.tsmiNewApp_Click);
+			// 
+			// tsmiHelp
+			// 
+			this.tsmiHelp.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiContents,
+            this.tsmiIndex,
+            this.tsmiSearch,
+            this.toolStripSeparator10,
+            this.tsmiSN,
+            this.tsmiAbout});
+			this.tsmiHelp.Name = "tsmiHelp";
+			this.tsmiHelp.Size = new System.Drawing.Size(59, 20);
+			this.tsmiHelp.Text = "帮助(&H)";
+			// 
+			// tsmiContents
+			// 
+			this.tsmiContents.Name = "tsmiContents";
+			this.tsmiContents.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F1)));
+			this.tsmiContents.Size = new System.Drawing.Size(159, 22);
+			this.tsmiContents.Text = "目录(&C)";
+			this.tsmiContents.Click += new System.EventHandler(this.tsmiContents_Click);
+			// 
+			// tsmiIndex
+			// 
+			this.tsmiIndex.Name = "tsmiIndex";
+			this.tsmiIndex.Size = new System.Drawing.Size(159, 22);
+			this.tsmiIndex.Text = "索引(&I)";
+			this.tsmiIndex.Click += new System.EventHandler(this.tsmiIndex_Click);
+			// 
+			// tsmiSearch
+			// 
+			this.tsmiSearch.Name = "tsmiSearch";
+			this.tsmiSearch.Size = new System.Drawing.Size(159, 22);
+			this.tsmiSearch.Text = "搜索(&S)";
+			this.tsmiSearch.Click += new System.EventHandler(this.tsmiSearch_Click);
+			// 
+			// toolStripSeparator10
+			// 
+			this.toolStripSeparator10.Name = "toolStripSeparator10";
+			this.toolStripSeparator10.Size = new System.Drawing.Size(156, 6);
+			// 
+			// tsmiSN
+			// 
+			this.tsmiSN.Name = "tsmiSN";
+			this.tsmiSN.Size = new System.Drawing.Size(159, 22);
+			this.tsmiSN.Text = "注册信息(&R)";
+			this.tsmiSN.Click += new System.EventHandler(this.tsmiSN_Click);
+			// 
+			// tsmiAbout
+			// 
+			this.tsmiAbout.Name = "tsmiAbout";
+			this.tsmiAbout.Size = new System.Drawing.Size(159, 22);
+			this.tsmiAbout.Text = "关于(&A)";
+			this.tsmiAbout.Click += new System.EventHandler(this.tsmiAbout_Click);
+			// 
+			// toolStrip1
+			// 
+			this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsbNew,
+            this.tsbOpen,
+            this.tsbSave});
+			this.toolStrip1.Location = new System.Drawing.Point(0, 24);
+			this.toolStrip1.Name = "toolStrip1";
+			this.toolStrip1.Size = new System.Drawing.Size(888, 25);
+			this.toolStrip1.TabIndex = 9;
+			this.toolStrip1.Text = "toolStrip1";
+			// 
+			// tsbNew
+			// 
+			this.tsbNew.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.tsbNew.Image = ((System.Drawing.Image)(resources.GetObject("tsbNew.Image")));
+			this.tsbNew.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.tsbNew.Name = "tsbNew";
+			this.tsbNew.Size = new System.Drawing.Size(23, 22);
+			this.tsbNew.Text = "新建";
+			this.tsbNew.Click += new System.EventHandler(this.tsmiNew_Click);
+			// 
+			// tsbOpen
+			// 
+			this.tsbOpen.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.tsbOpen.Image = ((System.Drawing.Image)(resources.GetObject("tsbOpen.Image")));
+			this.tsbOpen.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.tsbOpen.Name = "tsbOpen";
+			this.tsbOpen.Size = new System.Drawing.Size(23, 22);
+			this.tsbOpen.Text = "打开";
+			this.tsbOpen.Click += new System.EventHandler(this.tsmiOpenSql_Click);
+			// 
+			// tsbSave
+			// 
+			this.tsbSave.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.tsbSave.Image = ((System.Drawing.Image)(resources.GetObject("tsbSave.Image")));
+			this.tsbSave.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.tsbSave.Name = "tsbSave";
+			this.tsbSave.Size = new System.Drawing.Size(23, 22);
+			this.tsbSave.Text = "保存";
+			this.tsbSave.Click += new System.EventHandler(this.tsmiSave_Click);
+			// 
+			// statusStrip1
+			// 
+			this.statusStrip1.Location = new System.Drawing.Point(0, 403);
+			this.statusStrip1.Name = "statusStrip1";
+			this.statusStrip1.Padding = new System.Windows.Forms.Padding(1, 0, 12, 0);
+			this.statusStrip1.Size = new System.Drawing.Size(888, 22);
+			this.statusStrip1.TabIndex = 10;
+			this.statusStrip1.Text = "statusStrip1";
 			// 
 			// MainForm
 			// 
-			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
+			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(1036, 496);
+			this.ClientSize = new System.Drawing.Size(888, 425);
+			this.Controls.Add(this.statusStrip1);
+			this.Controls.Add(this.toolStrip1);
+			this.Controls.Add(this.menuStrip1);
 			this.Controls.Add(this.dockPanel1);
-			this.Controls.Add(this.barDockControlLeft);
-			this.Controls.Add(this.barDockControlRight);
-			this.Controls.Add(this.barDockControlBottom);
-			this.Controls.Add(this.barDockControlTop);
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.IsMdiContainer = true;
 			this.Name = "MainForm";
@@ -607,66 +578,72 @@
 			this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
 			this.Load += new System.EventHandler(this.MainForm_Load);
 			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
-			((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
+			this.menuStrip1.ResumeLayout(false);
+			this.menuStrip1.PerformLayout();
+			this.toolStrip1.ResumeLayout(false);
+			this.toolStrip1.PerformLayout();
 			this.ResumeLayout(false);
+			this.PerformLayout();
 
 		}
 
 		#endregion
 
-		private DevExpress.XtraBars.BarManager barManager1;
-		private DevExpress.XtraBars.Bar bar1;
-		private DevExpress.XtraBars.Bar bar2;
-		private DevExpress.XtraBars.Bar bar3;
-		private DevExpress.XtraBars.BarDockControl barDockControlTop;
-		private DevExpress.XtraBars.BarDockControl barDockControlBottom;
-		private DevExpress.XtraBars.BarDockControl barDockControlLeft;
-		private DevExpress.XtraBars.BarDockControl barDockControlRight;
-		private DevExpress.XtraBars.BarSubItem bsiFile;
-		private DevExpress.XtraBars.BarButtonItem menuNew;
-		private DevExpress.XtraBars.BarButtonItem menuSave;
-		private DevExpress.XtraBars.BarButtonItem menuSaveAs;
-		private DevExpress.XtraBars.BarButtonItem menuExit;
-		private DevExpress.XtraBars.BarSubItem bsiEdit;
-		private DevExpress.XtraBars.BarButtonItem menuUndo;
-		private DevExpress.XtraBars.BarButtonItem menuRedo;
-		private DevExpress.XtraBars.BarButtonItem menuCopy;
-		private DevExpress.XtraBars.BarButtonItem menuCut;
-		private DevExpress.XtraBars.BarButtonItem menuPaste;
-		private DevExpress.XtraBars.BarButtonItem menuSelectAll;
-		private DevExpress.XtraBars.BarButtonItem menuReverse;
-		private DevExpress.XtraBars.BarSubItem bsiView;
-		private DevExpress.XtraBars.BarCheckItem menuToolBar;
-		private DevExpress.XtraBars.BarCheckItem menuStatusBar;
-		private DevExpress.XtraBars.BarButtonItem menuRandom;
-		private DevExpress.XtraBars.BarSubItem bsiTool;
-		private DevExpress.XtraBars.BarButtonItem menuOption;
-		private DevExpress.XtraBars.BarSubItem bsiWindow;
-		private DevExpress.XtraBars.BarButtonItem menuCloseAll;
-		private DevExpress.XtraBars.BarSubItem bsiHelp;
-		private DevExpress.XtraBars.BarButtonItem menuContents;
-		private DevExpress.XtraBars.BarButtonItem menuIndex;
-		private DevExpress.XtraBars.BarButtonItem menuSearch;
-		private DevExpress.XtraBars.BarButtonItem menuAbout;
-		private DevExpress.XtraBars.BarLargeButtonItem blbiNew;
-		private DevExpress.XtraBars.BarLargeButtonItem blbiOpen;
-		private DevExpress.XtraBars.BarLargeButtonItem blbiSave;
-		private DevExpress.XtraBars.BarButtonItem menuNewApp;
-		private DevExpress.XtraBars.BarButtonItem menuDES;
-		private DevExpress.XtraBars.BarButtonItem menuFileUp;
-		private DevExpress.XtraBars.BarButtonItem menuFileTrans;
-		private DevExpress.XtraBars.BarCheckItem menuFavorites;
-		private DevExpress.XtraBars.BarCheckItem menuSolution;
-		private DevExpress.XtraBars.BarButtonItem menuFTP;
-		private DevExpress.XtraBars.BarCheckItem menuErrList;
-		private DevExpress.XtraBars.BarButtonItem menuFTPFileUp;
-		private DevExpress.XtraBars.BarButtonItem menuRSAKey;
-		private DevExpress.XtraBars.BarButtonItem menuDBC;
-		private DevExpress.XtraBars.BarButtonItem menuDBCList;
-		private DevExpress.XtraBars.BarSubItem bsiOpen;
-		private DevExpress.XtraBars.BarButtonItem menuOpenSql;
-		private DevExpress.XtraBars.BarButtonItem menuSN;
 		public WeifenLuo.WinFormsUI.Docking.DockPanel dockPanel1;
-		private DevExpress.XtraBars.BarButtonItem menuDBServer;
+		private System.Windows.Forms.MenuStrip menuStrip1;
+		private System.Windows.Forms.ToolStripMenuItem tsmiFile;
+		private System.Windows.Forms.ToolStripMenuItem tsmiNew;
+		private System.Windows.Forms.ToolStripMenuItem tsmiOpen;
+		private System.Windows.Forms.ToolStripMenuItem tsmiOpenSql;
+		private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+		private System.Windows.Forms.ToolStripMenuItem tsmiSave;
+		private System.Windows.Forms.ToolStripMenuItem tsmiSaveAs;
+		private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+		private System.Windows.Forms.ToolStripMenuItem tsmiExit;
+		private System.Windows.Forms.ToolStripMenuItem tsmiEdit;
+		private System.Windows.Forms.ToolStripMenuItem tsmiUndo;
+		private System.Windows.Forms.ToolStripMenuItem tsmiRedo;
+		private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+		private System.Windows.Forms.ToolStripMenuItem tsmiCut;
+		private System.Windows.Forms.ToolStripMenuItem tsmiCopy;
+		private System.Windows.Forms.ToolStripMenuItem tsmiPaste;
+		private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
+		private System.Windows.Forms.ToolStripMenuItem tsmiSelectAll;
+		private System.Windows.Forms.ToolStripMenuItem tsmiReverse;
+		private System.Windows.Forms.ToolStripMenuItem tsmiView;
+		private System.Windows.Forms.ToolStripMenuItem tsmiToolBar;
+		private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
+		private System.Windows.Forms.ToolStripMenuItem tsmiInstances;
+		private System.Windows.Forms.ToolStripMenuItem tsmiFavorites;
+		private System.Windows.Forms.ToolStripMenuItem tsmiErrList;
+		private System.Windows.Forms.ToolStripMenuItem tsmiTool;
+		private System.Windows.Forms.ToolStripMenuItem tsmiOption;
+		private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
+		private System.Windows.Forms.ToolStripMenuItem tsmiRSAKey;
+		private System.Windows.Forms.ToolStripMenuItem tsmiDES;
+		private System.Windows.Forms.ToolStripMenuItem tsmiDBC;
+		private System.Windows.Forms.ToolStripSeparator toolStripSeparator7;
+		private System.Windows.Forms.ToolStripMenuItem tsmiRandom;
+		private System.Windows.Forms.ToolStripSeparator toolStripSeparator8;
+		private System.Windows.Forms.ToolStripMenuItem tsmiFTP;
+		private System.Windows.Forms.ToolStripMenuItem tsmiFTPFileUp;
+		private System.Windows.Forms.ToolStripSeparator toolStripSeparator9;
+		private System.Windows.Forms.ToolStripMenuItem tsmiDBServer;
+		private System.Windows.Forms.ToolStripMenuItem tsmiWindow;
+		private System.Windows.Forms.ToolStripMenuItem tsmiCloseAll;
+		private System.Windows.Forms.ToolStripMenuItem tsmiNewApp;
+		private System.Windows.Forms.ToolStripMenuItem tsmiHelp;
+		private System.Windows.Forms.ToolStripMenuItem tsmiContents;
+		private System.Windows.Forms.ToolStripMenuItem tsmiIndex;
+		private System.Windows.Forms.ToolStripMenuItem tsmiSearch;
+		private System.Windows.Forms.ToolStripSeparator toolStripSeparator10;
+		private System.Windows.Forms.ToolStripMenuItem tsmiSN;
+		private System.Windows.Forms.ToolStripMenuItem tsmiAbout;
+		private System.Windows.Forms.ToolStrip toolStrip1;
+		private System.Windows.Forms.ToolStripButton tsbNew;
+		private System.Windows.Forms.ToolStripButton tsbOpen;
+		private System.Windows.Forms.ToolStripButton tsbSave;
+		private System.Windows.Forms.StatusStrip statusStrip1;
+		private System.Windows.Forms.ToolStripMenuItem tsmiStatusBar;
 	}
 }

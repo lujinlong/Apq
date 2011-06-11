@@ -31,7 +31,7 @@ namespace ApqDBManager
             new DevExpress.XtraEditors.Controls.CheckedListBoxItem("`-=\\~!@#$%^&*_+|;\':\",./?"),
             new DevExpress.XtraEditors.Controls.CheckedListBoxItem("ABCDEFGHJLMNRTWYacdefhijkmnprtuvwxy", System.Windows.Forms.CheckState.Checked)});
 
-			Apq.Xtra.Grid.Common.AddBehaivor(gridView1);
+			//Apq.Xtra.Grid.Common.AddBehaivor(gridView1);
 		}
 
 		private void btnGo_Click(object sender, EventArgs e)

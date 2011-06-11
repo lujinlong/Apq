@@ -67,9 +67,6 @@
 			this.statusStrip1 = new System.Windows.Forms.StatusStrip();
 			this.tsslOutInfo = new System.Windows.Forms.ToolStripStatusLabel();
 			this.tsslTest = new System.Windows.Forms.ToolStripStatusLabel();
-			this.textColumn1 = new XPTable.Models.TextColumn();
-			this.textColumn2 = new XPTable.Models.TextColumn();
-			this.comboBoxColumn1 = new XPTable.Models.ComboBoxColumn();
 			this.dataGridView1 = new System.Windows.Forms.DataGridView();
 			this.computerTypeBindingSource = new System.Windows.Forms.BindingSource(this.components);
 			this.srvsMgr_XSD = new ApqDBManager.Forms.SrvsMgr.SrvsMgr_XSD();
@@ -263,19 +260,6 @@
 			this.tsslTest.Name = "tsslTest";
 			this.tsslTest.Size = new System.Drawing.Size(0, 17);
 			// 
-			// textColumn1
-			// 
-			this.textColumn1.Editable = false;
-			this.textColumn1.Text = "服务器编号";
-			// 
-			// textColumn2
-			// 
-			this.textColumn2.Text = "服务器名";
-			// 
-			// comboBoxColumn1
-			// 
-			this.comboBoxColumn1.Text = "服务器类型";
-			// 
 			// dataGridView1
 			// 
 			this.dataGridView1.AutoGenerateColumns = false;
@@ -407,15 +391,12 @@
 		private System.Windows.Forms.ToolStripMenuItem tsmiSqlInstance;
 		private System.Windows.Forms.ToolStripStatusLabel tsslOutInfo;
 		private System.Windows.Forms.ToolStripStatusLabel tsslTest;
-		private XPTable.Models.TextColumn textColumn1;
-		private XPTable.Models.TextColumn textColumn2;
-		private XPTable.Models.ComboBoxColumn comboBoxColumn1;
 		private System.Windows.Forms.DataGridView dataGridView1;
 		private System.Windows.Forms.BindingSource computerBindingSource;
-		private SrvsMgr_XSD srvsMgr_XSD;
 		private System.Windows.Forms.BindingSource computerTypeBindingSource;
 		private System.Windows.Forms.DataGridViewTextBoxColumn computerIDDataGridViewTextBoxColumn;
 		private System.Windows.Forms.DataGridViewTextBoxColumn computerNameDataGridViewTextBoxColumn;
 		private System.Windows.Forms.DataGridViewComboBoxColumn computerTypeDataGridViewTextBoxColumn;
+		public SrvsMgr_XSD srvsMgr_XSD;
 	}
 }

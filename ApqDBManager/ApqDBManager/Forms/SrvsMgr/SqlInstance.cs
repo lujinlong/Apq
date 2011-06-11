@@ -9,6 +9,8 @@ using WeifenLuo.WinFormsUI.Docking;
 using DevExpress.XtraTreeList;
 using DevExpress.XtraTreeList.Nodes;
 using System.Data.SqlClient;
+using System.Data.Common;
+using Apq.TreeListView;
 
 namespace ApqDBManager.Forms.SrvsMgr
 {
@@ -16,16 +18,12 @@ namespace ApqDBManager.Forms.SrvsMgr
 	{
 		//数据库连接
 		private SqlConnection _SqlConn = new SqlConnection();
-		public Apq.DBC.XSD Sqls
+		public SrvsMgr_XSD Sqls
 		{
 			get
 			{
-				if (!(FormDataSet is Apq.DBC.XSD))
-				{
-					DBServer dbServer = Apq.Windows.Forms.SingletonForms.GetInstance(typeof(DBServer)) as DBServer;
-					FormDataSet = dbServer.Sqls;
-				}
-				return FormDataSet as Apq.DBC.XSD;
+				DBServer dbServer = Apq.Windows.Forms.SingletonForms.GetInstance(typeof(DBServer)) as DBServer;
+				return dbServer.srvsMgr_XSD;
 			}
 		}
 		private Form formDBC = null;
@@ -35,25 +33,13 @@ namespace ApqDBManager.Forms.SrvsMgr
 			InitializeComponent();
 		}
 
+		private TreeListViewHelper tlvHelper;
+
 		private void SqlInstance_Load(object sender, EventArgs e)
 		{
 			#region 添加图标
 			this.bbiSaveToDB.Glyph = System.Drawing.Image.FromFile(@"Res\png\File\Save.png");
 			#endregion
-
-			Apq.Xtra.TreeList.Common.AddBehaivor(treeList1);
-
-			Sqls.SqlInstance.TableNewRow += new DataTableNewRowEventHandler(SqlInstance_TableNewRow);
-
-			treeList1.ExpandAll();
-		}
-
-		void SqlInstance_TableNewRow(object sender, DataTableNewRowEventArgs e)
-		{
-			if (treeList1.FocusedNode != null)
-			{
-				e.Row["ParentID"] = treeList1.FocusedNode["SqlID"];
-			}
 		}
 
 		private void SqlInstance_FormClosing(object sender, FormClosingEventArgs e)
@@ -65,12 +51,7 @@ namespace ApqDBManager.Forms.SrvsMgr
 			Apq.Windows.Forms.SingletonForms.ReleaseInstance(this.GetType());
 		}
 
-		#region treeList1
-		// Checked图片
-		private void treeList1_GetStateImage(object sender, DevExpress.XtraTreeList.GetStateImageEventArgs e)
-		{
-			e.NodeImageIndex = Apq.Convert.ChangeType<int>(e.Node["CheckState"]);
-		}
+		#region treeListView1
 
 		#region 选中状态
 		private void SetCheckedNode(TreeListNode node, bool checkParent, bool checkChildren)
@@ -79,7 +60,7 @@ namespace ApqDBManager.Forms.SrvsMgr
 			if (Checked == 2 || Checked == 0) Checked = 1;
 			else Checked = 0;
 
-			treeList1.BeginUpdate();
+			treeListView1.BeginUpdate();
 			node["CheckState"] = Checked;
 			if (checkParent)
 			{
@@ -89,7 +70,7 @@ namespace ApqDBManager.Forms.SrvsMgr
 			{
 				SetCheckedChildNodes(node, Checked);
 			}
-			treeList1.EndUpdate();
+			treeListView1.EndUpdate();
 		}
 		private void SetCheckedChildNodes(TreeListNode node, int Checked)
 		{
@@ -110,59 +91,22 @@ namespace ApqDBManager.Forms.SrvsMgr
 		#endregion
 
 		#region 点击
-		private void treeList1_MouseClick(object sender, MouseEventArgs e)
-		{
-			if (e.Button == MouseButtons.Left)
-			{
-				TreeListHitInfo hInfo = treeList1.CalcHitInfo(new Point(e.X, e.Y));
-				if (hInfo.Node != null && hInfo.HitInfoType == HitInfoType.StateImage)//左键点中状态框(Checked)
-				{
-					short KeyState = Apq.DllImports.User32.GetKeyState(Apq.Utils.VirtKeys.VK_CONTROL);
-					bool checkChildren = (KeyState & 0xF0) != 0 || hInfo.Node.ParentNode == null;//按住Ctrl或为根结点
-					SetCheckedNode(hInfo.Node, false, checkChildren);
-				}
-			}
-		}
-
-		private void treeList1_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
-		{
-			if (e.KeyData == Keys.Space)
-			{
-				if (Apq.Convert.ChangeType<int>(treeList1.FocusedNode["ID"]) == 1)
-				{
-					SetCheckedNode(treeList1.FocusedNode, false, true);
-				}
-				else
-				{
-					SetCheckedNode(treeList1.FocusedNode, false, false);
-				}
-			}
-		}
-		private void treeList1_EditorKeyUp(object sender, KeyEventArgs e)
+		private void treeListView1_KeyUp(object sender, KeyEventArgs e)
 		{
 			#region Ctrl&C
 			if (e.Control && (e.KeyCode == Keys.C))
 			{
-				Clipboard.SetData(DataFormats.UnicodeText, treeList1.FocusedNode.GetDisplayText(0));
-			}
-			#endregion
-		}
-		private void treeList1_KeyUp(object sender, KeyEventArgs e)
-		{
-			#region Ctrl&C
-			if (e.Control && (e.KeyCode == Keys.C))
-			{
-				Clipboard.SetData(DataFormats.UnicodeText, treeList1.FocusedNode.GetDisplayText(0));
+				//Clipboard.SetData(DataFormats.UnicodeText, treeListView1.FocusedNode.GetId());
 			}
 			#endregion
 		}
 		#endregion
 
-		private void treeList1_FocusedNodeChanged(object sender, FocusedNodeChangedEventArgs e)
+		private void treeListView1_AfterSelect(object sender, TreeViewEventArgs e)
 		{
 			if (e.Node != null)
 			{
-				bsiOutInfo.Caption = e.Node.GetDisplayText("SqlName");
+				bsiOutInfo.Caption = e.Node.Text;
 			}
 		}
 
@@ -174,44 +118,44 @@ namespace ApqDBManager.Forms.SrvsMgr
 
 		private void tsmiDel_Click(object sender, EventArgs e)
 		{
-			if (treeList1.FocusedNode != null)
+			if (treeListView1.FocusedItem != null)
 			{
-				treeList1.BeginUpdate();
-				treeList1.Nodes.Remove(treeList1.FocusedNode);
-				treeList1.EndUpdate();
+				treeListView1.BeginUpdate();
+				treeListView1.Items.Remove(treeListView1.FocusedItem);
+				treeListView1.EndUpdate();
 			}
 		}
 
 		private void tsmiTestOpen_Click(object sender, EventArgs e)
 		{
-			TreeListNode tln = treeList1.FocusedNode;
-			if (tln != null && tln.ParentNode != null)
+			TreeListViewItem tln = treeListView1.FocusedItem;
+			if (tln != null && tln.Parent != null)
 			{
-				string strPwdD = Apq.Convert.ChangeType<string>(tln["PwdD"]);
+				string strPwdD = Apq.Convert.ChangeType<string>(tln.SubItems["PwdD"]);
 				if (string.IsNullOrEmpty(strPwdD))
 				{
-					strPwdD = Apq.Security.Cryptography.DESHelper.DecryptString(tln["PwdC"].ToString(), GlobalObject.RegConfigChain["Crypt", "DESKey"], GlobalObject.RegConfigChain["Crypt", "DESIV"]);
+					strPwdD = Apq.Security.Cryptography.DESHelper.DecryptString(tln.SubItems["PwdC"].ToString(), GlobalObject.RegConfigChain["Crypt", "DESKey"], GlobalObject.RegConfigChain["Crypt", "DESIV"]);
 				}
 
-				string strServerName = Apq.Convert.ChangeType<string>(tln["IP"]);
-				if (Apq.Convert.ChangeType<int>(tln["SqlPort"]) > 0)
+				string strServerName = Apq.Convert.ChangeType<string>(tln.SubItems["IP"]);
+				if (Apq.Convert.ChangeType<int>(tln.SubItems["SqlPort"]) > 0)
 				{
-					strServerName += "," + Apq.Convert.ChangeType<int>(tln["SqlPort"]);
+					strServerName += "," + Apq.Convert.ChangeType<int>(tln.SubItems["SqlPort"]);
 				}
 				string strConn = Apq.ConnectionStrings.SQLServer.SqlConnection.GetConnectionString(
 					strServerName,
-					Apq.Convert.ChangeType<string>(tln["UserId"]),
+					Apq.Convert.ChangeType<string>(tln.SubItems["UserId"]),
 					strPwdD
 					);
 				SqlConnection sc = new SqlConnection(strConn);
 				try
 				{
 					Apq.Data.Common.DbConnectionHelper.Open(sc);
-					bsiTest.Caption = tln.GetDisplayText("SqlName") + "-->连接成功.";
+					bsiTest.Caption = tln.SubItems["SqlName"] + "-->连接成功.";
 				}
 				catch
 				{
-					bsiTest.Caption = tln.GetDisplayText("SqlName") + "-X-连接失败!";
+					bsiTest.Caption = tln.SubItems["SqlName"] + "-X-连接失败!";
 				}
 				finally
 				{
@@ -237,6 +181,17 @@ namespace ApqDBManager.Forms.SrvsMgr
 		/// </summary>
 		public override void InitDataBefore()
 		{
+			tlvHelper = new TreeListViewHelper(treeListView1);
+			tlvHelper.TableMapping.ColumnMappings.Add("名称", "SqlName");
+			tlvHelper.TableMapping.ColumnMappings.Add("服务器", "ComputerID");
+			tlvHelper.TableMapping.ColumnMappings.Add("登录名", "UserId");
+			tlvHelper.TableMapping.ColumnMappings.Add("密码", "PwdD");
+			tlvHelper.TableMapping.ColumnMappings.Add("IP", "IP");
+			tlvHelper.TableMapping.ColumnMappings.Add("SQL端口", "SqlPort");
+			tlvHelper.TableMapping.ColumnMappings.Add("编号", "SqlID");
+			tlvHelper.TableMapping.ColumnMappings.Add("上级编号", "ParentID");
+			tlvHelper.Key = "SqlID";
+
 			#region 数据库连接
 			_SqlConn.ConnectionString = GlobalObject.SqlConn
 ;
@@ -307,8 +262,6 @@ namespace ApqDBManager.Forms.SrvsMgr
 			Common.PwdC2D(Sqls.SqlInstance);
 			Sqls.SqlInstance.AcceptChanges();
 			bsiOutInfo.Caption = "加载成功";
-
-			treeList1.ExpandAll();
 		}
 		/// <summary>
 		/// 显示数据
@@ -316,76 +269,33 @@ namespace ApqDBManager.Forms.SrvsMgr
 		public override void ShowData()
 		{
 			#region 设置Lookup
-			luComputer.DisplayMember = "ComputerName";
-			luComputer.ValueMember = "ComputerID";
-			luComputer.DataSource = Sqls.Computer;
-			luSqlType.DisplayMember = "TypeCaption";
-			luSqlType.ValueMember = "SqlType";
-			luSqlType.DataSource = Sqls.SqlType;
+			//luComputer.DisplayMember = "ComputerName";
+			//luComputer.ValueMember = "ComputerID";
+			//luComputer.DataSource = Sqls.Computer;
+			//luSqlType.DisplayMember = "TypeCaption";
+			//luSqlType.ValueMember = "SqlType";
+			//luSqlType.DataSource = Sqls.SqlType;
 			#endregion
 
-			treeList1.DataMember = "SqlInstance";
-			treeList1.DataSource = Sqls;
+			//treeListView1.DataMember = "SqlInstance";
+			//treeListView1.DataSource = Sqls;
+
+			treeListView1.Items.Clear();
+			if (Sqls.SqlInstance.Rows.Count > 0)
+			{
+				tlvHelper.BindDataTable(Sqls.SqlInstance);
+				treeListView1.ExpandAll();
+			}
 		}
 
 		#endregion
 
 		private void bbiSelectAll_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
 		{
-			treeList1.BeginUpdate();
-			foreach (DataRow dr in Sqls.SqlInstance.Rows)
-			{
-				dr["CheckState"] = 1;
-			}
-			treeList1.EndUpdate();
 		}
 
 		private void bbiReverse_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
 		{
-			treeList1.BeginUpdate();
-			foreach (DataRow dr in Sqls.SqlInstance.Rows)
-			{
-				int check = Apq.Convert.ChangeType<int>(dr["CheckState"]);
-				if (check == 2 || check == 0)
-				{
-					check = 1;
-				}
-				else
-				{
-					check = 0;
-				}
-				dr["CheckState"] = check;
-			}
-			treeList1.EndUpdate();
-		}
-
-		// 设置多行
-		private void bbiSlts_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-		{
-			if (treeList1.FocusedColumn != null)
-			{
-				treeList1.BeginUpdate();
-				string strcn = treeList1.FocusedColumn.FieldName;
-				foreach (TreeListNode tln in treeList1.Nodes)
-				{
-					TreeList_SetMultiLine(tln, strcn, beiStr.EditValue);
-				}
-				treeList1.EndUpdate();
-			}
-		}
-
-		// 递归设置多行
-		private void TreeList_SetMultiLine(TreeListNode tln, string ColumnName, object Value)
-		{
-			if (Apq.Convert.ChangeType<int>(tln["CheckState"]) == 1)
-			{
-				tln[ColumnName] = Value;
-			}
-
-			foreach (TreeListNode tlnc in tln.Nodes)
-			{
-				TreeList_SetMultiLine(tlnc, ColumnName, Value);
-			}
 		}
 
 		//刷新
@@ -422,13 +332,13 @@ namespace ApqDBManager.Forms.SrvsMgr
 		{
 			if (bbiExpandAll.Caption == "全部展开(&D)")
 			{
-				treeList1.ExpandAll();
+				treeListView1.ExpandAll();
 				bbiExpandAll.Caption = "全部收起(&D)";
 				return;
 			}
 			if (bbiExpandAll.Caption == "全部收起(&D)")
 			{
-				treeList1.CollapseAll();
+				treeListView1.CollapseAll();
 				bbiExpandAll.Caption = "全部展开(&D)";
 				return;
 			}

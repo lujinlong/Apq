@@ -175,7 +175,7 @@ namespace ApqDBManager.Controls
 						gv.OptionsSelection.MultiSelectMode = GridMultiSelectMode.CellSelect;
 						gv.OptionsBehavior.Editable = false;
 						gv.OptionsBehavior.CopyToClipboardWithColumnHeaders = false;
-						gv.CustomDrawRowIndicator += new RowIndicatorCustomDrawEventHandler(Apq.Xtra.Grid.Common.gv_CustomDrawRowIndicator);
+						//gv.CustomDrawRowIndicator += new RowIndicatorCustomDrawEventHandler(Apq.Xtra.Grid.Common.gv_CustomDrawRowIndicator);
 
 						gc.EndInit();
 						gv.EndInit();
@@ -186,7 +186,7 @@ namespace ApqDBManager.Controls
 						// 绑定数据
 						gc.DataSource = _DisplayDataSet;
 						gc.DataMember = dtDisplay.TableName;
-						Apq.Xtra.Grid.Common.ShowTime(gv);
+						//Apq.Xtra.Grid.Common.ShowTime(gv);
 
 						//Graphics g = Graphics.FromHwnd(Handle);
 						//SizeF sf = g.MeasureString(dt.Rows.Count.ToString(), gv.Appearance.RowSeparator.Font);
@@ -195,14 +195,14 @@ namespace ApqDBManager.Controls
 						gv.IndicatorWidth = 90;
 						gv.Invalidate();
 						gv.BestFitColumns();
-						Apq.Xtra.Grid.Common.AddBehaivor(gv);
+						//Apq.Xtra.Grid.Common.AddBehaivor(gv);
 					}
 				}
 			}
 		}
 
 		//导出
-		private void btnExport_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+		private void tsmiExport_Click(object sender, EventArgs e)
 		{
 			if (BackDataSet.Tables.Count > 0)
 			{
@@ -219,87 +219,6 @@ namespace ApqDBManager.Controls
 
 			//ShowExportForm(w, 0, 1);
 		}
-		//未使用
-		void btnBack_Click(object sender, EventArgs e)
-		{
-			SimpleButton btn = sender as SimpleButton;
-			if (btn != null)
-			{
-				Apq.Windows.Forms.Wizard w = btn.FindForm() as Apq.Windows.Forms.Wizard;
-				if (w != null)
-				{
-					ShowExportForm(w, w.StepIndex, w.StepIndex - 1);
-				}
-			}
-		}
-		//未使用
-		void btnNext_Click(object sender, EventArgs e)
-		{
-			SimpleButton btn = sender as SimpleButton;
-			if (btn != null)
-			{
-				Apq.Windows.Forms.Wizard w = btn.FindForm() as Apq.Windows.Forms.Wizard;
-				if (w != null)
-				{
-					ShowExportForm(w, w.StepIndex, w.StepIndex + 1);
-				}
-			}
-		}
-		//未使用
-		void btnFinish_Click(object sender, EventArgs e)
-		{
-			SimpleButton btn = sender as SimpleButton;
-			if (btn != null)
-			{
-				Apq.Windows.Forms.Wizard w = btn.FindForm() as Apq.Windows.Forms.Wizard;
-				if (w != null)
-				{
-					ShowExportForm(w, w.StepIndex, 3);
-				}
-			}
-		}
-		//未使用
-		void btnCancel_Click(object sender, EventArgs e)
-		{
-			SimpleButton btn = sender as SimpleButton;
-			if (btn != null)
-			{
-				Apq.Windows.Forms.Wizard w = btn.FindForm() as Apq.Windows.Forms.Wizard;
-				if (w != null)
-				{
-					w.Close();
-				}
-			}
-		}
-		//未使用
-		/// <summary>
-		/// 向导窗口由 第nStep1步 进入 第nStep2步{0:未显示,1:选择表,2:选择目标,3:完成}
-		/// </summary>
-		/// <param name="w"></param>
-		/// <param name="nStep1">0-->n</param>
-		/// <param name="nStep2">0-->n</param>
-		private void ShowExportForm(Apq.Windows.Forms.Wizard w, int nStep1, int nStep2)
-		{
-			// 完成
-			if (nStep2 == 3)
-			{
-			}
-
-			// 显示第一步
-			else if (nStep1 == 0)
-			{
-			}
-
-			// 第一步 --> 第二步
-			else if (nStep1 == 1 && nStep2 == 2)
-			{
-			}
-
-			// 第二步 --> 第一步
-			else if (nStep1 == 2 && nStep2 == 1)
-			{
-			}
-		}
 
 		/// <summary>
 		/// 获取数据库连接传回的消息并显示到界面
@@ -308,7 +227,7 @@ namespace ApqDBManager.Controls
 		/// <param name="e"></param>
 		public void sc_InfoMessage(object sender, SqlInfoMessageEventArgs e)
 		{
-			Apq.Windows.Delegates.Action_UI<DevExpress.XtraTab.XtraTabPage>(this, tpInfo, delegate(DevExpress.XtraTab.XtraTabPage ctrl)
+			Apq.Windows.Delegates.Action_UI<TabPage>(this, tpInfo, delegate(TabPage ctrl)
 			{
 				foreach (SqlError r in e.Errors)
 				{
@@ -324,7 +243,7 @@ namespace ApqDBManager.Controls
 						meMsg.Properties.Appearance.Options.UseFont = true;
 						meMsg.Properties.ScrollBars = System.Windows.Forms.ScrollBars.None;
 
-						meMsg.Size = new System.Drawing.Size(tpInfo.TabControl.Width - 30, 20);
+						meMsg.Size = new System.Drawing.Size(tc.Width - 30, 20);
 						//meMsg.Anchor = AnchorStyles.Left | AnchorStyles.Top | AnchorStyles.Right;
 						int nY = 9;
 						foreach (Control c in tpInfo.Controls)

@@ -29,10 +29,10 @@
 		private void InitializeComponent()
 		{
 			this.components = new System.ComponentModel.Container();
+			System.Windows.Forms.TreeListViewItemCollection.TreeListViewItemCollectionComparer treeListViewItemCollectionComparer1 = new System.Windows.Forms.TreeListViewItemCollection.TreeListViewItemCollectionComparer();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SqlInstance));
 			this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
 			this.bar3 = new DevExpress.XtraBars.Bar();
-			this.bbiExpandAll = new DevExpress.XtraBars.BarButtonItem();
 			this.bsiOutInfo = new DevExpress.XtraBars.BarStaticItem();
 			this.bsiTest = new DevExpress.XtraBars.BarStaticItem();
 			this.bar1 = new DevExpress.XtraBars.Bar();
@@ -40,45 +40,36 @@
 			this.bbiSaveToDB = new DevExpress.XtraBars.BarButtonItem();
 			this.bbiSelectAll = new DevExpress.XtraBars.BarButtonItem();
 			this.bbiReverse = new DevExpress.XtraBars.BarButtonItem();
-			this.beiStr = new DevExpress.XtraBars.BarEditItem();
-			this.repositoryItemTextEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
-			this.bbiSlts = new DevExpress.XtraBars.BarButtonItem();
+			this.bbiExpandAll = new DevExpress.XtraBars.BarButtonItem();
 			this.bbiDBC = new DevExpress.XtraBars.BarButtonItem();
 			this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
 			this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
 			this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
 			this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
-			this.treeList1 = new DevExpress.XtraTreeList.TreeList();
-			this.treeListColumn2 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
-			this.treeListColumn8 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
-			this.luComputer = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
-			this.treeListColumn10 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
-			this.treeListColumn4 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
-			this.ritePwdD = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
-			this.treeListColumn5 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
-			this.luSqlType = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
-			this.treeListColumn7 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
-			this.treeListColumn12 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
-			this.treeListColumn1 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
+			this.repositoryItemTextEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
 			this.cmTreeMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.tsmiTestOpen = new System.Windows.Forms.ToolStripMenuItem();
 			this.tsmiAdd = new System.Windows.Forms.ToolStripMenuItem();
 			this.tsmiDel = new System.Windows.Forms.ToolStripMenuItem();
-			this.repositoryItemCheckEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
 			this.imageList1 = new System.Windows.Forms.ImageList(this.components);
 			this.sda = new System.Data.SqlClient.SqlDataAdapter();
 			this.scDelete = new System.Data.SqlClient.SqlCommand();
 			this.scInsert = new System.Data.SqlClient.SqlCommand();
 			this.scSelect = new System.Data.SqlClient.SqlCommand();
 			this.scUpdate = new System.Data.SqlClient.SqlCommand();
+			this.treeListView1 = new System.Windows.Forms.TreeListView();
+			this.columnHeader1 = new System.Windows.Forms.ColumnHeader();
+			this.columnHeader2 = new System.Windows.Forms.ColumnHeader();
+			this.columnHeader3 = new System.Windows.Forms.ColumnHeader();
+			this.columnHeader4 = new System.Windows.Forms.ColumnHeader();
+			this.columnHeader5 = new System.Windows.Forms.ColumnHeader();
+			this.columnHeader6 = new System.Windows.Forms.ColumnHeader();
+			this.columnHeader7 = new System.Windows.Forms.ColumnHeader();
+			this.columnHeader8 = new System.Windows.Forms.ColumnHeader();
+			this.imageList2 = new System.Windows.Forms.ImageList(this.components);
 			((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit1)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.treeList1)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.luComputer)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.ritePwdD)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.luSqlType)).BeginInit();
 			this.cmTreeMenu.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit1)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// barManager1
@@ -94,8 +85,6 @@
 			this.barManager1.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
             this.bbiSelectAll,
             this.bbiReverse,
-            this.beiStr,
-            this.bbiSlts,
             this.bsiOutInfo,
             this.bsiTest,
             this.bbiExpandAll,
@@ -121,13 +110,6 @@
 			this.bar3.OptionsBar.DrawDragBorder = false;
 			this.bar3.OptionsBar.UseWholeRow = true;
 			this.bar3.Text = "Status bar";
-			// 
-			// bbiExpandAll
-			// 
-			this.bbiExpandAll.Caption = "全部展开(&D)";
-			this.bbiExpandAll.Id = 7;
-			this.bbiExpandAll.Name = "bbiExpandAll";
-			this.bbiExpandAll.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiExpandAll_ItemClick);
 			// 
 			// bsiOutInfo
 			// 
@@ -155,8 +137,6 @@
             new DevExpress.XtraBars.LinkPersistInfo(this.bbiSelectAll, true),
             new DevExpress.XtraBars.LinkPersistInfo(this.bbiReverse),
             new DevExpress.XtraBars.LinkPersistInfo(this.bbiExpandAll),
-            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.Width, this.beiStr, "", false, true, true, 195),
-            new DevExpress.XtraBars.LinkPersistInfo(this.bbiSlts),
             new DevExpress.XtraBars.LinkPersistInfo(this.bbiDBC, true)});
 			this.bar1.Text = "Custom 4";
 			// 
@@ -189,24 +169,12 @@
 			this.bbiReverse.Name = "bbiReverse";
 			this.bbiReverse.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiReverse_ItemClick);
 			// 
-			// beiStr
+			// bbiExpandAll
 			// 
-			this.beiStr.Caption = "barEditItem1";
-			this.beiStr.Edit = this.repositoryItemTextEdit1;
-			this.beiStr.Id = 3;
-			this.beiStr.Name = "beiStr";
-			// 
-			// repositoryItemTextEdit1
-			// 
-			this.repositoryItemTextEdit1.AutoHeight = false;
-			this.repositoryItemTextEdit1.Name = "repositoryItemTextEdit1";
-			// 
-			// bbiSlts
-			// 
-			this.bbiSlts.Caption = "设置多行";
-			this.bbiSlts.Id = 4;
-			this.bbiSlts.Name = "bbiSlts";
-			this.bbiSlts.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiSlts_ItemClick);
+			this.bbiExpandAll.Caption = "全部展开(&D)";
+			this.bbiExpandAll.Id = 7;
+			this.bbiExpandAll.Name = "bbiExpandAll";
+			this.bbiExpandAll.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiExpandAll_ItemClick);
 			// 
 			// bbiDBC
 			// 
@@ -215,140 +183,10 @@
 			this.bbiDBC.Name = "bbiDBC";
 			this.bbiDBC.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiDBC_ItemClick);
 			// 
-			// treeList1
+			// repositoryItemTextEdit1
 			// 
-			this.treeList1.Columns.AddRange(new DevExpress.XtraTreeList.Columns.TreeListColumn[] {
-            this.treeListColumn2,
-            this.treeListColumn8,
-            this.treeListColumn10,
-            this.treeListColumn4,
-            this.treeListColumn5,
-            this.treeListColumn7,
-            this.treeListColumn12,
-            this.treeListColumn1});
-			this.treeList1.ContextMenuStrip = this.cmTreeMenu;
-			this.treeList1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.treeList1.KeyFieldName = "SqlID";
-			this.treeList1.Location = new System.Drawing.Point(0, 25);
-			this.treeList1.Name = "treeList1";
-			this.treeList1.OptionsBehavior.AllowExpandOnDblClick = false;
-			this.treeList1.OptionsBehavior.AutoFocusNewNode = true;
-			this.treeList1.OptionsSelection.MultiSelect = true;
-			this.treeList1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
-            this.repositoryItemCheckEdit1,
-            this.luSqlType,
-            this.luComputer,
-            this.ritePwdD});
-			this.treeList1.Size = new System.Drawing.Size(692, 316);
-			this.treeList1.StateImageList = this.imageList1;
-			this.treeList1.TabIndex = 4;
-			this.treeList1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.treeList1_KeyDown);
-			this.treeList1.FocusedNodeChanged += new DevExpress.XtraTreeList.FocusedNodeChangedEventHandler(this.treeList1_FocusedNodeChanged);
-			this.treeList1.EditorKeyUp += new System.Windows.Forms.KeyEventHandler(this.treeList1_EditorKeyUp);
-			this.treeList1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.treeList1_MouseClick);
-			this.treeList1.GetStateImage += new DevExpress.XtraTreeList.GetStateImageEventHandler(this.treeList1_GetStateImage);
-			this.treeList1.KeyUp += new System.Windows.Forms.KeyEventHandler(this.treeList1_KeyUp);
-			// 
-			// treeListColumn2
-			// 
-			this.treeListColumn2.Caption = "名称";
-			this.treeListColumn2.FieldName = "SqlName";
-			this.treeListColumn2.Fixed = DevExpress.XtraTreeList.Columns.FixedStyle.Left;
-			this.treeListColumn2.Name = "treeListColumn2";
-			this.treeListColumn2.OptionsColumn.AllowMove = false;
-			this.treeListColumn2.OptionsColumn.AllowSort = false;
-			this.treeListColumn2.Visible = true;
-			this.treeListColumn2.VisibleIndex = 0;
-			this.treeListColumn2.Width = 55;
-			// 
-			// treeListColumn8
-			// 
-			this.treeListColumn8.Caption = "服务器";
-			this.treeListColumn8.ColumnEdit = this.luComputer;
-			this.treeListColumn8.FieldName = "ComputerID";
-			this.treeListColumn8.Name = "treeListColumn8";
-			this.treeListColumn8.Visible = true;
-			this.treeListColumn8.VisibleIndex = 1;
-			// 
-			// luComputer
-			// 
-			this.luComputer.AutoHeight = false;
-			this.luComputer.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-			this.luComputer.Name = "luComputer";
-			// 
-			// treeListColumn10
-			// 
-			this.treeListColumn10.Caption = "登录名";
-			this.treeListColumn10.FieldName = "UserId";
-			this.treeListColumn10.Name = "treeListColumn10";
-			this.treeListColumn10.Visible = true;
-			this.treeListColumn10.VisibleIndex = 2;
-			this.treeListColumn10.Width = 56;
-			// 
-			// treeListColumn4
-			// 
-			this.treeListColumn4.Caption = "密码";
-			this.treeListColumn4.ColumnEdit = this.ritePwdD;
-			this.treeListColumn4.FieldName = "PwdD";
-			this.treeListColumn4.Name = "treeListColumn4";
-			this.treeListColumn4.OptionsColumn.AllowMove = false;
-			this.treeListColumn4.OptionsColumn.AllowSort = false;
-			this.treeListColumn4.Visible = true;
-			this.treeListColumn4.VisibleIndex = 3;
-			this.treeListColumn4.Width = 56;
-			// 
-			// ritePwdD
-			// 
-			this.ritePwdD.AutoHeight = false;
-			this.ritePwdD.Name = "ritePwdD";
-			this.ritePwdD.PasswordChar = '*';
-			// 
-			// treeListColumn5
-			// 
-			this.treeListColumn5.Caption = "实例类型";
-			this.treeListColumn5.ColumnEdit = this.luSqlType;
-			this.treeListColumn5.FieldName = "SqlType";
-			this.treeListColumn5.Name = "treeListColumn5";
-			this.treeListColumn5.OptionsColumn.AllowMove = false;
-			this.treeListColumn5.OptionsColumn.AllowSort = false;
-			this.treeListColumn5.Visible = true;
-			this.treeListColumn5.VisibleIndex = 4;
-			this.treeListColumn5.Width = 56;
-			// 
-			// luSqlType
-			// 
-			this.luSqlType.AutoHeight = false;
-			this.luSqlType.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-			this.luSqlType.Name = "luSqlType";
-			// 
-			// treeListColumn7
-			// 
-			this.treeListColumn7.Caption = "ParentID";
-			this.treeListColumn7.FieldName = "ParentID";
-			this.treeListColumn7.Name = "treeListColumn7";
-			this.treeListColumn7.Width = 56;
-			// 
-			// treeListColumn12
-			// 
-			this.treeListColumn12.Caption = "IP";
-			this.treeListColumn12.FieldName = "IP";
-			this.treeListColumn12.Name = "treeListColumn12";
-			this.treeListColumn12.Visible = true;
-			this.treeListColumn12.VisibleIndex = 5;
-			this.treeListColumn12.Width = 56;
-			// 
-			// treeListColumn1
-			// 
-			this.treeListColumn1.Caption = "Sql端口";
-			this.treeListColumn1.FieldName = "SqlPort";
-			this.treeListColumn1.Name = "treeListColumn1";
-			this.treeListColumn1.OptionsColumn.AllowMove = false;
-			this.treeListColumn1.OptionsColumn.AllowSort = false;
-			this.treeListColumn1.Visible = true;
-			this.treeListColumn1.VisibleIndex = 6;
-			this.treeListColumn1.Width = 56;
+			this.repositoryItemTextEdit1.AutoHeight = false;
+			this.repositoryItemTextEdit1.Name = "repositoryItemTextEdit1";
 			// 
 			// cmTreeMenu
 			// 
@@ -380,11 +218,6 @@
 			this.tsmiDel.Text = "删除(&D)";
 			this.tsmiDel.Click += new System.EventHandler(this.tsmiDel_Click);
 			// 
-			// repositoryItemCheckEdit1
-			// 
-			this.repositoryItemCheckEdit1.AutoHeight = false;
-			this.repositoryItemCheckEdit1.Name = "repositoryItemCheckEdit1";
-			// 
 			// imageList1
 			// 
 			this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
@@ -406,11 +239,82 @@
 				"Server;\r\nSELECT * FROM SQLInstance;\r\nSELECT * FROM DBC;\r\nSELECT * FROM DBServerI" +
 				"P;";
 			// 
+			// treeListView1
+			// 
+			this.treeListView1.CheckBoxes = System.Windows.Forms.CheckBoxesTypes.Simple;
+			this.treeListView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1,
+            this.columnHeader2,
+            this.columnHeader3,
+            this.columnHeader4,
+            this.columnHeader5,
+            this.columnHeader6,
+            this.columnHeader7,
+            this.columnHeader8});
+			treeListViewItemCollectionComparer1.Column = 0;
+			treeListViewItemCollectionComparer1.SortOrder = System.Windows.Forms.SortOrder.Ascending;
+			this.treeListView1.Comparer = treeListViewItemCollectionComparer1;
+			this.treeListView1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.treeListView1.LabelEdit = true;
+			this.treeListView1.Location = new System.Drawing.Point(0, 21);
+			this.treeListView1.Name = "treeListView1";
+			this.treeListView1.Size = new System.Drawing.Size(692, 320);
+			this.treeListView1.SmallImageList = this.imageList2;
+			this.treeListView1.TabIndex = 5;
+			this.treeListView1.UseCompatibleStateImageBehavior = false;
+			// 
+			// columnHeader1
+			// 
+			this.columnHeader1.Text = "名称";
+			this.columnHeader1.Width = 153;
+			// 
+			// columnHeader2
+			// 
+			this.columnHeader2.Text = "服务器";
+			this.columnHeader2.Width = 106;
+			// 
+			// columnHeader3
+			// 
+			this.columnHeader3.Text = "登录名";
+			this.columnHeader3.Width = 76;
+			// 
+			// columnHeader4
+			// 
+			this.columnHeader4.Text = "密码";
+			this.columnHeader4.Width = 70;
+			// 
+			// columnHeader5
+			// 
+			this.columnHeader5.Text = "IP";
+			this.columnHeader5.Width = 84;
+			// 
+			// columnHeader6
+			// 
+			this.columnHeader6.Text = "SQL端口";
+			// 
+			// columnHeader7
+			// 
+			this.columnHeader7.Text = "编号";
+			// 
+			// columnHeader8
+			// 
+			this.columnHeader8.Text = "上级编号";
+			this.columnHeader8.Width = 72;
+			// 
+			// imageList2
+			// 
+			this.imageList2.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList2.ImageStream")));
+			this.imageList2.TransparentColor = System.Drawing.Color.Transparent;
+			this.imageList2.Images.SetKeyName(0, "");
+			this.imageList2.Images.SetKeyName(1, "");
+			this.imageList2.Images.SetKeyName(2, "");
+			this.imageList2.Images.SetKeyName(3, "");
+			// 
 			// SqlInstance
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
 			this.ClientSize = new System.Drawing.Size(692, 366);
-			this.Controls.Add(this.treeList1);
+			this.Controls.Add(this.treeListView1);
 			this.Controls.Add(this.barDockControlLeft);
 			this.Controls.Add(this.barDockControlRight);
 			this.Controls.Add(this.barDockControlBottom);
@@ -424,12 +328,7 @@
 			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.SqlInstance_FormClosing);
 			((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit1)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.treeList1)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.luComputer)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.ritePwdD)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.luSqlType)).EndInit();
 			this.cmTreeMenu.ResumeLayout(false);
-			((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit1)).EndInit();
 			this.ResumeLayout(false);
 
 		}
@@ -444,19 +343,7 @@
 		private DevExpress.XtraBars.BarDockControl barDockControlRight;
 		private DevExpress.XtraBars.BarButtonItem bbiSelectAll;
 		private DevExpress.XtraBars.BarButtonItem bbiReverse;
-		private DevExpress.XtraBars.BarEditItem beiStr;
 		private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit repositoryItemTextEdit1;
-		private DevExpress.XtraBars.BarButtonItem bbiSlts;
-		private DevExpress.XtraTreeList.TreeList treeList1;
-		private DevExpress.XtraTreeList.Columns.TreeListColumn treeListColumn2;
-		private DevExpress.XtraTreeList.Columns.TreeListColumn treeListColumn1;
-		private DevExpress.XtraTreeList.Columns.TreeListColumn treeListColumn4;
-		private DevExpress.XtraTreeList.Columns.TreeListColumn treeListColumn5;
-		private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit luSqlType;
-		private DevExpress.XtraTreeList.Columns.TreeListColumn treeListColumn7;
-		private DevExpress.XtraTreeList.Columns.TreeListColumn treeListColumn10;
-		private DevExpress.XtraTreeList.Columns.TreeListColumn treeListColumn12;
-		private DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit repositoryItemCheckEdit1;
 		private DevExpress.XtraBars.BarStaticItem bsiOutInfo;
 		private DevExpress.XtraBars.BarStaticItem bsiTest;
 		private DevExpress.XtraBars.BarButtonItem bbiExpandAll;
@@ -465,9 +352,6 @@
 		private System.Windows.Forms.ToolStripMenuItem tsmiTestOpen;
 		private System.Windows.Forms.ToolStripMenuItem tsmiAdd;
 		private System.Windows.Forms.ToolStripMenuItem tsmiDel;
-		private DevExpress.XtraTreeList.Columns.TreeListColumn treeListColumn8;
-		private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit luComputer;
-		private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit ritePwdD;
 		private DevExpress.XtraBars.BarButtonItem bbiDBC;
 		private System.Data.SqlClient.SqlDataAdapter sda;
 		private System.Data.SqlClient.SqlCommand scDelete;
@@ -477,6 +361,16 @@
 		private DevExpress.XtraBars.BarButtonItem bbiRefresh;
 		private DevExpress.XtraBars.Bar bar1;
 		private System.Windows.Forms.ImageList imageList1;
+		private System.Windows.Forms.TreeListView treeListView1;
+		private System.Windows.Forms.ColumnHeader columnHeader1;
+		private System.Windows.Forms.ColumnHeader columnHeader2;
+		private System.Windows.Forms.ColumnHeader columnHeader3;
+		private System.Windows.Forms.ColumnHeader columnHeader4;
+		private System.Windows.Forms.ColumnHeader columnHeader5;
+		private System.Windows.Forms.ColumnHeader columnHeader6;
+		private System.Windows.Forms.ColumnHeader columnHeader7;
+		private System.Windows.Forms.ColumnHeader columnHeader8;
+		private System.Windows.Forms.ImageList imageList2;
 
 	}
 }

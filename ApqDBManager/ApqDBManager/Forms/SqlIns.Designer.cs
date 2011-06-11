@@ -35,25 +35,24 @@
 			this.tsmiCopy = new System.Windows.Forms.ToolStripMenuItem();
 			this.repositoryItemCheckEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
 			this.imageList1 = new System.Windows.Forms.ImageList(this.components);
-			this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
-			this.bar2 = new DevExpress.XtraBars.Bar();
-			this.bsiSelect = new DevExpress.XtraBars.BarSubItem();
-			this.bbiSelectAll = new DevExpress.XtraBars.BarButtonItem();
-			this.bbiReverse = new DevExpress.XtraBars.BarButtonItem();
-			this.bar1 = new DevExpress.XtraBars.Bar();
-			this.bbiExpandAll = new DevExpress.XtraBars.BarButtonItem();
-			this.bbiFail = new DevExpress.XtraBars.BarButtonItem();
-			this.bbiResult = new DevExpress.XtraBars.BarButtonItem();
-			this.bar4 = new DevExpress.XtraBars.Bar();
-			this.bsiInfo = new DevExpress.XtraBars.BarStaticItem();
-			this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
-			this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
-			this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
-			this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
+			this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
+			this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+			this.tsmiSelect = new System.Windows.Forms.ToolStripMenuItem();
+			this.tsmiSelectAll = new System.Windows.Forms.ToolStripMenuItem();
+			this.tsmiReverse = new System.Windows.Forms.ToolStripMenuItem();
+			this.menuStrip2 = new System.Windows.Forms.MenuStrip();
+			this.tsmiExpandAll = new System.Windows.Forms.ToolStripMenuItem();
+			this.tsmiFail = new System.Windows.Forms.ToolStripMenuItem();
+			this.tsmiResult = new System.Windows.Forms.ToolStripMenuItem();
 			((System.ComponentModel.ISupportInitialize)(this.treeList1)).BeginInit();
 			this.cmTreeMenu.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit1)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
+			this.toolStripContainer1.BottomToolStripPanel.SuspendLayout();
+			this.toolStripContainer1.ContentPanel.SuspendLayout();
+			this.toolStripContainer1.TopToolStripPanel.SuspendLayout();
+			this.toolStripContainer1.SuspendLayout();
+			this.menuStrip1.SuspendLayout();
+			this.menuStrip2.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// treeList1
@@ -64,12 +63,12 @@
 			this.treeList1.DataMember = "SqlInstance";
 			this.treeList1.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.treeList1.KeyFieldName = "SqlID";
-			this.treeList1.Location = new System.Drawing.Point(0, 24);
+			this.treeList1.Location = new System.Drawing.Point(0, 0);
 			this.treeList1.Name = "treeList1";
 			this.treeList1.OptionsBehavior.Editable = false;
 			this.treeList1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemCheckEdit1});
-			this.treeList1.Size = new System.Drawing.Size(300, 345);
+			this.treeList1.Size = new System.Drawing.Size(300, 368);
 			this.treeList1.StateImageList = this.imageList1;
 			this.treeList1.TabIndex = 0;
 			this.treeList1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.treeList1_KeyDown);
@@ -118,133 +117,106 @@
 			this.imageList1.Images.SetKeyName(1, "Checked.png");
 			this.imageList1.Images.SetKeyName(2, "Indeterminate.png");
 			// 
-			// barManager1
+			// toolStripContainer1
 			// 
-			this.barManager1.Bars.AddRange(new DevExpress.XtraBars.Bar[] {
-            this.bar2,
-            this.bar1,
-            this.bar4});
-			this.barManager1.DockControls.Add(this.barDockControlTop);
-			this.barManager1.DockControls.Add(this.barDockControlBottom);
-			this.barManager1.DockControls.Add(this.barDockControlLeft);
-			this.barManager1.DockControls.Add(this.barDockControlRight);
-			this.barManager1.Form = this;
-			this.barManager1.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
-            this.bbiReverse,
-            this.bbiSelectAll,
-            this.bbiFail,
-            this.bbiResult,
-            this.bbiExpandAll,
-            this.bsiSelect,
-            this.bsiInfo});
-			this.barManager1.MainMenu = this.bar2;
-			this.barManager1.MaxItemId = 23;
-			this.barManager1.StatusBar = this.bar4;
 			// 
-			// bar2
+			// toolStripContainer1.BottomToolStripPanel
 			// 
-			this.bar2.BarName = "Main menu";
-			this.bar2.DockCol = 0;
-			this.bar2.DockRow = 0;
-			this.bar2.DockStyle = DevExpress.XtraBars.BarDockStyle.Top;
-			this.bar2.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
-            new DevExpress.XtraBars.LinkPersistInfo(this.bsiSelect),
-            new DevExpress.XtraBars.LinkPersistInfo(this.bbiSelectAll),
-            new DevExpress.XtraBars.LinkPersistInfo(this.bbiReverse)});
-			this.bar2.OptionsBar.MultiLine = true;
-			this.bar2.OptionsBar.UseWholeRow = true;
-			this.bar2.Text = "Main menu";
+			this.toolStripContainer1.BottomToolStripPanel.Controls.Add(this.menuStrip2);
 			// 
-			// bsiSelect
+			// toolStripContainer1.ContentPanel
 			// 
-			this.bsiSelect.Caption = "选择(&L)";
-			this.bsiSelect.Id = 8;
-			this.bsiSelect.Name = "bsiSelect";
+			this.toolStripContainer1.ContentPanel.Controls.Add(this.treeList1);
+			this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(300, 368);
+			this.toolStripContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.toolStripContainer1.Location = new System.Drawing.Point(0, 0);
+			this.toolStripContainer1.Name = "toolStripContainer1";
+			this.toolStripContainer1.Size = new System.Drawing.Size(300, 416);
+			this.toolStripContainer1.TabIndex = 5;
+			this.toolStripContainer1.Text = "toolStripContainer1";
 			// 
-			// bbiSelectAll
+			// toolStripContainer1.TopToolStripPanel
 			// 
-			this.bbiSelectAll.Caption = "全选(&A)";
-			this.bbiSelectAll.Id = 4;
-			this.bbiSelectAll.Name = "bbiSelectAll";
-			this.bbiSelectAll.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiSelectAll_ItemClick);
+			this.toolStripContainer1.TopToolStripPanel.Controls.Add(this.menuStrip1);
 			// 
-			// bbiReverse
+			// menuStrip1
 			// 
-			this.bbiReverse.Caption = "反选(&S)";
-			this.bbiReverse.Id = 2;
-			this.bbiReverse.Name = "bbiReverse";
-			this.bbiReverse.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiReverse_ItemClick);
+			this.menuStrip1.Dock = System.Windows.Forms.DockStyle.None;
+			this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiSelect,
+            this.tsmiSelectAll,
+            this.tsmiReverse});
+			this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+			this.menuStrip1.Name = "menuStrip1";
+			this.menuStrip1.Size = new System.Drawing.Size(300, 24);
+			this.menuStrip1.TabIndex = 0;
+			this.menuStrip1.Text = "menuStrip1";
 			// 
-			// bar1
+			// tsmiSelect
 			// 
-			this.bar1.BarName = "Custom 1";
-			this.bar1.DockCol = 0;
-			this.bar1.DockRow = 1;
-			this.bar1.DockStyle = DevExpress.XtraBars.BarDockStyle.Bottom;
-			this.bar1.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
-            new DevExpress.XtraBars.LinkPersistInfo(this.bbiExpandAll),
-            new DevExpress.XtraBars.LinkPersistInfo(this.bbiFail),
-            new DevExpress.XtraBars.LinkPersistInfo(this.bbiResult)});
-			this.bar1.OptionsBar.AllowRename = true;
-			this.bar1.Text = "Custom 1";
+			this.tsmiSelect.Name = "tsmiSelect";
+			this.tsmiSelect.Size = new System.Drawing.Size(59, 20);
+			this.tsmiSelect.Text = "选择(&L)";
 			// 
-			// bbiExpandAll
+			// tsmiSelectAll
 			// 
-			this.bbiExpandAll.Caption = "全部展开(&D)";
-			this.bbiExpandAll.Id = 7;
-			this.bbiExpandAll.Name = "bbiExpandAll";
-			this.bbiExpandAll.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiExpandAll_ItemClick);
+			this.tsmiSelectAll.Name = "tsmiSelectAll";
+			this.tsmiSelectAll.Size = new System.Drawing.Size(59, 20);
+			this.tsmiSelectAll.Text = "全选(&A)";
+			this.tsmiSelectAll.Click += new System.EventHandler(this.tsmiSelectAll_Click);
 			// 
-			// bbiFail
+			// tsmiReverse
 			// 
-			this.bbiFail.Caption = "失败(&F)";
-			this.bbiFail.Id = 5;
-			this.bbiFail.Name = "bbiFail";
-			this.bbiFail.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiFail_ItemClick);
+			this.tsmiReverse.Name = "tsmiReverse";
+			this.tsmiReverse.Size = new System.Drawing.Size(59, 20);
+			this.tsmiReverse.Text = "反选(&S)";
+			this.tsmiReverse.Click += new System.EventHandler(this.tsmiReverse_Click);
 			// 
-			// bbiResult
+			// menuStrip2
 			// 
-			this.bbiResult.Caption = "结果(&T)";
-			this.bbiResult.Id = 6;
-			this.bbiResult.Name = "bbiResult";
-			this.bbiResult.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiResult_ItemClick);
+			this.menuStrip2.Dock = System.Windows.Forms.DockStyle.None;
+			this.menuStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiExpandAll,
+            this.tsmiFail,
+            this.tsmiResult});
+			this.menuStrip2.Location = new System.Drawing.Point(0, 0);
+			this.menuStrip2.Name = "menuStrip2";
+			this.menuStrip2.Size = new System.Drawing.Size(300, 24);
+			this.menuStrip2.TabIndex = 0;
+			this.menuStrip2.Text = "menuStrip2";
 			// 
-			// bar4
+			// tsmiExpandAll
 			// 
-			this.bar4.BarName = "Custom 5";
-			this.bar4.CanDockStyle = DevExpress.XtraBars.BarCanDockStyle.Bottom;
-			this.bar4.DockCol = 0;
-			this.bar4.DockRow = 0;
-			this.bar4.DockStyle = DevExpress.XtraBars.BarDockStyle.Bottom;
-			this.bar4.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
-            new DevExpress.XtraBars.LinkPersistInfo(this.bsiInfo)});
-			this.bar4.OptionsBar.AllowQuickCustomization = false;
-			this.bar4.OptionsBar.DrawDragBorder = false;
-			this.bar4.OptionsBar.UseWholeRow = true;
-			this.bar4.Text = "Custom 5";
+			this.tsmiExpandAll.Name = "tsmiExpandAll";
+			this.tsmiExpandAll.Size = new System.Drawing.Size(83, 20);
+			this.tsmiExpandAll.Text = "全部展开(&D)";
+			this.tsmiExpandAll.Click += new System.EventHandler(this.tsmiExpandAll_Click);
 			// 
-			// bsiInfo
+			// tsmiFail
 			// 
-			this.bsiInfo.AutoSize = DevExpress.XtraBars.BarStaticItemSize.None;
-			this.bsiInfo.Id = 22;
-			this.bsiInfo.Name = "bsiInfo";
-			this.bsiInfo.TextAlignment = System.Drawing.StringAlignment.Near;
-			this.bsiInfo.Width = 300;
+			this.tsmiFail.Name = "tsmiFail";
+			this.tsmiFail.Size = new System.Drawing.Size(59, 20);
+			this.tsmiFail.Text = "失败(&F)";
+			this.tsmiFail.Click += new System.EventHandler(this.tsmiFail_Click);
+			// 
+			// tsmiResult
+			// 
+			this.tsmiResult.Name = "tsmiResult";
+			this.tsmiResult.Size = new System.Drawing.Size(59, 20);
+			this.tsmiResult.Text = "结果(&T)";
+			this.tsmiResult.Click += new System.EventHandler(this.tsmiResult_Click);
 			// 
 			// SqlIns
 			// 
 			this.ClientSize = new System.Drawing.Size(300, 416);
-			this.Controls.Add(this.treeList1);
-			this.Controls.Add(this.barDockControlLeft);
-			this.Controls.Add(this.barDockControlRight);
-			this.Controls.Add(this.barDockControlBottom);
-			this.Controls.Add(this.barDockControlTop);
+			this.Controls.Add(this.toolStripContainer1);
 			this.DockAreas = ((WeifenLuo.WinFormsUI.Docking.DockAreas)(((((WeifenLuo.WinFormsUI.Docking.DockAreas.Float | WeifenLuo.WinFormsUI.Docking.DockAreas.DockLeft)
 						| WeifenLuo.WinFormsUI.Docking.DockAreas.DockRight)
 						| WeifenLuo.WinFormsUI.Docking.DockAreas.DockTop)
 						| WeifenLuo.WinFormsUI.Docking.DockAreas.DockBottom)));
 			this.HideOnClose = true;
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+			this.MainMenuStrip = this.menuStrip1;
 			this.Name = "SqlIns";
 			this.ShowHint = WeifenLuo.WinFormsUI.Docking.DockState.DockLeft;
 			this.TabText = "Sql实例";
@@ -254,33 +226,37 @@
 			((System.ComponentModel.ISupportInitialize)(this.treeList1)).EndInit();
 			this.cmTreeMenu.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit1)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
+			this.toolStripContainer1.BottomToolStripPanel.ResumeLayout(false);
+			this.toolStripContainer1.BottomToolStripPanel.PerformLayout();
+			this.toolStripContainer1.ContentPanel.ResumeLayout(false);
+			this.toolStripContainer1.TopToolStripPanel.ResumeLayout(false);
+			this.toolStripContainer1.TopToolStripPanel.PerformLayout();
+			this.toolStripContainer1.ResumeLayout(false);
+			this.toolStripContainer1.PerformLayout();
+			this.menuStrip1.ResumeLayout(false);
+			this.menuStrip1.PerformLayout();
+			this.menuStrip2.ResumeLayout(false);
+			this.menuStrip2.PerformLayout();
 			this.ResumeLayout(false);
 
 		}
 		#endregion
 
 		private DevExpress.XtraTreeList.TreeList treeList1;
-		private DevExpress.XtraBars.BarManager barManager1;
-		private DevExpress.XtraBars.Bar bar2;
-		private DevExpress.XtraBars.BarDockControl barDockControlTop;
-		private DevExpress.XtraBars.BarDockControl barDockControlBottom;
-		private DevExpress.XtraBars.BarDockControl barDockControlLeft;
-		private DevExpress.XtraBars.BarDockControl barDockControlRight;
 		private DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit repositoryItemCheckEdit1;
-		private DevExpress.XtraBars.BarButtonItem bbiReverse;
 		private System.Windows.Forms.ImageList imageList1;
-		private DevExpress.XtraBars.BarButtonItem bbiSelectAll;
-		private DevExpress.XtraBars.Bar bar1;
-		private DevExpress.XtraBars.BarButtonItem bbiFail;
-		private DevExpress.XtraBars.BarButtonItem bbiResult;
-		private DevExpress.XtraBars.BarButtonItem bbiExpandAll;
 		private System.Windows.Forms.ContextMenuStrip cmTreeMenu;
 		private System.Windows.Forms.ToolStripMenuItem tsmiCopy;
 		private DevExpress.XtraTreeList.Columns.TreeListColumn treeListColumn1;
-		private DevExpress.XtraBars.BarSubItem bsiSelect;
-		private DevExpress.XtraBars.Bar bar4;
-		private DevExpress.XtraBars.BarStaticItem bsiInfo;
+		private System.Windows.Forms.ToolStripContainer toolStripContainer1;
+		private System.Windows.Forms.MenuStrip menuStrip1;
+		private System.Windows.Forms.ToolStripMenuItem tsmiSelect;
+		private System.Windows.Forms.ToolStripMenuItem tsmiSelectAll;
+		private System.Windows.Forms.ToolStripMenuItem tsmiReverse;
+		private System.Windows.Forms.MenuStrip menuStrip2;
+		private System.Windows.Forms.ToolStripMenuItem tsmiExpandAll;
+		private System.Windows.Forms.ToolStripMenuItem tsmiFail;
+		private System.Windows.Forms.ToolStripMenuItem tsmiResult;
 
 	}
 }

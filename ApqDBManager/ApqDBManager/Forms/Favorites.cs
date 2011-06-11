@@ -25,10 +25,10 @@ namespace ApqDBManager.Forms
 			ds.dtExplorer.DefaultView.RowFilter = "FileName LIKE '%txt' OR FileName LIKE '%sql'";
 
 			Apq.Windows.Controls.Control.AddImeHandler(this);
-			btnRefresh_ItemClick(sender, null);
+			tsmiRefresh_Click(tsmiRefresh, null);
 		}
 
-		private void btnRefresh_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+		private void tsmiRefresh_Click(object sender, EventArgs e)
 		{
 			string DirFullPath = GlobalObject.XmlConfigChain[typeof(ApqDBManager.Controls.MainOption.Favorites), "CFolder"];
 			if (!System.IO.Directory.Exists(DirFullPath))

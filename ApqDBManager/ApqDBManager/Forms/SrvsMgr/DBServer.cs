@@ -14,13 +14,6 @@ namespace ApqDBManager.Forms.SrvsMgr
 	{
 		//数据库连接
 		private SqlConnection _SqlConn = new SqlConnection();
-		public SrvsMgr_XSD Sqls
-		{
-			get
-			{
-				return srvsMgr_XSD;
-			}
-		}
 		private Form formSqlInstance = null;
 
 		public DBServer()

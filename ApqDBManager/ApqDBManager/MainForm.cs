@@ -74,19 +74,19 @@ namespace ApqDBManager
 			#region 添加图标
 			//Icon = new Icon(@"Res\ico\sign125.ico");
 
-			this.blbiNew.Glyph = System.Drawing.Image.FromFile(@"Res\png\File\New.png");
-			this.blbiOpen.Glyph = System.Drawing.Image.FromFile(@"Res\png\File\Open.png");
-			this.blbiSave.Glyph = System.Drawing.Image.FromFile(@"Res\png\File\Save.png");
-			this.menuNew.Glyph = System.Drawing.Image.FromFile(@"Res\png\File\New.png");
-			this.bsiOpen.Glyph = System.Drawing.Image.FromFile(@"Res\png\File\Open.png");
-			this.menuSave.Glyph = System.Drawing.Image.FromFile(@"Res\png\File\Save.png");
-			this.menuUndo.Glyph = System.Drawing.Image.FromFile(@"Res\png\Editor\Undo.png");
-			this.menuRedo.Glyph = System.Drawing.Image.FromFile(@"Res\png\Editor\Redo.png");
-			this.menuCut.Glyph = System.Drawing.Image.FromFile(@"Res\png\Editor\Cut.png");
-			this.menuCopy.Glyph = System.Drawing.Image.FromFile(@"Res\png\Editor\Copy.png");
-			this.menuPaste.Glyph = System.Drawing.Image.FromFile(@"Res\png\Editor\Paste.png");
-			this.menuIndex.Glyph = System.Drawing.Image.FromFile(@"Res\png\Help.png");
-			this.menuSearch.Glyph = System.Drawing.Image.FromFile(@"Res\png\Search.png");
+			this.tsbNew.Image = System.Drawing.Image.FromFile(@"Res\png\File\New.png");
+			this.tsbOpen.Image = System.Drawing.Image.FromFile(@"Res\png\File\Open.png");
+			this.tsbSave.Image = System.Drawing.Image.FromFile(@"Res\png\File\Save.png");
+			this.tsmiNew.Image = System.Drawing.Image.FromFile(@"Res\png\File\New.png");
+			this.tsmiOpen.Image = System.Drawing.Image.FromFile(@"Res\png\File\Open.png");
+			this.tsmiSave.Image = System.Drawing.Image.FromFile(@"Res\png\File\Save.png");
+			this.tsmiUndo.Image = System.Drawing.Image.FromFile(@"Res\png\Editor\Undo.png");
+			this.tsmiRedo.Image = System.Drawing.Image.FromFile(@"Res\png\Editor\Redo.png");
+			this.tsmiCut.Image = System.Drawing.Image.FromFile(@"Res\png\Editor\Cut.png");
+			this.tsmiCopy.Image = System.Drawing.Image.FromFile(@"Res\png\Editor\Copy.png");
+			this.tsmiPaste.Image = System.Drawing.Image.FromFile(@"Res\png\Editor\Paste.png");
+			this.tsmiIndex.Image = System.Drawing.Image.FromFile(@"Res\png\Help.png");
+			this.tsmiSearch.Image = System.Drawing.Image.FromFile(@"Res\png\Search.png");
 			#endregion
 
 			#region DockPanel.config
@@ -104,7 +104,7 @@ namespace ApqDBManager
 			menuFavorites_CheckedChanged(sender, null);
 			menuErrList_CheckedChanged(sender, null);
 
-			menuNew_ItemClick(menuNew, null);
+			tsmiNew_Click(tsmiNew, null);
 		}
 
 		private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -114,18 +114,18 @@ namespace ApqDBManager
 
 		#region 文件
 		//新建
-		private void menuNew_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+		private void tsmiNew_Click(object sender, EventArgs e)
 		{
 			SqlEdit childForm = new SqlEdit();
 			childForm.Show(dockPanel1);
 			childForm.Activate();
 		}
 		//打开Sql文件
-		private void menuOpenSql_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+		private void tsmiOpenSql_Click(object sender, EventArgs e)
 		{
 			if (!(ActiveMdiChild is Apq.Editor.IFileLoader))
 			{
-				menuNew_ItemClick(sender, e);
+				tsmiNew_Click(sender, e);
 			}
 
 			Apq.Editor.IFileLoader Editor = ActiveMdiChild as Apq.Editor.IFileLoader;
@@ -135,7 +135,7 @@ namespace ApqDBManager
 			}
 		}
 		//保存
-		private void menuSave_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+		private void tsmiSave_Click(object sender, EventArgs e)
 		{
 			Apq.Editor.IFileLoader Editor = ActiveMdiChild as Apq.Editor.IFileLoader;
 			if (Editor != null)
@@ -144,7 +144,7 @@ namespace ApqDBManager
 			}
 		}
 		//另存为
-		private void menuSaveAs_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+		private void tsmiSaveAs_Click(object sender, EventArgs e)
 		{
 			Apq.Editor.IFileLoader Editor = ActiveMdiChild as Apq.Editor.IFileLoader;
 			if (Editor != null)
@@ -160,14 +160,14 @@ namespace ApqDBManager
 			}
 		}
 		//退出
-		private void menuExit_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+		private void tsmiExit_Click(object sender, EventArgs e)
 		{
 			Close();
 		}
 		#endregion
 
 		#region 编辑
-		private void menuUndo_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+		private void tsmiUndo_Click(object sender, EventArgs e)
 		{
 			Apq.Editor.ITextEditor Editor = ActiveMdiChild as Apq.Editor.ITextEditor;
 			if (Editor != null)
@@ -176,7 +176,7 @@ namespace ApqDBManager
 			}
 		}
 
-		private void menuRedo_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+		private void tsmiRedo_Click(object sender, EventArgs e)
 		{
 			Apq.Editor.ITextEditor Editor = ActiveMdiChild as Apq.Editor.ITextEditor;
 			if (Editor != null)
@@ -185,7 +185,7 @@ namespace ApqDBManager
 			}
 		}
 
-		private void menuCut_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+		private void tsmiCut_Click(object sender, EventArgs e)
 		{
 			Apq.Editor.ITextEditor Editor = ActiveMdiChild as Apq.Editor.ITextEditor;
 			if (Editor != null)
@@ -195,7 +195,7 @@ namespace ApqDBManager
 			}
 		}
 
-		private void menuCopy_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+		private void tsmiCopy_Click(object sender, EventArgs e)
 		{
 			Apq.Editor.ITextEditor Editor = ActiveMdiChild as Apq.Editor.ITextEditor;
 			if (Editor != null)
@@ -204,7 +204,7 @@ namespace ApqDBManager
 			}
 		}
 
-		private void menuPaste_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+		private void tsmiPaste_Click(object sender, EventArgs e)
 		{
 			Apq.Editor.ITextEditor Editor = ActiveMdiChild as Apq.Editor.ITextEditor;
 			if (Editor != null)
@@ -213,7 +213,7 @@ namespace ApqDBManager
 			}
 		}
 
-		private void menuSelectAll_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+		private void tsmiSelectAll_Click(object sender, EventArgs e)
 		{
 			Apq.Editor.ITextEditor Editor = ActiveMdiChild as Apq.Editor.ITextEditor;
 			if (Editor != null)
@@ -222,7 +222,7 @@ namespace ApqDBManager
 			}
 		}
 
-		private void menuReverse_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+		private void tsmiReverse_Click(object sender, EventArgs e)
 		{
 			Apq.Editor.ITextEditor Editor = ActiveMdiChild as Apq.Editor.ITextEditor;
 			if (Editor != null)
@@ -233,35 +233,61 @@ namespace ApqDBManager
 		#endregion
 
 		#region 视图
-		private void menuToolBar_CheckedChanged(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+
+		private void tsmiToolBar_Click(object sender, EventArgs e)
 		{
-			bar1.Visible = menuToolBar.Checked;
+			tsmiToolBar.Checked = !tsmiToolBar.Checked;
 		}
 
-		private void menuStatusBar_CheckedChanged(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+		private void tsmiStatusBar_Click(object sender, EventArgs e)
 		{
-			bar3.Visible = menuStatusBar.Checked;
+			tsmiStatusBar.Checked = !tsmiStatusBar.Checked;
 		}
 
-		private void menuSolution_CheckedChanged(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+		private void tsmiInstances_Click(object sender, EventArgs e)
 		{
-			if (menuSolution.Checked)
+			tsmiInstances.Checked = !tsmiInstances.Checked;
+		}
+
+		private void tsmiFavorites_Click(object sender, EventArgs e)
+		{
+			tsmiFavorites.Checked = !tsmiFavorites.Checked;
+		}
+
+		private void tsmiErrList_Click(object sender, EventArgs e)
+		{
+			tsmiErrList.Checked = !tsmiErrList.Checked;
+		}
+
+		private void tsmiToolBar_CheckedChanged(object sender, EventArgs e)
+		{
+			toolStrip1.Visible = tsmiTool.Checked;
+		}
+
+		private void menuStatusBar_CheckedChanged(object sender, EventArgs e)
+		{
+			statusStrip1.Visible = tsmiStatusBar.Checked;
+		}
+
+		private void menuSolution_CheckedChanged(object sender, EventArgs e)
+		{
+			if (tsmiInstances.Checked)
 				GlobalObject.SolutionExplorer.Show(dockPanel1);
 			else
 				GlobalObject.SolutionExplorer.Hide();
 		}
 
-		private void menuFavorites_CheckedChanged(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+		private void menuFavorites_CheckedChanged(object sender, EventArgs e)
 		{
-			if (menuFavorites.Checked)
+			if (tsmiFavorites.Checked)
 				GlobalObject.Favorites.Show(dockPanel1);
 			else
 				GlobalObject.Favorites.Hide();
 		}
 
-		private void menuErrList_CheckedChanged(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+		private void menuErrList_CheckedChanged(object sender, EventArgs e)
 		{
-			if (menuErrList.Checked)
+			if (tsmiErrList.Checked)
 				GlobalObject.ErrList.Show(dockPanel1);
 			else
 				GlobalObject.ErrList.Hide();
@@ -269,66 +295,60 @@ namespace ApqDBManager
 		#endregion
 
 		#region 工具
-		public void menuOption_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+		public void tsmiOption_Click(object sender, EventArgs e)
 		{
 			GlobalObject.MainOption.ShowDialog(this);
 		}
 
-		private void menuDES_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+		private void tsmiDES_Click(object sender, EventArgs e)
 		{
 			DES r = new DES();
 			r.Show(dockPanel1);
 		}
 
-		private void menuRandom_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+		private void tsmiRandom_Click(object sender, EventArgs e)
 		{
 			Random win = new Random();
 			win.Show(dockPanel1);
 		}
 
-		private void menuFileUp_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+		private void tsmiFileUp_Click(object sender, EventArgs e)
 		{
 			Forms.FileUp win = new Forms.FileUp();
 			win.Show(dockPanel1);
 		}
 
-		private void menuFileTrans_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+		private void tsmiFileTrans_Click(object sender, EventArgs e)
 		{
 			Forms.FileTrans win = new ApqDBManager.Forms.FileTrans();
 			win.Show(dockPanel1);
 		}
 
-		private void menuFTP_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+		private void tsmiFTP_Click(object sender, EventArgs e)
 		{
 			Forms.FTPFileTrans win = new ApqDBManager.Forms.FTPFileTrans();
 			win.Show(dockPanel1);
 		}
 
-		private void menuFTPFileUp_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+		private void tsmiFTPFileUp_Click(object sender, EventArgs e)
 		{
 			Forms.FTPFileUp win = new ApqDBManager.Forms.FTPFileUp();
 			win.Show(dockPanel1);
 		}
 
-		private void menuDBC_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+		private void tsmiDBC_Click(object sender, EventArgs e)
 		{
 			Forms.CryptCS win = new Forms.CryptCS();
 			win.Show(dockPanel1);
 		}
 
-		private void menuDBCList_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-		{
-			//Forms.DBCList win = new Forms.DBCList();
-			//win.Show(dockPanel1);
-		}
-
-		private void menuRSAKey_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+		private void tsmiRSAKey_Click(object sender, EventArgs e)
 		{
 			Forms.RSAKey win = new ApqDBManager.Forms.RSAKey();
 			win.Show(dockPanel1);
 		}
 
-		private void menuDBServer_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+		private void tsmiDBServer_Click(object sender, EventArgs e)
 		{
 			Forms.SrvsMgr.DBServer win = Apq.Windows.Forms.SingletonForms.GetInstance(typeof(Forms.SrvsMgr.DBServer)) as Forms.SrvsMgr.DBServer;
 			if (win != null)
@@ -339,7 +359,7 @@ namespace ApqDBManager
 		#endregion
 
 		#region 窗口
-		private void menuCloseAll_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+		private void tsmiCloseAll_Click(object sender, EventArgs e)
 		{
 			foreach (Form childForm in MdiChildren)
 			{
@@ -347,35 +367,35 @@ namespace ApqDBManager
 			}
 		}
 
-		private void menuNewApp_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+		private void tsmiNewApp_Click(object sender, EventArgs e)
 		{
 			System.Diagnostics.Process.Start(Application.ExecutablePath);
 		}
 		#endregion
 
 		#region 帮助
-		private void menuContents_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+		private void tsmiContents_Click(object sender, EventArgs e)
 		{
 
 		}
 
-		private void menuIndex_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+		private void tsmiIndex_Click(object sender, EventArgs e)
 		{
 
 		}
 
-		private void menuSearch_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+		private void tsmiSearch_Click(object sender, EventArgs e)
 		{
 
 		}
 
-		private void menuSN_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+		private void tsmiSN_Click(object sender, EventArgs e)
 		{
 			Form f = new Apq.Reg.Client.Win.RegForm();
 			f.ShowDialog(this);
 		}
 
-		private void menuAbout_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+		private void tsmiAbout_Click(object sender, EventArgs e)
 		{
 			GlobalObject.AboutBox.Asm = GlobalObject.TheAssembly;
 			GlobalObject.AboutBox.ShowDialog(this);

@@ -116,6 +116,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Dlls\ApqDBManager.XSD.dll</HintPath>
     </Reference>
+    <Reference Include="CommonTools, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Dlls\CommonTools.dll</HintPath>
+    </Reference>
     <Reference Include="DevExpress.Data.v9.2, Version=9.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
       <Private>False</Private>
     </Reference>
@@ -143,15 +147,15 @@
     </Reference>
     <Reference Include="ICSharpCode.TextEditor, Version=2.0.0.922, Culture=neutral, PublicKeyToken=4d61825e8dd49f1a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Reference\ICSharpCode\TextEditor_2.2\ICSharpCode.TextEditor.dll</HintPath>
+      <HintPath>Dlls\ICSharpCode.TextEditor.dll</HintPath>
     </Reference>
     <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Reference\log4net-1.2.10\log4net.dll</HintPath>
+      <HintPath>Dlls\log4net.dll</HintPath>
     </Reference>
     <Reference Include="org.in2bits.MyXls, Version=0.6.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Reference\myxls-0.6.3\org.in2bits.MyXls.dll</HintPath>
+      <HintPath>Dlls\org.in2bits.MyXls.dll</HintPath>
     </Reference>
     <Reference Include="System">
       <Private>False</Private>
@@ -174,6 +178,10 @@
     <Reference Include="System.Drawing">
       <Private>False</Private>
     </Reference>
+    <Reference Include="System.Runtime.InteropServices.APIs, Version=1.0.4179.19654, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Dlls\System.Runtime.InteropServices.APIs.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web">
       <Private>False</Private>
     </Reference>
@@ -183,12 +191,16 @@
     <Reference Include="System.Windows.Forms">
       <Private>False</Private>
     </Reference>
+    <Reference Include="System.Windows.Forms.TreeListView, Version=1.0.4179.19656, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Dlls\System.Windows.Forms.TreeListView.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml">
       <Private>False</Private>
     </Reference>
     <Reference Include="WeifenLuo.WinFormsUI.Docking, Version=2.2.2864.18696, Culture=neutral, PublicKeyToken=d481317c817cec47, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Reference\DockPanel\WeifenLuo.WinFormsUI.Docking.dll</HintPath>
+      <HintPath>Dlls\WeifenLuo.WinFormsUI.Docking.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -210,6 +222,12 @@
     </Compile>
     <Compile Include="Controls\MainOption\DBC.Designer.cs">
       <DependentUpon>DBC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\ErrList.cs">
       <SubType>Form</SubType>
@@ -276,6 +294,15 @@
     </Compile>
     <Compile Include="Forms\SrvsMgr\DBServer.Designer.cs">
       <DependentUpon>DBServer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SrvsMgr\SrvsMgr_XSD.cs">
+      <DependentUpon>SrvsMgr_XSD.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Forms\SrvsMgr\SrvsMgr_XSD.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SrvsMgr_XSD.xsd</DependentUpon>
     </Compile>
     <Compile Include="Forms\SrvsMgr\SqlInstance.cs">
       <SubType>Form</SubType>
@@ -409,6 +436,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\DES.resx">
       <SubType>Designer</SubType>
@@ -597,9 +627,6 @@
     <None Include="ApqDBManager.exe.apq">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Res\ConnResourceSA.res">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <None Include="xsd\Random.xsc">
       <DependentUpon>Random.xsd</DependentUpon>
     </None>
@@ -674,6 +701,17 @@
     <None Include="ApqDBManager[雪羽].reg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="Forms\SrvsMgr\SrvsMgr_XSD.xsc">
+      <DependentUpon>SrvsMgr_XSD.xsd</DependentUpon>
+    </None>
+    <None Include="Forms\SrvsMgr\SrvsMgr_XSD.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>SrvsMgr_XSD.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Forms\SrvsMgr\SrvsMgr_XSD.xss">
+      <DependentUpon>SrvsMgr_XSD.xsd</DependentUpon>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
@@ -739,6 +777,22 @@ xcopy "%25Reference%25\$(ConfigurationName)\Apq.DBC.pdb" "$(ProjectDir)Dlls\" /c
 xcopy "%25Reference%25\$(ConfigurationName)\Apq.Win.dll" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
 xcopy "%25Reference%25\$(ConfigurationName)\Apq.Win.xml" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
 xcopy "%25Reference%25\$(ConfigurationName)\Apq.Win.pdb" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+
+xcopy "%25Reference%25\log4net-1.2.10\log4net.dll" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+xcopy "%25Reference%25\log4net-1.2.10\log4net.xml" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+
+xcopy "%25Reference%25\ICSharpCode\TextEditor_2.2\ICSharpCode.TextEditor.dll" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+xcopy "%25Reference%25\ICSharpCode\TextEditor_2.2\ICSharpCode.TextEditor.xml" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+
+xcopy "%25Reference%25\myxls-0.6.3\org.in2bits.MyXls.dll" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+xcopy "%25Reference%25\myxls-0.6.3\org.in2bits.MyXls.xml" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+
+xcopy "%25Reference%25\DockPanel\WeifenLuo.WinFormsUI.Docking.dll" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+
+xcopy "%25Reference%25\TreeListView\System.Runtime.InteropServices.APIs.dll" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+xcopy "%25Reference%25\TreeListView\System.Runtime.InteropServices.APIs.pdb" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+xcopy "%25Reference%25\TreeListView\System.Windows.Forms.TreeListView.dll" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+xcopy "%25Reference%25\TreeListView\System.Windows.Forms.TreeListView.pdb" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
 
 xcopy "%25Reference%25\$(ConfigurationName)\ApqDBManager.XSD.dll" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
 xcopy "%25Reference%25\$(ConfigurationName)\ApqDBManager.XSD.pdb" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y

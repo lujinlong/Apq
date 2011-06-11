@@ -111,7 +111,7 @@ namespace ApqDBManager.Forms
 			treeList1.DataSource = ds;
 			btnRefresh_ItemClick(sender, null);
 
-			Apq.Xtra.TreeList.Common.AddBehaivor(treeList1);
+			//Apq.Xtra.TreeList.Common.AddBehaivor(treeList1);
 
 			// 获取服务器列表
 			ReloadServers();

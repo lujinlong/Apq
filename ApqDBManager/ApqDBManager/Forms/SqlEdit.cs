@@ -79,11 +79,11 @@ namespace ApqDBManager
 			#region 添加图标
 			//Icon = new Icon(@"Res\ico\sign125.ico");
 
-			this.menuUndo.Glyph = System.Drawing.Image.FromFile(@"Res\png\Editor\Undo.png");
-			this.menuRedo.Glyph = System.Drawing.Image.FromFile(@"Res\png\Editor\Redo.png");
-			this.menuCut.Glyph = System.Drawing.Image.FromFile(@"Res\png\Editor\Cut.png");
-			this.menuCopy.Glyph = System.Drawing.Image.FromFile(@"Res\png\Editor\Copy.png");
-			this.menuPaste.Glyph = System.Drawing.Image.FromFile(@"Res\png\Editor\Paste.png");
+			this.tsmiUndo.Image = System.Drawing.Image.FromFile(@"Res\png\Editor\Undo.png");
+			this.tsmiRedo.Image = System.Drawing.Image.FromFile(@"Res\png\Editor\Redo.png");
+			this.tsmiCut.Image = System.Drawing.Image.FromFile(@"Res\png\Editor\Cut.png");
+			this.tsmiCopy.Image = System.Drawing.Image.FromFile(@"Res\png\Editor\Copy.png");
+			this.tsmiPaste.Image = System.Drawing.Image.FromFile(@"Res\png\Editor\Paste.png");
 			#endregion
 
 			txtSql.Document.HighlightingStrategy = HighlightingStrategyFactory.CreateHighlightingStrategy("TSQL");
@@ -93,7 +93,7 @@ namespace ApqDBManager
 			txtSql.ShowVRuler = false;
 			txtSql.Document.DocumentChanged += new DocumentEventHandler(txtSql_DocumentChanged);
 
-			#region ricbDBName.Items
+			#region tscbDBName.Items
 			List<string> cbDBName_Items = new List<string>();
 			if (GlobalObject.XmlAsmConfig.GetValue("cbDBName_Items") != null)
 			{
@@ -110,7 +110,7 @@ namespace ApqDBManager
 					}
 				}
 			}
-			ricbDBName.Items.AddRange(cbDBName_Items);
+			tscbDBName.Items.AddRange(cbDBName_Items.ToArray());
 			#endregion
 
 			#region txtSql.Text
@@ -161,14 +161,14 @@ UNION ALL SELECT 2,2;";
 			string cfgcbDBName = GlobalObject.XmlConfigChain[this.GetType(), "cbDBName"];
 			if (cfgcbDBName != null)
 			{
-				cbDBName.EditValue = cfgcbDBName;
+				tscbDBName.SelectedText = cfgcbDBName;
 			}
 			#endregion
 
 			Apq.Windows.Controls.Control.AddImeHandler(this);
 
 			// 挂接事件
-			ricbDBName.Items.CollectionChanged += new CollectionChangeEventHandler(ricbDBName_Items_CollectionChanged);
+			tscbDBName.TextChanged += new EventHandler(tscbDBName_TextChanged);
 
 			// 获取服务器列表
 			ReloadServers();
@@ -193,39 +193,37 @@ UNION ALL SELECT 2,2;";
 			GlobalObject.XmlConfigChain[this.GetType(), "txtSql_Text"] = txtSql.Text;
 		}
 
-		void ricbDBName_Items_CollectionChanged(object sender, CollectionChangeEventArgs e)
+		void tscbDBName_TextChanged(object sender, EventArgs e)
 		{
-			string strDBNames = string.Empty;
-			foreach (string cbItem in ricbDBName.Items)
-			{
-				strDBNames += "," + cbItem;
-			}
-			if (strDBNames.Length > 1)
-			{
-				strDBNames = strDBNames.Substring(1);
-			}
-
-			GlobalObject.XmlUserConfig.SetValue("cbDBName_Items", strDBNames);
-		}
-
-		private void ricbDBName_SelectedIndexChanged(object sender, EventArgs e)
-		{
-			GlobalObject.XmlUserConfig.SetValue("cbDBName", cbDBName.EditValue.ToString());
-		}
-
-		private void cbDBName_EditValueChanged(object sender, EventArgs e)
-		{
-			string strDBName = cbDBName.EditValue.ToString().Trim();
+			string strDBName = tscbDBName.Text.Trim();
 			GlobalObject.XmlUserConfig.SetValue("cbDBName", strDBName);
 
-			foreach (string cbItem in ricbDBName.Items)
+			bool IsFound = false;
+			foreach (string cbItem in tscbDBName.Items)
 			{
 				if (cbItem == strDBName)
 				{
-					return;
+					IsFound = true;
+					break;
 				}
 			}
-			ricbDBName.Items.Add(strDBName);
+
+			if (!IsFloat)
+			{
+				tscbDBName.Items.Add(strDBName);
+
+				string strDBNames = string.Empty;
+				foreach (string cbItem in tscbDBName.Items)
+				{
+					strDBNames += "," + cbItem;
+				}
+				if (strDBNames.Length > 1)
+				{
+					strDBNames = strDBNames.Substring(1);
+				}
+
+				GlobalObject.XmlUserConfig.SetValue("cbDBName_Items", strDBNames);
+			}
 		}
 
 		private void SqlEdit_FormClosed(object sender, FormClosedEventArgs e)
@@ -233,7 +231,7 @@ UNION ALL SELECT 2,2;";
 			//GlobalObject.XmlUserConfig.Save();
 		}
 
-		private void btnExec_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+		private void tsmiExec_Click(object sender, EventArgs e)
 		{
 			string strSql = txtSql.ActiveTextAreaControl.TextArea.SelectionManager.SelectedText;
 			if (string.IsNullOrEmpty(strSql))
@@ -286,29 +284,29 @@ UNION ALL SELECT 2,2;";
 				dv.RowFilter = "CheckState = 1 AND SqlID > 1";
 				if (dv.Count > 3 && !Apq.Reg.Client.Common.IsRegistration)
 				{
-					MessageBox.Show("谢谢您支持共享软件!共享版最多支持同时连接3个服务器,要获得更多的连接支持,请注册,谢谢使用","注册提示");
+					MessageBox.Show("谢谢您支持共享软件!共享版最多支持同时连接3个服务器,要获得更多的连接支持,请注册,谢谢使用", "注册提示");
 					return;
 				}
 				#endregion
 
-				btnExec.Enabled = false;
+				tsmiExec.Enabled = false;
 
 				// 将线程中需要的控件值取到变量
 				strSql += "\r\n";
 				Apq.Windows.Controls.ControlExtension.SetControlValues(this, "arySql", strSql.Split(aryGo, StringSplitOptions.RemoveEmptyEntries));
-				Apq.Windows.Controls.ControlExtension.SetControlValues(this, "bliResult.ItemIndex", bliResult.ItemIndex);
+				Apq.Windows.Controls.ControlExtension.SetControlValues(this, "bliResult.ItemIndex", tscbResult.SelectedIndex);
 
 				// 先终止上一次主后台线程
 				Apq.Threading.Thread.Abort(MainBackThread);
 				MainBackThread = Apq.Threading.Thread.StartNewThread(new ThreadStart(MainBackThread_Start));
 
-				btnCancel.Enabled = true;
+				tsmiCancel.Enabled = true;
 			}
 		}
 
-		private void btnCancel_ItemClick(object sender, ItemClickEventArgs e)
+		private void tsmiCancel_Click(object sender, EventArgs e)
 		{
-			btnCancel.Enabled = false;
+			tsmiCancel.Enabled = false;
 
 			Apq.Threading.Thread.Abort(MainBackThread);
 			foreach (Thread t in thds)
@@ -317,13 +315,18 @@ UNION ALL SELECT 2,2;";
 				Application.DoEvents();
 			}
 			thds.Clear();
-			bsiState.Caption = "已取消";
-			beiProgressBar.EditValue = 0;
+			tsslStatus.Text = "已取消";
+			tspb.Value = 0;
 
-			btnExec.Enabled = true;
+			tsmiExec.Enabled = true;
 		}
 
-		private void btnExport_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+		private void tsmiSingleThread_Click(object sender, EventArgs e)
+		{
+			tsmiSingleThread.Checked = !tsmiSingleThread.Checked;
+		}
+
+		private void tsmiExport_Click(object sender, EventArgs e)
 		{
 			if (lstds.Count > 0)
 			{
@@ -496,7 +499,7 @@ UNION ALL SELECT 2,2;";
 				return;
 			}
 
-			Apq.Windows.Delegates.Action_UI<BarStaticItem>(this, bsiState, delegate(BarStaticItem ctrl)
+			Apq.Windows.Delegates.Action_UI<ToolStripStatusLabel>(this, tsslStatus, delegate(ToolStripStatusLabel ctrl)
 			{
 				dsUI.ErrList.Clear();
 				dsUI.ErrList.AcceptChanges();
@@ -512,7 +515,7 @@ UNION ALL SELECT 2,2;";
 			}
 			_Sqls.SqlInstance.AcceptChanges();
 
-			if (bciSingleThread.Checked)
+			if (tsmiSingleThread.Checked)
 			{
 				Workers_Stop();
 
@@ -536,10 +539,10 @@ UNION ALL SELECT 2,2;";
 			object rtLock0 = GetLock("0");
 			lock (rtLock0)
 			{
-				Apq.Windows.Delegates.Action_UI<BarStaticItem>(this, bsiState, delegate(BarStaticItem ctrl)
+				Apq.Windows.Delegates.Action_UI<ToolStripStatusLabel>(this, tsslStatus, delegate(ToolStripStatusLabel ctrl)
 				{
-					beiProgressBar.EditValue = 0;
-					bsiState.Caption = "停止中...";
+					tspb.Value = 0;
+					tsslStatus.Text = "停止中...";
 					Application.DoEvents();
 					xtraTabControl1.TabPages.Clear();
 				});
@@ -562,9 +565,9 @@ UNION ALL SELECT 2,2;";
 			}
 			lock (rtLock0)
 			{
-				Apq.Windows.Delegates.Action_UI<BarStaticItem>(this, bsiState, delegate(BarStaticItem ctrl)
+				Apq.Windows.Delegates.Action_UI<ToolStripStatusLabel>(this, tsslStatus, delegate(ToolStripStatusLabel ctrl)
 				{
-					bsiState.Caption = "准备完成,开始处理...";
+					tsslStatus.Text = "准备完成,开始处理...";
 				});
 			}
 		}
@@ -585,9 +588,9 @@ UNION ALL SELECT 2,2;";
 				#region 开始
 				lock (rtLock0)
 				{
-					Apq.Windows.Delegates.Action_UI<BarStaticItem>(this, bsiState, delegate(BarStaticItem ctrl)
+					Apq.Windows.Delegates.Action_UI<ToolStripStatusLabel>(this, tsslStatus, delegate(ToolStripStatusLabel ctrl)
 					{
-						if (bliResult.ItemIndex == 1)
+						if (tscbResult.SelectedIndex == 1)
 						{
 							XtraTabPage xtp = xtraTabControl1.TabPages.Add("所有结果");
 							rtSingleDisplay = new ResultTable();
@@ -599,8 +602,8 @@ UNION ALL SELECT 2,2;";
 							xtp.Tag = 0;
 						}
 
-						bsiState.Caption = "启动中...";
-						ripb.Maximum = dv.Count;
+						tsslStatus.Text = "启动中...";
+						tspb.Maximum = dv.Count;
 					});
 				}
 
@@ -657,7 +660,7 @@ UNION ALL SELECT 2,2;";
 			{
 				lock (rtLock)
 				{
-					Apq.Windows.Delegates.Action_UI<BarStaticItem>(this, bsiState, delegate(BarStaticItem ctrl)
+					Apq.Windows.Delegates.Action_UI<ToolStripStatusLabel>(this, tsslStatus, delegate(ToolStripStatusLabel ctrl)
 					{
 						GlobalObject.ErrList.Set_ErrList(dsUI);
 
@@ -687,7 +690,7 @@ UNION ALL SELECT 2,2;";
 
 				// 1.设置数据库
 				Apq.Data.Common.DbConnectionHelper.Open(sc);
-				sc.ChangeDatabase(cbDBName.EditValue.ToString());
+				sc.ChangeDatabase(tscbDBName.Text);
 
 				// 2.准备语句
 				string[] arySql = Apq.Windows.Controls.ControlExtension.GetControlValues(this, "arySql") as string[];
@@ -714,7 +717,7 @@ UNION ALL SELECT 2,2;";
 
 				lock (rtLock0)
 				{
-					Apq.Windows.Delegates.Action_UI<BarStaticItem>(this, bsiState, delegate(BarStaticItem ctrl)
+					Apq.Windows.Delegates.Action_UI<ToolStripStatusLabel>(this, tsslStatus, delegate(ToolStripStatusLabel ctrl)
 					{
 						lstds.Add(ds);
 					});
@@ -725,7 +728,7 @@ UNION ALL SELECT 2,2;";
 				{
 					lock (rtLock)
 					{
-						Apq.Windows.Delegates.Action_UI<BarStaticItem>(this, bsiState, delegate(BarStaticItem ctrl)
+						Apq.Windows.Delegates.Action_UI<ToolStripStatusLabel>(this, tsslStatus, delegate(ToolStripStatusLabel ctrl)
 						{
 							if (ds != null)
 							{
@@ -739,7 +742,7 @@ UNION ALL SELECT 2,2;";
 				{
 					lock (rtLock0)
 					{
-						Apq.Windows.Delegates.Action_UI<BarStaticItem>(this, bsiState, delegate(BarStaticItem ctrl)
+						Apq.Windows.Delegates.Action_UI<ToolStripStatusLabel>(this, tsslStatus, delegate(ToolStripStatusLabel ctrl)
 						{
 							if (rtSingleDisplay.BackDataSet == null || rtSingleDisplay.BackDataSet.Tables.Count == 0)
 							{
@@ -771,7 +774,7 @@ UNION ALL SELECT 2,2;";
 				{
 					lock (rtLock)
 					{
-						Apq.Windows.Delegates.Action_UI<BarStaticItem>(this, bsiState, delegate(BarStaticItem ctrl)
+						Apq.Windows.Delegates.Action_UI<ToolStripStatusLabel>(this, tsslStatus, delegate(ToolStripStatusLabel ctrl)
 						{
 							XSD.UI.ErrListRow drErrList = dsUI.ErrList.NewErrListRow();
 							drErrList.RSrvID = nServerID;
@@ -790,25 +793,25 @@ UNION ALL SELECT 2,2;";
 				Apq.Data.Common.DbConnectionHelper.Close(sc);
 				lock (rtLock0)
 				{
-					Apq.Windows.Delegates.Action_UI<BarStaticItem>(this, bsiState, delegate(BarStaticItem ctrl)
+					Apq.Windows.Delegates.Action_UI<ToolStripStatusLabel>(this, tsslStatus, delegate(ToolStripStatusLabel ctrl)
 					{
-						if (Apq.Convert.ChangeType<int>(beiProgressBar.EditValue) < ripb.Maximum)
+						if (Apq.Convert.ChangeType<int>(tspb.Value) < tspb.Maximum)
 						{
-							beiProgressBar.EditValue = Apq.Convert.ChangeType<int>(beiProgressBar.EditValue) + 1;
-							if (Apq.Convert.ChangeType<int>(beiProgressBar.EditValue) == ripb.Maximum)
+							tspb.Value = Apq.Convert.ChangeType<int>(tspb.Value) + 1;
+							if (Apq.Convert.ChangeType<int>(tspb.Value) == tspb.Maximum)
 							{
 								_Sqls.SqlInstance.AcceptChanges();
 								dsUI.ErrList.AcceptChanges();
-								bsiState.Caption = "已全部完成";
-								btnCancel.Enabled = false;
-								btnExec.Enabled = true;
+								tsslStatus.Text = "已全部完成";
+								tsmiCancel.Enabled = false;
+								tsmiExec.Enabled = true;
 
 								DataView dvErr = new DataView(_Sqls.SqlInstance);
 								dvErr.RowFilter = "Err = 1";
 								// 标记本服执行出错
 								if (dvErr.Count > 0)
 								{
-									bsiState.Caption += ",但有错误发生,请查看";
+									tsslStatus.Text += ",但有错误发生,请查看";
 									GlobalObject.SolutionExplorer.FocusAndExpandByID(Apq.Convert.ChangeType<int>(dv[0]["SqlID"]));
 								}
 							}
@@ -839,42 +842,42 @@ UNION ALL SELECT 2,2;";
 			txtSql.LoadFile(FileName);
 		}
 
-		#region popupMenu1
-		private void menuUndo_ItemClick(object sender, ItemClickEventArgs e)
+		#region cms1
+		private void tsmiUndo_Click(object sender, EventArgs e)
 		{
 			this.Undo();
 		}
 
-		private void menuRedo_ItemClick(object sender, ItemClickEventArgs e)
+		private void tsmiRedo_Click(object sender, EventArgs e)
 		{
 			this.Redo();
 		}
 
-		private void menuCut_ItemClick(object sender, ItemClickEventArgs e)
+		private void tsmiCut_Click(object sender, EventArgs e)
 		{
 			this.Copy();
 			this.Delete();
 		}
 
-		private void menuCopy_ItemClick(object sender, ItemClickEventArgs e)
+		private void tsmiCopy_Click(object sender, EventArgs e)
 		{
 			this.Copy();
 		}
 
-		private void menuPaste_ItemClick(object sender, ItemClickEventArgs e)
+		private void tsmiPaste_Click(object sender, EventArgs e)
 		{
 			this.Paste();
 		}
 
-		private void menuSelectAll_ItemClick(object sender, ItemClickEventArgs e)
+		private void tsmiSelectAll_Click(object sender, EventArgs e)
 		{
 			this.SelectAll();
 		}
 		#endregion
 
-		#region popupMenu2
+		#region cms2
 		//定位对应节点
-		private void menuShowNode_ItemClick(object sender, ItemClickEventArgs e)
+		private void tsmiShowNode_Click(object sender, EventArgs e)
 		{
 			GlobalObject.SolutionExplorer.FocusAndExpandByID(Apq.Convert.ChangeType<int>(xtraTabControl1.SelectedTabPage.Tag));
 		}

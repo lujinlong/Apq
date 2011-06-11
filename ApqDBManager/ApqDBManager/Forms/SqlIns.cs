@@ -43,10 +43,10 @@ namespace ApqDBManager.Forms
 			string[] bciNames = GlobalObject.XmlConfigChain[this.GetType(), "RDBTypes"].Split(',');
 			for (int i = 0; i < bciNames.Length; i++)
 			{
-				DevExpress.XtraBars.BarCheckItem bci = new DevExpress.XtraBars.BarCheckItem();
-				bci.Caption = bciNames[i];
-				bci.CheckedChanged += new DevExpress.XtraBars.ItemClickEventHandler(bci_CheckedChanged);
-				bsiSelect.AddItem(bci);
+				ToolStripMenuItem tsmi = new ToolStripMenuItem();
+				tsmi.Text = bciNames[i];
+				tsmi.Click += new EventHandler(tsmi_Click);
+				tsmiSelect.DropDownItems.Add(tsmi);
 			}
 
 			#region CheckedNames
@@ -68,7 +68,7 @@ namespace ApqDBManager.Forms
 			#endregion
 
 			Apq.Windows.Controls.Control.AddImeHandler(this);
-			Apq.Xtra.TreeList.Common.AddBehaivor(treeList1);
+			//Apq.Xtra.TreeList.Common.AddBehaivor(treeList1);
 		}
 
 		private void SolutionExplorer_Shown(object sender, EventArgs e)
@@ -78,15 +78,17 @@ namespace ApqDBManager.Forms
 		}
 
 		// 选择选中类型的数据库
-		private void bci_CheckedChanged(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+		private void tsmi_Click(object sender, EventArgs e)
 		{
-			DevExpress.XtraBars.BarCheckItem bci = sender as DevExpress.XtraBars.BarCheckItem;
-			if (bci != null)
+			ToolStripMenuItem tsmi = sender as ToolStripMenuItem;
+			if (tsmi != null)
 			{
+				tsmi.Checked = !tsmi.Checked;
+
 				// 获取类型值
-				int idxBegin = bci.Caption.IndexOf("&") + 1;
-				int idxLength = bci.Caption.Length - 1 - idxBegin;
-				int idx = Apq.Convert.ChangeType<int>(bci.Caption.Substring(idxBegin, idxLength), -1);
+				int idxBegin = tsmi.Text.IndexOf("&") + 1;
+				int idxLength = tsmi.Text.Length - 1 - idxBegin;
+				int idx = Apq.Convert.ChangeType<int>(tsmi.Text.Substring(idxBegin, idxLength), -1);
 
 				treeList1.BeginUpdate();
 				DataView dv = new DataView(_Sqls.SqlInstance);
@@ -95,7 +97,7 @@ namespace ApqDBManager.Forms
 
 				foreach (DataRowView drv in dv)
 				{
-					drv["CheckState"] = Apq.Convert.ChangeType<int>(bci.Checked);
+					drv["CheckState"] = Apq.Convert.ChangeType<int>(tsmi.Checked);
 				}
 
 				_Sqls.SqlInstance.AcceptChanges();
@@ -103,7 +105,7 @@ namespace ApqDBManager.Forms
 			}
 		}
 		//全选
-		private void bbiSelectAll_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+		private void tsmiSelectAll_Click(object sender, EventArgs e)
 		{
 			treeList1.BeginUpdate();
 			foreach (DataRow dr in _Sqls.SqlInstance.Rows)
@@ -114,7 +116,7 @@ namespace ApqDBManager.Forms
 			treeList1.EndUpdate();
 		}
 		//反选
-		private void bbiReverse_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+		private void tsmiReverse_Click(object sender, EventArgs e)
 		{
 			treeList1.BeginUpdate();
 			foreach (DataRow dr in _Sqls.SqlInstance.Rows)
@@ -134,23 +136,23 @@ namespace ApqDBManager.Forms
 			treeList1.EndUpdate();
 		}
 		//全部展开
-		private void bbiExpandAll_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+		private void tsmiExpandAll_Click(object sender, EventArgs e)
 		{
-			if (bbiExpandAll.Caption == "全部展开(&D)")
+			if (tsmiExpandAll.Text == "全部展开(&D)")
 			{
 				treeList1.ExpandAll();
-				bbiExpandAll.Caption = "全部收起(&D)";
+				tsmiExpandAll.Text = "全部收起(&D)";
 				return;
 			}
-			if (bbiExpandAll.Caption == "全部收起(&D)")
+			if (tsmiExpandAll.Text == "全部收起(&D)")
 			{
 				treeList1.CollapseAll();
-				bbiExpandAll.Caption = "全部展开(&D)";
+				tsmiExpandAll.Text = "全部展开(&D)";
 				return;
 			}
 		}
 		//失败
-		private void bbiFail_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+		private void tsmiFail_Click(object sender, EventArgs e)
 		{
 			treeList1.BeginUpdate();
 			foreach (DataRow dr in _Sqls.SqlInstance.Rows)
@@ -168,7 +170,7 @@ namespace ApqDBManager.Forms
 			treeList1.EndUpdate();
 		}
 		//结果
-		private void bbiResult_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+		private void tsmiResult_Click(object sender, EventArgs e)
 		{
 			treeList1.BeginUpdate();
 			foreach (DataRow dr in _Sqls.SqlInstance.Rows)
