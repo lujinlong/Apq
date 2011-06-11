@@ -13,6 +13,6 @@ ALTER PROC dbo.ApqDBMgr_SqlInstance_List
 AS 
 SET NOCOUNT ON ;
 
-SELECT ComputerID, SqlID, SqlName, ParentID, SqlType, IP, SqlPort, UserId, PwdC
-  FROM dbo.SqlInstance
+SELECT ComputerID = ISNULL(i.ComputerID,-1), ComputerName = ISNULL(ComputerName,''), SqlID, SqlName, ParentID, SqlType, IP, SqlPort, UserId, PwdC
+  FROM dbo.SqlInstance i LEFT JOIN dbo.Computer c ON i.ComputerID = c.ComputerID;
 GO
