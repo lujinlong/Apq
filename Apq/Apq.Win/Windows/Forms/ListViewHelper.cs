@@ -24,5 +24,23 @@ namespace Apq.Windows.Forms
 			}
 			return false;
 		}
+
+		/// <summary>
+		/// 返回指定列名的索引位置
+		/// </summary>
+		public static int IndexOfHeader(System.Windows.Forms.ListView.ColumnHeaderCollection chc, string ColHeaderName)
+		{
+			int idx = -1;
+
+			for (int i = 0; i < chc.Count; i++)
+			{
+				if (chc[i].Text == ColHeaderName)
+				{
+					idx = i;
+					break;
+				}
+			}
+				return idx;
+		}
 	}
 }
