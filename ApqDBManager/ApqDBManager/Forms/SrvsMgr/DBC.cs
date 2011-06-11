@@ -19,7 +19,7 @@ namespace ApqDBManager.Forms.SrvsMgr
 			get
 			{
 				DBServer dbServer = Apq.Windows.Forms.SingletonForms.GetInstance(typeof(DBServer)) as DBServer;
-				return dbServer.srvsMgr_XSD;
+				return dbServer.SrvsMgr_XSD;
 			}
 		}
 

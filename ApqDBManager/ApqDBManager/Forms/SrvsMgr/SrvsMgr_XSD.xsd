@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<xs:schema id="DBServer_XSD" targetNamespace="http://tempuri.org/DBServer_XSD.xsd" xmlns:mstns="http://tempuri.org/DBServer_XSD.xsd" xmlns="http://tempuri.org/DBServer_XSD.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+<xs:schema id="SrvsMgr_XSD" targetNamespace="http://tempuri.org/DBServer_XSD.xsd" xmlns:mstns="http://tempuri.org/DBServer_XSD.xsd" xmlns="http://tempuri.org/DBServer_XSD.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
   <xs:annotation>
     <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
       <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
@@ -9,10 +9,10 @@
       </DataSource>
     </xs:appinfo>
   </xs:annotation>
-  <xs:element name="DBServer_XSD" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_DataSetName="DBServer_XSD" msprop:Generator_UserDSName="DBServer_XSD" msprop:EnableTableAdapterManager="true">
+  <xs:element name="SrvsMgr_XSD" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="SrvsMgr_XSD" msprop:Generator_DataSetName="SrvsMgr_XSD" msprop:EnableTableAdapterManager="true">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="Computer" msprop:Generator_UserTableName="Computer" msprop:Generator_RowDeletedName="ComputerRowDeleted" msprop:Generator_TableClassName="ComputerDataTable" msprop:Generator_RowChangedName="ComputerRowChanged" msprop:Generator_RowClassName="ComputerRow" msprop:Generator_RowChangingName="ComputerRowChanging" msprop:Generator_RowEvArgName="ComputerRowChangeEvent" msprop:Generator_RowEvHandlerName="ComputerRowChangeEventHandler" msprop:Generator_TablePropName="Computer" msprop:Generator_TableVarName="tableComputer" msprop:Generator_RowDeletingName="ComputerRowDeleting">
+        <xs:element name="Computer" msprop:Generator_UserTableName="Computer" msprop:Generator_RowDeletedName="ComputerRowDeleted" msprop:Generator_RowChangedName="ComputerRowChanged" msprop:Generator_RowClassName="ComputerRow" msprop:Generator_RowChangingName="ComputerRowChanging" msprop:Generator_RowEvArgName="ComputerRowChangeEvent" msprop:Generator_RowEvHandlerName="ComputerRowChangeEventHandler" msprop:Generator_TableClassName="ComputerDataTable" msprop:Generator_TableVarName="tableComputer" msprop:Generator_RowDeletingName="ComputerRowDeleting" msprop:Generator_TablePropName="Computer">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="ComputerID" msdata:Caption="服务器编号" msprop:Generator_UserColumnName="ComputerID" msprop:Generator_ColumnPropNameInRow="ComputerID" msprop:Generator_ColumnVarNameInTable="columnComputerID" msprop:Generator_ColumnPropNameInTable="ComputerIDColumn" type="xs:int" default="0" />
@@ -27,10 +27,17 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="SqlInstance" msprop:Generator_UserTableName="SqlInstance" msprop:Generator_RowDeletedName="SqlInstanceRowDeleted" msprop:Generator_TableClassName="SqlInstanceDataTable" msprop:Generator_RowChangedName="SqlInstanceRowChanged" msprop:Generator_RowClassName="SqlInstanceRow" msprop:Generator_RowChangingName="SqlInstanceRowChanging" msprop:Generator_RowEvArgName="SqlInstanceRowChangeEvent" msprop:Generator_RowEvHandlerName="SqlInstanceRowChangeEventHandler" msprop:Generator_TablePropName="SqlInstance" msprop:Generator_TableVarName="tableSqlInstance" msprop:Generator_RowDeletingName="SqlInstanceRowDeleting">
+        <xs:element name="SqlInstance" msprop:Generator_UserTableName="SqlInstance" msprop:Generator_RowDeletedName="SqlInstanceRowDeleted" msprop:Generator_RowChangedName="SqlInstanceRowChanged" msprop:Generator_RowClassName="SqlInstanceRow" msprop:Generator_RowChangingName="SqlInstanceRowChanging" msprop:Generator_RowEvArgName="SqlInstanceRowChangeEvent" msprop:Generator_RowEvHandlerName="SqlInstanceRowChangeEventHandler" msprop:Generator_TableClassName="SqlInstanceDataTable" msprop:Generator_TableVarName="tableSqlInstance" msprop:Generator_RowDeletingName="SqlInstanceRowDeleting" msprop:Generator_TablePropName="SqlInstance">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="ComputerID" msdata:Caption="服务器编号" msprop:Generator_UserColumnName="ComputerID" msprop:Generator_ColumnPropNameInRow="ComputerID" msprop:Generator_ColumnVarNameInTable="columnComputerID" msprop:Generator_ColumnPropNameInTable="ComputerIDColumn" type="xs:int" default="0" />
+              <xs:element name="ComputerName" msdata:Caption="服务器名称" msprop:Generator_UserColumnName="ComputerName" msprop:Generator_ColumnVarNameInTable="columnComputerName" msprop:Generator_ColumnPropNameInRow="ComputerName" msprop:Generator_ColumnPropNameInTable="ComputerNameColumn" default="新建服务器">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
               <xs:element name="SqlID" msdata:Caption="实例编号" msprop:Generator_UserColumnName="SqlID" msprop:Generator_ColumnPropNameInRow="SqlID" msprop:Generator_ColumnVarNameInTable="columnSqlID" msprop:Generator_ColumnPropNameInTable="SqlIDColumn" type="xs:int" default="0" />
               <xs:element name="SqlName" msdata:Caption="实例名称" msprop:Generator_UserColumnName="SqlName" msprop:Generator_ColumnPropNameInRow="SqlName" msprop:Generator_ColumnVarNameInTable="columnSqlName" msprop:Generator_ColumnPropNameInTable="SqlNameColumn" default="新建实例">
                 <xs:simpleType>
@@ -67,7 +74,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="DBC" msprop:Generator_UserTableName="DBC" msprop:Generator_RowDeletedName="DBCRowDeleted" msprop:Generator_TableClassName="DBCDataTable" msprop:Generator_RowChangedName="DBCRowChanged" msprop:Generator_RowClassName="DBCRow" msprop:Generator_RowChangingName="DBCRowChanging" msprop:Generator_RowEvArgName="DBCRowChangeEvent" msprop:Generator_RowEvHandlerName="DBCRowChangeEventHandler" msprop:Generator_TablePropName="DBC" msprop:Generator_TableVarName="tableDBC" msprop:Generator_RowDeletingName="DBCRowDeleting">
+        <xs:element name="DBC" msprop:Generator_UserTableName="DBC" msprop:Generator_RowDeletedName="DBCRowDeleted" msprop:Generator_RowChangedName="DBCRowChanged" msprop:Generator_RowClassName="DBCRow" msprop:Generator_RowChangingName="DBCRowChanging" msprop:Generator_RowEvArgName="DBCRowChangeEvent" msprop:Generator_RowEvHandlerName="DBCRowChangeEventHandler" msprop:Generator_TableClassName="DBCDataTable" msprop:Generator_TableVarName="tableDBC" msprop:Generator_RowDeletingName="DBCRowDeleting" msprop:Generator_TablePropName="DBC">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="ComputerID" msdata:Caption="服务器编号" msprop:Generator_UserColumnName="ComputerID" msprop:Generator_ColumnPropNameInRow="ComputerID" msprop:Generator_ColumnVarNameInTable="columnComputerID" msprop:Generator_ColumnPropNameInTable="ComputerIDColumn" type="xs:int" default="0" minOccurs="0" />
@@ -114,7 +121,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="DBCType" msprop:Generator_UserTableName="DBCType" msprop:Generator_RowDeletedName="DBCTypeRowDeleted" msprop:Generator_TableClassName="DBCTypeDataTable" msprop:Generator_RowChangedName="DBCTypeRowChanged" msprop:Generator_RowClassName="DBCTypeRow" msprop:Generator_RowChangingName="DBCTypeRowChanging" msprop:Generator_RowEvArgName="DBCTypeRowChangeEvent" msprop:Generator_RowEvHandlerName="DBCTypeRowChangeEventHandler" msprop:Generator_TablePropName="DBCType" msprop:Generator_TableVarName="tableDBCType" msprop:Generator_RowDeletingName="DBCTypeRowDeleting">
+        <xs:element name="DBCType" msprop:Generator_UserTableName="DBCType" msprop:Generator_RowDeletedName="DBCTypeRowDeleted" msprop:Generator_RowChangedName="DBCTypeRowChanged" msprop:Generator_RowClassName="DBCTypeRow" msprop:Generator_RowChangingName="DBCTypeRowChanging" msprop:Generator_RowEvArgName="DBCTypeRowChangeEvent" msprop:Generator_RowEvHandlerName="DBCTypeRowChangeEventHandler" msprop:Generator_TableClassName="DBCTypeDataTable" msprop:Generator_TableVarName="tableDBCType" msprop:Generator_RowDeletingName="DBCTypeRowDeleting" msprop:Generator_TablePropName="DBCType">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="DBCType" msdata:Caption="数据库类型" msprop:Generator_UserColumnName="DBCType" msprop:Generator_ColumnPropNameInRow="DBCType" msprop:Generator_ColumnVarNameInTable="columnDBCType" msprop:Generator_ColumnPropNameInTable="DBCTypeColumn" type="xs:int" />
@@ -128,7 +135,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="SqlType" msprop:Generator_UserTableName="SqlType" msprop:Generator_RowDeletedName="SqlTypeRowDeleted" msprop:Generator_TableClassName="SqlTypeDataTable" msprop:Generator_RowChangedName="SqlTypeRowChanged" msprop:Generator_RowClassName="SqlTypeRow" msprop:Generator_RowChangingName="SqlTypeRowChanging" msprop:Generator_RowEvArgName="SqlTypeRowChangeEvent" msprop:Generator_RowEvHandlerName="SqlTypeRowChangeEventHandler" msprop:Generator_TablePropName="SqlType" msprop:Generator_TableVarName="tableSqlType" msprop:Generator_RowDeletingName="SqlTypeRowDeleting">
+        <xs:element name="SqlType" msprop:Generator_UserTableName="SqlType" msprop:Generator_RowDeletedName="SqlTypeRowDeleted" msprop:Generator_RowChangedName="SqlTypeRowChanged" msprop:Generator_RowClassName="SqlTypeRow" msprop:Generator_RowChangingName="SqlTypeRowChanging" msprop:Generator_RowEvArgName="SqlTypeRowChangeEvent" msprop:Generator_RowEvHandlerName="SqlTypeRowChangeEventHandler" msprop:Generator_TableClassName="SqlTypeDataTable" msprop:Generator_TableVarName="tableSqlType" msprop:Generator_RowDeletingName="SqlTypeRowDeleting" msprop:Generator_TablePropName="SqlType">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="SqlType" msdata:Caption="实例类型" msprop:Generator_UserColumnName="SqlType" msprop:Generator_ColumnPropNameInRow="SqlType" msprop:Generator_ColumnVarNameInTable="columnSqlType" msprop:Generator_ColumnPropNameInTable="SqlTypeColumn" type="xs:int" />
@@ -142,7 +149,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="ComputerType" msprop:Generator_UserTableName="ComputerType" msprop:Generator_RowDeletedName="ComputerTypeRowDeleted" msprop:Generator_TableClassName="ComputerTypeDataTable" msprop:Generator_RowChangedName="ComputerTypeRowChanged" msprop:Generator_RowClassName="ComputerTypeRow" msprop:Generator_RowChangingName="ComputerTypeRowChanging" msprop:Generator_RowEvArgName="ComputerTypeRowChangeEvent" msprop:Generator_RowEvHandlerName="ComputerTypeRowChangeEventHandler" msprop:Generator_TablePropName="ComputerType" msprop:Generator_TableVarName="tableComputerType" msprop:Generator_RowDeletingName="ComputerTypeRowDeleting">
+        <xs:element name="ComputerType" msprop:Generator_UserTableName="ComputerType" msprop:Generator_RowDeletedName="ComputerTypeRowDeleted" msprop:Generator_RowChangedName="ComputerTypeRowChanged" msprop:Generator_RowClassName="ComputerTypeRow" msprop:Generator_RowChangingName="ComputerTypeRowChanging" msprop:Generator_RowEvArgName="ComputerTypeRowChangeEvent" msprop:Generator_RowEvHandlerName="ComputerTypeRowChangeEventHandler" msprop:Generator_TableClassName="ComputerTypeDataTable" msprop:Generator_TableVarName="tableComputerType" msprop:Generator_RowDeletingName="ComputerTypeRowDeleting" msprop:Generator_TablePropName="ComputerType">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="ComputerType" msdata:Caption="服务器类型" msprop:Generator_UserColumnName="ComputerType" msprop:Generator_ColumnPropNameInRow="ComputerType" msprop:Generator_ColumnVarNameInTable="columnComputerType" msprop:Generator_ColumnPropNameInTable="ComputerTypeColumn" type="xs:int" />

@@ -71,8 +71,8 @@ namespace ApqDBManager.Forms.SrvsMgr
 		{
 			if (sda == null) return;
 
-			sda.Update(srvsMgr_XSD.Computer);
-			srvsMgr_XSD.Computer.AcceptChanges();
+			sda.Update(SrvsMgr_XSD.Computer);
+			SrvsMgr_XSD.Computer.AcceptChanges();
 			tsslOutInfo.Text = "更新成功";
 		}
 
@@ -141,20 +141,20 @@ namespace ApqDBManager.Forms.SrvsMgr
 		public override void InitData(DataSet ds)
 		{
 			#region 准备数据集结构
-			srvsMgr_XSD.SqlInstance.Columns.Add("CheckState", typeof(int));
-			srvsMgr_XSD.SqlInstance.Columns.Add("IsReadyToGo", typeof(bool));
-			srvsMgr_XSD.SqlInstance.Columns.Add("Err", typeof(bool));
-			srvsMgr_XSD.SqlInstance.Columns.Add("DBConnectionString");
+			SrvsMgr_XSD.SqlInstance.Columns.Add("CheckState", typeof(int));
+			SrvsMgr_XSD.SqlInstance.Columns.Add("IsReadyToGo", typeof(bool));
+			SrvsMgr_XSD.SqlInstance.Columns.Add("Err", typeof(bool));
+			SrvsMgr_XSD.SqlInstance.Columns.Add("DBConnectionString");
 
-			srvsMgr_XSD.SqlInstance.Columns["CheckState"].DefaultValue = 0;
-			srvsMgr_XSD.SqlInstance.Columns["IsReadyToGo"].DefaultValue = false;
-			srvsMgr_XSD.SqlInstance.Columns["Err"].DefaultValue = false;
+			SrvsMgr_XSD.SqlInstance.Columns["CheckState"].DefaultValue = 0;
+			SrvsMgr_XSD.SqlInstance.Columns["IsReadyToGo"].DefaultValue = false;
+			SrvsMgr_XSD.SqlInstance.Columns["Err"].DefaultValue = false;
 			#endregion
 
 			#region 加载所有字典表
-			sqlDataAdapter1.Fill(srvsMgr_XSD.ComputerType);
-			sqlDataAdapter2.Fill(srvsMgr_XSD.SqlType);
-			sqlDataAdapter3.Fill(srvsMgr_XSD.DBCType);
+			sqlDataAdapter1.Fill(SrvsMgr_XSD.ComputerType);
+			sqlDataAdapter2.Fill(SrvsMgr_XSD.SqlType);
+			sqlDataAdapter3.Fill(SrvsMgr_XSD.DBCType);
 			#endregion
 		}
 		/// <summary>
@@ -163,6 +163,9 @@ namespace ApqDBManager.Forms.SrvsMgr
 		/// <param name="ds"></param>
 		public override void LoadData(DataSet ds)
 		{
+			#region Lookup数据绑定
+			//computerTypeDataGridViewComboBoxColumn.DataSource = DBServer_XSD.ComputerType;
+			#endregion
 			/* 多表填充示例代码
 			sda = new SqlDataAdapter(@"
 EXEC dbo.ApqDBMgr_Computer_List;
@@ -172,9 +175,9 @@ EXEC dbo.ApqDBMgr_DBC_List;
 			sda.TableMappings.Add("Computer1", "SqlInstance");
 			sda.TableMappings.Add("Computer2", "DBC");
 			 * */
-			srvsMgr_XSD.Computer.Clear();
-			sda.Fill(srvsMgr_XSD.Computer);
-			srvsMgr_XSD.Computer.AcceptChanges();
+			SrvsMgr_XSD.Computer.Clear();
+			sda.Fill(SrvsMgr_XSD.Computer);
+			SrvsMgr_XSD.Computer.AcceptChanges();
 			tsslOutInfo.Text = "加载成功";
 		}
 

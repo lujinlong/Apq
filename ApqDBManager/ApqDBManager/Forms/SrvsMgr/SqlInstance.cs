@@ -23,7 +23,7 @@ namespace ApqDBManager.Forms.SrvsMgr
 			get
 			{
 				DBServer dbServer = Apq.Windows.Forms.SingletonForms.GetInstance(typeof(DBServer)) as DBServer;
-				return dbServer.srvsMgr_XSD;
+				return dbServer.SrvsMgr_XSD;
 			}
 		}
 		private Form formDBC = null;
@@ -38,7 +38,7 @@ namespace ApqDBManager.Forms.SrvsMgr
 		private void SqlInstance_Load(object sender, EventArgs e)
 		{
 			#region 添加图标
-			this.bbiSaveToDB.Glyph = System.Drawing.Image.FromFile(@"Res\png\File\Save.png");
+			this.tsbSaveToDB.Image = System.Drawing.Image.FromFile(@"Res\png\File\Save.png");
 			#endregion
 		}
 
@@ -53,60 +53,42 @@ namespace ApqDBManager.Forms.SrvsMgr
 
 		#region treeListView1
 
-		#region 选中状态
-		private void SetCheckedNode(TreeListNode node, bool checkParent, bool checkChildren)
+		private void treeListView1_BeforeLabelEdit(object sender, TreeListViewBeforeLabelEditEventArgs e)
 		{
-			int Checked = Apq.Convert.ChangeType<int>(node["CheckState"]);
-			if (Checked == 2 || Checked == 0) Checked = 1;
-			else Checked = 0;
+			if (e.Item.ListView.Columns[e.ColumnIndex].Text == "服务器")
+			{
+				ComboBox cb = new ComboBox();
+				cb.DisplayMember = "ComputerName";
+				cb.ValueMember = "ComputerID";
+				cb.DataSource = Sqls.Computer;
 
-			treeListView1.BeginUpdate();
-			node["CheckState"] = Checked;
-			if (checkParent)
-			{
-				SetCheckedParentNodes(node, Checked);
-			}
-			if (checkChildren)
-			{
-				SetCheckedChildNodes(node, Checked);
-			}
-			treeListView1.EndUpdate();
-		}
-		private void SetCheckedChildNodes(TreeListNode node, int Checked)
-		{
-			foreach (TreeListNode tln in node.Nodes)
-			{
-				tln["CheckState"] = Checked;
-				SetCheckedChildNodes(tln, Checked);
+				e.Editor = cb;
 			}
 		}
-		private void SetCheckedParentNodes(TreeListNode node, int Checked)
-		{
-			if (node.ParentNode != null)
-			{
-				node.ParentNode["CheckState"] = Checked;
-				SetCheckedParentNodes(node.ParentNode, Checked);
-			}
-		}
-		#endregion
 
-		#region 点击
-		private void treeListView1_KeyUp(object sender, KeyEventArgs e)
+		private void treeListView1_AfterLabelEdit(object sender, TreeListViewLabelEditEventArgs e)
 		{
-			#region Ctrl&C
-			if (e.Control && (e.KeyCode == Keys.C))
+			ColumnHeader ch = e.Item.ListView.Columns[e.ColumnIndex];
+			DataColumnMapping dcm = tlvHelper.TableMapping.ColumnMappings[ch.Text];
+
+			long SqlID = Apq.Convert.ChangeType<long>(e.Item.SubItems[e.Item.ListView.Columns.Count].Text);
+			DataRow[] drs = Sqls.SqlInstance.Select("SqlID = " + SqlID);
+			if (drs.Length > 0)
 			{
-				//Clipboard.SetData(DataFormats.UnicodeText, treeListView1.FocusedNode.GetId());
+				drs[0][dcm.DataSetColumn] = e.Label;
+
+				if (ch.Text == "服务器")
+				{
+					drs[0]["ComputerID"] = Sqls.Computer.FindByComputerName(e.Label)["ComputerID"];
+				}
 			}
-			#endregion
 		}
-		#endregion
 
 		private void treeListView1_AfterSelect(object sender, TreeViewEventArgs e)
 		{
 			if (e.Node != null)
 			{
-				bsiOutInfo.Caption = e.Node.Text;
+				tsslOutInfo.Text = e.Node.Text;
 			}
 		}
 
@@ -151,11 +133,11 @@ namespace ApqDBManager.Forms.SrvsMgr
 				try
 				{
 					Apq.Data.Common.DbConnectionHelper.Open(sc);
-					bsiTest.Caption = tln.SubItems["SqlName"] + "-->连接成功.";
+					tsslTest.Text = tln.SubItems["SqlName"] + "-->连接成功.";
 				}
 				catch
 				{
-					bsiTest.Caption = tln.SubItems["SqlName"] + "-X-连接失败!";
+					tsslTest.Text = tln.SubItems["SqlName"] + "-X-连接失败!";
 				}
 				finally
 				{
@@ -165,7 +147,7 @@ namespace ApqDBManager.Forms.SrvsMgr
 		}
 		#endregion
 
-		private void bbiDBC_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+		private void tsbDBC_Click(object sender, EventArgs e)
 		{
 			formDBC = Apq.Windows.Forms.SingletonForms.GetInstance(typeof(DBC));
 			DBC f = formDBC as DBC;
@@ -183,7 +165,7 @@ namespace ApqDBManager.Forms.SrvsMgr
 		{
 			tlvHelper = new TreeListViewHelper(treeListView1);
 			tlvHelper.TableMapping.ColumnMappings.Add("名称", "SqlName");
-			tlvHelper.TableMapping.ColumnMappings.Add("服务器", "ComputerID");
+			tlvHelper.TableMapping.ColumnMappings.Add("服务器", "ComputerName");
 			tlvHelper.TableMapping.ColumnMappings.Add("登录名", "UserId");
 			tlvHelper.TableMapping.ColumnMappings.Add("密码", "PwdD");
 			tlvHelper.TableMapping.ColumnMappings.Add("IP", "IP");
@@ -191,6 +173,7 @@ namespace ApqDBManager.Forms.SrvsMgr
 			tlvHelper.TableMapping.ColumnMappings.Add("编号", "SqlID");
 			tlvHelper.TableMapping.ColumnMappings.Add("上级编号", "ParentID");
 			tlvHelper.Key = "SqlID";
+			tlvHelper.HiddenColNames = new List<string>(new string[] { "SqlID" });
 
 			#region 数据库连接
 			_SqlConn.ConnectionString = GlobalObject.SqlConn
@@ -261,7 +244,7 @@ namespace ApqDBManager.Forms.SrvsMgr
 			// 密码解密
 			Common.PwdC2D(Sqls.SqlInstance);
 			Sqls.SqlInstance.AcceptChanges();
-			bsiOutInfo.Caption = "加载成功";
+			tsslOutInfo.Text = "加载成功";
 		}
 		/// <summary>
 		/// 显示数据
@@ -290,22 +273,22 @@ namespace ApqDBManager.Forms.SrvsMgr
 
 		#endregion
 
-		private void bbiSelectAll_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+		private void tsbSelectAll_Click(object sender, EventArgs e)
 		{
 		}
 
-		private void bbiReverse_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+		private void tsbReverse_Click(object sender, EventArgs e)
 		{
 		}
 
 		//刷新
-		private void bbiRefresh_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+		private void tsbRefresh_Click(object sender, EventArgs e)
 		{
 			LoadData(FormDataSet);
 		}
 
 		//保存
-		private void bbiSaveToDB_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+		private void tsbSaveToDB_Click(object sender, EventArgs e)
 		{
 			if (sda == null) return;
 
@@ -325,21 +308,21 @@ namespace ApqDBManager.Forms.SrvsMgr
 				sda.Update(Sqls.SqlInstance);
 				Sqls.SqlInstance.AcceptChanges();
 			}
-			bsiOutInfo.Caption = "更新成功";
+			tsslOutInfo.Text = "更新成功";
 		}
 
-		private void bbiExpandAll_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+		private void tsbExpandAll_Click(object sender, EventArgs e)
 		{
-			if (bbiExpandAll.Caption == "全部展开(&D)")
+			if (tsbExpandAll.Text == "全部展开(&D)")
 			{
 				treeListView1.ExpandAll();
-				bbiExpandAll.Caption = "全部收起(&D)";
+				tsbExpandAll.Text = "全部收起(&D)";
 				return;
 			}
-			if (bbiExpandAll.Caption == "全部收起(&D)")
+			if (tsbExpandAll.Text == "全部收起(&D)")
 			{
 				treeListView1.CollapseAll();
-				bbiExpandAll.Caption = "全部展开(&D)";
+				tsbExpandAll.Text = "全部展开(&D)";
 				return;
 			}
 		}

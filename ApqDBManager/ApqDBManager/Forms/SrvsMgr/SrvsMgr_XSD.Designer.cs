@@ -21,7 +21,7 @@ namespace ApqDBManager.Forms.SrvsMgr {
     [global::System.ComponentModel.DesignerCategoryAttribute("code")]
     [global::System.ComponentModel.ToolboxItem(true)]
     [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedDataSetSchema")]
-    [global::System.Xml.Serialization.XmlRootAttribute("DBServer_XSD")]
+    [global::System.Xml.Serialization.XmlRootAttribute("SrvsMgr_XSD")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.DataSet")]
     public partial class SrvsMgr_XSD : global::System.Data.DataSet {
         
@@ -300,7 +300,7 @@ namespace ApqDBManager.Forms.SrvsMgr {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         private void InitClass() {
-            this.DataSetName = "DBServer_XSD";
+            this.DataSetName = "SrvsMgr_XSD";
             this.Prefix = "";
             this.Namespace = "http://tempuri.org/DBServer_XSD.xsd";
             this.EnforceConstraints = true;
@@ -683,6 +683,8 @@ namespace ApqDBManager.Forms.SrvsMgr {
             
             private global::System.Data.DataColumn columnComputerID;
             
+            private global::System.Data.DataColumn columnComputerName;
+            
             private global::System.Data.DataColumn columnSqlID;
             
             private global::System.Data.DataColumn columnSqlName;
@@ -735,6 +737,13 @@ namespace ApqDBManager.Forms.SrvsMgr {
             public global::System.Data.DataColumn ComputerIDColumn {
                 get {
                     return this.columnComputerID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn ComputerNameColumn {
+                get {
+                    return this.columnComputerName;
                 }
             }
             
@@ -830,10 +839,11 @@ namespace ApqDBManager.Forms.SrvsMgr {
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public SqlInstanceRow AddSqlInstanceRow(int ComputerID, int SqlID, string SqlName, int ParentID, int SqlType, string IP, int SqlPort, string UserId, string PwdC, string PwdD) {
+            public SqlInstanceRow AddSqlInstanceRow(int ComputerID, string ComputerName, int SqlID, string SqlName, int ParentID, int SqlType, string IP, int SqlPort, string UserId, string PwdC, string PwdD) {
                 SqlInstanceRow rowSqlInstanceRow = ((SqlInstanceRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         ComputerID,
+                        ComputerName,
                         SqlID,
                         SqlName,
                         ParentID,
@@ -863,6 +873,7 @@ namespace ApqDBManager.Forms.SrvsMgr {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             internal void InitVars() {
                 this.columnComputerID = base.Columns["ComputerID"];
+                this.columnComputerName = base.Columns["ComputerName"];
                 this.columnSqlID = base.Columns["SqlID"];
                 this.columnSqlName = base.Columns["SqlName"];
                 this.columnParentID = base.Columns["ParentID"];
@@ -878,6 +889,8 @@ namespace ApqDBManager.Forms.SrvsMgr {
             private void InitClass() {
                 this.columnComputerID = new global::System.Data.DataColumn("ComputerID", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnComputerID);
+                this.columnComputerName = new global::System.Data.DataColumn("ComputerName", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnComputerName);
                 this.columnSqlID = new global::System.Data.DataColumn("SqlID", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnSqlID);
                 this.columnSqlName = new global::System.Data.DataColumn("SqlName", typeof(string), null, global::System.Data.MappingType.Element);
@@ -899,6 +912,10 @@ namespace ApqDBManager.Forms.SrvsMgr {
                 this.columnComputerID.AllowDBNull = false;
                 this.columnComputerID.Caption = "服务器编号";
                 this.columnComputerID.DefaultValue = ((int)(0));
+                this.columnComputerName.AllowDBNull = false;
+                this.columnComputerName.Caption = "服务器名称";
+                this.columnComputerName.DefaultValue = ((string)("新建服务器"));
+                this.columnComputerName.MaxLength = 50;
                 this.columnSqlID.AllowDBNull = false;
                 this.columnSqlID.Caption = "实例编号";
                 this.columnSqlID.DefaultValue = ((int)(0));
@@ -2239,6 +2256,16 @@ namespace ApqDBManager.Forms.SrvsMgr {
                 }
                 set {
                     this[this.tableSqlInstance.ComputerIDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public string ComputerName {
+                get {
+                    return ((string)(this[this.tableSqlInstance.ComputerNameColumn]));
+                }
+                set {
+                    this[this.tableSqlInstance.ComputerNameColumn] = value;
                 }
             }
             

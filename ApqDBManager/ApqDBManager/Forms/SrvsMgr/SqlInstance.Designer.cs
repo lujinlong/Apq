@@ -29,24 +29,8 @@
 		private void InitializeComponent()
 		{
 			this.components = new System.ComponentModel.Container();
-			System.Windows.Forms.TreeListViewItemCollection.TreeListViewItemCollectionComparer treeListViewItemCollectionComparer1 = new System.Windows.Forms.TreeListViewItemCollection.TreeListViewItemCollectionComparer();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SqlInstance));
-			this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
-			this.bar3 = new DevExpress.XtraBars.Bar();
-			this.bsiOutInfo = new DevExpress.XtraBars.BarStaticItem();
-			this.bsiTest = new DevExpress.XtraBars.BarStaticItem();
-			this.bar1 = new DevExpress.XtraBars.Bar();
-			this.bbiRefresh = new DevExpress.XtraBars.BarButtonItem();
-			this.bbiSaveToDB = new DevExpress.XtraBars.BarButtonItem();
-			this.bbiSelectAll = new DevExpress.XtraBars.BarButtonItem();
-			this.bbiReverse = new DevExpress.XtraBars.BarButtonItem();
-			this.bbiExpandAll = new DevExpress.XtraBars.BarButtonItem();
-			this.bbiDBC = new DevExpress.XtraBars.BarButtonItem();
-			this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
-			this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
-			this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
-			this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
-			this.repositoryItemTextEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
+			System.Windows.Forms.TreeListViewItemCollection.TreeListViewItemCollectionComparer treeListViewItemCollectionComparer1 = new System.Windows.Forms.TreeListViewItemCollection.TreeListViewItemCollectionComparer();
 			this.cmTreeMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.tsmiTestOpen = new System.Windows.Forms.ToolStripMenuItem();
 			this.tsmiAdd = new System.Windows.Forms.ToolStripMenuItem();
@@ -67,126 +51,22 @@
 			this.columnHeader7 = new System.Windows.Forms.ColumnHeader();
 			this.columnHeader8 = new System.Windows.Forms.ColumnHeader();
 			this.imageList2 = new System.Windows.Forms.ImageList(this.components);
-			((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit1)).BeginInit();
+			this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+			this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+			this.tsslOutInfo = new System.Windows.Forms.ToolStripStatusLabel();
+			this.tsslTest = new System.Windows.Forms.ToolStripStatusLabel();
+			this.tsbRefresh = new System.Windows.Forms.ToolStripButton();
+			this.tsbDBC = new System.Windows.Forms.ToolStripButton();
+			this.tsbExpandAll = new System.Windows.Forms.ToolStripButton();
+			this.tsbReverse = new System.Windows.Forms.ToolStripButton();
+			this.tsbSelectAll = new System.Windows.Forms.ToolStripButton();
+			this.tsbSaveToDB = new System.Windows.Forms.ToolStripButton();
+			this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+			this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
 			this.cmTreeMenu.SuspendLayout();
+			this.toolStrip1.SuspendLayout();
+			this.statusStrip1.SuspendLayout();
 			this.SuspendLayout();
-			// 
-			// barManager1
-			// 
-			this.barManager1.Bars.AddRange(new DevExpress.XtraBars.Bar[] {
-            this.bar3,
-            this.bar1});
-			this.barManager1.DockControls.Add(this.barDockControlTop);
-			this.barManager1.DockControls.Add(this.barDockControlBottom);
-			this.barManager1.DockControls.Add(this.barDockControlLeft);
-			this.barManager1.DockControls.Add(this.barDockControlRight);
-			this.barManager1.Form = this;
-			this.barManager1.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
-            this.bbiSelectAll,
-            this.bbiReverse,
-            this.bsiOutInfo,
-            this.bsiTest,
-            this.bbiExpandAll,
-            this.bbiSaveToDB,
-            this.bbiDBC,
-            this.bbiRefresh});
-			this.barManager1.MaxItemId = 13;
-			this.barManager1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
-            this.repositoryItemTextEdit1});
-			this.barManager1.StatusBar = this.bar3;
-			// 
-			// bar3
-			// 
-			this.bar3.BarName = "Status bar";
-			this.bar3.CanDockStyle = DevExpress.XtraBars.BarCanDockStyle.Bottom;
-			this.bar3.DockCol = 0;
-			this.bar3.DockRow = 0;
-			this.bar3.DockStyle = DevExpress.XtraBars.BarDockStyle.Bottom;
-			this.bar3.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
-            new DevExpress.XtraBars.LinkPersistInfo(this.bsiOutInfo),
-            new DevExpress.XtraBars.LinkPersistInfo(this.bsiTest)});
-			this.bar3.OptionsBar.AllowQuickCustomization = false;
-			this.bar3.OptionsBar.DrawDragBorder = false;
-			this.bar3.OptionsBar.UseWholeRow = true;
-			this.bar3.Text = "Status bar";
-			// 
-			// bsiOutInfo
-			// 
-			this.bsiOutInfo.AutoSize = DevExpress.XtraBars.BarStaticItemSize.None;
-			this.bsiOutInfo.Id = 5;
-			this.bsiOutInfo.Name = "bsiOutInfo";
-			this.bsiOutInfo.TextAlignment = System.Drawing.StringAlignment.Near;
-			this.bsiOutInfo.Width = 300;
-			// 
-			// bsiTest
-			// 
-			this.bsiTest.Id = 6;
-			this.bsiTest.Name = "bsiTest";
-			this.bsiTest.TextAlignment = System.Drawing.StringAlignment.Near;
-			// 
-			// bar1
-			// 
-			this.bar1.BarName = "Custom 4";
-			this.bar1.DockCol = 0;
-			this.bar1.DockRow = 0;
-			this.bar1.DockStyle = DevExpress.XtraBars.BarDockStyle.Top;
-			this.bar1.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
-            new DevExpress.XtraBars.LinkPersistInfo(this.bbiRefresh),
-            new DevExpress.XtraBars.LinkPersistInfo(this.bbiSaveToDB),
-            new DevExpress.XtraBars.LinkPersistInfo(this.bbiSelectAll, true),
-            new DevExpress.XtraBars.LinkPersistInfo(this.bbiReverse),
-            new DevExpress.XtraBars.LinkPersistInfo(this.bbiExpandAll),
-            new DevExpress.XtraBars.LinkPersistInfo(this.bbiDBC, true)});
-			this.bar1.Text = "Custom 4";
-			// 
-			// bbiRefresh
-			// 
-			this.bbiRefresh.Caption = "刷新";
-			this.bbiRefresh.Id = 11;
-			this.bbiRefresh.Name = "bbiRefresh";
-			this.bbiRefresh.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiRefresh_ItemClick);
-			// 
-			// bbiSaveToDB
-			// 
-			this.bbiSaveToDB.Caption = "保存";
-			this.bbiSaveToDB.Hint = "保存";
-			this.bbiSaveToDB.Id = 8;
-			this.bbiSaveToDB.Name = "bbiSaveToDB";
-			this.bbiSaveToDB.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiSaveToDB_ItemClick);
-			// 
-			// bbiSelectAll
-			// 
-			this.bbiSelectAll.Caption = "全选";
-			this.bbiSelectAll.Id = 0;
-			this.bbiSelectAll.Name = "bbiSelectAll";
-			this.bbiSelectAll.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiSelectAll_ItemClick);
-			// 
-			// bbiReverse
-			// 
-			this.bbiReverse.Caption = "反选";
-			this.bbiReverse.Id = 1;
-			this.bbiReverse.Name = "bbiReverse";
-			this.bbiReverse.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiReverse_ItemClick);
-			// 
-			// bbiExpandAll
-			// 
-			this.bbiExpandAll.Caption = "全部展开(&D)";
-			this.bbiExpandAll.Id = 7;
-			this.bbiExpandAll.Name = "bbiExpandAll";
-			this.bbiExpandAll.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiExpandAll_ItemClick);
-			// 
-			// bbiDBC
-			// 
-			this.bbiDBC.Caption = "数据库连接管理";
-			this.bbiDBC.Id = 10;
-			this.bbiDBC.Name = "bbiDBC";
-			this.bbiDBC.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiDBC_ItemClick);
-			// 
-			// repositoryItemTextEdit1
-			// 
-			this.repositoryItemTextEdit1.AutoHeight = false;
-			this.repositoryItemTextEdit1.Name = "repositoryItemTextEdit1";
 			// 
 			// cmTreeMenu
 			// 
@@ -256,12 +136,14 @@
 			this.treeListView1.Comparer = treeListViewItemCollectionComparer1;
 			this.treeListView1.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.treeListView1.LabelEdit = true;
-			this.treeListView1.Location = new System.Drawing.Point(0, 21);
+			this.treeListView1.Location = new System.Drawing.Point(0, 25);
 			this.treeListView1.Name = "treeListView1";
-			this.treeListView1.Size = new System.Drawing.Size(692, 320);
+			this.treeListView1.Size = new System.Drawing.Size(692, 341);
 			this.treeListView1.SmallImageList = this.imageList2;
-			this.treeListView1.TabIndex = 5;
+			this.treeListView1.TabIndex = 2;
 			this.treeListView1.UseCompatibleStateImageBehavior = false;
+			this.treeListView1.AfterLabelEdit += new System.Windows.Forms.TreeListViewLabelEditEventHandler(this.treeListView1_AfterLabelEdit);
+			this.treeListView1.BeforeLabelEdit += new System.Windows.Forms.TreeListViewBeforeLabelEditEventHandler(this.treeListView1_BeforeLabelEdit);
 			// 
 			// columnHeader1
 			// 
@@ -310,15 +192,122 @@
 			this.imageList2.Images.SetKeyName(2, "");
 			this.imageList2.Images.SetKeyName(3, "");
 			// 
+			// toolStrip1
+			// 
+			this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsbRefresh,
+            this.tsbSaveToDB,
+            this.toolStripSeparator1,
+            this.tsbSelectAll,
+            this.tsbReverse,
+            this.tsbExpandAll,
+            this.toolStripSeparator2,
+            this.tsbDBC});
+			this.toolStrip1.Location = new System.Drawing.Point(0, 0);
+			this.toolStrip1.Name = "toolStrip1";
+			this.toolStrip1.Size = new System.Drawing.Size(692, 25);
+			this.toolStrip1.TabIndex = 1;
+			this.toolStrip1.Text = "toolStrip1";
+			// 
+			// statusStrip1
+			// 
+			this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsslOutInfo,
+            this.tsslTest});
+			this.statusStrip1.Location = new System.Drawing.Point(0, 344);
+			this.statusStrip1.Name = "statusStrip1";
+			this.statusStrip1.Size = new System.Drawing.Size(692, 22);
+			this.statusStrip1.TabIndex = 3;
+			this.statusStrip1.Text = "statusStrip1";
+			// 
+			// tsslOutInfo
+			// 
+			this.tsslOutInfo.AutoSize = false;
+			this.tsslOutInfo.Name = "tsslOutInfo";
+			this.tsslOutInfo.Size = new System.Drawing.Size(300, 17);
+			this.tsslOutInfo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			// 
+			// tsslTest
+			// 
+			this.tsslTest.Name = "tsslTest";
+			this.tsslTest.Size = new System.Drawing.Size(0, 17);
+			// 
+			// tsbRefresh
+			// 
+			this.tsbRefresh.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+			this.tsbRefresh.Image = ((System.Drawing.Image)(resources.GetObject("tsbRefresh.Image")));
+			this.tsbRefresh.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.tsbRefresh.Name = "tsbRefresh";
+			this.tsbRefresh.Size = new System.Drawing.Size(51, 22);
+			this.tsbRefresh.Text = "刷新(&R)";
+			this.tsbRefresh.Click += new System.EventHandler(this.tsbRefresh_Click);
+			// 
+			// tsbDBC
+			// 
+			this.tsbDBC.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+			this.tsbDBC.Image = ((System.Drawing.Image)(resources.GetObject("tsbDBC.Image")));
+			this.tsbDBC.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.tsbDBC.Name = "tsbDBC";
+			this.tsbDBC.Size = new System.Drawing.Size(111, 22);
+			this.tsbDBC.Text = "数据库连接管理(&C)";
+			this.tsbDBC.Click += new System.EventHandler(this.tsbDBC_Click);
+			// 
+			// tsbExpandAll
+			// 
+			this.tsbExpandAll.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+			this.tsbExpandAll.Image = ((System.Drawing.Image)(resources.GetObject("tsbExpandAll.Image")));
+			this.tsbExpandAll.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.tsbExpandAll.Name = "tsbExpandAll";
+			this.tsbExpandAll.Size = new System.Drawing.Size(75, 22);
+			this.tsbExpandAll.Text = "全部展开(&D)";
+			this.tsbExpandAll.Click += new System.EventHandler(this.tsbExpandAll_Click);
+			// 
+			// tsbReverse
+			// 
+			this.tsbReverse.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+			this.tsbReverse.Image = ((System.Drawing.Image)(resources.GetObject("tsbReverse.Image")));
+			this.tsbReverse.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.tsbReverse.Name = "tsbReverse";
+			this.tsbReverse.Size = new System.Drawing.Size(51, 22);
+			this.tsbReverse.Text = "反选(&V)";
+			this.tsbReverse.Click += new System.EventHandler(this.tsbReverse_Click);
+			// 
+			// tsbSelectAll
+			// 
+			this.tsbSelectAll.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+			this.tsbSelectAll.Image = ((System.Drawing.Image)(resources.GetObject("tsbSelectAll.Image")));
+			this.tsbSelectAll.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.tsbSelectAll.Name = "tsbSelectAll";
+			this.tsbSelectAll.Size = new System.Drawing.Size(51, 22);
+			this.tsbSelectAll.Text = "全选(&A)";
+			this.tsbSelectAll.Click += new System.EventHandler(this.tsbSelectAll_Click);
+			// 
+			// tsbSaveToDB
+			// 
+			this.tsbSaveToDB.Image = ((System.Drawing.Image)(resources.GetObject("tsbSaveToDB.Image")));
+			this.tsbSaveToDB.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.tsbSaveToDB.Name = "tsbSaveToDB";
+			this.tsbSaveToDB.Size = new System.Drawing.Size(67, 22);
+			this.tsbSaveToDB.Text = "保存(&S)";
+			this.tsbSaveToDB.Click += new System.EventHandler(this.tsbSaveToDB_Click);
+			// 
+			// toolStripSeparator1
+			// 
+			this.toolStripSeparator1.Name = "toolStripSeparator1";
+			this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
+			// 
+			// toolStripSeparator2
+			// 
+			this.toolStripSeparator2.Name = "toolStripSeparator2";
+			this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
+			// 
 			// SqlInstance
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
 			this.ClientSize = new System.Drawing.Size(692, 366);
+			this.Controls.Add(this.statusStrip1);
 			this.Controls.Add(this.treeListView1);
-			this.Controls.Add(this.barDockControlLeft);
-			this.Controls.Add(this.barDockControlRight);
-			this.Controls.Add(this.barDockControlBottom);
-			this.Controls.Add(this.barDockControlTop);
+			this.Controls.Add(this.toolStrip1);
 			this.DockAreas = ((WeifenLuo.WinFormsUI.Docking.DockAreas)((WeifenLuo.WinFormsUI.Docking.DockAreas.Float | WeifenLuo.WinFormsUI.Docking.DockAreas.Document)));
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Name = "SqlInstance";
@@ -326,40 +315,27 @@
 			this.Text = "实例管理";
 			this.Load += new System.EventHandler(this.SqlInstance_Load);
 			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.SqlInstance_FormClosing);
-			((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit1)).EndInit();
 			this.cmTreeMenu.ResumeLayout(false);
+			this.toolStrip1.ResumeLayout(false);
+			this.toolStrip1.PerformLayout();
+			this.statusStrip1.ResumeLayout(false);
+			this.statusStrip1.PerformLayout();
 			this.ResumeLayout(false);
+			this.PerformLayout();
 
 		}
 
 		#endregion
 
-		private DevExpress.XtraBars.BarManager barManager1;
-		private DevExpress.XtraBars.Bar bar3;
-		private DevExpress.XtraBars.BarDockControl barDockControlTop;
-		private DevExpress.XtraBars.BarDockControl barDockControlBottom;
-		private DevExpress.XtraBars.BarDockControl barDockControlLeft;
-		private DevExpress.XtraBars.BarDockControl barDockControlRight;
-		private DevExpress.XtraBars.BarButtonItem bbiSelectAll;
-		private DevExpress.XtraBars.BarButtonItem bbiReverse;
-		private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit repositoryItemTextEdit1;
-		private DevExpress.XtraBars.BarStaticItem bsiOutInfo;
-		private DevExpress.XtraBars.BarStaticItem bsiTest;
-		private DevExpress.XtraBars.BarButtonItem bbiExpandAll;
-		private DevExpress.XtraBars.BarButtonItem bbiSaveToDB;
 		private System.Windows.Forms.ContextMenuStrip cmTreeMenu;
 		private System.Windows.Forms.ToolStripMenuItem tsmiTestOpen;
 		private System.Windows.Forms.ToolStripMenuItem tsmiAdd;
 		private System.Windows.Forms.ToolStripMenuItem tsmiDel;
-		private DevExpress.XtraBars.BarButtonItem bbiDBC;
 		private System.Data.SqlClient.SqlDataAdapter sda;
 		private System.Data.SqlClient.SqlCommand scDelete;
 		private System.Data.SqlClient.SqlCommand scInsert;
 		private System.Data.SqlClient.SqlCommand scSelect;
 		private System.Data.SqlClient.SqlCommand scUpdate;
-		private DevExpress.XtraBars.BarButtonItem bbiRefresh;
-		private DevExpress.XtraBars.Bar bar1;
 		private System.Windows.Forms.ImageList imageList1;
 		private System.Windows.Forms.TreeListView treeListView1;
 		private System.Windows.Forms.ColumnHeader columnHeader1;
@@ -371,6 +347,18 @@
 		private System.Windows.Forms.ColumnHeader columnHeader7;
 		private System.Windows.Forms.ColumnHeader columnHeader8;
 		private System.Windows.Forms.ImageList imageList2;
+		private System.Windows.Forms.ToolStrip toolStrip1;
+		private System.Windows.Forms.StatusStrip statusStrip1;
+		private System.Windows.Forms.ToolStripStatusLabel tsslOutInfo;
+		private System.Windows.Forms.ToolStripStatusLabel tsslTest;
+		private System.Windows.Forms.ToolStripButton tsbRefresh;
+		private System.Windows.Forms.ToolStripButton tsbDBC;
+		private System.Windows.Forms.ToolStripButton tsbExpandAll;
+		private System.Windows.Forms.ToolStripButton tsbSaveToDB;
+		private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+		private System.Windows.Forms.ToolStripButton tsbSelectAll;
+		private System.Windows.Forms.ToolStripButton tsbReverse;
+		private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
 
 	}
 }
