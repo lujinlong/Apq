@@ -4,6 +4,7 @@ using System.Text;
 using System.Data;
 using System.Xml;
 using System.IO;
+using System.Data.Common;
 
 namespace Apq.Data
 {
@@ -30,6 +31,33 @@ namespace Apq.Data
 		}
 
 		#region 方法
+		#region CreateDefaultTableMapping
+		/// <summary>
+		/// 生成默认映射表
+		/// </summary>
+		/// <param name="dt">表</param>
+		/// <returns></returns>
+		public static DataTableMapping CreateDefaultTableMapping(System.Data.DataTable dt)
+		{
+			DataTableMapping rtn = new DataTableMapping();
+			rtn.SourceTable = rtn.DataSetTable = dt.TableName;
+			foreach (DataColumn dc in dt.Columns)
+			{
+				rtn.ColumnMappings.Add(dc.ColumnName, dc.ColumnName);
+			}
+			return rtn;
+		}
+		/// <summary>
+		/// 生成默认映射表
+		/// </summary>
+		/// <returns></returns>
+		public DataTableMapping CreateDefaultTableMapping()
+		{
+			return CreateDefaultTableMapping(Table);
+		}
+		#endregion
+
+
 		#region GetColNames
 		/// <summary>
 		/// 获取列名数组
