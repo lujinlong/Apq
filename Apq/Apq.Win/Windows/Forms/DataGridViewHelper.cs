@@ -44,6 +44,18 @@ namespace Apq.Windows.Forms
 			return idx;
 		}
 
+		/// <summary>
+		/// 设置默认风格
+		/// </summary>
+		/// <param name="dgv"></param>
+		public static void SetDefaultStyle(DataGridView dgv)
+		{
+			dgv.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+			dgv.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
+			dgv.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
+			dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+		}
+
 		#region Behaivor
 
 		/// <summary>
