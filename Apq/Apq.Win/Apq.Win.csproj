@@ -198,6 +198,7 @@
     </Compile>
     <Compile Include="TreeListView\TreeListViewHelper.cs" />
     <Compile Include="Windows\Controls\ControlExtension.cs" />
+    <Compile Include="Windows\Forms\DataGridViewHelper.cs" />
     <Compile Include="Windows\Forms\DockForm.cs">
       <SubType>Form</SubType>
     </Compile>
