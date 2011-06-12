@@ -281,12 +281,6 @@
     <Compile Include="Forms\FTPFileUp.Designer.cs">
       <DependentUpon>FTPFileUp.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\CryptCS.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\CryptCS.Designer.cs">
-      <DependentUpon>CryptCS.cs</DependentUpon>
-    </Compile>
     <Compile Include="Forms\SrvsMgr\DBServer.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -456,10 +450,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FTPFileUp.resx">
       <DependentUpon>FTPFileUp.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\CryptCS.resx">
-      <DependentUpon>CryptCS.cs</DependentUpon>
-      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\SrvsMgr\DBServer.resx">
       <DependentUpon>DBServer.cs</DependentUpon>

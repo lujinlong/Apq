@@ -337,12 +337,6 @@ namespace ApqDBManager
 			win.Show(dockPanel1);
 		}
 
-		private void tsmiDBC_Click(object sender, EventArgs e)
-		{
-			Forms.CryptCS win = new Forms.CryptCS();
-			win.Show(dockPanel1);
-		}
-
 		private void tsmiRSAKey_Click(object sender, EventArgs e)
 		{
 			Forms.RSAKey win = new ApqDBManager.Forms.RSAKey();

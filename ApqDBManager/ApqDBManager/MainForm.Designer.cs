@@ -62,7 +62,6 @@
 			this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
 			this.tsmiRSAKey = new System.Windows.Forms.ToolStripMenuItem();
 			this.tsmiDES = new System.Windows.Forms.ToolStripMenuItem();
-			this.tsmiDBC = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
 			this.tsmiRandom = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
@@ -345,7 +344,6 @@
             this.toolStripSeparator6,
             this.tsmiRSAKey,
             this.tsmiDES,
-            this.tsmiDBC,
             this.toolStripSeparator7,
             this.tsmiRandom,
             this.toolStripSeparator8,
@@ -382,13 +380,6 @@
 			this.tsmiDES.Size = new System.Drawing.Size(160, 22);
 			this.tsmiDES.Text = "DES加解密(&D)";
 			this.tsmiDES.Click += new System.EventHandler(this.tsmiDES_Click);
-			// 
-			// tsmiDBC
-			// 
-			this.tsmiDBC.Name = "tsmiDBC";
-			this.tsmiDBC.Size = new System.Drawing.Size(160, 22);
-			this.tsmiDBC.Text = "DB连接加解密(&C)";
-			this.tsmiDBC.Click += new System.EventHandler(this.tsmiDBC_Click);
 			// 
 			// toolStripSeparator7
 			// 
@@ -621,7 +612,6 @@
 		private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
 		private System.Windows.Forms.ToolStripMenuItem tsmiRSAKey;
 		private System.Windows.Forms.ToolStripMenuItem tsmiDES;
-		private System.Windows.Forms.ToolStripMenuItem tsmiDBC;
 		private System.Windows.Forms.ToolStripSeparator toolStripSeparator7;
 		private System.Windows.Forms.ToolStripMenuItem tsmiRandom;
 		private System.Windows.Forms.ToolStripSeparator toolStripSeparator8;
