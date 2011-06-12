@@ -32,7 +32,6 @@
 			System.Windows.Forms.TreeListViewItemCollection.TreeListViewItemCollectionComparer treeListViewItemCollectionComparer1 = new System.Windows.Forms.TreeListViewItemCollection.TreeListViewItemCollectionComparer();
 			this.cmTreeMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.tsmiCopy = new System.Windows.Forms.ToolStripMenuItem();
-			this.imageList1 = new System.Windows.Forms.ImageList(this.components);
 			this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
 			this.toolStrip2 = new System.Windows.Forms.ToolStrip();
 			this.tsbExpandAll = new System.Windows.Forms.ToolStripButton();
@@ -67,14 +66,6 @@
 			this.tsmiCopy.Size = new System.Drawing.Size(112, 22);
 			this.tsmiCopy.Text = "复制(&C)";
 			this.tsmiCopy.Click += new System.EventHandler(this.tsmiCopy_Click);
-			// 
-			// imageList1
-			// 
-			this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
-			this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
-			this.imageList1.Images.SetKeyName(0, "UnChecked.png");
-			this.imageList1.Images.SetKeyName(1, "Checked.png");
-			this.imageList1.Images.SetKeyName(2, "Indeterminate.png");
 			// 
 			// toolStripContainer1
 			// 
@@ -151,6 +142,7 @@
 			treeListViewItemCollectionComparer1.Column = 0;
 			treeListViewItemCollectionComparer1.SortOrder = System.Windows.Forms.SortOrder.Ascending;
 			this.treeListView1.Comparer = treeListViewItemCollectionComparer1;
+			this.treeListView1.ContextMenuStrip = this.cmTreeMenu;
 			this.treeListView1.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.treeListView1.Location = new System.Drawing.Point(0, 0);
 			this.treeListView1.Name = "treeListView1";
@@ -252,7 +244,6 @@
 		}
 		#endregion
 
-		private System.Windows.Forms.ImageList imageList1;
 		private System.Windows.Forms.ContextMenuStrip cmTreeMenu;
 		private System.Windows.Forms.ToolStripMenuItem tsmiCopy;
 		private System.Windows.Forms.ToolStripContainer toolStripContainer1;
