@@ -44,6 +44,7 @@ namespace ApqDBManager.Forms.SrvsMgr
 				tssbCreateCSFile.DropDownItems.Add(tsmi);
 			}
 
+			Apq.Windows.Forms.DataGridViewHelper.SetDefaultStyle(dataGridView1);
 			Apq.Windows.Forms.DataGridViewHelper.AddBehaivor(dataGridView1);
 		}
 

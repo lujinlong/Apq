@@ -51,6 +51,7 @@
 			// 
 			// tpRt
 			// 
+			this.tpRt.AutoScroll = true;
 			this.tpRt.Location = new System.Drawing.Point(4, 21);
 			this.tpRt.Name = "tpRt";
 			this.tpRt.Padding = new System.Windows.Forms.Padding(3);
@@ -61,10 +62,11 @@
 			// 
 			// tpInfo
 			// 
+			this.tpInfo.AutoScroll = true;
 			this.tpInfo.Location = new System.Drawing.Point(4, 21);
 			this.tpInfo.Name = "tpInfo";
 			this.tpInfo.Padding = new System.Windows.Forms.Padding(3);
-			this.tpInfo.Size = new System.Drawing.Size(672, 369);
+			this.tpInfo.Size = new System.Drawing.Size(672, 368);
 			this.tpInfo.TabIndex = 1;
 			this.tpInfo.Text = "消息";
 			this.tpInfo.UseVisualStyleBackColor = true;

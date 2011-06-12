@@ -104,7 +104,7 @@
 			this.dockPanel1.Dock = DevExpress.XtraBars.Docking.DockingStyle.Bottom;
 			this.dockPanel1.FloatVertical = true;
 			this.dockPanel1.ID = new System.Guid("b0aebc7c-6cdb-4d07-8260-4c1f6f4ec724");
-			this.dockPanel1.Location = new System.Drawing.Point(0, 118);
+			this.dockPanel1.Location = new System.Drawing.Point(0, 166);
 			this.dockPanel1.Name = "dockPanel1";
 			this.dockPanel1.Options.AllowDockFill = false;
 			this.dockPanel1.Options.AllowDockLeft = false;
@@ -112,8 +112,8 @@
 			this.dockPanel1.Options.AllowDockTop = false;
 			this.dockPanel1.Options.AllowFloating = false;
 			this.dockPanel1.Options.ShowCloseButton = false;
-			this.dockPanel1.OriginalSize = new System.Drawing.Size(200, 348);
-			this.dockPanel1.Size = new System.Drawing.Size(760, 348);
+			this.dockPanel1.OriginalSize = new System.Drawing.Size(200, 300);
+			this.dockPanel1.Size = new System.Drawing.Size(760, 300);
 			this.dockPanel1.TabText = "输出";
 			this.dockPanel1.Text = "输出";
 			// 
@@ -122,7 +122,7 @@
 			this.dockPanel1_Container.Controls.Add(this.xtraTabControl1);
 			this.dockPanel1_Container.Location = new System.Drawing.Point(3, 25);
 			this.dockPanel1_Container.Name = "dockPanel1_Container";
-			this.dockPanel1_Container.Size = new System.Drawing.Size(754, 320);
+			this.dockPanel1_Container.Size = new System.Drawing.Size(754, 272);
 			this.dockPanel1_Container.TabIndex = 0;
 			// 
 			// xtraTabControl1
@@ -131,7 +131,7 @@
 			this.xtraTabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.xtraTabControl1.Location = new System.Drawing.Point(0, 0);
 			this.xtraTabControl1.Name = "xtraTabControl1";
-			this.xtraTabControl1.Size = new System.Drawing.Size(754, 320);
+			this.xtraTabControl1.Size = new System.Drawing.Size(754, 272);
 			this.xtraTabControl1.TabIndex = 0;
 			// 
 			// cms2
@@ -160,7 +160,7 @@
 			this.txtSql.ShowSpaces = true;
 			this.txtSql.ShowTabs = true;
 			this.txtSql.ShowVRuler = true;
-			this.txtSql.Size = new System.Drawing.Size(760, 71);
+			this.txtSql.Size = new System.Drawing.Size(760, 94);
 			this.txtSql.TabIndex = 0;
 			// 
 			// cms1
@@ -255,13 +255,13 @@
 			// toolStripContainer1.ContentPanel
 			// 
 			this.toolStripContainer1.ContentPanel.Controls.Add(this.txtSql);
-			this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(760, 71);
+			this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(760, 94);
 			this.toolStripContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.toolStripContainer1.LeftToolStripPanelVisible = false;
 			this.toolStripContainer1.Location = new System.Drawing.Point(0, 25);
 			this.toolStripContainer1.Name = "toolStripContainer1";
 			this.toolStripContainer1.RightToolStripPanelVisible = false;
-			this.toolStripContainer1.Size = new System.Drawing.Size(760, 93);
+			this.toolStripContainer1.Size = new System.Drawing.Size(760, 141);
 			this.toolStripContainer1.TabIndex = 5;
 			this.toolStripContainer1.Text = "toolStripContainer1";
 			// 

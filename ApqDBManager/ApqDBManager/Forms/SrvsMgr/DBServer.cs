@@ -27,6 +27,7 @@ namespace ApqDBManager.Forms.SrvsMgr
 			this.tsbSaveToDB.Image = System.Drawing.Image.FromFile(@"Res\png\File\Save.png");
 			#endregion
 
+			Apq.Windows.Forms.DataGridViewHelper.SetDefaultStyle(dataGridView1);
 			Apq.Windows.Forms.DataGridViewHelper.AddBehaivor(dataGridView1);
 		}
 

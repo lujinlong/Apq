@@ -25,7 +25,7 @@ namespace ApqDBManager.Controls
 			InitializeComponent();
 		}
 
-		private List<GridControl> lstgc = new List<GridControl>();
+		private List<DataGridView> lstgc = new List<DataGridView>();
 
 		private void ResultTable_Load(object sender, EventArgs e)
 		{
@@ -67,7 +67,7 @@ namespace ApqDBManager.Controls
 					if (_DisplayDataSet != null)
 					{
 						_DisplayDataSet.Clear();
-						foreach (GridControl item in lstgc)
+						foreach (DataGridView item in lstgc)
 						{
 							Controls.Remove(item);
 							//item.Dispose();
@@ -148,54 +148,31 @@ namespace ApqDBManager.Controls
 					for (int i = 0; i < _DisplayDataSet.Tables.Count; i++, nY += 206)
 					{
 						DataTable dtDisplay = _DisplayDataSet.Tables[i];
-						GridControl gc = new GridControl();
-						GridView gv = new DevExpress.XtraGrid.Views.Grid.GridView();
-						gc.BeginInit();
-						gv.BeginInit();
+						DataGridView dgv = new DataGridView();
+						((System.ComponentModel.ISupportInitialize)(dgv)).BeginInit();
 
 						//
-						// gc
+						// dgv
 						//
-						gc.EmbeddedNavigator.Name = "";
-						gc.Location = new System.Drawing.Point(nX, nY);
-						gc.MainView = gv;
-						//gc.Name = "gc";
-						gc.Size = new System.Drawing.Size(this.Parent.Parent.Width - 40, 200);
+						Apq.Windows.Forms.DataGridViewHelper.SetDefaultStyle(dgv);
+						dgv.Location = new System.Drawing.Point(nX, nY);
+						dgv.Size = new System.Drawing.Size(this.Parent.Parent.Width - 40, 200);
 						//gc.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
-						gc.TabIndex = i + 100;
-						gc.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] { gv });
+						dgv.TabIndex = i + 100;
+						dgv.AutoGenerateColumns = true;
+						dgv.ReadOnly = true;
+						dgv.AllowUserToAddRows = false;
+						dgv.AllowUserToDeleteRows = false;
 
-						//
-						// gv
-						//
-						gv.GridControl = gc;
-						//gv.Name = "gv";
-						gv.OptionsView.ColumnAutoWidth = false;
-						gv.OptionsSelection.MultiSelect = true;
-						gv.OptionsSelection.MultiSelectMode = GridMultiSelectMode.CellSelect;
-						gv.OptionsBehavior.Editable = false;
-						gv.OptionsBehavior.CopyToClipboardWithColumnHeaders = false;
-						//gv.CustomDrawRowIndicator += new RowIndicatorCustomDrawEventHandler(Apq.Xtra.Grid.Common.gv_CustomDrawRowIndicator);
+						((System.ComponentModel.ISupportInitialize)(dgv)).EndInit();
 
-						gc.EndInit();
-						gv.EndInit();
-
-						tpRt.Controls.Add(gc);
-						lstgc.Add(gc);
+						tpRt.Controls.Add(dgv);
+						lstgc.Add(dgv);
 
 						// 绑定数据
-						gc.DataSource = _DisplayDataSet;
-						gc.DataMember = dtDisplay.TableName;
-						//Apq.Xtra.Grid.Common.ShowTime(gv);
-
-						//Graphics g = Graphics.FromHwnd(Handle);
-						//SizeF sf = g.MeasureString(dt.Rows.Count.ToString(), gv.Appearance.RowSeparator.Font);
-						//Size s = sf.ToSize();
-						//gv.IndicatorWidth = Apq.Convert.ChangeType<int>(s.Width + 10);
-						gv.IndicatorWidth = 90;
-						gv.Invalidate();
-						gv.BestFitColumns();
-						//Apq.Xtra.Grid.Common.AddBehaivor(gv);
+						dgv.DataSource = _DisplayDataSet;
+						dgv.DataMember = dtDisplay.TableName;
+						Apq.Windows.Forms.DataGridViewHelper.AddBehaivor(dgv);
 					}
 				}
 			}
