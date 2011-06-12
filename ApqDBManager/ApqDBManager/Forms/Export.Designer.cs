@@ -42,7 +42,7 @@
 			this.statusStrip1 = new System.Windows.Forms.StatusStrip();
 			this.tsslStatus = new System.Windows.Forms.ToolStripStatusLabel();
 			this.tspbProcess = new System.Windows.Forms.ToolStripProgressBar();
-			this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+			this.sfd = new System.Windows.Forms.SaveFileDialog();
 			this.groupBox1.SuspendLayout();
 			this.statusStrip1.SuspendLayout();
 			this.SuspendLayout();
@@ -190,10 +190,10 @@
 			this.tspbProcess.Name = "tspbProcess";
 			this.tspbProcess.Size = new System.Drawing.Size(300, 16);
 			// 
-			// saveFileDialog1
+			// sfd
 			// 
-			this.saveFileDialog1.DefaultExt = "txt";
-			this.saveFileDialog1.Filter = "文本文件(*.txt; *.csv; *.prn)|*.txt; *.csv; *.prn|Excel文件(*.xls;*.xl*)|*.xls;*.xl*|所有" +
+			this.sfd.DefaultExt = "txt";
+			this.sfd.Filter = "文本文件(*.txt; *.csv; *.prn)|*.txt; *.csv; *.prn|Excel文件(*.xls;*.xl*)|*.xls;*.xl*|所有" +
 				"文件(*.*)|*.*";
 			// 
 			// Export
@@ -219,7 +219,6 @@
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "导出";
 			this.Load += new System.EventHandler(this.Export_Load);
-			this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Export_FormClosed);
 			this.groupBox1.ResumeLayout(false);
 			this.groupBox1.PerformLayout();
 			this.statusStrip1.ResumeLayout(false);
@@ -245,7 +244,7 @@
 		private System.Windows.Forms.StatusStrip statusStrip1;
 		private System.Windows.Forms.ToolStripStatusLabel tsslStatus;
 		private System.Windows.Forms.ToolStripProgressBar tspbProcess;
-		private System.Windows.Forms.SaveFileDialog saveFileDialog1;
+		private System.Windows.Forms.SaveFileDialog sfd;
 
 	}
 }

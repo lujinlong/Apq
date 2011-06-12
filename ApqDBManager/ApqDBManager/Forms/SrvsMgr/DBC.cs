@@ -52,8 +52,11 @@ namespace ApqDBManager.Forms.SrvsMgr
 		void tsmiCreatCSFile_Click(object sender, EventArgs e)
 		{
 			ToolStripMenuItem tsb = sender as ToolStripMenuItem;
+			sfd.InitialDirectory = GlobalObject.XmlConfigChain[this.GetType(), "sfd_InitialDirectory"];
 			if (tsb != null && sfd.ShowDialog(this) == DialogResult.OK)
 			{
+				GlobalObject.XmlConfigChain[this.GetType(), "sfd_InitialDirectory"] = System.IO.Path.GetDirectoryName(sfd.FileName);
+
 				int nDBCType = Apq.Convert.ChangeType<int>(tsb.Tag);
 				DataSet ds = new DataSet("XSD");
 				ds.Namespace = Sqls.Namespace;

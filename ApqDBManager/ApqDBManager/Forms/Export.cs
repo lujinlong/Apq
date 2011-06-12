@@ -68,17 +68,14 @@ namespace ApqDBManager
 			}
 		}
 
-		private void Export_FormClosed(object sender, FormClosedEventArgs e)
-		{
-			Apq.Win.GlobalObject.XmlUserConfig.Save();
-			//GlobalObject.XmlUserConfig.Save();
-		}
-
 		// 确定
 		private void btnConfirm_Click(object sender, EventArgs e)
 		{
-			if (saveFileDialog1.ShowDialog(this) == DialogResult.OK)
+			sfd.InitialDirectory = GlobalObject.XmlConfigChain[this.GetType(), "sfd_InitialDirectory"];
+			if (sfd.ShowDialog(this) == DialogResult.OK)
 			{
+				GlobalObject.XmlConfigChain[this.GetType(), "sfd_InitialDirectory"] = System.IO.Path.GetDirectoryName(sfd.FileName);
+
 				tsslStatus.Text = "导出中...";
 				int RowCount = 0;
 				foreach (DataTable dt in ds.Tables)
@@ -101,7 +98,7 @@ namespace ApqDBManager
 				try
 				{
 					// 显示文件
-					Process.Start(Apq.Dos.Common.EncodeParam(saveFileDialog1.FileName));
+					Process.Start(Apq.Dos.Common.EncodeParam(sfd.FileName));
 				}
 				catch { }
 
@@ -143,7 +140,7 @@ namespace ApqDBManager
 					break;
 			}
 
-			StreamWriter sw = File.CreateText(saveFileDialog1.FileName);
+			StreamWriter sw = File.CreateText(sfd.FileName);
 			// 执行导出
 			try
 			{
@@ -205,7 +202,7 @@ namespace ApqDBManager
 				Apq.Data.DataSet.BuildupTabelForMaxrow(ds, ExcelMaxRowNumber);
 
 				DataSet dsExcel = new DataSet();
-				dsExcel.DataSetName = saveFileDialog1.FileName;
+				dsExcel.DataSetName = sfd.FileName;
 				foreach (DataTable dt in ds.Tables)
 				{
 					DataTable dtExcel = Apq.Data.DataTable.CloneToStringTable(dt);
@@ -227,7 +224,7 @@ namespace ApqDBManager
 				}
 
 				org.in2bits.MyXls.XlsDocument xd = new org.in2bits.MyXls.XlsDocument(dsExcel);
-				FileStream fs = new FileStream(saveFileDialog1.FileName, FileMode.Create);
+				FileStream fs = new FileStream(sfd.FileName, FileMode.Create);
 				xd.Save(fs);
 				fs.Flush();
 				fs.Close();
@@ -253,13 +250,13 @@ namespace ApqDBManager
 			// 设置过滤器
 			if (cbExportType.Text == "Excel文件")
 			{
-				saveFileDialog1.FilterIndex = 2;
-				saveFileDialog1.DefaultExt = "xls";
+				sfd.FilterIndex = 2;
+				sfd.DefaultExt = "xls";
 			}
 			else
 			{
-				saveFileDialog1.FilterIndex = 1;
-				saveFileDialog1.DefaultExt = "txt";
+				sfd.FilterIndex = 1;
+				sfd.DefaultExt = "txt";
 			}
 		}
 
