@@ -89,7 +89,7 @@
 			this.cbRowSpliter.Name = "cbRowSpliter";
 			this.cbRowSpliter.Size = new System.Drawing.Size(151, 20);
 			this.cbRowSpliter.TabIndex = 21;
-			this.cbRowSpliter.SelectedIndexChanged += new System.EventHandler(this.cbRowSpliter_SelectedIndexChanged);
+			this.cbRowSpliter.Text = "\\r\\n";
 			// 
 			// cbColSpliter
 			// 
@@ -101,7 +101,7 @@
 			this.cbColSpliter.Name = "cbColSpliter";
 			this.cbColSpliter.Size = new System.Drawing.Size(151, 20);
 			this.cbColSpliter.TabIndex = 20;
-			this.cbColSpliter.SelectedIndexChanged += new System.EventHandler(this.cbColSpliter_SelectedIndexChanged);
+			this.cbColSpliter.Text = ",";
 			// 
 			// label3
 			// 
@@ -132,6 +132,7 @@
 			this.cbContainsColName.TabIndex = 18;
 			this.cbContainsColName.Text = "首行为列名";
 			this.cbContainsColName.UseVisualStyleBackColor = true;
+			this.cbContainsColName.CheckedChanged += new System.EventHandler(this.cbContainsColName_CheckedChanged);
 			// 
 			// cbExportType
 			// 

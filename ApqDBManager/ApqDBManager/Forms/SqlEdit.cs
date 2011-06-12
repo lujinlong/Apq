@@ -167,9 +167,6 @@ UNION ALL SELECT 2,2;";
 
 			Apq.Windows.Controls.Control.AddImeHandler(this);
 
-			// 挂接事件
-			tscbDBName.TextChanged += new EventHandler(tscbDBName_TextChanged);
-
 			// 获取服务器列表
 			_Sqls = GlobalObject.Sqls.Copy() as ApqDBManager.Forms.SrvsMgr.SrvsMgr_XSD;
 		}
@@ -199,7 +196,7 @@ UNION ALL SELECT 2,2;";
 			GlobalObject.XmlConfigChain[this.GetType(), "txtSql_Text"] = txtSql.Text;
 		}
 
-		void tscbDBName_TextChanged(object sender, EventArgs e)
+		private void tscbDBName_Leave(object sender, EventArgs e)
 		{
 			string strDBName = tscbDBName.Text.Trim();
 			GlobalObject.XmlUserConfig.SetValue("cbDBName", strDBName);
@@ -214,7 +211,7 @@ UNION ALL SELECT 2,2;";
 				}
 			}
 
-			if (!IsFloat)
+			if (!IsFound)
 			{
 				tscbDBName.Items.Add(strDBName);
 
@@ -693,9 +690,6 @@ UNION ALL SELECT 2,2;";
 			try
 			{
 				sc = new SqlConnection(dr["DBConnectionString"].ToString());
-				sc.StatisticsEnabled = true;// 启用统计
-				sc.FireInfoMessageEventOnUserErrors = true;// 启用消息事件
-				sc.InfoMessage += new SqlInfoMessageEventHandler(rt.sc_InfoMessage);
 
 				SqlDataAdapter sda = new SqlDataAdapter(string.Empty, sc);
 				sda.SelectCommand.CommandTimeout = 86400;//3600*24
@@ -703,7 +697,10 @@ UNION ALL SELECT 2,2;";
 				// 1.设置数据库
 				Apq.Data.Common.DbConnectionHelper.Open(sc);
 				string DBName = Apq.Convert.ChangeType<string>(Apq.Windows.Controls.ControlExtension.GetControlValues(this, "tscbDBName.Text"));
-				sc.ChangeDatabase(DBName);
+				sc.ChangeDatabase(DBName);//更改数据库后再启用消息事件可防止执行到其它数据库
+				sc.StatisticsEnabled = true;// 启用统计
+				sc.FireInfoMessageEventOnUserErrors = true;// 启用消息事件
+				sc.InfoMessage += new SqlInfoMessageEventHandler(rt.sc_InfoMessage);
 
 				// 2.准备语句
 				string[] arySql = Apq.Windows.Controls.ControlExtension.GetControlValues(this, "arySql") as string[];

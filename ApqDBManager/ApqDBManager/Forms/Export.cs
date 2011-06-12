@@ -54,36 +54,13 @@ namespace ApqDBManager
 
 		private void Export_Load(object sender, EventArgs e)
 		{
-			// 页面初始值
-			cbExportType.SelectedIndex = 0;
-			cbColSpliter.SelectedIndex = 0;
-			cbRowSpliter.SelectedIndex = 0;
-
 			//ShowInTaskbar = false;
 			Icon = new Icon(Application.StartupPath + @"\Res\ico\sign141.ico");
 
 			lblRowCount.Text += RowCount;
 
-			string cfgcbExportType = GlobalObject.XmlConfigChain[this.GetType(), "cbExportType"];
-			if (cfgcbExportType != null)
-			{
-				cbExportType.Text = cfgcbExportType;
-			}
-			string cfgcbContainsColName = GlobalObject.XmlConfigChain[this.GetType(), "cbContainsColName"];
-			if (cfgcbContainsColName != null)
-			{
-				cbContainsColName.Checked = Apq.Convert.ChangeType<bool>(cfgcbContainsColName);
-			}
-			string cfgcbColSpliter = GlobalObject.XmlConfigChain[this.GetType(), "cbColSpliter"];
-			if (cfgcbColSpliter != null)
-			{
-				cbColSpliter.Text = cfgcbColSpliter;
-			}
-			string cfgcbRowSpliter = GlobalObject.XmlConfigChain[this.GetType(), "cbRowSpliter"];
-			if (cfgcbRowSpliter != null)
-			{
-				cbRowSpliter.Text = cfgcbRowSpliter;
-			}
+			cbExportType.SelectedIndex = Apq.Convert.ChangeType<int>(GlobalObject.XmlConfigChain[this.GetType(), "cbExportType"]);
+			cbContainsColName.Checked = Apq.Convert.ChangeType<bool>(GlobalObject.XmlConfigChain[this.GetType(), "cbContainsColName"]);
 
 			if (MaxRowCount > ExcelMaxRowNumber)
 			{
@@ -94,7 +71,7 @@ namespace ApqDBManager
 		private void Export_FormClosed(object sender, FormClosedEventArgs e)
 		{
 			Apq.Win.GlobalObject.XmlUserConfig.Save();
-			GlobalObject.XmlUserConfig.Save();
+			//GlobalObject.XmlUserConfig.Save();
 		}
 
 		// 确定
@@ -271,7 +248,7 @@ namespace ApqDBManager
 
 		private void cbExportType_SelectedIndexChanged(object sender, EventArgs e)
 		{
-			GlobalObject.XmlConfigChain[this.GetType(), "cbExportType"] = cbExportType.Text;
+			GlobalObject.XmlConfigChain[this.GetType(), "cbExportType"] = cbExportType.SelectedIndex.ToString();
 
 			// 设置过滤器
 			if (cbExportType.Text == "Excel文件")
@@ -289,16 +266,6 @@ namespace ApqDBManager
 		private void cbContainsColName_CheckedChanged(object sender, EventArgs e)
 		{
 			GlobalObject.XmlConfigChain[this.GetType(), "cbContainsColName"] = cbContainsColName.Checked.ToString();
-		}
-
-		private void cbColSpliter_SelectedIndexChanged(object sender, EventArgs e)
-		{
-			GlobalObject.XmlConfigChain[this.GetType(), "cbColSpliter"] = cbColSpliter.Text;
-		}
-
-		private void cbRowSpliter_SelectedIndexChanged(object sender, EventArgs e)
-		{
-			GlobalObject.XmlConfigChain[this.GetType(), "cbRowSpliter"] = cbRowSpliter.Text;
 		}
 	}
 }

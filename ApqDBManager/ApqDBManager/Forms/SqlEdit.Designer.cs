@@ -160,7 +160,7 @@
 			this.txtSql.ShowSpaces = true;
 			this.txtSql.ShowTabs = true;
 			this.txtSql.ShowVRuler = true;
-			this.txtSql.Size = new System.Drawing.Size(760, 94);
+			this.txtSql.Size = new System.Drawing.Size(760, 119);
 			this.txtSql.TabIndex = 0;
 			// 
 			// cms1
@@ -255,7 +255,7 @@
 			// toolStripContainer1.ContentPanel
 			// 
 			this.toolStripContainer1.ContentPanel.Controls.Add(this.txtSql);
-			this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(760, 94);
+			this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(760, 119);
 			this.toolStripContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.toolStripContainer1.LeftToolStripPanelVisible = false;
 			this.toolStripContainer1.Location = new System.Drawing.Point(0, 25);
@@ -314,6 +314,7 @@
 			// 
 			this.tscbDBName.Name = "tscbDBName";
 			this.tscbDBName.Size = new System.Drawing.Size(121, 25);
+			this.tscbDBName.Leave += new System.EventHandler(this.tscbDBName_Leave);
 			// 
 			// tsbExec
 			// 

@@ -109,6 +109,7 @@
 			// 
 			// sfd
 			// 
+			this.sfd.DefaultExt = "res";
 			this.sfd.Filter = "DBC文件(*.res)|*.res";
 			// 
 			// dataGridView1
