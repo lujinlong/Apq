@@ -54,20 +54,25 @@ namespace ApqDBManager
 
 		private void Export_Load(object sender, EventArgs e)
 		{
+			// 页面初始值
+			cbExportType.SelectedIndex = 0;
+			cbColSpliter.SelectedIndex = 0;
+			cbRowSpliter.SelectedIndex = 0;
+
 			//ShowInTaskbar = false;
 			Icon = new Icon(Application.StartupPath + @"\Res\ico\sign141.ico");
 
-			lcRowCount.Text += RowCount;
+			lblRowCount.Text += RowCount;
 
 			string cfgcbExportType = GlobalObject.XmlConfigChain[this.GetType(), "cbExportType"];
 			if (cfgcbExportType != null)
 			{
 				cbExportType.Text = cfgcbExportType;
 			}
-			string cfgceContainsColName = GlobalObject.XmlConfigChain[this.GetType(), "ceContainsColName"];
-			if (cfgceContainsColName != null)
+			string cfgcbContainsColName = GlobalObject.XmlConfigChain[this.GetType(), "cbContainsColName"];
+			if (cfgcbContainsColName != null)
 			{
-				ceContainsColName.Checked = Apq.Convert.ChangeType<bool>(cfgceContainsColName);
+				cbContainsColName.Checked = Apq.Convert.ChangeType<bool>(cfgcbContainsColName);
 			}
 			string cfgcbColSpliter = GlobalObject.XmlConfigChain[this.GetType(), "cbColSpliter"];
 			if (cfgcbColSpliter != null)
@@ -88,52 +93,48 @@ namespace ApqDBManager
 
 		private void Export_FormClosed(object sender, FormClosedEventArgs e)
 		{
-			//Apq.Win.GlobalObject.XmlUserConfig.Save();
-			//GlobalObject.XmlUserConfig.Save();
+			Apq.Win.GlobalObject.XmlUserConfig.Save();
+			GlobalObject.XmlUserConfig.Save();
 		}
 
 		// 确定
 		private void btnConfirm_Click(object sender, EventArgs e)
 		{
-			// 输入检测:信息完整性
-			//if (saveFile1.FileName.Length < 2)
-			//{
-			//    MessageBox.Show("请选择正确的导出文件");
-			//    saveFile1.Focus();
-			//    return;
-			//}
-
-			bsiStatus.Caption = "导出中...";
-			int RowCount = 0;
-			foreach (DataTable dt in ds.Tables)
+			if (saveFileDialog1.ShowDialog(this) == DialogResult.OK)
 			{
-				RowCount += dt.Rows.Count;
-			}
-			ripb.Maximum = RowCount;
+				tsslStatus.Text = "导出中...";
+				int RowCount = 0;
+				foreach (DataTable dt in ds.Tables)
+				{
+					RowCount += dt.Rows.Count;
+				}
+				tspbProcess.Value = 0;
+				tspbProcess.Maximum = RowCount;
 
-			if (cbExportType.Text == cbExportType.Properties.Items[0].ToString())
-			{
-				if (!ExportToText()) return;
-			}
-			if (cbExportType.Text == cbExportType.Properties.Items[1].ToString())
-			{
-				if (!ExportToExcel()) return;
-			}
-			bsiStatus.Caption = "导出完成";
+				if (cbExportType.SelectedIndex == 0)
+				{
+					if (!ExportToText()) return;
+				}
+				if (cbExportType.SelectedIndex == 1)
+				{
+					if (!ExportToExcel()) return;
+				}
+				tsslStatus.Text = "导出完成";
 
-			try
-			{
-				// 显示文件
-				//Process.Start(Apq.Dos.Common.EncodeParam(saveFile1.FileName));
-			}
-			catch { }
+				try
+				{
+					// 显示文件
+					Process.Start(Apq.Dos.Common.EncodeParam(saveFileDialog1.FileName));
+				}
+				catch { }
 
-			this.Close();
+				this.Close();
+			}
 		}
 
 		private bool ExportToText()
 		{
-			ripb.Maximum += ceContainsColName.Checked ? ds.Tables.Count : 0;
+			tspbProcess.Maximum += cbContainsColName.Checked ? ds.Tables.Count : 0;
 
 			string strColSpliter = cbColSpliter.Text;
 			string strRowSpliter = cbRowSpliter.Text;
@@ -165,14 +166,13 @@ namespace ApqDBManager
 					break;
 			}
 
+			StreamWriter sw = File.CreateText(saveFileDialog1.FileName);
 			// 执行导出
 			try
 			{
-				//StreamWriter sw = File.CreateText(saveFile1.FileName);
-				StreamWriter sw = File.CreateText("");
 				foreach (DataTable dt in ds.Tables)
 				{
-					if (ceContainsColName.Checked)
+					if (cbContainsColName.Checked)
 					{
 						for (int i = 0; i < dt.Columns.Count; i++)
 						{
@@ -184,8 +184,9 @@ namespace ApqDBManager
 							}
 						}
 						sw.Write(strRowSpliter);
+						sw.Flush();
 
-						beiProcess.EditValue = Apq.Convert.ChangeType<int>(beiProcess.EditValue) + 1;
+						tspbProcess.Value++;
 						Application.DoEvents();
 					}
 					foreach (DataRow dr in dt.Rows)
@@ -201,8 +202,9 @@ namespace ApqDBManager
 							}
 						}
 						sw.Write(strRowSpliter);
+						sw.Flush();
 
-						beiProcess.EditValue = Apq.Convert.ChangeType<int>(beiProcess.EditValue) + 1;
+						tspbProcess.Value++;
 						Application.DoEvents();
 					}
 				}
@@ -213,6 +215,10 @@ namespace ApqDBManager
 				MessageBox.Show("文件路径不正确", "输入错误");
 				return false;
 			}
+			finally
+			{
+				sw.Close();
+			}
 		}
 		private bool ExportToExcel()
 		{
@@ -222,10 +228,13 @@ namespace ApqDBManager
 				Apq.Data.DataSet.BuildupTabelForMaxrow(ds, ExcelMaxRowNumber);
 
 				DataSet dsExcel = new DataSet();
-				dsExcel.DataSetName = ds.DataSetName;
+				dsExcel.DataSetName = saveFileDialog1.FileName;
 				foreach (DataTable dt in ds.Tables)
 				{
 					DataTable dtExcel = Apq.Data.DataTable.CloneToStringTable(dt);
+					dtExcel.TableName = dt.TableName;
+					dsExcel.Tables.Add(dtExcel);
+
 					foreach (DataRow dr in dt.Rows)
 					{
 						DataRow drExcel = dtExcel.NewRow();
@@ -235,15 +244,13 @@ namespace ApqDBManager
 						}
 						dtExcel.Rows.Add(drExcel);
 
-						beiProcess.EditValue = Apq.Convert.ChangeType<int>(beiProcess.EditValue) + 1;
+						tspbProcess.Value++;
 						Application.DoEvents();
 					}
-					dsExcel.Tables.Add(dtExcel);
 				}
 
 				org.in2bits.MyXls.XlsDocument xd = new org.in2bits.MyXls.XlsDocument(dsExcel);
-				//FileStream fs = new FileStream(saveFile1.FileName, FileMode.Create);
-				FileStream fs = new FileStream("", FileMode.Create);
+				FileStream fs = new FileStream(saveFileDialog1.FileName, FileMode.Create);
 				xd.Save(fs);
 				fs.Flush();
 				fs.Close();
@@ -267,19 +274,21 @@ namespace ApqDBManager
 			GlobalObject.XmlConfigChain[this.GetType(), "cbExportType"] = cbExportType.Text;
 
 			// 设置过滤器
-			//if (cbExportType.Text == "Excel文件")
-			//{
-			//    saveFile1.SaveFileDialog.FilterIndex = 2;
-			//}
-			//else
-			//{
-			//    saveFile1.SaveFileDialog.FilterIndex = 1;
-			//}
+			if (cbExportType.Text == "Excel文件")
+			{
+				saveFileDialog1.FilterIndex = 2;
+				saveFileDialog1.DefaultExt = "xls";
+			}
+			else
+			{
+				saveFileDialog1.FilterIndex = 1;
+				saveFileDialog1.DefaultExt = "txt";
+			}
 		}
 
-		private void ceContainsColName_CheckedChanged(object sender, EventArgs e)
+		private void cbContainsColName_CheckedChanged(object sender, EventArgs e)
 		{
-			GlobalObject.XmlConfigChain[this.GetType(), "ceContainsColName"] = ceContainsColName.Checked.ToString();
+			GlobalObject.XmlConfigChain[this.GetType(), "cbContainsColName"] = cbContainsColName.Checked.ToString();
 		}
 
 		private void cbColSpliter_SelectedIndexChanged(object sender, EventArgs e)
