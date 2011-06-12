@@ -171,21 +171,27 @@ UNION ALL SELECT 2,2;";
 			tscbDBName.TextChanged += new EventHandler(tscbDBName_TextChanged);
 
 			// 获取服务器列表
-			ReloadServers();
+			_Sqls = GlobalObject.Sqls.Copy() as ApqDBManager.Forms.SrvsMgr.SrvsMgr_XSD;
+		}
+
+		private void tssbResult_DropDownItemClicked(object sender, ToolStripItemClickedEventArgs e)
+		{
+			foreach (ToolStripMenuItem tsmi in tssbResult.DropDownItems)
+			{
+				tsmi.Checked = e.ClickedItem.Equals(tsmi);
+			}
 		}
 
 		private void SqlEdit_Activated(object sender, EventArgs e)
 		{
-			// 从ControlValues设置页面服务器列表,页面改变时,同时改变ControlValues里的值
-			Forms.SqlIns.UIState UISolution = Apq.Windows.Controls.ControlExtension.GetControlValues(this, "UISolution") as Forms.SqlIns.UIState;
-			GlobalObject.SolutionExplorer.SetServers(_Sqls, UISolution);
+			// 设置服务器和错误列表
+			GlobalObject.SolutionExplorer.SetServers(_Sqls);
 			GlobalObject.ErrList.Set_ErrList(dsUI);
 		}
 
 		private void SqlEdit_Deactivate(object sender, EventArgs e)
 		{
-			ApqDBManager.Forms.SqlIns.UIState State = GlobalObject.SolutionExplorer.GetUIState();
-			Apq.Windows.Controls.ControlExtension.SetControlValues(this, "UISolution", State);
+			GlobalObject.SolutionExplorer.SaveState2XSD();
 		}
 
 		void txtSql_DocumentChanged(object sender, DocumentEventArgs e)
@@ -231,8 +237,11 @@ UNION ALL SELECT 2,2;";
 			//GlobalObject.XmlUserConfig.Save();
 		}
 
-		private void tsmiExec_Click(object sender, EventArgs e)
+		private void tsbExec_Click(object sender, EventArgs e)
 		{
+			// 读取服务器列表状态
+			GlobalObject.SolutionExplorer.SaveState2XSD();
+
 			string strSql = txtSql.ActiveTextAreaControl.TextArea.SelectionManager.SelectedText;
 			if (string.IsNullOrEmpty(strSql))
 			{
@@ -289,24 +298,26 @@ UNION ALL SELECT 2,2;";
 				}
 				#endregion
 
-				tsmiExec.Enabled = false;
+				tsbExec.Enabled = false;
 
 				// 将线程中需要的控件值取到变量
 				strSql += "\r\n";
 				Apq.Windows.Controls.ControlExtension.SetControlValues(this, "arySql", strSql.Split(aryGo, StringSplitOptions.RemoveEmptyEntries));
-				Apq.Windows.Controls.ControlExtension.SetControlValues(this, "bliResult.ItemIndex", tscbResult.SelectedIndex);
+				int nRIdx = tsmiResult1.Checked ? 1 : 0;
+				Apq.Windows.Controls.ControlExtension.SetControlValues(this, "bliResult.ItemIndex", nRIdx);
+				Apq.Windows.Controls.ControlExtension.SetControlValues(this, "tscbDBName.Text", tscbDBName.Text);
 
 				// 先终止上一次主后台线程
 				Apq.Threading.Thread.Abort(MainBackThread);
 				MainBackThread = Apq.Threading.Thread.StartNewThread(new ThreadStart(MainBackThread_Start));
 
-				tsmiCancel.Enabled = true;
+				tsbCancel.Enabled = true;
 			}
 		}
 
-		private void tsmiCancel_Click(object sender, EventArgs e)
+		private void tsbCancel_Click(object sender, EventArgs e)
 		{
-			tsmiCancel.Enabled = false;
+			tsbCancel.Enabled = false;
 
 			Apq.Threading.Thread.Abort(MainBackThread);
 			foreach (Thread t in thds)
@@ -318,15 +329,15 @@ UNION ALL SELECT 2,2;";
 			tsslStatus.Text = "已取消";
 			tspb.Value = 0;
 
-			tsmiExec.Enabled = true;
+			tsbExec.Enabled = true;
 		}
 
-		private void tsmiSingleThread_Click(object sender, EventArgs e)
+		private void tsbSingleThread_Click(object sender, EventArgs e)
 		{
-			tsmiSingleThread.Checked = !tsmiSingleThread.Checked;
+			tsbSingleThread.Checked = !tsbSingleThread.Checked;
 		}
 
-		private void tsmiExport_Click(object sender, EventArgs e)
+		private void tsbExport_Click(object sender, EventArgs e)
 		{
 			if (lstds.Count > 0)
 			{
@@ -515,7 +526,7 @@ UNION ALL SELECT 2,2;";
 			}
 			_Sqls.SqlInstance.AcceptChanges();
 
-			if (tsmiSingleThread.Checked)
+			if (tsbSingleThread.Checked)
 			{
 				Workers_Stop();
 
@@ -588,9 +599,10 @@ UNION ALL SELECT 2,2;";
 				#region 开始
 				lock (rtLock0)
 				{
+					int nbliResult_ItemIndex = Apq.Convert.ChangeType<int>(Apq.Windows.Controls.ControlExtension.GetControlValues(this, "bliResult.ItemIndex"));
 					Apq.Windows.Delegates.Action_UI<ToolStripStatusLabel>(this, tsslStatus, delegate(ToolStripStatusLabel ctrl)
 					{
-						if (tscbResult.SelectedIndex == 1)
+						if (nbliResult_ItemIndex == 1)
 						{
 							XtraTabPage xtp = xtraTabControl1.TabPages.Add("所有结果");
 							rtSingleDisplay = new ResultTable();
@@ -690,7 +702,8 @@ UNION ALL SELECT 2,2;";
 
 				// 1.设置数据库
 				Apq.Data.Common.DbConnectionHelper.Open(sc);
-				sc.ChangeDatabase(tscbDBName.Text);
+				string DBName = Apq.Convert.ChangeType<string>(Apq.Windows.Controls.ControlExtension.GetControlValues(this, "tscbDBName.Text"));
+				sc.ChangeDatabase(DBName);
 
 				// 2.准备语句
 				string[] arySql = Apq.Windows.Controls.ControlExtension.GetControlValues(this, "arySql") as string[];
@@ -803,8 +816,8 @@ UNION ALL SELECT 2,2;";
 								_Sqls.SqlInstance.AcceptChanges();
 								dsUI.ErrList.AcceptChanges();
 								tsslStatus.Text = "已全部完成";
-								tsmiCancel.Enabled = false;
-								tsmiExec.Enabled = true;
+								tsbCancel.Enabled = false;
+								tsbExec.Enabled = true;
 
 								DataView dvErr = new DataView(_Sqls.SqlInstance);
 								dvErr.RowFilter = "Err = 1";
@@ -882,14 +895,5 @@ UNION ALL SELECT 2,2;";
 			GlobalObject.SolutionExplorer.FocusAndExpandByID(Apq.Convert.ChangeType<int>(xtraTabControl1.SelectedTabPage.Tag));
 		}
 		#endregion
-
-		/// <summary>
-		/// 重新加载服务器列表
-		/// </summary>
-		public void ReloadServers()
-		{
-			_Sqls.SqlInstance.Clear();
-			_Sqls.SqlInstance.Merge(GlobalObject.Sqls.SqlInstance);
-		}
 	}
 }

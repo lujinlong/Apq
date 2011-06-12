@@ -48,19 +48,22 @@
 			this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
 			this.tsmiSelectAll = new System.Windows.Forms.ToolStripMenuItem();
 			this.dsUI = new ApqDBManager.XSD.UI();
-			this._Sqls = new Apq.DBC.XSD();
+			this._Sqls = new ApqDBManager.Forms.SrvsMgr.SrvsMgr_XSD();
 			this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
 			this.statusStrip1 = new System.Windows.Forms.StatusStrip();
 			this.tsslStatus = new System.Windows.Forms.ToolStripStatusLabel();
 			this.tspb = new System.Windows.Forms.ToolStripProgressBar();
-			this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-			this.tsmiDBName = new System.Windows.Forms.ToolStripMenuItem();
+			this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+			this.tslDBName = new System.Windows.Forms.ToolStripLabel();
 			this.tscbDBName = new System.Windows.Forms.ToolStripComboBox();
-			this.tsmiExec = new System.Windows.Forms.ToolStripMenuItem();
-			this.tsmiCancel = new System.Windows.Forms.ToolStripMenuItem();
-			this.tsmiSingleThread = new System.Windows.Forms.ToolStripMenuItem();
-			this.tscbResult = new System.Windows.Forms.ToolStripComboBox();
-			this.tsmiExport = new System.Windows.Forms.ToolStripMenuItem();
+			this.tsbExec = new System.Windows.Forms.ToolStripButton();
+			this.tsbCancel = new System.Windows.Forms.ToolStripButton();
+			this.tsbSingleThread = new System.Windows.Forms.ToolStripButton();
+			this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+			this.tssbResult = new System.Windows.Forms.ToolStripSplitButton();
+			this.tsmiResult0 = new System.Windows.Forms.ToolStripMenuItem();
+			this.tsmiResult1 = new System.Windows.Forms.ToolStripMenuItem();
+			this.tsbExport = new System.Windows.Forms.ToolStripButton();
 			((System.ComponentModel.ISupportInitialize)(this.dockManager1)).BeginInit();
 			this.dockPanel1.SuspendLayout();
 			this.dockPanel1_Container.SuspendLayout();
@@ -71,10 +74,9 @@
 			((System.ComponentModel.ISupportInitialize)(this._Sqls)).BeginInit();
 			this.toolStripContainer1.BottomToolStripPanel.SuspendLayout();
 			this.toolStripContainer1.ContentPanel.SuspendLayout();
-			this.toolStripContainer1.TopToolStripPanel.SuspendLayout();
 			this.toolStripContainer1.SuspendLayout();
 			this.statusStrip1.SuspendLayout();
-			this.menuStrip1.SuspendLayout();
+			this.toolStrip1.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// bar1
@@ -158,7 +160,7 @@
 			this.txtSql.ShowSpaces = true;
 			this.txtSql.ShowTabs = true;
 			this.txtSql.ShowVRuler = true;
-			this.txtSql.Size = new System.Drawing.Size(760, 72);
+			this.txtSql.Size = new System.Drawing.Size(760, 71);
 			this.txtSql.TabIndex = 0;
 			// 
 			// cms1
@@ -253,19 +255,15 @@
 			// toolStripContainer1.ContentPanel
 			// 
 			this.toolStripContainer1.ContentPanel.Controls.Add(this.txtSql);
-			this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(760, 72);
+			this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(760, 71);
 			this.toolStripContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.toolStripContainer1.LeftToolStripPanelVisible = false;
-			this.toolStripContainer1.Location = new System.Drawing.Point(0, 0);
+			this.toolStripContainer1.Location = new System.Drawing.Point(0, 25);
 			this.toolStripContainer1.Name = "toolStripContainer1";
 			this.toolStripContainer1.RightToolStripPanelVisible = false;
-			this.toolStripContainer1.Size = new System.Drawing.Size(760, 118);
+			this.toolStripContainer1.Size = new System.Drawing.Size(760, 93);
 			this.toolStripContainer1.TabIndex = 5;
 			this.toolStripContainer1.Text = "toolStripContainer1";
-			// 
-			// toolStripContainer1.TopToolStripPanel
-			// 
-			this.toolStripContainer1.TopToolStripPanel.Controls.Add(this.menuStrip1);
 			// 
 			// statusStrip1
 			// 
@@ -289,70 +287,105 @@
 			this.tspb.Name = "tspb";
 			this.tspb.Size = new System.Drawing.Size(300, 16);
 			// 
-			// menuStrip1
+			// toolStrip1
 			// 
-			this.menuStrip1.Dock = System.Windows.Forms.DockStyle.None;
-			this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmiDBName,
+			this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tslDBName,
             this.tscbDBName,
-            this.tsmiExec,
-            this.tsmiCancel,
-            this.tsmiSingleThread,
-            this.tscbResult,
-            this.tsmiExport});
-			this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-			this.menuStrip1.Name = "menuStrip1";
-			this.menuStrip1.Size = new System.Drawing.Size(760, 24);
-			this.menuStrip1.TabIndex = 7;
-			this.menuStrip1.Text = "menuStrip1";
+            this.tsbExec,
+            this.tsbCancel,
+            this.tsbSingleThread,
+            this.toolStripSeparator3,
+            this.tssbResult,
+            this.tsbExport});
+			this.toolStrip1.Location = new System.Drawing.Point(0, 0);
+			this.toolStrip1.Name = "toolStrip1";
+			this.toolStrip1.Size = new System.Drawing.Size(760, 25);
+			this.toolStrip1.TabIndex = 7;
+			this.toolStrip1.Text = "toolStrip1";
 			// 
-			// tsmiDBName
+			// tslDBName
 			// 
-			this.tsmiDBName.Name = "tsmiDBName";
-			this.tsmiDBName.Size = new System.Drawing.Size(65, 20);
-			this.tsmiDBName.Text = "数据库名";
+			this.tslDBName.Name = "tslDBName";
+			this.tslDBName.Size = new System.Drawing.Size(53, 22);
+			this.tslDBName.Text = "数据库名";
 			// 
 			// tscbDBName
 			// 
 			this.tscbDBName.Name = "tscbDBName";
-			this.tscbDBName.Size = new System.Drawing.Size(121, 20);
+			this.tscbDBName.Size = new System.Drawing.Size(121, 25);
 			// 
-			// tsmiExec
+			// tsbExec
 			// 
-			this.tsmiExec.Name = "tsmiExec";
-			this.tsmiExec.Size = new System.Drawing.Size(59, 20);
-			this.tsmiExec.Text = "执行(&X)";
-			this.tsmiExec.Click += new System.EventHandler(this.tsmiExec_Click);
+			this.tsbExec.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+			this.tsbExec.Image = ((System.Drawing.Image)(resources.GetObject("tsbExec.Image")));
+			this.tsbExec.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.tsbExec.Name = "tsbExec";
+			this.tsbExec.Size = new System.Drawing.Size(51, 22);
+			this.tsbExec.Text = "执行(&X)";
+			this.tsbExec.Click += new System.EventHandler(this.tsbExec_Click);
 			// 
-			// tsmiCancel
+			// tsbCancel
 			// 
-			this.tsmiCancel.Name = "tsmiCancel";
-			this.tsmiCancel.Size = new System.Drawing.Size(59, 20);
-			this.tsmiCancel.Text = "取消(&C)";
-			this.tsmiCancel.Click += new System.EventHandler(this.tsmiCancel_Click);
+			this.tsbCancel.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+			this.tsbCancel.Image = ((System.Drawing.Image)(resources.GetObject("tsbCancel.Image")));
+			this.tsbCancel.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.tsbCancel.Name = "tsbCancel";
+			this.tsbCancel.Size = new System.Drawing.Size(51, 22);
+			this.tsbCancel.Text = "取消(&C)";
+			this.tsbCancel.Click += new System.EventHandler(this.tsbCancel_Click);
 			// 
-			// tsmiSingleThread
+			// tsbSingleThread
 			// 
-			this.tsmiSingleThread.Name = "tsmiSingleThread";
-			this.tsmiSingleThread.Size = new System.Drawing.Size(53, 20);
-			this.tsmiSingleThread.Text = "单线程";
-			this.tsmiSingleThread.Click += new System.EventHandler(this.tsmiSingleThread_Click);
+			this.tsbSingleThread.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+			this.tsbSingleThread.Image = ((System.Drawing.Image)(resources.GetObject("tsbSingleThread.Image")));
+			this.tsbSingleThread.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.tsbSingleThread.Name = "tsbSingleThread";
+			this.tsbSingleThread.Size = new System.Drawing.Size(45, 22);
+			this.tsbSingleThread.Text = "单线程";
+			this.tsbSingleThread.Click += new System.EventHandler(this.tsbSingleThread_Click);
 			// 
-			// tscbResult
+			// toolStripSeparator3
 			// 
-			this.tscbResult.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.tscbResult.Items.AddRange(new object[] {
-            "分别显示结果",
-            "合并显示结果"});
-			this.tscbResult.Name = "tscbResult";
-			this.tscbResult.Size = new System.Drawing.Size(121, 20);
+			this.toolStripSeparator3.Name = "toolStripSeparator3";
+			this.toolStripSeparator3.Size = new System.Drawing.Size(6, 25);
 			// 
-			// tsmiExport
+			// tssbResult
 			// 
-			this.tsmiExport.Name = "tsmiExport";
-			this.tsmiExport.Size = new System.Drawing.Size(59, 20);
-			this.tsmiExport.Text = "导出(&T)";
-			this.tsmiExport.Click += new System.EventHandler(this.tsmiExport_Click);
+			this.tssbResult.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+			this.tssbResult.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiResult0,
+            this.tsmiResult1});
+			this.tssbResult.Image = ((System.Drawing.Image)(resources.GetObject("tssbResult.Image")));
+			this.tssbResult.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.tssbResult.Name = "tssbResult";
+			this.tssbResult.Size = new System.Drawing.Size(93, 22);
+			this.tssbResult.Text = "结果显示方式";
+			this.tssbResult.DropDownItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.tssbResult_DropDownItemClicked);
+			// 
+			// tsmiResult0
+			// 
+			this.tsmiResult0.Checked = true;
+			this.tsmiResult0.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.tsmiResult0.Name = "tsmiResult0";
+			this.tsmiResult0.Size = new System.Drawing.Size(94, 22);
+			this.tsmiResult0.Text = "分列";
+			// 
+			// tsmiResult1
+			// 
+			this.tsmiResult1.Name = "tsmiResult1";
+			this.tsmiResult1.Size = new System.Drawing.Size(94, 22);
+			this.tsmiResult1.Text = "合并";
+			// 
+			// tsbExport
+			// 
+			this.tsbExport.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+			this.tsbExport.Image = ((System.Drawing.Image)(resources.GetObject("tsbExport.Image")));
+			this.tsbExport.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.tsbExport.Name = "tsbExport";
+			this.tsbExport.Size = new System.Drawing.Size(51, 22);
+			this.tsbExport.Text = "导出(&T)";
+			this.tsbExport.Click += new System.EventHandler(this.tsbExport_Click);
 			// 
 			// SqlEdit
 			// 
@@ -361,6 +394,7 @@
 			this.ClientSize = new System.Drawing.Size(760, 466);
 			this.Controls.Add(this.toolStripContainer1);
 			this.Controls.Add(this.dockPanel1);
+			this.Controls.Add(this.toolStrip1);
 			this.DockAreas = ((WeifenLuo.WinFormsUI.Docking.DockAreas)((WeifenLuo.WinFormsUI.Docking.DockAreas.Float | WeifenLuo.WinFormsUI.Docking.DockAreas.Document)));
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Name = "SqlEdit";
@@ -381,15 +415,14 @@
 			this.toolStripContainer1.BottomToolStripPanel.ResumeLayout(false);
 			this.toolStripContainer1.BottomToolStripPanel.PerformLayout();
 			this.toolStripContainer1.ContentPanel.ResumeLayout(false);
-			this.toolStripContainer1.TopToolStripPanel.ResumeLayout(false);
-			this.toolStripContainer1.TopToolStripPanel.PerformLayout();
 			this.toolStripContainer1.ResumeLayout(false);
 			this.toolStripContainer1.PerformLayout();
 			this.statusStrip1.ResumeLayout(false);
 			this.statusStrip1.PerformLayout();
-			this.menuStrip1.ResumeLayout(false);
-			this.menuStrip1.PerformLayout();
+			this.toolStrip1.ResumeLayout(false);
+			this.toolStrip1.PerformLayout();
 			this.ResumeLayout(false);
+			this.PerformLayout();
 
 		}
 
@@ -402,7 +435,7 @@
 		private DevExpress.XtraBars.Docking.DockPanel dockPanel1;
 		private DevExpress.XtraBars.Docking.ControlContainer dockPanel1_Container;
 		public ApqDBManager.XSD.UI dsUI;
-		public Apq.DBC.XSD _Sqls;
+		public ApqDBManager.Forms.SrvsMgr.SrvsMgr_XSD _Sqls;
 		private System.Windows.Forms.ContextMenuStrip cms1;
 		private System.Windows.Forms.ToolStripMenuItem tsmiUndo;
 		private System.Windows.Forms.ToolStripMenuItem tsmiRedo;
@@ -418,13 +451,16 @@
 		private System.Windows.Forms.StatusStrip statusStrip1;
 		private System.Windows.Forms.ToolStripStatusLabel tsslStatus;
 		private System.Windows.Forms.ToolStripProgressBar tspb;
-		private System.Windows.Forms.MenuStrip menuStrip1;
-		private System.Windows.Forms.ToolStripMenuItem tsmiDBName;
+		private System.Windows.Forms.ToolStrip toolStrip1;
+		private System.Windows.Forms.ToolStripLabel tslDBName;
 		private System.Windows.Forms.ToolStripComboBox tscbDBName;
-		private System.Windows.Forms.ToolStripMenuItem tsmiExec;
-		private System.Windows.Forms.ToolStripMenuItem tsmiCancel;
-		private System.Windows.Forms.ToolStripMenuItem tsmiSingleThread;
-		private System.Windows.Forms.ToolStripComboBox tscbResult;
-		private System.Windows.Forms.ToolStripMenuItem tsmiExport;
+		private System.Windows.Forms.ToolStripButton tsbExec;
+		private System.Windows.Forms.ToolStripButton tsbCancel;
+		private System.Windows.Forms.ToolStripButton tsbSingleThread;
+		private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+		private System.Windows.Forms.ToolStripSplitButton tssbResult;
+		private System.Windows.Forms.ToolStripMenuItem tsmiResult0;
+		private System.Windows.Forms.ToolStripMenuItem tsmiResult1;
+		private System.Windows.Forms.ToolStripButton tsbExport;
 	}
 }

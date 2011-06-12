@@ -52,16 +52,14 @@ namespace ApqDBManager.Forms
 
 		private void FileTrans_Activated(object sender, EventArgs e)
 		{
-			// 从ControlValues设置页面服务器列表,页面改变时,同时改变ControlValues里的值
-			Forms.SqlIns.UIState UISolution = Apq.Windows.Controls.ControlExtension.GetControlValues(this, "UISolution") as Forms.SqlIns.UIState;
-			GlobalObject.SolutionExplorer.SetServers(_Sqls, UISolution);
+			// 设置服务器和错误列表
+			GlobalObject.SolutionExplorer.SetServers(_Sqls);
 			GlobalObject.ErrList.Set_ErrList(_UI);
 		}
 
 		private void FileTrans_Deactivate(object sender, EventArgs e)
 		{
-			ApqDBManager.Forms.SqlIns.UIState State = GlobalObject.SolutionExplorer.GetUIState();
-			Apq.Windows.Controls.ControlExtension.SetControlValues(this, "UISolution", State);
+			GlobalObject.SolutionExplorer.SaveState2XSD();
 		}
 		#endregion
 

@@ -9,31 +9,18 @@ using DevExpress.XtraTreeList;
 using DevExpress.XtraTreeList.Nodes;
 using WeifenLuo.WinFormsUI.Docking;
 using System.Data.SqlClient;
+using Apq.TreeListView;
 
 namespace ApqDBManager.Forms
 {
 	public partial class SqlIns : Apq.Windows.Forms.DockForm
 	{
-		private Apq.DBC.XSD _Sqls = null;
+		private ApqDBManager.Forms.SrvsMgr.SrvsMgr_XSD _Sqls = null;
+		private TreeListViewHelper tlvHelper;
 
 		public SqlIns()
 		{
 			InitializeComponent();
-		}
-
-		/// <summary>
-		/// Form状态
-		/// </summary>
-		public class UIState
-		{
-			/// <summary>
-			/// 展开的节点ID
-			/// </summary>
-			public List<int> Node_Expanded = new List<int>();
-			/// <summary>
-			/// 当前节点ID
-			/// </summary>
-			public int FocusedServerID = 1;
 		}
 
 		#region UI线程
@@ -45,8 +32,8 @@ namespace ApqDBManager.Forms
 			{
 				ToolStripMenuItem tsmi = new ToolStripMenuItem();
 				tsmi.Text = bciNames[i];
-				tsmi.Click += new EventHandler(tsmi_Click);
-				tsmiSelect.DropDownItems.Add(tsmi);
+				tsmi.Click += new EventHandler(tsmiSelect_Click);
+				tssbSelect.DropDownItems.Add(tsmi);
 			}
 
 			#region CheckedNames
@@ -74,11 +61,11 @@ namespace ApqDBManager.Forms
 		private void SolutionExplorer_Shown(object sender, EventArgs e)
 		{
 			// 展开顶级
-			if (treeList1.Nodes.FirstNode != null) treeList1.Nodes.FirstNode.Expanded = true;
+			if (treeListView1.Items.Count > 0) treeListView1.Items[0].Expand();
 		}
 
 		// 选择选中类型的数据库
-		private void tsmi_Click(object sender, EventArgs e)
+		private void tsmiSelect_Click(object sender, EventArgs e)
 		{
 			ToolStripMenuItem tsmi = sender as ToolStripMenuItem;
 			if (tsmi != null)
@@ -90,206 +77,113 @@ namespace ApqDBManager.Forms
 				int idxLength = tsmi.Text.Length - 1 - idxBegin;
 				int idx = Apq.Convert.ChangeType<int>(tsmi.Text.Substring(idxBegin, idxLength), -1);
 
-				treeList1.BeginUpdate();
 				DataView dv = new DataView(_Sqls.SqlInstance);
 				dv.RowFilter = "SqlType = " + idx;
 				if (idx == 0) dv.RowFilter = dv.RowFilter + " OR SqlType IS NULL";
 
 				foreach (DataRowView drv in dv)
 				{
-					drv["CheckState"] = Apq.Convert.ChangeType<int>(tsmi.Checked);
+					string strSqlID = Apq.Convert.ChangeType<string>(drv["SqlID"]);
+					TreeListViewItem node = tlvHelper.FindNodeByKey(strSqlID);
+					node.Checked = tsmi.Checked;
 				}
-
-				_Sqls.SqlInstance.AcceptChanges();
-				treeList1.EndUpdate();
 			}
 		}
 		//全选
-		private void tsmiSelectAll_Click(object sender, EventArgs e)
+		private void tsbSelectAll_Click(object sender, EventArgs e)
 		{
-			treeList1.BeginUpdate();
-			foreach (DataRow dr in _Sqls.SqlInstance.Rows)
+			foreach (TreeListViewItem root in treeListView1.Items)
 			{
-				dr["CheckState"] = 1;
+				SetCheckedNode(root, true, false, true);
 			}
-			_Sqls.SqlInstance.AcceptChanges();
-			treeList1.EndUpdate();
 		}
 		//反选
-		private void tsmiReverse_Click(object sender, EventArgs e)
+		private void tsbReverse_Click(object sender, EventArgs e)
 		{
-			treeList1.BeginUpdate();
-			foreach (DataRow dr in _Sqls.SqlInstance.Rows)
+			foreach (TreeListViewItem root in treeListView1.Items)
 			{
-				int check = Apq.Convert.ChangeType<int>(dr["CheckState"]);
-				if (check == 2 || check == 0)
-				{
-					check = 1;
-				}
-				else
-				{
-					check = 0;
-				}
-				dr["CheckState"] = check;
+				ChgCheckedNode(root, false, true);
 			}
-			_Sqls.SqlInstance.AcceptChanges();
-			treeList1.EndUpdate();
 		}
 		//全部展开
-		private void tsmiExpandAll_Click(object sender, EventArgs e)
+		private void tsbExpandAll_Click(object sender, EventArgs e)
 		{
-			if (tsmiExpandAll.Text == "全部展开(&D)")
+			if (tsbExpandAll.Text == "全部展开(&D)")
 			{
-				treeList1.ExpandAll();
-				tsmiExpandAll.Text = "全部收起(&D)";
+				treeListView1.ExpandAll();
+				tsbExpandAll.Text = "全部收起(&D)";
 				return;
 			}
-			if (tsmiExpandAll.Text == "全部收起(&D)")
+			if (tsbExpandAll.Text == "全部收起(&D)")
 			{
-				treeList1.CollapseAll();
-				tsmiExpandAll.Text = "全部展开(&D)";
+				treeListView1.CollapseAll();
+				tsbExpandAll.Text = "全部展开(&D)";
 				return;
 			}
 		}
 		//失败
-		private void tsmiFail_Click(object sender, EventArgs e)
+		private void tsbFail_Click(object sender, EventArgs e)
 		{
-			treeList1.BeginUpdate();
-			foreach (DataRow dr in _Sqls.SqlInstance.Rows)
-			{
-				dr["CheckState"] = 0;
-			}
+			tsbSelectAll_Click(sender, e);
+			tsbReverse_Click(sender, e);
 
 			DataView dv = new DataView(_Sqls.SqlInstance);
 			dv.RowFilter = "Err = 1";
 			foreach (DataRowView drv in dv)
 			{
-				drv["CheckState"] = 1;
+				string strSqlID = Apq.Convert.ChangeType<string>(drv["SqlID"]);
+				TreeListViewItem node = tlvHelper.FindNodeByKey(strSqlID);
+				node.Checked = true;
 			}
-			_Sqls.SqlInstance.AcceptChanges();
-			treeList1.EndUpdate();
 		}
 		//结果
-		private void tsmiResult_Click(object sender, EventArgs e)
+		private void tsbResult_Click(object sender, EventArgs e)
 		{
-			treeList1.BeginUpdate();
-			foreach (DataRow dr in _Sqls.SqlInstance.Rows)
-			{
-				dr["CheckState"] = 0;
-			}
+			tsbSelectAll_Click(sender, e);
+			tsbReverse_Click(sender, e);
 
 			DataView dv = new DataView(_Sqls.SqlInstance);
 			dv.RowFilter = "IsReadyToGo = 1";
 			foreach (DataRowView drv in dv)
 			{
-				drv["CheckState"] = 1;
+				string strSqlID = Apq.Convert.ChangeType<string>(drv["SqlID"]);
+				TreeListViewItem node = tlvHelper.FindNodeByKey(strSqlID);
+				node.Checked = true;
 			}
-			_Sqls.SqlInstance.AcceptChanges();
-			treeList1.EndUpdate();
 		}
 
 		#endregion
 
 		#region treeList1
-		// Checked图片
-		private void treeList1_GetStateImage(object sender, DevExpress.XtraTreeList.GetStateImageEventArgs e)
-		{
-			e.NodeImageIndex = Apq.Convert.ChangeType<int>(e.Node["CheckState"]);
-		}
 
-		#region 选中状态
-		private void SetCheckedNode(TreeListNode node, bool checkParent, bool checkChildren)
+		private void treeListView1_AfterExpand(object sender, TreeListViewEventArgs e)
 		{
-			int Checked = (int)node["CheckState"];
-			if (Checked == 2 || Checked == 0) Checked = 1;
-			else Checked = 0;
+			long SqlID = Apq.Convert.ChangeType<long>(e.Item.SubItems[e.Item.ListView.Columns.Count].Text);
 
-			treeList1.BeginUpdate();
-			node["CheckState"] = Checked;
-			if (checkParent)
+			DataRow[] drs = _Sqls.SqlInstance.Select("SqlID = " + SqlID);
+			if (drs.Length > 0)
 			{
-				SetCheckedParentNodes(node, Checked);
-			}
-			if (checkChildren)
-			{
-				SetCheckedChildNodes(node, Checked);
-			}
-			_Sqls.SqlInstance.AcceptChanges();
-			treeList1.EndUpdate();
-		}
-		private void SetCheckedChildNodes(TreeListNode node, int Checked)
-		{
-			foreach (TreeListNode tln in node.Nodes)
-			{
-				tln["CheckState"] = Checked;
-				SetCheckedChildNodes(tln, Checked);
-			}
-		}
-		private void SetCheckedParentNodes(TreeListNode node, int Checked)
-		{
-			if (node.ParentNode != null)
-			{
-				node.ParentNode["CheckState"] = Checked;
-				SetCheckedParentNodes(node.ParentNode, Checked);
-			}
-		}
-		#endregion
-
-		#region 点击
-		private void treeList1_MouseClick(object sender, MouseEventArgs e)
-		{
-			if (e.Button == MouseButtons.Left)
-			{
-				TreeListHitInfo hInfo = treeList1.CalcHitInfo(new Point(e.X, e.Y));
-				if (hInfo.Node != null && hInfo.HitInfoType == HitInfoType.StateImage)//左键点中状态框(Checked)
-				{
-					short KeyState = Apq.DllImports.User32.GetKeyState(Apq.Utils.VirtKeys.VK_CONTROL);
-					bool checkChildren = (KeyState & 0xF0) != 0 || hInfo.Node.ParentNode == null;//按住Ctrl或为根结点
-					SetCheckedNode(hInfo.Node, false, checkChildren);
-				}
+				drs[0]["_Expanded"] = true;
 			}
 		}
 
-		private void treeList1_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
+		private void treeListView1_AfterCollapse(object sender, TreeListViewEventArgs e)
 		{
-			if (e.KeyData == Keys.Space)
-			{
-				if (Apq.Convert.ChangeType<int>(treeList1.FocusedNode["ID"]) == 1)
-				{
-					SetCheckedNode(treeList1.FocusedNode, false, true);
-				}
-				else
-				{
-					SetCheckedNode(treeList1.FocusedNode, false, false);
-				}
-			}
-		}
-		private void treeList1_EditorKeyUp(object sender, KeyEventArgs e)
-		{
-			#region Ctrl&C
-			if (e.Control && (e.KeyCode == Keys.C))
-			{
-				Clipboard.SetData(DataFormats.UnicodeText, treeList1.FocusedNode.GetDisplayText(0));
-			}
-			#endregion
-		}
-		private void treeList1_KeyUp(object sender, KeyEventArgs e)
-		{
-			#region Ctrl&C
-			if (e.Control && (e.KeyCode == Keys.C))
-			{
-				Clipboard.SetData(DataFormats.UnicodeText, treeList1.FocusedNode.GetDisplayText(0));
-			}
-			#endregion
-		}
-		#endregion
+			long SqlID = Apq.Convert.ChangeType<long>(e.Item.SubItems[e.Item.ListView.Columns.Count].Text);
 
-		private void treeList1_FocusedNodeChanged(object sender, FocusedNodeChangedEventArgs e)
+			DataRow[] drs = _Sqls.SqlInstance.Select("SqlID = " + SqlID);
+			if (drs.Length > 0)
+			{
+				drs[0]["_Expanded"] = false;
+			}
+		}
+
+		private void treeListView1_SelectedIndexChanged(object sender, EventArgs e)
 		{
-			if (e.Node != null)
+			if (treeListView1.FocusedItem != null)
 			{
 				// 显示相应结果
-				string ServerName = e.Node.GetDisplayText(0);
+				string ServerName = treeListView1.FocusedItem.Text;
 				SqlEdit Editor = GlobalObject.MainForm.ActiveMdiChild as SqlEdit;
 				if (Editor != null)
 				{
@@ -298,9 +192,128 @@ namespace ApqDBManager.Forms
 			}
 		}
 
+		private void treeListView1_KeyDown(object sender, KeyEventArgs e)
+		{
+			if (e.KeyData == Keys.Space)
+			{
+				if (Apq.Convert.ChangeType<int>(treeListView1.FocusedItem.SubItems[treeListView1.Columns.Count].Text) == 1)
+				{
+					ChgCheckedNode(treeListView1.FocusedItem, false, true);
+				}
+				else
+				{
+					ChgCheckedNode(treeListView1.FocusedItem, false, false);
+				}
+			}
+		}
+
+		#region 选中状态
+		#region SetChecked
+		private void SetCheckedNode(TreeListViewItem node, bool Checked, bool checkParent, bool checkChildren)
+		{
+			treeListView1.EndUpdate();
+			node.Checked = Checked;
+
+			if (checkParent)
+			{
+				SetCheckedParentNodes(node, Checked);
+			}
+			if (checkChildren)
+			{
+				SetCheckedChildNodes(node, Checked);
+			}
+			treeListView1.EndUpdate();
+		}
+		private void SetCheckedChildNodes(TreeListViewItem node, bool Checked)
+		{
+			foreach (TreeListViewItem tln in node.Items)
+			{
+				tln.Checked = Checked;
+				SetCheckedChildNodes(tln, Checked);
+			}
+		}
+		private void SetCheckedParentNodes(TreeListViewItem node, bool Checked)
+		{
+			if (node.Parent != null)
+			{
+				node.Parent.Checked = Checked;
+				SetCheckedParentNodes(node.Parent, Checked);
+			}
+		}
+		#endregion
+		#region ChgChecked
+		private void ChgCheckedNode(TreeListViewItem node, bool checkParent, bool checkChildren)
+		{
+			treeListView1.BeginUpdate();
+			node.Checked = !node.Checked;
+
+			if (checkParent)
+			{
+				ChgCheckedParentNodes(node);
+			}
+			if (checkChildren)
+			{
+				ChgCheckedChildNodes(node);
+			}
+			treeListView1.EndUpdate();
+		}
+		private void ChgCheckedChildNodes(TreeListViewItem node)
+		{
+			foreach (TreeListViewItem tln in node.Items)
+			{
+				tln.Checked = !tln.Checked;
+				ChgCheckedChildNodes(tln);
+			}
+		}
+		private void ChgCheckedParentNodes(TreeListViewItem node)
+		{
+			if (node.Parent != null)
+			{
+				node.Parent.Checked = !node.Parent.Checked;
+				ChgCheckedParentNodes(node.Parent);
+			}
+		}
+		#endregion
+		#endregion
+
+		#region 选中展开状态By隐藏列
+		private void SetStateByHiddenCol(TreeListViewItem node)
+		{
+			bool Checked = Apq.Convert.ChangeType<bool>(node.SubItems[node.ListView.Columns.Count + 1].Text);
+			bool Expanded = Apq.Convert.ChangeType<bool>(node.SubItems[node.ListView.Columns.Count + 2].Text);
+			bool Selected = Apq.Convert.ChangeType<bool>(node.SubItems[node.ListView.Columns.Count + 3].Text);
+
+			node.Checked = Checked;
+			if (Expanded) node.Expand();
+			if (Selected) node.Selected = true;
+
+			foreach (TreeListViewItem tln in node.Items)
+			{
+				SetStateByHiddenCol(tln);
+			}
+		}
+
+		private void SaveState2XSD(TreeListViewItem node)
+		{
+			long SqlID = Apq.Convert.ChangeType<long>(node.SubItems[node.ListView.Columns.Count].Text);
+
+			DataRow[] drs = _Sqls.SqlInstance.Select("SqlID = " + SqlID);
+			if (drs.Length > 0)
+			{
+				drs[0]["CheckState"] = node.Checked;
+				drs[0]["_Selected"] = node.Selected;
+			}
+
+			foreach (TreeListViewItem tln in node.Items)
+			{
+				SaveState2XSD(tln);
+			}
+		}
+		#endregion
+
 		private void tsmiCopy_Click(object sender, EventArgs e)
 		{
-			Clipboard.SetData(DataFormats.UnicodeText, treeList1.FocusedNode.GetDisplayText(0));
+			Clipboard.SetText(treeListView1.FocusedItem.Text);
 		}
 
 		/// <summary>
@@ -309,59 +322,59 @@ namespace ApqDBManager.Forms
 		/// <param name="ID"></param>
 		public void FocusAndExpandByID(int ID)
 		{
-			TreeListNode tln = treeList1.FindNodeByFieldValue("ID", ID);
-			if (tln != null)
+			TreeListViewItem node = tlvHelper.FindNodeByKey(ID.ToString());
+			if (node != null)
 			{
-				treeList1.BeginUpdate();
-				if (tln.ParentNode != null)
-				{
-					FocusAndExpandByID(tln.ParentNode.Id);
-					tln.ParentNode.Expanded = true;
-				}
-				treeList1.EndUpdate();
-
-				treeList1.FocusedNode = tln;
+				node.Expand();
+				node.Selected = true;
 			}
 		}
 		#endregion
 
-		#region UI 公开方法
-		public UIState GetUIState()
+		#region IDataShow 成员
+		/// <summary>
+		/// 前期准备(如数据库连接或文件等)
+		/// </summary>
+		public override void InitDataBefore()
 		{
-			UIState State = new UIState();
-			if (treeList1.FocusedNode != null)
-			{
-				State.FocusedServerID = Apq.Convert.ChangeType<int>(treeList1.FocusedNode["ID"]);
-				foreach (DataRow dr in _Sqls.SqlInstance.Rows)
-				{
-					int ID = Apq.Convert.ChangeType<int>(dr["SqlID"]);
-					TreeListNode tln = treeList1.FindNodeByFieldValue("SqlID", ID);
-					if (tln != null && tln.Expanded)
-					{
-						State.Node_Expanded.Add(ID);
-					}
-				}
-			}
-			return State;
+			tlvHelper = new TreeListViewHelper(treeListView1);
+			tlvHelper.TableMapping.ColumnMappings.Add("名称", "SqlName");
+			tlvHelper.Key = "SqlID";
+			tlvHelper.HiddenColNames = new List<string>(new string[] { "SqlID", "CheckState", "_Expanded", "_Selected" });
 		}
+		#endregion
 
+		#region UI 公开方法
 		/// <summary>
 		/// 改变服务器列表
 		/// </summary>
-		public void SetServers(Apq.DBC.XSD Sqls, UIState UIState)
+		public void SetServers(ApqDBManager.Forms.SrvsMgr.SrvsMgr_XSD Sqls)
 		{
-			treeList1.DataSource = _Sqls = Sqls;
+			_Sqls = Sqls;
 
-			// 设置新状态
-			if (UIState != null)
+			// 绑定到TreeListView
+			treeListView1.Items.Clear();
+			if (_Sqls.SqlInstance.Rows.Count > 0)
 			{
-				foreach (int ID in UIState.Node_Expanded)
+				tlvHelper.BindDataTable(_Sqls.SqlInstance);
+
+				foreach (TreeListViewItem root in treeListView1.Items)
 				{
-					FocusAndExpandByID(ID);
+					SetStateByHiddenCol(root);
 				}
-				FocusAndExpandByID(UIState.FocusedServerID);
 			}
 			SolutionExplorer_Shown(null, null);
+		}
+
+		/// <summary>
+		/// 保存选中展开状态到XSD
+		/// </summary>
+		public void SaveState2XSD()
+		{
+			foreach (TreeListViewItem root in treeListView1.Items)
+			{
+				SaveState2XSD(root);
+			}
 		}
 		#endregion
 	}

@@ -202,7 +202,7 @@ namespace ApqDBManager.Controls
 		}
 
 		//导出
-		private void tsmiExport_Click(object sender, EventArgs e)
+		private void tsbExport_Click(object sender, EventArgs e)
 		{
 			if (BackDataSet.Tables.Count > 0)
 			{

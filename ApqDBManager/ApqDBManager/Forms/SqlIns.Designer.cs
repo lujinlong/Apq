@@ -29,66 +29,30 @@
 		{
 			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SqlIns));
-			this.treeList1 = new DevExpress.XtraTreeList.TreeList();
-			this.treeListColumn1 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
+			System.Windows.Forms.TreeListViewItemCollection.TreeListViewItemCollectionComparer treeListViewItemCollectionComparer1 = new System.Windows.Forms.TreeListViewItemCollection.TreeListViewItemCollectionComparer();
 			this.cmTreeMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.tsmiCopy = new System.Windows.Forms.ToolStripMenuItem();
-			this.repositoryItemCheckEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
 			this.imageList1 = new System.Windows.Forms.ImageList(this.components);
 			this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
-			this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-			this.tsmiSelect = new System.Windows.Forms.ToolStripMenuItem();
-			this.tsmiSelectAll = new System.Windows.Forms.ToolStripMenuItem();
-			this.tsmiReverse = new System.Windows.Forms.ToolStripMenuItem();
-			this.menuStrip2 = new System.Windows.Forms.MenuStrip();
-			this.tsmiExpandAll = new System.Windows.Forms.ToolStripMenuItem();
-			this.tsmiFail = new System.Windows.Forms.ToolStripMenuItem();
-			this.tsmiResult = new System.Windows.Forms.ToolStripMenuItem();
-			((System.ComponentModel.ISupportInitialize)(this.treeList1)).BeginInit();
+			this.toolStrip2 = new System.Windows.Forms.ToolStrip();
+			this.tsbExpandAll = new System.Windows.Forms.ToolStripButton();
+			this.tsbFail = new System.Windows.Forms.ToolStripButton();
+			this.tsbResult = new System.Windows.Forms.ToolStripButton();
+			this.treeListView1 = new System.Windows.Forms.TreeListView();
+			this.columnHeader1 = new System.Windows.Forms.ColumnHeader();
+			this.imageList2 = new System.Windows.Forms.ImageList(this.components);
+			this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+			this.tssbSelect = new System.Windows.Forms.ToolStripSplitButton();
+			this.tsbSelectAll = new System.Windows.Forms.ToolStripButton();
+			this.tsbReverse = new System.Windows.Forms.ToolStripButton();
 			this.cmTreeMenu.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit1)).BeginInit();
 			this.toolStripContainer1.BottomToolStripPanel.SuspendLayout();
 			this.toolStripContainer1.ContentPanel.SuspendLayout();
 			this.toolStripContainer1.TopToolStripPanel.SuspendLayout();
 			this.toolStripContainer1.SuspendLayout();
-			this.menuStrip1.SuspendLayout();
-			this.menuStrip2.SuspendLayout();
+			this.toolStrip2.SuspendLayout();
+			this.toolStrip1.SuspendLayout();
 			this.SuspendLayout();
-			// 
-			// treeList1
-			// 
-			this.treeList1.Columns.AddRange(new DevExpress.XtraTreeList.Columns.TreeListColumn[] {
-            this.treeListColumn1});
-			this.treeList1.ContextMenuStrip = this.cmTreeMenu;
-			this.treeList1.DataMember = "SqlInstance";
-			this.treeList1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.treeList1.KeyFieldName = "SqlID";
-			this.treeList1.Location = new System.Drawing.Point(0, 0);
-			this.treeList1.Name = "treeList1";
-			this.treeList1.OptionsBehavior.Editable = false;
-			this.treeList1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
-            this.repositoryItemCheckEdit1});
-			this.treeList1.Size = new System.Drawing.Size(300, 368);
-			this.treeList1.StateImageList = this.imageList1;
-			this.treeList1.TabIndex = 0;
-			this.treeList1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.treeList1_KeyDown);
-			this.treeList1.FocusedNodeChanged += new DevExpress.XtraTreeList.FocusedNodeChangedEventHandler(this.treeList1_FocusedNodeChanged);
-			this.treeList1.EditorKeyUp += new System.Windows.Forms.KeyEventHandler(this.treeList1_EditorKeyUp);
-			this.treeList1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.treeList1_MouseClick);
-			this.treeList1.GetStateImage += new DevExpress.XtraTreeList.GetStateImageEventHandler(this.treeList1_GetStateImage);
-			this.treeList1.KeyUp += new System.Windows.Forms.KeyEventHandler(this.treeList1_KeyUp);
-			// 
-			// treeListColumn1
-			// 
-			this.treeListColumn1.Caption = "名称";
-			this.treeListColumn1.FieldName = "SqlName";
-			this.treeListColumn1.MinWidth = 37;
-			this.treeListColumn1.Name = "treeListColumn1";
-			this.treeListColumn1.OptionsColumn.AllowMove = false;
-			this.treeListColumn1.OptionsColumn.AllowSort = false;
-			this.treeListColumn1.OptionsColumn.ReadOnly = true;
-			this.treeListColumn1.Visible = true;
-			this.treeListColumn1.VisibleIndex = 0;
 			// 
 			// cmTreeMenu
 			// 
@@ -104,11 +68,6 @@
 			this.tsmiCopy.Text = "复制(&C)";
 			this.tsmiCopy.Click += new System.EventHandler(this.tsmiCopy_Click);
 			// 
-			// repositoryItemCheckEdit1
-			// 
-			this.repositoryItemCheckEdit1.AutoHeight = false;
-			this.repositoryItemCheckEdit1.Name = "repositoryItemCheckEdit1";
-			// 
 			// imageList1
 			// 
 			this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
@@ -122,89 +81,143 @@
 			// 
 			// toolStripContainer1.BottomToolStripPanel
 			// 
-			this.toolStripContainer1.BottomToolStripPanel.Controls.Add(this.menuStrip2);
+			this.toolStripContainer1.BottomToolStripPanel.Controls.Add(this.toolStrip2);
 			// 
 			// toolStripContainer1.ContentPanel
 			// 
-			this.toolStripContainer1.ContentPanel.Controls.Add(this.treeList1);
-			this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(300, 368);
+			this.toolStripContainer1.ContentPanel.Controls.Add(this.treeListView1);
+			this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(300, 366);
 			this.toolStripContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.toolStripContainer1.LeftToolStripPanelVisible = false;
 			this.toolStripContainer1.Location = new System.Drawing.Point(0, 0);
 			this.toolStripContainer1.Name = "toolStripContainer1";
+			this.toolStripContainer1.RightToolStripPanelVisible = false;
 			this.toolStripContainer1.Size = new System.Drawing.Size(300, 416);
 			this.toolStripContainer1.TabIndex = 5;
 			this.toolStripContainer1.Text = "toolStripContainer1";
 			// 
 			// toolStripContainer1.TopToolStripPanel
 			// 
-			this.toolStripContainer1.TopToolStripPanel.Controls.Add(this.menuStrip1);
+			this.toolStripContainer1.TopToolStripPanel.Controls.Add(this.toolStrip1);
 			// 
-			// menuStrip1
+			// toolStrip2
 			// 
-			this.menuStrip1.Dock = System.Windows.Forms.DockStyle.None;
-			this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmiSelect,
-            this.tsmiSelectAll,
-            this.tsmiReverse});
-			this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-			this.menuStrip1.Name = "menuStrip1";
-			this.menuStrip1.Size = new System.Drawing.Size(300, 24);
-			this.menuStrip1.TabIndex = 0;
-			this.menuStrip1.Text = "menuStrip1";
+			this.toolStrip2.Dock = System.Windows.Forms.DockStyle.None;
+			this.toolStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsbExpandAll,
+            this.tsbFail,
+            this.tsbResult});
+			this.toolStrip2.Location = new System.Drawing.Point(3, 0);
+			this.toolStrip2.Name = "toolStrip2";
+			this.toolStrip2.Size = new System.Drawing.Size(189, 25);
+			this.toolStrip2.TabIndex = 8;
+			this.toolStrip2.Text = "toolStrip2";
 			// 
-			// tsmiSelect
+			// tsbExpandAll
 			// 
-			this.tsmiSelect.Name = "tsmiSelect";
-			this.tsmiSelect.Size = new System.Drawing.Size(59, 20);
-			this.tsmiSelect.Text = "选择(&L)";
+			this.tsbExpandAll.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+			this.tsbExpandAll.Image = ((System.Drawing.Image)(resources.GetObject("tsbExpandAll.Image")));
+			this.tsbExpandAll.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.tsbExpandAll.Name = "tsbExpandAll";
+			this.tsbExpandAll.Size = new System.Drawing.Size(75, 22);
+			this.tsbExpandAll.Text = "全部收起(&D)";
+			this.tsbExpandAll.Click += new System.EventHandler(this.tsbExpandAll_Click);
 			// 
-			// tsmiSelectAll
+			// tsbFail
 			// 
-			this.tsmiSelectAll.Name = "tsmiSelectAll";
-			this.tsmiSelectAll.Size = new System.Drawing.Size(59, 20);
-			this.tsmiSelectAll.Text = "全选(&A)";
-			this.tsmiSelectAll.Click += new System.EventHandler(this.tsmiSelectAll_Click);
+			this.tsbFail.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+			this.tsbFail.Image = ((System.Drawing.Image)(resources.GetObject("tsbFail.Image")));
+			this.tsbFail.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.tsbFail.Name = "tsbFail";
+			this.tsbFail.Size = new System.Drawing.Size(51, 22);
+			this.tsbFail.Text = "失败(&F)";
+			this.tsbFail.Click += new System.EventHandler(this.tsbFail_Click);
 			// 
-			// tsmiReverse
+			// tsbResult
 			// 
-			this.tsmiReverse.Name = "tsmiReverse";
-			this.tsmiReverse.Size = new System.Drawing.Size(59, 20);
-			this.tsmiReverse.Text = "反选(&S)";
-			this.tsmiReverse.Click += new System.EventHandler(this.tsmiReverse_Click);
+			this.tsbResult.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+			this.tsbResult.Image = ((System.Drawing.Image)(resources.GetObject("tsbResult.Image")));
+			this.tsbResult.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.tsbResult.Name = "tsbResult";
+			this.tsbResult.Size = new System.Drawing.Size(51, 22);
+			this.tsbResult.Text = "结果(&T)";
+			this.tsbResult.Click += new System.EventHandler(this.tsbResult_Click);
 			// 
-			// menuStrip2
+			// treeListView1
 			// 
-			this.menuStrip2.Dock = System.Windows.Forms.DockStyle.None;
-			this.menuStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmiExpandAll,
-            this.tsmiFail,
-            this.tsmiResult});
-			this.menuStrip2.Location = new System.Drawing.Point(0, 0);
-			this.menuStrip2.Name = "menuStrip2";
-			this.menuStrip2.Size = new System.Drawing.Size(300, 24);
-			this.menuStrip2.TabIndex = 0;
-			this.menuStrip2.Text = "menuStrip2";
+			this.treeListView1.CheckBoxes = System.Windows.Forms.CheckBoxesTypes.Simple;
+			this.treeListView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1});
+			treeListViewItemCollectionComparer1.Column = 0;
+			treeListViewItemCollectionComparer1.SortOrder = System.Windows.Forms.SortOrder.Ascending;
+			this.treeListView1.Comparer = treeListViewItemCollectionComparer1;
+			this.treeListView1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.treeListView1.Location = new System.Drawing.Point(0, 0);
+			this.treeListView1.Name = "treeListView1";
+			this.treeListView1.Size = new System.Drawing.Size(300, 366);
+			this.treeListView1.SmallImageList = this.imageList2;
+			this.treeListView1.TabIndex = 1;
+			this.treeListView1.UseCompatibleStateImageBehavior = false;
+			this.treeListView1.AfterCollapse += new System.Windows.Forms.TreeListViewEventHandler(this.treeListView1_AfterCollapse);
+			this.treeListView1.SelectedIndexChanged += new System.EventHandler(this.treeListView1_SelectedIndexChanged);
+			this.treeListView1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.treeListView1_KeyDown);
+			this.treeListView1.AfterExpand += new System.Windows.Forms.TreeListViewEventHandler(this.treeListView1_AfterExpand);
 			// 
-			// tsmiExpandAll
+			// columnHeader1
 			// 
-			this.tsmiExpandAll.Name = "tsmiExpandAll";
-			this.tsmiExpandAll.Size = new System.Drawing.Size(83, 20);
-			this.tsmiExpandAll.Text = "全部展开(&D)";
-			this.tsmiExpandAll.Click += new System.EventHandler(this.tsmiExpandAll_Click);
+			this.columnHeader1.Text = "名称";
+			this.columnHeader1.Width = 280;
 			// 
-			// tsmiFail
+			// imageList2
 			// 
-			this.tsmiFail.Name = "tsmiFail";
-			this.tsmiFail.Size = new System.Drawing.Size(59, 20);
-			this.tsmiFail.Text = "失败(&F)";
-			this.tsmiFail.Click += new System.EventHandler(this.tsmiFail_Click);
+			this.imageList2.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList2.ImageStream")));
+			this.imageList2.TransparentColor = System.Drawing.Color.Transparent;
+			this.imageList2.Images.SetKeyName(0, "");
+			this.imageList2.Images.SetKeyName(1, "");
+			this.imageList2.Images.SetKeyName(2, "");
+			this.imageList2.Images.SetKeyName(3, "");
 			// 
-			// tsmiResult
+			// toolStrip1
 			// 
-			this.tsmiResult.Name = "tsmiResult";
-			this.tsmiResult.Size = new System.Drawing.Size(59, 20);
-			this.tsmiResult.Text = "结果(&T)";
-			this.tsmiResult.Click += new System.EventHandler(this.tsmiResult_Click);
+			this.toolStrip1.Dock = System.Windows.Forms.DockStyle.None;
+			this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tssbSelect,
+            this.tsbSelectAll,
+            this.tsbReverse});
+			this.toolStrip1.Location = new System.Drawing.Point(3, 0);
+			this.toolStrip1.Name = "toolStrip1";
+			this.toolStrip1.Size = new System.Drawing.Size(177, 25);
+			this.toolStrip1.TabIndex = 6;
+			this.toolStrip1.Text = "toolStrip1";
+			// 
+			// tssbSelect
+			// 
+			this.tssbSelect.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+			this.tssbSelect.Image = ((System.Drawing.Image)(resources.GetObject("tssbSelect.Image")));
+			this.tssbSelect.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.tssbSelect.Name = "tssbSelect";
+			this.tssbSelect.Size = new System.Drawing.Size(63, 22);
+			this.tssbSelect.Text = "选择(&L)";
+			// 
+			// tsbSelectAll
+			// 
+			this.tsbSelectAll.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+			this.tsbSelectAll.Image = ((System.Drawing.Image)(resources.GetObject("tsbSelectAll.Image")));
+			this.tsbSelectAll.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.tsbSelectAll.Name = "tsbSelectAll";
+			this.tsbSelectAll.Size = new System.Drawing.Size(51, 22);
+			this.tsbSelectAll.Text = "全选(&A)";
+			this.tsbSelectAll.Click += new System.EventHandler(this.tsbSelectAll_Click);
+			// 
+			// tsbReverse
+			// 
+			this.tsbReverse.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+			this.tsbReverse.Image = ((System.Drawing.Image)(resources.GetObject("tsbReverse.Image")));
+			this.tsbReverse.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.tsbReverse.Name = "tsbReverse";
+			this.tsbReverse.Size = new System.Drawing.Size(51, 22);
+			this.tsbReverse.Text = "反选(&S)";
+			this.tsbReverse.Click += new System.EventHandler(this.tsbReverse_Click);
 			// 
 			// SqlIns
 			// 
@@ -216,16 +229,13 @@
 						| WeifenLuo.WinFormsUI.Docking.DockAreas.DockBottom)));
 			this.HideOnClose = true;
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-			this.MainMenuStrip = this.menuStrip1;
 			this.Name = "SqlIns";
 			this.ShowHint = WeifenLuo.WinFormsUI.Docking.DockState.DockLeft;
 			this.TabText = "Sql实例";
 			this.Text = "Sql实例";
 			this.Load += new System.EventHandler(this.SqlIns_Load);
 			this.Shown += new System.EventHandler(this.SolutionExplorer_Shown);
-			((System.ComponentModel.ISupportInitialize)(this.treeList1)).EndInit();
 			this.cmTreeMenu.ResumeLayout(false);
-			((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit1)).EndInit();
 			this.toolStripContainer1.BottomToolStripPanel.ResumeLayout(false);
 			this.toolStripContainer1.BottomToolStripPanel.PerformLayout();
 			this.toolStripContainer1.ContentPanel.ResumeLayout(false);
@@ -233,30 +243,30 @@
 			this.toolStripContainer1.TopToolStripPanel.PerformLayout();
 			this.toolStripContainer1.ResumeLayout(false);
 			this.toolStripContainer1.PerformLayout();
-			this.menuStrip1.ResumeLayout(false);
-			this.menuStrip1.PerformLayout();
-			this.menuStrip2.ResumeLayout(false);
-			this.menuStrip2.PerformLayout();
+			this.toolStrip2.ResumeLayout(false);
+			this.toolStrip2.PerformLayout();
+			this.toolStrip1.ResumeLayout(false);
+			this.toolStrip1.PerformLayout();
 			this.ResumeLayout(false);
 
 		}
 		#endregion
 
-		private DevExpress.XtraTreeList.TreeList treeList1;
-		private DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit repositoryItemCheckEdit1;
 		private System.Windows.Forms.ImageList imageList1;
 		private System.Windows.Forms.ContextMenuStrip cmTreeMenu;
 		private System.Windows.Forms.ToolStripMenuItem tsmiCopy;
-		private DevExpress.XtraTreeList.Columns.TreeListColumn treeListColumn1;
 		private System.Windows.Forms.ToolStripContainer toolStripContainer1;
-		private System.Windows.Forms.MenuStrip menuStrip1;
-		private System.Windows.Forms.ToolStripMenuItem tsmiSelect;
-		private System.Windows.Forms.ToolStripMenuItem tsmiSelectAll;
-		private System.Windows.Forms.ToolStripMenuItem tsmiReverse;
-		private System.Windows.Forms.MenuStrip menuStrip2;
-		private System.Windows.Forms.ToolStripMenuItem tsmiExpandAll;
-		private System.Windows.Forms.ToolStripMenuItem tsmiFail;
-		private System.Windows.Forms.ToolStripMenuItem tsmiResult;
+		private System.Windows.Forms.ToolStrip toolStrip1;
+		private System.Windows.Forms.ToolStripButton tsbSelectAll;
+		private System.Windows.Forms.ToolStripButton tsbReverse;
+		private System.Windows.Forms.ToolStripSplitButton tssbSelect;
+		private System.Windows.Forms.ToolStrip toolStrip2;
+		private System.Windows.Forms.ToolStripButton tsbExpandAll;
+		private System.Windows.Forms.ToolStripButton tsbFail;
+		private System.Windows.Forms.ToolStripButton tsbResult;
+		private System.Windows.Forms.TreeListView treeListView1;
+		private System.Windows.Forms.ColumnHeader columnHeader1;
+		private System.Windows.Forms.ImageList imageList2;
 
 	}
 }

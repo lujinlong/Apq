@@ -275,34 +275,38 @@ namespace ApqDBManager
 		#endregion
 
 		#region SqlInstances
-		private static Apq.DBC.XSD _Sqls;
+		private static ApqDBManager.Forms.SrvsMgr.SrvsMgr_XSD _Sqls;
 		/// <summary>
 		/// 获取服务器集
 		/// </summary>
-		public static Apq.DBC.XSD Sqls
+		public static ApqDBManager.Forms.SrvsMgr.SrvsMgr_XSD Sqls
 		{
 			get
 			{
 				if (_Sqls == null)
 				{
-					SqlsReload();
+					SqlsLoadFromDB();
 				}
 				return _Sqls;
 			}
 		}
 
-		public static void SqlsReload()
+		public static void SqlsLoadFromDB()
 		{
 			#region 从数据库加载实例列表
 			if (_Sqls == null)
 			{
-				_Sqls = new Apq.DBC.XSD();
-				_Sqls.SqlInstance.Columns.Add("CheckState", typeof(int));
+				_Sqls = new ApqDBManager.Forms.SrvsMgr.SrvsMgr_XSD();
+				_Sqls.SqlInstance.Columns.Add("CheckState", typeof(bool));
+				_Sqls.SqlInstance.Columns.Add("_Expanded", typeof(bool));
+				_Sqls.SqlInstance.Columns.Add("_Selected", typeof(bool));
 				_Sqls.SqlInstance.Columns.Add("IsReadyToGo", typeof(bool));
 				_Sqls.SqlInstance.Columns.Add("Err", typeof(bool));
 				_Sqls.SqlInstance.Columns.Add("DBConnectionString");
 
-				_Sqls.SqlInstance.Columns["CheckState"].DefaultValue = 0;
+				_Sqls.SqlInstance.Columns["CheckState"].DefaultValue = false;
+				_Sqls.SqlInstance.Columns["_Expanded"].DefaultValue = true;
+				_Sqls.SqlInstance.Columns["_Selected"].DefaultValue = false;
 				_Sqls.SqlInstance.Columns["IsReadyToGo"].DefaultValue = false;
 				_Sqls.SqlInstance.Columns["Err"].DefaultValue = false;
 			}
@@ -320,12 +324,14 @@ namespace ApqDBManager
 
 			#endregion
 
-			//解密密码,生成连接字符串
-			foreach (Apq.DBC.XSD.SqlInstanceRow dr in _Sqls.SqlInstance.Rows)
+			//解密密码
+			Common.PwdC2D(_Sqls.SqlInstance);
+
+			//生成连接字符串
+			foreach (ApqDBManager.Forms.SrvsMgr.SrvsMgr_XSD.SqlInstanceRow dr in _Sqls.SqlInstance.Rows)
 			{
-				if (!Apq.Convert.LikeDBNull(dr["PwdC"]))
+				if (!Apq.Convert.LikeDBNull(dr["PwdD"]))
 				{
-					dr.PwdD = Apq.Security.Cryptography.DESHelper.DecryptString(dr.PwdC, GlobalObject.RegConfigChain["Crypt", "DESKey"], GlobalObject.RegConfigChain["Crypt", "DESIV"]);
 					Apq.ConnectionStrings.SQLServer.SqlConnection scHelper = new Apq.ConnectionStrings.SQLServer.SqlConnection();
 					scHelper.DBName = "master";
 					scHelper.ServerName = dr.IP;
@@ -340,7 +346,7 @@ namespace ApqDBManager
 			}
 
 #if Debug_Home
-			foreach (Apq.DBC.XSD.SqlInstanceRow dr in _Sqls.SqlInstance.Rows)
+			foreach (ApqDBManager.Forms.SrvsMgr.SrvsMgr_XSD.SqlInstanceRow dr in _Sqls.SqlInstance.Rows)
 			{
 				dr["DBConnectionString"] = "Data Source=.;User ID=apq;Password=f;";
 				dr.IP = "127.0.0.1";

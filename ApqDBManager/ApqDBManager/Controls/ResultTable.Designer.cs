@@ -28,67 +28,25 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
-			this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-			this.tsmiExport = new System.Windows.Forms.ToolStripMenuItem();
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ResultTable));
 			this.tc = new System.Windows.Forms.TabControl();
 			this.tpRt = new System.Windows.Forms.TabPage();
 			this.tpInfo = new System.Windows.Forms.TabPage();
-			this.toolStripContainer1.ContentPanel.SuspendLayout();
-			this.toolStripContainer1.TopToolStripPanel.SuspendLayout();
-			this.toolStripContainer1.SuspendLayout();
-			this.menuStrip1.SuspendLayout();
+			this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+			this.tsbExport = new System.Windows.Forms.ToolStripButton();
 			this.tc.SuspendLayout();
+			this.toolStrip1.SuspendLayout();
 			this.SuspendLayout();
-			// 
-			// toolStripContainer1
-			// 
-			this.toolStripContainer1.BottomToolStripPanelVisible = false;
-			// 
-			// toolStripContainer1.ContentPanel
-			// 
-			this.toolStripContainer1.ContentPanel.Controls.Add(this.tc);
-			this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(680, 394);
-			this.toolStripContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.toolStripContainer1.LeftToolStripPanelVisible = false;
-			this.toolStripContainer1.Location = new System.Drawing.Point(0, 0);
-			this.toolStripContainer1.Name = "toolStripContainer1";
-			this.toolStripContainer1.RightToolStripPanelVisible = false;
-			this.toolStripContainer1.Size = new System.Drawing.Size(680, 418);
-			this.toolStripContainer1.TabIndex = 5;
-			this.toolStripContainer1.Text = "toolStripContainer1";
-			// 
-			// toolStripContainer1.TopToolStripPanel
-			// 
-			this.toolStripContainer1.TopToolStripPanel.Controls.Add(this.menuStrip1);
-			// 
-			// menuStrip1
-			// 
-			this.menuStrip1.Dock = System.Windows.Forms.DockStyle.None;
-			this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmiExport});
-			this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-			this.menuStrip1.Name = "menuStrip1";
-			this.menuStrip1.Size = new System.Drawing.Size(680, 24);
-			this.menuStrip1.TabIndex = 0;
-			this.menuStrip1.Text = "menuStrip1";
-			// 
-			// tsmiExport
-			// 
-			this.tsmiExport.Name = "tsmiExport";
-			this.tsmiExport.Size = new System.Drawing.Size(59, 20);
-			this.tsmiExport.Text = "导出(&T)";
-			this.tsmiExport.Click += new System.EventHandler(this.tsmiExport_Click);
 			// 
 			// tc
 			// 
 			this.tc.Controls.Add(this.tpRt);
 			this.tc.Controls.Add(this.tpInfo);
 			this.tc.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.tc.Location = new System.Drawing.Point(0, 0);
+			this.tc.Location = new System.Drawing.Point(0, 25);
 			this.tc.Name = "tc";
 			this.tc.SelectedIndex = 0;
-			this.tc.Size = new System.Drawing.Size(680, 394);
+			this.tc.Size = new System.Drawing.Size(680, 393);
 			this.tc.TabIndex = 0;
 			// 
 			// tpRt
@@ -96,7 +54,7 @@
 			this.tpRt.Location = new System.Drawing.Point(4, 21);
 			this.tpRt.Name = "tpRt";
 			this.tpRt.Padding = new System.Windows.Forms.Padding(3);
-			this.tpRt.Size = new System.Drawing.Size(672, 369);
+			this.tpRt.Size = new System.Drawing.Size(672, 368);
 			this.tpRt.TabIndex = 0;
 			this.tpRt.Text = "结果";
 			this.tpRt.UseVisualStyleBackColor = true;
@@ -111,34 +69,50 @@
 			this.tpInfo.Text = "消息";
 			this.tpInfo.UseVisualStyleBackColor = true;
 			// 
+			// toolStrip1
+			// 
+			this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsbExport});
+			this.toolStrip1.Location = new System.Drawing.Point(0, 0);
+			this.toolStrip1.Name = "toolStrip1";
+			this.toolStrip1.Size = new System.Drawing.Size(680, 25);
+			this.toolStrip1.TabIndex = 6;
+			this.toolStrip1.Text = "toolStrip1";
+			// 
+			// tsbExport
+			// 
+			this.tsbExport.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+			this.tsbExport.Image = ((System.Drawing.Image)(resources.GetObject("tsbExport.Image")));
+			this.tsbExport.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.tsbExport.Name = "tsbExport";
+			this.tsbExport.Size = new System.Drawing.Size(51, 22);
+			this.tsbExport.Text = "导出(&T)";
+			this.tsbExport.Click += new System.EventHandler(this.tsbExport_Click);
+			// 
 			// ResultTable
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.Controls.Add(this.toolStripContainer1);
+			this.Controls.Add(this.tc);
+			this.Controls.Add(this.toolStrip1);
 			this.Margin = new System.Windows.Forms.Padding(0);
 			this.Name = "ResultTable";
 			this.Size = new System.Drawing.Size(680, 418);
 			this.Load += new System.EventHandler(this.ResultTable_Load);
-			this.toolStripContainer1.ContentPanel.ResumeLayout(false);
-			this.toolStripContainer1.TopToolStripPanel.ResumeLayout(false);
-			this.toolStripContainer1.TopToolStripPanel.PerformLayout();
-			this.toolStripContainer1.ResumeLayout(false);
-			this.toolStripContainer1.PerformLayout();
-			this.menuStrip1.ResumeLayout(false);
-			this.menuStrip1.PerformLayout();
 			this.tc.ResumeLayout(false);
+			this.toolStrip1.ResumeLayout(false);
+			this.toolStrip1.PerformLayout();
 			this.ResumeLayout(false);
+			this.PerformLayout();
 
 		}
 
 		#endregion
 
-		private System.Windows.Forms.ToolStripContainer toolStripContainer1;
-		private System.Windows.Forms.MenuStrip menuStrip1;
-		private System.Windows.Forms.ToolStripMenuItem tsmiExport;
 		private System.Windows.Forms.TabControl tc;
 		private System.Windows.Forms.TabPage tpRt;
 		private System.Windows.Forms.TabPage tpInfo;
+		private System.Windows.Forms.ToolStrip toolStrip1;
+		private System.Windows.Forms.ToolStripButton tsbExport;
 	}
 }

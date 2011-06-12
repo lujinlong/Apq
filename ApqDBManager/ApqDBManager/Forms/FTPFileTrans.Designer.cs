@@ -56,7 +56,7 @@
 			this.fbdCFTPFolder_Out = new System.Windows.Forms.FolderBrowserDialog();
 			this.fbdCFolder_In = new System.Windows.Forms.FolderBrowserDialog();
 			this._UI = new ApqDBManager.XSD.UI();
-			this._Sqls = new Apq.DBC.XSD();
+			this._Sqls = new ApqDBManager.Forms.SrvsMgr.SrvsMgr_XSD();
 			((System.ComponentModel.ISupportInitialize)(this.beDBFTPFolder_Out.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.beCFTPFolder_Out.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.beDBFTPFolder_In.Properties)).BeginInit();
@@ -353,6 +353,6 @@
 		private DevExpress.XtraEditors.LabelControl labelControl5;
 		private DevExpress.XtraEditors.LabelControl labelControl6;
 		private ApqDBManager.XSD.UI _UI;
-		private Apq.DBC.XSD _Sqls;
+		private ApqDBManager.Forms.SrvsMgr.SrvsMgr_XSD _Sqls;
 	}
 }

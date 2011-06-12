@@ -29,7 +29,7 @@
 		private void InitializeComponent()
 		{
 			this.components = new System.ComponentModel.Container();
-			System.Windows.Forms.TreeListViewItemCollection.TreeListViewItemCollectionComparer treeListViewItemCollectionComparer2 = new System.Windows.Forms.TreeListViewItemCollection.TreeListViewItemCollectionComparer();
+			System.Windows.Forms.TreeListViewItemCollection.TreeListViewItemCollectionComparer treeListViewItemCollectionComparer1 = new System.Windows.Forms.TreeListViewItemCollection.TreeListViewItemCollectionComparer();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SqlInstance));
 			this.cmTreeMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.tsmiTestOpen = new System.Windows.Forms.ToolStripMenuItem();
@@ -56,16 +56,16 @@
 			this.tsbReverse = new System.Windows.Forms.ToolStripButton();
 			this.tsbExpandAll = new System.Windows.Forms.ToolStripButton();
 			this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-			this.tsbDBC = new System.Windows.Forms.ToolStripButton();
-			this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-			this.tsslOutInfo = new System.Windows.Forms.ToolStripStatusLabel();
-			this.tsslTest = new System.Windows.Forms.ToolStripStatusLabel();
 			this.tstbStr = new System.Windows.Forms.ToolStripTextBox();
-			this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
 			this.tssbSlts = new System.Windows.Forms.ToolStripSplitButton();
 			this.tsmiSltsUserId = new System.Windows.Forms.ToolStripMenuItem();
 			this.tsmiSltsPwdD = new System.Windows.Forms.ToolStripMenuItem();
 			this.tsmiSltsSqlPort = new System.Windows.Forms.ToolStripMenuItem();
+			this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+			this.tsbDBC = new System.Windows.Forms.ToolStripButton();
+			this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+			this.tsslOutInfo = new System.Windows.Forms.ToolStripStatusLabel();
+			this.tsslTest = new System.Windows.Forms.ToolStripStatusLabel();
 			this.cmTreeMenu.SuspendLayout();
 			this.toolStrip1.SuspendLayout();
 			this.statusStrip1.SuspendLayout();
@@ -124,9 +124,9 @@
             this.columnHeader4,
             this.columnHeader5,
             this.columnHeader6});
-			treeListViewItemCollectionComparer2.Column = 0;
-			treeListViewItemCollectionComparer2.SortOrder = System.Windows.Forms.SortOrder.Ascending;
-			this.treeListView1.Comparer = treeListViewItemCollectionComparer2;
+			treeListViewItemCollectionComparer1.Column = 0;
+			treeListViewItemCollectionComparer1.SortOrder = System.Windows.Forms.SortOrder.Ascending;
+			this.treeListView1.Comparer = treeListViewItemCollectionComparer1;
 			this.treeListView1.ContextMenuStrip = this.cmTreeMenu;
 			this.treeListView1.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.treeListView1.LabelEdit = true;
@@ -248,13 +248,57 @@
 			this.tsbExpandAll.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.tsbExpandAll.Name = "tsbExpandAll";
 			this.tsbExpandAll.Size = new System.Drawing.Size(75, 22);
-			this.tsbExpandAll.Text = "全部展开(&D)";
+			this.tsbExpandAll.Text = "全部收起(&D)";
 			this.tsbExpandAll.Click += new System.EventHandler(this.tsbExpandAll_Click);
 			// 
 			// toolStripSeparator2
 			// 
 			this.toolStripSeparator2.Name = "toolStripSeparator2";
 			this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
+			// 
+			// tstbStr
+			// 
+			this.tstbStr.Name = "tstbStr";
+			this.tstbStr.Size = new System.Drawing.Size(200, 25);
+			// 
+			// tssbSlts
+			// 
+			this.tssbSlts.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+			this.tssbSlts.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiSltsUserId,
+            this.tsmiSltsPwdD,
+            this.tsmiSltsSqlPort});
+			this.tssbSlts.Image = ((System.Drawing.Image)(resources.GetObject("tssbSlts.Image")));
+			this.tssbSlts.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.tssbSlts.Name = "tssbSlts";
+			this.tssbSlts.Size = new System.Drawing.Size(87, 22);
+			this.tssbSlts.Text = "批量设置(&E)";
+			// 
+			// tsmiSltsUserId
+			// 
+			this.tsmiSltsUserId.Name = "tsmiSltsUserId";
+			this.tsmiSltsUserId.Size = new System.Drawing.Size(112, 22);
+			this.tsmiSltsUserId.Text = "登录名";
+			this.tsmiSltsUserId.Click += new System.EventHandler(this.tsmiSltsUserId_Click);
+			// 
+			// tsmiSltsPwdD
+			// 
+			this.tsmiSltsPwdD.Name = "tsmiSltsPwdD";
+			this.tsmiSltsPwdD.Size = new System.Drawing.Size(112, 22);
+			this.tsmiSltsPwdD.Text = "密码";
+			this.tsmiSltsPwdD.Click += new System.EventHandler(this.tsmiSltsPwdD_Click);
+			// 
+			// tsmiSltsSqlPort
+			// 
+			this.tsmiSltsSqlPort.Name = "tsmiSltsSqlPort";
+			this.tsmiSltsSqlPort.Size = new System.Drawing.Size(112, 22);
+			this.tsmiSltsSqlPort.Text = "SQL端口";
+			this.tsmiSltsSqlPort.Click += new System.EventHandler(this.tsmiSltsSqlPort_Click);
+			// 
+			// toolStripSeparator3
+			// 
+			this.toolStripSeparator3.Name = "toolStripSeparator3";
+			this.toolStripSeparator3.Size = new System.Drawing.Size(6, 25);
 			// 
 			// tsbDBC
 			// 
@@ -288,50 +332,6 @@
 			// 
 			this.tsslTest.Name = "tsslTest";
 			this.tsslTest.Size = new System.Drawing.Size(0, 17);
-			// 
-			// tstbStr
-			// 
-			this.tstbStr.Name = "tstbStr";
-			this.tstbStr.Size = new System.Drawing.Size(200, 25);
-			// 
-			// toolStripSeparator3
-			// 
-			this.toolStripSeparator3.Name = "toolStripSeparator3";
-			this.toolStripSeparator3.Size = new System.Drawing.Size(6, 25);
-			// 
-			// tssbSlts
-			// 
-			this.tssbSlts.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-			this.tssbSlts.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmiSltsUserId,
-            this.tsmiSltsPwdD,
-            this.tsmiSltsSqlPort});
-			this.tssbSlts.Image = ((System.Drawing.Image)(resources.GetObject("tssbSlts.Image")));
-			this.tssbSlts.ImageTransparentColor = System.Drawing.Color.Magenta;
-			this.tssbSlts.Name = "tssbSlts";
-			this.tssbSlts.Size = new System.Drawing.Size(87, 22);
-			this.tssbSlts.Text = "批量设置(&E)";
-			// 
-			// tsmiSltsUserId
-			// 
-			this.tsmiSltsUserId.Name = "tsmiSltsUserId";
-			this.tsmiSltsUserId.Size = new System.Drawing.Size(152, 22);
-			this.tsmiSltsUserId.Text = "登录名";
-			this.tsmiSltsUserId.Click += new System.EventHandler(this.tsmiSltsUserId_Click);
-			// 
-			// tsmiSltsPwdD
-			// 
-			this.tsmiSltsPwdD.Name = "tsmiSltsPwdD";
-			this.tsmiSltsPwdD.Size = new System.Drawing.Size(152, 22);
-			this.tsmiSltsPwdD.Text = "密码";
-			this.tsmiSltsPwdD.Click += new System.EventHandler(this.tsmiSltsPwdD_Click);
-			// 
-			// tsmiSltsSqlPort
-			// 
-			this.tsmiSltsSqlPort.Name = "tsmiSltsSqlPort";
-			this.tsmiSltsSqlPort.Size = new System.Drawing.Size(152, 22);
-			this.tsmiSltsSqlPort.Text = "SQL端口";
-			this.tsmiSltsSqlPort.Click += new System.EventHandler(this.tsmiSltsSqlPort_Click);
 			// 
 			// SqlInstance
 			// 

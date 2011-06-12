@@ -54,10 +54,10 @@ namespace ApqDBManager.Forms.SrvsMgr
 		#region treeListView1
 
 		#region 选中状态
-		#region SetCheckedNode
+		#region SetChecked
 		private void SetCheckedNode(TreeListViewItem node, bool Checked, bool checkParent, bool checkChildren)
 		{
-			treeListView1.EndUpdate();
+			treeListView1.BeginUpdate();
 			node.Checked = Checked;
 
 			if (checkParent)
@@ -87,10 +87,10 @@ namespace ApqDBManager.Forms.SrvsMgr
 			}
 		}
 		#endregion
-		#region ChgCheckedNode
+		#region ChgChecked
 		private void ChgCheckedNode(TreeListViewItem node, bool checkParent, bool checkChildren)
 		{
-			treeListView1.EndUpdate();
+			treeListView1.BeginUpdate();
 			node.Checked = !node.Checked;
 
 			if (checkParent)

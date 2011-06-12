@@ -50,7 +50,7 @@
 			this.beDBFolder_Up = new DevExpress.XtraEditors.ButtonEdit();
 			this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
 			this._UI = new ApqDBManager.XSD.UI();
-			this._Sqls = new Apq.DBC.XSD();
+			this._Sqls = new ApqDBManager.Forms.SrvsMgr.SrvsMgr_XSD();
 			((System.ComponentModel.ISupportInitialize)(this.treeList1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.ripb)).BeginInit();
@@ -283,7 +283,7 @@
 		private DevExpress.XtraEditors.ButtonEdit beDBFolder_Up;
 		private DevExpress.XtraEditors.LabelControl labelControl3;
 		private ApqDBManager.XSD.UI _UI;
-		private Apq.DBC.XSD _Sqls;
+		private ApqDBManager.Forms.SrvsMgr.SrvsMgr_XSD _Sqls;
 
 	}
 }
