@@ -357,24 +357,6 @@ namespace ApqDBManager
 		}
 		#endregion
 
-		#region MainOption
-		private static MainOption _MainOption;
-		/// <summary>
-		/// 获取选项窗口
-		/// </summary>
-		public static MainOption MainOption
-		{
-			get
-			{
-				if (_MainOption == null)
-				{
-					_MainOption = new MainOption();
-				}
-				return _MainOption;
-			}
-		}
-		#endregion
-
 		#region AboutBox
 		private static Apq.Windows.Forms.AboutBox _AboutBox;
 		/// <summary>

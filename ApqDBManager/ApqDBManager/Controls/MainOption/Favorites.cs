@@ -16,37 +16,37 @@ namespace ApqDBManager.Controls.MainOption
 			InitializeComponent();
 		}
 
-		private void beCFolder_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
-		{
-			string strFullName = Apq.Convert.ChangeType<string>(beCFolder.EditValue);
-			if (!string.IsNullOrEmpty(strFullName)) fbdFavorites.SelectedPath = strFullName;
-			if (fbdFavorites.ShowDialog(this) == DialogResult.OK)
-			{
-				beCFolder.EditValue = fbdFavorites.SelectedPath;
-			}
-		}
-
-		private void beCFolder_EditValueChanged(object sender, EventArgs e)
-		{
-			string strFullName = Apq.Convert.ChangeType<string>(beCFolder.EditValue);
-			if (!string.IsNullOrEmpty(strFullName)) fbdFavorites.SelectedPath = strFullName;
-		}
-
 		public void InitValue(Apq.Config.ConfigChain cfg)
 		{
-			if (!Apq.Convert.HasMean(beCFolder.EditValue))
+			if (!Apq.Convert.HasMean(cbCFolder.Text))
 			{
-				beCFolder.EditValue = cfg[this.GetType(), "CFolder"];
+				cbCFolder.Text = cfg[this.GetType(), "CFolder"];
 			}
 		}
 
 		public void Confirm(Apq.Config.ConfigChain cfg)
 		{
-			if (Apq.Convert.HasMean(beCFolder.EditValue))
+			if (Apq.Convert.HasMean(cbCFolder.Text))
 			{
-				cfg[this.GetType(), "CFolder"] = Apq.Convert.ChangeType<string>(beCFolder.EditValue);
+				cfg[this.GetType(), "CFolder"] = cbCFolder.Text;
 			}
 			cfg.UserConfig.Save();
+		}
+
+		private void cbCFolder_DropDown(object sender, EventArgs e)
+		{
+			string strFullName = Apq.Convert.ChangeType<string>(cbCFolder.Text);
+			if (!string.IsNullOrEmpty(strFullName)) fbdFavorites.SelectedPath = strFullName;
+			if (fbdFavorites.ShowDialog(this) == DialogResult.OK)
+			{
+				cbCFolder.Text = fbdFavorites.SelectedPath;
+			}
+		}
+
+		private void cbCFolder_Leave(object sender, EventArgs e)
+		{
+			string strFullName = Apq.Convert.ChangeType<string>(cbCFolder.Text);
+			if (!string.IsNullOrEmpty(strFullName)) fbdFavorites.SelectedPath = strFullName;
 		}
 	}
 }

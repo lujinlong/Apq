@@ -215,12 +215,6 @@
     <Compile Include="Controls\MainOption\Favorites.Designer.cs">
       <DependentUpon>Favorites.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\MainOption\XmlServers.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Controls\MainOption\XmlServers.Designer.cs">
-      <DependentUpon>XmlServers.cs</DependentUpon>
-    </Compile>
     <Compile Include="Controls\MainOption\DBC.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -425,9 +419,6 @@
   <ItemGroup>
     <EmbeddedResource Include="Controls\MainOption\Favorites.resx">
       <DependentUpon>Favorites.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Controls\MainOption\XmlServers.resx">
-      <DependentUpon>XmlServers.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\MainOption\DBC.resx">
       <DependentUpon>DBC.cs</DependentUpon>

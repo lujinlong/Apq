@@ -16,19 +16,11 @@ namespace ApqDBManager.Forms
 			InitializeComponent();
 		}
 
-		ApqDBManager.Controls.MainOption.XmlServers xs = new ApqDBManager.Controls.MainOption.XmlServers();
 		ApqDBManager.Controls.MainOption.Favorites fav = new ApqDBManager.Controls.MainOption.Favorites();
 		ApqDBManager.Controls.MainOption.DBC dbc = new ApqDBManager.Controls.MainOption.DBC();
 
-		private void MainOption_FormClosing(object sender, FormClosingEventArgs e)
-		{
-			e.Cancel = true;
-			this.Hide();
-		}
-
 		private void btnConfirm_Click(object sender, EventArgs e)
 		{
-			xs.Confirm(GlobalObject.XmlConfigChain);
 			fav.Confirm(GlobalObject.XmlConfigChain);
 			dbc.Confirm(GlobalObject.XmlConfigChain);
 			this.Close();
@@ -39,28 +31,24 @@ namespace ApqDBManager.Forms
 			this.Close();
 		}
 
-		private void nbiXmlServers_LinkPressed(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
+		private void listView1_MouseClick(object sender, MouseEventArgs e)
 		{
-			panelControl1.Controls.Clear();
-			panelControl1.Controls.Add(xs);
-			xs.Dock = DockStyle.Fill;
-			xs.InitValue(GlobalObject.XmlConfigChain);
-		}
-
-		private void nbiFavorites_LinkPressed(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
-		{
-			panelControl1.Controls.Clear();
-			panelControl1.Controls.Add(fav);
-			fav.Dock = DockStyle.Fill;
-			fav.InitValue(GlobalObject.XmlConfigChain);
-		}
-
-		public void nbiDBC_LinkPressed(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
-		{
-			panelControl1.Controls.Clear();
-			panelControl1.Controls.Add(dbc);
-			dbc.Dock = DockStyle.Fill;
-			dbc.InitValue(GlobalObject.XmlConfigChain);
+			ListViewHitTestInfo hInfo = listView1.HitTest(e.X, e.Y);
+			switch (hInfo.Item.Index)
+			{
+				case 0:
+					splitContainer1.Panel2.Controls.Clear();
+					splitContainer1.Panel2.Controls.Add(dbc);
+					dbc.Dock = DockStyle.Fill;
+					dbc.InitValue(GlobalObject.XmlConfigChain);
+					break;
+				case 1:
+					splitContainer1.Panel2.Controls.Clear();
+					splitContainer1.Panel2.Controls.Add(fav);
+					fav.Dock = DockStyle.Fill;
+					fav.InitValue(GlobalObject.XmlConfigChain);
+					break;
+			}
 		}
 	}
 }

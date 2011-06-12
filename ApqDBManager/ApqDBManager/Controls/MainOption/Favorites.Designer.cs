@@ -28,42 +28,40 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.beCFolder = new DevExpress.XtraEditors.ButtonEdit();
-			this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
 			this.fbdFavorites = new System.Windows.Forms.FolderBrowserDialog();
-			((System.ComponentModel.ISupportInitialize)(this.beCFolder.Properties)).BeginInit();
+			this.label1 = new System.Windows.Forms.Label();
+			this.cbCFolder = new System.Windows.Forms.ComboBox();
 			this.SuspendLayout();
 			// 
-			// beCFolder
+			// label1
 			// 
-			this.beCFolder.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-						| System.Windows.Forms.AnchorStyles.Right)));
-			this.beCFolder.Location = new System.Drawing.Point(81, 91);
-			this.beCFolder.Name = "beCFolder";
-			this.beCFolder.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton()});
-			this.beCFolder.Size = new System.Drawing.Size(396, 21);
-			this.beCFolder.TabIndex = 12;
-			this.beCFolder.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.beCFolder_ButtonClick);
-			this.beCFolder.EditValueChanged += new System.EventHandler(this.beCFolder_EditValueChanged);
+			this.label1.AutoSize = true;
+			this.label1.Location = new System.Drawing.Point(45, 118);
+			this.label1.Name = "label1";
+			this.label1.Size = new System.Drawing.Size(71, 12);
+			this.label1.TabIndex = 13;
+			this.label1.Text = "收藏夹目录:";
 			// 
-			// labelControl3
+			// cbCFolder
 			// 
-			this.labelControl3.Location = new System.Drawing.Point(15, 94);
-			this.labelControl3.Name = "labelControl3";
-			this.labelControl3.Size = new System.Drawing.Size(60, 14);
-			this.labelControl3.TabIndex = 11;
-			this.labelControl3.Text = "收藏夹目录";
+			this.cbCFolder.DropDownHeight = 1;
+			this.cbCFolder.FormattingEnabled = true;
+			this.cbCFolder.IntegralHeight = false;
+			this.cbCFolder.Location = new System.Drawing.Point(123, 115);
+			this.cbCFolder.Name = "cbCFolder";
+			this.cbCFolder.Size = new System.Drawing.Size(310, 20);
+			this.cbCFolder.TabIndex = 14;
+			this.cbCFolder.Leave += new System.EventHandler(this.cbCFolder_Leave);
+			this.cbCFolder.DropDown += new System.EventHandler(this.cbCFolder_DropDown);
 			// 
 			// Favorites
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.Controls.Add(this.beCFolder);
-			this.Controls.Add(this.labelControl3);
+			this.Controls.Add(this.cbCFolder);
+			this.Controls.Add(this.label1);
 			this.Name = "Favorites";
-			this.Size = new System.Drawing.Size(480, 380);
-			((System.ComponentModel.ISupportInitialize)(this.beCFolder.Properties)).EndInit();
+			this.Size = new System.Drawing.Size(480, 290);
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -71,8 +69,8 @@
 
 		#endregion
 
-		private DevExpress.XtraEditors.ButtonEdit beCFolder;
-		private DevExpress.XtraEditors.LabelControl labelControl3;
 		private System.Windows.Forms.FolderBrowserDialog fbdFavorites;
+		private System.Windows.Forms.Label label1;
+		private System.Windows.Forms.ComboBox cbCFolder;
 	}
 }

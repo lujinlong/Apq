@@ -297,7 +297,8 @@ namespace ApqDBManager
 		#region 工具
 		public void tsmiOption_Click(object sender, EventArgs e)
 		{
-			GlobalObject.MainOption.ShowDialog(this);
+			ApqDBManager.Forms.MainOption win = new ApqDBManager.Forms.MainOption();
+			win.ShowDialog(this);
 		}
 
 		private void tsmiDES_Click(object sender, EventArgs e)

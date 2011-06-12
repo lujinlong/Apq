@@ -28,147 +28,98 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.splitContainerControl1 = new DevExpress.XtraEditors.SplitContainerControl();
-			this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
-			this.navBarControl1 = new DevExpress.XtraNavBar.NavBarControl();
-			this.navBarGroup1 = new DevExpress.XtraNavBar.NavBarGroup();
-			this.nbiXmlServers = new DevExpress.XtraNavBar.NavBarItem();
-			this.nbiDBC = new DevExpress.XtraNavBar.NavBarItem();
-			this.nbiFavorites = new DevExpress.XtraNavBar.NavBarItem();
-			this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
-			this.btnConfirm = new DevExpress.XtraEditors.SimpleButton();
-			((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();
-			this.splitContainerControl1.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).BeginInit();
+			System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem("设置管理库");
+			System.Windows.Forms.ListViewItem listViewItem4 = new System.Windows.Forms.ListViewItem("收藏夹");
+			this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+			this.listView1 = new System.Windows.Forms.ListView();
+			this.btnConfirm = new System.Windows.Forms.Button();
+			this.btnCancel = new System.Windows.Forms.Button();
+			this.splitContainer1.Panel1.SuspendLayout();
+			this.splitContainer1.SuspendLayout();
 			this.SuspendLayout();
 			// 
-			// splitContainerControl1
+			// splitContainer1
 			// 
-			this.splitContainerControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.splitContainerControl1.FixedPanel = DevExpress.XtraEditors.SplitFixedPanel.Panel2;
-			this.splitContainerControl1.Horizontal = false;
-			this.splitContainerControl1.Location = new System.Drawing.Point(0, 0);
-			this.splitContainerControl1.Name = "splitContainerControl1";
-			this.splitContainerControl1.Panel1.Controls.Add(this.panelControl1);
-			this.splitContainerControl1.Panel1.Controls.Add(this.navBarControl1);
-			this.splitContainerControl1.Panel1.Text = "Panel1";
-			this.splitContainerControl1.Panel2.Controls.Add(this.btnCancel);
-			this.splitContainerControl1.Panel2.Controls.Add(this.btnConfirm);
-			this.splitContainerControl1.Panel2.MinSize = 40;
-			this.splitContainerControl1.Panel2.Text = "Panel2";
-			this.splitContainerControl1.Size = new System.Drawing.Size(692, 466);
-			this.splitContainerControl1.SplitterPosition = 44;
-			this.splitContainerControl1.TabIndex = 0;
-			this.splitContainerControl1.Text = "splitContainerControl1";
+			this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Top;
+			this.splitContainer1.FixedPanel = System.Windows.Forms.FixedPanel.Panel2;
+			this.splitContainer1.IsSplitterFixed = true;
+			this.splitContainer1.Location = new System.Drawing.Point(0, 0);
+			this.splitContainer1.Name = "splitContainer1";
 			// 
-			// panelControl1
+			// splitContainer1.Panel1
 			// 
-			this.panelControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.panelControl1.Location = new System.Drawing.Point(131, 0);
-			this.panelControl1.Name = "panelControl1";
-			this.panelControl1.Size = new System.Drawing.Size(561, 416);
-			this.panelControl1.TabIndex = 3;
+			this.splitContainer1.Panel1.Controls.Add(this.listView1);
+			this.splitContainer1.Size = new System.Drawing.Size(592, 296);
+			this.splitContainer1.SplitterDistance = 131;
+			this.splitContainer1.TabIndex = 1;
 			// 
-			// navBarControl1
+			// listView1
 			// 
-			this.navBarControl1.ActiveGroup = this.navBarGroup1;
-			this.navBarControl1.ContentButtonHint = null;
-			this.navBarControl1.Dock = System.Windows.Forms.DockStyle.Left;
-			this.navBarControl1.Groups.AddRange(new DevExpress.XtraNavBar.NavBarGroup[] {
-            this.navBarGroup1});
-			this.navBarControl1.Items.AddRange(new DevExpress.XtraNavBar.NavBarItem[] {
-            this.nbiXmlServers,
-            this.nbiFavorites,
-            this.nbiDBC});
-			this.navBarControl1.Location = new System.Drawing.Point(0, 0);
-			this.navBarControl1.Name = "navBarControl1";
-			this.navBarControl1.OptionsNavPane.ExpandedWidth = 164;
-			this.navBarControl1.Size = new System.Drawing.Size(131, 416);
-			this.navBarControl1.TabIndex = 2;
-			this.navBarControl1.Text = "navBarControl1";
-			// 
-			// navBarGroup1
-			// 
-			this.navBarGroup1.Caption = "选项";
-			this.navBarGroup1.Expanded = true;
-			this.navBarGroup1.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
-            new DevExpress.XtraNavBar.NavBarItemLink(this.nbiXmlServers),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.nbiDBC),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.nbiFavorites)});
-			this.navBarGroup1.Name = "navBarGroup1";
-			// 
-			// nbiXmlServers
-			// 
-			this.nbiXmlServers.Caption = "服务器列表";
-			this.nbiXmlServers.Name = "nbiXmlServers";
-			this.nbiXmlServers.LinkPressed += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.nbiXmlServers_LinkPressed);
-			// 
-			// nbiDBC
-			// 
-			this.nbiDBC.Caption = "设置管理库";
-			this.nbiDBC.Name = "nbiDBC";
-			this.nbiDBC.LinkPressed += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.nbiDBC_LinkPressed);
-			// 
-			// nbiFavorites
-			// 
-			this.nbiFavorites.Caption = "收藏夹";
-			this.nbiFavorites.Name = "nbiFavorites";
-			this.nbiFavorites.LinkPressed += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.nbiFavorites_LinkPressed);
-			// 
-			// btnCancel
-			// 
-			this.btnCancel.Location = new System.Drawing.Point(461, 8);
-			this.btnCancel.Name = "btnCancel";
-			this.btnCancel.Size = new System.Drawing.Size(87, 27);
-			this.btnCancel.TabIndex = 1;
-			this.btnCancel.Text = "取消";
-			this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+			this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.listView1.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
+            listViewItem3,
+            listViewItem4});
+			this.listView1.Location = new System.Drawing.Point(0, 0);
+			this.listView1.Name = "listView1";
+			this.listView1.Size = new System.Drawing.Size(131, 296);
+			this.listView1.TabIndex = 1;
+			this.listView1.UseCompatibleStateImageBehavior = false;
+			this.listView1.View = System.Windows.Forms.View.List;
+			this.listView1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.listView1_MouseClick);
 			// 
 			// btnConfirm
 			// 
-			this.btnConfirm.Location = new System.Drawing.Point(304, 8);
+			this.btnConfirm.Location = new System.Drawing.Point(244, 320);
 			this.btnConfirm.Name = "btnConfirm";
-			this.btnConfirm.Size = new System.Drawing.Size(87, 27);
-			this.btnConfirm.TabIndex = 0;
+			this.btnConfirm.Size = new System.Drawing.Size(75, 23);
+			this.btnConfirm.TabIndex = 4;
 			this.btnConfirm.Text = "确定";
+			this.btnConfirm.UseVisualStyleBackColor = true;
 			this.btnConfirm.Click += new System.EventHandler(this.btnConfirm_Click);
+			// 
+			// btnCancel
+			// 
+			this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+			this.btnCancel.Location = new System.Drawing.Point(384, 320);
+			this.btnCancel.Name = "btnCancel";
+			this.btnCancel.Size = new System.Drawing.Size(75, 23);
+			this.btnCancel.TabIndex = 5;
+			this.btnCancel.Text = "取消";
+			this.btnCancel.UseVisualStyleBackColor = true;
+			this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
 			// 
 			// MainOption
 			// 
-			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
+			this.AcceptButton = this.btnConfirm;
+			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(692, 466);
-			this.Controls.Add(this.splitContainerControl1);
+			this.CancelButton = this.btnCancel;
+			this.ClientSize = new System.Drawing.Size(592, 366);
+			this.Controls.Add(this.btnConfirm);
+			this.Controls.Add(this.btnCancel);
+			this.Controls.Add(this.splitContainer1);
 			this.MaximizeBox = false;
-			this.MaximumSize = new System.Drawing.Size(700, 500);
+			this.MaximumSize = new System.Drawing.Size(600, 400);
 			this.MinimizeBox = false;
-			this.MinimumSize = new System.Drawing.Size(700, 500);
+			this.MinimumSize = new System.Drawing.Size(600, 400);
 			this.Name = "MainOption";
 			this.ShowIcon = false;
 			this.ShowInTaskbar = false;
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "选项";
-			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainOption_FormClosing);
-			((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).EndInit();
-			this.splitContainerControl1.ResumeLayout(false);
-			((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).EndInit();
+			this.splitContainer1.Panel1.ResumeLayout(false);
+			this.splitContainer1.ResumeLayout(false);
 			this.ResumeLayout(false);
 
 		}
 
 		#endregion
 
-		private DevExpress.XtraEditors.SplitContainerControl splitContainerControl1;
-		private DevExpress.XtraEditors.PanelControl panelControl1;
-		private DevExpress.XtraNavBar.NavBarControl navBarControl1;
-		private DevExpress.XtraEditors.SimpleButton btnCancel;
-		private DevExpress.XtraEditors.SimpleButton btnConfirm;
-		private DevExpress.XtraNavBar.NavBarItem nbiXmlServers;
-		private DevExpress.XtraNavBar.NavBarItem nbiFavorites;
-		private DevExpress.XtraNavBar.NavBarGroup navBarGroup1;
-		private DevExpress.XtraNavBar.NavBarItem nbiDBC;
+		private System.Windows.Forms.SplitContainer splitContainer1;
+		private System.Windows.Forms.ListView listView1;
+		private System.Windows.Forms.Button btnConfirm;
+		private System.Windows.Forms.Button btnCancel;
+
 
 
 
