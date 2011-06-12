@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using WeifenLuo.WinFormsUI.Docking;
+using System.Collections;
 
 namespace ApqDBManager
 {
@@ -20,49 +21,50 @@ namespace ApqDBManager
 
 		private void Random_Load(object sender, EventArgs e)
 		{
-			this.textEdit1.EditValue = "ABCDEFGHJLMNRTWYacdefhijkmnprtuvwxy0123456789";
+			txtChars.Text = "ABCDEFGHJLMNRTWYacdefhijkmnprtuvwxy0123456789";
 
-			this.lstStrings.Items.AddRange(new DevExpress.XtraEditors.Controls.CheckedListBoxItem[] {
-            new DevExpress.XtraEditors.Controls.CheckedListBoxItem("ABCDEFGHIJKLMNOPQRSTUVWXYZ"),
-            new DevExpress.XtraEditors.Controls.CheckedListBoxItem("abcdefghijklmnopqrstuvwxyz"),
-            new DevExpress.XtraEditors.Controls.CheckedListBoxItem("0123456789", System.Windows.Forms.CheckState.Checked),
-            new DevExpress.XtraEditors.Controls.CheckedListBoxItem("()[]{}~$"),
-            new DevExpress.XtraEditors.Controls.CheckedListBoxItem("()[]{}<>"),
-            new DevExpress.XtraEditors.Controls.CheckedListBoxItem("`-=\\~!@#$%^&*_+|;\':\",./?"),
-            new DevExpress.XtraEditors.Controls.CheckedListBoxItem("ABCDEFGHJLMNRTWYacdefhijkmnprtuvwxy", System.Windows.Forms.CheckState.Checked)});
+			lstStrings.Items.AddRange(new string[] {
+				"ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+				"abcdefghijklmnopqrstuvwxyz",
+				"0123456789",
+				"()[]{}~$",
+				"()[]{}<>",
+				"`-=\\~!@#$%^&*_+|;\':\",./?",
+				"ABCDEFGHJLMNRTWYacdefhijkmnprtuvwxy"
+			});
+			lstStrings.SetItemChecked(2, true);
+			lstStrings.SetItemChecked(6, true);
 
 			//Apq.Xtra.Grid.Common.AddBehaivor(gridView1);
 		}
 
 		private void btnGo_Click(object sender, EventArgs e)
 		{
-			string[] ary = Apq.String.Random(Apq.Convert.ChangeType<uint>(spinEdit2.Value, 10), Apq.Convert.ChangeType<int>(spinEdit1.Value, 16), false, null, textEdit1.Text);
-			random1.DataTable1.Clear();
-			random1.DataTable1.AcceptChanges();
+			string[] ary = Apq.String.Random(Apq.Convert.ChangeType<uint>(txtCount.Text, 10), Apq.Convert.ChangeType<int>(txtLength.Text, 16), false, null, txtChars.Text);
+			listView1.Items.Clear();
 
 			foreach (string str in ary)
 			{
-				DataRow dr = random1.DataTable1.NewRow();
-				dr["str"] = str;
-				random1.DataTable1.Rows.Add(dr);
+				listView1.Items.Add(str);
 			}
-
-			random1.DataTable1.AcceptChanges();
 		}
 
-		private void lstStrings_ItemCheck(object sender, DevExpress.XtraEditors.Controls.ItemCheckEventArgs e)
+		private void lstStrings_ItemCheck(object sender, ItemCheckEventArgs e)
 		{
 			if (e.Index >= 0)
 			{
-				if (e.State == CheckState.Checked)
+				if (e.NewValue == CheckState.Checked)
 				{
-					textEdit1.Text += lstStrings.Items[e.Index].Value.ToString();
-				}
-				if (e.State == CheckState.Unchecked)
-				{
-					if (textEdit1.Text.IndexOf(lstStrings.Items[e.Index].Value.ToString()) >= 0)
+					if (txtChars.Text.IndexOf(lstStrings.Items[e.Index].ToString()) == -1)
 					{
-						textEdit1.Text = textEdit1.Text.Replace(lstStrings.Items[e.Index].Value.ToString(), string.Empty);
+						txtChars.Text += lstStrings.Items[e.Index];
+					}
+				}
+				if (e.NewValue == CheckState.Unchecked)
+				{
+					if (txtChars.Text.IndexOf(lstStrings.Items[e.Index].ToString()) >= 0)
+					{
+						txtChars.Text = txtChars.Text.Replace(lstStrings.Items[e.Index].ToString(), string.Empty);
 					}
 				}
 			}
@@ -70,8 +72,13 @@ namespace ApqDBManager
 
 		private void btnCopy_Click(object sender, EventArgs e)
 		{
-			gridView1.SelectAll();
-			gridView1.CopyToClipboard();
+			IList lst = listView1.SelectedItems.Count > 0 ? (IList)listView1.SelectedItems : (IList)listView1.Items;
+			List<string> lstStrs = new List<string>();
+			foreach (ListViewItem lvi in lst)
+			{
+				lstStrs.Add(lvi.Text);
+			}
+			Clipboard.SetText(string.Join("\r\n", lstStrs.ToArray()));
 		}
 
 		private void Random_FormClosing(object sender, FormClosingEventArgs e)
@@ -100,20 +107,15 @@ namespace ApqDBManager
 
 		private void btnGUID_Click(object sender, EventArgs e)
 		{
-			int nCount = Apq.Convert.ChangeType<int>(spinEdit2.Value, 10);
+			int nCount = Apq.Convert.ChangeType<int>(txtCount.Text, 10);
 			string[] ary = new string[nCount];
-			random1.DataTable1.Clear();
-			random1.DataTable1.AcceptChanges();
+			listView1.Items.Clear();
 
 			for (int i = 0; i < nCount; i++)
 			{
 				string str = System.Guid.NewGuid().ToString();
-				DataRow dr = random1.DataTable1.NewRow();
-				dr["str"] = str;
-				random1.DataTable1.Rows.Add(dr);
+				listView1.Items.Add(str);
 			}
-
-			random1.DataTable1.AcceptChanges();
 		}
 	}
 }

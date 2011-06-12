@@ -30,31 +30,22 @@
 		{
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Random));
 			this.bar1 = new DevExpress.XtraBars.Bar();
-			this.random1 = new ApqDBManager.xsd.Random();
 			this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-			this.btnGUID = new DevExpress.XtraEditors.SimpleButton();
-			this.btnCopy = new DevExpress.XtraEditors.SimpleButton();
-			this.textEdit1 = new DevExpress.XtraEditors.TextEdit();
-			this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
-			this.lstStrings = new DevExpress.XtraEditors.CheckedListBoxControl();
-			this.spinEdit2 = new DevExpress.XtraEditors.SpinEdit();
-			this.spinEdit1 = new DevExpress.XtraEditors.SpinEdit();
-			this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
-			this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
-			this.btnGo = new DevExpress.XtraEditors.SimpleButton();
-			this.gridControl1 = new DevExpress.XtraGrid.GridControl();
-			this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
-			this.colstr = new DevExpress.XtraGrid.Columns.GridColumn();
-			((System.ComponentModel.ISupportInitialize)(this.random1)).BeginInit();
+			this.listView1 = new System.Windows.Forms.ListView();
+			this.btnGo = new System.Windows.Forms.Button();
+			this.btnGUID = new System.Windows.Forms.Button();
+			this.btnCopy = new System.Windows.Forms.Button();
+			this.columnHeader1 = new System.Windows.Forms.ColumnHeader();
+			this.label1 = new System.Windows.Forms.Label();
+			this.label2 = new System.Windows.Forms.Label();
+			this.label3 = new System.Windows.Forms.Label();
+			this.txtLength = new System.Windows.Forms.TextBox();
+			this.txtCount = new System.Windows.Forms.TextBox();
+			this.txtChars = new System.Windows.Forms.TextBox();
+			this.lstStrings = new System.Windows.Forms.CheckedListBox();
 			this.splitContainer1.Panel1.SuspendLayout();
 			this.splitContainer1.Panel2.SuspendLayout();
 			this.splitContainer1.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.lstStrings)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.spinEdit2.Properties)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.spinEdit1.Properties)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// bar1
@@ -64,11 +55,6 @@
 			this.bar1.DockRow = 1;
 			this.bar1.DockStyle = DevExpress.XtraBars.BarDockStyle.Top;
 			this.bar1.Text = "Tools";
-			// 
-			// random1
-			// 
-			this.random1.DataSetName = "Random";
-			this.random1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
 			// 
 			// splitContainer1
 			// 
@@ -80,23 +66,47 @@
 			// 
 			// splitContainer1.Panel1
 			// 
-			this.splitContainer1.Panel1.Controls.Add(this.btnGUID);
-			this.splitContainer1.Panel1.Controls.Add(this.btnCopy);
-			this.splitContainer1.Panel1.Controls.Add(this.textEdit1);
-			this.splitContainer1.Panel1.Controls.Add(this.labelControl3);
 			this.splitContainer1.Panel1.Controls.Add(this.lstStrings);
-			this.splitContainer1.Panel1.Controls.Add(this.spinEdit2);
-			this.splitContainer1.Panel1.Controls.Add(this.spinEdit1);
-			this.splitContainer1.Panel1.Controls.Add(this.labelControl2);
-			this.splitContainer1.Panel1.Controls.Add(this.labelControl1);
+			this.splitContainer1.Panel1.Controls.Add(this.txtChars);
+			this.splitContainer1.Panel1.Controls.Add(this.txtCount);
+			this.splitContainer1.Panel1.Controls.Add(this.txtLength);
+			this.splitContainer1.Panel1.Controls.Add(this.label3);
+			this.splitContainer1.Panel1.Controls.Add(this.label2);
+			this.splitContainer1.Panel1.Controls.Add(this.label1);
+			this.splitContainer1.Panel1.Controls.Add(this.btnCopy);
+			this.splitContainer1.Panel1.Controls.Add(this.btnGUID);
 			this.splitContainer1.Panel1.Controls.Add(this.btnGo);
 			// 
 			// splitContainer1.Panel2
 			// 
-			this.splitContainer1.Panel2.Controls.Add(this.gridControl1);
+			this.splitContainer1.Panel2.Controls.Add(this.listView1);
 			this.splitContainer1.Size = new System.Drawing.Size(600, 423);
 			this.splitContainer1.SplitterDistance = 119;
 			this.splitContainer1.TabIndex = 0;
+			// 
+			// listView1
+			// 
+			this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1});
+			this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.listView1.FullRowSelect = true;
+			this.listView1.GridLines = true;
+			this.listView1.Location = new System.Drawing.Point(0, 0);
+			this.listView1.Name = "listView1";
+			this.listView1.Size = new System.Drawing.Size(600, 300);
+			this.listView1.TabIndex = 17;
+			this.listView1.UseCompatibleStateImageBehavior = false;
+			this.listView1.View = System.Windows.Forms.View.Details;
+			// 
+			// btnGo
+			// 
+			this.btnGo.Location = new System.Drawing.Point(110, 87);
+			this.btnGo.Name = "btnGo";
+			this.btnGo.Size = new System.Drawing.Size(75, 23);
+			this.btnGo.TabIndex = 21;
+			this.btnGo.Text = "生成";
+			this.btnGo.UseVisualStyleBackColor = true;
+			this.btnGo.Click += new System.EventHandler(this.btnGo_Click);
 			// 
 			// btnGUID
 			// 
@@ -105,148 +115,85 @@
 			this.btnGUID.Size = new System.Drawing.Size(75, 23);
 			this.btnGUID.TabIndex = 30;
 			this.btnGUID.Text = "GUID";
+			this.btnGUID.UseVisualStyleBackColor = true;
 			this.btnGUID.Click += new System.EventHandler(this.btnGUID_Click);
 			// 
 			// btnCopy
 			// 
 			this.btnCopy.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.btnCopy.Location = new System.Drawing.Point(491, 87);
+			this.btnCopy.Location = new System.Drawing.Point(485, 87);
 			this.btnCopy.Name = "btnCopy";
 			this.btnCopy.Size = new System.Drawing.Size(75, 23);
 			this.btnCopy.TabIndex = 29;
 			this.btnCopy.Text = "复制";
+			this.btnCopy.UseVisualStyleBackColor = true;
 			this.btnCopy.Click += new System.EventHandler(this.btnCopy_Click);
 			// 
-			// textEdit1
+			// columnHeader1
 			// 
-			this.textEdit1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-						| System.Windows.Forms.AnchorStyles.Right)));
-			this.textEdit1.Location = new System.Drawing.Point(217, 12);
-			this.textEdit1.Name = "textEdit1";
-			this.textEdit1.Size = new System.Drawing.Size(371, 21);
-			this.textEdit1.TabIndex = 28;
+			this.columnHeader1.Text = "结果";
+			this.columnHeader1.Width = 500;
 			// 
-			// labelControl3
+			// label1
 			// 
-			this.labelControl3.Location = new System.Drawing.Point(177, 15);
-			this.labelControl3.Name = "labelControl3";
-			this.labelControl3.Size = new System.Drawing.Size(24, 14);
-			this.labelControl3.TabIndex = 27;
-			this.labelControl3.Text = "范围";
+			this.label1.AutoSize = true;
+			this.label1.Location = new System.Drawing.Point(12, 17);
+			this.label1.Name = "label1";
+			this.label1.Size = new System.Drawing.Size(29, 12);
+			this.label1.TabIndex = 31;
+			this.label1.Text = "长度";
+			// 
+			// label2
+			// 
+			this.label2.AutoSize = true;
+			this.label2.Location = new System.Drawing.Point(12, 56);
+			this.label2.Name = "label2";
+			this.label2.Size = new System.Drawing.Size(29, 12);
+			this.label2.TabIndex = 32;
+			this.label2.Text = "个数";
+			// 
+			// label3
+			// 
+			this.label3.AutoSize = true;
+			this.label3.Location = new System.Drawing.Point(172, 17);
+			this.label3.Name = "label3";
+			this.label3.Size = new System.Drawing.Size(29, 12);
+			this.label3.TabIndex = 33;
+			this.label3.Text = "范围";
+			// 
+			// txtLength
+			// 
+			this.txtLength.Location = new System.Drawing.Point(52, 14);
+			this.txtLength.Name = "txtLength";
+			this.txtLength.Size = new System.Drawing.Size(100, 21);
+			this.txtLength.TabIndex = 34;
+			this.txtLength.Text = "16";
+			this.txtLength.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+			// 
+			// txtCount
+			// 
+			this.txtCount.Location = new System.Drawing.Point(52, 53);
+			this.txtCount.Name = "txtCount";
+			this.txtCount.Size = new System.Drawing.Size(100, 21);
+			this.txtCount.TabIndex = 35;
+			this.txtCount.Text = "10";
+			this.txtCount.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+			// 
+			// txtChars
+			// 
+			this.txtChars.Location = new System.Drawing.Point(217, 14);
+			this.txtChars.Name = "txtChars";
+			this.txtChars.Size = new System.Drawing.Size(371, 21);
+			this.txtChars.TabIndex = 36;
 			// 
 			// lstStrings
 			// 
-			this.lstStrings.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-						| System.Windows.Forms.AnchorStyles.Right)));
-			this.lstStrings.Location = new System.Drawing.Point(217, 39);
+			this.lstStrings.FormattingEnabled = true;
+			this.lstStrings.Location = new System.Drawing.Point(217, 42);
 			this.lstStrings.Name = "lstStrings";
-			this.lstStrings.Size = new System.Drawing.Size(240, 71);
-			this.lstStrings.TabIndex = 26;
-			this.lstStrings.ItemCheck += new DevExpress.XtraEditors.Controls.ItemCheckEventHandler(this.lstStrings_ItemCheck);
-			// 
-			// spinEdit2
-			// 
-			this.spinEdit2.EditValue = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-			this.spinEdit2.Location = new System.Drawing.Point(52, 51);
-			this.spinEdit2.Name = "spinEdit2";
-			this.spinEdit2.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton()});
-			this.spinEdit2.Properties.MaxValue = new decimal(new int[] {
-            100,
-            0,
-            0,
-            0});
-			this.spinEdit2.Properties.MinValue = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-			this.spinEdit2.Size = new System.Drawing.Size(100, 21);
-			this.spinEdit2.TabIndex = 25;
-			// 
-			// spinEdit1
-			// 
-			this.spinEdit1.EditValue = new decimal(new int[] {
-            16,
-            0,
-            0,
-            0});
-			this.spinEdit1.Location = new System.Drawing.Point(52, 12);
-			this.spinEdit1.Name = "spinEdit1";
-			this.spinEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton()});
-			this.spinEdit1.Properties.MaxValue = new decimal(new int[] {
-            8000,
-            0,
-            0,
-            0});
-			this.spinEdit1.Properties.MinValue = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-			this.spinEdit1.Size = new System.Drawing.Size(100, 21);
-			this.spinEdit1.TabIndex = 24;
-			// 
-			// labelControl2
-			// 
-			this.labelControl2.Location = new System.Drawing.Point(12, 54);
-			this.labelControl2.Name = "labelControl2";
-			this.labelControl2.Size = new System.Drawing.Size(24, 14);
-			this.labelControl2.TabIndex = 23;
-			this.labelControl2.Text = "个数";
-			// 
-			// labelControl1
-			// 
-			this.labelControl1.Location = new System.Drawing.Point(12, 15);
-			this.labelControl1.Name = "labelControl1";
-			this.labelControl1.Size = new System.Drawing.Size(24, 14);
-			this.labelControl1.TabIndex = 22;
-			this.labelControl1.Text = "位数";
-			// 
-			// btnGo
-			// 
-			this.btnGo.Location = new System.Drawing.Point(93, 87);
-			this.btnGo.Name = "btnGo";
-			this.btnGo.Size = new System.Drawing.Size(75, 23);
-			this.btnGo.TabIndex = 21;
-			this.btnGo.Text = "GO";
-			this.btnGo.Click += new System.EventHandler(this.btnGo_Click);
-			// 
-			// gridControl1
-			// 
-			this.gridControl1.DataMember = "DataTable1";
-			this.gridControl1.DataSource = this.random1;
-			this.gridControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.gridControl1.Location = new System.Drawing.Point(0, 0);
-			this.gridControl1.MainView = this.gridView1;
-			this.gridControl1.Name = "gridControl1";
-			this.gridControl1.Size = new System.Drawing.Size(600, 300);
-			this.gridControl1.TabIndex = 16;
-			this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gridView1});
-			// 
-			// gridView1
-			// 
-			this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.colstr});
-			this.gridView1.GridControl = this.gridControl1;
-			this.gridView1.Name = "gridView1";
-			this.gridView1.OptionsBehavior.CopyToClipboardWithColumnHeaders = false;
-			this.gridView1.OptionsSelection.MultiSelect = true;
-			this.gridView1.OptionsView.ShowGroupPanel = false;
-			// 
-			// colstr
-			// 
-			this.colstr.Caption = "结果";
-			this.colstr.FieldName = "str";
-			this.colstr.Name = "colstr";
-			this.colstr.Visible = true;
-			this.colstr.VisibleIndex = 0;
+			this.lstStrings.Size = new System.Drawing.Size(240, 68);
+			this.lstStrings.TabIndex = 37;
+			this.lstStrings.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.lstStrings_ItemCheck);
 			// 
 			// Random
 			// 
@@ -260,17 +207,10 @@
 			this.Text = "随机串生成器";
 			this.Load += new System.EventHandler(this.Random_Load);
 			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Random_FormClosing);
-			((System.ComponentModel.ISupportInitialize)(this.random1)).EndInit();
 			this.splitContainer1.Panel1.ResumeLayout(false);
 			this.splitContainer1.Panel1.PerformLayout();
 			this.splitContainer1.Panel2.ResumeLayout(false);
 			this.splitContainer1.ResumeLayout(false);
-			((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.lstStrings)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.spinEdit2.Properties)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.spinEdit1.Properties)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
 			this.ResumeLayout(false);
 
 		}
@@ -278,21 +218,19 @@
 		#endregion
 
 		private DevExpress.XtraBars.Bar bar1;
-		private ApqDBManager.xsd.Random random1;
 		private System.Windows.Forms.SplitContainer splitContainer1;
-		private DevExpress.XtraEditors.SimpleButton btnCopy;
-		private DevExpress.XtraEditors.TextEdit textEdit1;
-		private DevExpress.XtraEditors.LabelControl labelControl3;
-		private DevExpress.XtraEditors.CheckedListBoxControl lstStrings;
-		private DevExpress.XtraEditors.SpinEdit spinEdit2;
-		private DevExpress.XtraEditors.SpinEdit spinEdit1;
-		private DevExpress.XtraEditors.LabelControl labelControl2;
-		private DevExpress.XtraEditors.LabelControl labelControl1;
-		private DevExpress.XtraEditors.SimpleButton btnGo;
-		private DevExpress.XtraGrid.GridControl gridControl1;
-		private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
-		private DevExpress.XtraGrid.Columns.GridColumn colstr;
-		private DevExpress.XtraEditors.SimpleButton btnGUID;
+		private System.Windows.Forms.ListView listView1;
+		private System.Windows.Forms.Button btnCopy;
+		private System.Windows.Forms.Button btnGUID;
+		private System.Windows.Forms.Button btnGo;
+		private System.Windows.Forms.ColumnHeader columnHeader1;
+		private System.Windows.Forms.TextBox txtCount;
+		private System.Windows.Forms.TextBox txtLength;
+		private System.Windows.Forms.Label label3;
+		private System.Windows.Forms.Label label2;
+		private System.Windows.Forms.Label label1;
+		private System.Windows.Forms.CheckedListBox lstStrings;
+		private System.Windows.Forms.TextBox txtChars;
 
 
 	}

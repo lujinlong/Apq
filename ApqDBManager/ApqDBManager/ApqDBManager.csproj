@@ -382,15 +382,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="xsd\Random.cs">
-      <DependentUpon>Random.xsd</DependentUpon>
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="xsd\Random.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Random.xsd</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Images\ArrowDown.bmp" />
@@ -621,17 +612,6 @@
     </None>
     <None Include="ApqDBManager.exe.apq">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="xsd\Random.xsc">
-      <DependentUpon>Random.xsd</DependentUpon>
-    </None>
-    <None Include="xsd\Random.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>Random.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="xsd\Random.xss">
-      <DependentUpon>Random.xsd</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>
