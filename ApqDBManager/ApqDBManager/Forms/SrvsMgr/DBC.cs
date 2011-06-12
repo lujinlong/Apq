@@ -31,29 +31,29 @@ namespace ApqDBManager.Forms.SrvsMgr
 		private void DBC_Load(object sender, EventArgs e)
 		{
 			#region 添加图标
-			this.bbiSave.Glyph = System.Drawing.Image.FromFile(@"Res\png\File\Save.png");
+			this.tsbSaveToDB.Image = System.Drawing.Image.FromFile(@"Res\png\File\Save.png");
 			#endregion
 
 			// 加载生成菜单
 			foreach (SrvsMgr_XSD.DBCTypeRow dr in Sqls.DBCType.Rows)
 			{
-				DevExpress.XtraBars.BarButtonItem bbi = new DevExpress.XtraBars.BarButtonItem();
-				bbi.Caption = dr.TypeCaption;
-				bbi.Tag = dr.DBCType;
-				bbi.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(bbi_ItemClick);
-				bsiCreateCSFile.AddItem(bbi);
+				ToolStripButton tsb = new ToolStripButton();
+				tsb.Text = dr.TypeCaption;
+				tsb.Tag = dr.DBCType;
+				tsb.Click += new EventHandler(tsb_Click);
+				tssbCreateCSFile.DropDownItems.Add(tsb);
 			}
 
-			//Apq.Xtra.Grid.Common.AddBehaivor(gridView1);
+			Apq.Windows.Forms.DataGridViewHelper.AddBehaivor(dataGridView1);
 		}
 
 		// 生成数据库连接文件
-		void bbi_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+		void tsb_Click(object sender, EventArgs e)
 		{
-			int nDBCType = Apq.Convert.ChangeType<int>(e.Item.Tag);
-			DevExpress.XtraBars.BarButtonItem bbi = e.Item as DevExpress.XtraBars.BarButtonItem;
-			if (bbi != null && sfd.ShowDialog(this) == DialogResult.OK)
+			ToolStripButton tsb = sender as ToolStripButton;
+			if (tsb != null && sfd.ShowDialog(this) == DialogResult.OK)
 			{
+				int nDBCType = Apq.Convert.ChangeType<int>(tsb.Tag);
 				DataSet ds = new DataSet("XSD");
 				ds.Namespace = Sqls.Namespace;
 				DataTable dt = Sqls.DBC.Copy();
@@ -82,33 +82,24 @@ namespace ApqDBManager.Forms.SrvsMgr
 				string desIV = GlobalObject.RegConfigChain["Crypt", "DESIV"];
 				string strCs = Apq.Security.Cryptography.DESHelper.EncryptString(csStr, desKey, desIV);
 				File.WriteAllText(sfd.FileName, strCs, Encoding.UTF8);
-				bsiOutInfo.Caption = "保存文件成功";
+				tsslOutInfo.Text = "保存文件成功";
 			}
 		}
 
-		private void btnSaveToDB_Click(object sender, EventArgs e)
+		private void tsbSaveToDB_Click(object sender, EventArgs e)
 		{
 			if (sda == null) return;
 
 			sda.Update(Sqls.DBC);
 			Sqls.DBC.AcceptChanges();
-			bsiOutInfo.Caption = "更新成功";
-		}
-
-		private void btnCopy_Click(object sender, EventArgs e)
-		{
-			gridView1.SelectAll();
-			gridView1.CopyToClipboard();
+			tsslOutInfo.Text = "更新成功";
 		}
 
 		private void DBC_FormClosing(object sender, FormClosingEventArgs e)
 		{
 			Apq.Windows.Forms.SingletonForms.ReleaseInstance(this.GetType());
-		}
 
-		private void btnLoadFromDB_Click(object sender, EventArgs e)
-		{
-			LoadData(FormDataSet);
+			Apq.Windows.Forms.DataGridViewHelper.RemoveBehaivor(dataGridView1);
 		}
 
 		#region IDataShow 成员
@@ -185,7 +176,7 @@ namespace ApqDBManager.Forms.SrvsMgr
 			//密码解密
 			Common.PwdC2D(Sqls.DBC);
 			Sqls.DBC.AcceptChanges();
-			bsiOutInfo.Caption = "加载成功";
+			tsslOutInfo.Text = "加载成功";
 		}
 		/// <summary>
 		/// 显示数据
@@ -193,31 +184,28 @@ namespace ApqDBManager.Forms.SrvsMgr
 		public override void ShowData()
 		{
 			#region 设置Lookup
-			luComputer.DisplayMember = "ComputerName";
-			luComputer.ValueMember = "ComputerID";
-			luComputer.DataSource = Sqls.Computer;
-			luSqlInstance.DisplayMember = "SqlName";
-			luSqlInstance.ValueMember = "SqlID";
-			luSqlInstance.DataSource = Sqls.SqlInstance;
-			luDBCType.DisplayMember = "TypeCaption";
-			luDBCType.ValueMember = "DBCType";
-			luDBCType.DataSource = Sqls.DBCType;
+			computerBindingSource.DataMember = "Computer";
+			computerBindingSource.DataSource = Sqls;
+			sqlInstanceBindingSource.DataMember = "SqlInstance";
+			sqlInstanceBindingSource.DataSource = Sqls;
+			dBCTypeBindingSource.DataMember = "DBCType";
+			dBCTypeBindingSource.DataSource = Sqls;
 			#endregion
 
-			gridControl1.DataMember = "DBC";
-			gridControl1.DataSource = Sqls;
+			dBCBindingSource.DataMember = "DBC";
+			dBCBindingSource.DataSource = Sqls;
 		}
 
 		#endregion
 
 		//刷新
-		private void bbiRefresh_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+		private void tsbRefresh_Click(object sender, EventArgs e)
 		{
 			LoadData(FormDataSet);
 		}
 
 		//保存
-		private void bbiSave_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+		private void tsbSave_Click(object sender, EventArgs e)
 		{
 			if (sda == null) return;
 
@@ -226,78 +214,86 @@ namespace ApqDBManager.Forms.SrvsMgr
 
 			sda.Update(Sqls.DBC);
 			Sqls.DBC.AcceptChanges();
-			bsiOutInfo.Caption = "更新成功";
+			tsslOutInfo.Text = "保存成功";
 		}
 
 		//全选
-		private void bbiSelectAll_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+		private void tsbSelectAll_Click(object sender, EventArgs e)
 		{
-			gridView1.SelectAll();
+			dataGridView1.SelectAll();
 		}
 
-		private void bbiSlts_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+		#region 批量设置
+		// 登录名
+		private void tsmiSltsUserId_Click(object sender, EventArgs e)
 		{
-			if (gridView1.SelectedRowsCount > 0)
+			int cellIndex = Apq.Windows.Forms.DataGridViewHelper.IndexOfHeader(dataGridView1.Columns, "登录名");
+
+			foreach (DataGridViewRow dgvRow in dataGridView1.SelectedRows)
 			{
-				gridView1.BeginUpdate();
-				int[] RowHandles = gridView1.GetSelectedRows();
-				foreach (int RowHandle in RowHandles)
-				{
-					gridView1.SetRowCellValue(RowHandle, gridView1.FocusedColumn, beiStr.EditValue);
-				}
-				gridView1.EndUpdate();
+				dgvRow.Cells[cellIndex].Value = tstbStr.Text;
 			}
 		}
+
+		// 密码
+		private void tsmiSltsPwdD_Click(object sender, EventArgs e)
+		{
+			int cellIndex = Apq.Windows.Forms.DataGridViewHelper.IndexOfHeader(dataGridView1.Columns, "密码");
+
+			foreach (DataGridViewRow dgvRow in dataGridView1.SelectedRows)
+			{
+				dgvRow.Cells[cellIndex].Value = tstbStr.Text;
+			}
+		}
+		#endregion
 
 		private void tsmiTestOpen_Click(object sender, EventArgs e)
 		{
-			if (gridView1.FocusedRowHandle > -1)
+			if (dataGridView1.CurrentRow != null)
 			{
-				DataRow dr = gridView1.GetFocusedDataRow();
-				string strPwdD = Apq.Convert.ChangeType<string>(dr["PwdD"]);
-				if (string.IsNullOrEmpty(strPwdD))
-				{
-					strPwdD = Apq.Security.Cryptography.DESHelper.DecryptString(dr["PwdC"].ToString(), GlobalObject.RegConfigChain["Crypt", "DESKey"], GlobalObject.RegConfigChain["Crypt", "DESIV"]);
-				}
-
-				SrvsMgr_XSD.SqlInstanceRow sr = Sqls.SqlInstance.FindBySqlID(Apq.Convert.ChangeType<int>(dr["SqlID"]));
-				string strServerName = sr.IP;
-				if (sr.SqlPort > 0)
-				{
-					strServerName += "," + sr.SqlPort;
-				}
-				string strConn = Apq.ConnectionStrings.SQLServer.SqlConnection.GetConnectionString(
-					strServerName,
-					Apq.Convert.ChangeType<string>(dr["UserId"]),
-					strPwdD,
-					Apq.Convert.ChangeType<string>(dr["DBName"])
-					);
-				SqlConnection sc = new SqlConnection(strConn);
 				try
 				{
-					Apq.Data.Common.DbConnectionHelper.Open(sc);
-					bsiTest.Caption = dr["DBName"] + "-->连接成功.";
-				}
-				catch
-				{
-					bsiTest.Caption = dr["DBName"] + "-X-连接失败!";
+					this.Cursor = Cursors.WaitCursor;
+
+					DataRow[] drs = Sqls.DBC.Select("DBID = " + dataGridView1.CurrentRow.Cells["DBID"].Value);
+					string strPwdD = Apq.Convert.ChangeType<string>(drs[0]["PwdD"]);
+					if (string.IsNullOrEmpty(strPwdD))
+					{
+						strPwdD = Apq.Security.Cryptography.DESHelper.DecryptString(drs[0]["PwdC"].ToString(), GlobalObject.RegConfigChain["Crypt", "DESKey"], GlobalObject.RegConfigChain["Crypt", "DESIV"]);
+					}
+
+					SrvsMgr_XSD.SqlInstanceRow sr = Sqls.SqlInstance.FindBySqlID(Apq.Convert.ChangeType<int>(drs[0]["SqlID"]));
+					string strServerName = sr.IP;
+					if (sr.SqlPort > 0)
+					{
+						strServerName += "," + sr.SqlPort;
+					}
+					string strConn = Apq.ConnectionStrings.SQLServer.SqlConnection.GetConnectionString(
+						strServerName,
+						Apq.Convert.ChangeType<string>(drs[0]["UserId"]),
+						strPwdD,
+						Apq.Convert.ChangeType<string>(drs[0]["DBName"])
+						);
+					SqlConnection sc = new SqlConnection(strConn);
+					try
+					{
+						Apq.Data.Common.DbConnectionHelper.Open(sc);
+						tsslTest.Text = drs[0]["DBName"] + "-->连接成功.";
+					}
+					catch
+					{
+						tsslTest.Text = drs[0]["DBName"] + "-X-连接失败!";
+					}
+					finally
+					{
+						Apq.Data.Common.DbConnectionHelper.Close(sc);
+					}
 				}
 				finally
 				{
-					Apq.Data.Common.DbConnectionHelper.Close(sc);
+					this.Cursor = Cursors.Default;
 				}
 			}
 		}
-
-		private void tsmiDel_Click(object sender, EventArgs e)
-		{
-			if (gridView1.FocusedRowHandle > -1)
-			{
-				gridView1.BeginUpdate();
-				gridView1.DeleteRow(gridView1.FocusedRowHandle);
-				gridView1.EndUpdate();
-			}
-		}
-
 	}
 }

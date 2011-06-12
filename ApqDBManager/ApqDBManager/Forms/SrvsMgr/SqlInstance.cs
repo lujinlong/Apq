@@ -250,56 +250,6 @@ namespace ApqDBManager.Forms.SrvsMgr
 				treeListView1.EndUpdate();
 			}
 		}
-
-		private void tsmiTestOpen_Click(object sender, EventArgs e)
-		{
-			try
-			{
-				this.Cursor = Cursors.WaitCursor;
-
-				TreeListViewItem tln = treeListView1.FocusedItem;
-				long SqlID = Apq.Convert.ChangeType<long>(treeListView1.FocusedItem.SubItems[treeListView1.Columns.Count].Text);
-				DataRow[] drs = Sqls.SqlInstance.Select("SqlID = " + SqlID);
-
-				if (drs.Length > 0 && tln != null && tln.Parent != null)
-				{
-					string strPwdD = Apq.Convert.ChangeType<string>(drs[0]["PwdD"]);
-					if (string.IsNullOrEmpty(strPwdD))
-					{
-						strPwdD = Apq.Security.Cryptography.DESHelper.DecryptString(drs[0]["PwdC"].ToString(), GlobalObject.RegConfigChain["Crypt", "DESKey"], GlobalObject.RegConfigChain["Crypt", "DESIV"]);
-					}
-
-					string strServerName = Apq.Convert.ChangeType<string>(drs[0]["IP"]);
-					if (Apq.Convert.ChangeType<int>(drs[0]["SqlPort"]) > 0)
-					{
-						strServerName += "," + Apq.Convert.ChangeType<int>(drs[0]["SqlPort"]);
-					}
-					string strConn = Apq.ConnectionStrings.SQLServer.SqlConnection.GetConnectionString(
-						strServerName,
-						Apq.Convert.ChangeType<string>(drs[0]["UserId"]),
-						strPwdD
-						);
-					SqlConnection sc = new SqlConnection(strConn);
-					try
-					{
-						Apq.Data.Common.DbConnectionHelper.Open(sc);
-						tsslTest.Text = drs[0]["SqlName"] + "-->连接成功.";
-					}
-					catch
-					{
-						tsslTest.Text = drs[0]["SqlName"] + "-X-连接失败!";
-					}
-					finally
-					{
-						Apq.Data.Common.DbConnectionHelper.Close(sc);
-					}
-				}
-			}
-			finally
-			{
-				this.Cursor = Cursors.Default;
-			}
-		}
 		#endregion
 
 		private void tsbDBC_Click(object sender, EventArgs e)
@@ -440,28 +390,13 @@ namespace ApqDBManager.Forms.SrvsMgr
 			if (sda == null) return;
 
 			// 密码加密
-			DataRow[] drsModified = Sqls.SqlInstance.Select("1=1", "SqlID ASC", DataViewRowState.Added | DataViewRowState.ModifiedCurrent);
-			DataRow[] drsDeleted = Sqls.SqlInstance.Select("1=1", "SqlID ASC", DataViewRowState.Deleted);
-			if (drsModified.Length > 0 || drsDeleted.Length > 0)
-			{
-				if (drsModified.Length > 0)
-				{
-					foreach (DataRow dr in drsModified)
-					{
-						if (!Apq.Convert.LikeDBNull(dr["PwdD"]))
-						{
-							dr["PwdC"] = Apq.Security.Cryptography.DESHelper.EncryptString(Apq.Convert.ChangeType<string>(dr["PwdD"]),
-								GlobalObject.RegConfigChain["Crypt", "DESKey"], GlobalObject.RegConfigChain["Crypt", "DESIV"]);
-						}
-					}
-				}
+			Common.PwdD2C(Sqls.SqlInstance);
 
-				sda.Update(Sqls.SqlInstance);
-				Sqls.SqlInstance.AcceptChanges();
-				tsslOutInfo.Text = "更新成功";
-				// 保存成功后刷新
-				tsbRefresh_Click(sender, null);
-			}
+			sda.Update(Sqls.SqlInstance);
+			Sqls.SqlInstance.AcceptChanges();
+			tsslOutInfo.Text = "保存成功";
+			// 保存成功后刷新
+			tsbRefresh_Click(sender, null);
 		}
 
 		private void tsbExpandAll_Click(object sender, EventArgs e)
@@ -477,6 +412,56 @@ namespace ApqDBManager.Forms.SrvsMgr
 				treeListView1.CollapseAll();
 				tsbExpandAll.Text = "全部展开(&D)";
 				return;
+			}
+		}
+
+		private void tsmiTestOpen_Click(object sender, EventArgs e)
+		{
+			try
+			{
+				this.Cursor = Cursors.WaitCursor;
+
+				TreeListViewItem tln = treeListView1.FocusedItem;
+				long SqlID = Apq.Convert.ChangeType<long>(treeListView1.FocusedItem.SubItems[treeListView1.Columns.Count].Text);
+				DataRow[] drs = Sqls.SqlInstance.Select("SqlID = " + SqlID);
+
+				if (drs.Length > 0 && tln != null && tln.Parent != null)
+				{
+					string strPwdD = Apq.Convert.ChangeType<string>(drs[0]["PwdD"]);
+					if (string.IsNullOrEmpty(strPwdD))
+					{
+						strPwdD = Apq.Security.Cryptography.DESHelper.DecryptString(drs[0]["PwdC"].ToString(), GlobalObject.RegConfigChain["Crypt", "DESKey"], GlobalObject.RegConfigChain["Crypt", "DESIV"]);
+					}
+
+					string strServerName = Apq.Convert.ChangeType<string>(drs[0]["IP"]);
+					if (Apq.Convert.ChangeType<int>(drs[0]["SqlPort"]) > 0)
+					{
+						strServerName += "," + Apq.Convert.ChangeType<int>(drs[0]["SqlPort"]);
+					}
+					string strConn = Apq.ConnectionStrings.SQLServer.SqlConnection.GetConnectionString(
+						strServerName,
+						Apq.Convert.ChangeType<string>(drs[0]["UserId"]),
+						strPwdD
+						);
+					SqlConnection sc = new SqlConnection(strConn);
+					try
+					{
+						Apq.Data.Common.DbConnectionHelper.Open(sc);
+						tsslTest.Text = drs[0]["SqlName"] + "-->连接成功.";
+					}
+					catch
+					{
+						tsslTest.Text = drs[0]["SqlName"] + "-X-连接失败!";
+					}
+					finally
+					{
+						Apq.Data.Common.DbConnectionHelper.Close(sc);
+					}
+				}
+			}
+			finally
+			{
+				this.Cursor = Cursors.Default;
 			}
 		}
 	}

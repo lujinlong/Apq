@@ -726,89 +726,88 @@
   </Target>
   -->
   <PropertyGroup>
-    <PreBuildEvent>if "%25Reference%25" == "" goto End
-if "" == "" goto EndConfig
-xcopy "%25Reference%25\$(ConfigurationName)\Config\Apq.dll.config" "$(ProjectDir)" /c /q /g /h /r /k /y
-xcopy "%25Reference%25\$(ConfigurationName)\Config\Apq.dll.apq" "$(ProjectDir)" /c /q /g /h /r /k /y
-xcopy "%25Reference%25\$(ConfigurationName)\Config\Apq.dll.log4net" "$(ProjectDir)" /c /q /g /h /r /k /y
+    <PreBuildEvent>if "" == "" goto EndConfig
+xcopy "$(ProjectDir)..\..\Reference\$(ConfigurationName)\Config\Apq.dll.config" "$(ProjectDir)" /c /q /g /h /r /k /y
+xcopy "$(ProjectDir)..\..\Reference\$(ConfigurationName)\Config\Apq.dll.apq" "$(ProjectDir)" /c /q /g /h /r /k /y
+xcopy "$(ProjectDir)..\..\Reference\$(ConfigurationName)\Config\Apq.dll.log4net" "$(ProjectDir)" /c /q /g /h /r /k /y
 
-xcopy "%25Reference%25\$(ConfigurationName)\Config\Apq.WorkFlow.dll.config" "$(ProjectDir)" /c /q /g /h /r /k /y
-xcopy "%25Reference%25\$(ConfigurationName)\Config\Apq.WorkFlow.dll.apq" "$(ProjectDir)" /c /q /g /h /r /k /y
+xcopy "$(ProjectDir)..\..\Reference\$(ConfigurationName)\Config\Apq.WorkFlow.dll.config" "$(ProjectDir)" /c /q /g /h /r /k /y
+xcopy "$(ProjectDir)..\..\Reference\$(ConfigurationName)\Config\Apq.WorkFlow.dll.apq" "$(ProjectDir)" /c /q /g /h /r /k /y
 
-xcopy "%25Reference%25\Res\Common" "$(ProjectDir)Res\" /c /q /g /h /r /k /y /e
-xcopy "%25Reference%25\Res\$(ProjectName)" "$(ProjectDir)Res\" /c /q /g /h /r /k /y /e
+xcopy "$(ProjectDir)..\..\Reference\Res\Common" "$(ProjectDir)Res\" /c /q /g /h /r /k /y /e
+xcopy "$(ProjectDir)..\..\Reference\Res\$(ProjectName)" "$(ProjectDir)Res\" /c /q /g /h /r /k /y /e
 
-xcopy "%25Reference%25\$(ConfigurationName)\Config\Apq.Com.dll.config" "$(ProjectDir)" /c /q /g /h /r /k /y
-xcopy "%25Reference%25\$(ConfigurationName)\Config\Apq.Com.dll.apq" "$(ProjectDir)" /c /q /g /h /r /k /y
+xcopy "$(ProjectDir)..\..\Reference\$(ConfigurationName)\Config\Apq.Com.dll.config" "$(ProjectDir)" /c /q /g /h /r /k /y
+xcopy "$(ProjectDir)..\..\Reference\$(ConfigurationName)\Config\Apq.Com.dll.apq" "$(ProjectDir)" /c /q /g /h /r /k /y
 
-xcopy "%25Reference%25\$(ConfigurationName)\Config\Apq.DBC.dll.config" "$(ProjectDir)" /c /q /g /h /r /k /y
-xcopy "%25Reference%25\$(ConfigurationName)\Config\Apq.DBC.dll.apq" "$(ProjectDir)" /c /q /g /h /r /k /y
+xcopy "$(ProjectDir)..\..\Reference\$(ConfigurationName)\Config\Apq.DBC.dll.config" "$(ProjectDir)" /c /q /g /h /r /k /y
+xcopy "$(ProjectDir)..\..\Reference\$(ConfigurationName)\Config\Apq.DBC.dll.apq" "$(ProjectDir)" /c /q /g /h /r /k /y
 
-xcopy "%25Reference%25\$(ConfigurationName)\Config\Apq.Win.dll.config" "$(ProjectDir)" /c /q /g /h /r /k /y
-xcopy "%25Reference%25\$(ConfigurationName)\Config\Apq.Win.dll.apq" "$(ProjectDir)" /c /q /g /h /r /k /y
+xcopy "$(ProjectDir)..\..\Reference\$(ConfigurationName)\Config\Apq.Win.dll.config" "$(ProjectDir)" /c /q /g /h /r /k /y
+xcopy "$(ProjectDir)..\..\Reference\$(ConfigurationName)\Config\Apq.Win.dll.apq" "$(ProjectDir)" /c /q /g /h /r /k /y
 
-xcopy "%25Reference%25\$(ConfigurationName)\Config\szDomain.ResConvert.dll.config" "$(ProjectDir)" /c /q /g /h /r /k /y
-xcopy "%25Reference%25\$(ConfigurationName)\Config\szDomain.ResConvert.dll.apq" "$(ProjectDir)" /c /q /g /h /r /k /y
+xcopy "$(ProjectDir)..\..\Reference\$(ConfigurationName)\Config\szDomain.ResConvert.dll.config" "$(ProjectDir)" /c /q /g /h /r /k /y
+xcopy "$(ProjectDir)..\..\Reference\$(ConfigurationName)\Config\szDomain.ResConvert.dll.apq" "$(ProjectDir)" /c /q /g /h /r /k /y
 
-xcopy "%25Reference%25\$(ConfigurationName)\Config\Apq.Reg.Client.dll.config" "$(ProjectDir)" /c /q /g /h /r /k /y
-xcopy "%25Reference%25\$(ConfigurationName)\Config\Apq.Reg.Client.dll.apq" "$(ProjectDir)" /c /q /g /h /r /k /y
+xcopy "$(ProjectDir)..\..\Reference\$(ConfigurationName)\Config\Apq.Reg.Client.dll.config" "$(ProjectDir)" /c /q /g /h /r /k /y
+xcopy "$(ProjectDir)..\..\Reference\$(ConfigurationName)\Config\Apq.Reg.Client.dll.apq" "$(ProjectDir)" /c /q /g /h /r /k /y
 :EndConfig
 
-xcopy "%25Reference%25\$(ConfigurationName)\Apq.dll" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
-xcopy "%25Reference%25\$(ConfigurationName)\Apq.xml" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
-xcopy "%25Reference%25\$(ConfigurationName)\Apq.pdb" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+xcopy "$(ProjectDir)..\..\Reference\$(ConfigurationName)\Apq.dll" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+xcopy "$(ProjectDir)..\..\Reference\$(ConfigurationName)\Apq.xml" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+xcopy "$(ProjectDir)..\..\Reference\$(ConfigurationName)\Apq.pdb" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
 
-xcopy "%25Reference%25\$(ConfigurationName)\Apq.WorkFlow.dll" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
-xcopy "%25Reference%25\$(ConfigurationName)\Apq.WorkFlow.xml" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
-xcopy "%25Reference%25\$(ConfigurationName)\Apq.WorkFlow.pdb" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+xcopy "$(ProjectDir)..\..\Reference\$(ConfigurationName)\Apq.WorkFlow.dll" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+xcopy "$(ProjectDir)..\..\Reference\$(ConfigurationName)\Apq.WorkFlow.xml" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+xcopy "$(ProjectDir)..\..\Reference\$(ConfigurationName)\Apq.WorkFlow.pdb" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
 
-xcopy "%25Reference%25\$(ConfigurationName)\Apq.Com.dll" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
-xcopy "%25Reference%25\$(ConfigurationName)\Apq.Com.xml" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
-xcopy "%25Reference%25\$(ConfigurationName)\Apq.Com.pdb" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+xcopy "$(ProjectDir)..\..\Reference\$(ConfigurationName)\Apq.Com.dll" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+xcopy "$(ProjectDir)..\..\Reference\$(ConfigurationName)\Apq.Com.xml" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+xcopy "$(ProjectDir)..\..\Reference\$(ConfigurationName)\Apq.Com.pdb" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
 
-xcopy "%25Reference%25\$(ConfigurationName)\Apq.DB.dll" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
-xcopy "%25Reference%25\$(ConfigurationName)\Apq.DB.xml" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
-xcopy "%25Reference%25\$(ConfigurationName)\Apq.DB.pdb" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+xcopy "$(ProjectDir)..\..\Reference\$(ConfigurationName)\Apq.DB.dll" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+xcopy "$(ProjectDir)..\..\Reference\$(ConfigurationName)\Apq.DB.xml" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+xcopy "$(ProjectDir)..\..\Reference\$(ConfigurationName)\Apq.DB.pdb" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
 
-xcopy "%25Reference%25\$(ConfigurationName)\Apq.DBC.dll" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
-xcopy "%25Reference%25\$(ConfigurationName)\Apq.DBC.xml" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
-xcopy "%25Reference%25\$(ConfigurationName)\Apq.DBC.pdb" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+xcopy "$(ProjectDir)..\..\Reference\$(ConfigurationName)\Apq.DBC.dll" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+xcopy "$(ProjectDir)..\..\Reference\$(ConfigurationName)\Apq.DBC.xml" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+xcopy "$(ProjectDir)..\..\Reference\$(ConfigurationName)\Apq.DBC.pdb" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
 
-:xcopy "%25Reference%25\$(ConfigurationName)\Apq.CryptKey.dll" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
-:xcopy "%25Reference%25\$(ConfigurationName)\Apq.CryptKey.xml" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
-:xcopy "%25Reference%25\$(ConfigurationName)\Apq.CryptKey.pdb" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+:xcopy "$(ProjectDir)..\..\Reference\$(ConfigurationName)\Apq.CryptKey.dll" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+:xcopy "$(ProjectDir)..\..\Reference\$(ConfigurationName)\Apq.CryptKey.xml" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+:xcopy "$(ProjectDir)..\..\Reference\$(ConfigurationName)\Apq.CryptKey.pdb" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
 
-xcopy "%25Reference%25\$(ConfigurationName)\Apq.Win.dll" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
-xcopy "%25Reference%25\$(ConfigurationName)\Apq.Win.xml" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
-xcopy "%25Reference%25\$(ConfigurationName)\Apq.Win.pdb" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+xcopy "$(ProjectDir)..\..\Reference\$(ConfigurationName)\Apq.Win.dll" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+xcopy "$(ProjectDir)..\..\Reference\$(ConfigurationName)\Apq.Win.xml" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+xcopy "$(ProjectDir)..\..\Reference\$(ConfigurationName)\Apq.Win.pdb" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
 
-xcopy "%25Reference%25\MultiColumnCombo\MultiColumnCombo.dll" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
-xcopy "%25Reference%25\MultiColumnCombo\MultiColumnCombo.xml" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+xcopy "$(ProjectDir)..\..\Reference\MultiColumnCombo\MultiColumnCombo.dll" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+xcopy "$(ProjectDir)..\..\Reference\MultiColumnCombo\MultiColumnCombo.xml" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
 
-xcopy "%25Reference%25\log4net-1.2.10\log4net.dll" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
-xcopy "%25Reference%25\log4net-1.2.10\log4net.xml" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+xcopy "$(ProjectDir)..\..\Reference\log4net-1.2.10\log4net.dll" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+xcopy "$(ProjectDir)..\..\Reference\log4net-1.2.10\log4net.xml" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
 
-xcopy "%25Reference%25\ICSharpCode\TextEditor_2.2\ICSharpCode.TextEditor.dll" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
-xcopy "%25Reference%25\ICSharpCode\TextEditor_2.2\ICSharpCode.TextEditor.xml" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+xcopy "$(ProjectDir)..\..\Reference\ICSharpCode\TextEditor_2.2\ICSharpCode.TextEditor.dll" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+xcopy "$(ProjectDir)..\..\Reference\ICSharpCode\TextEditor_2.2\ICSharpCode.TextEditor.xml" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
 
-xcopy "%25Reference%25\myxls-0.6.3\org.in2bits.MyXls.dll" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
-xcopy "%25Reference%25\myxls-0.6.3\org.in2bits.MyXls.xml" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+xcopy "$(ProjectDir)..\..\Reference\myxls-0.6.3\org.in2bits.MyXls.dll" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+xcopy "$(ProjectDir)..\..\Reference\myxls-0.6.3\org.in2bits.MyXls.xml" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
 
-xcopy "%25Reference%25\DockPanel\WeifenLuo.WinFormsUI.Docking.dll" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+xcopy "$(ProjectDir)..\..\Reference\DockPanel\WeifenLuo.WinFormsUI.Docking.dll" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
 
-xcopy "%25Reference%25\TreeListView\System.Runtime.InteropServices.APIs.dll" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
-xcopy "%25Reference%25\TreeListView\System.Runtime.InteropServices.APIs.xml" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
-xcopy "%25Reference%25\TreeListView\System.Windows.Forms.TreeListView.dll" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
-xcopy "%25Reference%25\TreeListView\System.Windows.Forms.TreeListView.xml" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+xcopy "$(ProjectDir)..\..\Reference\TreeListView\System.Runtime.InteropServices.APIs.dll" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+xcopy "$(ProjectDir)..\..\Reference\TreeListView\System.Runtime.InteropServices.APIs.xml" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+xcopy "$(ProjectDir)..\..\Reference\TreeListView\System.Windows.Forms.TreeListView.dll" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+xcopy "$(ProjectDir)..\..\Reference\TreeListView\System.Windows.Forms.TreeListView.xml" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
 
-xcopy "%25Reference%25\$(ConfigurationName)\ApqDBManager.XSD.dll" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+xcopy "$(ProjectDir)..\..\Reference\$(ConfigurationName)\ApqDBManager.XSD.dll" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
 
-xcopy "%25Reference%25\$(ConfigurationName)\Apq.Reg.Client.dll" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
-xcopy "%25Reference%25\$(ConfigurationName)\Apq.Reg.Client.pdb" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+xcopy "$(ProjectDir)..\..\Reference\$(ConfigurationName)\Apq.Reg.Client.dll" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+xcopy "$(ProjectDir)..\..\Reference\$(ConfigurationName)\Apq.Reg.Client.pdb" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
 
-:xcopy "%25Reference%25\Release\szDomain.ResConvert.dll" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
-:xcopy "%25Reference%25\Release\szDomain.ResConvert.xml" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
-:xcopy "%25Reference%25\Release\szDomain.ResConvert.pdb" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+:xcopy "$(ProjectDir)..\..\Reference\Release\szDomain.ResConvert.dll" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+:xcopy "$(ProjectDir)..\..\Reference\Release\szDomain.ResConvert.xml" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+:xcopy "$(ProjectDir)..\..\Reference\Release\szDomain.ResConvert.pdb" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
 :End
 </PreBuildEvent>
     <PostBuildEvent>

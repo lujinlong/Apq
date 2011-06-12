@@ -24,8 +24,10 @@ namespace ApqDBManager.Forms.SrvsMgr
 		private void DBServer_Load(object sender, EventArgs e)
 		{
 			#region 添加图标
-			this.tsmiSave.Image = System.Drawing.Image.FromFile(@"Res\png\File\Save.png");
+			this.tsbSaveToDB.Image = System.Drawing.Image.FromFile(@"Res\png\File\Save.png");
 			#endregion
+
+			Apq.Windows.Forms.DataGridViewHelper.AddBehaivor(dataGridView1);
 		}
 
 		private void DBServer_FormClosing(object sender, FormClosingEventArgs e)
@@ -35,48 +37,27 @@ namespace ApqDBManager.Forms.SrvsMgr
 				formSqlInstance.Close();
 			}
 			Apq.Windows.Forms.SingletonForms.ReleaseInstance(this.GetType());
+
+			Apq.Windows.Forms.DataGridViewHelper.RemoveBehaivor(dataGridView1);
 		}
 
 		//刷新
-		private void tsmiRefresh_Click(object sender, EventArgs e)
+		private void tsbRefresh_Click(object sender, EventArgs e)
 		{
 			LoadData(FormDataSet);
 		}
 
-		//全选
-		private void tsmiSelectAll_Click(object sender, EventArgs e)
-		{
-			dataGridView1.SelectAll();
-		}
-
-		//设置选中格
-		private void tsmiSlts_Click(object sender, EventArgs e)
-		{
-			if (tstbStr.Text.Trim().Length > 0 && dataGridView1.SelectedCells.Count > 0)
-			{
-				dataGridView1.BeginEdit(false);
-				foreach (DataGridViewCell dgvc in dataGridView1.SelectedCells)
-				{
-					if (!dgvc.ReadOnly && dataGridView1.Columns[dgvc.ColumnIndex] is DataGridViewTextBoxColumn)
-					{
-						dgvc.Value = tstbStr.Text;
-					}
-				}
-				dataGridView1.EndEdit();
-			}
-		}
-
 		//保存
-		private void tsmiSave_Click(object sender, EventArgs e)
+		private void tsbSaveToDB_Click(object sender, EventArgs e)
 		{
 			if (sda == null) return;
 
 			sda.Update(SrvsMgr_XSD.Computer);
 			SrvsMgr_XSD.Computer.AcceptChanges();
-			tsslOutInfo.Text = "更新成功";
+			tsslOutInfo.Text = "保存成功";
 		}
 
-		private void tsmiSqlInstance_Click(object sender, EventArgs e)
+		private void tsbSqlInstance_Click(object sender, EventArgs e)
 		{
 			formSqlInstance = Apq.Windows.Forms.SingletonForms.GetInstance(typeof(SqlInstance));
 			SqlInstance f = formSqlInstance as SqlInstance;
@@ -182,13 +163,5 @@ EXEC dbo.ApqDBMgr_DBC_List;
 		}
 
 		#endregion
-
-		private void dataGridView1_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
-		{
-			dataGridView1.ClearSelection();
-			//+选中整列
-			//dataGridView1.Columns[e.ColumnIndex].Selected = true;
-		}
-
 	}
 }

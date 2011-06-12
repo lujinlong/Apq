@@ -136,9 +136,8 @@
   </Target>
   -->
   <PropertyGroup>
-    <PostBuildEvent>if "%25Reference%25" == "" goto End
-xcopy "$(TargetPath)" "%25Reference%25\$(ConfigurationName)\" /c /q /g /h /r /k /y
-xcopy "$(TargetDir)$(TargetName).pdb" "%25Reference%25\$(ConfigurationName)\" /c /q /g /h /r /k /y
+    <PostBuildEvent>xcopy "$(TargetPath)" "$(ProjectDir)..\..\Reference\$(ConfigurationName)\" /c /q /g /h /r /k /y
+xcopy "$(TargetDir)$(TargetName).pdb" "$(ProjectDir)..\..\Reference\$(ConfigurationName)\" /c /q /g /h /r /k /y
 :End</PostBuildEvent>
   </PropertyGroup>
 </Project>
