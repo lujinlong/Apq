@@ -297,17 +297,15 @@
   </Target>
   -->
   <PropertyGroup>
-    <PostBuildEvent>if "%25Reference%25" == "" goto End
-xcopy "%25Reference%25\Res\$(ProjectName)" "$(TargetDir)Res\" /c /q /g /h /r /k /y /e
+    <PostBuildEvent>xcopy "$(ProjectDir)..\..\Reference\Res\$(ProjectName)" "$(TargetDir)Res\" /c /q /g /h /r /k /y /e
 
-xcopy "$(TargetPath)" "%25Reference%25\$(ConfigurationName)\" /c /q /g /h /r /k /y
-xcopy "$(TargetDir)$(TargetName).xml" "%25Reference%25\$(ConfigurationName)\" /c /q /g /h /r /k /y
-xcopy "$(TargetDir)$(TargetName).pdb" "%25Reference%25\$(ConfigurationName)\" /c /q /g /h /r /k /y
-xcopy "$(TargetPath).config" "%25Reference%25\$(ConfigurationName)\Config\" /c /q /g /h /r /k /y
-xcopy "$(ProjectDir)$(TargetFileName).apq" "%25Reference%25\$(ConfigurationName)\Config\" /c /q /g /h /r /k /y
-xcopy "$(TargetPath).log4net" "%25Reference%25\$(ConfigurationName)\Config\" /c /q /g /h /r /k /y
+xcopy "$(TargetPath)" "$(ProjectDir)..\..\Reference\$(ConfigurationName)\" /c /q /g /h /r /k /y
+xcopy "$(TargetDir)$(TargetName).xml" "$(ProjectDir)..\..\Reference\$(ConfigurationName)\" /c /q /g /h /r /k /y
+xcopy "$(TargetDir)$(TargetName).pdb" "$(ProjectDir)..\..\Reference\$(ConfigurationName)\" /c /q /g /h /r /k /y
+xcopy "$(TargetPath).config" "$(ProjectDir)..\..\Reference\$(ConfigurationName)\Config\" /c /q /g /h /r /k /y
+xcopy "$(ProjectDir)$(TargetFileName).apq" "$(ProjectDir)..\..\Reference\$(ConfigurationName)\Config\" /c /q /g /h /r /k /y
+xcopy "$(TargetPath).log4net" "$(ProjectDir)..\..\Reference\$(ConfigurationName)\Config\" /c /q /g /h /r /k /y
 :End</PostBuildEvent>
-    <PreBuildEvent>if "%25Reference%25" == "" goto End
-:End</PreBuildEvent>
+    <PreBuildEvent>:End</PreBuildEvent>
   </PropertyGroup>
 </Project>

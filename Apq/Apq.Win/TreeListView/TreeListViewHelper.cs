@@ -12,6 +12,9 @@ namespace Apq.TreeListView
 	/// </summary>
 	public class TreeListViewHelper
 	{
+		/// <summary>
+		/// _TreeListView
+		/// </summary>
 		protected System.Windows.Forms.TreeListView _TreeListView;
 		/// <summary>
 		/// 获取TreeListView
@@ -21,6 +24,10 @@ namespace Apq.TreeListView
 			get { return _TreeListView; }
 		}
 
+		/// <summary>
+		/// TreeListView助手
+		/// </summary>
+		/// <param name="TreeListView"></param>
 		public TreeListViewHelper(System.Windows.Forms.TreeListView TreeListView)
 		{
 			_TreeListView = TreeListView;
