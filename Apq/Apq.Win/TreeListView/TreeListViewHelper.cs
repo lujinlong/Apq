@@ -31,6 +31,17 @@ namespace Apq.TreeListView
 		public TreeListViewHelper(System.Windows.Forms.TreeListView TreeListView)
 		{
 			_TreeListView = TreeListView;
+			_TreeListView.KeyUp += new System.Windows.Forms.KeyEventHandler(_TreeListView_KeyUp);
+		}
+
+		private void _TreeListView_KeyUp(object sender, System.Windows.Forms.KeyEventArgs e)
+		{
+			#region Ctrl&C
+			if (e.Control && (e.KeyCode == System.Windows.Forms.Keys.C))
+			{
+				System.Windows.Forms.Clipboard.SetText(TreeListView.FocusedItem.Text);
+			}
+			#endregion
 		}
 
 		#region TableMapping
@@ -207,6 +218,36 @@ namespace Apq.TreeListView
 					BindChildren(n, drChild);
 				}
 			}
+		}
+		#endregion
+
+		#region FindNodeByKey
+		/// <summary>
+		/// 查找指定主键值的节点(假定主键为第一个隐藏列)
+		/// </summary>
+		public System.Windows.Forms.TreeListViewItem FindNodeByKey(string ID)
+		{
+			foreach (System.Windows.Forms.TreeListViewItem root in TreeListView.Items)
+			{
+				System.Windows.Forms.TreeListViewItem n = FindNodeByKey(root, ID);
+				if (n != null) return n;
+			}
+			return null;
+		}
+
+		/// <summary>
+		/// 从指定节点及其下级中查找指定主键值的节点(假定主键为第一个隐藏列)
+		/// </summary>
+		public System.Windows.Forms.TreeListViewItem FindNodeByKey(System.Windows.Forms.TreeListViewItem node, string ID)
+		{
+			if (node.SubItems[node.ListView.Columns.Count].Text == ID) return node;
+
+			foreach (System.Windows.Forms.TreeListViewItem tln in node.Items)
+			{
+				System.Windows.Forms.TreeListViewItem n = FindNodeByKey(tln, ID);
+				if (n != null) return n;
+			}
+			return null;
 		}
 		#endregion
 	}
