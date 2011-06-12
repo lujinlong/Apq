@@ -37,20 +37,20 @@ namespace ApqDBManager.Forms.SrvsMgr
 			// 加载生成菜单
 			foreach (SrvsMgr_XSD.DBCTypeRow dr in Sqls.DBCType.Rows)
 			{
-				ToolStripButton tsb = new ToolStripButton();
-				tsb.Text = dr.TypeCaption;
-				tsb.Tag = dr.DBCType;
-				tsb.Click += new EventHandler(tsb_Click);
-				tssbCreateCSFile.DropDownItems.Add(tsb);
+				ToolStripMenuItem tsmi = new ToolStripMenuItem();
+				tsmi.Text = dr.TypeCaption;
+				tsmi.Tag = dr.DBCType;
+				tsmi.Click += new EventHandler(tsmiCreatCSFile_Click);
+				tssbCreateCSFile.DropDownItems.Add(tsmi);
 			}
 
 			Apq.Windows.Forms.DataGridViewHelper.AddBehaivor(dataGridView1);
 		}
 
 		// 生成数据库连接文件
-		void tsb_Click(object sender, EventArgs e)
+		void tsmiCreatCSFile_Click(object sender, EventArgs e)
 		{
-			ToolStripButton tsb = sender as ToolStripButton;
+			ToolStripMenuItem tsb = sender as ToolStripMenuItem;
 			if (tsb != null && sfd.ShowDialog(this) == DialogResult.OK)
 			{
 				int nDBCType = Apq.Convert.ChangeType<int>(tsb.Tag);
