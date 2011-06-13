@@ -12,6 +12,7 @@ using Apq.Com;
 using System.Data.SqlClient;
 using DevExpress.XtraTab;
 using ApqDBManager.Forms;
+using ICSharpCode.TextEditor;
 
 namespace ApqDBManager.Controls
 {
@@ -213,17 +214,23 @@ namespace ApqDBManager.Controls
 				{
 					if (r.Class > 0)
 					{
-						DevExpress.XtraEditors.MemoEdit meMsg = new DevExpress.XtraEditors.MemoEdit();
-						meMsg.Properties.ReadOnly = true;
-						meMsg.Properties.WordWrap = false;
-						meMsg.Properties.AcceptsTab = true;
-						meMsg.Properties.Appearance.BackColor = System.Drawing.SystemColors.Control;
-						meMsg.Properties.Appearance.Font = new System.Drawing.Font("新宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-						meMsg.Properties.Appearance.Options.UseBackColor = true;
-						meMsg.Properties.Appearance.Options.UseFont = true;
-						meMsg.Properties.ScrollBars = System.Windows.Forms.ScrollBars.None;
+						TextEditorControl txtMsg = new TextEditorControl();
+						txtMsg.Document.ReadOnly = true;
+						txtMsg.BackColor = System.Drawing.SystemColors.Control;
+						txtMsg.Font = new System.Drawing.Font("新宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+						txtMsg.Size = new System.Drawing.Size(tc.Width - 30, 20);
 
-						meMsg.Size = new System.Drawing.Size(tc.Width - 30, 20);
+						//txtMsg.Encoding = ((System.Text.Encoding)(resources.GetObject("txtSql.Encoding")));
+						txtMsg.Name = "txtMsg";
+						//txtMsg.ShowEOLMarkers = true;
+						//txtMsg.ShowSpaces = true;
+						txtMsg.ShowTabs = true;
+						//txtMsg.ShowVRuler = true;
+
+						//meMsg.Properties.WordWrap = false;
+						//meMsg.Properties.AcceptsTab = true;
+						//meMsg.Properties.ScrollBars = System.Windows.Forms.ScrollBars.None;
+
 						//meMsg.Anchor = AnchorStyles.Left | AnchorStyles.Top | AnchorStyles.Right;
 						int nY = 9;
 						foreach (Control c in tpInfo.Controls)
@@ -231,20 +238,19 @@ namespace ApqDBManager.Controls
 							nY += c.Size.Height;
 							nY += 6;
 						}
-						meMsg.Location = new System.Drawing.Point(3, nY);
+						txtMsg.Location = new System.Drawing.Point(3, nY);
 
 						if (r.Class > 10)
 						{
-							meMsg.Size = new System.Drawing.Size(this.Parent.Parent.Width - 40, 140);//7行
-							meMsg.Properties.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-							meMsg.Properties.Appearance.ForeColor = System.Drawing.Color.Red;
-							meMsg.Properties.Appearance.Options.UseForeColor = true;
-							meMsg.Text += string.Format("消息 {0}, 级别 {1}, 状态 {2}, 第 {3} 行\r\n", r.Number, r.Class, r.State, r.LineNumber);
+							txtMsg.Size = new System.Drawing.Size(this.Parent.Parent.Width - 40, 140);//7行
+							//meMsg.Properties.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+							txtMsg.ForeColor = System.Drawing.Color.Red;
+							txtMsg.Text += string.Format("消息 {0}, 级别 {1}, 状态 {2}, 第 {3} 行\r\n", r.Number, r.Class, r.State, r.LineNumber);
 						}
 
-						meMsg.Text += r.Message;
+						txtMsg.Text += r.Message;
 
-						tpInfo.Controls.Add(meMsg);
+						tpInfo.Controls.Add(txtMsg);
 
 						// 将错误记录到 SqlEdit 的 dsServers 和 dsUI
 						SqlEdit se = null;
