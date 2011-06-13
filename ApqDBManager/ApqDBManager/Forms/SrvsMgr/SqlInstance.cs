@@ -6,8 +6,6 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using WeifenLuo.WinFormsUI.Docking;
-using DevExpress.XtraTreeList;
-using DevExpress.XtraTreeList.Nodes;
 using System.Data.SqlClient;
 using System.Data.Common;
 using Apq.TreeListView;

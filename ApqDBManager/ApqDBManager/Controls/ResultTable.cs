@@ -9,10 +9,6 @@ using System.IO;
 using System.Text;
 using System.Windows.Forms;
 using Apq.Com;
-using DevExpress.XtraEditors;
-using DevExpress.XtraGrid;
-using DevExpress.XtraGrid.Views.Grid;
-using DevExpress.XtraGrid.Columns;
 using System.Data.SqlClient;
 using DevExpress.XtraTab;
 using ApqDBManager.Forms;
@@ -217,7 +213,7 @@ namespace ApqDBManager.Controls
 				{
 					if (r.Class > 0)
 					{
-						MemoEdit meMsg = new MemoEdit();
+						DevExpress.XtraEditors.MemoEdit meMsg = new DevExpress.XtraEditors.MemoEdit();
 						meMsg.Properties.ReadOnly = true;
 						meMsg.Properties.WordWrap = false;
 						meMsg.Properties.AcceptsTab = true;

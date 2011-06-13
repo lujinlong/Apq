@@ -30,22 +30,6 @@
 		{
 			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DBServer));
-			this.gridColumn18 = new DevExpress.XtraGrid.Columns.GridColumn();
-			this.gridColumn19 = new DevExpress.XtraGrid.Columns.GridColumn();
-			this.gridColumn20 = new DevExpress.XtraGrid.Columns.GridColumn();
-			this.gridColumn21 = new DevExpress.XtraGrid.Columns.GridColumn();
-			this.gridColumn22 = new DevExpress.XtraGrid.Columns.GridColumn();
-			this.gridColumn14 = new DevExpress.XtraGrid.Columns.GridColumn();
-			this.gridColumn15 = new DevExpress.XtraGrid.Columns.GridColumn();
-			this.gridColumn16 = new DevExpress.XtraGrid.Columns.GridColumn();
-			this.gridColumn17 = new DevExpress.XtraGrid.Columns.GridColumn();
-			this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
-			this.gridColumn8 = new DevExpress.XtraGrid.Columns.GridColumn();
-			this.gridColumn9 = new DevExpress.XtraGrid.Columns.GridColumn();
-			this.gridColumn10 = new DevExpress.XtraGrid.Columns.GridColumn();
-			this.gridColumn11 = new DevExpress.XtraGrid.Columns.GridColumn();
-			this.gridColumn12 = new DevExpress.XtraGrid.Columns.GridColumn();
-			this.gridColumn13 = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.scSelect = new System.Data.SqlClient.SqlCommand();
 			this.sda = new System.Data.SqlClient.SqlDataAdapter();
 			this.scDelete = new System.Data.SqlClient.SqlCommand();
@@ -79,70 +63,6 @@
 			this.toolStrip1.SuspendLayout();
 			this.statusStrip1.SuspendLayout();
 			this.SuspendLayout();
-			// 
-			// gridColumn18
-			// 
-			this.gridColumn18.Name = "gridColumn18";
-			// 
-			// gridColumn19
-			// 
-			this.gridColumn19.Name = "gridColumn19";
-			// 
-			// gridColumn20
-			// 
-			this.gridColumn20.Name = "gridColumn20";
-			// 
-			// gridColumn21
-			// 
-			this.gridColumn21.Name = "gridColumn21";
-			// 
-			// gridColumn22
-			// 
-			this.gridColumn22.Name = "gridColumn22";
-			// 
-			// gridColumn14
-			// 
-			this.gridColumn14.Name = "gridColumn14";
-			// 
-			// gridColumn15
-			// 
-			this.gridColumn15.Name = "gridColumn15";
-			// 
-			// gridColumn16
-			// 
-			this.gridColumn16.Name = "gridColumn16";
-			// 
-			// gridColumn17
-			// 
-			this.gridColumn17.Name = "gridColumn17";
-			// 
-			// gridColumn7
-			// 
-			this.gridColumn7.Name = "gridColumn7";
-			// 
-			// gridColumn8
-			// 
-			this.gridColumn8.Name = "gridColumn8";
-			// 
-			// gridColumn9
-			// 
-			this.gridColumn9.Name = "gridColumn9";
-			// 
-			// gridColumn10
-			// 
-			this.gridColumn10.Name = "gridColumn10";
-			// 
-			// gridColumn11
-			// 
-			this.gridColumn11.Name = "gridColumn11";
-			// 
-			// gridColumn12
-			// 
-			this.gridColumn12.Name = "gridColumn12";
-			// 
-			// gridColumn13
-			// 
-			this.gridColumn13.Name = "gridColumn13";
 			// 
 			// scSelect
 			// 
@@ -345,22 +265,6 @@
 
 		#endregion
 
-		private DevExpress.XtraGrid.Columns.GridColumn gridColumn14;
-		private DevExpress.XtraGrid.Columns.GridColumn gridColumn15;
-		private DevExpress.XtraGrid.Columns.GridColumn gridColumn16;
-		private DevExpress.XtraGrid.Columns.GridColumn gridColumn17;
-		private DevExpress.XtraGrid.Columns.GridColumn gridColumn18;
-		private DevExpress.XtraGrid.Columns.GridColumn gridColumn19;
-		private DevExpress.XtraGrid.Columns.GridColumn gridColumn20;
-		private DevExpress.XtraGrid.Columns.GridColumn gridColumn21;
-		private DevExpress.XtraGrid.Columns.GridColumn gridColumn22;
-		private DevExpress.XtraGrid.Columns.GridColumn gridColumn7;
-		private DevExpress.XtraGrid.Columns.GridColumn gridColumn8;
-		private DevExpress.XtraGrid.Columns.GridColumn gridColumn9;
-		private DevExpress.XtraGrid.Columns.GridColumn gridColumn10;
-		private DevExpress.XtraGrid.Columns.GridColumn gridColumn11;
-		private DevExpress.XtraGrid.Columns.GridColumn gridColumn12;
-		private DevExpress.XtraGrid.Columns.GridColumn gridColumn13;
 		private System.Data.SqlClient.SqlCommand scSelect;
 		private System.Data.SqlClient.SqlDataAdapter sda;
 		private System.Data.SqlClient.SqlCommand scDelete;

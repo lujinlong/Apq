@@ -1,5 +1,4 @@
-﻿using DevExpress.XtraGrid.Views.Grid;
-namespace ApqDBManager.Forms
+﻿namespace ApqDBManager.Forms
 {
 	partial class ErrList
 	{

@@ -6,9 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using DevExpress.XtraTreeList.Nodes;
 using System.IO;
-using DevExpress.XtraTreeList;
 using System.Threading;
 using DevExpress.XtraBars;
 using System.Data.SqlClient;
@@ -521,7 +519,7 @@ namespace ApqDBManager.Forms
 		/// </summary>
 		/// <param name="pnode"></param>
 		/// <param name="sc"></param>
-		private void DoFileUp(TreeListNode pnode, SqlConnection sc)
+		private void DoFileUp(TreeListViewItem pnode, SqlConnection sc)
 		{
 			DataView dv = new DataView(dsExplorer.dtExplorer);
 			dv.RowFilter = "CheckState = 1 AND Type = 2";
