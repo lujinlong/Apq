@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Data;
 using System.Data.Common;
+using System.Windows.Forms;
 
 namespace Apq.TreeListView
 {
@@ -250,5 +251,89 @@ namespace Apq.TreeListView
 			return null;
 		}
 		#endregion
+
+		#region 选中状态
+		#region SetChecked
+		/// <summary>
+		/// 设置指定节点的选中状态
+		/// </summary>
+		public static void SetCheckedNode(TreeListViewItem node, bool Checked, bool checkParent, bool checkChildren)
+		{
+			node.Checked = Checked;
+
+			if (checkParent)
+			{
+				SetCheckedParentNodes(node, Checked);
+			}
+			if (checkChildren)
+			{
+				SetCheckedChildNodes(node, Checked);
+			}
+		}
+		/// <summary>
+		/// 设置指定节点下级的选中状态
+		/// </summary>
+		public static void SetCheckedChildNodes(TreeListViewItem node, bool Checked)
+		{
+			foreach (TreeListViewItem tln in node.Items)
+			{
+				tln.Checked = Checked;
+				SetCheckedChildNodes(tln, Checked);
+			}
+		}
+		/// <summary>
+		/// 设置指定节点上级的选中状态
+		/// </summary>
+		public static void SetCheckedParentNodes(TreeListViewItem node, bool Checked)
+		{
+			if (node.Parent != null)
+			{
+				node.Parent.Checked = Checked;
+				SetCheckedParentNodes(node.Parent, Checked);
+			}
+		}
+		#endregion
+		#region ChgChecked
+		/// <summary>
+		/// 切换指定节点的选中状态
+		/// </summary>
+		public static void ChgCheckedNode(TreeListViewItem node, bool checkParent, bool checkChildren)
+		{
+			node.Checked = !node.Checked;
+
+			if (checkParent)
+			{
+				ChgCheckedParentNodes(node);
+			}
+			if (checkChildren)
+			{
+				ChgCheckedChildNodes(node);
+			}
+		}
+		/// <summary>
+		/// 切换指定节点下级的选中状态
+		/// </summary>
+		public static void ChgCheckedChildNodes(TreeListViewItem node)
+		{
+			foreach (TreeListViewItem tln in node.Items)
+			{
+				tln.Checked = !tln.Checked;
+				ChgCheckedChildNodes(tln);
+			}
+		}
+		/// <summary>
+		/// 切换指定节点下级的选中状态
+		/// </summary>
+		public static void ChgCheckedParentNodes(TreeListViewItem node)
+		{
+			if (node.Parent != null)
+			{
+				node.Parent.Checked = !node.Parent.Checked;
+				ChgCheckedParentNodes(node.Parent);
+			}
+		}
+		#endregion
+		#endregion
+
 	}
 }

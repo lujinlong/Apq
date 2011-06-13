@@ -67,7 +67,7 @@ namespace Apq.IO
 
 				foreach (string s in root)
 				{
-					dt.Rows.Add(true, 3, 0, FirstID++, 0, s, s, 0, 0, false, null);
+					dt.Rows.Add(true, 0, 0, FirstID++, 0, s, s, 0, 0, false, null);
 				}
 			}
 			catch { }
@@ -121,7 +121,7 @@ namespace Apq.IO
 					try
 					{
 						di = new DirectoryInfo(s);
-						dt.Rows.Add(HasChildren(s), 0, Checked, FirstID++, ID, s, di.Name, 1, 0, false, null);
+						dt.Rows.Add(HasChildren(s), 1, Checked, FirstID++, ID, s, di.Name, 1, 0, false, null);
 					}
 					catch { }
 				}
@@ -140,7 +140,7 @@ namespace Apq.IO
 				foreach (string s in root)
 				{
 					fi = new FileInfo(s);
-					dt.Rows.Add(false, 2, Checked, FirstID++, ID, s, fi.Name, 2, fi.Length, false, null);
+					dt.Rows.Add(false, 3, Checked, FirstID++, ID, s, fi.Name, 2, fi.Length, false, null);
 				}
 			}
 			catch { }
