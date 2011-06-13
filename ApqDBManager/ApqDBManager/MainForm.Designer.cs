@@ -65,7 +65,7 @@
 			this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
 			this.tsmiRandom = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
-			this.tsmiFTP = new System.Windows.Forms.ToolStripMenuItem();
+			this.tsmiFTPFileTrans = new System.Windows.Forms.ToolStripMenuItem();
 			this.tsmiFTPFileUp = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
 			this.tsmiDBServer = new System.Windows.Forms.ToolStripMenuItem();
@@ -347,7 +347,7 @@
             this.toolStripSeparator7,
             this.tsmiRandom,
             this.toolStripSeparator8,
-            this.tsmiFTP,
+            this.tsmiFTPFileTrans,
             this.tsmiFTPFileUp,
             this.toolStripSeparator9,
             this.tsmiDBServer});
@@ -398,12 +398,12 @@
 			this.toolStripSeparator8.Name = "toolStripSeparator8";
 			this.toolStripSeparator8.Size = new System.Drawing.Size(157, 6);
 			// 
-			// tsmiFTP
+			// tsmiFTPFileTrans
 			// 
-			this.tsmiFTP.Name = "tsmiFTP";
-			this.tsmiFTP.Size = new System.Drawing.Size(160, 22);
-			this.tsmiFTP.Text = "FTP传送(&F)";
-			this.tsmiFTP.Click += new System.EventHandler(this.tsmiFTP_Click);
+			this.tsmiFTPFileTrans.Name = "tsmiFTPFileTrans";
+			this.tsmiFTPFileTrans.Size = new System.Drawing.Size(160, 22);
+			this.tsmiFTPFileTrans.Text = "FTP传送(&F)";
+			this.tsmiFTPFileTrans.Click += new System.EventHandler(this.tsmiFTPFileTrans_Click);
 			// 
 			// tsmiFTPFileUp
 			// 
@@ -615,7 +615,7 @@
 		private System.Windows.Forms.ToolStripSeparator toolStripSeparator7;
 		private System.Windows.Forms.ToolStripMenuItem tsmiRandom;
 		private System.Windows.Forms.ToolStripSeparator toolStripSeparator8;
-		private System.Windows.Forms.ToolStripMenuItem tsmiFTP;
+		private System.Windows.Forms.ToolStripMenuItem tsmiFTPFileTrans;
 		private System.Windows.Forms.ToolStripMenuItem tsmiFTPFileUp;
 		private System.Windows.Forms.ToolStripSeparator toolStripSeparator9;
 		private System.Windows.Forms.ToolStripMenuItem tsmiDBServer;

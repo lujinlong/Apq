@@ -342,7 +342,7 @@ namespace ApqDBManager.Forms
 					{
 						Apq.Windows.Delegates.Action_UI<BarStaticItem>(this, bsiState, delegate(BarStaticItem ctrl)
 						{
-							XSD.UI.ErrListRow drErrList = _UI.ErrList.NewErrListRow();
+							ErrList_XSD.ErrListRow drErrList = _UI.ErrList.NewErrListRow();
 							drErrList.RSrvID = nServerID;
 							drErrList["__ServerName"] = dvErr[0]["Name"];
 							drErrList.s = ex.Message;
@@ -532,7 +532,7 @@ namespace ApqDBManager.Forms
 					{
 						Apq.Windows.Delegates.Action_UI<BarStaticItem>(this, bsiState, delegate(BarStaticItem ctrl)
 						{
-							XSD.UI.ErrListRow drErrList = _UI.ErrList.NewErrListRow();
+							ErrList_XSD.ErrListRow drErrList = _UI.ErrList.NewErrListRow();
 							drErrList.RSrvID = nServerID;
 							drErrList["__ServerName"] = dvErr[0]["Name"];
 							drErrList.s = ex.Message;

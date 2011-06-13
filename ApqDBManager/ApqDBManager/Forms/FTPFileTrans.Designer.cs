@@ -55,7 +55,7 @@
 			this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
 			this.fbdCFTPFolder_Out = new System.Windows.Forms.FolderBrowserDialog();
 			this.fbdCFolder_In = new System.Windows.Forms.FolderBrowserDialog();
-			this._UI = new ApqDBManager.XSD.UI();
+			this._UI = new ApqDBManager.Forms.ErrList_XSD();
 			this._Sqls = new ApqDBManager.Forms.SrvsMgr.SrvsMgr_XSD();
 			((System.ComponentModel.ISupportInitialize)(this.beDBFTPFolder_Out.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.beCFTPFolder_Out.Properties)).BeginInit();
@@ -352,7 +352,7 @@
 		private System.Windows.Forms.FolderBrowserDialog fbdCFolder_In;
 		private DevExpress.XtraEditors.LabelControl labelControl5;
 		private DevExpress.XtraEditors.LabelControl labelControl6;
-		private ApqDBManager.XSD.UI _UI;
+		private ErrList_XSD _UI;
 		private ApqDBManager.Forms.SrvsMgr.SrvsMgr_XSD _Sqls;
 	}
 }

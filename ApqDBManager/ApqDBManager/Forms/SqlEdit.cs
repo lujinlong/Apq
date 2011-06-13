@@ -16,6 +16,7 @@ using DevExpress.XtraTab;
 using DevExpress.XtraEditors;
 using ICSharpCode.TextEditor.Document;
 using System.Text.RegularExpressions;
+using ApqDBManager.Forms;
 
 namespace ApqDBManager
 {
@@ -164,8 +165,6 @@ UNION ALL SELECT 2,2;";
 				tscbDBName.SelectedText = cfgcbDBName;
 			}
 			#endregion
-
-			Apq.Windows.Controls.Control.AddImeHandler(this);
 
 			// 获取服务器列表
 			_Sqls = GlobalObject.Sqls.Copy() as ApqDBManager.Forms.SrvsMgr.SrvsMgr_XSD;
@@ -786,7 +785,7 @@ UNION ALL SELECT 2,2;";
 					{
 						Apq.Windows.Delegates.Action_UI<ToolStripStatusLabel>(this, tsslStatus, delegate(ToolStripStatusLabel ctrl)
 						{
-							XSD.UI.ErrListRow drErrList = dsUI.ErrList.NewErrListRow();
+							ErrList_XSD.ErrListRow drErrList = dsUI.ErrList.NewErrListRow();
 							drErrList.RSrvID = nServerID;
 							drErrList["__ServerName"] = dvErr[0]["SqlName"];
 							drErrList.s = ex.Message;

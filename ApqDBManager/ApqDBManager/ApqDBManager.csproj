@@ -112,10 +112,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Dlls\Apq.WorkFlow.dll</HintPath>
     </Reference>
-    <Reference Include="ApqDBManager.XSD, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>Dlls\ApqDBManager.XSD.dll</HintPath>
-    </Reference>
     <Reference Include="CommonTools, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Dlls\CommonTools.dll</HintPath>
@@ -138,13 +134,7 @@
     <Reference Include="DevExpress.XtraGrid.v9.2, Version=9.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <Private>True</Private>
     </Reference>
-    <Reference Include="DevExpress.XtraNavBar.v9.2, Version=9.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="DevExpress.XtraRichEdit.v9.2, Version=9.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.XtraTreeList.v9.2, Version=9.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
-      <Private>True</Private>
-    </Reference>
+    <Reference Include="DevExpress.XtraTreeList.v9.2, Version=9.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="ICSharpCode.TextEditor, Version=2.0.0.922, Culture=neutral, PublicKeyToken=4d61825e8dd49f1a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Dlls\ICSharpCode.TextEditor.dll</HintPath>
@@ -233,6 +223,11 @@
     <Compile Include="Forms\ErrList.Designer.cs">
       <DependentUpon>ErrList.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\ErrList_XSD.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ErrList_XSD.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Export.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -244,18 +239,6 @@
     </Compile>
     <Compile Include="Forms\Favorites.Designer.cs">
       <DependentUpon>Favorites.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\FileTrans.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\FileTrans.Designer.cs">
-      <DependentUpon>FileTrans.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\FileUp.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\FileUp.Designer.cs">
-      <DependentUpon>FileUp.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\MainOption.cs">
       <SubType>Form</SubType>
@@ -432,12 +415,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Favorites.resx">
       <DependentUpon>Favorites.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FileTrans.resx">
-      <DependentUpon>FileTrans.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FileUp.resx">
-      <DependentUpon>FileUp.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\MainOption.resx">
       <DependentUpon>MainOption.cs</DependentUpon>
@@ -666,6 +643,17 @@
     <None Include="ApqDBManager[雪羽].reg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="Forms\ErrList_XSD.xsc">
+      <DependentUpon>ErrList_XSD.xsd</DependentUpon>
+    </None>
+    <None Include="Forms\ErrList_XSD.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ErrList_XSD.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Forms\ErrList_XSD.xss">
+      <DependentUpon>ErrList_XSD.xsd</DependentUpon>
+    </None>
     <None Include="Forms\SrvsMgr\SrvsMgr_XSD.xsc">
       <DependentUpon>SrvsMgr_XSD.xsd</DependentUpon>
     </None>
@@ -706,9 +694,6 @@ xcopy "$(ProjectDir)..\..\Reference\$(ConfigurationName)\Config\Apq.DBC.dll.apq"
 
 xcopy "$(ProjectDir)..\..\Reference\$(ConfigurationName)\Config\Apq.Win.dll.config" "$(ProjectDir)" /c /q /g /h /r /k /y
 xcopy "$(ProjectDir)..\..\Reference\$(ConfigurationName)\Config\Apq.Win.dll.apq" "$(ProjectDir)" /c /q /g /h /r /k /y
-
-xcopy "$(ProjectDir)..\..\Reference\$(ConfigurationName)\Config\szDomain.ResConvert.dll.config" "$(ProjectDir)" /c /q /g /h /r /k /y
-xcopy "$(ProjectDir)..\..\Reference\$(ConfigurationName)\Config\szDomain.ResConvert.dll.apq" "$(ProjectDir)" /c /q /g /h /r /k /y
 
 xcopy "$(ProjectDir)..\..\Reference\$(ConfigurationName)\Config\Apq.Reg.Client.dll.config" "$(ProjectDir)" /c /q /g /h /r /k /y
 xcopy "$(ProjectDir)..\..\Reference\$(ConfigurationName)\Config\Apq.Reg.Client.dll.apq" "$(ProjectDir)" /c /q /g /h /r /k /y
@@ -761,14 +746,8 @@ xcopy "$(ProjectDir)..\..\Reference\TreeListView\System.Runtime.InteropServices.
 xcopy "$(ProjectDir)..\..\Reference\TreeListView\System.Windows.Forms.TreeListView.dll" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
 xcopy "$(ProjectDir)..\..\Reference\TreeListView\System.Windows.Forms.TreeListView.xml" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
 
-xcopy "$(ProjectDir)..\..\Reference\$(ConfigurationName)\ApqDBManager.XSD.dll" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
-
 xcopy "$(ProjectDir)..\..\Reference\$(ConfigurationName)\Apq.Reg.Client.dll" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
 xcopy "$(ProjectDir)..\..\Reference\$(ConfigurationName)\Apq.Reg.Client.pdb" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
-
-:xcopy "$(ProjectDir)..\..\Reference\Release\szDomain.ResConvert.dll" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
-:xcopy "$(ProjectDir)..\..\Reference\Release\szDomain.ResConvert.xml" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
-:xcopy "$(ProjectDir)..\..\Reference\Release\szDomain.ResConvert.pdb" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
 :End
 </PreBuildEvent>
     <PostBuildEvent>

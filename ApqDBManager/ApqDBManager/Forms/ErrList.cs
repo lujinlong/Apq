@@ -19,17 +19,17 @@ namespace ApqDBManager.Forms
 
 		private void ErrList_Load(object sender, EventArgs e)
 		{
-			//Apq.Xtra.Grid.Common.AddBehaivor(gridView1);
-			//this.gridView1.CustomDrawRowIndicator += new RowIndicatorCustomDrawEventHandler(Apq.Xtra.Grid.Common.gv_CustomDrawRowIndicator);
+			Apq.Windows.Forms.DataGridViewHelper.SetDefaultStyle(dataGridView1);
+			Apq.Windows.Forms.DataGridViewHelper.AddBehaivor(dataGridView1);
 		}
 
 		#region UI 公开方法
 		/// <summary>
 		/// 改变当前子窗口时调用
 		/// </summary>
-		public void Set_ErrList(ApqDBManager.XSD.UI ui)
+		public void Set_ErrList(ErrList_XSD xsd)
 		{
-			gridControl1.DataSource = ui;
+			errListBindingSource.DataSource = xsd;
 		}
 		#endregion
 	}

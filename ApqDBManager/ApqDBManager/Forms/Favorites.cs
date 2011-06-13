@@ -21,14 +21,13 @@ namespace ApqDBManager.Forms
 
 		private void Favorites_Load(object sender, EventArgs e)
 		{
-			listBoxControl1.DataSource = ds.dtExplorer.DefaultView;
+			listBox1.DataSource = ds.dtExplorer.DefaultView;
 			ds.dtExplorer.DefaultView.RowFilter = "FileName LIKE '%txt' OR FileName LIKE '%sql'";
 
-			Apq.Windows.Controls.Control.AddImeHandler(this);
-			tsmiRefresh_Click(tsmiRefresh, null);
+			tsbRefresh_Click(tsbRefresh, null);
 		}
 
-		private void tsmiRefresh_Click(object sender, EventArgs e)
+		private void tsbRefresh_Click(object sender, EventArgs e)
 		{
 			string DirFullPath = GlobalObject.XmlConfigChain[typeof(ApqDBManager.Controls.MainOption.Favorites), "CFolder"];
 			if (!System.IO.Directory.Exists(DirFullPath))
@@ -36,19 +35,19 @@ namespace ApqDBManager.Forms
 				System.IO.Directory.CreateDirectory(DirFullPath);
 			}
 
-			listBoxControl1.BeginUpdate();
+			listBox1.BeginUpdate();
 			ds.dtExplorer.Clear();
 			NextID = 1;
 			Apq.IO.FileSystem.LoadFiles(ds.dtExplorer, ref NextID, 0, 0, DirFullPath);
-			listBoxControl1.EndUpdate();
+			listBox1.EndUpdate();
 		}
 
-		private void listBoxControl1_DoubleClick(object sender, EventArgs e)
+		private void listBox1_DoubleClick(object sender, EventArgs e)
 		{
-			if (Apq.Convert.HasMean(listBoxControl1.SelectedValue))
+			if (Apq.Convert.HasMean(listBox1.SelectedValue))
 			{
 				SqlEdit Editor = GlobalObject.MainForm.ActiveMdiChild as SqlEdit;
-				if (Editor != null) Editor.LoadFile(listBoxControl1.SelectedValue.ToString());
+				if (Editor != null) Editor.LoadFile(listBox1.SelectedValue.ToString());
 			}
 		}
 	}

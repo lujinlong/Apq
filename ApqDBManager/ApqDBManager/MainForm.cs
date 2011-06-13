@@ -313,19 +313,7 @@ namespace ApqDBManager
 			win.Show(dockPanel1);
 		}
 
-		private void tsmiFileUp_Click(object sender, EventArgs e)
-		{
-			Forms.FileUp win = new Forms.FileUp();
-			win.Show(dockPanel1);
-		}
-
-		private void tsmiFileTrans_Click(object sender, EventArgs e)
-		{
-			Forms.FileTrans win = new ApqDBManager.Forms.FileTrans();
-			win.Show(dockPanel1);
-		}
-
-		private void tsmiFTP_Click(object sender, EventArgs e)
+		private void tsmiFTPFileTrans_Click(object sender, EventArgs e)
 		{
 			Forms.FTPFileTrans win = new ApqDBManager.Forms.FTPFileTrans();
 			win.Show(dockPanel1);

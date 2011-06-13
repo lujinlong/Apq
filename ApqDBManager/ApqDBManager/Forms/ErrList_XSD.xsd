@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<xs:schema id="UI" targetNamespace="http://tempuri.org/UI.xsd" xmlns:mstns="http://tempuri.org/UI.xsd" xmlns="http://tempuri.org/UI.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+<xs:schema id="ErrList_XSD" targetNamespace="http://tempuri.org/ErrList_XSD.xsd" xmlns:mstns="http://tempuri.org/ErrList_XSD.xsd" xmlns="http://tempuri.org/ErrList_XSD.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
   <xs:annotation>
     <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
       <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
@@ -9,7 +9,7 @@
       </DataSource>
     </xs:appinfo>
   </xs:annotation>
-  <xs:element name="UI" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_DataSetName="UI" msprop:Generator_UserDSName="UI" msprop:EnableTableAdapterManager="true">
+  <xs:element name="ErrList_XSD" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_DataSetName="ErrList_XSD" msprop:Generator_UserDSName="ErrList_XSD" msprop:EnableTableAdapterManager="true">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
         <xs:element name="ErrList" msprop:Generator_UserTableName="ErrList" msprop:Generator_RowDeletedName="ErrListRowDeleted" msprop:Generator_TableClassName="ErrListDataTable" msprop:Generator_RowChangedName="ErrListRowChanged" msprop:Generator_RowClassName="ErrListRow" msprop:Generator_RowChangingName="ErrListRowChanging" msprop:Generator_RowEvArgName="ErrListRowChangeEvent" msprop:Generator_RowEvHandlerName="ErrListRowChangeEventHandler" msprop:Generator_TablePropName="ErrList" msprop:Generator_TableVarName="tableErrList" msprop:Generator_RowDeletingName="ErrListRowDeleting">

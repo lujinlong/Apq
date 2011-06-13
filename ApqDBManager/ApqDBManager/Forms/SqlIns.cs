@@ -5,8 +5,6 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
-using DevExpress.XtraTreeList;
-using DevExpress.XtraTreeList.Nodes;
 using WeifenLuo.WinFormsUI.Docking;
 using System.Data.SqlClient;
 using Apq.TreeListView;
@@ -53,9 +51,6 @@ namespace ApqDBManager.Forms
 				_Sqls.SqlInstance.AcceptChanges();
 			}
 			#endregion
-
-			Apq.Windows.Controls.Control.AddImeHandler(this);
-			//Apq.Xtra.TreeList.Common.AddBehaivor(treeList1);
 		}
 
 		private void SolutionExplorer_Shown(object sender, EventArgs e)

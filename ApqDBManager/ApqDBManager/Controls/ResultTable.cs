@@ -15,6 +15,7 @@ using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraGrid.Columns;
 using System.Data.SqlClient;
 using DevExpress.XtraTab;
+using ApqDBManager.Forms;
 
 namespace ApqDBManager.Controls
 {
@@ -173,6 +174,12 @@ namespace ApqDBManager.Controls
 						dgv.DataSource = _DisplayDataSet;
 						dgv.DataMember = dtDisplay.TableName;
 						Apq.Windows.Forms.DataGridViewHelper.AddBehaivor(dgv);
+
+						// 禁止排序
+						foreach (DataGridViewColumn gc in dgv.Columns)
+						{
+							gc.SortMode = DataGridViewColumnSortMode.NotSortable;
+						}
 					}
 				}
 			}
@@ -271,7 +278,7 @@ namespace ApqDBManager.Controls
 							object rtLock = se.GetLock(ServerID.ToString());
 							lock (rtLock)
 							{
-								XSD.UI.ErrListRow drErrList = se.dsUI.ErrList.NewErrListRow();
+								ErrList_XSD.ErrListRow drErrList = se.dsUI.ErrList.NewErrListRow();
 								drErrList.RSrvID = ServerID;
 								drErrList["__ServerName"] = dvErr[0]["SqlName"];
 								drErrList.s = r.Message;

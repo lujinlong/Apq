@@ -2,11 +2,6 @@
 Microsoft Visual Studio Solution File, Format Version 10.00
 # Visual Studio 2008
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApqDBManager", "ApqDBManager\ApqDBManager.csproj", "{9D89E72C-ACDD-47BE-84E3-270BACA7A8A4}"
-	ProjectSection(ProjectDependencies) = postProject
-		{FDB03E24-76AB-4C09-96D2-2DB21E02D604} = {FDB03E24-76AB-4C09-96D2-2DB21E02D604}
-	EndProjectSection
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApqDBManager.XSD", "ApqDBManager.XSD\ApqDBManager.XSD.csproj", "{FDB03E24-76AB-4C09-96D2-2DB21E02D604}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_说明", "_说明", "{40D4AA87-24A1-469D-9EE5-C2B318206342}"
 	ProjectSection(SolutionItems) = preProject
@@ -39,15 +34,6 @@ Global
 		{9D89E72C-ACDD-47BE-84E3-270BACA7A8A4}.Release|Any CPU.Build.0 = Release|Any CPU
 		{9D89E72C-ACDD-47BE-84E3-270BACA7A8A4}.Release|x86.ActiveCfg = Release|x86
 		{9D89E72C-ACDD-47BE-84E3-270BACA7A8A4}.Release|x86.Build.0 = Release|x86
-		{FDB03E24-76AB-4C09-96D2-2DB21E02D604}.Debug_Home|Any CPU.ActiveCfg = Debug_Home|Any CPU
-		{FDB03E24-76AB-4C09-96D2-2DB21E02D604}.Debug_Home|Any CPU.Build.0 = Debug_Home|Any CPU
-		{FDB03E24-76AB-4C09-96D2-2DB21E02D604}.Debug_Home|x86.ActiveCfg = Debug|Any CPU
-		{FDB03E24-76AB-4C09-96D2-2DB21E02D604}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FDB03E24-76AB-4C09-96D2-2DB21E02D604}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FDB03E24-76AB-4C09-96D2-2DB21E02D604}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{FDB03E24-76AB-4C09-96D2-2DB21E02D604}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FDB03E24-76AB-4C09-96D2-2DB21E02D604}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FDB03E24-76AB-4C09-96D2-2DB21E02D604}.Release|x86.ActiveCfg = Release|Any CPU
 		{102C478D-0E13-411C-813C-C325612C2C85}.Debug_Home|Any CPU.ActiveCfg = Debug
 		{102C478D-0E13-411C-813C-C325612C2C85}.Debug_Home|x86.ActiveCfg = Debug
 		{102C478D-0E13-411C-813C-C325612C2C85}.Debug|Any CPU.ActiveCfg = Debug
