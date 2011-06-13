@@ -44,7 +44,7 @@ namespace ApqDBManager.Forms
 
 			RSACryptoServiceProvider rsa = new RSACryptoServiceProvider();
 			txtRSAUKey.Text = rsa.ToXmlString(false);
-			if (ceContainsPKey.Checked)
+			if (cbContainsPKey.Checked)
 			{
 				txtRSAPKey.Text = rsa.ToXmlString(true);
 			}

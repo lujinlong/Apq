@@ -18,61 +18,27 @@ namespace ApqDBManager.Forms
 			InitializeComponent();
 		}
 
-		private void CryptCS_Load(object sender, EventArgs e)
+		private void cbDFile_DropDown(object sender, EventArgs e)
 		{
-			string EncryptFile = GlobalObject.XmlConfigChain[this.GetType(), "EncryptFile"];
-			if (EncryptFile != null)
+			if (cbDFile.Text.Trim().Length > 0)
 			{
-				beDFile.Text = EncryptFile;
-			}
-			string DecryptFile = GlobalObject.XmlConfigChain[this.GetType(), "DecryptFile"];
-			if (DecryptFile != null)
-			{
-				beEFile.Text = DecryptFile;
-			}
-			string CDString = GlobalObject.XmlConfigChain[this.GetType(), "CDString"];
-			if (CDString != null)
-			{
-				meInput.Text = CDString;
-			}
-		}
-
-		private void beDFile_EditValueChanged(object sender, EventArgs e)
-		{
-			GlobalObject.XmlUserConfig.SetValue("EncryptFile", beDFile.Text);
-		}
-
-		private void beEFile_EditValueChanged(object sender, EventArgs e)
-		{
-			GlobalObject.XmlUserConfig.SetValue("DecryptFile", beEFile.Text);
-		}
-
-		private void meInput_EditValueChanged(object sender, EventArgs e)
-		{
-			GlobalObject.XmlUserConfig.SetValue("CDString", meInput.Text);
-		}
-
-		private void beDFile_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
-		{
-			if (beDFile.Text.Trim().Length > 0)
-			{
-				ofdDFile.FileName = beDFile.Text.Trim();
+				ofdDFile.FileName = cbDFile.Text.Trim();
 			}
 			if (ofdDFile.ShowDialog(this) == DialogResult.OK)
 			{
-				beDFile.Text = ofdDFile.FileName;
+				cbDFile.Text = ofdDFile.FileName;
 			}
 		}
 
-		private void beEFile_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
+		private void cbEFile_DropDown(object sender, EventArgs e)
 		{
-			if (beEFile.Text.Trim().Length > 0)
+			if (cbEFile.Text.Trim().Length > 0)
 			{
-				ofdEFile.FileName = beDFile.Text.Trim();
+				ofdEFile.FileName = cbEFile.Text.Trim();
 			}
 			if (ofdEFile.ShowDialog(this) == DialogResult.OK)
 			{
-				beEFile.Text = ofdEFile.FileName;
+				cbEFile.Text = ofdEFile.FileName;
 			}
 		}
 
@@ -80,9 +46,9 @@ namespace ApqDBManager.Forms
 		{
 			string desKey = GlobalObject.RegConfigChain["Crypt", "DESKey"];
 			string desIV = GlobalObject.RegConfigChain["Crypt", "DESIV"];
-			string str = File.ReadAllText(beDFile.Text);
+			string str = File.ReadAllText(cbDFile.Text);
 			string strCs = Apq.Security.Cryptography.DESHelper.EncryptString(str, desKey, desIV);
-			File.WriteAllText(beEFile.Text, strCs, Encoding.UTF8);
+			File.WriteAllText(cbEFile.Text, strCs, Encoding.UTF8);
 			MessageBox.Show("加密完成");
 		}
 
@@ -90,9 +56,9 @@ namespace ApqDBManager.Forms
 		{
 			string desKey = GlobalObject.RegConfigChain["Crypt", "DESKey"];
 			string desIV = GlobalObject.RegConfigChain["Crypt", "DESIV"];
-			string strCs = File.ReadAllText(beEFile.Text);
+			string strCs = File.ReadAllText(cbEFile.Text);
 			string str = Apq.Security.Cryptography.DESHelper.DecryptString(strCs, desKey, desIV);
-			File.WriteAllText(beDFile.Text, str, Encoding.UTF8);
+			File.WriteAllText(cbDFile.Text, str, Encoding.UTF8);
 			MessageBox.Show("解密完成");
 		}
 
@@ -100,7 +66,7 @@ namespace ApqDBManager.Forms
 		{
 			string desKey = GlobalObject.RegConfigChain["Crypt", "DESKey"];
 			string desIV = GlobalObject.RegConfigChain["Crypt", "DESIV"];
-			meOutput.Text = Apq.Security.Cryptography.DESHelper.EncryptString(meInput.Text, desKey, desIV);
+			txtOutput.Text = Apq.Security.Cryptography.DESHelper.EncryptString(txtInput.Text, desKey, desIV);
 			MessageBox.Show("加密完成");
 		}
 
@@ -108,7 +74,7 @@ namespace ApqDBManager.Forms
 		{
 			string desKey = GlobalObject.RegConfigChain["Crypt", "DESKey"];
 			string desIV = GlobalObject.RegConfigChain["Crypt", "DESIV"];
-			meOutput.Text = Apq.Security.Cryptography.DESHelper.DecryptString(meInput.Text, desKey, desIV);
+			txtInput.Text = Apq.Security.Cryptography.DESHelper.DecryptString(txtOutput.Text, desKey, desIV);
 			MessageBox.Show("解密完成");
 		}
 	}

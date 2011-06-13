@@ -17,56 +17,56 @@ namespace ApqDBManager
 			InitializeComponent();
 		}
 
-		private void beInput_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
+		private void cbDFile_DropDown(object sender, EventArgs e)
 		{
-			if (beInput.Text.Trim().Length > 0)
+			if (cbDFile.Text.Trim().Length > 0)
 			{
-				openFileDialog1.FileName = beInput.Text.Trim();
+				ofdDFile.FileName = cbDFile.Text.Trim();
 			}
-			if (openFileDialog1.ShowDialog(this) == DialogResult.OK)
+			if (ofdDFile.ShowDialog(this) == DialogResult.OK)
 			{
-				beInput.Text = openFileDialog1.FileName;
+				cbDFile.Text = ofdDFile.FileName;
 			}
 		}
 
-		private void beOutput_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
+		private void cbEFile_DropDown(object sender, EventArgs e)
 		{
-			if (beOutput.Text.Trim().Length > 0)
+			if (cbEFile.Text.Trim().Length > 0)
 			{
-				saveFileDialog1.FileName = beInput.Text.Trim();
+				ofdEFile.FileName = cbEFile.Text.Trim();
 			}
-			if (saveFileDialog1.ShowDialog(this) == DialogResult.OK)
+			if (ofdEFile.ShowDialog(this) == DialogResult.OK)
 			{
-				beOutput.Text = saveFileDialog1.FileName;
+				cbEFile.Text = ofdEFile.FileName;
 			}
 		}
 
 		private void btnEncryptFile_Click(object sender, EventArgs e)
 		{
-			byte[] desKey = System.Text.Encoding.Unicode.GetBytes(teKey.Text);
-			byte[] desIV = System.Text.Encoding.Unicode.GetBytes(teIV.Text);
-			Apq.Security.Cryptography.DESHelper.EncryptFile(beInput.Text, beOutput.Text, desKey, desIV);
+			byte[] desKey = System.Text.Encoding.Unicode.GetBytes(txtKey.Text);
+			byte[] desIV = System.Text.Encoding.Unicode.GetBytes(txtIV.Text);
+			Apq.Security.Cryptography.DESHelper.EncryptFile(cbDFile.Text, cbEFile.Text, desKey, desIV);
 		}
 
 		private void btnDecryptFile_Click(object sender, EventArgs e)
 		{
-			byte[] desKey = System.Text.Encoding.Unicode.GetBytes(teKey.Text);
-			byte[] desIV = System.Text.Encoding.Unicode.GetBytes(teIV.Text);
-			Apq.Security.Cryptography.DESHelper.DecryptFile(beInput.Text, beOutput.Text, desKey, desIV);
+			byte[] desKey = System.Text.Encoding.Unicode.GetBytes(txtKey.Text);
+			byte[] desIV = System.Text.Encoding.Unicode.GetBytes(txtIV.Text);
+			Apq.Security.Cryptography.DESHelper.DecryptFile(cbEFile.Text, cbDFile.Text, desKey, desIV);
 		}
 
 		private void btnEncryptString_Click(object sender, EventArgs e)
 		{
-			byte[] desKey = System.Text.Encoding.Unicode.GetBytes(teKey.Text);
-			byte[] desIV = System.Text.Encoding.Unicode.GetBytes(teIV.Text);
-			meOutput.Text = Apq.Security.Cryptography.DESHelper.EncryptString(meInput.Text, desKey, desIV);
+			byte[] desKey = System.Text.Encoding.Unicode.GetBytes(txtKey.Text);
+			byte[] desIV = System.Text.Encoding.Unicode.GetBytes(txtIV.Text);
+			txtOutput.Text = Apq.Security.Cryptography.DESHelper.EncryptString(txtInput.Text, desKey, desIV);
 		}
 
 		private void btnDecryptString_Click(object sender, EventArgs e)
 		{
-			byte[] desKey = System.Text.Encoding.Unicode.GetBytes(teKey.Text);
-			byte[] desIV = System.Text.Encoding.Unicode.GetBytes(teIV.Text);
-			meOutput.Text = Apq.Security.Cryptography.DESHelper.DecryptString(meInput.Text, desKey, desIV);
+			byte[] desKey = System.Text.Encoding.Unicode.GetBytes(txtKey.Text);
+			byte[] desIV = System.Text.Encoding.Unicode.GetBytes(txtIV.Text);
+			txtInput.Text = Apq.Security.Cryptography.DESHelper.DecryptString(txtOutput.Text, desKey, desIV);
 		}
 	}
 }

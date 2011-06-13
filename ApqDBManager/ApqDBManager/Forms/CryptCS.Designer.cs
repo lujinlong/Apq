@@ -29,164 +29,25 @@
 		private void InitializeComponent()
 		{
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CryptCS));
-			this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
-			this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
-			this.beDFile = new DevExpress.XtraEditors.ButtonEdit();
-			this.beEFile = new DevExpress.XtraEditors.ButtonEdit();
-			this.xtraTabControl1 = new DevExpress.XtraTab.XtraTabControl();
-			this.xtraTabPage1 = new DevExpress.XtraTab.XtraTabPage();
-			this.btnDecryptFile = new DevExpress.XtraEditors.SimpleButton();
-			this.btnEncryptFile = new DevExpress.XtraEditors.SimpleButton();
-			this.xtraTabPage2 = new DevExpress.XtraTab.XtraTabPage();
-			this.btnDecryptString = new DevExpress.XtraEditors.SimpleButton();
-			this.btnEncryptString = new DevExpress.XtraEditors.SimpleButton();
-			this.meOutput = new DevExpress.XtraEditors.MemoEdit();
-			this.meInput = new DevExpress.XtraEditors.MemoEdit();
 			this.ofdDFile = new System.Windows.Forms.OpenFileDialog();
 			this.ofdEFile = new System.Windows.Forms.OpenFileDialog();
-			((System.ComponentModel.ISupportInitialize)(this.beDFile.Properties)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.beEFile.Properties)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).BeginInit();
-			this.xtraTabControl1.SuspendLayout();
-			this.xtraTabPage1.SuspendLayout();
-			this.xtraTabPage2.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.meOutput.Properties)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.meInput.Properties)).BeginInit();
+			this.tabControl1 = new System.Windows.Forms.TabControl();
+			this.tabPage1 = new System.Windows.Forms.TabPage();
+			this.btnDecryptFile = new System.Windows.Forms.Button();
+			this.btnEncryptFile = new System.Windows.Forms.Button();
+			this.cbEFile = new System.Windows.Forms.ComboBox();
+			this.cbDFile = new System.Windows.Forms.ComboBox();
+			this.label4 = new System.Windows.Forms.Label();
+			this.label3 = new System.Windows.Forms.Label();
+			this.tabPage2 = new System.Windows.Forms.TabPage();
+			this.btnDecryptString = new System.Windows.Forms.Button();
+			this.btnEncryptString = new System.Windows.Forms.Button();
+			this.txtOutput = new System.Windows.Forms.TextBox();
+			this.txtInput = new System.Windows.Forms.TextBox();
+			this.tabControl1.SuspendLayout();
+			this.tabPage1.SuspendLayout();
+			this.tabPage2.SuspendLayout();
 			this.SuspendLayout();
-			// 
-			// labelControl1
-			// 
-			this.labelControl1.Location = new System.Drawing.Point(18, 50);
-			this.labelControl1.Name = "labelControl1";
-			this.labelControl1.Size = new System.Drawing.Size(48, 14);
-			this.labelControl1.TabIndex = 1;
-			this.labelControl1.Text = "明文文件";
-			// 
-			// labelControl2
-			// 
-			this.labelControl2.Location = new System.Drawing.Point(18, 104);
-			this.labelControl2.Name = "labelControl2";
-			this.labelControl2.Size = new System.Drawing.Size(48, 14);
-			this.labelControl2.TabIndex = 2;
-			this.labelControl2.Text = "密文文件";
-			// 
-			// beDFile
-			// 
-			this.beDFile.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-						| System.Windows.Forms.AnchorStyles.Right)));
-			this.beDFile.Location = new System.Drawing.Point(72, 47);
-			this.beDFile.Name = "beDFile";
-			this.beDFile.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton()});
-			this.beDFile.Size = new System.Drawing.Size(495, 21);
-			this.beDFile.TabIndex = 5;
-			this.beDFile.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.beDFile_ButtonClick);
-			this.beDFile.EditValueChanged += new System.EventHandler(this.beDFile_EditValueChanged);
-			// 
-			// beEFile
-			// 
-			this.beEFile.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-						| System.Windows.Forms.AnchorStyles.Right)));
-			this.beEFile.Location = new System.Drawing.Point(72, 101);
-			this.beEFile.Name = "beEFile";
-			this.beEFile.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton()});
-			this.beEFile.Size = new System.Drawing.Size(495, 21);
-			this.beEFile.TabIndex = 6;
-			this.beEFile.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.beEFile_ButtonClick);
-			this.beEFile.EditValueChanged += new System.EventHandler(this.beEFile_EditValueChanged);
-			// 
-			// xtraTabControl1
-			// 
-			this.xtraTabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-						| System.Windows.Forms.AnchorStyles.Left)
-						| System.Windows.Forms.AnchorStyles.Right)));
-			this.xtraTabControl1.Location = new System.Drawing.Point(3, 12);
-			this.xtraTabControl1.Name = "xtraTabControl1";
-			this.xtraTabControl1.SelectedTabPage = this.xtraTabPage1;
-			this.xtraTabControl1.Size = new System.Drawing.Size(593, 410);
-			this.xtraTabControl1.TabIndex = 7;
-			this.xtraTabControl1.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
-            this.xtraTabPage1,
-            this.xtraTabPage2});
-			// 
-			// xtraTabPage1
-			// 
-			this.xtraTabPage1.Controls.Add(this.btnDecryptFile);
-			this.xtraTabPage1.Controls.Add(this.btnEncryptFile);
-			this.xtraTabPage1.Controls.Add(this.beDFile);
-			this.xtraTabPage1.Controls.Add(this.beEFile);
-			this.xtraTabPage1.Controls.Add(this.labelControl1);
-			this.xtraTabPage1.Controls.Add(this.labelControl2);
-			this.xtraTabPage1.Name = "xtraTabPage1";
-			this.xtraTabPage1.Size = new System.Drawing.Size(586, 380);
-			this.xtraTabPage1.Text = "文件";
-			// 
-			// btnDecryptFile
-			// 
-			this.btnDecryptFile.Location = new System.Drawing.Point(327, 179);
-			this.btnDecryptFile.Name = "btnDecryptFile";
-			this.btnDecryptFile.Size = new System.Drawing.Size(75, 23);
-			this.btnDecryptFile.TabIndex = 8;
-			this.btnDecryptFile.Text = "解密↑";
-			this.btnDecryptFile.Click += new System.EventHandler(this.btnDecryptFile_Click);
-			// 
-			// btnEncryptFile
-			// 
-			this.btnEncryptFile.Location = new System.Drawing.Point(175, 179);
-			this.btnEncryptFile.Name = "btnEncryptFile";
-			this.btnEncryptFile.Size = new System.Drawing.Size(75, 23);
-			this.btnEncryptFile.TabIndex = 7;
-			this.btnEncryptFile.Text = "加密↓";
-			this.btnEncryptFile.Click += new System.EventHandler(this.btnEncryptFile_Click);
-			// 
-			// xtraTabPage2
-			// 
-			this.xtraTabPage2.Controls.Add(this.btnDecryptString);
-			this.xtraTabPage2.Controls.Add(this.btnEncryptString);
-			this.xtraTabPage2.Controls.Add(this.meOutput);
-			this.xtraTabPage2.Controls.Add(this.meInput);
-			this.xtraTabPage2.Name = "xtraTabPage2";
-			this.xtraTabPage2.Size = new System.Drawing.Size(586, 380);
-			this.xtraTabPage2.Text = "字符串";
-			// 
-			// btnDecryptString
-			// 
-			this.btnDecryptString.Location = new System.Drawing.Point(341, 137);
-			this.btnDecryptString.Name = "btnDecryptString";
-			this.btnDecryptString.Size = new System.Drawing.Size(75, 23);
-			this.btnDecryptString.TabIndex = 10;
-			this.btnDecryptString.Text = "解密";
-			this.btnDecryptString.Click += new System.EventHandler(this.btnDecryptString_Click);
-			// 
-			// btnEncryptString
-			// 
-			this.btnEncryptString.Location = new System.Drawing.Point(215, 137);
-			this.btnEncryptString.Name = "btnEncryptString";
-			this.btnEncryptString.Size = new System.Drawing.Size(75, 23);
-			this.btnEncryptString.TabIndex = 9;
-			this.btnEncryptString.Text = "加密";
-			this.btnEncryptString.Click += new System.EventHandler(this.btnEncryptString_Click);
-			// 
-			// meOutput
-			// 
-			this.meOutput.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-						| System.Windows.Forms.AnchorStyles.Left)
-						| System.Windows.Forms.AnchorStyles.Right)));
-			this.meOutput.Location = new System.Drawing.Point(6, 166);
-			this.meOutput.Name = "meOutput";
-			this.meOutput.Size = new System.Drawing.Size(577, 208);
-			this.meOutput.TabIndex = 1;
-			// 
-			// meInput
-			// 
-			this.meInput.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-						| System.Windows.Forms.AnchorStyles.Right)));
-			this.meInput.Location = new System.Drawing.Point(6, 3);
-			this.meInput.Name = "meInput";
-			this.meInput.Size = new System.Drawing.Size(577, 128);
-			this.meInput.TabIndex = 0;
-			this.meInput.EditValueChanged += new System.EventHandler(this.meInput_EditValueChanged);
 			// 
 			// ofdDFile
 			// 
@@ -204,47 +65,189 @@
 			this.ofdEFile.Filter = "所有文件(*.*)|*.*";
 			this.ofdEFile.RestoreDirectory = true;
 			// 
+			// tabControl1
+			// 
+			this.tabControl1.Controls.Add(this.tabPage1);
+			this.tabControl1.Controls.Add(this.tabPage2);
+			this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.tabControl1.Location = new System.Drawing.Point(0, 0);
+			this.tabControl1.Name = "tabControl1";
+			this.tabControl1.SelectedIndex = 0;
+			this.tabControl1.Size = new System.Drawing.Size(600, 423);
+			this.tabControl1.TabIndex = 17;
+			// 
+			// tabPage1
+			// 
+			this.tabPage1.Controls.Add(this.btnDecryptFile);
+			this.tabPage1.Controls.Add(this.btnEncryptFile);
+			this.tabPage1.Controls.Add(this.cbEFile);
+			this.tabPage1.Controls.Add(this.cbDFile);
+			this.tabPage1.Controls.Add(this.label4);
+			this.tabPage1.Controls.Add(this.label3);
+			this.tabPage1.Location = new System.Drawing.Point(4, 21);
+			this.tabPage1.Name = "tabPage1";
+			this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+			this.tabPage1.Size = new System.Drawing.Size(592, 398);
+			this.tabPage1.TabIndex = 0;
+			this.tabPage1.Text = "文件";
+			this.tabPage1.UseVisualStyleBackColor = true;
+			// 
+			// btnDecryptFile
+			// 
+			this.btnDecryptFile.Location = new System.Drawing.Point(354, 194);
+			this.btnDecryptFile.Name = "btnDecryptFile";
+			this.btnDecryptFile.Size = new System.Drawing.Size(75, 23);
+			this.btnDecryptFile.TabIndex = 16;
+			this.btnDecryptFile.Text = "解密↑";
+			this.btnDecryptFile.UseVisualStyleBackColor = true;
+			this.btnDecryptFile.Click += new System.EventHandler(this.btnDecryptFile_Click);
+			// 
+			// btnEncryptFile
+			// 
+			this.btnEncryptFile.Location = new System.Drawing.Point(202, 194);
+			this.btnEncryptFile.Name = "btnEncryptFile";
+			this.btnEncryptFile.Size = new System.Drawing.Size(75, 23);
+			this.btnEncryptFile.TabIndex = 15;
+			this.btnEncryptFile.Text = "加密↓";
+			this.btnEncryptFile.UseVisualStyleBackColor = true;
+			this.btnEncryptFile.Click += new System.EventHandler(this.btnEncryptFile_Click);
+			// 
+			// cbEFile
+			// 
+			this.cbEFile.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+						| System.Windows.Forms.AnchorStyles.Right)));
+			this.cbEFile.DropDownHeight = 1;
+			this.cbEFile.FormattingEnabled = true;
+			this.cbEFile.IntegralHeight = false;
+			this.cbEFile.Location = new System.Drawing.Point(64, 118);
+			this.cbEFile.Name = "cbEFile";
+			this.cbEFile.Size = new System.Drawing.Size(520, 20);
+			this.cbEFile.TabIndex = 14;
+			// 
+			// cbDFile
+			// 
+			this.cbDFile.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+						| System.Windows.Forms.AnchorStyles.Right)));
+			this.cbDFile.DropDownHeight = 1;
+			this.cbDFile.FormattingEnabled = true;
+			this.cbDFile.IntegralHeight = false;
+			this.cbDFile.Location = new System.Drawing.Point(64, 64);
+			this.cbDFile.Name = "cbDFile";
+			this.cbDFile.Size = new System.Drawing.Size(520, 20);
+			this.cbDFile.TabIndex = 13;
+			// 
+			// label4
+			// 
+			this.label4.AutoSize = true;
+			this.label4.Location = new System.Drawing.Point(6, 121);
+			this.label4.Name = "label4";
+			this.label4.Size = new System.Drawing.Size(53, 12);
+			this.label4.TabIndex = 12;
+			this.label4.Text = "加密文件";
+			// 
+			// label3
+			// 
+			this.label3.AutoSize = true;
+			this.label3.Location = new System.Drawing.Point(6, 67);
+			this.label3.Name = "label3";
+			this.label3.Size = new System.Drawing.Size(53, 12);
+			this.label3.TabIndex = 11;
+			this.label3.Text = "原始文件";
+			// 
+			// tabPage2
+			// 
+			this.tabPage2.Controls.Add(this.btnDecryptString);
+			this.tabPage2.Controls.Add(this.btnEncryptString);
+			this.tabPage2.Controls.Add(this.txtOutput);
+			this.tabPage2.Controls.Add(this.txtInput);
+			this.tabPage2.Location = new System.Drawing.Point(4, 21);
+			this.tabPage2.Name = "tabPage2";
+			this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+			this.tabPage2.Size = new System.Drawing.Size(592, 398);
+			this.tabPage2.TabIndex = 1;
+			this.tabPage2.Text = "字符串";
+			this.tabPage2.UseVisualStyleBackColor = true;
+			// 
+			// btnDecryptString
+			// 
+			this.btnDecryptString.Location = new System.Drawing.Point(347, 140);
+			this.btnDecryptString.Name = "btnDecryptString";
+			this.btnDecryptString.Size = new System.Drawing.Size(75, 23);
+			this.btnDecryptString.TabIndex = 17;
+			this.btnDecryptString.Text = "解密↑";
+			this.btnDecryptString.UseVisualStyleBackColor = true;
+			this.btnDecryptString.Click += new System.EventHandler(this.btnDecryptString_Click);
+			// 
+			// btnEncryptString
+			// 
+			this.btnEncryptString.Location = new System.Drawing.Point(221, 140);
+			this.btnEncryptString.Name = "btnEncryptString";
+			this.btnEncryptString.Size = new System.Drawing.Size(75, 23);
+			this.btnEncryptString.TabIndex = 16;
+			this.btnEncryptString.Text = "加密↓";
+			this.btnEncryptString.UseVisualStyleBackColor = true;
+			this.btnEncryptString.Click += new System.EventHandler(this.btnEncryptString_Click);
+			// 
+			// txtOutput
+			// 
+			this.txtOutput.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+						| System.Windows.Forms.AnchorStyles.Left)
+						| System.Windows.Forms.AnchorStyles.Right)));
+			this.txtOutput.Location = new System.Drawing.Point(7, 177);
+			this.txtOutput.Multiline = true;
+			this.txtOutput.Name = "txtOutput";
+			this.txtOutput.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+			this.txtOutput.Size = new System.Drawing.Size(578, 216);
+			this.txtOutput.TabIndex = 12;
+			// 
+			// txtInput
+			// 
+			this.txtInput.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+						| System.Windows.Forms.AnchorStyles.Right)));
+			this.txtInput.Location = new System.Drawing.Point(6, 6);
+			this.txtInput.Multiline = true;
+			this.txtInput.Name = "txtInput";
+			this.txtInput.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+			this.txtInput.Size = new System.Drawing.Size(578, 128);
+			this.txtInput.TabIndex = 11;
+			this.txtInput.WordWrap = false;
+			// 
 			// CryptCS
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(600, 423);
-			this.Controls.Add(this.xtraTabControl1);
+			this.Controls.Add(this.tabControl1);
 			this.DockAreas = ((WeifenLuo.WinFormsUI.Docking.DockAreas)((WeifenLuo.WinFormsUI.Docking.DockAreas.Float | WeifenLuo.WinFormsUI.Docking.DockAreas.Document)));
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Name = "CryptCS";
 			this.TabText = "CryptCS";
 			this.Text = "CryptCS";
-			this.Load += new System.EventHandler(this.CryptCS_Load);
-			((System.ComponentModel.ISupportInitialize)(this.beDFile.Properties)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.beEFile.Properties)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).EndInit();
-			this.xtraTabControl1.ResumeLayout(false);
-			this.xtraTabPage1.ResumeLayout(false);
-			this.xtraTabPage1.PerformLayout();
-			this.xtraTabPage2.ResumeLayout(false);
-			((System.ComponentModel.ISupportInitialize)(this.meOutput.Properties)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.meInput.Properties)).EndInit();
+			this.tabControl1.ResumeLayout(false);
+			this.tabPage1.ResumeLayout(false);
+			this.tabPage1.PerformLayout();
+			this.tabPage2.ResumeLayout(false);
+			this.tabPage2.PerformLayout();
 			this.ResumeLayout(false);
 
 		}
 
 		#endregion
 
-		private DevExpress.XtraEditors.LabelControl labelControl1;
-		private DevExpress.XtraEditors.LabelControl labelControl2;
-		private DevExpress.XtraEditors.ButtonEdit beDFile;
-		private DevExpress.XtraEditors.ButtonEdit beEFile;
-		private DevExpress.XtraTab.XtraTabControl xtraTabControl1;
-		private DevExpress.XtraTab.XtraTabPage xtraTabPage1;
-		private DevExpress.XtraEditors.SimpleButton btnDecryptFile;
-		private DevExpress.XtraEditors.SimpleButton btnEncryptFile;
-		private DevExpress.XtraTab.XtraTabPage xtraTabPage2;
-		private DevExpress.XtraEditors.SimpleButton btnDecryptString;
-		private DevExpress.XtraEditors.SimpleButton btnEncryptString;
-		private DevExpress.XtraEditors.MemoEdit meOutput;
-		private DevExpress.XtraEditors.MemoEdit meInput;
 		private System.Windows.Forms.OpenFileDialog ofdDFile;
 		private System.Windows.Forms.OpenFileDialog ofdEFile;
+		private System.Windows.Forms.TabControl tabControl1;
+		private System.Windows.Forms.TabPage tabPage1;
+		private System.Windows.Forms.Button btnDecryptFile;
+		private System.Windows.Forms.Button btnEncryptFile;
+		private System.Windows.Forms.ComboBox cbEFile;
+		private System.Windows.Forms.ComboBox cbDFile;
+		private System.Windows.Forms.Label label4;
+		private System.Windows.Forms.Label label3;
+		private System.Windows.Forms.TabPage tabPage2;
+		private System.Windows.Forms.Button btnDecryptString;
+		private System.Windows.Forms.Button btnEncryptString;
+		private System.Windows.Forms.TextBox txtOutput;
+		private System.Windows.Forms.TextBox txtInput;
 	}
 }

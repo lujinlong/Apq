@@ -29,41 +29,13 @@
 		private void InitializeComponent()
 		{
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RSAKey));
-			this.btnCreate = new DevExpress.XtraEditors.SimpleButton();
-			this.btnSaveUToFile = new DevExpress.XtraEditors.SimpleButton();
-			this.ceContainsPKey = new DevExpress.XtraEditors.CheckEdit();
 			this.txtRSAUKey = new ICSharpCode.TextEditor.TextEditorControl();
 			this.txtRSAPKey = new ICSharpCode.TextEditor.TextEditorControl();
-			this.btnSavePToFile = new DevExpress.XtraEditors.SimpleButton();
-			((System.ComponentModel.ISupportInitialize)(this.ceContainsPKey.Properties)).BeginInit();
+			this.cbContainsPKey = new System.Windows.Forms.CheckBox();
+			this.btnCreate = new System.Windows.Forms.Button();
+			this.btnSaveUToFile = new System.Windows.Forms.Button();
+			this.btnSavePToFile = new System.Windows.Forms.Button();
 			this.SuspendLayout();
-			// 
-			// btnCreate
-			// 
-			this.btnCreate.Location = new System.Drawing.Point(168, 12);
-			this.btnCreate.Name = "btnCreate";
-			this.btnCreate.Size = new System.Drawing.Size(75, 23);
-			this.btnCreate.TabIndex = 1;
-			this.btnCreate.Text = "创建";
-			this.btnCreate.Click += new System.EventHandler(this.btnCreate_Click);
-			// 
-			// btnSaveUToFile
-			// 
-			this.btnSaveUToFile.Location = new System.Drawing.Point(280, 12);
-			this.btnSaveUToFile.Name = "btnSaveUToFile";
-			this.btnSaveUToFile.Size = new System.Drawing.Size(75, 23);
-			this.btnSaveUToFile.TabIndex = 2;
-			this.btnSaveUToFile.Text = "保存公钥";
-			this.btnSaveUToFile.Click += new System.EventHandler(this.btnSaveUToFile_Click);
-			// 
-			// ceContainsPKey
-			// 
-			this.ceContainsPKey.EditValue = true;
-			this.ceContainsPKey.Location = new System.Drawing.Point(12, 14);
-			this.ceContainsPKey.Name = "ceContainsPKey";
-			this.ceContainsPKey.Properties.Caption = "包含私钥";
-			this.ceContainsPKey.Size = new System.Drawing.Size(75, 19);
-			this.ceContainsPKey.TabIndex = 3;
 			// 
 			// txtRSAUKey
 			// 
@@ -96,13 +68,46 @@
 			this.txtRSAPKey.Size = new System.Drawing.Size(760, 189);
 			this.txtRSAPKey.TabIndex = 5;
 			// 
+			// cbContainsPKey
+			// 
+			this.cbContainsPKey.AutoSize = true;
+			this.cbContainsPKey.Checked = true;
+			this.cbContainsPKey.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.cbContainsPKey.Location = new System.Drawing.Point(12, 12);
+			this.cbContainsPKey.Name = "cbContainsPKey";
+			this.cbContainsPKey.Size = new System.Drawing.Size(72, 16);
+			this.cbContainsPKey.TabIndex = 7;
+			this.cbContainsPKey.Text = "包含私钥";
+			this.cbContainsPKey.UseVisualStyleBackColor = true;
+			// 
+			// btnCreate
+			// 
+			this.btnCreate.Location = new System.Drawing.Point(167, 8);
+			this.btnCreate.Name = "btnCreate";
+			this.btnCreate.Size = new System.Drawing.Size(75, 23);
+			this.btnCreate.TabIndex = 8;
+			this.btnCreate.Text = "创建";
+			this.btnCreate.UseVisualStyleBackColor = true;
+			this.btnCreate.Click += new System.EventHandler(this.btnCreate_Click);
+			// 
+			// btnSaveUToFile
+			// 
+			this.btnSaveUToFile.Location = new System.Drawing.Point(290, 8);
+			this.btnSaveUToFile.Name = "btnSaveUToFile";
+			this.btnSaveUToFile.Size = new System.Drawing.Size(75, 23);
+			this.btnSaveUToFile.TabIndex = 9;
+			this.btnSaveUToFile.Text = "保存公钥";
+			this.btnSaveUToFile.UseVisualStyleBackColor = true;
+			this.btnSaveUToFile.Click += new System.EventHandler(this.btnSaveUToFile_Click);
+			// 
 			// btnSavePToFile
 			// 
-			this.btnSavePToFile.Location = new System.Drawing.Point(389, 13);
+			this.btnSavePToFile.Location = new System.Drawing.Point(398, 8);
 			this.btnSavePToFile.Name = "btnSavePToFile";
 			this.btnSavePToFile.Size = new System.Drawing.Size(75, 23);
-			this.btnSavePToFile.TabIndex = 6;
+			this.btnSavePToFile.TabIndex = 10;
 			this.btnSavePToFile.Text = "保存私钥";
+			this.btnSavePToFile.UseVisualStyleBackColor = true;
 			this.btnSavePToFile.Click += new System.EventHandler(this.btnSavePToFile_Click);
 			// 
 			// RSAKey
@@ -111,28 +116,28 @@
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(760, 466);
 			this.Controls.Add(this.btnSavePToFile);
-			this.Controls.Add(this.txtRSAPKey);
-			this.Controls.Add(this.txtRSAUKey);
-			this.Controls.Add(this.ceContainsPKey);
 			this.Controls.Add(this.btnSaveUToFile);
 			this.Controls.Add(this.btnCreate);
+			this.Controls.Add(this.cbContainsPKey);
+			this.Controls.Add(this.txtRSAPKey);
+			this.Controls.Add(this.txtRSAUKey);
 			this.DockAreas = ((WeifenLuo.WinFormsUI.Docking.DockAreas)((WeifenLuo.WinFormsUI.Docking.DockAreas.Float | WeifenLuo.WinFormsUI.Docking.DockAreas.Document)));
 			this.Name = "RSAKey";
 			this.TabText = "RSAKey";
 			this.Text = "RSA密钥对";
 			this.Load += new System.EventHandler(this.RSAKey_Load);
-			((System.ComponentModel.ISupportInitialize)(this.ceContainsPKey.Properties)).EndInit();
 			this.ResumeLayout(false);
+			this.PerformLayout();
 
 		}
 
 		#endregion
 
-		private DevExpress.XtraEditors.SimpleButton btnCreate;
-		private DevExpress.XtraEditors.SimpleButton btnSaveUToFile;
-		private DevExpress.XtraEditors.CheckEdit ceContainsPKey;
 		private ICSharpCode.TextEditor.TextEditorControl txtRSAUKey;
 		private ICSharpCode.TextEditor.TextEditorControl txtRSAPKey;
-		private DevExpress.XtraEditors.SimpleButton btnSavePToFile;
+		private System.Windows.Forms.CheckBox cbContainsPKey;
+		private System.Windows.Forms.Button btnCreate;
+		private System.Windows.Forms.Button btnSaveUToFile;
+		private System.Windows.Forms.Button btnSavePToFile;
 	}
 }
