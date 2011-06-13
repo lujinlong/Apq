@@ -301,10 +301,22 @@ namespace ApqDBManager
 			win.ShowDialog(this);
 		}
 
+		private void tsmiRSAKey_Click(object sender, EventArgs e)
+		{
+			Forms.RSAKey win = new ApqDBManager.Forms.RSAKey();
+			win.Show(dockPanel1);
+		}
+
 		private void tsmiDES_Click(object sender, EventArgs e)
 		{
 			DES r = new DES();
 			r.Show(dockPanel1);
+		}
+
+		private void tsmiCryptCS_Click(object sender, EventArgs e)
+		{
+			Forms.CryptCS win = new Forms.CryptCS();
+			win.Show(dockPanel1);
 		}
 
 		private void tsmiRandom_Click(object sender, EventArgs e)
@@ -322,12 +334,6 @@ namespace ApqDBManager
 		private void tsmiFTPFileUp_Click(object sender, EventArgs e)
 		{
 			Forms.FTPFileUp win = new ApqDBManager.Forms.FTPFileUp();
-			win.Show(dockPanel1);
-		}
-
-		private void tsmiRSAKey_Click(object sender, EventArgs e)
-		{
-			Forms.RSAKey win = new ApqDBManager.Forms.RSAKey();
 			win.Show(dockPanel1);
 		}
 

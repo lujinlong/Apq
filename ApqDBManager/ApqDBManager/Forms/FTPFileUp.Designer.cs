@@ -32,30 +32,26 @@
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FTPFileUp));
 			System.Windows.Forms.TreeListViewItemCollection.TreeListViewItemCollectionComparer treeListViewItemCollectionComparer2 = new System.Windows.Forms.TreeListViewItemCollection.TreeListViewItemCollectionComparer();
 			this.imageList1 = new System.Windows.Forms.ImageList(this.components);
-			this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
-			this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
-			this.bar3 = new DevExpress.XtraBars.Bar();
-			this.bsiState = new DevExpress.XtraBars.BarStaticItem();
-			this.bsiStateFileUp = new DevExpress.XtraBars.BarStaticItem();
-			this.beiPb1 = new DevExpress.XtraBars.BarEditItem();
-			this.ripb = new DevExpress.XtraEditors.Repository.RepositoryItemProgressBar();
-			this.bar1 = new DevExpress.XtraBars.Bar();
-			this.btnRefresh = new DevExpress.XtraBars.BarButtonItem();
-			this.btnUp = new DevExpress.XtraBars.BarButtonItem();
-			this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
-			this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
-			this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
-			this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
-			this.beDBFolder_Up = new DevExpress.XtraEditors.ButtonEdit();
 			this._UI = new ApqDBManager.Forms.ErrList_XSD();
 			this._Sqls = new ApqDBManager.Forms.SrvsMgr.SrvsMgr_XSD();
 			this.treeListView1 = new System.Windows.Forms.TreeListView();
+			this.columnHeader1 = new System.Windows.Forms.ColumnHeader();
+			this.columnHeader2 = new System.Windows.Forms.ColumnHeader();
+			this.columnHeader3 = new System.Windows.Forms.ColumnHeader();
 			this.label1 = new System.Windows.Forms.Label();
-			((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.ripb)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.beDBFolder_Up.Properties)).BeginInit();
+			this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+			this.tsbRefresh = new System.Windows.Forms.ToolStripButton();
+			this.tsbUp = new System.Windows.Forms.ToolStripButton();
+			this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+			this.tsslStatus = new System.Windows.Forms.ToolStripStatusLabel();
+			this.tsslStateFileUp = new System.Windows.Forms.ToolStripStatusLabel();
+			this.tspb = new System.Windows.Forms.ToolStripProgressBar();
+			this.label2 = new System.Windows.Forms.Label();
+			this.txtDBFolder_Up = new System.Windows.Forms.TextBox();
 			((System.ComponentModel.ISupportInitialize)(this._UI)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this._Sqls)).BeginInit();
+			this.toolStrip1.SuspendLayout();
+			this.statusStrip1.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// imageList1
@@ -66,113 +62,6 @@
 			this.imageList1.Images.SetKeyName(1, "");
 			this.imageList1.Images.SetKeyName(2, "");
 			this.imageList1.Images.SetKeyName(3, "");
-			// 
-			// labelControl1
-			// 
-			this.labelControl1.Appearance.ForeColor = System.Drawing.Color.Coral;
-			this.labelControl1.Appearance.Options.UseForeColor = true;
-			this.labelControl1.Location = new System.Drawing.Point(12, 57);
-			this.labelControl1.Name = "labelControl1";
-			this.labelControl1.Size = new System.Drawing.Size(256, 14);
-			this.labelControl1.TabIndex = 3;
-			this.labelControl1.Text = "本地资源:只会上传已加载到列表中且选中的文件";
-			// 
-			// barManager1
-			// 
-			this.barManager1.Bars.AddRange(new DevExpress.XtraBars.Bar[] {
-            this.bar3,
-            this.bar1});
-			this.barManager1.DockControls.Add(this.barDockControlTop);
-			this.barManager1.DockControls.Add(this.barDockControlBottom);
-			this.barManager1.DockControls.Add(this.barDockControlLeft);
-			this.barManager1.DockControls.Add(this.barDockControlRight);
-			this.barManager1.Form = this;
-			this.barManager1.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
-            this.bsiState,
-            this.bsiStateFileUp,
-            this.btnRefresh,
-            this.btnUp,
-            this.beiPb1});
-			this.barManager1.MaxItemId = 6;
-			this.barManager1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
-            this.ripb});
-			this.barManager1.StatusBar = this.bar3;
-			// 
-			// bar3
-			// 
-			this.bar3.BarName = "Status bar";
-			this.bar3.CanDockStyle = DevExpress.XtraBars.BarCanDockStyle.Bottom;
-			this.bar3.DockCol = 0;
-			this.bar3.DockRow = 0;
-			this.bar3.DockStyle = DevExpress.XtraBars.BarDockStyle.Bottom;
-			this.bar3.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
-            new DevExpress.XtraBars.LinkPersistInfo(this.bsiState),
-            new DevExpress.XtraBars.LinkPersistInfo(this.bsiStateFileUp),
-            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.Width, this.beiPb1, "", false, true, true, 459)});
-			this.bar3.OptionsBar.AllowQuickCustomization = false;
-			this.bar3.OptionsBar.DrawDragBorder = false;
-			this.bar3.OptionsBar.UseWholeRow = true;
-			this.bar3.Text = "Status bar";
-			// 
-			// bsiState
-			// 
-			this.bsiState.AutoSize = DevExpress.XtraBars.BarStaticItemSize.Spring;
-			this.bsiState.Id = 0;
-			this.bsiState.Name = "bsiState";
-			this.bsiState.TextAlignment = System.Drawing.StringAlignment.Near;
-			this.bsiState.Width = 32;
-			// 
-			// bsiStateFileUp
-			// 
-			this.bsiStateFileUp.Id = 2;
-			this.bsiStateFileUp.Name = "bsiStateFileUp";
-			this.bsiStateFileUp.TextAlignment = System.Drawing.StringAlignment.Near;
-			// 
-			// beiPb1
-			// 
-			this.beiPb1.Caption = "barEditItem1";
-			this.beiPb1.Edit = this.ripb;
-			this.beiPb1.Id = 5;
-			this.beiPb1.Name = "beiPb1";
-			// 
-			// ripb
-			// 
-			this.ripb.Name = "ripb";
-			// 
-			// bar1
-			// 
-			this.bar1.BarName = "Custom 3";
-			this.bar1.DockCol = 0;
-			this.bar1.DockRow = 0;
-			this.bar1.DockStyle = DevExpress.XtraBars.BarDockStyle.Top;
-			this.bar1.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
-            new DevExpress.XtraBars.LinkPersistInfo(this.btnRefresh),
-            new DevExpress.XtraBars.LinkPersistInfo(this.btnUp)});
-			this.bar1.Text = "Custom 3";
-			// 
-			// btnRefresh
-			// 
-			this.btnRefresh.Caption = "刷新";
-			this.btnRefresh.Id = 3;
-			this.btnRefresh.Name = "btnRefresh";
-			this.btnRefresh.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnRefresh_ItemClick);
-			// 
-			// btnUp
-			// 
-			this.btnUp.Caption = "上传";
-			this.btnUp.Id = 4;
-			this.btnUp.Name = "btnUp";
-			this.btnUp.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnUp_ItemClick);
-			// 
-			// beDBFolder_Up
-			// 
-			this.beDBFolder_Up.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-						| System.Windows.Forms.AnchorStyles.Right)));
-			this.beDBFolder_Up.Location = new System.Drawing.Point(123, 30);
-			this.beDBFolder_Up.Name = "beDBFolder_Up";
-			this.beDBFolder_Up.Size = new System.Drawing.Size(577, 21);
-			this.beDBFolder_Up.TabIndex = 12;
-			this.beDBFolder_Up.EditValueChanged += new System.EventHandler(this.beDBFolder_Up_EditValueChanged);
 			// 
 			// _UI
 			// 
@@ -189,6 +78,11 @@
 			this.treeListView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
 						| System.Windows.Forms.AnchorStyles.Left)
 						| System.Windows.Forms.AnchorStyles.Right)));
+			this.treeListView1.CheckBoxes = System.Windows.Forms.CheckBoxesTypes.Recursive;
+			this.treeListView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1,
+            this.columnHeader2,
+            this.columnHeader3});
 			treeListViewItemCollectionComparer2.Column = 0;
 			treeListViewItemCollectionComparer2.SortOrder = System.Windows.Forms.SortOrder.Ascending;
 			this.treeListView1.Comparer = treeListViewItemCollectionComparer2;
@@ -198,6 +92,23 @@
 			this.treeListView1.SmallImageList = this.imageList1;
 			this.treeListView1.TabIndex = 13;
 			this.treeListView1.UseCompatibleStateImageBehavior = false;
+			this.treeListView1.BeforeExpand += new System.Windows.Forms.TreeListViewCancelEventHandler(this.treeListView1_BeforeExpand);
+			this.treeListView1.SelectedIndexChanged += new System.EventHandler(this.treeListView1_SelectedIndexChanged);
+			this.treeListView1.BeforeCollapse += new System.Windows.Forms.TreeListViewCancelEventHandler(this.treeListView1_BeforeCollapse);
+			// 
+			// columnHeader1
+			// 
+			this.columnHeader1.Text = "名称";
+			this.columnHeader1.Width = 500;
+			// 
+			// columnHeader2
+			// 
+			this.columnHeader2.Text = "类型";
+			// 
+			// columnHeader3
+			// 
+			this.columnHeader3.Text = "大小(Bytes)";
+			this.columnHeader3.Width = 150;
 			// 
 			// label1
 			// 
@@ -208,19 +119,97 @@
 			this.label1.TabIndex = 14;
 			this.label1.Text = "上传到远程根目录:";
 			// 
+			// toolStrip1
+			// 
+			this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsbRefresh,
+            this.tsbUp});
+			this.toolStrip1.Location = new System.Drawing.Point(0, 0);
+			this.toolStrip1.Name = "toolStrip1";
+			this.toolStrip1.Size = new System.Drawing.Size(712, 25);
+			this.toolStrip1.TabIndex = 15;
+			this.toolStrip1.Text = "toolStrip1";
+			// 
+			// tsbRefresh
+			// 
+			this.tsbRefresh.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+			this.tsbRefresh.Image = ((System.Drawing.Image)(resources.GetObject("tsbRefresh.Image")));
+			this.tsbRefresh.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.tsbRefresh.Name = "tsbRefresh";
+			this.tsbRefresh.Size = new System.Drawing.Size(51, 22);
+			this.tsbRefresh.Text = "刷新(&R)";
+			this.tsbRefresh.Click += new System.EventHandler(this.tsbRefresh_Click);
+			// 
+			// tsbUp
+			// 
+			this.tsbUp.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+			this.tsbUp.Image = ((System.Drawing.Image)(resources.GetObject("tsbUp.Image")));
+			this.tsbUp.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.tsbUp.Name = "tsbUp";
+			this.tsbUp.Size = new System.Drawing.Size(51, 22);
+			this.tsbUp.Text = "上传(&U)";
+			this.tsbUp.Click += new System.EventHandler(this.tsbUp_Click);
+			// 
+			// statusStrip1
+			// 
+			this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsslStatus,
+            this.tsslStateFileUp,
+            this.tspb});
+			this.statusStrip1.Location = new System.Drawing.Point(0, 444);
+			this.statusStrip1.Name = "statusStrip1";
+			this.statusStrip1.Size = new System.Drawing.Size(712, 22);
+			this.statusStrip1.TabIndex = 16;
+			this.statusStrip1.Text = "statusStrip1";
+			// 
+			// tsslStatus
+			// 
+			this.tsslStatus.AutoSize = false;
+			this.tsslStatus.Name = "tsslStatus";
+			this.tsslStatus.Size = new System.Drawing.Size(500, 17);
+			this.tsslStatus.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			// 
+			// tsslStateFileUp
+			// 
+			this.tsslStateFileUp.Name = "tsslStateFileUp";
+			this.tsslStateFileUp.Size = new System.Drawing.Size(0, 17);
+			this.tsslStateFileUp.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			// 
+			// tspb
+			// 
+			this.tspb.Name = "tspb";
+			this.tspb.RightToLeftLayout = true;
+			this.tspb.Size = new System.Drawing.Size(150, 16);
+			// 
+			// label2
+			// 
+			this.label2.AutoSize = true;
+			this.label2.ForeColor = System.Drawing.Color.Coral;
+			this.label2.Location = new System.Drawing.Point(10, 57);
+			this.label2.Name = "label2";
+			this.label2.Size = new System.Drawing.Size(263, 12);
+			this.label2.TabIndex = 17;
+			this.label2.Text = "本地资源:只会上传已加载到列表中且选中的文件";
+			// 
+			// txtDBFolder_Up
+			// 
+			this.txtDBFolder_Up.Location = new System.Drawing.Point(123, 32);
+			this.txtDBFolder_Up.Name = "txtDBFolder_Up";
+			this.txtDBFolder_Up.Size = new System.Drawing.Size(577, 21);
+			this.txtDBFolder_Up.TabIndex = 19;
+			this.txtDBFolder_Up.TextChanged += new System.EventHandler(this.txtDBFolder_Up_TextChanged);
+			// 
 			// FTPFileUp
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(712, 466);
+			this.Controls.Add(this.txtDBFolder_Up);
+			this.Controls.Add(this.label2);
 			this.Controls.Add(this.label1);
 			this.Controls.Add(this.treeListView1);
-			this.Controls.Add(this.beDBFolder_Up);
-			this.Controls.Add(this.labelControl1);
-			this.Controls.Add(this.barDockControlLeft);
-			this.Controls.Add(this.barDockControlRight);
-			this.Controls.Add(this.barDockControlBottom);
-			this.Controls.Add(this.barDockControlTop);
+			this.Controls.Add(this.toolStrip1);
+			this.Controls.Add(this.statusStrip1);
 			this.DockAreas = WeifenLuo.WinFormsUI.Docking.DockAreas.Document;
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.MinimumSize = new System.Drawing.Size(720, 500);
@@ -230,11 +219,12 @@
 			this.Deactivate += new System.EventHandler(this.FileUp_Deactivate);
 			this.Load += new System.EventHandler(this.FileUp_Load);
 			this.Activated += new System.EventHandler(this.FileUp_Activated);
-			((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.ripb)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.beDBFolder_Up.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this._UI)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this._Sqls)).EndInit();
+			this.toolStrip1.ResumeLayout(false);
+			this.toolStrip1.PerformLayout();
+			this.statusStrip1.ResumeLayout(false);
+			this.statusStrip1.PerformLayout();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -242,26 +232,23 @@
 
 		#endregion
 
-		private DevExpress.XtraEditors.LabelControl labelControl1;
-		private DevExpress.XtraBars.BarManager barManager1;
-		private DevExpress.XtraBars.Bar bar3;
-		private DevExpress.XtraBars.BarDockControl barDockControlTop;
-		private DevExpress.XtraBars.BarDockControl barDockControlBottom;
-		private DevExpress.XtraBars.BarDockControl barDockControlLeft;
-		private DevExpress.XtraBars.BarDockControl barDockControlRight;
-		private DevExpress.XtraBars.BarStaticItem bsiState;
 		private System.Windows.Forms.ImageList imageList1;
-		private DevExpress.XtraBars.BarStaticItem bsiStateFileUp;
-		private DevExpress.XtraBars.Bar bar1;
-		private DevExpress.XtraBars.BarButtonItem btnRefresh;
-		private DevExpress.XtraBars.BarButtonItem btnUp;
-		private DevExpress.XtraBars.BarEditItem beiPb1;
-		private DevExpress.XtraEditors.Repository.RepositoryItemProgressBar ripb;
-		private DevExpress.XtraEditors.ButtonEdit beDBFolder_Up;
 		private ErrList_XSD _UI;
 		private ApqDBManager.Forms.SrvsMgr.SrvsMgr_XSD _Sqls;
 		private System.Windows.Forms.TreeListView treeListView1;
 		private System.Windows.Forms.Label label1;
+		private System.Windows.Forms.ToolStrip toolStrip1;
+		private System.Windows.Forms.ToolStripButton tsbRefresh;
+		private System.Windows.Forms.ToolStripButton tsbUp;
+		private System.Windows.Forms.StatusStrip statusStrip1;
+		private System.Windows.Forms.ToolStripStatusLabel tsslStatus;
+		private System.Windows.Forms.ToolStripStatusLabel tsslStateFileUp;
+		private System.Windows.Forms.ToolStripProgressBar tspb;
+		private System.Windows.Forms.ColumnHeader columnHeader1;
+		private System.Windows.Forms.ColumnHeader columnHeader2;
+		private System.Windows.Forms.ColumnHeader columnHeader3;
+		private System.Windows.Forms.Label label2;
+		private System.Windows.Forms.TextBox txtDBFolder_Up;
 
 	}
 }

@@ -58,9 +58,6 @@
 			this.sqlDataAdapter3 = new System.Data.SqlClient.SqlDataAdapter();
 			this.sqlCommand3 = new System.Data.SqlClient.SqlCommand();
 			this.dataGridView1 = new System.Windows.Forms.DataGridView();
-			this.computerIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.computerNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.computerTypeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
 			this.computerTypeBindingSource = new System.Windows.Forms.BindingSource(this.components);
 			this.SrvsMgr_XSD = new ApqDBManager.Forms.SrvsMgr.SrvsMgr_XSD();
 			this.computerBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -72,6 +69,9 @@
 			this.statusStrip1 = new System.Windows.Forms.StatusStrip();
 			this.tsslOutInfo = new System.Windows.Forms.ToolStripStatusLabel();
 			this.tsslTest = new System.Windows.Forms.ToolStripStatusLabel();
+			this.computerIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.computerNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.computerTypeDataGridViewComboBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.computerTypeBindingSource)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.SrvsMgr_XSD)).BeginInit();
@@ -190,7 +190,7 @@
 			this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.computerIDDataGridViewTextBoxColumn,
             this.computerNameDataGridViewTextBoxColumn,
-            this.computerTypeDataGridViewTextBoxColumn});
+            this.computerTypeDataGridViewComboBoxColumn});
 			this.dataGridView1.DataSource = this.computerBindingSource;
 			this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.dataGridView1.Location = new System.Drawing.Point(0, 25);
@@ -200,36 +200,6 @@
 			this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
 			this.dataGridView1.Size = new System.Drawing.Size(692, 319);
 			this.dataGridView1.TabIndex = 8;
-			// 
-			// computerIDDataGridViewTextBoxColumn
-			// 
-			this.computerIDDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-			this.computerIDDataGridViewTextBoxColumn.DataPropertyName = "ComputerID";
-			this.computerIDDataGridViewTextBoxColumn.HeaderText = "编号";
-			this.computerIDDataGridViewTextBoxColumn.Name = "computerIDDataGridViewTextBoxColumn";
-			this.computerIDDataGridViewTextBoxColumn.ReadOnly = true;
-			this.computerIDDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-			this.computerIDDataGridViewTextBoxColumn.Width = 60;
-			// 
-			// computerNameDataGridViewTextBoxColumn
-			// 
-			this.computerNameDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-			this.computerNameDataGridViewTextBoxColumn.DataPropertyName = "ComputerName";
-			this.computerNameDataGridViewTextBoxColumn.HeaderText = "服务器名称";
-			this.computerNameDataGridViewTextBoxColumn.MinimumWidth = 120;
-			this.computerNameDataGridViewTextBoxColumn.Name = "computerNameDataGridViewTextBoxColumn";
-			this.computerNameDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-			// 
-			// computerTypeDataGridViewTextBoxColumn
-			// 
-			this.computerTypeDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-			this.computerTypeDataGridViewTextBoxColumn.DataPropertyName = "ComputerType";
-			this.computerTypeDataGridViewTextBoxColumn.DataSource = this.computerTypeBindingSource;
-			this.computerTypeDataGridViewTextBoxColumn.DisplayMember = "TypeCaption";
-			this.computerTypeDataGridViewTextBoxColumn.HeaderText = "服务器类型";
-			this.computerTypeDataGridViewTextBoxColumn.Name = "computerTypeDataGridViewTextBoxColumn";
-			this.computerTypeDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-			this.computerTypeDataGridViewTextBoxColumn.ValueMember = "ComputerType";
 			// 
 			// computerTypeBindingSource
 			// 
@@ -316,6 +286,36 @@
 			this.tsslTest.Name = "tsslTest";
 			this.tsslTest.Size = new System.Drawing.Size(0, 17);
 			// 
+			// computerIDDataGridViewTextBoxColumn
+			// 
+			this.computerIDDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+			this.computerIDDataGridViewTextBoxColumn.DataPropertyName = "ComputerID";
+			this.computerIDDataGridViewTextBoxColumn.HeaderText = "编号";
+			this.computerIDDataGridViewTextBoxColumn.Name = "computerIDDataGridViewTextBoxColumn";
+			this.computerIDDataGridViewTextBoxColumn.ReadOnly = true;
+			this.computerIDDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+			this.computerIDDataGridViewTextBoxColumn.Width = 60;
+			// 
+			// computerNameDataGridViewTextBoxColumn
+			// 
+			this.computerNameDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+			this.computerNameDataGridViewTextBoxColumn.DataPropertyName = "ComputerName";
+			this.computerNameDataGridViewTextBoxColumn.HeaderText = "服务器名称";
+			this.computerNameDataGridViewTextBoxColumn.MinimumWidth = 120;
+			this.computerNameDataGridViewTextBoxColumn.Name = "computerNameDataGridViewTextBoxColumn";
+			this.computerNameDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+			// 
+			// computerTypeDataGridViewComboBoxColumn
+			// 
+			this.computerTypeDataGridViewComboBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+			this.computerTypeDataGridViewComboBoxColumn.DataPropertyName = "ComputerType";
+			this.computerTypeDataGridViewComboBoxColumn.DataSource = this.computerTypeBindingSource;
+			this.computerTypeDataGridViewComboBoxColumn.DisplayMember = "TypeCaption";
+			this.computerTypeDataGridViewComboBoxColumn.HeaderText = "服务器类型";
+			this.computerTypeDataGridViewComboBoxColumn.Name = "computerTypeDataGridViewComboBoxColumn";
+			this.computerTypeDataGridViewComboBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+			this.computerTypeDataGridViewComboBoxColumn.ValueMember = "ComputerType";
+			// 
 			// DBServer
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
@@ -375,11 +375,7 @@
 		private System.Windows.Forms.DataGridView dataGridView1;
 		private System.Windows.Forms.BindingSource computerBindingSource;
 		private System.Windows.Forms.BindingSource computerTypeBindingSource;
-		private System.Windows.Forms.DataGridViewComboBoxColumn computerTypeDataGridViewComboBoxColumn;
 		public SrvsMgr_XSD SrvsMgr_XSD;
-		private System.Windows.Forms.DataGridViewTextBoxColumn computerIDDataGridViewTextBoxColumn;
-		private System.Windows.Forms.DataGridViewTextBoxColumn computerNameDataGridViewTextBoxColumn;
-		private System.Windows.Forms.DataGridViewComboBoxColumn computerTypeDataGridViewTextBoxColumn;
 		private System.Windows.Forms.ToolStrip toolStrip1;
 		private System.Windows.Forms.ToolStripButton tsbRefresh;
 		private System.Windows.Forms.ToolStripButton tsbSaveToDB;
@@ -388,5 +384,8 @@
 		private System.Windows.Forms.StatusStrip statusStrip1;
 		private System.Windows.Forms.ToolStripStatusLabel tsslOutInfo;
 		private System.Windows.Forms.ToolStripStatusLabel tsslTest;
+		private System.Windows.Forms.DataGridViewTextBoxColumn computerIDDataGridViewTextBoxColumn;
+		private System.Windows.Forms.DataGridViewTextBoxColumn computerNameDataGridViewTextBoxColumn;
+		private System.Windows.Forms.DataGridViewComboBoxColumn computerTypeDataGridViewComboBoxColumn;
 	}
 }

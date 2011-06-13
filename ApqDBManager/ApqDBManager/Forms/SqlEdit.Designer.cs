@@ -48,7 +48,7 @@ namespace ApqDBManager
 			this.tsmiPaste = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
 			this.tsmiSelectAll = new System.Windows.Forms.ToolStripMenuItem();
-			this.dsUI = new ErrList_XSD();
+			this.dsUI = new ApqDBManager.Forms.ErrList_XSD();
 			this._Sqls = new ApqDBManager.Forms.SrvsMgr.SrvsMgr_XSD();
 			this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
 			this.statusStrip1 = new System.Windows.Forms.StatusStrip();

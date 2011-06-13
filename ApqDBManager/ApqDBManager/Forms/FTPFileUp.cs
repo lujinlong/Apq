@@ -14,6 +14,7 @@ using DevExpress.XtraBars;
 using System.Data.SqlClient;
 using System.Data.Common;
 using DevExpress.XtraEditors;
+using Apq.TreeListView;
 
 namespace ApqDBManager.Forms
 {
@@ -22,99 +23,25 @@ namespace ApqDBManager.Forms
 		public FTPFileUp()
 		{
 			InitializeComponent();
-
-			this.tlcFullName = new DevExpress.XtraTreeList.Columns.TreeListColumn();
-			this.tlcFileName = new DevExpress.XtraTreeList.Columns.TreeListColumn();
-			this.tlcType = new DevExpress.XtraTreeList.Columns.TreeListColumn();
-			this.luType = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
-			this.tlcSize = new DevExpress.XtraTreeList.Columns.TreeListColumn();
-
-			this.treeList1.Columns.AddRange(new DevExpress.XtraTreeList.Columns.TreeListColumn[] {
-            this.tlcFullName,
-            this.tlcFileName,
-            this.tlcType,
-            this.tlcSize});
-			this.treeList1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
-            this.luType});
-			// 
-			// tlcFullName
-			// 
-			this.tlcFullName.Caption = "FullName";
-			this.tlcFullName.FieldName = "FullName";
-			this.tlcFullName.Name = "tlcFullName";
-			// 
-			// tlcFileName
-			// 
-			this.tlcFileName.Caption = "名称";
-			this.tlcFileName.FieldName = "FileName";
-			this.tlcFileName.MinWidth = 35;
-			this.tlcFileName.Name = "tlcFileName";
-			this.tlcFileName.OptionsColumn.AllowEdit = false;
-			this.tlcFileName.OptionsColumn.ReadOnly = true;
-			this.tlcFileName.Visible = true;
-			this.tlcFileName.VisibleIndex = 0;
-			// 
-			// tlcType
-			// 
-			this.tlcType.Caption = "类型";
-			this.tlcType.ColumnEdit = this.luType;
-			this.tlcType.FieldName = "Type";
-			this.tlcType.Name = "tlcType";
-			this.tlcType.OptionsColumn.AllowEdit = false;
-			this.tlcType.OptionsColumn.ReadOnly = true;
-			this.tlcType.Visible = true;
-			this.tlcType.VisibleIndex = 1;
-			// 
-			// luType
-			// 
-			this.luType.AutoHeight = false;
-			this.luType.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Type", "Type", 20, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("TypeCaption", "类型", 20, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None)});
-			this.luType.DisplayMember = "TypeCaption";
-			this.luType.Name = "luType";
-			this.luType.ReadOnly = true;
-			this.luType.ValueMember = "Type";
-			// 
-			// tlcSize
-			// 
-			this.tlcSize.AppearanceCell.Options.UseTextOptions = true;
-			this.tlcSize.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-			this.tlcSize.Caption = "大小(Bytes)";
-			this.tlcSize.FieldName = "Size";
-			this.tlcSize.Name = "tlcSize";
-			this.tlcSize.OptionsColumn.AllowEdit = false;
-			this.tlcSize.OptionsColumn.ReadOnly = true;
-			this.tlcSize.Visible = true;
-			this.tlcSize.VisibleIndex = 2;
 		}
 
-		private DevExpress.XtraTreeList.Columns.TreeListColumn tlcFileName;
-		private DevExpress.XtraTreeList.Columns.TreeListColumn tlcType;
-		private DevExpress.XtraTreeList.Columns.TreeListColumn tlcSize;
-		private DevExpress.XtraTreeList.Columns.TreeListColumn tlcFullName;
-		private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit luType;
+		private TreeListViewHelper tlvHelper;
+		private Thread LoadFileThread;
 
-		private Apq.XSD.Explorer ds = new Apq.XSD.Explorer();
-		private long NextID = 1;
+		private Apq.XSD.Explorer dsExplorer = new Apq.XSD.Explorer();
 
 		#region UI线程
 		private void FileUp_Load(object sender, EventArgs e)
 		{
-			if (!Apq.Convert.HasMean(beDBFolder_Up.EditValue))
+			if (!Apq.Convert.HasMean(txtDBFolder_Up.Text))
 			{
-				beDBFolder_Up.EditValue = GlobalObject.XmlConfigChain[this.GetType(), "DBFolder_Up"];
+				txtDBFolder_Up.Text = GlobalObject.XmlConfigChain[this.GetType(), "DBFolder_Up"];
 			}
 
-			ds.Init_luType();
-			luType.DataSource = ds.luType;
-			treeList1.DataSource = ds;
-			btnRefresh_ItemClick(sender, null);
-
-			//Apq.Xtra.TreeList.Common.AddBehaivor(treeList1);
-
 			// 获取服务器列表
-			ReloadServers();
+			_Sqls = GlobalObject.Sqls.Copy() as ApqDBManager.Forms.SrvsMgr.SrvsMgr_XSD;
+
+			tsbRefresh_Click(sender, null);
 		}
 
 		private void FileUp_Activated(object sender, EventArgs e)
@@ -128,179 +55,158 @@ namespace ApqDBManager.Forms
 		{
 			GlobalObject.SolutionExplorer.SaveState2XSD();
 		}
+
+		private void txtDBFolder_Up_TextChanged(object sender, EventArgs e)
+		{
+			if (Apq.Convert.HasMean(txtDBFolder_Up.Text))
+			{
+				GlobalObject.XmlConfigChain[this.GetType(), "DBFolder_Up"] = txtDBFolder_Up.Text;
+			}
+		}
+		#endregion
+
+		#region IDataShow 成员
+		/// <summary>
+		/// 前期准备(如数据库连接或文件等)
+		/// </summary>
+		public override void InitDataBefore()
+		{
+			tlvHelper = new TreeListViewHelper(treeListView1);
+		}
+		/// <summary>
+		/// 初始数据(如Lookup数据等)
+		/// </summary>
+		/// <param name="ds"></param>
+		public override void InitData(DataSet ds)
+		{
+			dsExplorer.Init_luType();
+		}
 		#endregion
 
 		#region 本地浏览
 		// 刷新
-		private void btnRefresh_ItemClick(object sender, ItemClickEventArgs e)
+		private void tsbRefresh_Click(object sender, EventArgs e)
 		{
-			treeList1.BeginUpdate();
-			ds.dtExplorer.Clear();
-			NextID = 1;
-			Apq.IO.FileSystem.LoadLogicDrivers(ds.dtExplorer, ref NextID);
-			treeList1.EndUpdate();
+			LoadLogicDrivers();
 		}
 
-		#region treeList1
-		// Checked图片
-		private void treeList1_GetStateImage(object sender, DevExpress.XtraTreeList.GetStateImageEventArgs e)
+		#region treeListView1
+		/// <summary>
+		/// 加载磁盘
+		/// </summary>
+		public void LoadLogicDrivers()
 		{
-			e.Node.HasChildren = Apq.Convert.ChangeType<bool>(e.Node["HasChildren"]);
-			e.NodeImageIndex = Apq.Convert.ChangeType<int>(e.Node["CheckState"]);
-		}
-
-		#region 选中状态
-		private void SetCheckedNode(TreeListNode node)
-		{
-			int Checked = (int)node["CheckState"];
-			if (Checked == 2 || Checked == 0) Checked = 1;
-			else Checked = 0;
-
-			treeList1.BeginUpdate();
-			node["CheckState"] = Checked;
-			SetCheckedChildNodes(node, Checked);
-			SetCheckedParentNodes(node, Checked);
-			ds.dtExplorer.AcceptChanges();
-			treeList1.EndUpdate();
-
-			StatusBarDisplayText(treeList1.FocusedNode);
-		}
-		/*
-		private void SetCheckedNode(TreeListNode node, bool checkParent, bool checkChildren)
-		{
-			int Checked = (int)node["CheckState"];
-			if (Checked == 2 || Checked == 0) Checked = 1;
-			else Checked = 0;
-
-			treeList1.BeginUpdate();
-			node["CheckState"] = Checked;
-			if (checkParent) SetCheckedParentNodes(node, Checked);
-			if (checkChildren) SetCheckedChildNodes(node, Checked);
-			treeList1.EndUpdate();
-		}
-		*/
-		private void SetCheckedChildNodes(TreeListNode node, int Checked)
-		{
-			foreach (TreeListNode tln in node.Nodes)
+			try
 			{
-				tln["CheckState"] = Checked;
-				SetCheckedChildNodes(tln, Checked);
-			}
-		}
-		private void SetCheckedParentNodes(TreeListNode node, int Checked)
-		{
-			if (node.ParentNode != null)
-			{
-				bool b = false;
-				for (int i = 0; i < node.ParentNode.Nodes.Count; i++)
+				treeListView1.Items.Clear();
+				string[] root = Directory.GetLogicalDrives();
+
+				foreach (string s in root)
 				{
-					if (!Checked.Equals(node.ParentNode.Nodes[i]["CheckState"]))
-					{
-						b = !b;
-						break;
-					}
+					TreeListViewItem node = new TreeListViewItem(s);
+					treeListView1.Items.Add(node);
+					node.SubItems.Add(dsExplorer.luType.FindByType(0).TypeCaption);
+					node.SubItems.Add("0");
+
+					node.SubItems.Add(s);
+
+					node.ImageIndex = 0;
 				}
-				node.ParentNode["CheckState"] = b ? 2 : 1; ;
-				SetCheckedParentNodes(node.ParentNode, Checked);
+				tsslStatus.Text = "加载成功";
 			}
+			catch { }
 		}
-		/*
-		private void SetCheckedParentNodes(TreeListNode node, int Checked)
+		/// <summary>
+		/// 加载子级文件夹
+		/// </summary>
+		public void LoadFolders(TreeListViewItem parent, string FullName)
 		{
-			if (node.ParentNode != null)
+			DirectoryInfo di;
+			try
 			{
-				node.ParentNode[CheckState] = Checked;
-				SetCheckedParentNodes(node.ParentNode, check);
-			}
-		}
-		*/
-		#endregion
+				string[] root = Directory.GetDirectories(FullName);
+				foreach (string s in root)
+				{
+					try
+					{
+						di = new DirectoryInfo(s);
+						TreeListViewItem node = new TreeListViewItem(di.Name);
+						parent.Items.Add(node);
+						node.SubItems.Add(dsExplorer.luType.FindByType(1).TypeCaption);
+						node.SubItems.Add("0");
 
-		#region 点击
-		private void treeList1_StateImageClick(object sender, NodeClickEventArgs e)
+						node.SubItems.Add(s);
+
+						node.ImageIndex = 1;
+						node.Checked = parent.Checked;
+					}
+					catch { }
+				}
+			}
+			catch { }
+		}
+		/// <summary>
+		/// 加载子级文件
+		/// </summary>
+		public void LoadFiles(TreeListViewItem parent, string FullName)
 		{
-			SetCheckedNode(e.Node);
+			FileInfo fi;
+			try
+			{
+				string[] root = Directory.GetFiles(FullName);
+				foreach (string s in root)
+				{
+					fi = new FileInfo(s);
+					TreeListViewItem node = new TreeListViewItem(fi.Name);
+					parent.Items.Add(node);
+					node.SubItems.Add(dsExplorer.luType.FindByType(2).TypeCaption);
+					node.SubItems.Add(fi.Length.ToString());
+
+					node.SubItems.Add(s);
+
+					node.ImageIndex = 3;
+					node.Checked = parent.Checked;
+				}
+			}
+			catch { }
 		}
 
-		private void treeList1_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
+		private void treeListView1_SelectedIndexChanged(object sender, EventArgs e)
 		{
-			if (e.KeyData == Keys.Space)
-			{
-				SetCheckedNode(treeList1.FocusedNode);
-			}
-		}
-		private void treeList1_EditorKeyUp(object sender, KeyEventArgs e)
-		{
-			#region Ctrl&C
-			if (e.Control && (e.KeyCode == Keys.C))
-			{
-				Clipboard.SetData(DataFormats.UnicodeText, treeList1.FocusedNode["FullName"]);
-			}
-			#endregion
-		}
-		private void treeList1_KeyUp(object sender, KeyEventArgs e)
-		{
-			#region Ctrl&C
-			if (e.Control && (e.KeyCode == Keys.C))
-			{
-				Clipboard.SetData(DataFormats.UnicodeText, treeList1.FocusedNode["FullName"]);
-			}
-			#endregion
-		}
-		#endregion
+			TreeListViewItem node = treeListView1.FocusedItem;
+			StatusBarDisplayText(node);
 
-		#region 展开
-		private void treeList1_BeforeCollapse(object sender, BeforeCollapseEventArgs e)
-		{
-			if (1.Equals(e.Node["Type"]))//文件夹
+			// 逐渐加载下级
+			if (node != null && node.ImageIndex < 3 && node.Items.Count == 0)
 			{
-				e.Node["SelectImageIndex"] = 0;
+				string FullName = node.SubItems[node.ListView.Columns.Count].Text;
+				LoadFolders(node, FullName);
+				LoadFiles(node, FullName);
 			}
 		}
-		private void treeList1_BeforeExpand(object sender, DevExpress.XtraTreeList.BeforeExpandEventArgs e)
-		{
-			if (1.Equals(e.Node["Type"]) && Apq.Convert.ChangeType<bool>(e.Node["HasChildren"]))//有子级的文件夹
-			{
-				e.Node["SelectImageIndex"] = Apq.Convert.ChangeType<bool>(e.Node["SelectImageIndex"]) ? 0 : 1;
-			}
-			if (Apq.Convert.ChangeType<bool>(e.Node["HasChildren"]) && !Apq.Convert.ChangeType<bool>(e.Node["Loaded"]))
-			{
-				Cursor currentCursor = Cursor.Current;
-				Cursor.Current = Cursors.WaitCursor;
-				Apq.IO.FileSystem.LoadFolders(ds.dtExplorer, ref NextID, Apq.Convert.ChangeType<long>(e.Node["ID"]), Apq.Convert.ChangeType<int>(e.Node["CheckState"]));
-				Apq.IO.FileSystem.LoadFiles(ds.dtExplorer, ref NextID, Apq.Convert.ChangeType<long>(e.Node["ID"]), Apq.Convert.ChangeType<int>(e.Node["CheckState"]));
-				e.Node["Loaded"] = true;
-				Cursor.Current = currentCursor;
-			}
-		}
-		#endregion
 
-		private void treeList1_FocusedNodeChanged(object sender, DevExpress.XtraTreeList.FocusedNodeChangedEventArgs e)
+		private void treeListView1_BeforeCollapse(object sender, TreeListViewCancelEventArgs e)
 		{
-			StatusBarDisplayText(e.Node);
+			if (e.Item.ImageIndex == 2) e.Item.ImageIndex = 1;
 		}
-		private void StatusBarDisplayText(TreeListNode node)
+
+		private void treeListView1_BeforeExpand(object sender, TreeListViewCancelEventArgs e)
+		{
+			if (e.Item.ImageIndex == 1) e.Item.ImageIndex = 2;
+		}
+
+		private void StatusBarDisplayText(TreeListViewItem node)
 		{
 			if (node != null)
 			{
-				bsiState.Caption = node.GetDisplayText("FullName");
+				tsslStatus.Text = node.SubItems[node.ListView.Columns.Count].Text;
 			}
 			else
-				bsiState.Caption = string.Empty;
-		}
-
-		private void treeList1_CompareNodeValues(object sender, DevExpress.XtraTreeList.CompareNodeValuesEventArgs e)
-		{
-			int type1 = Apq.Convert.ChangeType<int>(e.Node1["Type"]);
-			int type2 = Apq.Convert.ChangeType<int>(e.Node2["Type"]);
-			if (type1 != type2)
 			{
-				if (type1 == 1)
-					e.Result = (e.SortOrder == System.Windows.Forms.SortOrder.Ascending) ? -1 : 1;
-				else
-					e.Result = (e.SortOrder == System.Windows.Forms.SortOrder.Ascending) ? 1 : -1;
+				tsslStatus.Text = string.Empty;
 			}
 		}
+
 		#endregion
 		#endregion
 
@@ -345,36 +251,65 @@ namespace ApqDBManager.Forms
 		// UI
 		private void UIEnable(bool enabled)
 		{
-			Apq.Windows.Delegates.Action_UI<BarStaticItem>(this, bsiState, delegate(BarStaticItem ctrl)
+			Apq.Windows.Delegates.Action_UI<ToolStripStatusLabel>(this, tsslStatus, delegate(ToolStripStatusLabel ctrl)
 			{
-				beDBFolder_Up.Enabled = enabled;
-				btnRefresh.Enabled = enabled;
-				btnUp.Enabled = enabled;
-				treeList1.Enabled = enabled;
+				txtDBFolder_Up.Enabled = enabled;
+				tsbRefresh.Enabled = enabled;
+				tsbUp.Enabled = enabled;
+				treeListView1.Enabled = enabled;
 			});
 		}
 
-		private void btnUp_ItemClick(object sender, ItemClickEventArgs e)
+		private void tsbUp_Click(object sender, EventArgs e)
 		{
 			UIEnable(false);
-			// 先终止上一次主后台线程
+
+			// 先终止上次线程
 			Apq.Threading.Thread.Abort(MainBackThread);
+			Apq.Threading.Thread.Abort(LoadFileThread);
+
+			LoadFileThread = Apq.Threading.Thread.StartNewThread(new ThreadStart(LoadFileStream));
+		}
+
+		private void LoadFileStream()
+		{
+			Apq.Windows.Delegates.Action_UI<ToolStripStatusLabel>(this, tsslStatus, delegate(ToolStripStatusLabel ctrl)
+			{
+				tsslStateFileUp.Text = "正在加载文件...";
+				_UI.ErrList.Clear();
+				_UI.ErrList.AcceptChanges();
+			});
 
 			// 读取文件
-			bsiStateFileUp.Caption = "正在加载文件...";
-			DataView dv = new DataView(ds.dtExplorer);
-			dv.RowFilter = "CheckState = 1 AND Type = 2";
-			foreach (DataRowView drv in dv)
+			dsExplorer.dtExplorer.Rows.Clear();
+			foreach (TreeListViewItem root in treeListView1.Items)
 			{
-				if (!Apq.Convert.ChangeType<bool>(drv["Loaded"]))
-				{
-					drv["Loaded"] = true;
-					System.IO.FileStream fs = System.IO.File.OpenRead(drv["FullName"].ToString());
-					drv["bFile"] = Apq.IO.FileSystem.ReadFully(fs);
-				}
+				LoadFileStream(root);
 			}
 
 			MainBackThread = Apq.Threading.Thread.StartNewThread(new ThreadStart(MainBackThread_Start));
+		}
+
+		private void LoadFileStream(TreeListViewItem node)
+		{
+			if (node.Checked && node.SubItems[1].Text == dsExplorer.luType.FindByType(2).TypeCaption)
+			{
+				Apq.XSD.Explorer.dtExplorerRow dr = dsExplorer.dtExplorer.NewdtExplorerRow();
+				dr.ID = dsExplorer.dtExplorer.Rows.Count + 1;
+				dr.FullName = node.SubItems[node.ListView.Columns.Count].Text;
+				dr.FileName = node.SubItems[0].Text;
+				dr.Size = Apq.Convert.ChangeType<long>(node.SubItems[2].Text);
+				dr.Loaded = true;
+				dsExplorer.dtExplorer.Rows.Add(dr);
+
+				System.IO.FileStream fs = System.IO.File.OpenRead(dr.FullName);
+				dr.bFile = Apq.IO.FileSystem.ReadFully(fs);
+			}
+
+			foreach (TreeListViewItem child in node.Items)
+			{
+				LoadFileStream(child);
+			}
 		}
 
 		#region 后台线程
@@ -384,14 +319,14 @@ namespace ApqDBManager.Forms
 		private void MainBackThread_Start()
 		{
 			DataView dv = new DataView(_Sqls.SqlInstance);
-			dv.RowFilter = "CheckState = 1 AND ID > 1";
+			dv.RowFilter = "CheckState = 1 AND SqlID > 1";
 			if (dv.Count == 0)
 			{
 				UIEnable(true);
 				return;
 			}
 
-			Apq.Windows.Delegates.Action_UI<BarStaticItem>(this, bsiState, delegate(BarStaticItem ctrl)
+			Apq.Windows.Delegates.Action_UI<ToolStripStatusLabel>(this, tsslStatus, delegate(ToolStripStatusLabel ctrl)
 			{
 				_UI.ErrList.Clear();
 				_UI.ErrList.AcceptChanges();
@@ -419,10 +354,10 @@ namespace ApqDBManager.Forms
 			object rtLock0 = GetLock("0");
 			lock (rtLock0)
 			{
-				Apq.Windows.Delegates.Action_UI<BarStaticItem>(this, bsiState, delegate(BarStaticItem ctrl)
+				Apq.Windows.Delegates.Action_UI<ToolStripStatusLabel>(this, tsslStatus, delegate(ToolStripStatusLabel ctrl)
 				{
-					beiPb1.EditValue = 0;
-					bsiStateFileUp.Caption = "停止中...";
+					tspb.Value = 0;
+					tsslStateFileUp.Text = "停止中...";
 					Application.DoEvents();
 				});
 				thds.Clear();
@@ -433,9 +368,9 @@ namespace ApqDBManager.Forms
 			}
 			lock (rtLock0)
 			{
-				Apq.Windows.Delegates.Action_UI<BarStaticItem>(this, bsiState, delegate(BarStaticItem ctrl)
+				Apq.Windows.Delegates.Action_UI<ToolStripStatusLabel>(this, tsslStatus, delegate(ToolStripStatusLabel ctrl)
 				{
-					bsiStateFileUp.Caption = "准备完成,开始处理...";
+					tsslStateFileUp.Text = "准备完成,开始处理...";
 				});
 			}
 		}
@@ -450,16 +385,16 @@ namespace ApqDBManager.Forms
 			{
 				#region 获取服务器列表
 				DataView dv = new DataView(_Sqls.SqlInstance);
-				dv.RowFilter = "CheckState = 1 AND ID > 1";
+				dv.RowFilter = "CheckState = 1 AND SqlID > 1";
 				#endregion
 
 				#region 开始
 				lock (rtLock0)
 				{
-					Apq.Windows.Delegates.Action_UI<BarStaticItem>(this, bsiState, delegate(BarStaticItem ctrl)
+					Apq.Windows.Delegates.Action_UI<ToolStripStatusLabel>(this, tsslStatus, delegate(ToolStripStatusLabel ctrl)
 					{
-						bsiStateFileUp.Caption = "启动中...";
-						ripb.Maximum = dv.Count;
+						tsslStateFileUp.Text = "上传中...";
+						tspb.Maximum = dv.Count;
 					});
 				}
 
@@ -509,7 +444,6 @@ namespace ApqDBManager.Forms
 			}
 			DataRowView dr = dv[0];	// 取到服务器
 
-			SqlConnection sc = new SqlConnection(dr["ConnectionString"].ToString());
 			try
 			{
 				string FTPServer = Apq.Convert.ChangeType<string>(dv[0]["IPWan1"]);
@@ -537,7 +471,7 @@ namespace ApqDBManager.Forms
 				{
 					lock (rtLock)
 					{
-						Apq.Windows.Delegates.Action_UI<BarStaticItem>(this, bsiState, delegate(BarStaticItem ctrl)
+						Apq.Windows.Delegates.Action_UI<ToolStripStatusLabel>(this, tsslStatus, delegate(ToolStripStatusLabel ctrl)
 						{
 							ErrList_XSD.ErrListRow drErrList = _UI.ErrList.NewErrListRow();
 							drErrList.RSrvID = nServerID;
@@ -553,19 +487,18 @@ namespace ApqDBManager.Forms
 			}
 			finally
 			{
-				Apq.Data.Common.DbConnectionHelper.Close(sc);
 				lock (rtLock0)
 				{
-					Apq.Windows.Delegates.Action_UI<BarStaticItem>(this, bsiState, delegate(BarStaticItem ctrl)
+					Apq.Windows.Delegates.Action_UI<ToolStripStatusLabel>(this, tsslStatus, delegate(ToolStripStatusLabel ctrl)
 					{
-						if (Apq.Convert.ChangeType<int>(beiPb1.EditValue) < ripb.Properties.Maximum)
+						if (Apq.Convert.ChangeType<int>(tspb.Value) < tspb.Maximum)
 						{
-							beiPb1.EditValue = Apq.Convert.ChangeType<int>(beiPb1.EditValue) + 1;
-							if (Apq.Convert.ChangeType<int>(beiPb1.EditValue) == ripb.Properties.Maximum)
+							tspb.Value = Apq.Convert.ChangeType<int>(tspb.Value) + 1;
+							if (Apq.Convert.ChangeType<int>(tspb.Value) == tspb.Maximum)
 							{
 								_Sqls.SqlInstance.AcceptChanges();
 								_UI.ErrList.AcceptChanges();
-								bsiStateFileUp.Caption = "已全部完成";
+								tsslStateFileUp.Text = "已全部完成";
 								UIEnable(true);
 
 								DataView dvErr = new DataView(_Sqls.SqlInstance);
@@ -573,7 +506,7 @@ namespace ApqDBManager.Forms
 								// 标记本服执行出错
 								if (dvErr.Count > 0)
 								{
-									bsiStateFileUp.Caption += ",但有错误发生,请查看";
+									tsslStateFileUp.Text += ",但有错误发生,请查看";
 									GlobalObject.SolutionExplorer.FocusAndExpandByID(Apq.Convert.ChangeType<int>(dvErr[0]["ID"]));
 								}
 							}
@@ -590,7 +523,7 @@ namespace ApqDBManager.Forms
 		/// <param name="sc"></param>
 		private void DoFileUp(TreeListNode pnode, SqlConnection sc)
 		{
-			DataView dv = new DataView(ds.dtExplorer);
+			DataView dv = new DataView(dsExplorer.dtExplorer);
 			dv.RowFilter = "CheckState = 1 AND Type = 2";
 			SqlCommand sqlCmd = new SqlCommand("", sc);
 			sqlCmd.CommandTimeout = 86400;//3600*24
@@ -603,23 +536,6 @@ namespace ApqDBManager.Forms
 			}
 		}
 		#endregion
-
-		private void beDBFolder_Up_EditValueChanged(object sender, EventArgs e)
-		{
-			if (Apq.Convert.HasMean(beDBFolder_Up.EditValue))
-			{
-				GlobalObject.XmlConfigChain[this.GetType(), "DBFolder_Up"] = Apq.Convert.ChangeType<string>(beDBFolder_Up.EditValue);
-			}
-		}
 		#endregion
-
-		/// <summary>
-		/// 重新加载服务器列表
-		/// </summary>
-		public void ReloadServers()
-		{
-			_Sqls.SqlInstance.Clear();
-			_Sqls.SqlInstance.Merge(GlobalObject.Sqls.SqlInstance);
-		}
 	}
 }

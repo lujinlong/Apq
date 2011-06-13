@@ -89,7 +89,7 @@ namespace ApqDBManager.Forms
 		{
 			foreach (TreeListViewItem root in treeListView1.Items)
 			{
-				SetCheckedNode(root, true, false, true);
+				Apq.TreeListView.TreeListViewHelper.SetCheckedNode(root, true, false, true);
 			}
 		}
 		//反选
@@ -97,7 +97,7 @@ namespace ApqDBManager.Forms
 		{
 			foreach (TreeListViewItem root in treeListView1.Items)
 			{
-				ChgCheckedNode(root, false, true);
+				Apq.TreeListView.TreeListViewHelper.ChgCheckedNode(root, false, true);
 			}
 		}
 		//全部展开
@@ -193,83 +193,14 @@ namespace ApqDBManager.Forms
 			{
 				if (Apq.Convert.ChangeType<int>(treeListView1.FocusedItem.SubItems[treeListView1.Columns.Count].Text) == 1)
 				{
-					ChgCheckedNode(treeListView1.FocusedItem, false, true);
+					Apq.TreeListView.TreeListViewHelper.ChgCheckedNode(treeListView1.FocusedItem, false, true);
 				}
 				else
 				{
-					ChgCheckedNode(treeListView1.FocusedItem, false, false);
+					Apq.TreeListView.TreeListViewHelper.ChgCheckedNode(treeListView1.FocusedItem, false, false);
 				}
 			}
 		}
-
-		#region 选中状态
-		#region SetChecked
-		private void SetCheckedNode(TreeListViewItem node, bool Checked, bool checkParent, bool checkChildren)
-		{
-			treeListView1.EndUpdate();
-			node.Checked = Checked;
-
-			if (checkParent)
-			{
-				SetCheckedParentNodes(node, Checked);
-			}
-			if (checkChildren)
-			{
-				SetCheckedChildNodes(node, Checked);
-			}
-			treeListView1.EndUpdate();
-		}
-		private void SetCheckedChildNodes(TreeListViewItem node, bool Checked)
-		{
-			foreach (TreeListViewItem tln in node.Items)
-			{
-				tln.Checked = Checked;
-				SetCheckedChildNodes(tln, Checked);
-			}
-		}
-		private void SetCheckedParentNodes(TreeListViewItem node, bool Checked)
-		{
-			if (node.Parent != null)
-			{
-				node.Parent.Checked = Checked;
-				SetCheckedParentNodes(node.Parent, Checked);
-			}
-		}
-		#endregion
-		#region ChgChecked
-		private void ChgCheckedNode(TreeListViewItem node, bool checkParent, bool checkChildren)
-		{
-			treeListView1.BeginUpdate();
-			node.Checked = !node.Checked;
-
-			if (checkParent)
-			{
-				ChgCheckedParentNodes(node);
-			}
-			if (checkChildren)
-			{
-				ChgCheckedChildNodes(node);
-			}
-			treeListView1.EndUpdate();
-		}
-		private void ChgCheckedChildNodes(TreeListViewItem node)
-		{
-			foreach (TreeListViewItem tln in node.Items)
-			{
-				tln.Checked = !tln.Checked;
-				ChgCheckedChildNodes(tln);
-			}
-		}
-		private void ChgCheckedParentNodes(TreeListViewItem node)
-		{
-			if (node.Parent != null)
-			{
-				node.Parent.Checked = !node.Parent.Checked;
-				ChgCheckedParentNodes(node.Parent);
-			}
-		}
-		#endregion
-		#endregion
 
 		#region 选中展开状态By隐藏列
 		private void SetStateByHiddenCol(TreeListViewItem node)

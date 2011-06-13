@@ -62,6 +62,7 @@
 			this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
 			this.tsmiRSAKey = new System.Windows.Forms.ToolStripMenuItem();
 			this.tsmiDES = new System.Windows.Forms.ToolStripMenuItem();
+			this.tsmiCryptCS = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
 			this.tsmiRandom = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
@@ -344,6 +345,7 @@
             this.toolStripSeparator6,
             this.tsmiRSAKey,
             this.tsmiDES,
+            this.tsmiCryptCS,
             this.toolStripSeparator7,
             this.tsmiRandom,
             this.toolStripSeparator8,
@@ -381,6 +383,13 @@
 			this.tsmiDES.Text = "DES加解密(&D)";
 			this.tsmiDES.Click += new System.EventHandler(this.tsmiDES_Click);
 			// 
+			// tsmiCryptCS
+			// 
+			this.tsmiCryptCS.Name = "tsmiCryptCS";
+			this.tsmiCryptCS.Size = new System.Drawing.Size(160, 22);
+			this.tsmiCryptCS.Text = "DB连接加解密(&C)";
+			this.tsmiCryptCS.Click += new System.EventHandler(this.tsmiCryptCS_Click);
+			// 
 			// toolStripSeparator7
 			// 
 			this.toolStripSeparator7.Name = "toolStripSeparator7";
@@ -410,6 +419,7 @@
 			this.tsmiFTPFileUp.Name = "tsmiFTPFileUp";
 			this.tsmiFTPFileUp.Size = new System.Drawing.Size(160, 22);
 			this.tsmiFTPFileUp.Text = "FTP上传(&P)";
+			this.tsmiFTPFileUp.Visible = false;
 			this.tsmiFTPFileUp.Click += new System.EventHandler(this.tsmiFTPFileUp_Click);
 			// 
 			// toolStripSeparator9
@@ -635,5 +645,6 @@
 		private System.Windows.Forms.ToolStripButton tsbSave;
 		private System.Windows.Forms.StatusStrip statusStrip1;
 		private System.Windows.Forms.ToolStripMenuItem tsmiStatusBar;
+		private System.Windows.Forms.ToolStripMenuItem tsmiCryptCS;
 	}
 }

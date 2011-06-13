@@ -53,75 +53,6 @@ namespace ApqDBManager.Forms.SrvsMgr
 
 		#region treeListView1
 
-		#region 选中状态
-		#region SetChecked
-		private void SetCheckedNode(TreeListViewItem node, bool Checked, bool checkParent, bool checkChildren)
-		{
-			treeListView1.BeginUpdate();
-			node.Checked = Checked;
-
-			if (checkParent)
-			{
-				SetCheckedParentNodes(node, Checked);
-			}
-			if (checkChildren)
-			{
-				SetCheckedChildNodes(node, Checked);
-			}
-			treeListView1.EndUpdate();
-		}
-		private void SetCheckedChildNodes(TreeListViewItem node, bool Checked)
-		{
-			foreach (TreeListViewItem tln in node.Items)
-			{
-				tln.Checked = Checked;
-				SetCheckedChildNodes(tln, Checked);
-			}
-		}
-		private void SetCheckedParentNodes(TreeListViewItem node, bool Checked)
-		{
-			if (node.Parent != null)
-			{
-				node.Parent.Checked = Checked;
-				SetCheckedParentNodes(node.Parent, Checked);
-			}
-		}
-		#endregion
-		#region ChgChecked
-		private void ChgCheckedNode(TreeListViewItem node, bool checkParent, bool checkChildren)
-		{
-			treeListView1.BeginUpdate();
-			node.Checked = !node.Checked;
-
-			if (checkParent)
-			{
-				ChgCheckedParentNodes(node);
-			}
-			if (checkChildren)
-			{
-				ChgCheckedChildNodes(node);
-			}
-			treeListView1.EndUpdate();
-		}
-		private void ChgCheckedChildNodes(TreeListViewItem node)
-		{
-			foreach (TreeListViewItem tln in node.Items)
-			{
-				tln.Checked = !tln.Checked;
-				ChgCheckedChildNodes(tln);
-			}
-		}
-		private void ChgCheckedParentNodes(TreeListViewItem node)
-		{
-			if (node.Parent != null)
-			{
-				node.Parent.Checked = !node.Parent.Checked;
-				ChgCheckedParentNodes(node.Parent);
-			}
-		}
-		#endregion
-		#endregion
-
 		private void treeListView1_BeforeLabelEdit(object sender, TreeListViewBeforeLabelEditEventArgs e)
 		{
 			if (e.Item.ListView.Columns[e.ColumnIndex].Text == "服务器")
@@ -366,7 +297,7 @@ namespace ApqDBManager.Forms.SrvsMgr
 		{
 			foreach (TreeListViewItem root in treeListView1.Items)
 			{
-				SetCheckedNode(root, true, false, true);
+				Apq.TreeListView.TreeListViewHelper.SetCheckedNode(root, true, false, true);
 			}
 		}
 
@@ -374,7 +305,7 @@ namespace ApqDBManager.Forms.SrvsMgr
 		{
 			foreach (TreeListViewItem root in treeListView1.Items)
 			{
-				ChgCheckedNode(root, false, true);
+				Apq.TreeListView.TreeListViewHelper.ChgCheckedNode(root, false, true);
 			}
 		}
 
