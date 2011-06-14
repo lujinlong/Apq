@@ -29,7 +29,6 @@
 		private void InitializeComponent()
 		{
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Random));
-			this.bar1 = new DevExpress.XtraBars.Bar();
 			this.splitContainer1 = new System.Windows.Forms.SplitContainer();
 			this.listView1 = new System.Windows.Forms.ListView();
 			this.btnGo = new System.Windows.Forms.Button();
@@ -47,14 +46,6 @@
 			this.splitContainer1.Panel2.SuspendLayout();
 			this.splitContainer1.SuspendLayout();
 			this.SuspendLayout();
-			// 
-			// bar1
-			// 
-			this.bar1.BarName = "Tools";
-			this.bar1.DockCol = 0;
-			this.bar1.DockRow = 1;
-			this.bar1.DockStyle = DevExpress.XtraBars.BarDockStyle.Top;
-			this.bar1.Text = "Tools";
 			// 
 			// splitContainer1
 			// 
@@ -217,7 +208,6 @@
 
 		#endregion
 
-		private DevExpress.XtraBars.Bar bar1;
 		private System.Windows.Forms.SplitContainer splitContainer1;
 		private System.Windows.Forms.ListView listView1;
 		private System.Windows.Forms.Button btnCopy;

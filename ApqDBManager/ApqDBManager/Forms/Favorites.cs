@@ -47,7 +47,7 @@ namespace ApqDBManager.Forms
 			if (Apq.Convert.HasMean(listBox1.SelectedValue))
 			{
 				SqlEdit Editor = GlobalObject.MainForm.ActiveMdiChild as SqlEdit;
-				if (Editor != null) Editor.LoadFile(listBox1.SelectedValue.ToString());
+				if (Editor != null) Editor.SqlEditDoc.LoadFile(listBox1.SelectedValue.ToString());
 			}
 		}
 	}

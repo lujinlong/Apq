@@ -50,10 +50,10 @@ namespace ApqDBManager
 					return null;
 
 				SqlEdit dummyDoc = new SqlEdit();
-				if (parsedStrings[1] != string.Empty)
-					dummyDoc.FileName = parsedStrings[1];
-				if (parsedStrings[2] != string.Empty)
-					dummyDoc.Text = parsedStrings[2];
+				//if (parsedStrings[1] != string.Empty)
+				//    dummyDoc.FileName = parsedStrings[1];
+				//if (parsedStrings[2] != string.Empty)
+				//    dummyDoc.Text = parsedStrings[2];
 
 				return dummyDoc;
 			}

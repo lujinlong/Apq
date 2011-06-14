@@ -8,10 +8,8 @@ using System.Text;
 using System.Windows.Forms;
 using System.IO;
 using System.Threading;
-using DevExpress.XtraBars;
 using System.Data.SqlClient;
 using System.Data.Common;
-using DevExpress.XtraEditors;
 using Apq.TreeListView;
 
 namespace ApqDBManager.Forms

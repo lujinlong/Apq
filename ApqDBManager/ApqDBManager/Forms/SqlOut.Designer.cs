@@ -29,85 +29,57 @@
 		private void InitializeComponent()
 		{
 			this.components = new System.ComponentModel.Container();
-			this.dataGridView1 = new System.Windows.Forms.DataGridView();
-			this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.errListBindingSource = new System.Windows.Forms.BindingSource(this.components);
-			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.errListBindingSource)).BeginInit();
+			this.tabControl1 = new System.Windows.Forms.TabControl();
+			this.cms2 = new System.Windows.Forms.ContextMenuStrip(this.components);
+			this.tsmiShowNode = new System.Windows.Forms.ToolStripMenuItem();
+			this.cms2.SuspendLayout();
 			this.SuspendLayout();
 			// 
-			// dataGridView1
+			// tabControl1
 			// 
-			this.dataGridView1.AllowUserToAddRows = false;
-			this.dataGridView1.AllowUserToDeleteRows = false;
-			this.dataGridView1.AutoGenerateColumns = false;
-			this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column1,
-            this.Column2,
-            this.Column3});
-			this.dataGridView1.DataSource = this.errListBindingSource;
-			this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.dataGridView1.Location = new System.Drawing.Point(0, 0);
-			this.dataGridView1.Name = "dataGridView1";
-			this.dataGridView1.ReadOnly = true;
-			this.dataGridView1.RowTemplate.Height = 23;
-			this.dataGridView1.Size = new System.Drawing.Size(787, 266);
-			this.dataGridView1.TabIndex = 1;
+			this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.tabControl1.Location = new System.Drawing.Point(0, 0);
+			this.tabControl1.Name = "tabControl1";
+			this.tabControl1.SelectedIndex = 0;
+			this.tabControl1.Size = new System.Drawing.Size(787, 266);
+			this.tabControl1.TabIndex = 0;
 			// 
-			// Column1
+			// cms2
 			// 
-			this.Column1.DataPropertyName = "RSrvID";
-			this.Column1.HeaderText = "服务器编号";
-			this.Column1.Name = "Column1";
-			this.Column1.ReadOnly = true;
-			this.Column1.Width = 90;
+			this.cms2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiShowNode});
+			this.cms2.Name = "contextMenuStrip2";
+			this.cms2.Size = new System.Drawing.Size(161, 26);
 			// 
-			// Column2
+			// tsmiShowNode
 			// 
-			this.Column2.DataPropertyName = "__ServerName";
-			this.Column2.HeaderText = "服务器";
-			this.Column2.Name = "Column2";
-			this.Column2.ReadOnly = true;
-			// 
-			// Column3
-			// 
-			this.Column3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-			this.Column3.DataPropertyName = "s";
-			this.Column3.HeaderText = "错误信息";
-			this.Column3.Name = "Column3";
-			this.Column3.ReadOnly = true;
-			// 
-			// errListBindingSource
-			// 
-			this.errListBindingSource.DataMember = "ErrList";
+			this.tsmiShowNode.Name = "tsmiShowNode";
+			this.tsmiShowNode.Size = new System.Drawing.Size(160, 22);
+			this.tsmiShowNode.Text = "定位对应节点(&N)";
 			// 
 			// SqlOut
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(787, 266);
-			this.Controls.Add(this.dataGridView1);
+			this.CloseButton = false;
+			this.CloseButtonVisible = false;
+			this.Controls.Add(this.tabControl1);
 			this.DockAreas = ((WeifenLuo.WinFormsUI.Docking.DockAreas)((WeifenLuo.WinFormsUI.Docking.DockAreas.Float | WeifenLuo.WinFormsUI.Docking.DockAreas.DockBottom)));
 			this.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
 			this.Name = "SqlOut";
-			this.TabText = "错误列表";
-			this.Text = "错误列表";
+			this.TabText = "输出";
+			this.Text = "输出";
 			this.Load += new System.EventHandler(this.SqlOut_Load);
-			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.errListBindingSource)).EndInit();
+			this.cms2.ResumeLayout(false);
 			this.ResumeLayout(false);
 
 		}
 
 		#endregion
 
-		private System.Windows.Forms.DataGridView dataGridView1;
-		private System.Windows.Forms.BindingSource errListBindingSource;
-		private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-		private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-		private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
+		private System.Windows.Forms.TabControl tabControl1;
+		private System.Windows.Forms.ContextMenuStrip cms2;
+		private System.Windows.Forms.ToolStripMenuItem tsmiShowNode;
 	}
 }

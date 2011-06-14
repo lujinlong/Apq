@@ -10,7 +10,6 @@ using System.Text;
 using System.Windows.Forms;
 using Apq.Com;
 using System.Data.SqlClient;
-using DevExpress.XtraTab;
 using ApqDBManager.Forms;
 using ICSharpCode.TextEditor;
 
@@ -261,26 +260,26 @@ namespace ApqDBManager.Controls
 								break;
 							}
 
-							XtraTabPage xtp = ctrlTmp as XtraTabPage;
+							TabPage xtp = ctrlTmp as TabPage;
 							if (xtp != null)
 							{
 								ServerID = Apq.Convert.ChangeType<int>(xtp.Tag);
 							}
 						}
 
-						DataView dvErr = new DataView(se._Sqls.SqlInstance);
+						DataView dvErr = new DataView(se.SqlEditDoc._Sqls.SqlInstance);
 						dvErr.RowFilter = "SqlID = " + ServerID;
 						// 标记本服执行出错
 						if (dvErr.Count > 0)
 						{
-							object rtLock = se.GetLock(ServerID.ToString());
+							object rtLock = se.SqlEditDoc.GetLock(ServerID.ToString());
 							lock (rtLock)
 							{
-								ErrList_XSD.ErrListRow drErrList = se.dsUI.ErrList.NewErrListRow();
+								ErrList_XSD.ErrListRow drErrList = se.SqlEditDoc.dsUI.ErrList.NewErrListRow();
 								drErrList.RSrvID = ServerID;
 								drErrList["__ServerName"] = dvErr[0]["SqlName"];
 								drErrList.s = r.Message;
-								se.dsUI.ErrList.Rows.Add(drErrList);
+								se.SqlEditDoc.dsUI.ErrList.Rows.Add(drErrList);
 
 								dvErr[0]["Err"] = true;
 							}

@@ -8,7 +8,6 @@ using System.Text;
 using System.Windows.Forms;
 using System.Threading;
 using System.IO;
-using DevExpress.XtraBars;
 using System.Data.SqlClient;
 using System.Data.Common;
 using System.Collections;

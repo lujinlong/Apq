@@ -116,21 +116,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Dlls\CommonTools.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.Data.v9.2, Version=9.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="DevExpress.Utils.v9.2, Version=9.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="DevExpress.Xpo.v9.2, Version=9.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="DevExpress.XtraBars.v9.2, Version=9.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="DevExpress.XtraEditors.v9.2, Version=9.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
-      <Private>True</Private>
-    </Reference>
     <Reference Include="ICSharpCode.TextEditor, Version=2.0.0.922, Culture=neutral, PublicKeyToken=4d61825e8dd49f1a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Dlls\ICSharpCode.TextEditor.dll</HintPath>
@@ -265,6 +250,12 @@
     </Compile>
     <Compile Include="Forms\FTPFileUp.Designer.cs">
       <DependentUpon>FTPFileUp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SqlEditDoc.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SqlEditDoc.Designer.cs">
+      <DependentUpon>SqlEditDoc.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\SrvsMgr\DBServer.cs">
       <SubType>Form</SubType>
@@ -438,6 +429,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FTPFileUp.resx">
       <DependentUpon>FTPFileUp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SqlEditDoc.resx">
+      <DependentUpon>SqlEditDoc.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\SrvsMgr\DBServer.resx">
       <DependentUpon>DBServer.cs</DependentUpon>

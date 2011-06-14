@@ -182,7 +182,7 @@ namespace ApqDBManager.Forms
 				SqlEdit Editor = GlobalObject.MainForm.ActiveMdiChild as SqlEdit;
 				if (Editor != null)
 				{
-					Editor.ShowTabPage(ServerName);
+					Editor.SqlOut.ShowTabPage(ServerName);
 				}
 			}
 		}
