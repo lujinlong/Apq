@@ -157,7 +157,7 @@ namespace ApqDBManager
 
 		private WeifenLuo.WinFormsUI.Docking.DockPanel dockPanel1;
 		private System.Windows.Forms.StatusStrip statusStrip1;
-		private System.Windows.Forms.ToolStripStatusLabel tsslStatus;
-		private System.Windows.Forms.ToolStripProgressBar tspb;
+		public System.Windows.Forms.ToolStripStatusLabel tsslStatus;
+		public System.Windows.Forms.ToolStripProgressBar tspb;
 	}
 }

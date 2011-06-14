@@ -196,6 +196,9 @@
   <metadata name="toolStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
+  <metadata name="cms1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>119, 17</value>
+  </metadata>
   <data name="txtSql.Encoding" mimetype="application/x-microsoft.net.object.binary.base64">
     <value>
         AAEAAAD/////AQAAAAAAAAAEAQAAABhTeXN0ZW0uVGV4dC5VVEY4RW5jb2RpbmcLAAAAEmVtaXRVVEY4
@@ -214,9 +217,6 @@
         K2JJc01pY3Jvc29mdEJlc3RGaXRGYWxsYmFjawEAAAEBCQYAAAAAAAs=
 </value>
   </data>
-  <metadata name="cms1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>193, 20</value>
-  </metadata>
   <metadata name="dsUI.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>269, 20</value>
   </metadata>

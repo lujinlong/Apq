@@ -25,6 +25,11 @@ namespace ApqDBManager.Forms
 			_Sqls = GlobalObject.Sqls.Copy() as ApqDBManager.Forms.SrvsMgr.SrvsMgr_XSD;
 		}
 
+		public SqlEdit SqlEdit
+		{
+			get { return Parent as SqlEdit; }
+		}
+
 		private static string[] aryGo = { "\r\ngo\r\n", "\r\ngO\r\n", "\r\nGo\r\n", "\r\nGO\r\n" };
 
 		private List<Thread> thds = new List<Thread>();
@@ -148,7 +153,7 @@ UNION ALL SELECT 2,2;";
 			 */
 			#endregion
 
-			#region cbDBName.EditValue
+			#region tscbDBName.Text
 			string cfgcbDBName = GlobalObject.XmlConfigChain[this.GetType(), "cbDBName"];
 			if (cfgcbDBName != null)
 			{
@@ -162,7 +167,6 @@ UNION ALL SELECT 2,2;";
 			GlobalObject.XmlConfigChain[this.GetType(), "txtSql_Text"] = txtSql.Text;
 		}
 
-		/*
 		#region UI线程
 		private void tscbDBName_Leave(object sender, EventArgs e)
 		{
@@ -197,9 +201,15 @@ UNION ALL SELECT 2,2;";
 			}
 		}
 
-		private void SqlEdit_FormClosed(object sender, FormClosedEventArgs e)
+		private void tssbResult_DropDownItemClicked(object sender, ToolStripItemClickedEventArgs e)
 		{
-			//GlobalObject.XmlUserConfig.Save();
+			ToolStripMenuItem tsmi1 = e.ClickedItem as ToolStripMenuItem;
+			if (tsmi1 != null)
+			{
+				tsmi1.Checked = true;
+				ToolStripMenuItem tsmi2 = tssbResult.DropDownItems[System.Math.Abs(tssbResult.DropDownItems.IndexOf(tsmi1) - 1)] as ToolStripMenuItem;
+				tsmi2.Checked = false;
+			}
 		}
 
 		private void tsbExec_Click(object sender, EventArgs e)
@@ -291,8 +301,8 @@ UNION ALL SELECT 2,2;";
 				Application.DoEvents();
 			}
 			thds.Clear();
-			tsslStatus.Text = "已取消";
-			tspb.Value = 0;
+			SqlEdit.tsslStatus.Text = "已取消";
+			SqlEdit.tspb.Value = 0;
 
 			tsbExec.Enabled = true;
 		}
@@ -355,7 +365,7 @@ UNION ALL SELECT 2,2;";
 				return;
 			}
 
-			Apq.Windows.Delegates.Action_UI<ToolStripStatusLabel>(this, tsslStatus, delegate(ToolStripStatusLabel ctrl)
+			Apq.Windows.Delegates.Action_UI<ToolStripLabel>(this, tslDBName, delegate(ToolStripLabel ctrl)
 			{
 				dsUI.ErrList.Clear();
 				dsUI.ErrList.AcceptChanges();
@@ -395,18 +405,11 @@ UNION ALL SELECT 2,2;";
 			object rtLock0 = GetLock("0");
 			lock (rtLock0)
 			{
-				Apq.Windows.Delegates.Action_UI<ToolStripStatusLabel>(this, tsslStatus, delegate(ToolStripStatusLabel ctrl)
+				Apq.Windows.Delegates.Action_UI<ToolStripLabel>(this, tslDBName, delegate(ToolStripLabel ctrl)
 				{
-					tspb.Value = 0;
-					tsslStatus.Text = "停止中...";
-					Application.DoEvents();
-					xtraTabControl1.TabPages.Clear();
+					SqlEdit.tspb.Value = 0;
+					SqlEdit.tsslStatus.Text = "停止中...";
 				});
-				if (rtSingleDisplay != null && rtSingleDisplay.BackDataSet != null)
-				{
-					rtSingleDisplay.BackDataSet.Clear();
-					rtSingleDisplay.BackDataSet.Tables.Clear();
-				}
 				foreach (DataSet item in lstds)
 				{
 					item.Clear();			// 清空行
@@ -421,9 +424,9 @@ UNION ALL SELECT 2,2;";
 			}
 			lock (rtLock0)
 			{
-				Apq.Windows.Delegates.Action_UI<ToolStripStatusLabel>(this, tsslStatus, delegate(ToolStripStatusLabel ctrl)
+				Apq.Windows.Delegates.Action_UI<ToolStripLabel>(this, tslDBName, delegate(ToolStripLabel ctrl)
 				{
-					tsslStatus.Text = "准备完成,开始处理...";
+					SqlEdit.tsslStatus.Text = "准备完成,开始处理...";
 				});
 			}
 		}
@@ -445,10 +448,10 @@ UNION ALL SELECT 2,2;";
 				lock (rtLock0)
 				{
 					int nbliResult_ItemIndex = Apq.Convert.ChangeType<int>(Apq.Windows.Controls.ControlExtension.GetControlValues(this, "bliResult.ItemIndex"));
-					Apq.Windows.Delegates.Action_UI<ToolStripStatusLabel>(this, tsslStatus, delegate(ToolStripStatusLabel ctrl)
+					Apq.Windows.Delegates.Action_UI<ToolStripLabel>(this, tslDBName, delegate(ToolStripLabel ctrl)
 					{
-						tsslStatus.Text = "启动中...";
-						tspb.Maximum = dv.Count;
+						SqlEdit.tsslStatus.Text = "启动中...";
+						SqlEdit.tspb.Maximum = dv.Count;
 					});
 				}
 
@@ -501,7 +504,7 @@ UNION ALL SELECT 2,2;";
 
 				lock (rtLock0)
 				{
-					Apq.Windows.Delegates.Action_UI<ToolStripStatusLabel>(this, tsslStatus, delegate(ToolStripStatusLabel ctrl)
+					Apq.Windows.Delegates.Action_UI<ToolStripLabel>(this, tslDBName, delegate(ToolStripLabel ctrl)
 					{
 						lstds.Add(dsTabPage);
 					});
@@ -526,7 +529,7 @@ UNION ALL SELECT 2,2;";
 				sc.ChangeDatabase(DBName);//更改数据库后再启用消息事件可防止执行到其它数据库
 				sc.StatisticsEnabled = true;// 启用统计
 				sc.FireInfoMessageEventOnUserErrors = true;// 启用消息事件
-				sc.InfoMessage += new SqlInfoMessageEventHandler(rt.sc_InfoMessage);
+				//sc.InfoMessage += new SqlInfoMessageEventHandler(rt.sc_InfoMessage);
 
 				// 2.准备语句
 				string[] arySql = Apq.Windows.Controls.ControlExtension.GetControlValues(this, "arySql") as string[];
@@ -561,7 +564,7 @@ UNION ALL SELECT 2,2;";
 				// 标记本服执行出错
 				lock (rtLock)
 				{
-					Apq.Windows.Delegates.Action_UI<ToolStripStatusLabel>(this, tsslStatus, delegate(ToolStripStatusLabel ctrl)
+					Apq.Windows.Delegates.Action_UI<ToolStripLabel>(this, tslDBName, delegate(ToolStripLabel ctrl)
 					{
 						ErrList_XSD.ErrListRow drErrList = dsUI.ErrList.NewErrListRow();
 						drErrList.RSrvID = nSqlID;
@@ -579,16 +582,16 @@ UNION ALL SELECT 2,2;";
 				Apq.Data.Common.DbConnectionHelper.Close(sc);
 				lock (rtLock0)
 				{
-					Apq.Windows.Delegates.Action_UI<ToolStripStatusLabel>(this, tsslStatus, delegate(ToolStripStatusLabel ctrl)
+					Apq.Windows.Delegates.Action_UI<ToolStripLabel>(this, tslDBName, delegate(ToolStripLabel ctrl)
 					{
-						if (Apq.Convert.ChangeType<int>(tspb.Value) < tspb.Maximum)
+						if (SqlEdit.tspb.Value < SqlEdit.tspb.Maximum)
 						{
-							tspb.Value = Apq.Convert.ChangeType<int>(tspb.Value) + 1;
-							if (Apq.Convert.ChangeType<int>(tspb.Value) == tspb.Maximum)
+							SqlEdit.tspb.Value++;
+							if (SqlEdit.tspb.Value == SqlEdit.tspb.Maximum)
 							{
 								_Sqls.SqlInstance.AcceptChanges();
 								dsUI.ErrList.AcceptChanges();
-								tsslStatus.Text = "已全部完成";
+								SqlEdit.tsslStatus.Text = "已全部完成";
 								tsbCancel.Enabled = false;
 								tsbExec.Enabled = true;
 
@@ -597,7 +600,7 @@ UNION ALL SELECT 2,2;";
 								// 标记本服执行出错
 								if (dvErr.Count > 0)
 								{
-									tsslStatus.Text += ",但有错误发生,请查看";
+									SqlEdit.tsslStatus.Text += ",但有错误发生,请查看";
 									GlobalObject.SolutionExplorer.FocusAndExpandByID(Apq.Convert.ChangeType<int>(dr["SqlID"]));
 								}
 							}
@@ -640,7 +643,6 @@ UNION ALL SELECT 2,2;";
 			this.SelectAll();
 		}
 		#endregion
-		*/
 
 		#region ITextEditor 成员
 

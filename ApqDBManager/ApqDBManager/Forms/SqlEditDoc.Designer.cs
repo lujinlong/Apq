@@ -69,6 +69,7 @@
 			// 
 			this.tscbDBName.Name = "tscbDBName";
 			this.tscbDBName.Size = new System.Drawing.Size(121, 25);
+			this.tscbDBName.Leave += new System.EventHandler(this.tscbDBName_Leave);
 			// 
 			// tsbExec
 			// 
@@ -78,6 +79,7 @@
 			this.tsbExec.Name = "tsbExec";
 			this.tsbExec.Size = new System.Drawing.Size(51, 22);
 			this.tsbExec.Text = "执行(&X)";
+			this.tsbExec.Click += new System.EventHandler(this.tsbExec_Click);
 			// 
 			// tsbCancel
 			// 
@@ -87,6 +89,7 @@
 			this.tsbCancel.Name = "tsbCancel";
 			this.tsbCancel.Size = new System.Drawing.Size(51, 22);
 			this.tsbCancel.Text = "取消(&C)";
+			this.tsbCancel.Click += new System.EventHandler(this.tsbCancel_Click);
 			// 
 			// tsbSingleThread
 			// 
@@ -96,6 +99,7 @@
 			this.tsbSingleThread.Name = "tsbSingleThread";
 			this.tsbSingleThread.Size = new System.Drawing.Size(45, 22);
 			this.tsbSingleThread.Text = "单线程";
+			this.tsbSingleThread.Click += new System.EventHandler(this.tsbSingleThread_Click);
 			// 
 			// toolStripSeparator3
 			// 
@@ -113,19 +117,20 @@
 			this.tssbResult.Name = "tssbResult";
 			this.tssbResult.Size = new System.Drawing.Size(93, 22);
 			this.tssbResult.Text = "结果显示方式";
+			this.tssbResult.DropDownItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.tssbResult_DropDownItemClicked);
 			// 
 			// tsmiResult0
 			// 
 			this.tsmiResult0.Checked = true;
 			this.tsmiResult0.CheckState = System.Windows.Forms.CheckState.Checked;
 			this.tsmiResult0.Name = "tsmiResult0";
-			this.tsmiResult0.Size = new System.Drawing.Size(94, 22);
+			this.tsmiResult0.Size = new System.Drawing.Size(152, 22);
 			this.tsmiResult0.Text = "分列";
 			// 
 			// tsmiResult1
 			// 
 			this.tsmiResult1.Name = "tsmiResult1";
-			this.tsmiResult1.Size = new System.Drawing.Size(94, 22);
+			this.tsmiResult1.Size = new System.Drawing.Size(152, 22);
 			this.tsmiResult1.Text = "合并";
 			// 
 			// tsbExport
@@ -136,6 +141,7 @@
 			this.tsbExport.Name = "tsbExport";
 			this.tsbExport.Size = new System.Drawing.Size(51, 22);
 			this.tsbExport.Text = "导出(&T)";
+			this.tsbExport.Click += new System.EventHandler(this.tsbExport_Click);
 			// 
 			// toolStrip1
 			// 
@@ -157,6 +163,7 @@
 			// txtSql
 			// 
 			this.txtSql.AutoScroll = true;
+			this.txtSql.ContextMenuStrip = this.cms1;
 			this.txtSql.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.txtSql.Encoding = ((System.Text.Encoding)(resources.GetObject("txtSql.Encoding")));
 			this.txtSql.IsIconBarVisible = false;
@@ -189,6 +196,7 @@
 			this.tsmiUndo.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Z)));
 			this.tsmiUndo.Size = new System.Drawing.Size(153, 22);
 			this.tsmiUndo.Text = "撤消(&U)";
+			this.tsmiUndo.Click += new System.EventHandler(this.tsmiUndo_Click);
 			// 
 			// tsmiRedo
 			// 
@@ -196,6 +204,7 @@
 			this.tsmiRedo.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Y)));
 			this.tsmiRedo.Size = new System.Drawing.Size(153, 22);
 			this.tsmiRedo.Text = "重做(&R)";
+			this.tsmiRedo.Click += new System.EventHandler(this.tsmiRedo_Click);
 			// 
 			// toolStripSeparator1
 			// 
@@ -208,6 +217,7 @@
 			this.tsmiCut.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.X)));
 			this.tsmiCut.Size = new System.Drawing.Size(153, 22);
 			this.tsmiCut.Text = "剪切(&T)";
+			this.tsmiCut.Click += new System.EventHandler(this.tsmiCut_Click);
 			// 
 			// tsmiCopy
 			// 
@@ -215,6 +225,7 @@
 			this.tsmiCopy.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.C)));
 			this.tsmiCopy.Size = new System.Drawing.Size(153, 22);
 			this.tsmiCopy.Text = "复制(&C)";
+			this.tsmiCopy.Click += new System.EventHandler(this.tsmiCopy_Click);
 			// 
 			// tsmiPaste
 			// 
@@ -222,6 +233,7 @@
 			this.tsmiPaste.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.V)));
 			this.tsmiPaste.Size = new System.Drawing.Size(153, 22);
 			this.tsmiPaste.Text = "粘贴(&P)";
+			this.tsmiPaste.Click += new System.EventHandler(this.tsmiPaste_Click);
 			// 
 			// toolStripSeparator2
 			// 
@@ -234,6 +246,7 @@
 			this.tsmiSelectAll.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.A)));
 			this.tsmiSelectAll.Size = new System.Drawing.Size(153, 22);
 			this.tsmiSelectAll.Text = "全选(&A)";
+			this.tsmiSelectAll.Click += new System.EventHandler(this.tsmiSelectAll_Click);
 			// 
 			// dsUI
 			// 
