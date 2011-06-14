@@ -40,7 +40,6 @@
 			this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
 			this.btnDistribute = new DevExpress.XtraEditors.SimpleButton();
 			this.btnCollect = new DevExpress.XtraEditors.SimpleButton();
-			this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
 			this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
 			this.groupControl2 = new DevExpress.XtraEditors.GroupControl();
 			this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
@@ -57,18 +56,18 @@
 			this.fbdCFolder_In = new System.Windows.Forms.FolderBrowserDialog();
 			this._UI = new ApqDBManager.Forms.ErrList_XSD();
 			this._Sqls = new ApqDBManager.Forms.SrvsMgr.SrvsMgr_XSD();
+			this.groupBox1 = new System.Windows.Forms.GroupBox();
 			((System.ComponentModel.ISupportInitialize)(this.beDBFTPFolder_Out.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.beCFTPFolder_Out.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.beDBFTPFolder_In.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.beCFTPFolder_In.Properties)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
-			this.groupControl1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
 			this.groupControl2.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.ripb)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this._UI)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this._Sqls)).BeginInit();
+			this.groupBox1.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// beDBFTPFolder_Out
@@ -97,7 +96,7 @@
 			this.beCFTPFolder_Out.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
 						| System.Windows.Forms.AnchorStyles.Right)));
 			this.beCFTPFolder_Out.EditValue = "";
-			this.beCFTPFolder_Out.Location = new System.Drawing.Point(101, 44);
+			this.beCFTPFolder_Out.Location = new System.Drawing.Point(101, 39);
 			this.beCFTPFolder_Out.Name = "beCFTPFolder_Out";
 			this.beCFTPFolder_Out.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
@@ -108,7 +107,7 @@
 			// 
 			// labelControl1
 			// 
-			this.labelControl1.Location = new System.Drawing.Point(11, 47);
+			this.labelControl1.Location = new System.Drawing.Point(11, 42);
 			this.labelControl1.Name = "labelControl1";
 			this.labelControl1.Size = new System.Drawing.Size(84, 14);
 			this.labelControl1.TabIndex = 21;
@@ -119,7 +118,7 @@
 			this.beDBFTPFolder_In.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
 						| System.Windows.Forms.AnchorStyles.Right)));
 			this.beDBFTPFolder_In.EditValue = "";
-			this.beDBFTPFolder_In.Location = new System.Drawing.Point(101, 71);
+			this.beDBFTPFolder_In.Location = new System.Drawing.Point(101, 66);
 			this.beDBFTPFolder_In.Name = "beDBFTPFolder_In";
 			this.beDBFTPFolder_In.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
@@ -129,7 +128,7 @@
 			// 
 			// labelControl3
 			// 
-			this.labelControl3.Location = new System.Drawing.Point(11, 74);
+			this.labelControl3.Location = new System.Drawing.Point(11, 69);
 			this.labelControl3.Name = "labelControl3";
 			this.labelControl3.Size = new System.Drawing.Size(84, 14);
 			this.labelControl3.TabIndex = 27;
@@ -159,7 +158,7 @@
 			// 
 			// btnDistribute
 			// 
-			this.btnDistribute.Location = new System.Drawing.Point(101, 98);
+			this.btnDistribute.Location = new System.Drawing.Point(101, 93);
 			this.btnDistribute.Name = "btnDistribute";
 			this.btnDistribute.Size = new System.Drawing.Size(75, 23);
 			this.btnDistribute.TabIndex = 29;
@@ -175,27 +174,11 @@
 			this.btnCollect.Text = "收集";
 			this.btnCollect.Click += new System.EventHandler(this.btnCollect_Click);
 			// 
-			// groupControl1
-			// 
-			this.groupControl1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-						| System.Windows.Forms.AnchorStyles.Right)));
-			this.groupControl1.Controls.Add(this.labelControl5);
-			this.groupControl1.Controls.Add(this.beCFTPFolder_Out);
-			this.groupControl1.Controls.Add(this.labelControl1);
-			this.groupControl1.Controls.Add(this.btnDistribute);
-			this.groupControl1.Controls.Add(this.labelControl3);
-			this.groupControl1.Controls.Add(this.beDBFTPFolder_In);
-			this.groupControl1.Location = new System.Drawing.Point(12, 12);
-			this.groupControl1.Name = "groupControl1";
-			this.groupControl1.Size = new System.Drawing.Size(688, 142);
-			this.groupControl1.TabIndex = 31;
-			this.groupControl1.Text = "文件分发";
-			// 
 			// labelControl5
 			// 
 			this.labelControl5.Appearance.ForeColor = System.Drawing.Color.Coral;
 			this.labelControl5.Appearance.Options.UseForeColor = true;
-			this.labelControl5.Location = new System.Drawing.Point(11, 24);
+			this.labelControl5.Location = new System.Drawing.Point(11, 19);
 			this.labelControl5.Name = "labelControl5";
 			this.labelControl5.Size = new System.Drawing.Size(576, 14);
 			this.labelControl5.TabIndex = 30;
@@ -288,18 +271,34 @@
 			this._Sqls.DataSetName = "Sqls";
 			this._Sqls.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
 			// 
+			// groupBox1
+			// 
+			this.groupBox1.Controls.Add(this.labelControl5);
+			this.groupBox1.Controls.Add(this.beCFTPFolder_Out);
+			this.groupBox1.Controls.Add(this.beDBFTPFolder_In);
+			this.groupBox1.Controls.Add(this.labelControl1);
+			this.groupBox1.Controls.Add(this.labelControl3);
+			this.groupBox1.Controls.Add(this.btnDistribute);
+			this.groupBox1.Location = new System.Drawing.Point(12, 27);
+			this.groupBox1.Name = "groupBox1";
+			this.groupBox1.Size = new System.Drawing.Size(688, 142);
+			this.groupBox1.TabIndex = 33;
+			this.groupBox1.TabStop = false;
+			this.groupBox1.Text = "文件分发";
+			// 
 			// FTPFileTrans
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(712, 416);
+			this.Controls.Add(this.groupBox1);
 			this.Controls.Add(this.groupControl2);
-			this.Controls.Add(this.groupControl1);
 			this.Controls.Add(this.barDockControlLeft);
 			this.Controls.Add(this.barDockControlRight);
 			this.Controls.Add(this.barDockControlBottom);
 			this.Controls.Add(this.barDockControlTop);
 			this.DockAreas = WeifenLuo.WinFormsUI.Docking.DockAreas.Document;
+			this.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Name = "FTPFileTrans";
 			this.TabText = "FTP文件传送";
@@ -311,9 +310,6 @@
 			((System.ComponentModel.ISupportInitialize)(this.beCFTPFolder_Out.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.beDBFTPFolder_In.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.beCFTPFolder_In.Properties)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
-			this.groupControl1.ResumeLayout(false);
-			this.groupControl1.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.groupControl2)).EndInit();
 			this.groupControl2.ResumeLayout(false);
 			this.groupControl2.PerformLayout();
@@ -321,6 +317,8 @@
 			((System.ComponentModel.ISupportInitialize)(this.ripb)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this._UI)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this._Sqls)).EndInit();
+			this.groupBox1.ResumeLayout(false);
+			this.groupBox1.PerformLayout();
 			this.ResumeLayout(false);
 
 		}
@@ -337,7 +335,6 @@
 		private DevExpress.XtraEditors.LabelControl labelControl2;
 		private DevExpress.XtraEditors.SimpleButton btnDistribute;
 		private DevExpress.XtraEditors.SimpleButton btnCollect;
-		private DevExpress.XtraEditors.GroupControl groupControl1;
 		private DevExpress.XtraEditors.GroupControl groupControl2;
 		private DevExpress.XtraBars.BarManager barManager1;
 		private DevExpress.XtraBars.Bar bar3;
@@ -354,5 +351,6 @@
 		private DevExpress.XtraEditors.LabelControl labelControl6;
 		private ErrList_XSD _UI;
 		private ApqDBManager.Forms.SrvsMgr.SrvsMgr_XSD _Sqls;
+		private System.Windows.Forms.GroupBox groupBox1;
 	}
 }
