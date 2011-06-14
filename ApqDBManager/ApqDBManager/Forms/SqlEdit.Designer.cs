@@ -151,6 +151,7 @@ namespace ApqDBManager
 			// 
 			// txtSql
 			// 
+			this.txtSql.AutoScroll = true;
 			this.txtSql.ContextMenuStrip = this.cms1;
 			this.txtSql.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.txtSql.Encoding = ((System.Text.Encoding)(resources.GetObject("txtSql.Encoding")));
@@ -161,7 +162,7 @@ namespace ApqDBManager
 			this.txtSql.ShowSpaces = true;
 			this.txtSql.ShowTabs = true;
 			this.txtSql.ShowVRuler = true;
-			this.txtSql.Size = new System.Drawing.Size(760, 119);
+			this.txtSql.Size = new System.Drawing.Size(760, 94);
 			this.txtSql.TabIndex = 0;
 			// 
 			// cms1
@@ -256,7 +257,7 @@ namespace ApqDBManager
 			// toolStripContainer1.ContentPanel
 			// 
 			this.toolStripContainer1.ContentPanel.Controls.Add(this.txtSql);
-			this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(760, 119);
+			this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(760, 94);
 			this.toolStripContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.toolStripContainer1.LeftToolStripPanelVisible = false;
 			this.toolStripContainer1.Location = new System.Drawing.Point(0, 25);
@@ -398,6 +399,7 @@ namespace ApqDBManager
 			this.Controls.Add(this.dockPanel1);
 			this.Controls.Add(this.toolStrip1);
 			this.DockAreas = ((WeifenLuo.WinFormsUI.Docking.DockAreas)((WeifenLuo.WinFormsUI.Docking.DockAreas.Float | WeifenLuo.WinFormsUI.Docking.DockAreas.Document)));
+			this.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Name = "SqlEdit";
 			this.TabText = "SqlEdit";

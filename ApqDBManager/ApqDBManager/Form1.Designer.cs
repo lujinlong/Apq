@@ -43,7 +43,7 @@
 			this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsslOutInfo,
             this.tsslTest});
-			this.statusStrip1.Location = new System.Drawing.Point(0, 440);
+			this.statusStrip1.Location = new System.Drawing.Point(0, 263);
 			this.statusStrip1.Name = "statusStrip1";
 			this.statusStrip1.Size = new System.Drawing.Size(763, 22);
 			this.statusStrip1.TabIndex = 4;
@@ -84,7 +84,7 @@
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(763, 462);
+			this.ClientSize = new System.Drawing.Size(763, 285);
 			this.Controls.Add(this.toolStrip1);
 			this.Controls.Add(this.statusStrip1);
 			this.Name = "Form1";

@@ -159,7 +159,7 @@ namespace ApqDBManager.Forms
 		// UI
 		private void UIEnable(bool enabled)
 		{
-			Apq.Windows.Delegates.Action_UI<BarStaticItem>(this, bsiState, delegate(BarStaticItem ctrl)
+			Apq.Windows.Delegates.Action_UI<ToolStripStatusLabel>(this, tsslStatus, delegate(ToolStripStatusLabel ctrl)
 			{
 				beCFTPFolder_Out.Enabled = enabled;
 				beDBFTPFolder_In.Enabled = enabled;
@@ -189,10 +189,10 @@ namespace ApqDBManager.Forms
 			object rtLock0 = GetLock("0");
 			lock (rtLock0)
 			{
-				Apq.Windows.Delegates.Action_UI<BarStaticItem>(this, bsiState, delegate(BarStaticItem ctrl)
+				Apq.Windows.Delegates.Action_UI<ToolStripStatusLabel>(this, tsslStatus, delegate(ToolStripStatusLabel ctrl)
 				{
-					beiPb1.EditValue = 0;
-					bsiState.Caption = "停止中...";
+					tspb.Value = 0;
+					tsslStatus.Text = "停止中...";
 					Application.DoEvents();
 				});
 				thds.Clear();
@@ -203,9 +203,9 @@ namespace ApqDBManager.Forms
 			}
 			lock (rtLock0)
 			{
-				Apq.Windows.Delegates.Action_UI<BarStaticItem>(this, bsiState, delegate(BarStaticItem ctrl)
+				Apq.Windows.Delegates.Action_UI<ToolStripStatusLabel>(this, tsslStatus, delegate(ToolStripStatusLabel ctrl)
 				{
-					bsiState.Caption = "准备完成,开始处理...";
+					tsslStatus.Text = "准备完成,开始处理...";
 				});
 			}
 		}
@@ -223,7 +223,7 @@ namespace ApqDBManager.Forms
 				return;
 			}
 
-			Apq.Windows.Delegates.Action_UI<BarStaticItem>(this, bsiState, delegate(BarStaticItem ctrl)
+			Apq.Windows.Delegates.Action_UI<ToolStripStatusLabel>(this, tsslStatus, delegate(ToolStripStatusLabel ctrl)
 			{
 				_UI.ErrList.Clear();
 				_UI.ErrList.AcceptChanges();
@@ -259,10 +259,10 @@ namespace ApqDBManager.Forms
 				#region 开始
 				lock (rtLock0)
 				{
-					Apq.Windows.Delegates.Action_UI<BarStaticItem>(this, bsiState, delegate(BarStaticItem ctrl)
+					Apq.Windows.Delegates.Action_UI<ToolStripStatusLabel>(this, tsslStatus, delegate(ToolStripStatusLabel ctrl)
 					{
-						bsiState.Caption = "启动中...";
-						ripb.Maximum = dv.Count;
+						tsslStatus.Text = "启动中...";
+						tspb.Maximum = dv.Count;
 					});
 				}
 
@@ -340,7 +340,7 @@ namespace ApqDBManager.Forms
 				{
 					lock (rtLock)
 					{
-						Apq.Windows.Delegates.Action_UI<BarStaticItem>(this, bsiState, delegate(BarStaticItem ctrl)
+						Apq.Windows.Delegates.Action_UI<ToolStripStatusLabel>(this, tsslStatus, delegate(ToolStripStatusLabel ctrl)
 						{
 							ErrList_XSD.ErrListRow drErrList = _UI.ErrList.NewErrListRow();
 							drErrList.RSrvID = nServerID;
@@ -358,16 +358,16 @@ namespace ApqDBManager.Forms
 			{
 				lock (rtLock0)
 				{
-					Apq.Windows.Delegates.Action_UI<BarStaticItem>(this, bsiState, delegate(BarStaticItem ctrl)
+					Apq.Windows.Delegates.Action_UI<ToolStripStatusLabel>(this, tsslStatus, delegate(ToolStripStatusLabel ctrl)
 					{
-						if (Apq.Convert.ChangeType<int>(beiPb1.EditValue) < ripb.Properties.Maximum)
+						if (Apq.Convert.ChangeType<int>(tspb.Value) < tspb.Maximum)
 						{
-							beiPb1.EditValue = Apq.Convert.ChangeType<int>(beiPb1.EditValue) + 1;
-							if (Apq.Convert.ChangeType<int>(beiPb1.EditValue) == ripb.Properties.Maximum)
+							tspb.Value = Apq.Convert.ChangeType<int>(tspb.Value) + 1;
+							if (Apq.Convert.ChangeType<int>(tspb.Value) == tspb.Maximum)
 							{
 								_Sqls.SqlInstance.AcceptChanges();
 								_UI.ErrList.AcceptChanges();
-								bsiState.Caption = "已全部完成";
+								tsslStatus.Text = "已全部完成";
 								UIEnable(true);
 
 								DataView dvErr = new DataView(_Sqls.SqlInstance);
@@ -375,7 +375,7 @@ namespace ApqDBManager.Forms
 								// 标记本服执行出错
 								if (dvErr.Count > 0)
 								{
-									bsiState.Caption += ",但有错误发生,请查看";
+									tsslStatus.Text += ",但有错误发生,请查看";
 									GlobalObject.SolutionExplorer.FocusAndExpandByID(Apq.Convert.ChangeType<int>(dvErr[0]["ID"]));
 								}
 							}
@@ -410,7 +410,7 @@ namespace ApqDBManager.Forms
 				return;
 			}
 
-			Apq.Windows.Delegates.Action_UI<BarStaticItem>(this, bsiState, delegate(BarStaticItem ctrl)
+			Apq.Windows.Delegates.Action_UI<ToolStripStatusLabel>(this, tsslStatus, delegate(ToolStripStatusLabel ctrl)
 			{
 				_UI.ErrList.Clear();
 				_UI.ErrList.AcceptChanges();
@@ -446,10 +446,10 @@ namespace ApqDBManager.Forms
 				#region 开始
 				lock (rtLock0)
 				{
-					Apq.Windows.Delegates.Action_UI<BarStaticItem>(this, bsiState, delegate(BarStaticItem ctrl)
+					Apq.Windows.Delegates.Action_UI<ToolStripStatusLabel>(this, tsslStatus, delegate(ToolStripStatusLabel ctrl)
 					{
-						bsiState.Caption = "启动中...";
-						ripb.Maximum = dv.Count;
+						tsslStatus.Text = "启动中...";
+						tspb.Maximum = dv.Count;
 					});
 				}
 
@@ -530,7 +530,7 @@ namespace ApqDBManager.Forms
 				{
 					lock (rtLock)
 					{
-						Apq.Windows.Delegates.Action_UI<BarStaticItem>(this, bsiState, delegate(BarStaticItem ctrl)
+						Apq.Windows.Delegates.Action_UI<ToolStripStatusLabel>(this, tsslStatus, delegate(ToolStripStatusLabel ctrl)
 						{
 							ErrList_XSD.ErrListRow drErrList = _UI.ErrList.NewErrListRow();
 							drErrList.RSrvID = nServerID;
@@ -548,16 +548,16 @@ namespace ApqDBManager.Forms
 			{
 				lock (rtLock0)
 				{
-					Apq.Windows.Delegates.Action_UI<BarStaticItem>(this, bsiState, delegate(BarStaticItem ctrl)
+					Apq.Windows.Delegates.Action_UI<ToolStripStatusLabel>(this, tsslStatus, delegate(ToolStripStatusLabel ctrl)
 					{
-						if (Apq.Convert.ChangeType<int>(beiPb1.EditValue) < ripb.Properties.Maximum)
+						if (Apq.Convert.ChangeType<int>(tspb.Value) < tspb.Maximum)
 						{
-							beiPb1.EditValue = Apq.Convert.ChangeType<int>(beiPb1.EditValue) + 1;
-							if (Apq.Convert.ChangeType<int>(beiPb1.EditValue) == ripb.Properties.Maximum)
+							tspb.Value = Apq.Convert.ChangeType<int>(tspb.Value) + 1;
+							if (Apq.Convert.ChangeType<int>(tspb.Value) == tspb.Maximum)
 							{
 								_Sqls.SqlInstance.AcceptChanges();
 								_UI.ErrList.AcceptChanges();
-								bsiState.Caption = "已全部完成";
+								tsslStatus.Text = "已全部完成";
 								UIEnable(true);
 
 								DataView dvErr = new DataView(_Sqls.SqlInstance);
@@ -565,7 +565,7 @@ namespace ApqDBManager.Forms
 								// 标记本服执行出错
 								if (dvErr.Count > 0)
 								{
-									bsiState.Caption += ",但有错误发生,请查看";
+									tsslStatus.Text += ",但有错误发生,请查看";
 									GlobalObject.SolutionExplorer.FocusAndExpandByID(Apq.Convert.ChangeType<int>(dvErr[0]["ID"]));
 								}
 							}

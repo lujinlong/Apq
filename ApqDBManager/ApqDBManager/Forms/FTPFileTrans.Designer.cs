@@ -28,7 +28,6 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FTPFileTrans));
 			this.beDBFTPFolder_Out = new DevExpress.XtraEditors.ButtonEdit();
 			this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
@@ -38,36 +37,28 @@
 			this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
 			this.beCFTPFolder_In = new DevExpress.XtraEditors.ButtonEdit();
 			this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
-			this.btnDistribute = new DevExpress.XtraEditors.SimpleButton();
-			this.btnCollect = new DevExpress.XtraEditors.SimpleButton();
 			this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
-			this.groupControl2 = new DevExpress.XtraEditors.GroupControl();
 			this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
-			this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
-			this.bar3 = new DevExpress.XtraBars.Bar();
-			this.bsiState = new DevExpress.XtraBars.BarStaticItem();
-			this.beiPb1 = new DevExpress.XtraBars.BarEditItem();
-			this.ripb = new DevExpress.XtraEditors.Repository.RepositoryItemProgressBar();
-			this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
-			this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
-			this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
-			this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
 			this.fbdCFTPFolder_Out = new System.Windows.Forms.FolderBrowserDialog();
 			this.fbdCFolder_In = new System.Windows.Forms.FolderBrowserDialog();
 			this._UI = new ApqDBManager.Forms.ErrList_XSD();
 			this._Sqls = new ApqDBManager.Forms.SrvsMgr.SrvsMgr_XSD();
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
+			this.groupBox2 = new System.Windows.Forms.GroupBox();
+			this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+			this.tsslStatus = new System.Windows.Forms.ToolStripStatusLabel();
+			this.tspb = new System.Windows.Forms.ToolStripProgressBar();
+			this.btnDistribute = new System.Windows.Forms.Button();
+			this.btnCollect = new System.Windows.Forms.Button();
 			((System.ComponentModel.ISupportInitialize)(this.beDBFTPFolder_Out.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.beCFTPFolder_Out.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.beDBFTPFolder_In.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.beCFTPFolder_In.Properties)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
-			this.groupControl2.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.ripb)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this._UI)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this._Sqls)).BeginInit();
 			this.groupBox1.SuspendLayout();
+			this.groupBox2.SuspendLayout();
+			this.statusStrip1.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// beDBFTPFolder_Out
@@ -75,7 +66,7 @@
 			this.beDBFTPFolder_Out.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
 						| System.Windows.Forms.AnchorStyles.Right)));
 			this.beDBFTPFolder_Out.EditValue = "";
-			this.beDBFTPFolder_Out.Location = new System.Drawing.Point(101, 44);
+			this.beDBFTPFolder_Out.Location = new System.Drawing.Point(102, 42);
 			this.beDBFTPFolder_Out.Name = "beDBFTPFolder_Out";
 			this.beDBFTPFolder_Out.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
@@ -85,7 +76,7 @@
 			// 
 			// labelControl4
 			// 
-			this.labelControl4.Location = new System.Drawing.Point(11, 47);
+			this.labelControl4.Location = new System.Drawing.Point(12, 45);
 			this.labelControl4.Name = "labelControl4";
 			this.labelControl4.Size = new System.Drawing.Size(84, 14);
 			this.labelControl4.TabIndex = 23;
@@ -139,7 +130,7 @@
 			this.beCFTPFolder_In.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
 						| System.Windows.Forms.AnchorStyles.Right)));
 			this.beCFTPFolder_In.EditValue = "";
-			this.beCFTPFolder_In.Location = new System.Drawing.Point(101, 71);
+			this.beCFTPFolder_In.Location = new System.Drawing.Point(102, 69);
 			this.beCFTPFolder_In.Name = "beCFTPFolder_In";
 			this.beCFTPFolder_In.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
@@ -150,29 +141,11 @@
 			// 
 			// labelControl2
 			// 
-			this.labelControl2.Location = new System.Drawing.Point(11, 74);
+			this.labelControl2.Location = new System.Drawing.Point(12, 72);
 			this.labelControl2.Name = "labelControl2";
 			this.labelControl2.Size = new System.Drawing.Size(84, 14);
 			this.labelControl2.TabIndex = 25;
 			this.labelControl2.Text = "本地写入根目录";
-			// 
-			// btnDistribute
-			// 
-			this.btnDistribute.Location = new System.Drawing.Point(101, 93);
-			this.btnDistribute.Name = "btnDistribute";
-			this.btnDistribute.Size = new System.Drawing.Size(75, 23);
-			this.btnDistribute.TabIndex = 29;
-			this.btnDistribute.Text = "分发";
-			this.btnDistribute.Click += new System.EventHandler(this.btnDistribute_Click);
-			// 
-			// btnCollect
-			// 
-			this.btnCollect.Location = new System.Drawing.Point(101, 98);
-			this.btnCollect.Name = "btnCollect";
-			this.btnCollect.Size = new System.Drawing.Size(75, 23);
-			this.btnCollect.TabIndex = 30;
-			this.btnCollect.Text = "收集";
-			this.btnCollect.Click += new System.EventHandler(this.btnCollect_Click);
 			// 
 			// labelControl5
 			// 
@@ -184,82 +157,15 @@
 			this.labelControl5.TabIndex = 30;
 			this.labelControl5.Text = "[覆盖]分发规则:将本地根目录下按服务器命名的子级文件夹中的所有文件(不含子文件夹)上传到对应的服务器";
 			// 
-			// groupControl2
-			// 
-			this.groupControl2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-						| System.Windows.Forms.AnchorStyles.Right)));
-			this.groupControl2.Controls.Add(this.labelControl6);
-			this.groupControl2.Controls.Add(this.beDBFTPFolder_Out);
-			this.groupControl2.Controls.Add(this.labelControl4);
-			this.groupControl2.Controls.Add(this.btnCollect);
-			this.groupControl2.Controls.Add(this.labelControl2);
-			this.groupControl2.Controls.Add(this.beCFTPFolder_In);
-			this.groupControl2.Location = new System.Drawing.Point(12, 200);
-			this.groupControl2.Name = "groupControl2";
-			this.groupControl2.Size = new System.Drawing.Size(688, 142);
-			this.groupControl2.TabIndex = 32;
-			this.groupControl2.Text = "文件收集";
-			// 
 			// labelControl6
 			// 
 			this.labelControl6.Appearance.ForeColor = System.Drawing.Color.Coral;
 			this.labelControl6.Appearance.Options.UseForeColor = true;
-			this.labelControl6.Location = new System.Drawing.Point(5, 24);
+			this.labelControl6.Location = new System.Drawing.Point(6, 22);
 			this.labelControl6.Name = "labelControl6";
 			this.labelControl6.Size = new System.Drawing.Size(552, 14);
 			this.labelControl6.TabIndex = 31;
 			this.labelControl6.Text = "[覆盖]收集规则:将远程根目录下的所有文件(不含子文件夹)下载到本地根目录下按服务器命名的文件夹中";
-			// 
-			// barManager1
-			// 
-			this.barManager1.Bars.AddRange(new DevExpress.XtraBars.Bar[] {
-            this.bar3});
-			this.barManager1.DockControls.Add(this.barDockControlTop);
-			this.barManager1.DockControls.Add(this.barDockControlBottom);
-			this.barManager1.DockControls.Add(this.barDockControlLeft);
-			this.barManager1.DockControls.Add(this.barDockControlRight);
-			this.barManager1.Form = this;
-			this.barManager1.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
-            this.bsiState,
-            this.beiPb1});
-			this.barManager1.MaxItemId = 2;
-			this.barManager1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
-            this.ripb});
-			this.barManager1.StatusBar = this.bar3;
-			// 
-			// bar3
-			// 
-			this.bar3.BarName = "Status bar";
-			this.bar3.CanDockStyle = DevExpress.XtraBars.BarCanDockStyle.Bottom;
-			this.bar3.DockCol = 0;
-			this.bar3.DockRow = 0;
-			this.bar3.DockStyle = DevExpress.XtraBars.BarDockStyle.Bottom;
-			this.bar3.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
-            new DevExpress.XtraBars.LinkPersistInfo(this.bsiState),
-            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.Width, this.beiPb1, "", false, true, true, 329)});
-			this.bar3.OptionsBar.AllowQuickCustomization = false;
-			this.bar3.OptionsBar.DrawDragBorder = false;
-			this.bar3.OptionsBar.UseWholeRow = true;
-			this.bar3.Text = "Status bar";
-			// 
-			// bsiState
-			// 
-			this.bsiState.AutoSize = DevExpress.XtraBars.BarStaticItemSize.Spring;
-			this.bsiState.Id = 0;
-			this.bsiState.Name = "bsiState";
-			this.bsiState.TextAlignment = System.Drawing.StringAlignment.Near;
-			this.bsiState.Width = 32;
-			// 
-			// beiPb1
-			// 
-			this.beiPb1.Caption = "barEditItem1";
-			this.beiPb1.Edit = this.ripb;
-			this.beiPb1.Id = 1;
-			this.beiPb1.Name = "beiPb1";
-			// 
-			// ripb
-			// 
-			this.ripb.Name = "ripb";
 			// 
 			// _UI
 			// 
@@ -273,12 +179,12 @@
 			// 
 			// groupBox1
 			// 
+			this.groupBox1.Controls.Add(this.btnDistribute);
 			this.groupBox1.Controls.Add(this.labelControl5);
 			this.groupBox1.Controls.Add(this.beCFTPFolder_Out);
 			this.groupBox1.Controls.Add(this.beDBFTPFolder_In);
 			this.groupBox1.Controls.Add(this.labelControl1);
 			this.groupBox1.Controls.Add(this.labelControl3);
-			this.groupBox1.Controls.Add(this.btnDistribute);
 			this.groupBox1.Location = new System.Drawing.Point(12, 27);
 			this.groupBox1.Name = "groupBox1";
 			this.groupBox1.Size = new System.Drawing.Size(688, 142);
@@ -286,17 +192,71 @@
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "文件分发";
 			// 
+			// groupBox2
+			// 
+			this.groupBox2.Controls.Add(this.btnCollect);
+			this.groupBox2.Controls.Add(this.labelControl6);
+			this.groupBox2.Controls.Add(this.beDBFTPFolder_Out);
+			this.groupBox2.Controls.Add(this.beCFTPFolder_In);
+			this.groupBox2.Controls.Add(this.labelControl4);
+			this.groupBox2.Controls.Add(this.labelControl2);
+			this.groupBox2.Location = new System.Drawing.Point(12, 195);
+			this.groupBox2.Name = "groupBox2";
+			this.groupBox2.Size = new System.Drawing.Size(688, 142);
+			this.groupBox2.TabIndex = 34;
+			this.groupBox2.TabStop = false;
+			this.groupBox2.Text = "文件收集";
+			// 
+			// statusStrip1
+			// 
+			this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsslStatus,
+            this.tspb});
+			this.statusStrip1.Location = new System.Drawing.Point(0, 394);
+			this.statusStrip1.Name = "statusStrip1";
+			this.statusStrip1.Size = new System.Drawing.Size(712, 22);
+			this.statusStrip1.TabIndex = 35;
+			this.statusStrip1.Text = "statusStrip1";
+			// 
+			// tsslStatus
+			// 
+			this.tsslStatus.AutoSize = false;
+			this.tsslStatus.Name = "tsslStatus";
+			this.tsslStatus.Size = new System.Drawing.Size(400, 17);
+			// 
+			// tspb
+			// 
+			this.tspb.Name = "tspb";
+			this.tspb.Size = new System.Drawing.Size(250, 16);
+			// 
+			// btnDistribute
+			// 
+			this.btnDistribute.Location = new System.Drawing.Point(101, 93);
+			this.btnDistribute.Name = "btnDistribute";
+			this.btnDistribute.Size = new System.Drawing.Size(75, 23);
+			this.btnDistribute.TabIndex = 31;
+			this.btnDistribute.Text = "分发";
+			this.btnDistribute.UseVisualStyleBackColor = true;
+			this.btnDistribute.Click += new System.EventHandler(this.btnDistribute_Click);
+			// 
+			// btnCollect
+			// 
+			this.btnCollect.Location = new System.Drawing.Point(101, 96);
+			this.btnCollect.Name = "btnCollect";
+			this.btnCollect.Size = new System.Drawing.Size(75, 23);
+			this.btnCollect.TabIndex = 32;
+			this.btnCollect.Text = "收集";
+			this.btnCollect.UseVisualStyleBackColor = true;
+			this.btnCollect.Click += new System.EventHandler(this.btnCollect_Click);
+			// 
 			// FTPFileTrans
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(712, 416);
+			this.Controls.Add(this.groupBox2);
 			this.Controls.Add(this.groupBox1);
-			this.Controls.Add(this.groupControl2);
-			this.Controls.Add(this.barDockControlLeft);
-			this.Controls.Add(this.barDockControlRight);
-			this.Controls.Add(this.barDockControlBottom);
-			this.Controls.Add(this.barDockControlTop);
+			this.Controls.Add(this.statusStrip1);
 			this.DockAreas = WeifenLuo.WinFormsUI.Docking.DockAreas.Document;
 			this.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -310,16 +270,16 @@
 			((System.ComponentModel.ISupportInitialize)(this.beCFTPFolder_Out.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.beDBFTPFolder_In.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.beCFTPFolder_In.Properties)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.groupControl2)).EndInit();
-			this.groupControl2.ResumeLayout(false);
-			this.groupControl2.PerformLayout();
-			((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.ripb)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this._UI)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this._Sqls)).EndInit();
 			this.groupBox1.ResumeLayout(false);
 			this.groupBox1.PerformLayout();
+			this.groupBox2.ResumeLayout(false);
+			this.groupBox2.PerformLayout();
+			this.statusStrip1.ResumeLayout(false);
+			this.statusStrip1.PerformLayout();
 			this.ResumeLayout(false);
+			this.PerformLayout();
 
 		}
 
@@ -333,18 +293,6 @@
 		private DevExpress.XtraEditors.LabelControl labelControl3;
 		private DevExpress.XtraEditors.ButtonEdit beCFTPFolder_In;
 		private DevExpress.XtraEditors.LabelControl labelControl2;
-		private DevExpress.XtraEditors.SimpleButton btnDistribute;
-		private DevExpress.XtraEditors.SimpleButton btnCollect;
-		private DevExpress.XtraEditors.GroupControl groupControl2;
-		private DevExpress.XtraBars.BarManager barManager1;
-		private DevExpress.XtraBars.Bar bar3;
-		private DevExpress.XtraBars.BarDockControl barDockControlTop;
-		private DevExpress.XtraBars.BarDockControl barDockControlBottom;
-		private DevExpress.XtraBars.BarDockControl barDockControlLeft;
-		private DevExpress.XtraBars.BarDockControl barDockControlRight;
-		private DevExpress.XtraBars.BarStaticItem bsiState;
-		private DevExpress.XtraBars.BarEditItem beiPb1;
-		private DevExpress.XtraEditors.Repository.RepositoryItemProgressBar ripb;
 		private System.Windows.Forms.FolderBrowserDialog fbdCFTPFolder_Out;
 		private System.Windows.Forms.FolderBrowserDialog fbdCFolder_In;
 		private DevExpress.XtraEditors.LabelControl labelControl5;
@@ -352,5 +300,11 @@
 		private ErrList_XSD _UI;
 		private ApqDBManager.Forms.SrvsMgr.SrvsMgr_XSD _Sqls;
 		private System.Windows.Forms.GroupBox groupBox1;
+		private System.Windows.Forms.GroupBox groupBox2;
+		private System.Windows.Forms.StatusStrip statusStrip1;
+		private System.Windows.Forms.ToolStripStatusLabel tsslStatus;
+		private System.Windows.Forms.ToolStripProgressBar tspb;
+		private System.Windows.Forms.Button btnDistribute;
+		private System.Windows.Forms.Button btnCollect;
 	}
 }

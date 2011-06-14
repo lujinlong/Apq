@@ -161,6 +161,7 @@ namespace ApqDBManager.Controls
 						dgv.ReadOnly = true;
 						dgv.AllowUserToAddRows = false;
 						dgv.AllowUserToDeleteRows = false;
+						//dgv.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
 
 						((System.ComponentModel.ISupportInitialize)(dgv)).EndInit();
 
@@ -214,24 +215,19 @@ namespace ApqDBManager.Controls
 				{
 					if (r.Class > 0)
 					{
-						TextEditorControl txtMsg = new TextEditorControl();
-						txtMsg.Document.ReadOnly = true;
+						TextBox txtMsg = new TextBox();
+						txtMsg.Multiline = true;
+						txtMsg.ReadOnly = true;
+						txtMsg.ScrollBars = ScrollBars.Vertical;
+						txtMsg.WordWrap = false;
+						txtMsg.AcceptsTab = true;
+						txtMsg.AcceptsReturn = true;
+
+						txtMsg.BorderStyle = BorderStyle.None;
 						txtMsg.BackColor = System.Drawing.SystemColors.Control;
 						txtMsg.Font = new System.Drawing.Font("新宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 						txtMsg.Size = new System.Drawing.Size(tc.Width - 30, 20);
 
-						//txtMsg.Encoding = ((System.Text.Encoding)(resources.GetObject("txtSql.Encoding")));
-						txtMsg.Name = "txtMsg";
-						//txtMsg.ShowEOLMarkers = true;
-						//txtMsg.ShowSpaces = true;
-						txtMsg.ShowTabs = true;
-						//txtMsg.ShowVRuler = true;
-
-						//meMsg.Properties.WordWrap = false;
-						//meMsg.Properties.AcceptsTab = true;
-						//meMsg.Properties.ScrollBars = System.Windows.Forms.ScrollBars.None;
-
-						//meMsg.Anchor = AnchorStyles.Left | AnchorStyles.Top | AnchorStyles.Right;
 						int nY = 9;
 						foreach (Control c in tpInfo.Controls)
 						{
