@@ -68,6 +68,8 @@ namespace Apq.Windows.Forms
 			gv.DataError += new DataGridViewDataErrorEventHandler(gv_DataError);
 
 			gv.KeyUp += new KeyEventHandler(gv_KeyUp);
+
+			gv.CellMouseDown += new DataGridViewCellMouseEventHandler(gv_CellMouseDown);
 		}
 
 		/// <summary>
@@ -98,6 +100,22 @@ namespace Apq.Windows.Forms
 				{
 					Clipboard.SetDataObject(gv.GetClipboardContent());
 				}
+				#endregion
+			}
+		}
+
+		private static void gv_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
+		{
+			DataGridView gv = sender as DataGridView;
+			if (gv != null
+				&& e.Button == MouseButtons.Right
+				&& e.RowIndex > -1 && e.ColumnIndex > -1)
+			{
+				#region 右键点击时选中
+				//gv.CurrentRow.Selected = false;
+				//gv.Rows[e.RowIndex].Selected = true;
+				gv.CurrentCell = gv.Rows[e.RowIndex].Cells[e.ColumnIndex];
+				gv.CurrentCell.Selected = true;
 				#endregion
 			}
 		}
