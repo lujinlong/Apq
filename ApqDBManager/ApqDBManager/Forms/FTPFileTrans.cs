@@ -26,6 +26,86 @@ namespace ApqDBManager.Forms
 		#region UI线程
 		private void FileTrans_Load(object sender, EventArgs e)
 		{
+			#region cbCFTPFolder_Out.Items
+			List<string> cbCFTPFolder_Out_Items = new List<string>();
+			if (GlobalObject.XmlAsmConfig.GetValue("cbCFTPFolder_Out_Items") != null)
+			{
+				cbCFTPFolder_Out_Items.AddRange(GlobalObject.XmlAsmConfig.GetValue("cbCFTPFolder_Out_Items").Split(','));
+			}
+			if (GlobalObject.XmlUserConfig.GetValue("cbCFTPFolder_Out_Items") != null)
+			{
+				string[] aryDBName_Items = GlobalObject.XmlUserConfig.GetValue("cbCFTPFolder_Out_Items").Split(',');
+				foreach (string strDBName in aryDBName_Items)
+				{
+					if (!cbCFTPFolder_Out_Items.Contains(strDBName))
+					{
+						cbCFTPFolder_Out_Items.Add(strDBName);
+					}
+				}
+			}
+			cbCFTPFolder_Out.Items.AddRange(cbCFTPFolder_Out_Items.ToArray());
+			#endregion
+
+			#region cbDBFTPFolder_In.Items
+			List<string> cbDBFTPFolder_In_Items = new List<string>();
+			if (GlobalObject.XmlAsmConfig.GetValue("cbDBFTPFolder_In_Items") != null)
+			{
+				cbDBFTPFolder_In_Items.AddRange(GlobalObject.XmlAsmConfig.GetValue("cbDBFTPFolder_In_Items").Split(','));
+			}
+			if (GlobalObject.XmlUserConfig.GetValue("cbDBFTPFolder_In_Items") != null)
+			{
+				string[] aryDBName_Items = GlobalObject.XmlUserConfig.GetValue("cbDBFTPFolder_In_Items").Split(',');
+				foreach (string strDBName in aryDBName_Items)
+				{
+					if (!cbDBFTPFolder_In_Items.Contains(strDBName))
+					{
+						cbDBFTPFolder_In_Items.Add(strDBName);
+					}
+				}
+			}
+			cbDBFTPFolder_In.Items.AddRange(cbDBFTPFolder_In_Items.ToArray());
+			#endregion
+
+			#region cbDBFTPFolder_Out.Items
+			List<string> cbDBFTPFolder_Out_Items = new List<string>();
+			if (GlobalObject.XmlAsmConfig.GetValue("cbDBFTPFolder_Out_Items") != null)
+			{
+				cbDBFTPFolder_Out_Items.AddRange(GlobalObject.XmlAsmConfig.GetValue("cbDBFTPFolder_Out_Items").Split(','));
+			}
+			if (GlobalObject.XmlUserConfig.GetValue("cbDBFTPFolder_Out_Items") != null)
+			{
+				string[] aryDBName_Items = GlobalObject.XmlUserConfig.GetValue("cbDBFTPFolder_Out_Items").Split(',');
+				foreach (string strDBName in aryDBName_Items)
+				{
+					if (!cbDBFTPFolder_Out_Items.Contains(strDBName))
+					{
+						cbDBFTPFolder_Out_Items.Add(strDBName);
+					}
+				}
+			}
+			cbDBFTPFolder_Out.Items.AddRange(cbDBFTPFolder_Out_Items.ToArray());
+			#endregion
+
+			#region cbCFTPFolder_In.Items
+			List<string> cbCFTPFolder_In_Items = new List<string>();
+			if (GlobalObject.XmlAsmConfig.GetValue("cbCFTPFolder_In_Items") != null)
+			{
+				cbCFTPFolder_In_Items.AddRange(GlobalObject.XmlAsmConfig.GetValue("cbCFTPFolder_In_Items").Split(','));
+			}
+			if (GlobalObject.XmlUserConfig.GetValue("cbCFTPFolder_In_Items") != null)
+			{
+				string[] aryDBName_Items = GlobalObject.XmlUserConfig.GetValue("cbCFTPFolder_In_Items").Split(',');
+				foreach (string strDBName in aryDBName_Items)
+				{
+					if (!cbCFTPFolder_In_Items.Contains(strDBName))
+					{
+						cbCFTPFolder_In_Items.Add(strDBName);
+					}
+				}
+			}
+			cbCFTPFolder_In.Items.AddRange(cbCFTPFolder_In_Items.ToArray());
+			#endregion
+
 			#region 初始值
 			if (!Apq.Convert.HasMean(cbCFTPFolder_Out.Text))
 			{
@@ -82,39 +162,147 @@ namespace ApqDBManager.Forms
 
 		private void cbCFTPFolder_Out_Leave(object sender, EventArgs e)
 		{
-			string strFullName = cbCFTPFolder_Out.Text;
+			string strFullName = cbCFTPFolder_Out.Text.Trim();
 			if (!string.IsNullOrEmpty(strFullName))
 			{
 				fbdCFTPFolder_Out.SelectedPath = strFullName;
 				GlobalObject.XmlConfigChain[this.GetType(), "CFTPFolder_Out"] = strFullName;
 			}
+
+			bool IsFound = false;
+			foreach (string cbItem in cbCFTPFolder_Out.Items)
+			{
+				if (cbItem == strFullName)
+				{
+					IsFound = true;
+					break;
+				}
+			}
+
+			if (!IsFound)
+			{
+				cbCFTPFolder_Out.Items.Add(strFullName);
+
+				string strItems = string.Empty;
+				foreach (string cbItem in cbCFTPFolder_Out.Items)
+				{
+					strItems += "," + cbItem;
+				}
+				if (strItems.Length > 1)
+				{
+					strItems = strItems.Substring(1);
+				}
+
+				GlobalObject.XmlUserConfig.SetValue("cbCFTPFolder_Out_Items", strItems);
+			}
 		}
 
 		private void cbDBFTPFolder_In_Leave(object sender, EventArgs e)
 		{
-			string strFullName = cbDBFTPFolder_In.Text;
+			string strFullName = cbDBFTPFolder_In.Text.Trim();
 			if (!string.IsNullOrEmpty(strFullName))
 			{
 				GlobalObject.XmlConfigChain[this.GetType(), "DBFTPFolder_In"] = strFullName;
+			}
+
+			bool IsFound = false;
+			foreach (string cbItem in cbDBFTPFolder_In.Items)
+			{
+				if (cbItem == strFullName)
+				{
+					IsFound = true;
+					break;
+				}
+			}
+
+			if (!IsFound)
+			{
+				cbDBFTPFolder_In.Items.Add(strFullName);
+
+				string strItems = string.Empty;
+				foreach (string cbItem in cbDBFTPFolder_In.Items)
+				{
+					strItems += "," + cbItem;
+				}
+				if (strItems.Length > 1)
+				{
+					strItems = strItems.Substring(1);
+				}
+
+				GlobalObject.XmlUserConfig.SetValue("cbDBFTPFolder_In_Items", strItems);
 			}
 		}
 
 		private void cbCFTPFolder_In_Leave(object sender, EventArgs e)
 		{
-			string strFullName = cbCFTPFolder_In.Text;
+			string strFullName = cbCFTPFolder_In.Text.Trim();
 			if (!string.IsNullOrEmpty(strFullName))
 			{
 				fbdCFolder_In.SelectedPath = strFullName;
 				GlobalObject.XmlConfigChain[this.GetType(), "CFTPFolder_In"] = strFullName;
 			}
+
+			bool IsFound = false;
+			foreach (string cbItem in cbCFTPFolder_In.Items)
+			{
+				if (cbItem == strFullName)
+				{
+					IsFound = true;
+					break;
+				}
+			}
+
+			if (!IsFound)
+			{
+				cbCFTPFolder_In.Items.Add(strFullName);
+
+				string strItems = string.Empty;
+				foreach (string cbItem in cbCFTPFolder_In.Items)
+				{
+					strItems += "," + cbItem;
+				}
+				if (strItems.Length > 1)
+				{
+					strItems = strItems.Substring(1);
+				}
+
+				GlobalObject.XmlUserConfig.SetValue("cbCFTPFolder_In_Items", strItems);
+			}
 		}
 
 		private void cbDBFTPFolder_Out_Leave(object sender, EventArgs e)
 		{
-			string strFullName = cbDBFTPFolder_Out.Text;
+			string strFullName = cbDBFTPFolder_Out.Text.Trim();
 			if (!string.IsNullOrEmpty(strFullName))
 			{
 				GlobalObject.XmlConfigChain[this.GetType(), "DBFTPFolder_Out"] = strFullName;
+			}
+
+			bool IsFound = false;
+			foreach (string cbItem in cbDBFTPFolder_Out.Items)
+			{
+				if (cbItem == strFullName)
+				{
+					IsFound = true;
+					break;
+				}
+			}
+
+			if (!IsFound)
+			{
+				cbDBFTPFolder_Out.Items.Add(strFullName);
+
+				string strItems = string.Empty;
+				foreach (string cbItem in cbDBFTPFolder_Out.Items)
+				{
+					strItems += "," + cbItem;
+				}
+				if (strItems.Length > 1)
+				{
+					strItems = strItems.Substring(1);
+				}
+
+				GlobalObject.XmlUserConfig.SetValue("cbDBFTPFolder_Out_Items", strItems);
 			}
 		}
 		#endregion

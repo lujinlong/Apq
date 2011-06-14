@@ -77,13 +77,13 @@
 			// toolStripContainer1.ContentPanel
 			// 
 			this.toolStripContainer1.ContentPanel.Controls.Add(this.treeListView1);
-			this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(300, 366);
+			this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(232, 366);
 			this.toolStripContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.toolStripContainer1.LeftToolStripPanelVisible = false;
 			this.toolStripContainer1.Location = new System.Drawing.Point(0, 0);
 			this.toolStripContainer1.Name = "toolStripContainer1";
 			this.toolStripContainer1.RightToolStripPanelVisible = false;
-			this.toolStripContainer1.Size = new System.Drawing.Size(300, 416);
+			this.toolStripContainer1.Size = new System.Drawing.Size(232, 416);
 			this.toolStripContainer1.TabIndex = 5;
 			this.toolStripContainer1.Text = "toolStripContainer1";
 			// 
@@ -146,7 +146,7 @@
 			this.treeListView1.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.treeListView1.Location = new System.Drawing.Point(0, 0);
 			this.treeListView1.Name = "treeListView1";
-			this.treeListView1.Size = new System.Drawing.Size(300, 366);
+			this.treeListView1.Size = new System.Drawing.Size(232, 366);
 			this.treeListView1.SmallImageList = this.imageList2;
 			this.treeListView1.TabIndex = 1;
 			this.treeListView1.UseCompatibleStateImageBehavior = false;
@@ -158,7 +158,7 @@
 			// columnHeader1
 			// 
 			this.columnHeader1.Text = "名称";
-			this.columnHeader1.Width = 280;
+			this.columnHeader1.Width = 210;
 			// 
 			// imageList2
 			// 
@@ -213,12 +213,13 @@
 			// 
 			// SqlIns
 			// 
-			this.ClientSize = new System.Drawing.Size(300, 416);
+			this.ClientSize = new System.Drawing.Size(232, 416);
 			this.Controls.Add(this.toolStripContainer1);
 			this.DockAreas = ((WeifenLuo.WinFormsUI.Docking.DockAreas)(((((WeifenLuo.WinFormsUI.Docking.DockAreas.Float | WeifenLuo.WinFormsUI.Docking.DockAreas.DockLeft)
 						| WeifenLuo.WinFormsUI.Docking.DockAreas.DockRight)
 						| WeifenLuo.WinFormsUI.Docking.DockAreas.DockTop)
 						| WeifenLuo.WinFormsUI.Docking.DockAreas.DockBottom)));
+			this.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
 			this.HideOnClose = true;
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Name = "SqlIns";
