@@ -527,8 +527,8 @@ UNION ALL SELECT 2,2;";
 				Apq.Data.Common.DbConnectionHelper.Open(sc);
 				string DBName = Apq.Convert.ChangeType<string>(Apq.Windows.Controls.ControlExtension.GetControlValues(this, "tscbDBName.Text"));
 				sc.ChangeDatabase(DBName);//更改数据库后再启用消息事件可防止执行到其它数据库
-				sc.StatisticsEnabled = true;// 启用统计
-				sc.FireInfoMessageEventOnUserErrors = true;// 启用消息事件
+				//sc.StatisticsEnabled = true;// 启用统计
+				//sc.FireInfoMessageEventOnUserErrors = true;// 启用消息事件
 				//sc.InfoMessage += new SqlInfoMessageEventHandler(rt.sc_InfoMessage);
 
 				// 2.准备语句
@@ -542,7 +542,6 @@ UNION ALL SELECT 2,2;";
 					{
 						DataSet ds1 = new DataSet();
 						sda.SelectCommand.CommandText = arySql[i];
-						//nRows += 
 						sda.Fill(ds1);	// 连接对象启用消息事件后一般不会引发异常
 
 						foreach (DataTable ds1Table in ds1.Tables)
