@@ -27,22 +27,22 @@ namespace ApqDBManager.Forms
 		private void FileTrans_Load(object sender, EventArgs e)
 		{
 			#region 初始值
-			if (!Apq.Convert.HasMean(beCFTPFolder_Out.EditValue))
+			if (!Apq.Convert.HasMean(cbCFTPFolder_Out.Text))
 			{
-				beCFTPFolder_Out.EditValue = GlobalObject.XmlConfigChain[this.GetType(), "CFTPFolder_Out"];
+				cbCFTPFolder_Out.Text = GlobalObject.XmlConfigChain[this.GetType(), "CFTPFolder_Out"];
 			}
-			if (!Apq.Convert.HasMean(beDBFTPFolder_In.EditValue))
+			if (!Apq.Convert.HasMean(cbDBFTPFolder_In.Text))
 			{
-				beDBFTPFolder_In.EditValue = GlobalObject.XmlConfigChain[this.GetType(), "DBFTPFolder_In"];
+				cbDBFTPFolder_In.Text = GlobalObject.XmlConfigChain[this.GetType(), "DBFTPFolder_In"];
 			}
 
-			if (!Apq.Convert.HasMean(beDBFTPFolder_Out.EditValue))
+			if (!Apq.Convert.HasMean(cbDBFTPFolder_Out.Text))
 			{
-				beDBFTPFolder_Out.EditValue = GlobalObject.XmlConfigChain[this.GetType(), "DBFTPFolder_Out"];
+				cbDBFTPFolder_Out.Text = GlobalObject.XmlConfigChain[this.GetType(), "DBFTPFolder_Out"];
 			}
-			if (!Apq.Convert.HasMean(beCFTPFolder_In.EditValue))
+			if (!Apq.Convert.HasMean(cbCFTPFolder_In.Text))
 			{
-				beCFTPFolder_In.EditValue = GlobalObject.XmlConfigChain[this.GetType(), "CFTPFolder_In"];
+				cbCFTPFolder_In.Text = GlobalObject.XmlConfigChain[this.GetType(), "CFTPFolder_In"];
 			}
 			#endregion
 
@@ -64,25 +64,25 @@ namespace ApqDBManager.Forms
 		#endregion
 
 		#region 目录设置
-		private void beCFolder_Out_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
+		private void cbCFTPFolder_Out_DropDown(object sender, EventArgs e)
 		{
 			if (fbdCFTPFolder_Out.ShowDialog(this) == DialogResult.OK)
 			{
-				beCFTPFolder_Out.EditValue = fbdCFTPFolder_Out.SelectedPath;
+				cbCFTPFolder_Out.Text = fbdCFTPFolder_Out.SelectedPath;
 			}
 		}
 
-		private void beCFolder_In_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
+		private void cbCFTPFolder_In_DropDown(object sender, EventArgs e)
 		{
 			if (fbdCFolder_In.ShowDialog(this) == DialogResult.OK)
 			{
-				beCFTPFolder_In.EditValue = fbdCFolder_In.SelectedPath;
+				cbCFTPFolder_In.Text = fbdCFolder_In.SelectedPath;
 			}
 		}
 
-		private void beCFolder_Out_EditValueChanged(object sender, EventArgs e)
+		private void cbCFTPFolder_Out_Leave(object sender, EventArgs e)
 		{
-			string strFullName = Apq.Convert.ChangeType<string>(beCFTPFolder_Out.EditValue);
+			string strFullName = cbCFTPFolder_Out.Text;
 			if (!string.IsNullOrEmpty(strFullName))
 			{
 				fbdCFTPFolder_Out.SelectedPath = strFullName;
@@ -90,18 +90,18 @@ namespace ApqDBManager.Forms
 			}
 		}
 
-		private void beDBFolder_In_EditValueChanged(object sender, EventArgs e)
+		private void cbDBFTPFolder_In_Leave(object sender, EventArgs e)
 		{
-			string strFullName = Apq.Convert.ChangeType<string>(beDBFTPFolder_In.EditValue);
+			string strFullName = cbDBFTPFolder_In.Text;
 			if (!string.IsNullOrEmpty(strFullName))
 			{
 				GlobalObject.XmlConfigChain[this.GetType(), "DBFTPFolder_In"] = strFullName;
 			}
 		}
 
-		private void beCFolder_In_EditValueChanged(object sender, EventArgs e)
+		private void cbCFTPFolder_In_Leave(object sender, EventArgs e)
 		{
-			string strFullName = Apq.Convert.ChangeType<string>(beCFTPFolder_In.EditValue);
+			string strFullName = cbCFTPFolder_In.Text;
 			if (!string.IsNullOrEmpty(strFullName))
 			{
 				fbdCFolder_In.SelectedPath = strFullName;
@@ -109,9 +109,9 @@ namespace ApqDBManager.Forms
 			}
 		}
 
-		private void beDBFolder_Out_EditValueChanged(object sender, EventArgs e)
+		private void cbDBFTPFolder_Out_Leave(object sender, EventArgs e)
 		{
-			string strFullName = Apq.Convert.ChangeType<string>(beDBFTPFolder_Out.EditValue);
+			string strFullName = cbDBFTPFolder_Out.Text;
 			if (!string.IsNullOrEmpty(strFullName))
 			{
 				GlobalObject.XmlConfigChain[this.GetType(), "DBFTPFolder_Out"] = strFullName;
@@ -161,12 +161,12 @@ namespace ApqDBManager.Forms
 		{
 			Apq.Windows.Delegates.Action_UI<ToolStripStatusLabel>(this, tsslStatus, delegate(ToolStripStatusLabel ctrl)
 			{
-				beCFTPFolder_Out.Enabled = enabled;
-				beDBFTPFolder_In.Enabled = enabled;
+				cbCFTPFolder_Out.Enabled = enabled;
+				cbDBFTPFolder_In.Enabled = enabled;
 				btnDistribute.Enabled = enabled;
 
-				beDBFTPFolder_Out.Enabled = enabled;
-				beCFTPFolder_In.Enabled = enabled;
+				cbDBFTPFolder_Out.Enabled = enabled;
+				cbCFTPFolder_In.Enabled = enabled;
 				btnCollect.Enabled = enabled;
 			});
 		}
