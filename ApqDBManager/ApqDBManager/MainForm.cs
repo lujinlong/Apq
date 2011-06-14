@@ -80,11 +80,11 @@ namespace ApqDBManager
 			this.tsmiNew.Image = System.Drawing.Image.FromFile(@"Res\png\File\New.png");
 			this.tsmiOpen.Image = System.Drawing.Image.FromFile(@"Res\png\File\Open.png");
 			this.tsmiSave.Image = System.Drawing.Image.FromFile(@"Res\png\File\Save.png");
-			this.tsmiUndo.Image = System.Drawing.Image.FromFile(@"Res\png\Editor\Undo.png");
-			this.tsmiRedo.Image = System.Drawing.Image.FromFile(@"Res\png\Editor\Redo.png");
-			this.tsmiCut.Image = System.Drawing.Image.FromFile(@"Res\png\Editor\Cut.png");
-			this.tsmiCopy.Image = System.Drawing.Image.FromFile(@"Res\png\Editor\Copy.png");
-			this.tsmiPaste.Image = System.Drawing.Image.FromFile(@"Res\png\Editor\Paste.png");
+			//this.tsmiUndo.Image = System.Drawing.Image.FromFile(@"Res\png\Editor\Undo.png");
+			//this.tsmiRedo.Image = System.Drawing.Image.FromFile(@"Res\png\Editor\Redo.png");
+			//this.tsmiCut.Image = System.Drawing.Image.FromFile(@"Res\png\Editor\Cut.png");
+			//this.tsmiCopy.Image = System.Drawing.Image.FromFile(@"Res\png\Editor\Copy.png");
+			//this.tsmiPaste.Image = System.Drawing.Image.FromFile(@"Res\png\Editor\Paste.png");
 			this.tsmiIndex.Image = System.Drawing.Image.FromFile(@"Res\png\Help.png");
 			this.tsmiSearch.Image = System.Drawing.Image.FromFile(@"Res\png\Search.png");
 			#endregion
@@ -123,30 +123,30 @@ namespace ApqDBManager
 		//打开Sql文件
 		private void tsmiOpenSql_Click(object sender, EventArgs e)
 		{
-			if (!(ActiveMdiChild is Apq.Editor.IFileLoader))
+			if (!(ActiveMdiChild is SqlEdit))
 			{
 				tsmiNew_Click(sender, e);
 			}
 
-			Apq.Editor.IFileLoader Editor = ActiveMdiChild as Apq.Editor.IFileLoader;
+			SqlEdit Editor = ActiveMdiChild as SqlEdit;
 			if (Editor != null)
 			{
-				Editor.Open();
+				Editor.SqlEditDoc.Open();
 			}
 		}
 		//保存
 		private void tsmiSave_Click(object sender, EventArgs e)
 		{
-			Apq.Editor.IFileLoader Editor = ActiveMdiChild as Apq.Editor.IFileLoader;
+			SqlEdit Editor = ActiveMdiChild as SqlEdit;
 			if (Editor != null)
 			{
-				Editor.Save();
+				Editor.SqlEditDoc.Save();
 			}
 		}
 		//另存为
 		private void tsmiSaveAs_Click(object sender, EventArgs e)
 		{
-			Apq.Editor.IFileLoader Editor = ActiveMdiChild as Apq.Editor.IFileLoader;
+			SqlEdit Editor = ActiveMdiChild as SqlEdit;
 			if (Editor != null)
 			{
 				SaveFileDialog saveFileDialog = new SaveFileDialog();
@@ -154,8 +154,8 @@ namespace ApqDBManager
 				saveFileDialog.Filter = "所有文件(*.*)|*.*";
 				if (saveFileDialog.ShowDialog(this) == DialogResult.OK)
 				{
-					Editor.FileName = saveFileDialog.FileName;
-					Editor.Save();
+					Editor.SqlEditDoc.FileName = saveFileDialog.FileName;
+					Editor.SqlEditDoc.Save();
 				}
 			}
 		}
@@ -163,72 +163,6 @@ namespace ApqDBManager
 		private void tsmiExit_Click(object sender, EventArgs e)
 		{
 			Close();
-		}
-		#endregion
-
-		#region 编辑
-		private void tsmiUndo_Click(object sender, EventArgs e)
-		{
-			Apq.Editor.ITextEditor Editor = ActiveMdiChild as Apq.Editor.ITextEditor;
-			if (Editor != null)
-			{
-				Editor.Undo();
-			}
-		}
-
-		private void tsmiRedo_Click(object sender, EventArgs e)
-		{
-			Apq.Editor.ITextEditor Editor = ActiveMdiChild as Apq.Editor.ITextEditor;
-			if (Editor != null)
-			{
-				Editor.Redo();
-			}
-		}
-
-		private void tsmiCut_Click(object sender, EventArgs e)
-		{
-			Apq.Editor.ITextEditor Editor = ActiveMdiChild as Apq.Editor.ITextEditor;
-			if (Editor != null)
-			{
-				Editor.Copy();
-				Editor.Delete();
-			}
-		}
-
-		private void tsmiCopy_Click(object sender, EventArgs e)
-		{
-			Apq.Editor.ITextEditor Editor = ActiveMdiChild as Apq.Editor.ITextEditor;
-			if (Editor != null)
-			{
-				Editor.Copy();
-			}
-		}
-
-		private void tsmiPaste_Click(object sender, EventArgs e)
-		{
-			Apq.Editor.ITextEditor Editor = ActiveMdiChild as Apq.Editor.ITextEditor;
-			if (Editor != null)
-			{
-				Editor.Paste();
-			}
-		}
-
-		private void tsmiSelectAll_Click(object sender, EventArgs e)
-		{
-			Apq.Editor.ITextEditor Editor = ActiveMdiChild as Apq.Editor.ITextEditor;
-			if (Editor != null)
-			{
-				Editor.SelectAll();
-			}
-		}
-
-		private void tsmiReverse_Click(object sender, EventArgs e)
-		{
-			Apq.Editor.ITextEditor Editor = ActiveMdiChild as Apq.Editor.ITextEditor;
-			if (Editor != null)
-			{
-				Editor.Reverse();
-			}
 		}
 		#endregion
 

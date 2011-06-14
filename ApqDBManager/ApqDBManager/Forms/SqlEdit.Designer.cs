@@ -143,7 +143,9 @@ namespace ApqDBManager
 			this.Name = "SqlEdit";
 			this.TabText = "SqlEdit";
 			this.Text = "SqlEdit";
+			this.Deactivate += new System.EventHandler(this.SqlEdit_Deactivate);
 			this.Load += new System.EventHandler(this.SqlEdit_Load);
+			this.Activated += new System.EventHandler(this.SqlEdit_Activated);
 			this.statusStrip1.ResumeLayout(false);
 			this.statusStrip1.PerformLayout();
 			this.ResumeLayout(false);

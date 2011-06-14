@@ -55,16 +55,6 @@
 			this.tsmiSaveAs = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
 			this.tsmiExit = new System.Windows.Forms.ToolStripMenuItem();
-			this.tsmiEdit = new System.Windows.Forms.ToolStripMenuItem();
-			this.tsmiUndo = new System.Windows.Forms.ToolStripMenuItem();
-			this.tsmiRedo = new System.Windows.Forms.ToolStripMenuItem();
-			this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
-			this.tsmiCut = new System.Windows.Forms.ToolStripMenuItem();
-			this.tsmiCopy = new System.Windows.Forms.ToolStripMenuItem();
-			this.tsmiPaste = new System.Windows.Forms.ToolStripMenuItem();
-			this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
-			this.tsmiSelectAll = new System.Windows.Forms.ToolStripMenuItem();
-			this.tsmiReverse = new System.Windows.Forms.ToolStripMenuItem();
 			this.tsmiView = new System.Windows.Forms.ToolStripMenuItem();
 			this.tsmiToolBar = new System.Windows.Forms.ToolStripMenuItem();
 			this.tsmiStatusBar = new System.Windows.Forms.ToolStripMenuItem();
@@ -168,7 +158,6 @@
 			// 
 			this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmiFile,
-            this.tsmiEdit,
             this.tsmiView,
             this.tsmiTool,
             this.tsmiWindow,
@@ -250,88 +239,6 @@
 			this.tsmiExit.Text = "退出(&X)";
 			this.tsmiExit.Click += new System.EventHandler(this.tsmiExit_Click);
 			// 
-			// tsmiEdit
-			// 
-			this.tsmiEdit.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmiUndo,
-            this.tsmiRedo,
-            this.toolStripSeparator3,
-            this.tsmiCut,
-            this.tsmiCopy,
-            this.tsmiPaste,
-            this.toolStripSeparator4,
-            this.tsmiSelectAll,
-            this.tsmiReverse});
-			this.tsmiEdit.Name = "tsmiEdit";
-			this.tsmiEdit.Size = new System.Drawing.Size(59, 20);
-			this.tsmiEdit.Text = "编辑(&E)";
-			// 
-			// tsmiUndo
-			// 
-			this.tsmiUndo.Name = "tsmiUndo";
-			this.tsmiUndo.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Z)));
-			this.tsmiUndo.Size = new System.Drawing.Size(153, 22);
-			this.tsmiUndo.Text = "撤消(&U)";
-			this.tsmiUndo.Click += new System.EventHandler(this.tsmiUndo_Click);
-			// 
-			// tsmiRedo
-			// 
-			this.tsmiRedo.Name = "tsmiRedo";
-			this.tsmiRedo.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Y)));
-			this.tsmiRedo.Size = new System.Drawing.Size(153, 22);
-			this.tsmiRedo.Text = "重做(&R)";
-			this.tsmiRedo.Click += new System.EventHandler(this.tsmiRedo_Click);
-			// 
-			// toolStripSeparator3
-			// 
-			this.toolStripSeparator3.Name = "toolStripSeparator3";
-			this.toolStripSeparator3.Size = new System.Drawing.Size(150, 6);
-			// 
-			// tsmiCut
-			// 
-			this.tsmiCut.Name = "tsmiCut";
-			this.tsmiCut.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.X)));
-			this.tsmiCut.Size = new System.Drawing.Size(153, 22);
-			this.tsmiCut.Text = "剪切(&T)";
-			this.tsmiCut.Click += new System.EventHandler(this.tsmiCut_Click);
-			// 
-			// tsmiCopy
-			// 
-			this.tsmiCopy.Name = "tsmiCopy";
-			this.tsmiCopy.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.C)));
-			this.tsmiCopy.Size = new System.Drawing.Size(153, 22);
-			this.tsmiCopy.Text = "复制(&C)";
-			this.tsmiCopy.Click += new System.EventHandler(this.tsmiCopy_Click);
-			// 
-			// tsmiPaste
-			// 
-			this.tsmiPaste.Name = "tsmiPaste";
-			this.tsmiPaste.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.V)));
-			this.tsmiPaste.Size = new System.Drawing.Size(153, 22);
-			this.tsmiPaste.Text = "粘贴(&P)";
-			this.tsmiPaste.Click += new System.EventHandler(this.tsmiPaste_Click);
-			// 
-			// toolStripSeparator4
-			// 
-			this.toolStripSeparator4.Name = "toolStripSeparator4";
-			this.toolStripSeparator4.Size = new System.Drawing.Size(150, 6);
-			// 
-			// tsmiSelectAll
-			// 
-			this.tsmiSelectAll.Name = "tsmiSelectAll";
-			this.tsmiSelectAll.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.A)));
-			this.tsmiSelectAll.Size = new System.Drawing.Size(153, 22);
-			this.tsmiSelectAll.Text = "全选(&A)";
-			this.tsmiSelectAll.Click += new System.EventHandler(this.tsmiSelectAll_Click);
-			// 
-			// tsmiReverse
-			// 
-			this.tsmiReverse.Name = "tsmiReverse";
-			this.tsmiReverse.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.R)));
-			this.tsmiReverse.Size = new System.Drawing.Size(153, 22);
-			this.tsmiReverse.Text = "反选(&S)";
-			this.tsmiReverse.Click += new System.EventHandler(this.tsmiReverse_Click);
-			// 
 			// tsmiView
 			// 
 			this.tsmiView.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -350,7 +257,7 @@
 			this.tsmiToolBar.Checked = true;
 			this.tsmiToolBar.CheckState = System.Windows.Forms.CheckState.Checked;
 			this.tsmiToolBar.Name = "tsmiToolBar";
-			this.tsmiToolBar.Size = new System.Drawing.Size(136, 22);
+			this.tsmiToolBar.Size = new System.Drawing.Size(152, 22);
 			this.tsmiToolBar.Text = "工具栏(&T)";
 			this.tsmiToolBar.CheckedChanged += new System.EventHandler(this.tsmiToolBar_CheckedChanged);
 			this.tsmiToolBar.Click += new System.EventHandler(this.tsmiToolBar_Click);
@@ -360,7 +267,7 @@
 			this.tsmiStatusBar.Checked = true;
 			this.tsmiStatusBar.CheckState = System.Windows.Forms.CheckState.Checked;
 			this.tsmiStatusBar.Name = "tsmiStatusBar";
-			this.tsmiStatusBar.Size = new System.Drawing.Size(136, 22);
+			this.tsmiStatusBar.Size = new System.Drawing.Size(152, 22);
 			this.tsmiStatusBar.Text = "状态栏(&U)";
 			this.tsmiStatusBar.CheckedChanged += new System.EventHandler(this.menuStatusBar_CheckedChanged);
 			this.tsmiStatusBar.Click += new System.EventHandler(this.tsmiStatusBar_Click);
@@ -368,14 +275,14 @@
 			// toolStripSeparator5
 			// 
 			this.toolStripSeparator5.Name = "toolStripSeparator5";
-			this.toolStripSeparator5.Size = new System.Drawing.Size(133, 6);
+			this.toolStripSeparator5.Size = new System.Drawing.Size(149, 6);
 			// 
 			// tsmiInstances
 			// 
 			this.tsmiInstances.Checked = true;
 			this.tsmiInstances.CheckState = System.Windows.Forms.CheckState.Checked;
 			this.tsmiInstances.Name = "tsmiInstances";
-			this.tsmiInstances.Size = new System.Drawing.Size(136, 22);
+			this.tsmiInstances.Size = new System.Drawing.Size(152, 22);
 			this.tsmiInstances.Text = "实例(&S)";
 			this.tsmiInstances.CheckedChanged += new System.EventHandler(this.menuSolution_CheckedChanged);
 			this.tsmiInstances.Click += new System.EventHandler(this.tsmiInstances_Click);
@@ -385,7 +292,7 @@
 			this.tsmiFavorites.Checked = true;
 			this.tsmiFavorites.CheckState = System.Windows.Forms.CheckState.Checked;
 			this.tsmiFavorites.Name = "tsmiFavorites";
-			this.tsmiFavorites.Size = new System.Drawing.Size(136, 22);
+			this.tsmiFavorites.Size = new System.Drawing.Size(152, 22);
 			this.tsmiFavorites.Text = "收藏夹(&D)";
 			this.tsmiFavorites.CheckedChanged += new System.EventHandler(this.menuFavorites_CheckedChanged);
 			this.tsmiFavorites.Click += new System.EventHandler(this.tsmiFavorites_Click);
@@ -395,7 +302,7 @@
 			this.tsmiErrList.Checked = true;
 			this.tsmiErrList.CheckState = System.Windows.Forms.CheckState.Checked;
 			this.tsmiErrList.Name = "tsmiErrList";
-			this.tsmiErrList.Size = new System.Drawing.Size(136, 22);
+			this.tsmiErrList.Size = new System.Drawing.Size(152, 22);
 			this.tsmiErrList.Text = "错误列表(&R)";
 			this.tsmiErrList.CheckedChanged += new System.EventHandler(this.menuErrList_CheckedChanged);
 			this.tsmiErrList.Click += new System.EventHandler(this.tsmiErrList_Click);
@@ -665,16 +572,6 @@
 		private System.Windows.Forms.ToolStripMenuItem tsmiSaveAs;
 		private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
 		private System.Windows.Forms.ToolStripMenuItem tsmiExit;
-		private System.Windows.Forms.ToolStripMenuItem tsmiEdit;
-		private System.Windows.Forms.ToolStripMenuItem tsmiUndo;
-		private System.Windows.Forms.ToolStripMenuItem tsmiRedo;
-		private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
-		private System.Windows.Forms.ToolStripMenuItem tsmiCut;
-		private System.Windows.Forms.ToolStripMenuItem tsmiCopy;
-		private System.Windows.Forms.ToolStripMenuItem tsmiPaste;
-		private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
-		private System.Windows.Forms.ToolStripMenuItem tsmiSelectAll;
-		private System.Windows.Forms.ToolStripMenuItem tsmiReverse;
 		private System.Windows.Forms.ToolStripMenuItem tsmiView;
 		private System.Windows.Forms.ToolStripMenuItem tsmiToolBar;
 		private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;

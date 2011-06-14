@@ -32,6 +32,19 @@ namespace ApqDBManager
 		private void SqlEdit_Load(object sender, EventArgs e)
 		{
 			SqlEditDoc.Show(dockPanel1);
+			//SqlOut.Show(dockPanel1);
+		}
+
+		private void SqlEdit_Activated(object sender, EventArgs e)
+		{
+			// 设置服务器和错误列表
+			GlobalObject.SolutionExplorer.SetServers(SqlEditDoc._Sqls);
+			GlobalObject.ErrList.Set_ErrList(SqlEditDoc.dsUI);
+		}
+
+		private void SqlEdit_Deactivate(object sender, EventArgs e)
+		{
+			GlobalObject.SolutionExplorer.SaveState2XSD();
 		}
 	}
 }
