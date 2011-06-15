@@ -45,6 +45,15 @@ namespace Apq.Config
 		/// 提供生成接口,用于配置池
 		/// </summary>
 		/// <param name="Path"></param>
+		public void Open(string Path)
+		{
+			Open(Path, Root);
+		}
+		/// <summary>
+		/// 打开配置
+		/// 提供生成接口,用于配置池
+		/// </summary>
+		/// <param name="Path"></param>
 		/// <param name="Root"></param>
 		public void Open(string Path, string Root)
 		{

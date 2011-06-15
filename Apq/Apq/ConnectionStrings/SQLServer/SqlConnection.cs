@@ -6,7 +6,7 @@ namespace Apq.ConnectionStrings.SQLServer
 {
 	/// <summary>
 	/// SqlConnection 连接字符串
-	/// 实例使用方法:通过属性设置各项值(ServerName,DBName必选),最后调用GetConnectionString方法获取
+	/// 实例使用方法:通过属性设置各项值(ServerName,UserId,Pwd必选),最后调用GetConnectionString方法获取
 	/// </summary>
 	public class SqlConnection
 	{

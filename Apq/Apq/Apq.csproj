@@ -178,6 +178,7 @@
     <Compile Include="ConnectionStrings\Access\OleDbConnection.cs" />
     <Compile Include="ConnectionStrings\Excel2007\OleDbConnection.cs" />
     <Compile Include="ConnectionStrings\Excel\OleDbConnection.cs" />
+    <Compile Include="ConnectionStrings\MySql\MySqlConnection.cs" />
     <Compile Include="ConnectionStrings\SQLServer\SqlConnection.cs" />
     <Compile Include="ConnectionStrings\Textfile\OleDbConnection.cs" />
     <Compile Include="Data\Common\DataColumnMappingCollectionHelper.cs" />
@@ -215,6 +216,8 @@
     <Compile Include="Security\Cryptography\DSAHelper.cs" />
     <Compile Include="Sim\Mouse.cs" />
     <Compile Include="Threading\Thread.cs" />
+    <Compile Include="UILang\UILang.cs" />
+    <Compile Include="UILang\UILangFile.cs" />
     <Compile Include="Utils\VirtKeys.cs" />
     <Compile Include="Xml\XmlDocument.cs" />
     <Compile Include="Apq\Char.cs" />
