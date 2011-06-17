@@ -20,38 +20,38 @@ namespace Apq.ConnectionStrings.SQLServer
 		/// <summary>
 		/// 获取连接字符串
 		/// </summary>
-		/// <param name="dataSource">服务器地址</param>
-		/// <param name="UserName">用户名</param>
-		/// <param name="pwd">密码</param>
+		/// <param name="Server">服务器地址</param>
+		/// <param name="UserId">用户名</param>
+		/// <param name="Pwd">密码</param>
 		/// <returns></returns>
-		public static string GetConnectionString(string dataSource, string UserName, string pwd)
+		public static string GetConnectionString(string Server, string UserId, string Pwd)
 		{
-			return GetConnectionString(dataSource, UserName, pwd, "master");
+			return GetConnectionString(Server, UserId, Pwd, "master");
 		}
 		/// <summary>
 		/// 获取连接字符串
 		/// </summary>
-		/// <param name="dataSource">服务器地址</param>
-		/// <param name="UserName">用户名</param>
-		/// <param name="pwd">密码</param>
+		/// <param name="Server">服务器地址</param>
+		/// <param name="UserId">用户名</param>
+		/// <param name="Pwd">密码</param>
 		/// <param name="dbName">默认数据库名</param>
 		/// <returns></returns>
-		public static string GetConnectionString(string dataSource, string UserName, string pwd, string dbName)
+		public static string GetConnectionString(string Server, string UserId, string Pwd, string dbName)
 		{
-			return string.Format(ConnectionStringFormat, dataSource, UserName, pwd, dbName);
+			return string.Format(ConnectionStringFormat, Server, UserId, Pwd, dbName);
 		}
 		/// <summary>
 		/// 获取连接字符串
 		/// </summary>
-		/// <param name="dataSource">服务器地址</param>
-		/// <param name="UserName">用户名</param>
-		/// <param name="pwd">密码</param>
+		/// <param name="Server">服务器地址</param>
+		/// <param name="UserId">用户名</param>
+		/// <param name="Pwd">密码</param>
 		/// <param name="dbName">默认数据库名</param>
 		/// <param name="Option">其余选项</param>
 		/// <returns></returns>
-		public static string GetConnectionString(string dataSource, string UserName, string pwd, string dbName, string Option)
+		public static string GetConnectionString(string Server, string UserId, string Pwd, string dbName, string Option)
 		{
-			string str = string.Format(ConnectionStringFormat, dataSource, UserName, pwd, dbName);
+			string str = GetConnectionString(ConnectionStringFormat, Server, UserId, Pwd, dbName);
 			str += Option;
 			return str;
 		}

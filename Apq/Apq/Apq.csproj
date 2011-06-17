@@ -176,6 +176,7 @@
     <Compile Include="ComponentModel\BackgroundWorker.cs" />
     <Compile Include="Config\ConfigChain.cs" />
     <Compile Include="ConnectionStrings\Access\OleDbConnection.cs" />
+    <Compile Include="ConnectionStrings\Common.cs" />
     <Compile Include="ConnectionStrings\Excel2007\OleDbConnection.cs" />
     <Compile Include="ConnectionStrings\Excel\OleDbConnection.cs" />
     <Compile Include="ConnectionStrings\MySql\MySqlConnection.cs" />

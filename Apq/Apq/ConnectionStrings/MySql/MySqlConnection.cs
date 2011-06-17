@@ -52,7 +52,7 @@ namespace Apq.ConnectionStrings.MySql
 		/// <returns></returns>
 		public static string GetConnectionString(string Server, string Uid, string Pwd, string dbName, string Option)
 		{
-			string str = string.Format(ConnectionStringFormat, Server, Uid, Pwd, dbName);
+			string str = GetConnectionString(ConnectionStringFormat,Server,Uid,Pwd,dbName);
 			str += Option;
 			return str;
 		}
