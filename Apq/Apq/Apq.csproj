@@ -256,6 +256,15 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Explorer.xsd</DependentUpon>
     </Compile>
+    <Compile Include="XSD\UILang.cs">
+      <DependentUpon>UILang.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="XSD\UILang.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>UILang.xsd</DependentUpon>
+    </Compile>
     <None Include="_参考\XChange.cs" />
     <None Include="_参考\断点续传多线程下载.cs" />
   </ItemGroup>
@@ -284,6 +293,17 @@
     </None>
     <None Include="XSD\Explorer.xss">
       <DependentUpon>Explorer.xsd</DependentUpon>
+    </None>
+    <None Include="XSD\UILang.xsc">
+      <DependentUpon>UILang.xsd</DependentUpon>
+    </None>
+    <None Include="XSD\UILang.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>UILang.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="XSD\UILang.xss">
+      <DependentUpon>UILang.xsd</DependentUpon>
     </None>
     <Content Include="_Doc\Apq.dll.config.txt" />
     <Content Include="_Doc\Apq.dll.apq.txt" />

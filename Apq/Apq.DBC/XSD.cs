@@ -3,23 +3,26 @@ namespace Apq.DBC
 {
 	public partial class XSD
 	{
-		public partial class DBCDataTable
+		public partial class DBIDataTable
 		{
 			/// <summary>
-			/// 根据DBCID查找数据行
+			/// 根据DBName查找数据行
 			/// </summary>
-			public DBCRow FindByDBCID(int DBCID)
+			public DBIRow FindByDBIName(string DBIName)
 			{
-				foreach (DBCRow dr in this.Rows)
+				foreach (DBIRow dr in this.Rows)
 				{
-					if (dr.DBCID == DBCID)
+					if (dr.DBIName.ToLower() == DBIName.ToLower())
 					{
 						return dr;
 					}
 				}
 				return null;
 			}
+		}
 
+		public partial class DBCDataTable
+		{
 			/// <summary>
 			/// 根据DBName查找数据行
 			/// </summary>

@@ -11,7 +11,10 @@ namespace Apq.UILang
 	/// </summary>
 	public abstract class UILang
 	{
-		protected NameValueCollection _lst = new NameValueCollection();
+		/// <summary>
+		/// 已加载到内存的语言配置表
+		/// </summary>
+		protected XSD.UILang _lst = new XSD.UILang();
 
 		/// <summary>
 		/// 获取或设置界面值
@@ -22,20 +25,23 @@ namespace Apq.UILang
 		{
 			get
 			{
-				string str = _lst[Name];
-				if (string.IsNullOrEmpty(str))
+				XSD.UILang.UILangRow dr = _lst._UILang.FindByname(Name);
+				if (dr != null && !string.IsNullOrEmpty(dr.value))
 				{
-					str = Name;
+					return dr.value;
 				}
-				return str;
+
+				return Name;
 			}
 			set
 			{
-				if (!_lst.AllKeys.Contains<string>(Name))
+				XSD.UILang.UILangRow dr = _lst._UILang.FindByname(Name);
+				if (dr == null)
 				{
-					_lst.Add(Name, string.Empty);
+					_lst._UILang.AddUILangRow(Name, string.Empty);
 				}
-				_lst[Name] = value;
+
+				dr.value = value;
 			}
 		}
 
@@ -43,6 +49,13 @@ namespace Apq.UILang
 		/// 加载语言配置
 		/// </summary>
 		public virtual void Load()
+		{
+		}
+		
+		/// <summary>
+		/// 保存语言配置
+		/// </summary>
+		public virtual void Save()
 		{
 		}
 	}

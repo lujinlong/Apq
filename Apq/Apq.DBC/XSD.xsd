@@ -17,47 +17,73 @@
         <xs:element name="DBC" msprop:Generator_UserTableName="DBC" msprop:Generator_RowDeletedName="DBCRowDeleted" msprop:Generator_RowChangedName="DBCRowChanged" msprop:Generator_RowClassName="DBCRow" msprop:Generator_RowChangingName="DBCRowChanging" msprop:Generator_RowEvArgName="DBCRowChangeEvent" msprop:Generator_RowEvHandlerName="DBCRowChangeEventHandler" msprop:Generator_TableClassName="DBCDataTable" msprop:Generator_TableVarName="tableDBC" msprop:Generator_RowDeletingName="DBCRowDeleting" msprop:Generator_TablePropName="DBC">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="ComputerID" msprop:Generator_UserColumnName="ComputerID" msprop:Generator_ColumnVarNameInTable="columnComputerID" msprop:Generator_ColumnPropNameInRow="ComputerID" msprop:Generator_ColumnPropNameInTable="ComputerIDColumn" type="xs:int" default="0" minOccurs="0" />
-              <xs:element name="DBIID" msprop:Generator_UserColumnName="DBIID" msprop:Generator_ColumnVarNameInTable="columnDBIID" msprop:Generator_ColumnPropNameInRow="DBIID" msprop:Generator_ColumnPropNameInTable="DBIIDColumn" type="xs:int" default="0" minOccurs="0" />
-              <xs:element name="DBCID" msprop:Generator_UserColumnName="DBCID" msprop:Generator_ColumnVarNameInTable="columnDBCID" msprop:Generator_ColumnPropNameInRow="DBCID" msprop:Generator_ColumnPropNameInTable="DBCIDColumn" type="xs:int" default="0" minOccurs="0" />
-              <xs:element name="DBCUseType" msdata:Caption="连接用途" msprop:Generator_UserColumnName="DBCUseType" msprop:Generator_ColumnVarNameInTable="columnDBCUseType" msprop:Generator_ColumnPropNameInRow="DBCUseType" msprop:Generator_ColumnPropNameInTable="DBCUseTypeColumn" type="xs:int" default="1" minOccurs="0" />
-              <xs:element name="UseTrusted" msprop:Generator_UserColumnName="UseTrusted" msprop:Generator_ColumnVarNameInTable="columnUseTrusted" msprop:Generator_ColumnPropNameInRow="UseTrusted" msprop:Generator_ColumnPropNameInTable="UseTrustedColumn" type="xs:boolean" default="false" minOccurs="0" />
-              <xs:element name="DBName" msprop:Generator_UserColumnName="DBName" msprop:Generator_ColumnVarNameInTable="columnDBName" msprop:Generator_ColumnPropNameInRow="DBName" msprop:Generator_ColumnPropNameInTable="DBNameColumn" default="新建连接">
+              <xs:element name="ComputerID" msprop:Generator_UserColumnName="ComputerID" msprop:Generator_ColumnPropNameInRow="ComputerID" msprop:Generator_ColumnVarNameInTable="columnComputerID" msprop:Generator_ColumnPropNameInTable="ComputerIDColumn" type="xs:int" default="0" minOccurs="0" />
+              <xs:element name="DBIID" msprop:Generator_UserColumnName="DBIID" msprop:Generator_ColumnPropNameInRow="DBIID" msprop:Generator_ColumnVarNameInTable="columnDBIID" msprop:Generator_ColumnPropNameInTable="DBIIDColumn" type="xs:int" default="0" minOccurs="0" />
+              <xs:element name="DBCID" msprop:Generator_UserColumnName="DBCID" msprop:Generator_ColumnPropNameInRow="DBCID" msprop:Generator_ColumnVarNameInTable="columnDBCID" msprop:Generator_ColumnPropNameInTable="DBCIDColumn" type="xs:int" default="0" />
+              <xs:element name="DBCUseType" msdata:Caption="连接用途" msprop:Generator_UserColumnName="DBCUseType" msprop:Generator_ColumnPropNameInRow="DBCUseType" msprop:Generator_ColumnVarNameInTable="columnDBCUseType" msprop:Generator_ColumnPropNameInTable="DBCUseTypeColumn" type="xs:int" default="1" minOccurs="0" />
+              <xs:element name="UseTrusted" msprop:Generator_UserColumnName="UseTrusted" msprop:Generator_ColumnPropNameInRow="UseTrusted" msprop:Generator_ColumnVarNameInTable="columnUseTrusted" msprop:Generator_ColumnPropNameInTable="UseTrustedColumn" type="xs:boolean" default="false" minOccurs="0" />
+              <xs:element name="DBName" msprop:Generator_UserColumnName="DBName" msprop:Generator_ColumnPropNameInRow="DBName" msprop:Generator_ColumnVarNameInTable="columnDBName" msprop:Generator_ColumnPropNameInTable="DBNameColumn" default="新建连接">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="50" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="UserId" msprop:Generator_UserColumnName="UserId" msprop:Generator_ColumnVarNameInTable="columnUserId" msprop:Generator_ColumnPropNameInRow="UserId" msprop:Generator_ColumnPropNameInTable="UserIdColumn" default="sa">
+              <xs:element name="UserId" msprop:Generator_UserColumnName="UserId" msprop:Generator_ColumnPropNameInRow="UserId" msprop:Generator_ColumnVarNameInTable="columnUserId" msprop:Generator_ColumnPropNameInTable="UserIdColumn" default="sa">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="50" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="PwdC" msprop:Generator_UserColumnName="PwdC" msprop:Generator_ColumnVarNameInTable="columnPwdC" msprop:Generator_ColumnPropNameInRow="PwdC" msprop:Generator_ColumnPropNameInTable="PwdCColumn" default="">
+              <xs:element name="PwdC" msprop:Generator_UserColumnName="PwdC" msprop:Generator_ColumnPropNameInRow="PwdC" msprop:Generator_ColumnVarNameInTable="columnPwdC" msprop:Generator_ColumnPropNameInTable="PwdCColumn" default="">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="500" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="PwdD" msprop:Generator_UserColumnName="PwdD" msprop:Generator_ColumnPropNameInRow="PwdD" msprop:Generator_ColumnVarNameInTable="columnPwdD" msprop:Generator_ColumnPropNameInTable="PwdDColumn" type="xs:string" minOccurs="0" />
-              <xs:element name="Mirror" msprop:Generator_UserColumnName="Mirror" msprop:Generator_ColumnVarNameInTable="columnMirror" msprop:Generator_ColumnPropNameInRow="Mirror" msprop:Generator_ColumnPropNameInTable="MirrorColumn" minOccurs="0">
+              <xs:element name="PwdD" msprop:Generator_UserColumnName="PwdD" msprop:Generator_ColumnVarNameInTable="columnPwdD" msprop:Generator_ColumnPropNameInRow="PwdD" msprop:Generator_ColumnPropNameInTable="PwdDColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="Mirror" msprop:Generator_UserColumnName="Mirror" msprop:Generator_ColumnPropNameInRow="Mirror" msprop:Generator_ColumnVarNameInTable="columnMirror" msprop:Generator_ColumnPropNameInTable="MirrorColumn" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="1000" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="Option" msprop:Generator_UserColumnName="Option" msprop:Generator_ColumnVarNameInTable="columnOption" msprop:Generator_ColumnPropNameInRow="Option" msprop:Generator_ColumnPropNameInTable="OptionColumn" minOccurs="0">
+              <xs:element name="Option" msprop:Generator_UserColumnName="Option" msprop:Generator_ColumnPropNameInRow="Option" msprop:Generator_ColumnVarNameInTable="columnOption" msprop:Generator_ColumnPropNameInTable="OptionColumn" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="1000" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
+              <xs:element name="IP" msprop:Generator_UserColumnName="IP" msprop:Generator_ColumnVarNameInTable="columnIP" msprop:Generator_ColumnPropNameInRow="IP" msprop:Generator_ColumnPropNameInTable="IPColumn" default="">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Port" msdata:Caption="实例端口" msprop:Generator_UserColumnName="Port" msprop:Generator_ColumnVarNameInTable="columnPort" msprop:Generator_ColumnPropNameInRow="Port" msprop:Generator_ColumnPropNameInTable="PortColumn" type="xs:int" default="1433" />
+              <xs:element name="DBProduct" msdata:Caption="实例类型" msprop:Generator_UserColumnName="DBProduct" msprop:Generator_ColumnVarNameInTable="columnDBProduct" msprop:Generator_ColumnPropNameInRow="DBProduct" msprop:Generator_ColumnPropNameInTable="DBProductColumn" type="xs:int" default="1" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="DBI" msprop:Generator_UserTableName="DBI" msprop:Generator_RowDeletedName="DBIRowDeleted" msprop:Generator_TableClassName="DBIDataTable" msprop:Generator_RowChangedName="DBIRowChanged" msprop:Generator_RowClassName="DBIRow" msprop:Generator_RowChangingName="DBIRowChanging" msprop:Generator_RowEvArgName="DBIRowChangeEvent" msprop:Generator_RowEvHandlerName="DBIRowChangeEventHandler" msprop:Generator_TablePropName="DBI" msprop:Generator_TableVarName="tableDBI" msprop:Generator_RowDeletingName="DBIRowDeleting">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ComputerID" msdata:Caption="服务器" msprop:Generator_UserColumnName="ComputerID" msprop:Generator_ColumnPropNameInRow="ComputerID" msprop:Generator_ColumnVarNameInTable="columnComputerID" msprop:Generator_ColumnPropNameInTable="ComputerIDColumn" type="xs:int" default="0" />
+              <xs:element name="DBIID" msdata:Caption="实例" msprop:Generator_UserColumnName="DBIID" msprop:Generator_ColumnPropNameInRow="DBIID" msprop:Generator_ColumnVarNameInTable="columnDBIID" msprop:Generator_ColumnPropNameInTable="DBIIDColumn" type="xs:int" default="0" />
+              <xs:element name="DBIName" msdata:Caption="实例名称" msprop:Generator_UserColumnName="DBIName" msprop:Generator_ColumnPropNameInRow="DBIName" msprop:Generator_ColumnVarNameInTable="columnDBIName" msprop:Generator_ColumnPropNameInTable="DBINameColumn" default="新建实例">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ParentID" msdata:Caption="上级" msprop:Generator_UserColumnName="ParentID" msprop:Generator_ColumnPropNameInRow="ParentID" msprop:Generator_ColumnVarNameInTable="columnParentID" msprop:Generator_ColumnPropNameInTable="ParentIDColumn" type="xs:int" default="0" minOccurs="0" />
+              <xs:element name="DBProduct" msdata:Caption="实例类型" msprop:Generator_UserColumnName="DBProduct" msprop:Generator_ColumnPropNameInRow="DBProduct" msprop:Generator_ColumnVarNameInTable="columnDBProduct" msprop:Generator_ColumnPropNameInTable="DBProductColumn" type="xs:int" default="1" />
               <xs:element name="IP" msprop:Generator_UserColumnName="IP" msprop:Generator_ColumnPropNameInRow="IP" msprop:Generator_ColumnVarNameInTable="columnIP" msprop:Generator_ColumnPropNameInTable="IPColumn" default="">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
@@ -66,11 +92,33 @@
                 </xs:simpleType>
               </xs:element>
               <xs:element name="Port" msdata:Caption="实例端口" msprop:Generator_UserColumnName="Port" msprop:Generator_ColumnPropNameInRow="Port" msprop:Generator_ColumnVarNameInTable="columnPort" msprop:Generator_ColumnPropNameInTable="PortColumn" type="xs:int" default="1433" />
-              <xs:element name="DBProduct" msdata:Caption="实例类型" msprop:Generator_UserColumnName="DBProduct" msprop:Generator_ColumnPropNameInRow="DBProduct" msprop:Generator_ColumnVarNameInTable="columnDBProduct" msprop:Generator_ColumnPropNameInTable="DBProductColumn" type="xs:int" default="1" />
+              <xs:element name="UserId" msdata:Caption="用户名" msprop:Generator_UserColumnName="UserId" msprop:Generator_ColumnPropNameInRow="UserId" msprop:Generator_ColumnVarNameInTable="columnUserId" msprop:Generator_ColumnPropNameInTable="UserIdColumn" default="sa">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="PwdC" msdata:Caption="密码(密文)" msprop:Generator_UserColumnName="PwdC" msprop:Generator_ColumnPropNameInRow="PwdC" msprop:Generator_ColumnVarNameInTable="columnPwdC" msprop:Generator_ColumnPropNameInTable="PwdCColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="500" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="PwdD" msdata:Caption="密码(明文)" msprop:Generator_UserColumnName="PwdD" msprop:Generator_ColumnPropNameInRow="PwdD" msprop:Generator_ColumnVarNameInTable="columnPwdD" msprop:Generator_ColumnPropNameInTable="PwdDColumn" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
       </xs:choice>
     </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:DBC" />
+      <xs:field xpath="mstns:DBCID" />
+    </xs:unique>
+    <xs:unique name="DBI_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:DBI" />
+      <xs:field xpath="mstns:DBIID" />
+    </xs:unique>
   </xs:element>
 </xs:schema>

@@ -22,6 +22,7 @@ namespace Apq.DBC
 		static Common()
 		{
 			_xsd = new XSD();
+			_xsd.DBI.Columns.Add("DBConnectionString");
 			_xsd.DBC.Columns.Add("DBConnectionString");
 
 			fsw.Changed += new FileSystemEventHandler(fsw_Changed);
@@ -82,6 +83,12 @@ namespace Apq.DBC
 				dr["DBConnectionString"] = sc.GetConnectionString();
 			}
 			*/
+			foreach (Apq.DBC.XSD.DBIRow dr in _xsd.DBI.Rows)
+			{
+				dr["DBConnectionString"] = Apq.ConnectionStrings.Common.GetConnectionString(
+					(DBProduct)dr.DBProduct,
+					dr.IP, dr.Port, dr.UserId, dr.PwdD);
+			}
 			foreach (Apq.DBC.XSD.DBCRow dr in _xsd.DBC.Rows)
 			{
 				dr["DBConnectionString"] = Apq.ConnectionStrings.Common.GetConnectionString(
@@ -94,9 +101,40 @@ namespace Apq.DBC
 		/// <summary>
 		/// 创建数据库连接(类型)
 		/// </summary>
-		public static DbConnection CreateDbConnection(string DBName, ref DbConnection DbConnection)
+		public static DbConnection CreateDBConnection(string DBName, ref DbConnection DbConnection)
 		{
 			Apq.DBC.XSD.DBCRow dr = _xsd.DBC.FindByDBName(DBName);
+			string cs = Apq.Convert.ChangeType<string>(dr["DBConnectionString"]);
+
+			switch (dr.DBProduct)
+			{
+				case (int)DBProduct.MySql:
+					if (!(DbConnection is MySql.Data.MySqlClient.MySqlConnection))
+					{
+						Apq.Data.Common.DbConnectionHelper.Close(DbConnection);
+						DbConnection = new MySql.Data.MySqlClient.MySqlConnection();
+					}
+					break;
+				case (int)DBProduct.MSSql:
+				default:
+					if (!(DbConnection is System.Data.SqlClient.SqlConnection))
+					{
+						Apq.Data.Common.DbConnectionHelper.Close(DbConnection);
+						DbConnection = new System.Data.SqlClient.SqlConnection();
+					}
+					break;
+			}
+
+			DbConnection.ConnectionString = cs;
+			return DbConnection;
+		}
+
+		/// <summary>
+		/// 创建数据库连接(类型)
+		/// </summary>
+		public static DbConnection CreateDBIConnection(string DBIName, ref DbConnection DbConnection)
+		{
+			Apq.DBC.XSD.DBIRow dr = _xsd.DBI.FindByDBIName(DBIName);
 			string cs = Apq.Convert.ChangeType<string>(dr["DBConnectionString"]);
 
 			switch (dr.DBProduct)

@@ -223,6 +223,7 @@ namespace Apq
 
 					// 从文档加载数据
 					_UILang.FileName = GlobalObject.XmlConfigChain[typeof(GlobalObject), "UILang"];
+					_UILang.Load();
 				}
 				return _UILang;
 			}

@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="UILang" targetNamespace="http://tempuri.org/UILang.xsd" xmlns:mstns="http://tempuri.org/UILang.xsd" xmlns="http://tempuri.org/UILang.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="UILang" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_DataSetName="UILang" msprop:Generator_UserDSName="UILang" msprop:EnableTableAdapterManager="true">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="UILang" msprop:Generator_UserTableName="UILang" msprop:Generator_RowDeletedName="UILangRowDeleted" msprop:Generator_TableClassName="UILangDataTable" msprop:Generator_RowChangedName="UILangRowChanged" msprop:Generator_RowClassName="UILangRow" msprop:Generator_RowChangingName="UILangRowChanging" msprop:Generator_RowEvArgName="UILangRowChangeEvent" msprop:Generator_RowEvHandlerName="UILangRowChangeEventHandler" msprop:Generator_TablePropName="_UILang" msprop:Generator_TableVarName="tableUILang" msprop:Generator_RowDeletingName="UILangRowDeleting">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="name" msprop:Generator_UserColumnName="name" msprop:Generator_ColumnPropNameInRow="name" msprop:Generator_ColumnVarNameInTable="columnname" msprop:Generator_ColumnPropNameInTable="nameColumn" type="xs:string" default="" />
+              <xs:element name="value" msprop:Generator_UserColumnName="value" msprop:Generator_ColumnPropNameInRow="value" msprop:Generator_ColumnVarNameInTable="columnvalue" msprop:Generator_ColumnPropNameInTable="valueColumn" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:UILang" />
+      <xs:field xpath="mstns:name" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>
