@@ -53,7 +53,11 @@ namespace Apq.Windows.Forms.DockForms
 				}
 			}
 
-			tscbFile.Text = Apq.GlobalObject.XmlConfigChain[typeof(Apq.GlobalObject), "UILang"];
+			string strUILangFile = Apq.GlobalObject.XmlConfigChain[typeof(Apq.GlobalObject), "UILang"];
+			if(!string.IsNullOrEmpty(strUILangFile))
+			{
+				tscbFile.Text = System.IO.Path.GetFileNameWithoutExtension(strUILangFile);
+			}
 
 			DataGridViewHelper.SetDefaultStyle(dataGridView1);
 			DataGridViewHelper.AddBehaivor(dataGridView1);
@@ -113,6 +117,7 @@ namespace Apq.Windows.Forms.DockForms
 			Apq.GlobalObject.UILang.FileName = "UILang\\" + FileName + ".xml";
 			Apq.GlobalObject.UILang.Load();
 			Apq.GlobalObject.XmlConfigChain[typeof(Apq.GlobalObject), "UILang"] = Apq.GlobalObject.UILang.FileName;
+			Apq.GlobalObject.XmlConfigChain.Save();
 
 			ImeForm dfParent = this.MdiParent as ImeForm;
 			if (dfParent != null)
