@@ -6,52 +6,48 @@ namespace Apq.ConnectionStrings.SQLServer
 {
 	/// <summary>
 	/// SqlConnection 连接字符串
-	/// 实例使用方法:通过属性设置各项值(ServerName,UserId,Pwd必选),最后调用GetConnectionString方法获取
+	/// 实例使用方法:通过属性设置各项值(IP,Port,UserId,Pwd必选),最后调用GetConnectionString方法获取
 	/// </summary>
 	public class SqlConnection
 	{
 		#region 静态成员
-		/// <summary>
-		/// 带格式的连接字符串
-		/// </summary>
-		private static string ConnectionStringFormat = @"Data Source={0};User Id={1};Password={2};Initial Catalog={3};";
-
 		#region GetConnectionString
 		/// <summary>
 		/// 获取连接字符串
 		/// </summary>
-		/// <param name="Server">服务器地址</param>
+		/// <param name="IP">服务器地址</param>
 		/// <param name="UserId">用户名</param>
 		/// <param name="Pwd">密码</param>
 		/// <returns></returns>
-		public static string GetConnectionString(string Server, string UserId, string Pwd)
+		public static string GetConnectionString(string IP, int Port, string UserId, string Pwd)
 		{
-			return GetConnectionString(Server, UserId, Pwd, "master");
+			return GetConnectionString(IP, Port, UserId, Pwd, "master");
 		}
 		/// <summary>
 		/// 获取连接字符串
 		/// </summary>
-		/// <param name="Server">服务器地址</param>
+		/// <param name="IP">服务器地址</param>
 		/// <param name="UserId">用户名</param>
 		/// <param name="Pwd">密码</param>
 		/// <param name="dbName">默认数据库名</param>
 		/// <returns></returns>
-		public static string GetConnectionString(string Server, string UserId, string Pwd, string dbName)
+		public static string GetConnectionString(string IP, int Port, string UserId, string Pwd, string dbName)
 		{
-			return string.Format(ConnectionStringFormat, Server, UserId, Pwd, dbName);
+			string ConnectionStringFormat = @"Server={0},{1};User Id={2};Password={3};Database={4};";
+			return string.Format(ConnectionStringFormat, IP, Port, UserId, Pwd, dbName);
 		}
 		/// <summary>
 		/// 获取连接字符串
 		/// </summary>
-		/// <param name="Server">服务器地址</param>
+		/// <param name="IP">服务器地址</param>
 		/// <param name="UserId">用户名</param>
 		/// <param name="Pwd">密码</param>
 		/// <param name="dbName">默认数据库名</param>
 		/// <param name="Option">其余选项</param>
 		/// <returns></returns>
-		public static string GetConnectionString(string Server, string UserId, string Pwd, string dbName, string Option)
+		public static string GetConnectionString(string IP, int Port, string UserId, string Pwd, string dbName, string Option)
 		{
-			string str = GetConnectionString(ConnectionStringFormat, Server, UserId, Pwd, dbName);
+			string str = GetConnectionString(IP, Port, UserId, Pwd, dbName);
 			str += Option;
 			return str;
 		}
@@ -60,14 +56,23 @@ namespace Apq.ConnectionStrings.SQLServer
 
 		#region 实例成员
 		#region 连接字符串分量设置
-		private string _ServerName = string.Empty;
+		private string _IP = string.Empty;
 		/// <summary>
-		/// ServerName
+		/// IP
 		/// </summary>
-		public string ServerName
+		public string IP
 		{
-			get { return _ServerName; }
-			set { _ServerName = value; }
+			get { return _IP; }
+			set { _IP = value; }
+		}
+		private int _Port = 1433;
+		/// <summary>
+		/// Port
+		/// </summary>
+		public int Port
+		{
+			get { return _Port; }
+			set { _Port = value; }
 		}
 		private string _UserId = string.Empty;
 		/// <summary>
@@ -89,7 +94,7 @@ namespace Apq.ConnectionStrings.SQLServer
 		}
 		private string _Mirror = string.Empty;
 		/// <summary>
-		/// 镜像ServerName
+		/// 镜像IP
 		/// </summary>
 		public string Mirror
 		{
@@ -132,17 +137,9 @@ namespace Apq.ConnectionStrings.SQLServer
 		public string GetConnectionString()
 		{
 			string str = string.Empty;
-			if (ServerName != null && ServerName.Length > 0)
+			if (IP != null && IP.Length > 0)
 			{
-				str += string.Format("Data Source={0};", ServerName);
-			}
-			if (DBName != null && DBName.Length > 0)
-			{
-				str += string.Format("Initial Catalog={0};", DBName);
-			}
-			if (Mirror != null && Mirror.Length > 0)
-			{
-				str += string.Format("Failover Partner={0};", Mirror);
+				str += string.Format("Server={0},{1};", IP, Port);
 			}
 			if (UseTrusted)
 			{
@@ -152,7 +149,18 @@ namespace Apq.ConnectionStrings.SQLServer
 			{
 				str += string.Format("User Id={0};Password={1};", UserId, Pwd);
 			}
-			if (Option != null && Option.Length > 0) str += Option;
+			if (DBName != null && DBName.Length > 0)
+			{
+				str += string.Format("Database={0};", DBName);
+			}
+			if (Mirror != null && Mirror.Length > 0)
+			{
+				str += string.Format("Failover Partner={0};", Mirror);
+			}
+			if (Option != null && Option.Length > 0)
+			{
+				str += Option;
+			}
 
 			return str;
 		}

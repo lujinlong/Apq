@@ -7,52 +7,48 @@ namespace Apq.ConnectionStrings.MySql
 {
 	/// <summary>
 	/// MySqlConnection 连接字符串
-	/// 实例使用方法:通过属性设置各项值(Server,Uid,Pwd必选),最后调用GetConnectionString方法获取
+	/// 实例使用方法:通过属性设置各项值(IP,Uid,Pwd必选),最后调用GetConnectionString方法获取
 	/// </summary>
 	class MySqlConnection
 	{
 		#region 静态成员
-		/// <summary>
-		/// 带格式的连接字符串
-		/// </summary>
-		private static string ConnectionStringFormat = @"Server={0};Uid={1};Pwd={2};Database={3};";
-
 		#region GetConnectionString
 		/// <summary>
 		/// 获取连接字符串
 		/// </summary>
-		/// <param name="Server">服务器地址</param>
+		/// <param name="IP">服务器地址</param>
 		/// <param name="Uid">用户名</param>
 		/// <param name="Pwd">密码</param>
 		/// <returns></returns>
-		public static string GetConnectionString(string Server, string Uid, string Pwd)
+		public static string GetConnectionString(string IP, int Port, string Uid, string Pwd)
 		{
-			return GetConnectionString(Server, Uid, Pwd, "master");
+			return GetConnectionString(IP, Port, Uid, Pwd, "MySql");
 		}
 		/// <summary>
 		/// 获取连接字符串
 		/// </summary>
-		/// <param name="Server">服务器地址</param>
+		/// <param name="IP">服务器地址</param>
 		/// <param name="Uid">用户名</param>
 		/// <param name="Pwd">密码</param>
 		/// <param name="dbName">默认数据库名</param>
 		/// <returns></returns>
-		public static string GetConnectionString(string Server, string Uid, string Pwd, string dbName)
+		public static string GetConnectionString(string IP, int Port, string Uid, string Pwd, string dbName)
 		{
-			return string.Format(ConnectionStringFormat, Server, Uid, Pwd, dbName);
+			string ConnectionStringFormat = @"Server={0};Port={1};Uid={2};Pwd={3};Database={4};";
+			return string.Format(ConnectionStringFormat, IP, Port, Uid, Pwd, dbName);
 		}
 		/// <summary>
 		/// 获取连接字符串
 		/// </summary>
-		/// <param name="Server">服务器地址</param>
+		/// <param name="IP">服务器地址</param>
 		/// <param name="Uid">用户名</param>
 		/// <param name="Pwd">密码</param>
 		/// <param name="dbName">默认数据库名</param>
 		/// <param name="Option">其余选项</param>
 		/// <returns></returns>
-		public static string GetConnectionString(string Server, string Uid, string Pwd, string dbName, string Option)
+		public static string GetConnectionString(string IP, int Port, string Uid, string Pwd, string dbName, string Option)
 		{
-			string str = GetConnectionString(ConnectionStringFormat,Server,Uid,Pwd,dbName);
+			string str = GetConnectionString(IP, Port, Uid, Pwd, dbName);
 			str += Option;
 			return str;
 		}
@@ -61,14 +57,23 @@ namespace Apq.ConnectionStrings.MySql
 
 		#region 实例成员
 		#region 连接字符串分量设置
-		private string _Server = string.Empty;
+		private string _IP = string.Empty;
 		/// <summary>
-		/// Server
+		/// IP
 		/// </summary>
-		public string Server
+		public string IP
 		{
-			get { return _Server; }
-			set { _Server = value; }
+			get { return _IP; }
+			set { _IP = value; }
+		}
+		private int _Port = 3306;
+		/// <summary>
+		/// Port
+		/// </summary>
+		public int Port
+		{
+			get { return _Port; }
+			set { _Port = value; }
 		}
 		private string _Uid = string.Empty;
 		/// <summary>
@@ -115,16 +120,19 @@ namespace Apq.ConnectionStrings.MySql
 		public string GetConnectionString()
 		{
 			string str = string.Empty;
-			if (Server != null && Server.Length > 0)
+			if (IP != null && IP.Length > 0)
 			{
-				str += string.Format("Server={0};", Server);
+				str += string.Format("IP={0};Port={1};", IP, Port);
 			}
+			str += string.Format("Uid={0};Pwd={1};", Uid, Pwd);
 			if (DBName != null && DBName.Length > 0)
 			{
 				str += string.Format("Database={0};", DBName);
 			}
-			str += string.Format("Uid={0};Pwd={1};", Uid, Pwd);
-			if (Option != null && Option.Length > 0) str += Option;
+			if (Option != null && Option.Length > 0)
+			{
+				str += Option;
+			}
 
 			return str;
 		}
