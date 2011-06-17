@@ -53,6 +53,8 @@ namespace Apq.Windows.Forms.DockForms
 				}
 			}
 
+			tscbFile.Text = Apq.GlobalObject.XmlConfigChain[typeof(Apq.GlobalObject), "UILang"];
+
 			DataGridViewHelper.SetDefaultStyle(dataGridView1);
 			DataGridViewHelper.AddBehaivor(dataGridView1);
 		}
@@ -107,11 +109,13 @@ namespace Apq.Windows.Forms.DockForms
 		private void tsbApply_Click(object sender, EventArgs e)
 		{
 			tsbSave_Click(sender, e);
+
 			Apq.GlobalObject.UILang.FileName = "UILang\\" + FileName + ".xml";
 			Apq.GlobalObject.UILang.Load();
+			Apq.GlobalObject.XmlConfigChain[typeof(Apq.GlobalObject), "UILang"] = Apq.GlobalObject.UILang.FileName;
 
 			ImeForm dfParent = this.MdiParent as ImeForm;
-			if(dfParent!= null)
+			if (dfParent != null)
 			{
 				dfParent.SetUILang(Apq.GlobalObject.UILang);
 			}
