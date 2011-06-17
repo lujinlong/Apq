@@ -11,7 +11,6 @@ namespace Apq.UILang
 	public class UILangFile : UILang
 	{
 		private string _FileName = string.Empty;
-
 		/// <summary>
 		/// 获取或设置语言文件
 		/// </summary>
@@ -20,11 +19,7 @@ namespace Apq.UILang
 			get { return _FileName; }
 			set
 			{
-				if (System.IO.File.Exists(value))
-				{
-					_FileName = value;
-					_lst._UILang.ReadXml(_FileName);
-				}
+				_FileName = value;
 			}
 		}
 
@@ -37,7 +32,8 @@ namespace Apq.UILang
 			{
 				try
 				{
-					_lst._UILang.WriteXml(_FileName, System.Data.XmlWriteMode.IgnoreSchema);
+					_lst.Clear();
+					_lst._UILang.ReadXml(_FileName);
 				}
 				catch { }
 			}

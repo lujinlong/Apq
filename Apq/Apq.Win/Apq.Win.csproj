@@ -221,6 +221,12 @@
       <DependentUpon>AboutBox.cs</DependentUpon>
     </Compile>
     <Compile Include="Windows\Forms\Application.cs" />
+    <Compile Include="Windows\Forms\DockForms\UILangCfg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows\Forms\DockForms\UILangCfg.Designer.cs">
+      <DependentUpon>UILangCfg.cs</DependentUpon>
+    </Compile>
     <Compile Include="Windows\Forms\ImeForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -264,6 +270,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Windows\Forms\DockForm.resx">
       <DependentUpon>DockForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Windows\Forms\DockForms\UILangCfg.resx">
+      <DependentUpon>UILangCfg.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Windows\Forms\ImeForm.resx">
       <SubType>Designer</SubType>
