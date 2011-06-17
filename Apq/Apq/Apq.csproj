@@ -223,7 +223,7 @@
     <Compile Include="Xml\XmlDocument.cs" />
     <Compile Include="Apq\Char.cs" />
     <Compile Include="Apq\Convert.cs" />
-    <Compile Include="Data\Common\Common.cs" />
+    <Compile Include="Data\Common\DBProduct.cs" />
     <Compile Include="Data\Common\DbCommandHelper.cs" />
     <Compile Include="Data\Common\DbConnectionHelper.cs" />
     <Compile Include="Data\Common\DbParameterCollectionHelper.cs" />

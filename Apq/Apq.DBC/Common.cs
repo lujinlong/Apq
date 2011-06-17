@@ -5,6 +5,8 @@ using System.Text;
 using System.IO;
 using System.Configuration;
 using System.Data;
+using System.Data.Common;
+using Apq.Data.Common;
 
 namespace Apq.DBC
 {
@@ -87,62 +89,46 @@ namespace Apq.DBC
 				dr["DBConnectionString"] = sc.GetConnectionString();
 			}
 			*/
-			foreach (DataRow dr in _xsd.DBC.Rows)
+			foreach (Apq.DBC.XSD.DBCRow dr in _xsd.DBC.Rows)
 			{
-				Apq.ConnectionStrings.SQLServer.SqlConnection sc = new Apq.ConnectionStrings.SQLServer.SqlConnection();
-				/*
-				XSD.SqlInstanceRow sqlInstance = _xsd.SqlInstance.FindBySqlID(dr.SqlID);
-				sc.ServerName = sqlInstance.IP;
-				if (sqlInstance != null && sqlInstance.SqlPort > 0)
-				{
-					sc.ServerName += "," + sqlInstance.SqlPort;
-				}
-				*/
-				sc.ServerName = Apq.Convert.ChangeType<string>(dr["ServerName"]);
-				sc.DBName = Apq.Convert.ChangeType<string>(dr["DBName"]);
-				sc.Mirror = Apq.Convert.ChangeType<string>(dr["Mirror"]);
-				sc.UseTrusted = Apq.Convert.ChangeType<bool>(dr["UseTrusted"]);
-				sc.UserId = Apq.Convert.ChangeType<string>(dr["UserId"]);
-				sc.Pwd = Apq.Convert.ChangeType<string>(dr["PwdD"]);
-				sc.Option = Apq.Convert.ChangeType<string>(dr["Option"]);
-				dr["DBConnectionString"] = sc.GetConnectionString();
+				Apq.DBC.XSD.DBIRow drDBI = _xsd.DBI.FindByDBIID(dr.DBIID);
+				dr["DBConnectionString"] = Apq.ConnectionStrings.Common.GetConnectionString(
+					(DBProduct)drDBI.DBProduct,
+					drDBI.IP, drDBI.Port, dr.UserId, dr.PwdD, dr.DBName);
 			}
 		}
 
-		#region 获取连接字符串
+		#region 创建连接
 		/// <summary>
-		/// 获取数据库连接字符串
+		/// 创建数据库连接(类型)
 		/// </summary>
-		/// <returns></returns>
-		public static string GetDBConnectoinString(string DBName)
+		public static DbConnection CreateDbConnection(string DBName, ref DbConnection DbConnection)
 		{
-			string cs = string.Empty;
+			Apq.DBC.XSD.DBCRow dr = _xsd.DBC.FindByDBName(DBName);
+			Apq.DBC.XSD.DBIRow drDBI = _xsd.DBI.FindByDBIID(dr.DBIID);
+			string cs = Apq.Convert.ChangeType<string>(dr["DBConnectionString"]);
 
-			System.Data.DataRow[] drs = _xsd.DBC.Select(string.Format("DBName={0}", Apq.Data.SqlClient.Common.ConvertToSqlON(DBName)));
-			if (drs != null && drs.Length > 0)
+			switch (drDBI.DBProduct)
 			{
-				cs = drs[0]["DBConnectionString"].ToString();
+				case (int)DBProduct.MySql:
+					if (!(DbConnection is MySql.Data.MySqlClient.MySqlConnection))
+					{
+						Apq.Data.Common.DbConnectionHelper.Close(DbConnection);
+						DbConnection = new MySql.Data.MySqlClient.MySqlConnection();
+					}
+					break;
+				case (int)DBProduct.MSSql:
+				default:
+					if (!(DbConnection is System.Data.SqlClient.SqlConnection))
+					{
+						Apq.Data.Common.DbConnectionHelper.Close(DbConnection);
+						DbConnection = new System.Data.SqlClient.SqlConnection();
+					}
+					break;
 			}
 
-			return cs;
-		}
-
-		/// <summary>
-		/// 获取实例连接字符串(Apq管理器使用)
-		/// </summary>
-		/// <returns></returns>
-		[Obsolete("无需使用")]
-		public static string GetInstanceConnectoinString(string SQLName)
-		{
-			string cs = string.Empty;
-
-			System.Data.DataRow[] drs = _xsd.SqlInstance.Select(string.Format("SqlName={0}", Apq.Data.SqlClient.Common.ConvertToSqlON(SQLName)));
-			if (drs != null && drs.Length > 0)
-			{
-				cs = drs[0]["DBConnectionString"].ToString();
-			}
-
-			return cs;
+			DbConnection.ConnectionString = cs;
+			return DbConnection;
 		}
 		#endregion
 	}

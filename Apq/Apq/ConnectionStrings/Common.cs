@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Apq.Data.Common;
 
 namespace Apq.ConnectionStrings
 {
@@ -43,20 +44,5 @@ namespace Apq.ConnectionStrings
 			return str;
 		}
 		#endregion
-	}
-
-	/// <summary>
-	/// 数据库产品
-	/// </summary>
-	public enum DBProduct
-	{
-		/// <summary>
-		/// MSSql
-		/// </summary>
-		MSSql = 1,
-		/// <summary>
-		/// MySql
-		/// </summary>
-		MySql = 2,
 	}
 }
