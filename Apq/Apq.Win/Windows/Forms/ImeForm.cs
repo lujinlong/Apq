@@ -33,6 +33,7 @@ namespace Apq.Windows.Forms
 
 		private void ImeForm_Load(object sender, EventArgs e)
 		{
+			SetUILang(Apq.GlobalObject.UILang);
 			Apq.Windows.Controls.Control.AddImeHandler(this);
 
 			Apq.Interfaces.IDataShow DataShowForm = this as Apq.Interfaces.IDataShow;
@@ -40,6 +41,13 @@ namespace Apq.Windows.Forms
 			DataShowForm.InitData(FormDataSet);
 			DataShowForm.LoadData(FormDataSet);
 			DataShowForm.ShowData();
+		}
+
+		/// <summary>
+		/// 设置界面语言(由子类实现具体方法,基类Load事件自动调用)
+		/// </summary>
+		public virtual void SetUILang(Apq.UILang.UILang UILang)
+		{
 		}
 
 		#region MainBackThread

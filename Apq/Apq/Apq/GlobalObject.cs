@@ -207,5 +207,26 @@ namespace Apq
 			}
 		}
 		#endregion
+
+		#region UILang
+		private static Apq.UILang.UILangFile _UILang;
+		/// <summary>
+		/// 获取语言设置
+		/// </summary>
+		public static Apq.UILang.UILangFile UILang
+		{
+			get
+			{
+				if (_UILang == null)
+				{
+					_UILang = new Apq.UILang.UILangFile();
+
+					// 从文档加载数据
+					_UILang.FileName = GlobalObject.XmlConfigChain[typeof(GlobalObject), "UILang"];
+				}
+				return _UILang;
+			}
+		}
+		#endregion
 	}
 }

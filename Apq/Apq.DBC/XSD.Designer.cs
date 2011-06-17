@@ -25,17 +25,7 @@ namespace Apq.DBC {
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.DataSet")]
     public partial class XSD : global::System.Data.DataSet {
         
-        private ComputerDataTable tableComputer;
-        
         private DBCDataTable tableDBC;
-        
-        private DBCTypeDataTable tableDBCType;
-        
-        private ComputerTypeDataTable tableComputerType;
-        
-        private DBIDataTable tableDBI;
-        
-        private DBProductDataTable tableDBProduct;
         
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
@@ -63,23 +53,8 @@ namespace Apq.DBC {
             if ((this.DetermineSchemaSerializationMode(info, context) == global::System.Data.SchemaSerializationMode.IncludeSchema)) {
                 global::System.Data.DataSet ds = new global::System.Data.DataSet();
                 ds.ReadXmlSchema(new global::System.Xml.XmlTextReader(new global::System.IO.StringReader(strSchema)));
-                if ((ds.Tables["Computer"] != null)) {
-                    base.Tables.Add(new ComputerDataTable(ds.Tables["Computer"]));
-                }
                 if ((ds.Tables["DBC"] != null)) {
                     base.Tables.Add(new DBCDataTable(ds.Tables["DBC"]));
-                }
-                if ((ds.Tables["DBCType"] != null)) {
-                    base.Tables.Add(new DBCTypeDataTable(ds.Tables["DBCType"]));
-                }
-                if ((ds.Tables["ComputerType"] != null)) {
-                    base.Tables.Add(new ComputerTypeDataTable(ds.Tables["ComputerType"]));
-                }
-                if ((ds.Tables["DBI"] != null)) {
-                    base.Tables.Add(new DBIDataTable(ds.Tables["DBI"]));
-                }
-                if ((ds.Tables["DBProduct"] != null)) {
-                    base.Tables.Add(new DBProductDataTable(ds.Tables["DBProduct"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -102,54 +77,9 @@ namespace Apq.DBC {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Browsable(false)]
         [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public ComputerDataTable Computer {
-            get {
-                return this.tableComputer;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.ComponentModel.Browsable(false)]
-        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
         public DBCDataTable DBC {
             get {
                 return this.tableDBC;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.ComponentModel.Browsable(false)]
-        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public DBCTypeDataTable DBCType {
-            get {
-                return this.tableDBCType;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.ComponentModel.Browsable(false)]
-        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public ComputerTypeDataTable ComputerType {
-            get {
-                return this.tableComputerType;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.ComponentModel.Browsable(false)]
-        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public DBIDataTable DBI {
-            get {
-                return this.tableDBI;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.ComponentModel.Browsable(false)]
-        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public DBProductDataTable DBProduct {
-            get {
-                return this.tableDBProduct;
             }
         }
         
@@ -212,23 +142,8 @@ namespace Apq.DBC {
                 this.Reset();
                 global::System.Data.DataSet ds = new global::System.Data.DataSet();
                 ds.ReadXml(reader);
-                if ((ds.Tables["Computer"] != null)) {
-                    base.Tables.Add(new ComputerDataTable(ds.Tables["Computer"]));
-                }
                 if ((ds.Tables["DBC"] != null)) {
                     base.Tables.Add(new DBCDataTable(ds.Tables["DBC"]));
-                }
-                if ((ds.Tables["DBCType"] != null)) {
-                    base.Tables.Add(new DBCTypeDataTable(ds.Tables["DBCType"]));
-                }
-                if ((ds.Tables["ComputerType"] != null)) {
-                    base.Tables.Add(new ComputerTypeDataTable(ds.Tables["ComputerType"]));
-                }
-                if ((ds.Tables["DBI"] != null)) {
-                    base.Tables.Add(new DBIDataTable(ds.Tables["DBI"]));
-                }
-                if ((ds.Tables["DBProduct"] != null)) {
-                    base.Tables.Add(new DBProductDataTable(ds.Tables["DBProduct"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -260,40 +175,10 @@ namespace Apq.DBC {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         internal void InitVars(bool initTable) {
-            this.tableComputer = ((ComputerDataTable)(base.Tables["Computer"]));
-            if ((initTable == true)) {
-                if ((this.tableComputer != null)) {
-                    this.tableComputer.InitVars();
-                }
-            }
             this.tableDBC = ((DBCDataTable)(base.Tables["DBC"]));
             if ((initTable == true)) {
                 if ((this.tableDBC != null)) {
                     this.tableDBC.InitVars();
-                }
-            }
-            this.tableDBCType = ((DBCTypeDataTable)(base.Tables["DBCType"]));
-            if ((initTable == true)) {
-                if ((this.tableDBCType != null)) {
-                    this.tableDBCType.InitVars();
-                }
-            }
-            this.tableComputerType = ((ComputerTypeDataTable)(base.Tables["ComputerType"]));
-            if ((initTable == true)) {
-                if ((this.tableComputerType != null)) {
-                    this.tableComputerType.InitVars();
-                }
-            }
-            this.tableDBI = ((DBIDataTable)(base.Tables["DBI"]));
-            if ((initTable == true)) {
-                if ((this.tableDBI != null)) {
-                    this.tableDBI.InitVars();
-                }
-            }
-            this.tableDBProduct = ((DBProductDataTable)(base.Tables["DBProduct"]));
-            if ((initTable == true)) {
-                if ((this.tableDBProduct != null)) {
-                    this.tableDBProduct.InitVars();
                 }
             }
         }
@@ -305,47 +190,12 @@ namespace Apq.DBC {
             this.Namespace = "http://tempuri.org/XSD.xsd";
             this.EnforceConstraints = true;
             this.SchemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
-            this.tableComputer = new ComputerDataTable();
-            base.Tables.Add(this.tableComputer);
             this.tableDBC = new DBCDataTable();
             base.Tables.Add(this.tableDBC);
-            this.tableDBCType = new DBCTypeDataTable();
-            base.Tables.Add(this.tableDBCType);
-            this.tableComputerType = new ComputerTypeDataTable();
-            base.Tables.Add(this.tableComputerType);
-            this.tableDBI = new DBIDataTable();
-            base.Tables.Add(this.tableDBI);
-            this.tableDBProduct = new DBProductDataTable();
-            base.Tables.Add(this.tableDBProduct);
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        private bool ShouldSerializeComputer() {
-            return false;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         private bool ShouldSerializeDBC() {
-            return false;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        private bool ShouldSerializeDBCType() {
-            return false;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        private bool ShouldSerializeComputerType() {
-            return false;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        private bool ShouldSerializeDBI() {
-            return false;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        private bool ShouldSerializeDBProduct() {
             return false;
         }
         
@@ -402,276 +252,7 @@ namespace Apq.DBC {
             return type;
         }
         
-        public delegate void ComputerRowChangeEventHandler(object sender, ComputerRowChangeEvent e);
-        
         public delegate void DBCRowChangeEventHandler(object sender, DBCRowChangeEvent e);
-        
-        public delegate void DBCTypeRowChangeEventHandler(object sender, DBCTypeRowChangeEvent e);
-        
-        public delegate void ComputerTypeRowChangeEventHandler(object sender, ComputerTypeRowChangeEvent e);
-        
-        public delegate void DBIRowChangeEventHandler(object sender, DBIRowChangeEvent e);
-        
-        public delegate void DBProductRowChangeEventHandler(object sender, DBProductRowChangeEvent e);
-        
-        /// <summary>
-        ///Represents the strongly named DataTable class.
-        ///</summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
-        [global::System.Serializable()]
-        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class ComputerDataTable : global::System.Data.TypedTableBase<ComputerRow> {
-            
-            private global::System.Data.DataColumn columnComputerID;
-            
-            private global::System.Data.DataColumn columnComputerName;
-            
-            private global::System.Data.DataColumn columnComputerType;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public ComputerDataTable() {
-                this.TableName = "Computer";
-                this.BeginInit();
-                this.InitClass();
-                this.EndInit();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            internal ComputerDataTable(global::System.Data.DataTable table) {
-                this.TableName = table.TableName;
-                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
-                    this.CaseSensitive = table.CaseSensitive;
-                }
-                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
-                    this.Locale = table.Locale;
-                }
-                if ((table.Namespace != table.DataSet.Namespace)) {
-                    this.Namespace = table.Namespace;
-                }
-                this.Prefix = table.Prefix;
-                this.MinimumCapacity = table.MinimumCapacity;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected ComputerDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
-                    base(info, context) {
-                this.InitVars();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn ComputerIDColumn {
-                get {
-                    return this.columnComputerID;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn ComputerNameColumn {
-                get {
-                    return this.columnComputerName;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn ComputerTypeColumn {
-                get {
-                    return this.columnComputerType;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.ComponentModel.Browsable(false)]
-            public int Count {
-                get {
-                    return this.Rows.Count;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public ComputerRow this[int index] {
-                get {
-                    return ((ComputerRow)(this.Rows[index]));
-                }
-            }
-            
-            public event ComputerRowChangeEventHandler ComputerRowChanging;
-            
-            public event ComputerRowChangeEventHandler ComputerRowChanged;
-            
-            public event ComputerRowChangeEventHandler ComputerRowDeleting;
-            
-            public event ComputerRowChangeEventHandler ComputerRowDeleted;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void AddComputerRow(ComputerRow row) {
-                this.Rows.Add(row);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public ComputerRow AddComputerRow(int ComputerID, string ComputerName, int ComputerType) {
-                ComputerRow rowComputerRow = ((ComputerRow)(this.NewRow()));
-                object[] columnValuesArray = new object[] {
-                        ComputerID,
-                        ComputerName,
-                        ComputerType};
-                rowComputerRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowComputerRow);
-                return rowComputerRow;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public override global::System.Data.DataTable Clone() {
-                ComputerDataTable cln = ((ComputerDataTable)(base.Clone()));
-                cln.InitVars();
-                return cln;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected override global::System.Data.DataTable CreateInstance() {
-                return new ComputerDataTable();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            internal void InitVars() {
-                this.columnComputerID = base.Columns["ComputerID"];
-                this.columnComputerName = base.Columns["ComputerName"];
-                this.columnComputerType = base.Columns["ComputerType"];
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            private void InitClass() {
-                this.columnComputerID = new global::System.Data.DataColumn("ComputerID", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnComputerID);
-                this.columnComputerName = new global::System.Data.DataColumn("ComputerName", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnComputerName);
-                this.columnComputerType = new global::System.Data.DataColumn("ComputerType", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnComputerType);
-                this.columnComputerID.AllowDBNull = false;
-                this.columnComputerID.Caption = "服务器";
-                this.columnComputerID.DefaultValue = ((int)(0));
-                this.columnComputerName.AllowDBNull = false;
-                this.columnComputerName.Caption = "服务器名称";
-                this.columnComputerName.DefaultValue = ((string)("新建服务器"));
-                this.columnComputerName.MaxLength = 50;
-                this.columnComputerType.AllowDBNull = false;
-                this.columnComputerType.Caption = "服务器类型";
-                this.columnComputerType.DefaultValue = ((int)(1));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public ComputerRow NewComputerRow() {
-                return ((ComputerRow)(this.NewRow()));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new ComputerRow(builder);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected override global::System.Type GetRowType() {
-                return typeof(ComputerRow);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowChanged(e);
-                if ((this.ComputerRowChanged != null)) {
-                    this.ComputerRowChanged(this, new ComputerRowChangeEvent(((ComputerRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowChanging(e);
-                if ((this.ComputerRowChanging != null)) {
-                    this.ComputerRowChanging(this, new ComputerRowChangeEvent(((ComputerRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowDeleted(e);
-                if ((this.ComputerRowDeleted != null)) {
-                    this.ComputerRowDeleted(this, new ComputerRowChangeEvent(((ComputerRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowDeleting(e);
-                if ((this.ComputerRowDeleting != null)) {
-                    this.ComputerRowDeleting(this, new ComputerRowChangeEvent(((ComputerRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void RemoveComputerRow(ComputerRow row) {
-                this.Rows.Remove(row);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
-                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
-                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                XSD ds = new XSD();
-                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
-                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
-                any1.MinOccurs = new decimal(0);
-                any1.MaxOccurs = decimal.MaxValue;
-                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
-                sequence.Items.Add(any1);
-                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
-                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
-                any2.MinOccurs = new decimal(1);
-                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
-                sequence.Items.Add(any2);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
-                attribute1.Name = "namespace";
-                attribute1.FixedValue = ds.Namespace;
-                type.Attributes.Add(attribute1);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
-                attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "ComputerDataTable";
-                type.Attributes.Add(attribute2);
-                type.Particle = sequence;
-                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
-                if (xs.Contains(dsSchema.TargetNamespace)) {
-                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
-                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
-                    try {
-                        global::System.Xml.Schema.XmlSchema schema = null;
-                        dsSchema.Write(s1);
-                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
-                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
-                            s2.SetLength(0);
-                            schema.Write(s2);
-                            if ((s1.Length == s2.Length)) {
-                                s1.Position = 0;
-                                s2.Position = 0;
-                                for (; ((s1.Position != s1.Length) 
-                                            && (s1.ReadByte() == s2.ReadByte())); ) {
-                                    ;
-                                }
-                                if ((s1.Position == s1.Length)) {
-                                    return type;
-                                }
-                            }
-                        }
-                    }
-                    finally {
-                        if ((s1 != null)) {
-                            s1.Close();
-                        }
-                        if ((s2 != null)) {
-                            s2.Close();
-                        }
-                    }
-                }
-                xs.Add(dsSchema);
-                return type;
-            }
-        }
         
         /// <summary>
         ///Represents the strongly named DataTable class.
@@ -697,11 +278,17 @@ namespace Apq.DBC {
             
             private global::System.Data.DataColumn columnPwdC;
             
+            private global::System.Data.DataColumn columnPwdD;
+            
             private global::System.Data.DataColumn columnMirror;
             
             private global::System.Data.DataColumn columnOption;
             
-            private global::System.Data.DataColumn columnPwdD;
+            private global::System.Data.DataColumn columnIP;
+            
+            private global::System.Data.DataColumn columnPort;
+            
+            private global::System.Data.DataColumn columnDBProduct;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public DBCDataTable() {
@@ -790,6 +377,13 @@ namespace Apq.DBC {
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn PwdDColumn {
+                get {
+                    return this.columnPwdD;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public global::System.Data.DataColumn MirrorColumn {
                 get {
                     return this.columnMirror;
@@ -804,9 +398,23 @@ namespace Apq.DBC {
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn PwdDColumn {
+            public global::System.Data.DataColumn IPColumn {
                 get {
-                    return this.columnPwdD;
+                    return this.columnIP;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn PortColumn {
+                get {
+                    return this.columnPort;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn DBProductColumn {
+                get {
+                    return this.columnDBProduct;
                 }
             }
             
@@ -839,7 +447,7 @@ namespace Apq.DBC {
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public DBCRow AddDBCRow(int ComputerID, int DBIID, int DBCID, int DBCUseType, bool UseTrusted, string DBName, string UserId, string PwdC, string Mirror, string Option, string PwdD) {
+            public DBCRow AddDBCRow(int ComputerID, int DBIID, int DBCID, int DBCUseType, bool UseTrusted, string DBName, string UserId, string PwdC, string PwdD, string Mirror, string Option, string IP, int Port, int DBProduct) {
                 DBCRow rowDBCRow = ((DBCRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         ComputerID,
@@ -850,9 +458,12 @@ namespace Apq.DBC {
                         DBName,
                         UserId,
                         PwdC,
+                        PwdD,
                         Mirror,
                         Option,
-                        PwdD};
+                        IP,
+                        Port,
+                        DBProduct};
                 rowDBCRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowDBCRow);
                 return rowDBCRow;
@@ -880,9 +491,12 @@ namespace Apq.DBC {
                 this.columnDBName = base.Columns["DBName"];
                 this.columnUserId = base.Columns["UserId"];
                 this.columnPwdC = base.Columns["PwdC"];
+                this.columnPwdD = base.Columns["PwdD"];
                 this.columnMirror = base.Columns["Mirror"];
                 this.columnOption = base.Columns["Option"];
-                this.columnPwdD = base.Columns["PwdD"];
+                this.columnIP = base.Columns["IP"];
+                this.columnPort = base.Columns["Port"];
+                this.columnDBProduct = base.Columns["DBProduct"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -903,18 +517,21 @@ namespace Apq.DBC {
                 base.Columns.Add(this.columnUserId);
                 this.columnPwdC = new global::System.Data.DataColumn("PwdC", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnPwdC);
+                this.columnPwdD = new global::System.Data.DataColumn("PwdD", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPwdD);
                 this.columnMirror = new global::System.Data.DataColumn("Mirror", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnMirror);
                 this.columnOption = new global::System.Data.DataColumn("Option", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnOption);
-                this.columnPwdD = new global::System.Data.DataColumn("PwdD", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnPwdD);
+                this.columnIP = new global::System.Data.DataColumn("IP", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnIP);
+                this.columnPort = new global::System.Data.DataColumn("Port", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPort);
+                this.columnDBProduct = new global::System.Data.DataColumn("DBProduct", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDBProduct);
                 this.columnComputerID.DefaultValue = ((int)(0));
-                this.columnDBIID.AllowDBNull = false;
                 this.columnDBIID.DefaultValue = ((int)(0));
-                this.columnDBCID.AllowDBNull = false;
                 this.columnDBCID.DefaultValue = ((int)(0));
-                this.columnDBCUseType.AllowDBNull = false;
                 this.columnDBCUseType.Caption = "连接用途";
                 this.columnDBCUseType.DefaultValue = ((int)(1));
                 this.columnUseTrusted.DefaultValue = ((bool)(false));
@@ -924,10 +541,20 @@ namespace Apq.DBC {
                 this.columnUserId.AllowDBNull = false;
                 this.columnUserId.DefaultValue = ((string)("sa"));
                 this.columnUserId.MaxLength = 50;
+                this.columnPwdC.AllowDBNull = false;
                 this.columnPwdC.DefaultValue = ((string)(""));
                 this.columnPwdC.MaxLength = 500;
                 this.columnMirror.MaxLength = 1000;
                 this.columnOption.MaxLength = 1000;
+                this.columnIP.AllowDBNull = false;
+                this.columnIP.DefaultValue = ((string)(""));
+                this.columnIP.MaxLength = 50;
+                this.columnPort.AllowDBNull = false;
+                this.columnPort.Caption = "实例端口";
+                this.columnPort.DefaultValue = ((int)(1433));
+                this.columnDBProduct.AllowDBNull = false;
+                this.columnDBProduct.Caption = "实例类型";
+                this.columnDBProduct.DefaultValue = ((int)(1));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1046,1169 +673,6 @@ namespace Apq.DBC {
         }
         
         /// <summary>
-        ///Represents the strongly named DataTable class.
-        ///</summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
-        [global::System.Serializable()]
-        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class DBCTypeDataTable : global::System.Data.TypedTableBase<DBCTypeRow> {
-            
-            private global::System.Data.DataColumn columnDBCType;
-            
-            private global::System.Data.DataColumn columnTypeCaption;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public DBCTypeDataTable() {
-                this.TableName = "DBCType";
-                this.BeginInit();
-                this.InitClass();
-                this.EndInit();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            internal DBCTypeDataTable(global::System.Data.DataTable table) {
-                this.TableName = table.TableName;
-                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
-                    this.CaseSensitive = table.CaseSensitive;
-                }
-                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
-                    this.Locale = table.Locale;
-                }
-                if ((table.Namespace != table.DataSet.Namespace)) {
-                    this.Namespace = table.Namespace;
-                }
-                this.Prefix = table.Prefix;
-                this.MinimumCapacity = table.MinimumCapacity;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected DBCTypeDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
-                    base(info, context) {
-                this.InitVars();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn DBCTypeColumn {
-                get {
-                    return this.columnDBCType;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn TypeCaptionColumn {
-                get {
-                    return this.columnTypeCaption;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.ComponentModel.Browsable(false)]
-            public int Count {
-                get {
-                    return this.Rows.Count;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public DBCTypeRow this[int index] {
-                get {
-                    return ((DBCTypeRow)(this.Rows[index]));
-                }
-            }
-            
-            public event DBCTypeRowChangeEventHandler DBCTypeRowChanging;
-            
-            public event DBCTypeRowChangeEventHandler DBCTypeRowChanged;
-            
-            public event DBCTypeRowChangeEventHandler DBCTypeRowDeleting;
-            
-            public event DBCTypeRowChangeEventHandler DBCTypeRowDeleted;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void AddDBCTypeRow(DBCTypeRow row) {
-                this.Rows.Add(row);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public DBCTypeRow AddDBCTypeRow(int DBCType, string TypeCaption) {
-                DBCTypeRow rowDBCTypeRow = ((DBCTypeRow)(this.NewRow()));
-                object[] columnValuesArray = new object[] {
-                        DBCType,
-                        TypeCaption};
-                rowDBCTypeRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowDBCTypeRow);
-                return rowDBCTypeRow;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public DBCTypeRow FindByDBCType(int DBCType) {
-                return ((DBCTypeRow)(this.Rows.Find(new object[] {
-                            DBCType})));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public override global::System.Data.DataTable Clone() {
-                DBCTypeDataTable cln = ((DBCTypeDataTable)(base.Clone()));
-                cln.InitVars();
-                return cln;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected override global::System.Data.DataTable CreateInstance() {
-                return new DBCTypeDataTable();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            internal void InitVars() {
-                this.columnDBCType = base.Columns["DBCType"];
-                this.columnTypeCaption = base.Columns["TypeCaption"];
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            private void InitClass() {
-                this.columnDBCType = new global::System.Data.DataColumn("DBCType", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnDBCType);
-                this.columnTypeCaption = new global::System.Data.DataColumn("TypeCaption", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnTypeCaption);
-                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
-                                this.columnDBCType}, true));
-                this.columnDBCType.AllowDBNull = false;
-                this.columnDBCType.Unique = true;
-                this.columnDBCType.Caption = "数据库类型";
-                this.columnTypeCaption.AllowDBNull = false;
-                this.columnTypeCaption.Caption = "类型名称";
-                this.columnTypeCaption.MaxLength = 50;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public DBCTypeRow NewDBCTypeRow() {
-                return ((DBCTypeRow)(this.NewRow()));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new DBCTypeRow(builder);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected override global::System.Type GetRowType() {
-                return typeof(DBCTypeRow);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowChanged(e);
-                if ((this.DBCTypeRowChanged != null)) {
-                    this.DBCTypeRowChanged(this, new DBCTypeRowChangeEvent(((DBCTypeRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowChanging(e);
-                if ((this.DBCTypeRowChanging != null)) {
-                    this.DBCTypeRowChanging(this, new DBCTypeRowChangeEvent(((DBCTypeRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowDeleted(e);
-                if ((this.DBCTypeRowDeleted != null)) {
-                    this.DBCTypeRowDeleted(this, new DBCTypeRowChangeEvent(((DBCTypeRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowDeleting(e);
-                if ((this.DBCTypeRowDeleting != null)) {
-                    this.DBCTypeRowDeleting(this, new DBCTypeRowChangeEvent(((DBCTypeRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void RemoveDBCTypeRow(DBCTypeRow row) {
-                this.Rows.Remove(row);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
-                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
-                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                XSD ds = new XSD();
-                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
-                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
-                any1.MinOccurs = new decimal(0);
-                any1.MaxOccurs = decimal.MaxValue;
-                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
-                sequence.Items.Add(any1);
-                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
-                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
-                any2.MinOccurs = new decimal(1);
-                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
-                sequence.Items.Add(any2);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
-                attribute1.Name = "namespace";
-                attribute1.FixedValue = ds.Namespace;
-                type.Attributes.Add(attribute1);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
-                attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "DBCTypeDataTable";
-                type.Attributes.Add(attribute2);
-                type.Particle = sequence;
-                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
-                if (xs.Contains(dsSchema.TargetNamespace)) {
-                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
-                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
-                    try {
-                        global::System.Xml.Schema.XmlSchema schema = null;
-                        dsSchema.Write(s1);
-                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
-                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
-                            s2.SetLength(0);
-                            schema.Write(s2);
-                            if ((s1.Length == s2.Length)) {
-                                s1.Position = 0;
-                                s2.Position = 0;
-                                for (; ((s1.Position != s1.Length) 
-                                            && (s1.ReadByte() == s2.ReadByte())); ) {
-                                    ;
-                                }
-                                if ((s1.Position == s1.Length)) {
-                                    return type;
-                                }
-                            }
-                        }
-                    }
-                    finally {
-                        if ((s1 != null)) {
-                            s1.Close();
-                        }
-                        if ((s2 != null)) {
-                            s2.Close();
-                        }
-                    }
-                }
-                xs.Add(dsSchema);
-                return type;
-            }
-        }
-        
-        /// <summary>
-        ///Represents the strongly named DataTable class.
-        ///</summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
-        [global::System.Serializable()]
-        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class ComputerTypeDataTable : global::System.Data.TypedTableBase<ComputerTypeRow> {
-            
-            private global::System.Data.DataColumn columnComputerType;
-            
-            private global::System.Data.DataColumn columnTypeCaption;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public ComputerTypeDataTable() {
-                this.TableName = "ComputerType";
-                this.BeginInit();
-                this.InitClass();
-                this.EndInit();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            internal ComputerTypeDataTable(global::System.Data.DataTable table) {
-                this.TableName = table.TableName;
-                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
-                    this.CaseSensitive = table.CaseSensitive;
-                }
-                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
-                    this.Locale = table.Locale;
-                }
-                if ((table.Namespace != table.DataSet.Namespace)) {
-                    this.Namespace = table.Namespace;
-                }
-                this.Prefix = table.Prefix;
-                this.MinimumCapacity = table.MinimumCapacity;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected ComputerTypeDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
-                    base(info, context) {
-                this.InitVars();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn ComputerTypeColumn {
-                get {
-                    return this.columnComputerType;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn TypeCaptionColumn {
-                get {
-                    return this.columnTypeCaption;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.ComponentModel.Browsable(false)]
-            public int Count {
-                get {
-                    return this.Rows.Count;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public ComputerTypeRow this[int index] {
-                get {
-                    return ((ComputerTypeRow)(this.Rows[index]));
-                }
-            }
-            
-            public event ComputerTypeRowChangeEventHandler ComputerTypeRowChanging;
-            
-            public event ComputerTypeRowChangeEventHandler ComputerTypeRowChanged;
-            
-            public event ComputerTypeRowChangeEventHandler ComputerTypeRowDeleting;
-            
-            public event ComputerTypeRowChangeEventHandler ComputerTypeRowDeleted;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void AddComputerTypeRow(ComputerTypeRow row) {
-                this.Rows.Add(row);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public ComputerTypeRow AddComputerTypeRow(int ComputerType, string TypeCaption) {
-                ComputerTypeRow rowComputerTypeRow = ((ComputerTypeRow)(this.NewRow()));
-                object[] columnValuesArray = new object[] {
-                        ComputerType,
-                        TypeCaption};
-                rowComputerTypeRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowComputerTypeRow);
-                return rowComputerTypeRow;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public ComputerTypeRow FindByComputerType(int ComputerType) {
-                return ((ComputerTypeRow)(this.Rows.Find(new object[] {
-                            ComputerType})));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public override global::System.Data.DataTable Clone() {
-                ComputerTypeDataTable cln = ((ComputerTypeDataTable)(base.Clone()));
-                cln.InitVars();
-                return cln;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected override global::System.Data.DataTable CreateInstance() {
-                return new ComputerTypeDataTable();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            internal void InitVars() {
-                this.columnComputerType = base.Columns["ComputerType"];
-                this.columnTypeCaption = base.Columns["TypeCaption"];
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            private void InitClass() {
-                this.columnComputerType = new global::System.Data.DataColumn("ComputerType", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnComputerType);
-                this.columnTypeCaption = new global::System.Data.DataColumn("TypeCaption", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnTypeCaption);
-                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
-                                this.columnComputerType}, true));
-                this.columnComputerType.AllowDBNull = false;
-                this.columnComputerType.Unique = true;
-                this.columnComputerType.Caption = "服务器类型";
-                this.columnTypeCaption.AllowDBNull = false;
-                this.columnTypeCaption.Caption = "类型名称";
-                this.columnTypeCaption.MaxLength = 50;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public ComputerTypeRow NewComputerTypeRow() {
-                return ((ComputerTypeRow)(this.NewRow()));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new ComputerTypeRow(builder);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected override global::System.Type GetRowType() {
-                return typeof(ComputerTypeRow);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowChanged(e);
-                if ((this.ComputerTypeRowChanged != null)) {
-                    this.ComputerTypeRowChanged(this, new ComputerTypeRowChangeEvent(((ComputerTypeRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowChanging(e);
-                if ((this.ComputerTypeRowChanging != null)) {
-                    this.ComputerTypeRowChanging(this, new ComputerTypeRowChangeEvent(((ComputerTypeRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowDeleted(e);
-                if ((this.ComputerTypeRowDeleted != null)) {
-                    this.ComputerTypeRowDeleted(this, new ComputerTypeRowChangeEvent(((ComputerTypeRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowDeleting(e);
-                if ((this.ComputerTypeRowDeleting != null)) {
-                    this.ComputerTypeRowDeleting(this, new ComputerTypeRowChangeEvent(((ComputerTypeRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void RemoveComputerTypeRow(ComputerTypeRow row) {
-                this.Rows.Remove(row);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
-                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
-                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                XSD ds = new XSD();
-                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
-                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
-                any1.MinOccurs = new decimal(0);
-                any1.MaxOccurs = decimal.MaxValue;
-                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
-                sequence.Items.Add(any1);
-                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
-                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
-                any2.MinOccurs = new decimal(1);
-                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
-                sequence.Items.Add(any2);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
-                attribute1.Name = "namespace";
-                attribute1.FixedValue = ds.Namespace;
-                type.Attributes.Add(attribute1);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
-                attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "ComputerTypeDataTable";
-                type.Attributes.Add(attribute2);
-                type.Particle = sequence;
-                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
-                if (xs.Contains(dsSchema.TargetNamespace)) {
-                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
-                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
-                    try {
-                        global::System.Xml.Schema.XmlSchema schema = null;
-                        dsSchema.Write(s1);
-                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
-                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
-                            s2.SetLength(0);
-                            schema.Write(s2);
-                            if ((s1.Length == s2.Length)) {
-                                s1.Position = 0;
-                                s2.Position = 0;
-                                for (; ((s1.Position != s1.Length) 
-                                            && (s1.ReadByte() == s2.ReadByte())); ) {
-                                    ;
-                                }
-                                if ((s1.Position == s1.Length)) {
-                                    return type;
-                                }
-                            }
-                        }
-                    }
-                    finally {
-                        if ((s1 != null)) {
-                            s1.Close();
-                        }
-                        if ((s2 != null)) {
-                            s2.Close();
-                        }
-                    }
-                }
-                xs.Add(dsSchema);
-                return type;
-            }
-        }
-        
-        /// <summary>
-        ///Represents the strongly named DataTable class.
-        ///</summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
-        [global::System.Serializable()]
-        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class DBIDataTable : global::System.Data.TypedTableBase<DBIRow> {
-            
-            private global::System.Data.DataColumn columnComputerID;
-            
-            private global::System.Data.DataColumn columnDBIID;
-            
-            private global::System.Data.DataColumn columnDBIName;
-            
-            private global::System.Data.DataColumn columnParentID;
-            
-            private global::System.Data.DataColumn columnDBProduct;
-            
-            private global::System.Data.DataColumn columnIP;
-            
-            private global::System.Data.DataColumn columnPort;
-            
-            private global::System.Data.DataColumn columnUserId;
-            
-            private global::System.Data.DataColumn columnPwdC;
-            
-            private global::System.Data.DataColumn columnPwdD;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public DBIDataTable() {
-                this.TableName = "DBI";
-                this.BeginInit();
-                this.InitClass();
-                this.EndInit();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            internal DBIDataTable(global::System.Data.DataTable table) {
-                this.TableName = table.TableName;
-                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
-                    this.CaseSensitive = table.CaseSensitive;
-                }
-                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
-                    this.Locale = table.Locale;
-                }
-                if ((table.Namespace != table.DataSet.Namespace)) {
-                    this.Namespace = table.Namespace;
-                }
-                this.Prefix = table.Prefix;
-                this.MinimumCapacity = table.MinimumCapacity;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected DBIDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
-                    base(info, context) {
-                this.InitVars();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn ComputerIDColumn {
-                get {
-                    return this.columnComputerID;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn DBIIDColumn {
-                get {
-                    return this.columnDBIID;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn DBINameColumn {
-                get {
-                    return this.columnDBIName;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn ParentIDColumn {
-                get {
-                    return this.columnParentID;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn DBProductColumn {
-                get {
-                    return this.columnDBProduct;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn IPColumn {
-                get {
-                    return this.columnIP;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn PortColumn {
-                get {
-                    return this.columnPort;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn UserIdColumn {
-                get {
-                    return this.columnUserId;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn PwdCColumn {
-                get {
-                    return this.columnPwdC;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn PwdDColumn {
-                get {
-                    return this.columnPwdD;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.ComponentModel.Browsable(false)]
-            public int Count {
-                get {
-                    return this.Rows.Count;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public DBIRow this[int index] {
-                get {
-                    return ((DBIRow)(this.Rows[index]));
-                }
-            }
-            
-            public event DBIRowChangeEventHandler DBIRowChanging;
-            
-            public event DBIRowChangeEventHandler DBIRowChanged;
-            
-            public event DBIRowChangeEventHandler DBIRowDeleting;
-            
-            public event DBIRowChangeEventHandler DBIRowDeleted;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void AddDBIRow(DBIRow row) {
-                this.Rows.Add(row);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public DBIRow AddDBIRow(int ComputerID, int DBIID, string DBIName, int ParentID, int DBProduct, string IP, int Port, string UserId, string PwdC, string PwdD) {
-                DBIRow rowDBIRow = ((DBIRow)(this.NewRow()));
-                object[] columnValuesArray = new object[] {
-                        ComputerID,
-                        DBIID,
-                        DBIName,
-                        ParentID,
-                        DBProduct,
-                        IP,
-                        Port,
-                        UserId,
-                        PwdC,
-                        PwdD};
-                rowDBIRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowDBIRow);
-                return rowDBIRow;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public override global::System.Data.DataTable Clone() {
-                DBIDataTable cln = ((DBIDataTable)(base.Clone()));
-                cln.InitVars();
-                return cln;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected override global::System.Data.DataTable CreateInstance() {
-                return new DBIDataTable();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            internal void InitVars() {
-                this.columnComputerID = base.Columns["ComputerID"];
-                this.columnDBIID = base.Columns["DBIID"];
-                this.columnDBIName = base.Columns["DBIName"];
-                this.columnParentID = base.Columns["ParentID"];
-                this.columnDBProduct = base.Columns["DBProduct"];
-                this.columnIP = base.Columns["IP"];
-                this.columnPort = base.Columns["Port"];
-                this.columnUserId = base.Columns["UserId"];
-                this.columnPwdC = base.Columns["PwdC"];
-                this.columnPwdD = base.Columns["PwdD"];
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            private void InitClass() {
-                this.columnComputerID = new global::System.Data.DataColumn("ComputerID", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnComputerID);
-                this.columnDBIID = new global::System.Data.DataColumn("DBIID", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnDBIID);
-                this.columnDBIName = new global::System.Data.DataColumn("DBIName", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnDBIName);
-                this.columnParentID = new global::System.Data.DataColumn("ParentID", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnParentID);
-                this.columnDBProduct = new global::System.Data.DataColumn("DBProduct", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnDBProduct);
-                this.columnIP = new global::System.Data.DataColumn("IP", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnIP);
-                this.columnPort = new global::System.Data.DataColumn("Port", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnPort);
-                this.columnUserId = new global::System.Data.DataColumn("UserId", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnUserId);
-                this.columnPwdC = new global::System.Data.DataColumn("PwdC", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnPwdC);
-                this.columnPwdD = new global::System.Data.DataColumn("PwdD", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnPwdD);
-                this.columnComputerID.AllowDBNull = false;
-                this.columnComputerID.Caption = "服务器";
-                this.columnComputerID.DefaultValue = ((int)(0));
-                this.columnDBIID.AllowDBNull = false;
-                this.columnDBIID.Caption = "实例";
-                this.columnDBIID.DefaultValue = ((int)(0));
-                this.columnDBIName.AllowDBNull = false;
-                this.columnDBIName.Caption = "实例名称";
-                this.columnDBIName.DefaultValue = ((string)("新建实例"));
-                this.columnDBIName.MaxLength = 50;
-                this.columnParentID.Caption = "上级";
-                this.columnParentID.DefaultValue = ((int)(0));
-                this.columnDBProduct.AllowDBNull = false;
-                this.columnDBProduct.Caption = "实例类型";
-                this.columnDBProduct.DefaultValue = ((int)(1));
-                this.columnIP.AllowDBNull = false;
-                this.columnIP.DefaultValue = ((string)(""));
-                this.columnIP.MaxLength = 50;
-                this.columnPort.AllowDBNull = false;
-                this.columnPort.Caption = "实例端口";
-                this.columnPort.DefaultValue = ((int)(1433));
-                this.columnUserId.AllowDBNull = false;
-                this.columnUserId.Caption = "用户名";
-                this.columnUserId.DefaultValue = ((string)("sa"));
-                this.columnUserId.MaxLength = 50;
-                this.columnPwdC.Caption = "密码(密文)";
-                this.columnPwdC.MaxLength = 500;
-                this.columnPwdD.Caption = "密码(明文)";
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public DBIRow NewDBIRow() {
-                return ((DBIRow)(this.NewRow()));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new DBIRow(builder);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected override global::System.Type GetRowType() {
-                return typeof(DBIRow);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowChanged(e);
-                if ((this.DBIRowChanged != null)) {
-                    this.DBIRowChanged(this, new DBIRowChangeEvent(((DBIRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowChanging(e);
-                if ((this.DBIRowChanging != null)) {
-                    this.DBIRowChanging(this, new DBIRowChangeEvent(((DBIRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowDeleted(e);
-                if ((this.DBIRowDeleted != null)) {
-                    this.DBIRowDeleted(this, new DBIRowChangeEvent(((DBIRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowDeleting(e);
-                if ((this.DBIRowDeleting != null)) {
-                    this.DBIRowDeleting(this, new DBIRowChangeEvent(((DBIRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void RemoveDBIRow(DBIRow row) {
-                this.Rows.Remove(row);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
-                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
-                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                XSD ds = new XSD();
-                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
-                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
-                any1.MinOccurs = new decimal(0);
-                any1.MaxOccurs = decimal.MaxValue;
-                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
-                sequence.Items.Add(any1);
-                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
-                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
-                any2.MinOccurs = new decimal(1);
-                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
-                sequence.Items.Add(any2);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
-                attribute1.Name = "namespace";
-                attribute1.FixedValue = ds.Namespace;
-                type.Attributes.Add(attribute1);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
-                attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "DBIDataTable";
-                type.Attributes.Add(attribute2);
-                type.Particle = sequence;
-                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
-                if (xs.Contains(dsSchema.TargetNamespace)) {
-                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
-                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
-                    try {
-                        global::System.Xml.Schema.XmlSchema schema = null;
-                        dsSchema.Write(s1);
-                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
-                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
-                            s2.SetLength(0);
-                            schema.Write(s2);
-                            if ((s1.Length == s2.Length)) {
-                                s1.Position = 0;
-                                s2.Position = 0;
-                                for (; ((s1.Position != s1.Length) 
-                                            && (s1.ReadByte() == s2.ReadByte())); ) {
-                                    ;
-                                }
-                                if ((s1.Position == s1.Length)) {
-                                    return type;
-                                }
-                            }
-                        }
-                    }
-                    finally {
-                        if ((s1 != null)) {
-                            s1.Close();
-                        }
-                        if ((s2 != null)) {
-                            s2.Close();
-                        }
-                    }
-                }
-                xs.Add(dsSchema);
-                return type;
-            }
-        }
-        
-        /// <summary>
-        ///Represents the strongly named DataTable class.
-        ///</summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
-        [global::System.Serializable()]
-        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class DBProductDataTable : global::System.Data.TypedTableBase<DBProductRow> {
-            
-            private global::System.Data.DataColumn columnDBProduct;
-            
-            private global::System.Data.DataColumn columnDBProductName;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public DBProductDataTable() {
-                this.TableName = "DBProduct";
-                this.BeginInit();
-                this.InitClass();
-                this.EndInit();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            internal DBProductDataTable(global::System.Data.DataTable table) {
-                this.TableName = table.TableName;
-                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
-                    this.CaseSensitive = table.CaseSensitive;
-                }
-                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
-                    this.Locale = table.Locale;
-                }
-                if ((table.Namespace != table.DataSet.Namespace)) {
-                    this.Namespace = table.Namespace;
-                }
-                this.Prefix = table.Prefix;
-                this.MinimumCapacity = table.MinimumCapacity;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected DBProductDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
-                    base(info, context) {
-                this.InitVars();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn DBProductColumn {
-                get {
-                    return this.columnDBProduct;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn DBProductNameColumn {
-                get {
-                    return this.columnDBProductName;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.ComponentModel.Browsable(false)]
-            public int Count {
-                get {
-                    return this.Rows.Count;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public DBProductRow this[int index] {
-                get {
-                    return ((DBProductRow)(this.Rows[index]));
-                }
-            }
-            
-            public event DBProductRowChangeEventHandler DBProductRowChanging;
-            
-            public event DBProductRowChangeEventHandler DBProductRowChanged;
-            
-            public event DBProductRowChangeEventHandler DBProductRowDeleting;
-            
-            public event DBProductRowChangeEventHandler DBProductRowDeleted;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void AddDBProductRow(DBProductRow row) {
-                this.Rows.Add(row);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public DBProductRow AddDBProductRow(int DBProduct, string DBProductName) {
-                DBProductRow rowDBProductRow = ((DBProductRow)(this.NewRow()));
-                object[] columnValuesArray = new object[] {
-                        DBProduct,
-                        DBProductName};
-                rowDBProductRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowDBProductRow);
-                return rowDBProductRow;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public DBProductRow FindByDBProduct(int DBProduct) {
-                return ((DBProductRow)(this.Rows.Find(new object[] {
-                            DBProduct})));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public override global::System.Data.DataTable Clone() {
-                DBProductDataTable cln = ((DBProductDataTable)(base.Clone()));
-                cln.InitVars();
-                return cln;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected override global::System.Data.DataTable CreateInstance() {
-                return new DBProductDataTable();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            internal void InitVars() {
-                this.columnDBProduct = base.Columns["DBProduct"];
-                this.columnDBProductName = base.Columns["DBProductName"];
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            private void InitClass() {
-                this.columnDBProduct = new global::System.Data.DataColumn("DBProduct", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnDBProduct);
-                this.columnDBProductName = new global::System.Data.DataColumn("DBProductName", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnDBProductName);
-                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
-                                this.columnDBProduct}, true));
-                this.columnDBProduct.AllowDBNull = false;
-                this.columnDBProduct.Unique = true;
-                this.columnDBProduct.Caption = "实例类型";
-                this.columnDBProductName.AllowDBNull = false;
-                this.columnDBProductName.Caption = "类型名称";
-                this.columnDBProductName.MaxLength = 50;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public DBProductRow NewDBProductRow() {
-                return ((DBProductRow)(this.NewRow()));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new DBProductRow(builder);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected override global::System.Type GetRowType() {
-                return typeof(DBProductRow);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowChanged(e);
-                if ((this.DBProductRowChanged != null)) {
-                    this.DBProductRowChanged(this, new DBProductRowChangeEvent(((DBProductRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowChanging(e);
-                if ((this.DBProductRowChanging != null)) {
-                    this.DBProductRowChanging(this, new DBProductRowChangeEvent(((DBProductRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowDeleted(e);
-                if ((this.DBProductRowDeleted != null)) {
-                    this.DBProductRowDeleted(this, new DBProductRowChangeEvent(((DBProductRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowDeleting(e);
-                if ((this.DBProductRowDeleting != null)) {
-                    this.DBProductRowDeleting(this, new DBProductRowChangeEvent(((DBProductRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void RemoveDBProductRow(DBProductRow row) {
-                this.Rows.Remove(row);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
-                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
-                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                XSD ds = new XSD();
-                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
-                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
-                any1.MinOccurs = new decimal(0);
-                any1.MaxOccurs = decimal.MaxValue;
-                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
-                sequence.Items.Add(any1);
-                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
-                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
-                any2.MinOccurs = new decimal(1);
-                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
-                sequence.Items.Add(any2);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
-                attribute1.Name = "namespace";
-                attribute1.FixedValue = ds.Namespace;
-                type.Attributes.Add(attribute1);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
-                attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "DBProductDataTable";
-                type.Attributes.Add(attribute2);
-                type.Particle = sequence;
-                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
-                if (xs.Contains(dsSchema.TargetNamespace)) {
-                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
-                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
-                    try {
-                        global::System.Xml.Schema.XmlSchema schema = null;
-                        dsSchema.Write(s1);
-                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
-                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
-                            s2.SetLength(0);
-                            schema.Write(s2);
-                            if ((s1.Length == s2.Length)) {
-                                s1.Position = 0;
-                                s2.Position = 0;
-                                for (; ((s1.Position != s1.Length) 
-                                            && (s1.ReadByte() == s2.ReadByte())); ) {
-                                    ;
-                                }
-                                if ((s1.Position == s1.Length)) {
-                                    return type;
-                                }
-                            }
-                        }
-                    }
-                    finally {
-                        if ((s1 != null)) {
-                            s1.Close();
-                        }
-                        if ((s2 != null)) {
-                            s2.Close();
-                        }
-                    }
-                }
-                xs.Add(dsSchema);
-                return type;
-            }
-        }
-        
-        /// <summary>
-        ///Represents strongly named DataRow class.
-        ///</summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
-        public partial class ComputerRow : global::System.Data.DataRow {
-            
-            private ComputerDataTable tableComputer;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            internal ComputerRow(global::System.Data.DataRowBuilder rb) : 
-                    base(rb) {
-                this.tableComputer = ((ComputerDataTable)(this.Table));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public int ComputerID {
-                get {
-                    return ((int)(this[this.tableComputer.ComputerIDColumn]));
-                }
-                set {
-                    this[this.tableComputer.ComputerIDColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public string ComputerName {
-                get {
-                    return ((string)(this[this.tableComputer.ComputerNameColumn]));
-                }
-                set {
-                    this[this.tableComputer.ComputerNameColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public int ComputerType {
-                get {
-                    return ((int)(this[this.tableComputer.ComputerTypeColumn]));
-                }
-                set {
-                    this[this.tableComputer.ComputerTypeColumn] = value;
-                }
-            }
-        }
-        
-        /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
@@ -2240,7 +704,12 @@ namespace Apq.DBC {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public int DBIID {
                 get {
-                    return ((int)(this[this.tableDBC.DBIIDColumn]));
+                    try {
+                        return ((int)(this[this.tableDBC.DBIIDColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("表“DBC”中列“DBIID”的值为 DBNull。", e);
+                    }
                 }
                 set {
                     this[this.tableDBC.DBIIDColumn] = value;
@@ -2250,7 +719,12 @@ namespace Apq.DBC {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public int DBCID {
                 get {
-                    return ((int)(this[this.tableDBC.DBCIDColumn]));
+                    try {
+                        return ((int)(this[this.tableDBC.DBCIDColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("表“DBC”中列“DBCID”的值为 DBNull。", e);
+                    }
                 }
                 set {
                     this[this.tableDBC.DBCIDColumn] = value;
@@ -2260,7 +734,12 @@ namespace Apq.DBC {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public int DBCUseType {
                 get {
-                    return ((int)(this[this.tableDBC.DBCUseTypeColumn]));
+                    try {
+                        return ((int)(this[this.tableDBC.DBCUseTypeColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("表“DBC”中列“DBCUseType”的值为 DBNull。", e);
+                    }
                 }
                 set {
                     this[this.tableDBC.DBCUseTypeColumn] = value;
@@ -2305,15 +784,25 @@ namespace Apq.DBC {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public string PwdC {
                 get {
-                    try {
-                        return ((string)(this[this.tableDBC.PwdCColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("表“DBC”中列“PwdC”的值为 DBNull。", e);
-                    }
+                    return ((string)(this[this.tableDBC.PwdCColumn]));
                 }
                 set {
                     this[this.tableDBC.PwdCColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public string PwdD {
+                get {
+                    try {
+                        return ((string)(this[this.tableDBC.PwdDColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("表“DBC”中列“PwdD”的值为 DBNull。", e);
+                    }
+                }
+                set {
+                    this[this.tableDBC.PwdDColumn] = value;
                 }
             }
             
@@ -2348,17 +837,32 @@ namespace Apq.DBC {
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public string PwdD {
+            public string IP {
                 get {
-                    try {
-                        return ((string)(this[this.tableDBC.PwdDColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("表“DBC”中列“PwdD”的值为 DBNull。", e);
-                    }
+                    return ((string)(this[this.tableDBC.IPColumn]));
                 }
                 set {
-                    this[this.tableDBC.PwdDColumn] = value;
+                    this[this.tableDBC.IPColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public int Port {
+                get {
+                    return ((int)(this[this.tableDBC.PortColumn]));
+                }
+                set {
+                    this[this.tableDBC.PortColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public int DBProduct {
+                get {
+                    return ((int)(this[this.tableDBC.DBProductColumn]));
+                }
+                set {
+                    this[this.tableDBC.DBProductColumn] = value;
                 }
             }
             
@@ -2373,6 +877,36 @@ namespace Apq.DBC {
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public bool IsDBIIDNull() {
+                return this.IsNull(this.tableDBC.DBIIDColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void SetDBIIDNull() {
+                this[this.tableDBC.DBIIDColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public bool IsDBCIDNull() {
+                return this.IsNull(this.tableDBC.DBCIDColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void SetDBCIDNull() {
+                this[this.tableDBC.DBCIDColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public bool IsDBCUseTypeNull() {
+                return this.IsNull(this.tableDBC.DBCUseTypeColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void SetDBCUseTypeNull() {
+                this[this.tableDBC.DBCUseTypeColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public bool IsUseTrustedNull() {
                 return this.IsNull(this.tableDBC.UseTrustedColumn);
             }
@@ -2383,13 +917,13 @@ namespace Apq.DBC {
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public bool IsPwdCNull() {
-                return this.IsNull(this.tableDBC.PwdCColumn);
+            public bool IsPwdDNull() {
+                return this.IsNull(this.tableDBC.PwdDColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void SetPwdCNull() {
-                this[this.tableDBC.PwdCColumn] = global::System.Convert.DBNull;
+            public void SetPwdDNull() {
+                this[this.tableDBC.PwdDColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2411,312 +945,6 @@ namespace Apq.DBC {
             public void SetOptionNull() {
                 this[this.tableDBC.OptionColumn] = global::System.Convert.DBNull;
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public bool IsPwdDNull() {
-                return this.IsNull(this.tableDBC.PwdDColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void SetPwdDNull() {
-                this[this.tableDBC.PwdDColumn] = global::System.Convert.DBNull;
-            }
-        }
-        
-        /// <summary>
-        ///Represents strongly named DataRow class.
-        ///</summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
-        public partial class DBCTypeRow : global::System.Data.DataRow {
-            
-            private DBCTypeDataTable tableDBCType;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            internal DBCTypeRow(global::System.Data.DataRowBuilder rb) : 
-                    base(rb) {
-                this.tableDBCType = ((DBCTypeDataTable)(this.Table));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public int DBCType {
-                get {
-                    return ((int)(this[this.tableDBCType.DBCTypeColumn]));
-                }
-                set {
-                    this[this.tableDBCType.DBCTypeColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public string TypeCaption {
-                get {
-                    return ((string)(this[this.tableDBCType.TypeCaptionColumn]));
-                }
-                set {
-                    this[this.tableDBCType.TypeCaptionColumn] = value;
-                }
-            }
-        }
-        
-        /// <summary>
-        ///Represents strongly named DataRow class.
-        ///</summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
-        public partial class ComputerTypeRow : global::System.Data.DataRow {
-            
-            private ComputerTypeDataTable tableComputerType;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            internal ComputerTypeRow(global::System.Data.DataRowBuilder rb) : 
-                    base(rb) {
-                this.tableComputerType = ((ComputerTypeDataTable)(this.Table));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public int ComputerType {
-                get {
-                    return ((int)(this[this.tableComputerType.ComputerTypeColumn]));
-                }
-                set {
-                    this[this.tableComputerType.ComputerTypeColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public string TypeCaption {
-                get {
-                    return ((string)(this[this.tableComputerType.TypeCaptionColumn]));
-                }
-                set {
-                    this[this.tableComputerType.TypeCaptionColumn] = value;
-                }
-            }
-        }
-        
-        /// <summary>
-        ///Represents strongly named DataRow class.
-        ///</summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
-        public partial class DBIRow : global::System.Data.DataRow {
-            
-            private DBIDataTable tableDBI;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            internal DBIRow(global::System.Data.DataRowBuilder rb) : 
-                    base(rb) {
-                this.tableDBI = ((DBIDataTable)(this.Table));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public int ComputerID {
-                get {
-                    return ((int)(this[this.tableDBI.ComputerIDColumn]));
-                }
-                set {
-                    this[this.tableDBI.ComputerIDColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public int DBIID {
-                get {
-                    return ((int)(this[this.tableDBI.DBIIDColumn]));
-                }
-                set {
-                    this[this.tableDBI.DBIIDColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public string DBIName {
-                get {
-                    return ((string)(this[this.tableDBI.DBINameColumn]));
-                }
-                set {
-                    this[this.tableDBI.DBINameColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public int ParentID {
-                get {
-                    try {
-                        return ((int)(this[this.tableDBI.ParentIDColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("表“DBI”中列“ParentID”的值为 DBNull。", e);
-                    }
-                }
-                set {
-                    this[this.tableDBI.ParentIDColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public int DBProduct {
-                get {
-                    return ((int)(this[this.tableDBI.DBProductColumn]));
-                }
-                set {
-                    this[this.tableDBI.DBProductColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public string IP {
-                get {
-                    return ((string)(this[this.tableDBI.IPColumn]));
-                }
-                set {
-                    this[this.tableDBI.IPColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public int Port {
-                get {
-                    return ((int)(this[this.tableDBI.PortColumn]));
-                }
-                set {
-                    this[this.tableDBI.PortColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public string UserId {
-                get {
-                    return ((string)(this[this.tableDBI.UserIdColumn]));
-                }
-                set {
-                    this[this.tableDBI.UserIdColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public string PwdC {
-                get {
-                    try {
-                        return ((string)(this[this.tableDBI.PwdCColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("表“DBI”中列“PwdC”的值为 DBNull。", e);
-                    }
-                }
-                set {
-                    this[this.tableDBI.PwdCColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public string PwdD {
-                get {
-                    try {
-                        return ((string)(this[this.tableDBI.PwdDColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("表“DBI”中列“PwdD”的值为 DBNull。", e);
-                    }
-                }
-                set {
-                    this[this.tableDBI.PwdDColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public bool IsParentIDNull() {
-                return this.IsNull(this.tableDBI.ParentIDColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void SetParentIDNull() {
-                this[this.tableDBI.ParentIDColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public bool IsPwdCNull() {
-                return this.IsNull(this.tableDBI.PwdCColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void SetPwdCNull() {
-                this[this.tableDBI.PwdCColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public bool IsPwdDNull() {
-                return this.IsNull(this.tableDBI.PwdDColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void SetPwdDNull() {
-                this[this.tableDBI.PwdDColumn] = global::System.Convert.DBNull;
-            }
-        }
-        
-        /// <summary>
-        ///Represents strongly named DataRow class.
-        ///</summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
-        public partial class DBProductRow : global::System.Data.DataRow {
-            
-            private DBProductDataTable tableDBProduct;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            internal DBProductRow(global::System.Data.DataRowBuilder rb) : 
-                    base(rb) {
-                this.tableDBProduct = ((DBProductDataTable)(this.Table));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public int DBProduct {
-                get {
-                    return ((int)(this[this.tableDBProduct.DBProductColumn]));
-                }
-                set {
-                    this[this.tableDBProduct.DBProductColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public string DBProductName {
-                get {
-                    return ((string)(this[this.tableDBProduct.DBProductNameColumn]));
-                }
-                set {
-                    this[this.tableDBProduct.DBProductNameColumn] = value;
-                }
-            }
-        }
-        
-        /// <summary>
-        ///Row event argument class
-        ///</summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
-        public class ComputerRowChangeEvent : global::System.EventArgs {
-            
-            private ComputerRow eventRow;
-            
-            private global::System.Data.DataRowAction eventAction;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public ComputerRowChangeEvent(ComputerRow row, global::System.Data.DataRowAction action) {
-                this.eventRow = row;
-                this.eventAction = action;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public ComputerRow Row {
-                get {
-                    return this.eventRow;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataRowAction Action {
-                get {
-                    return this.eventAction;
-                }
-            }
         }
         
         /// <summary>
@@ -2737,130 +965,6 @@ namespace Apq.DBC {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public DBCRow Row {
-                get {
-                    return this.eventRow;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataRowAction Action {
-                get {
-                    return this.eventAction;
-                }
-            }
-        }
-        
-        /// <summary>
-        ///Row event argument class
-        ///</summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
-        public class DBCTypeRowChangeEvent : global::System.EventArgs {
-            
-            private DBCTypeRow eventRow;
-            
-            private global::System.Data.DataRowAction eventAction;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public DBCTypeRowChangeEvent(DBCTypeRow row, global::System.Data.DataRowAction action) {
-                this.eventRow = row;
-                this.eventAction = action;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public DBCTypeRow Row {
-                get {
-                    return this.eventRow;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataRowAction Action {
-                get {
-                    return this.eventAction;
-                }
-            }
-        }
-        
-        /// <summary>
-        ///Row event argument class
-        ///</summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
-        public class ComputerTypeRowChangeEvent : global::System.EventArgs {
-            
-            private ComputerTypeRow eventRow;
-            
-            private global::System.Data.DataRowAction eventAction;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public ComputerTypeRowChangeEvent(ComputerTypeRow row, global::System.Data.DataRowAction action) {
-                this.eventRow = row;
-                this.eventAction = action;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public ComputerTypeRow Row {
-                get {
-                    return this.eventRow;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataRowAction Action {
-                get {
-                    return this.eventAction;
-                }
-            }
-        }
-        
-        /// <summary>
-        ///Row event argument class
-        ///</summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
-        public class DBIRowChangeEvent : global::System.EventArgs {
-            
-            private DBIRow eventRow;
-            
-            private global::System.Data.DataRowAction eventAction;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public DBIRowChangeEvent(DBIRow row, global::System.Data.DataRowAction action) {
-                this.eventRow = row;
-                this.eventAction = action;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public DBIRow Row {
-                get {
-                    return this.eventRow;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataRowAction Action {
-                get {
-                    return this.eventAction;
-                }
-            }
-        }
-        
-        /// <summary>
-        ///Row event argument class
-        ///</summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
-        public class DBProductRowChangeEvent : global::System.EventArgs {
-            
-            private DBProductRow eventRow;
-            
-            private global::System.Data.DataRowAction eventAction;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public DBProductRowChangeEvent(DBProductRow row, global::System.Data.DataRowAction action) {
-                this.eventRow = row;
-                this.eventAction = action;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public DBProductRow Row {
                 get {
                     return this.eventRow;
                 }

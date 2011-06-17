@@ -22,9 +22,7 @@ namespace Apq.DBC
 		static Common()
 		{
 			_xsd = new XSD();
-			//_xsd.SqlInstance.Columns.Add("DBConnectionString");
 			_xsd.DBC.Columns.Add("DBConnectionString");
-			_xsd.DBC.Columns.Add("ServerName");
 
 			fsw.Changed += new FileSystemEventHandler(fsw_Changed);
 
@@ -54,15 +52,10 @@ namespace Apq.DBC
 				fsw.Filter = strFileName;
 			}
 
-			#region 读取密钥
+			#region 密钥
 			//string desKey = GlobalObject.XmlConfigChain[typeof(Apq.DBC.Common), "DESKey"];
 			//string desIV = GlobalObject.XmlConfigChain[typeof(Apq.DBC.Common), "DESIV"];
 
-			// UM
-			//string desKey = "~JD7(1vy";
-			//string desIV = "]$ik7WB)";
-
-			// 雪羽
 			string desKey = "pD?y/Mn^";
 			string desIV = "$`5iNL8j";
 			#endregion
@@ -71,7 +64,7 @@ namespace Apq.DBC
 			string str = Apq.Security.Cryptography.DESHelper.DecryptString(strCs, desKey, desIV);
 			StringReader sr = new StringReader(str);
 			_xsd.Clear();
-			_xsd.ReadXml(sr);
+			_xsd.DBC.ReadXml(sr);
 
 			// 读取完成,计算所有连接字符串
 			/*
@@ -91,10 +84,9 @@ namespace Apq.DBC
 			*/
 			foreach (Apq.DBC.XSD.DBCRow dr in _xsd.DBC.Rows)
 			{
-				Apq.DBC.XSD.DBIRow drDBI = _xsd.DBI.FindByDBIID(dr.DBIID);
 				dr["DBConnectionString"] = Apq.ConnectionStrings.Common.GetConnectionString(
-					(DBProduct)drDBI.DBProduct,
-					drDBI.IP, drDBI.Port, dr.UserId, dr.PwdD, dr.DBName);
+					(DBProduct)dr.DBProduct,
+					dr.IP, dr.Port, dr.UserId, dr.PwdD, dr.DBName);
 			}
 		}
 
@@ -105,10 +97,9 @@ namespace Apq.DBC
 		public static DbConnection CreateDbConnection(string DBName, ref DbConnection DbConnection)
 		{
 			Apq.DBC.XSD.DBCRow dr = _xsd.DBC.FindByDBName(DBName);
-			Apq.DBC.XSD.DBIRow drDBI = _xsd.DBI.FindByDBIID(dr.DBIID);
 			string cs = Apq.Convert.ChangeType<string>(dr["DBConnectionString"]);
 
-			switch (drDBI.DBProduct)
+			switch (dr.DBProduct)
 			{
 				case (int)DBProduct.MySql:
 					if (!(DbConnection is MySql.Data.MySqlClient.MySqlConnection))

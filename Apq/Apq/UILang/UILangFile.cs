@@ -13,7 +13,7 @@ namespace Apq.UILang
 		private Apq.Config.clsConfig _cfg = null;
 
 		/// <summary>
-		/// 获取或设置配置文件
+		/// 获取或设置语言文件
 		/// </summary>
 		public string FileName
 		{
@@ -28,7 +28,10 @@ namespace Apq.UILang
 				{
 					_cfg = new Apq.Config.XmlConfig();
 				}
-				_cfg.Open(value);
+				if (System.IO.File.Exists(value))
+				{
+					_cfg.Open(value);
+				}
 			}
 		}
 	}
