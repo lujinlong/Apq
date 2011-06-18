@@ -95,7 +95,11 @@ namespace Apq.Security.Cryptography
 		/// <returns>Base64编码后的字符串</returns>
 		public static string EncryptString(string PlainText, string desKey, string desIV)
 		{
-			return EncryptString(PlainText, System.Text.Encoding.Unicode.GetBytes(desKey), System.Text.Encoding.Unicode.GetBytes(desIV));
+			if (!string.IsNullOrEmpty(desKey) && !string.IsNullOrEmpty(desIV))
+			{
+				return EncryptString(PlainText, System.Text.Encoding.Unicode.GetBytes(desKey), System.Text.Encoding.Unicode.GetBytes(desIV));
+			}
+			return string.Empty;
 		}
 
 		/// <summary>
@@ -106,7 +110,11 @@ namespace Apq.Security.Cryptography
 		/// <param name="desIV">初始向量</param>
 		public static string DecryptString(string CypherText, string desKey, string desIV)
 		{
-			return DecryptString(CypherText, System.Text.Encoding.Unicode.GetBytes(desKey), System.Text.Encoding.Unicode.GetBytes(desIV));
+			if (!string.IsNullOrEmpty(desKey) && !string.IsNullOrEmpty(desIV))
+			{
+				return DecryptString(CypherText, System.Text.Encoding.Unicode.GetBytes(desKey), System.Text.Encoding.Unicode.GetBytes(desIV));
+			}
+			return string.Empty;
 		}
 		#endregion
 	}

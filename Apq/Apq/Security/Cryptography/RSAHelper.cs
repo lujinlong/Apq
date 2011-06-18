@@ -105,10 +105,14 @@ namespace Apq.Security.Cryptography
 			RSACryptoServiceProvider rsa = new RSACryptoServiceProvider();
 			rsa.FromXmlString(xmlString);
 
-			byte[] bText = System.Text.Encoding.UTF8.GetBytes(PlainText);
-			byte[] bEnc = rsa.Encrypt(bText, false);
+			if (!string.IsNullOrEmpty(PlainText))
+			{
+				byte[] bText = System.Text.Encoding.UTF8.GetBytes(PlainText);
+				byte[] bEnc = rsa.Encrypt(bText, false);
 
-			return System.Convert.ToBase64String(bEnc);
+				return System.Convert.ToBase64String(bEnc);
+			}
+			return string.Empty;
 		}
 
 		/// <summary>
@@ -121,10 +125,14 @@ namespace Apq.Security.Cryptography
 			RSACryptoServiceProvider rsa = new RSACryptoServiceProvider();
 			rsa.FromXmlString(xmlString);
 
-			byte[] bEnc = System.Convert.FromBase64String(CypherText);
-			byte[] bText = rsa.Decrypt(bEnc, false);
+			if (!string.IsNullOrEmpty(CypherText))
+			{
+				byte[] bEnc = System.Convert.FromBase64String(CypherText);
+				byte[] bText = rsa.Decrypt(bEnc, false);
 
-			return System.Text.Encoding.UTF8.GetString(bEnc);
+				return System.Text.Encoding.UTF8.GetString(bEnc);
+			}
+			return string.Empty;
 		}
 		#endregion
 	}

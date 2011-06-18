@@ -105,13 +105,17 @@ namespace Apq.Security.Cryptography
 			DSACryptoServiceProvider dsa = new DSACryptoServiceProvider();
 			dsa.FromXmlString(xmlString);
 
-			byte[] bText = System.Text.Encoding.UTF8.GetBytes(PlainText.ToCharArray());
+			if (!string.IsNullOrEmpty(PlainText))
+			{
+				byte[] bText = System.Text.Encoding.UTF8.GetBytes(PlainText.ToCharArray());
 
-			DSASignatureFormatter DSAFormatter = new DSASignatureFormatter(dsa);
-			DSAFormatter.SetHashAlgorithm("SHA1");
-			byte[] bEnc = DSAFormatter.CreateSignature(bText);
+				DSASignatureFormatter DSAFormatter = new DSASignatureFormatter(dsa);
+				DSAFormatter.SetHashAlgorithm("SHA1");
+				byte[] bEnc = DSAFormatter.CreateSignature(bText);
 
-			return System.Convert.ToBase64String(bEnc);
+				return System.Convert.ToBase64String(bEnc);
+			}
+			return string.Empty;
 		}
 
 		/// <summary>
@@ -125,12 +129,16 @@ namespace Apq.Security.Cryptography
 			DSACryptoServiceProvider dsa = new DSACryptoServiceProvider();
 			dsa.FromXmlString(xmlString);
 
-			byte[] bEnc = System.Convert.FromBase64String(CypherText);
-			byte[] bText = System.Text.Encoding.UTF8.GetBytes(signString.ToCharArray());
+			if (!string.IsNullOrEmpty(CypherText))
+			{
+				byte[] bEnc = System.Convert.FromBase64String(CypherText);
+				byte[] bText = System.Text.Encoding.UTF8.GetBytes(signString.ToCharArray());
 
-			DSASignatureDeformatter DSADeformatter = new DSASignatureDeformatter(dsa);
-			DSADeformatter.SetHashAlgorithm("SHA1");
-			return DSADeformatter.VerifySignature(bEnc, bText);
+				DSASignatureDeformatter DSADeformatter = new DSASignatureDeformatter(dsa);
+				DSADeformatter.SetHashAlgorithm("SHA1");
+				return DSADeformatter.VerifySignature(bEnc, bText);
+			}
+			return false;
 		}
 		#endregion
 	}
