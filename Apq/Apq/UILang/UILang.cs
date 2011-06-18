@@ -15,6 +15,13 @@ namespace Apq.UILang
 		/// 已加载到内存的语言配置表
 		/// </summary>
 		protected XSD.UILang _lst = new XSD.UILang();
+		/// <summary>
+		/// 获取语言配置表
+		/// </summary>
+		public XSD.UILang lst
+		{
+			get { return _lst; }
+		}
 
 		/// <summary>
 		/// 获取或设置界面值
@@ -26,11 +33,23 @@ namespace Apq.UILang
 			get
 			{
 				XSD.UILang.UILangRow dr = _lst._UILang.FindByname(Name);
-				if (dr != null && !string.IsNullOrEmpty(dr.value))
+
+				// 保存用到过的Name
+				if (dr == null)
+				{
+					if (!string.IsNullOrEmpty(Name))
+					{
+						dr = _lst._UILang.NewUILangRow();
+						dr.name = Name;
+						dr.value = Name;
+						_lst._UILang.Rows.Add(dr);
+					}
+				}
+
+				if (dr != null)
 				{
 					return dr.value;
 				}
-
 				return Name;
 			}
 			set

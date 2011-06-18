@@ -13,6 +13,23 @@ namespace Apq.Windows.Forms
 	public partial class AboutBox : ImeForm
 	{
 		/// <summary>
+		/// 关于对话框
+		/// </summary>
+		public AboutBox()
+		{
+			InitializeComponent();
+		}
+
+		/// <summary>
+		/// 设置界面语言值
+		/// </summary>
+		/// <param name="UILang"></param>
+		public override void SetUILang(Apq.UILang.UILang UILang)
+		{
+			okButton.Text = Apq.GlobalObject.UILang["确定(&O)"];
+		}
+
+		/// <summary>
 		/// 显示关于 asm
 		/// </summary>
 		/// <param name="Parent"></param>
@@ -32,14 +49,6 @@ namespace Apq.Windows.Forms
 			ShowForm(Parent, Apq.Win.GlobalObject.TheAssembly);
 		}
 
-		/// <summary>
-		/// 关于对话框
-		/// </summary>
-		public AboutBox()
-		{
-			InitializeComponent();
-		}
-
 		private Assembly _Asm;
 		/// <summary>
 		/// 获取或设置程序集
@@ -51,9 +60,9 @@ namespace Apq.Windows.Forms
 			{
 				_Asm = value;
 
-				Text = string.Format("关于 {0}", AssemblyTitle);
+				Text = Apq.GlobalObject.UILang["关于 "] + AssemblyTitle;
 				labelProductName.Text = AssemblyProduct;
-				labelVersion.Text = string.Format("版本 {0}", AssemblyVersion);
+				labelVersion.Text = Apq.GlobalObject.UILang["版本 "] + AssemblyVersion;
 				labelCopyright.Text = AssemblyCopyright;
 				labelCompanyName.Text = AssemblyCompany;
 				textBoxDescription.Text = AssemblyDescription;

@@ -33,6 +33,7 @@ namespace Apq.Windows.Forms.DockForms
 
 			#region 工具栏
 			tsbSave.Text = Apq.GlobalObject.UILang["保存(&S)"];
+			tsbCur.Text = Apq.GlobalObject.UILang["当前(&U)"];
 			tsbApply.Text = Apq.GlobalObject.UILang["应用(&A)"];
 			#endregion
 
@@ -63,43 +64,6 @@ namespace Apq.Windows.Forms.DockForms
 			DataGridViewHelper.AddBehaivor(dataGridView1);
 		}
 
-		#region IDataShow 成员
-		/// <summary>
-		/// 前期准备(如数据库连接或文件等)
-		/// </summary>
-		public override void InitDataBefore()
-		{
-		}
-		/// <summary>
-		/// 初始数据(如Lookup数据等)
-		/// </summary>
-		/// <param name="ds"></param>
-		public override void InitData(DataSet ds)
-		{
-			#region 准备数据集结构
-			#endregion
-
-			#region 加载所有字典表
-			#endregion
-		}
-		/// <summary>
-		/// 加载数据
-		/// </summary>
-		/// <param name="ds"></param>
-		public override void LoadData(DataSet ds)
-		{
-		}
-		/// <summary>
-		/// 显示数据
-		/// </summary>
-		public override void ShowData()
-		{
-			#region 设置Lookup
-			#endregion
-		}
-
-		#endregion
-
 		private void tsbSave_Click(object sender, EventArgs e)
 		{
 			if (!tscbFile.Items.Contains(tscbFile.Text))
@@ -108,6 +72,12 @@ namespace Apq.Windows.Forms.DockForms
 			}
 
 			Save();
+		}
+
+		private void tsbCur_Click(object sender, EventArgs e)
+		{
+			uiLang1._UILang.Clear();
+			uiLang1._UILang.Merge(Apq.GlobalObject.UILang.lst._UILang);
 		}
 
 		private void tsbApply_Click(object sender, EventArgs e)
@@ -154,12 +124,14 @@ namespace Apq.Windows.Forms.DockForms
 		/// </summary>
 		public void Open()
 		{
-			if (System.IO.File.Exists("UILang\\" + FileName + ".xml"))
+			string strFullFileName = "UILang\\" + FileName + ".xml";
+			if (System.IO.File.Exists(strFullFileName))
 			{
 				try
 				{
-					uiLang1.Clear();
-					uiLang1._UILang.ReadXml("UILang\\" + FileName + ".xml");
+					Apq.UILang.UILang uiLang = new Apq.UILang.UILangFile();
+					uiLang.lst._UILang.ReadXml(strFullFileName);
+					uiLang1._UILang.Merge(uiLang.lst._UILang);
 				}
 				catch { }
 			}
@@ -176,6 +148,7 @@ namespace Apq.Windows.Forms.DockForms
 				{
 					System.IO.Directory.CreateDirectory("UILang");
 				}
+				dataGridView1.EndEdit();
 				uiLang1._UILang.WriteXml("UILang\\" + FileName + ".xml", XmlWriteMode.IgnoreSchema);
 			}
 		}

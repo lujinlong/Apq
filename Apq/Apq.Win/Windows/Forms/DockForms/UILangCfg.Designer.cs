@@ -39,6 +39,7 @@
 			this.col2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.bsUILang = new System.Windows.Forms.BindingSource(this.components);
 			this.uiLang1 = new Apq.XSD.UILang();
+			this.tsbCur = new System.Windows.Forms.ToolStripButton();
 			this.toolStrip1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.bsUILang)).BeginInit();
@@ -50,6 +51,7 @@
 			this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsbSave,
             this.tscbFile,
+            this.tsbCur,
             this.tsbApply});
 			this.toolStrip1.Location = new System.Drawing.Point(0, 0);
 			this.toolStrip1.Name = "toolStrip1";
@@ -125,6 +127,16 @@
 			this.uiLang1.DataSetName = "UILang";
 			this.uiLang1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
 			// 
+			// tsbCur
+			// 
+			this.tsbCur.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+			this.tsbCur.Image = ((System.Drawing.Image)(resources.GetObject("tsbCur.Image")));
+			this.tsbCur.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.tsbCur.Name = "tsbCur";
+			this.tsbCur.Size = new System.Drawing.Size(51, 22);
+			this.tsbCur.Text = "当前(&U)";
+			this.tsbCur.Click += new System.EventHandler(this.tsbCur_Click);
+			// 
 			// UILangCfg
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -160,5 +172,6 @@
 		private Apq.XSD.UILang uiLang1;
 		private System.Windows.Forms.DataGridViewTextBoxColumn col1;
 		private System.Windows.Forms.DataGridViewTextBoxColumn col2;
+		private System.Windows.Forms.ToolStripButton tsbCur;
 	}
 }

@@ -9,14 +9,14 @@
       </DataSource>
     </xs:appinfo>
   </xs:annotation>
-  <xs:element name="UILang" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_DataSetName="UILang" msprop:Generator_UserDSName="UILang" msprop:EnableTableAdapterManager="true">
+  <xs:element name="UILang" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="UILang" msprop:Generator_DataSetName="UILang" msprop:EnableTableAdapterManager="true">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="UILang" msprop:Generator_UserTableName="UILang" msprop:Generator_RowDeletedName="UILangRowDeleted" msprop:Generator_TableClassName="UILangDataTable" msprop:Generator_RowChangedName="UILangRowChanged" msprop:Generator_RowClassName="UILangRow" msprop:Generator_RowChangingName="UILangRowChanging" msprop:Generator_RowEvArgName="UILangRowChangeEvent" msprop:Generator_RowEvHandlerName="UILangRowChangeEventHandler" msprop:Generator_TablePropName="_UILang" msprop:Generator_TableVarName="tableUILang" msprop:Generator_RowDeletingName="UILangRowDeleting">
+        <xs:element name="UILang" msprop:Generator_UserTableName="UILang" msprop:Generator_RowDeletedName="UILangRowDeleted" msprop:Generator_RowChangedName="UILangRowChanged" msprop:Generator_RowClassName="UILangRow" msprop:Generator_RowChangingName="UILangRowChanging" msprop:Generator_RowEvArgName="UILangRowChangeEvent" msprop:Generator_RowEvHandlerName="UILangRowChangeEventHandler" msprop:Generator_TableClassName="UILangDataTable" msprop:Generator_TableVarName="tableUILang" msprop:Generator_RowDeletingName="UILangRowDeleting" msprop:Generator_TablePropName="_UILang">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="name" msprop:Generator_UserColumnName="name" msprop:Generator_ColumnPropNameInRow="name" msprop:Generator_ColumnVarNameInTable="columnname" msprop:Generator_ColumnPropNameInTable="nameColumn" type="xs:string" default="" />
-              <xs:element name="value" msprop:Generator_UserColumnName="value" msprop:Generator_ColumnPropNameInRow="value" msprop:Generator_ColumnVarNameInTable="columnvalue" msprop:Generator_ColumnPropNameInTable="valueColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="name" msprop:Generator_UserColumnName="name" msprop:Generator_ColumnVarNameInTable="columnname" msprop:Generator_ColumnPropNameInRow="name" msprop:Generator_ColumnPropNameInTable="nameColumn" type="xs:string" default="" />
+              <xs:element name="value" msprop:Generator_UserColumnName="value" msprop:Generator_ColumnVarNameInTable="columnvalue" msprop:Generator_ColumnPropNameInRow="value" msprop:Generator_ColumnPropNameInTable="valueColumn" type="xs:string" default="" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

@@ -17,6 +17,7 @@ namespace Apq.ConnectionStrings.MySql
 		/// 获取连接字符串
 		/// </summary>
 		/// <param name="IP">服务器地址</param>
+		/// <param name="Port">端口</param>
 		/// <param name="Uid">用户名</param>
 		/// <param name="Pwd">密码</param>
 		/// <returns></returns>
@@ -28,6 +29,7 @@ namespace Apq.ConnectionStrings.MySql
 		/// 获取连接字符串
 		/// </summary>
 		/// <param name="IP">服务器地址</param>
+		/// <param name="Port">端口</param>
 		/// <param name="Uid">用户名</param>
 		/// <param name="Pwd">密码</param>
 		/// <param name="dbName">默认数据库名</param>
@@ -41,6 +43,7 @@ namespace Apq.ConnectionStrings.MySql
 		/// 获取连接字符串
 		/// </summary>
 		/// <param name="IP">服务器地址</param>
+		/// <param name="Port">端口</param>
 		/// <param name="Uid">用户名</param>
 		/// <param name="Pwd">密码</param>
 		/// <param name="dbName">默认数据库名</param>

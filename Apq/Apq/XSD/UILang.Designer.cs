@@ -384,6 +384,8 @@ namespace Apq.XSD {
                 this.columnname.AllowDBNull = false;
                 this.columnname.Unique = true;
                 this.columnname.DefaultValue = ((string)(""));
+                this.columnvalue.AllowDBNull = false;
+                this.columnvalue.DefaultValue = ((string)(""));
                 this.ExtendedProperties.Add("Generator_TablePropName", "_UILang");
                 this.ExtendedProperties.Add("Generator_UserTableName", "UILang");
             }
@@ -530,26 +532,11 @@ namespace Apq.XSD {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public string value {
                 get {
-                    try {
-                        return ((string)(this[this.tableUILang.valueColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("表“UILang”中列“value”的值为 DBNull。", e);
-                    }
+                    return ((string)(this[this.tableUILang.valueColumn]));
                 }
                 set {
                     this[this.tableUILang.valueColumn] = value;
                 }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public bool IsvalueNull() {
-                return this.IsNull(this.tableUILang.valueColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void SetvalueNull() {
-                this[this.tableUILang.valueColumn] = global::System.Convert.DBNull;
             }
         }
         
