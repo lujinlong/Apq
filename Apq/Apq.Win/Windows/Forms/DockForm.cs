@@ -30,7 +30,7 @@ namespace Apq.Windows.Forms
 		private void DockForm_Load(object sender, EventArgs e)
 		{
 			SetUILang(Apq.GlobalObject.UILang);
-			Apq.Windows.Controls.Control.AddImeHandler(this);
+			//Apq.Windows.Controls.Control.AddImeHandler(this);
 
 			Apq.Interfaces.IDataShow DataShowForm = this as Apq.Interfaces.IDataShow;
 			DataShowForm.InitDataBefore();

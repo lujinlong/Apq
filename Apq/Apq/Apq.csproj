@@ -267,7 +267,7 @@
     <Compile Include="Data\SqlClient\Common.cs" />
     <None Include="Data\SqlType.cs" />
     <Compile Include="Apq\String.cs" />
-    <Compile Include="DllImports\Imm32.cs" />
+    <None Include="DllImports\Imm32.cs" />
     <Compile Include="DllImports\Kernel32.cs" />
     <Compile Include="DllImports\User32.cs" />
     <Compile Include="Apq\Exception.cs" />

@@ -225,7 +225,7 @@
       <DependentUpon>DockForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Windows\Controls\Control.cs" />
+    <None Include="Windows\Controls\Control.cs" />
     <Compile Include="Windows\Controls\FolderBrowser.cs">
       <SubType>UserControl</SubType>
     </Compile>
