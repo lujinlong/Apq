@@ -1,6 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 10.00
-# Visual Studio 2008
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_说明", "_说明", "{E04B4CA7-8F90-490C-A30A-4B8CA5E32951}"
 	ProjectSection(SolutionItems) = preProject
 		AssemblyInfo.txt = AssemblyInfo.txt

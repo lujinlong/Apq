@@ -1,4 +1,5 @@
-﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -23,12 +24,26 @@
     </AssemblyOriginatorKeyFile>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
-    <OldToolsVersion>2.0</OldToolsVersion>
+    <OldToolsVersion>3.5</OldToolsVersion>
     <UpgradeBackupLocation>
     </UpgradeBackupLocation>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
-    <TargetFrameworkSubset>
-    </TargetFrameworkSubset>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <PublishUrl>http://localhost/Apq/</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Web</InstallFrom>
+    <UpdateEnabled>true</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>true</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -41,7 +56,9 @@
     <DocumentationFile>bin\Debug\Apq.XML</DocumentationFile>
     <RegisterForComInterop>false</RegisterForComInterop>
     <RunCodeAnalysis>false</RunCodeAnalysis>
-    <CodeAnalysisRules>-Microsoft.Naming#CA1709;-Microsoft.Naming#CA1705;-Microsoft.Globalization#CA1303;-Microsoft.Globalization#CA1305;-Microsoft.Design#CA1020;-Microsoft.Design#CA1004;-Microsoft.Design#CA1014;-Microsoft.Design#CA1053;-Microsoft.Design#CA1062;-Microsoft.Performance#CA1820</CodeAnalysisRules>
+    <CodeAnalysisRules>
+    </CodeAnalysisRules>
+    <CodeAnalysisRuleSet>Migrated rules for Apq.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -51,6 +68,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>bin\Release\Apq.XML</DocumentationFile>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Apq_Win|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -59,10 +77,12 @@
     <DocumentationFile>bin\Apq_Win\Apq.XML</DocumentationFile>
     <DebugType>full</DebugType>
     <PlatformTarget>AnyCPU</PlatformTarget>
-    <CodeAnalysisRules>-Microsoft.Naming#CA1709;-Microsoft.Naming#CA1705;-Microsoft.Globalization#CA1303;-Microsoft.Globalization#CA1305;-Microsoft.Design#CA1020;-Microsoft.Design#CA1004;-Microsoft.Design#CA1014;-Microsoft.Design#CA1053;-Microsoft.Design#CA1062;-Microsoft.Performance#CA1820</CodeAnalysisRules>
+    <CodeAnalysisRules>
+    </CodeAnalysisRules>
     <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
     <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
     <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>Migrated rules for Apq.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Apq_Web|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -71,10 +91,12 @@
     <DocumentationFile>bin\Apq_Web\Apq.XML</DocumentationFile>
     <DebugType>full</DebugType>
     <PlatformTarget>AnyCPU</PlatformTarget>
-    <CodeAnalysisRules>-Microsoft.Naming#CA1709;-Microsoft.Naming#CA1705;-Microsoft.Globalization#CA1303;-Microsoft.Globalization#CA1305;-Microsoft.Design#CA1020;-Microsoft.Design#CA1004;-Microsoft.Design#CA1014;-Microsoft.Design#CA1053;-Microsoft.Design#CA1062;-Microsoft.Performance#CA1820</CodeAnalysisRules>
+    <CodeAnalysisRules>
+    </CodeAnalysisRules>
     <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
     <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
     <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>Migrated rules for Apq.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug_Home|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -83,10 +105,12 @@
     <DocumentationFile>bin\Debug_Home\Apq.XML</DocumentationFile>
     <DebugType>full</DebugType>
     <PlatformTarget>AnyCPU</PlatformTarget>
-    <CodeAnalysisRules>-Microsoft.Naming#CA1709;-Microsoft.Naming#CA1705;-Microsoft.Globalization#CA1303;-Microsoft.Globalization#CA1305;-Microsoft.Design#CA1020;-Microsoft.Design#CA1004;-Microsoft.Design#CA1014;-Microsoft.Design#CA1053;-Microsoft.Design#CA1062;-Microsoft.Performance#CA1820</CodeAnalysisRules>
+    <CodeAnalysisRules>
+    </CodeAnalysisRules>
     <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
     <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
     <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>Migrated rules for Apq.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <DebugSymbols>true</DebugSymbols>
@@ -95,10 +119,12 @@
     <DocumentationFile>bin\Debug\Apq.XML</DocumentationFile>
     <DebugType>full</DebugType>
     <PlatformTarget>x86</PlatformTarget>
-    <CodeAnalysisRules>-Microsoft.Naming#CA1709;-Microsoft.Naming#CA1705;-Microsoft.Globalization#CA1303;-Microsoft.Globalization#CA1305;-Microsoft.Design#CA1020;-Microsoft.Design#CA1004;-Microsoft.Design#CA1014;-Microsoft.Design#CA1053;-Microsoft.Design#CA1062;-Microsoft.Performance#CA1820</CodeAnalysisRules>
+    <CodeAnalysisRules>
+    </CodeAnalysisRules>
     <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
     <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
     <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>Migrated rules for Apq.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <OutputPath>bin\x86\Release\</OutputPath>
@@ -110,6 +136,7 @@
     <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
     <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
     <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Apq_Win|x86' ">
     <DebugSymbols>true</DebugSymbols>
@@ -118,10 +145,12 @@
     <DocumentationFile>bin\Apq_Win\Apq.XML</DocumentationFile>
     <DebugType>full</DebugType>
     <PlatformTarget>x86</PlatformTarget>
-    <CodeAnalysisRules>-Microsoft.Naming#CA1709;-Microsoft.Naming#CA1705;-Microsoft.Globalization#CA1303;-Microsoft.Globalization#CA1305;-Microsoft.Design#CA1020;-Microsoft.Design#CA1004;-Microsoft.Design#CA1014;-Microsoft.Design#CA1053;-Microsoft.Design#CA1062;-Microsoft.Performance#CA1820</CodeAnalysisRules>
+    <CodeAnalysisRules>
+    </CodeAnalysisRules>
     <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
     <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
     <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>Migrated rules for Apq.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Apq_Web|x86' ">
     <DebugSymbols>true</DebugSymbols>
@@ -130,10 +159,12 @@
     <DocumentationFile>bin\Apq_Web\Apq.XML</DocumentationFile>
     <DebugType>full</DebugType>
     <PlatformTarget>x86</PlatformTarget>
-    <CodeAnalysisRules>-Microsoft.Naming#CA1709;-Microsoft.Naming#CA1705;-Microsoft.Globalization#CA1303;-Microsoft.Globalization#CA1305;-Microsoft.Design#CA1020;-Microsoft.Design#CA1004;-Microsoft.Design#CA1014;-Microsoft.Design#CA1053;-Microsoft.Design#CA1062;-Microsoft.Performance#CA1820</CodeAnalysisRules>
+    <CodeAnalysisRules>
+    </CodeAnalysisRules>
     <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
     <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
     <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>Migrated rules for Apq.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug_Home|x86' ">
     <DebugSymbols>true</DebugSymbols>
@@ -142,10 +173,12 @@
     <DocumentationFile>bin\Debug_Home\Apq.XML</DocumentationFile>
     <DebugType>full</DebugType>
     <PlatformTarget>x86</PlatformTarget>
-    <CodeAnalysisRules>-Microsoft.Naming#CA1709;-Microsoft.Naming#CA1705;-Microsoft.Globalization#CA1303;-Microsoft.Globalization#CA1305;-Microsoft.Design#CA1020;-Microsoft.Design#CA1004;-Microsoft.Design#CA1014;-Microsoft.Design#CA1053;-Microsoft.Design#CA1062;-Microsoft.Performance#CA1820</CodeAnalysisRules>
+    <CodeAnalysisRules>
+    </CodeAnalysisRules>
     <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
     <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
     <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>Migrated rules for Apq.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, processorArchitecture=MSIL">
@@ -239,6 +272,7 @@
     <Compile Include="DllImports\User32.cs" />
     <Compile Include="Apq\Exception.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <None Include="Migrated rules for Apq.ruleset" />
     <None Include="Shell\ParseResult.cs" />
     <None Include="Shell\Char.cs" />
     <None Include="Shell\Common.cs" />
@@ -311,6 +345,23 @@
     <Content Include="_Doc\BigIntegerDoc.html" />
     <Content Include="_Doc\_说明.txt" />
     <Content Include="_Doc\功能需求.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

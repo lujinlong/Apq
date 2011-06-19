@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RuleSet Name="Migrated rules for Apq.ruleset" Description="已通过项目“P:\VS2008\SVNProjects\Apq\Apq\Apq.csproj”中的“Debug (Any CPU)”配置的 CodeAnalysisRules 属性创建此规则集。" ToolsVersion="10.0">
+  <IncludeAll Action="Warning" />
+  <Rules AnalyzerId="Microsoft.Analyzers.ManagedCodeAnalysis" RuleNamespace="Microsoft.Rules.Managed">
+    <Rule Id="CA1004" Action="None" />
+    <Rule Id="CA1014" Action="None" />
+    <Rule Id="CA1020" Action="None" />
+    <Rule Id="CA1053" Action="None" />
+    <Rule Id="CA1062" Action="None" />
+    <Rule Id="CA1303" Action="None" />
+    <Rule Id="CA1305" Action="None" />
+    <Rule Id="CA1705" Action="None" />
+    <Rule Id="CA1709" Action="None" />
+    <Rule Id="CA1820" Action="None" />
+  </Rules>
+</RuleSet>
