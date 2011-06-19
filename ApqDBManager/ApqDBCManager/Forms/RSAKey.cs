@@ -1,0 +1,81 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Windows.Forms;
+using ICSharpCode.TextEditor.Document;
+using System.Security.Cryptography;
+
+namespace ApqDBCManager.Forms
+{
+	public partial class RSAKey : Apq.Windows.Forms.DockForm
+	{
+		public RSAKey()
+		{
+			InitializeComponent();
+
+			txtRSAUKey.Encoding = System.Text.Encoding.Default;
+			txtRSAPKey.Encoding = System.Text.Encoding.Default;
+		}
+
+		public override void SetUILang(Apq.UILang.UILang UILang)
+		{
+			this.Text = Apq.GlobalObject.UILang["RSA密钥对"];
+			this.TabText = this.Text;
+
+			cbContainsPKey.Text = Apq.GlobalObject.UILang["包含私钥"];
+
+			btnCreate.Text = Apq.GlobalObject.UILang["创建"];
+			btnSaveUToFile.Text = Apq.GlobalObject.UILang["保存公钥"];
+			btnSavePToFile.Text = Apq.GlobalObject.UILang["保存私钥"];
+
+			sfdU.Filter = Apq.GlobalObject.UILang["XML文件(*.xml)|*.xml|所有文件(*.*)|*.*"];
+			sfdP.Filter = Apq.GlobalObject.UILang["XML文件(*.xml)|*.xml|所有文件(*.*)|*.*"];
+		}
+
+		private void RSAKey_Load(object sender, EventArgs e)
+		{
+			txtRSAUKey.Document.HighlightingStrategy = HighlightingStrategyFactory.CreateHighlightingStrategy("XML");
+			txtRSAPKey.Document.HighlightingStrategy = HighlightingStrategyFactory.CreateHighlightingStrategy("XML");
+		}
+
+		private void btnCreate_Click(object sender, EventArgs e)
+		{
+			txtRSAUKey.Text = string.Empty;
+			txtRSAPKey.Text = string.Empty;
+			txtRSAPKey.Refresh();
+
+			RSACryptoServiceProvider rsa = new RSACryptoServiceProvider();
+			txtRSAUKey.Text = rsa.ToXmlString(false);
+			if (cbContainsPKey.Checked)
+			{
+				txtRSAPKey.Text = rsa.ToXmlString(true);
+			}
+		}
+
+		private void btnSaveUToFile_Click(object sender, EventArgs e)
+		{
+			sfdU.InitialDirectory = GlobalObject.XmlConfigChain[this.GetType(), "sfdU_InitialDirectory"];
+			if (sfdU.ShowDialog(this) == DialogResult.OK)
+			{
+				GlobalObject.XmlConfigChain[this.GetType(), "sfdU_InitialDirectory"] = System.IO.Path.GetDirectoryName(sfdU.FileName);
+
+				txtRSAUKey.SaveFile(sfdU.FileName);
+			}
+		}
+
+		private void btnSavePToFile_Click(object sender, EventArgs e)
+		{
+			sfdP.InitialDirectory = GlobalObject.XmlConfigChain[this.GetType(), "sfdP_InitialDirectory"];
+			if (sfdP.ShowDialog(this) == DialogResult.OK)
+			{
+				GlobalObject.XmlConfigChain[this.GetType(), "sfdP_InitialDirectory"] = System.IO.Path.GetDirectoryName(sfdP.FileName);
+				
+				txtRSAPKey.SaveFile(sfdP.FileName);
+			}
+		}
+	}
+}

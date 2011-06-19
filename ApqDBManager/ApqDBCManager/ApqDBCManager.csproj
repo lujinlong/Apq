@@ -1,0 +1,510 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{126C9D81-26AA-43FB-8554-0CB8241896F8}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ApqDBCManager</RootNamespace>
+    <AssemblyName>ApqDBCManager</AssemblyName>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+    <RunPostBuildEvent>OnOutputUpdated</RunPostBuildEvent>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <ApplicationIcon>Res\ico\sign125.ico</ApplicationIcon>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <PublishUrl>http://localhost/ApqDBCManager/</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Web</InstallFrom>
+    <UpdateEnabled>true</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>true</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug_Home|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Debug_Home\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;Debug_Home</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug_Home|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug_Home\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;Debug_Home</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Apq, Version=0.0.0.2, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Dlls\Apq.dll</HintPath>
+    </Reference>
+    <Reference Include="Apq.Com, Version=0.1.3135.42102, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Dlls\Apq.Com.dll</HintPath>
+    </Reference>
+    <Reference Include="Apq.DB, Version=0.3.3742.37034, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Dlls\Apq.DB.dll</HintPath>
+    </Reference>
+    <Reference Include="Apq.DBC, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Dlls\Apq.DBC.dll</HintPath>
+    </Reference>
+    <Reference Include="Apq.Reg.Client, Version=0.3.4018.43148, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Dlls\Apq.Reg.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="Apq.Win, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Dlls\Apq.Win.dll</HintPath>
+    </Reference>
+    <Reference Include="Apq.WorkFlow, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Dlls\Apq.WorkFlow.dll</HintPath>
+    </Reference>
+    <Reference Include="Crad.Windows.Forms.Actions">
+      <HintPath>Dlls\Crad.Windows.Forms.Actions.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.TextEditor, Version=2.0.0.922, Culture=neutral, PublicKeyToken=4d61825e8dd49f1a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Dlls\ICSharpCode.TextEditor.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Dlls\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data, Version=6.3.6.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.configuration">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Drawing">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Runtime.InteropServices.APIs, Version=1.0.4179.19654, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Dlls\System.Runtime.InteropServices.APIs.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Services">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Windows.Forms">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Windows.Forms.TreeListView, Version=1.0.4179.19656, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Dlls\System.Windows.Forms.TreeListView.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="WeifenLuo.WinFormsUI.Docking, Version=2.2.2864.18696, Culture=neutral, PublicKeyToken=d481317c817cec47, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Dlls\WeifenLuo.WinFormsUI.Docking.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Common.cs" />
+    <Compile Include="Forms\CryptCS.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\CryptCS.Designer.cs">
+      <DependentUpon>CryptCS.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DBS_XSD.cs">
+      <DependentUpon>DBS_XSD.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Forms\DBS_XSD.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DBS_XSD.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\MainOption.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\MainOption.designer.cs">
+      <DependentUpon>MainOption.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\RSAKey.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\RSAKey.Designer.cs">
+      <DependentUpon>RSAKey.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DBS.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\DBS.Designer.cs">
+      <DependentUpon>DBS.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DBI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\DBI.Designer.cs">
+      <DependentUpon>DBI.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DBC.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\DBC.Designer.cs">
+      <DependentUpon>DBC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Forms\DES.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\DES.Designer.cs">
+      <DependentUpon>DES.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GlobalObject.cs" />
+    <Compile Include="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Forms\Random.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Random.Designer.cs">
+      <DependentUpon>Random.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\ArrowDown.bmp" />
+    <None Include="Images\ArrowUp.bmp" />
+    <None Include="Images\Bitmap.ico" />
+    <None Include="Images\BlankIcon.ico" />
+    <None Include="Images\ClosedFolder.ICO" />
+    <None Include="Images\CSFile.ico" />
+    <None Include="Images\CSProject.ico" />
+    <None Include="Images\File.ico" />
+    <None Include="Images\Form.ico" />
+    <None Include="Images\Mouse.bmp" />
+    <None Include="Images\msenv22.ico" />
+    <None Include="Images\New.ico" />
+    <None Include="Images\Open.ico" />
+    <None Include="Images\OpenFolder.ICO" />
+    <None Include="Images\OutputWindow.ico" />
+    <None Include="Images\PropertyWindow.ico" />
+    <None Include="Images\Reference.ico" />
+    <None Include="Images\References.ico" />
+    <None Include="Images\SolutionExplorer.ico" />
+    <None Include="Images\TaskListWindow.ico" />
+    <None Include="Images\ToolboxWindow.ico" />
+    <None Include="Images\XmlFile.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Forms\CryptCS.resx">
+      <DependentUpon>CryptCS.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DES.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>DES.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\MainOption.resx">
+      <DependentUpon>MainOption.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\RSAKey.resx">
+      <DependentUpon>RSAKey.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DBS.resx">
+      <DependentUpon>DBS.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DBI.resx">
+      <DependentUpon>DBI.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DBC.resx">
+      <DependentUpon>DBC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Random.resx">
+      <DependentUpon>Random.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="Apq.dll.apq">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Apq.dll.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Apq.dll.log4net">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Apq.Win.dll.apq">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Apq.Win.dll.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Apq.WorkFlow.dll.apq">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Apq.WorkFlow.dll.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="ApqDBCManager.exe.apq">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Res\ico\blockOS 43 System File.ico" />
+    <Content Include="Res\ico\Key.ico" />
+    <Content Include="Res\ico\sign125.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Res\ico\sign141.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Res\png\CheckBox\Checked.png" />
+    <Content Include="Res\png\CheckBox\Indeterminate.png" />
+    <Content Include="Res\png\CheckBox\UnChecked.png" />
+    <Content Include="Res\png\Editor\Copy.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Res\png\Editor\Cut.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Res\png\Editor\Paste.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Res\png\Editor\Redo.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Res\png\Editor\Undo.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Res\png\File\New.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Res\png\File\Open.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Res\png\File\Save.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Res\png\Help.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Res\png\Search.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Res\ico\Text.ico" />
+    <None Include="ApqDBCManager[冰川].reg" />
+    <None Include="ApqDBCManager[雪羽].reg" />
+    <None Include="Forms\DBS_XSD.xsc">
+      <DependentUpon>DBS_XSD.xsd</DependentUpon>
+    </None>
+    <None Include="Forms\DBS_XSD.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DBS_XSD.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Forms\DBS_XSD.xss">
+      <DependentUpon>DBS_XSD.xsd</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <PropertyGroup>
+    <PreBuildEvent>if "" == "" goto EndConfig
+xcopy "$(ProjectDir)..\..\Reference\$(ConfigurationName)\Config\Apq.dll.config" "$(ProjectDir)" /c /q /g /h /r /k /y
+xcopy "$(ProjectDir)..\..\Reference\$(ConfigurationName)\Config\Apq.dll.apq" "$(ProjectDir)" /c /q /g /h /r /k /y
+xcopy "$(ProjectDir)..\..\Reference\$(ConfigurationName)\Config\Apq.dll.log4net" "$(ProjectDir)" /c /q /g /h /r /k /y
+
+xcopy "$(ProjectDir)..\..\Reference\$(ConfigurationName)\Config\Apq.WorkFlow.dll.config" "$(ProjectDir)" /c /q /g /h /r /k /y
+xcopy "$(ProjectDir)..\..\Reference\$(ConfigurationName)\Config\Apq.WorkFlow.dll.apq" "$(ProjectDir)" /c /q /g /h /r /k /y
+
+xcopy "$(ProjectDir)..\..\Reference\Res\Common" "$(ProjectDir)Res\" /c /q /g /h /r /k /y /e
+xcopy "$(ProjectDir)..\..\Reference\Res\$(ProjectName)" "$(ProjectDir)Res\" /c /q /g /h /r /k /y /e
+
+xcopy "$(ProjectDir)..\..\Reference\$(ConfigurationName)\Config\Apq.Com.dll.config" "$(ProjectDir)" /c /q /g /h /r /k /y
+xcopy "$(ProjectDir)..\..\Reference\$(ConfigurationName)\Config\Apq.Com.dll.apq" "$(ProjectDir)" /c /q /g /h /r /k /y
+
+xcopy "$(ProjectDir)..\..\Reference\$(ConfigurationName)\Config\Apq.DBC.dll.config" "$(ProjectDir)" /c /q /g /h /r /k /y
+xcopy "$(ProjectDir)..\..\Reference\$(ConfigurationName)\Config\Apq.DBC.dll.apq" "$(ProjectDir)" /c /q /g /h /r /k /y
+
+xcopy "$(ProjectDir)..\..\Reference\$(ConfigurationName)\Config\Apq.Win.dll.config" "$(ProjectDir)" /c /q /g /h /r /k /y
+xcopy "$(ProjectDir)..\..\Reference\$(ConfigurationName)\Config\Apq.Win.dll.apq" "$(ProjectDir)" /c /q /g /h /r /k /y
+
+xcopy "$(ProjectDir)..\..\Reference\$(ConfigurationName)\Config\Apq.Reg.Client.dll.config" "$(ProjectDir)" /c /q /g /h /r /k /y
+xcopy "$(ProjectDir)..\..\Reference\$(ConfigurationName)\Config\Apq.Reg.Client.dll.apq" "$(ProjectDir)" /c /q /g /h /r /k /y
+:EndConfig
+
+xcopy "$(ProjectDir)..\..\Reference\CradsActions\Crad.Windows.Forms.Actions.dll" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+
+xcopy "$(ProjectDir)..\..\Reference\$(ConfigurationName)\Apq.dll" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+xcopy "$(ProjectDir)..\..\Reference\$(ConfigurationName)\Apq.xml" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+xcopy "$(ProjectDir)..\..\Reference\$(ConfigurationName)\Apq.pdb" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+
+xcopy "$(ProjectDir)..\..\Reference\$(ConfigurationName)\Apq.WorkFlow.dll" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+xcopy "$(ProjectDir)..\..\Reference\$(ConfigurationName)\Apq.WorkFlow.xml" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+xcopy "$(ProjectDir)..\..\Reference\$(ConfigurationName)\Apq.WorkFlow.pdb" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+
+xcopy "$(ProjectDir)..\..\Reference\$(ConfigurationName)\Apq.Com.dll" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+xcopy "$(ProjectDir)..\..\Reference\$(ConfigurationName)\Apq.Com.xml" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+xcopy "$(ProjectDir)..\..\Reference\$(ConfigurationName)\Apq.Com.pdb" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+
+xcopy "$(ProjectDir)..\..\Reference\$(ConfigurationName)\Apq.DB.dll" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+xcopy "$(ProjectDir)..\..\Reference\$(ConfigurationName)\Apq.DB.xml" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+xcopy "$(ProjectDir)..\..\Reference\$(ConfigurationName)\Apq.DB.pdb" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+
+xcopy "$(ProjectDir)..\..\Reference\$(ConfigurationName)\Apq.DBC.dll" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+xcopy "$(ProjectDir)..\..\Reference\$(ConfigurationName)\Apq.DBC.xml" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+xcopy "$(ProjectDir)..\..\Reference\$(ConfigurationName)\Apq.DBC.pdb" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+
+:xcopy "$(ProjectDir)..\..\Reference\$(ConfigurationName)\Apq.CryptKey.dll" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+:xcopy "$(ProjectDir)..\..\Reference\$(ConfigurationName)\Apq.CryptKey.xml" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+:xcopy "$(ProjectDir)..\..\Reference\$(ConfigurationName)\Apq.CryptKey.pdb" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+
+xcopy "$(ProjectDir)..\..\Reference\$(ConfigurationName)\Apq.Win.dll" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+xcopy "$(ProjectDir)..\..\Reference\$(ConfigurationName)\Apq.Win.xml" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+xcopy "$(ProjectDir)..\..\Reference\$(ConfigurationName)\Apq.Win.pdb" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+
+xcopy "$(ProjectDir)..\..\Reference\$(ConfigurationName)\Apq.Reg.Client.dll" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+xcopy "$(ProjectDir)..\..\Reference\$(ConfigurationName)\Apq.Reg.Client.pdb" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+
+xcopy "$(ProjectDir)..\..\Reference\log4net-1.2.10\log4net.dll" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+xcopy "$(ProjectDir)..\..\Reference\log4net-1.2.10\log4net.xml" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+
+xcopy "$(ProjectDir)..\..\Reference\ICSharpCode\TextEditor_2.2\ICSharpCode.TextEditor.dll" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+xcopy "$(ProjectDir)..\..\Reference\ICSharpCode\TextEditor_2.2\ICSharpCode.TextEditor.xml" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+
+xcopy "$(ProjectDir)..\..\Reference\DockPanel\WeifenLuo.WinFormsUI.Docking.dll" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+
+xcopy "$(ProjectDir)..\..\Reference\TreeListView\System.Runtime.InteropServices.APIs.dll" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+xcopy "$(ProjectDir)..\..\Reference\TreeListView\System.Runtime.InteropServices.APIs.xml" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+xcopy "$(ProjectDir)..\..\Reference\TreeListView\System.Windows.Forms.TreeListView.dll" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+xcopy "$(ProjectDir)..\..\Reference\TreeListView\System.Windows.Forms.TreeListView.xml" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+:End
+</PreBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+</Project>
