@@ -13,8 +13,6 @@ namespace Apq.Windows.Forms
 {
 	/// <summary>
 	/// 可停靠窗口
-	///		全角问题
-	///		//配置文件
 	/// </summary>
 	/// <remarks>注意:ImeForm与此基本相同,修改时应考虑同步修改相应部分</remarks>
 	public partial class DockForm : DockContent, Apq.Interfaces.IDataShow
