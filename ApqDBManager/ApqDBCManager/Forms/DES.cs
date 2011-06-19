@@ -35,8 +35,8 @@ namespace ApqDBCManager
 			btnEncryptString.Text = Apq.GlobalObject.UILang["加密↓"];
 			btnDecryptString.Text = Apq.GlobalObject.UILang["解密↑"];
 
-			ofdDFile.Filter = Apq.GlobalObject.UILang["所有文件(*.*)|*.*"];
-			ofdEFile.Filter = Apq.GlobalObject.UILang["所有文件(*.*)|*.*"];
+			ofdDFile.Filter = Apq.GlobalObject.UILang["文本文件(*.txt;*.xml)|*.txt;*.xml|所有文件(*.*)|*.*"];
+			ofdEFile.Filter = Apq.GlobalObject.UILang["DBC文件(*.res)|*.res|所有文件(*.*)|*.*"];
 		}
 
 		private void cbDFile_DropDown(object sender, EventArgs e)

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Data;
+using System.IO;
 
 namespace ApqDBCManager
 {
@@ -37,6 +38,17 @@ namespace ApqDBCManager
 						GlobalObject.XmlConfigChain["Crypt", "DESKey"], GlobalObject.XmlConfigChain["Crypt", "DESIV"]);
 				}
 			}
+		}
+
+		/// <summary>
+		/// 将字符串加密保存为文件
+		/// </summary>
+		public static void SaveCSFile(string FileName, string str)
+		{
+			string desKey = GlobalObject.XmlConfigChain["Crypt", "DESKey"];
+			string desIV = GlobalObject.XmlConfigChain["Crypt", "DESIV"];
+			string strCs = Apq.Security.Cryptography.DESHelper.EncryptString(str, desKey, desIV);
+			File.WriteAllText(FileName, strCs, Encoding.UTF8);
 		}
 	}
 }

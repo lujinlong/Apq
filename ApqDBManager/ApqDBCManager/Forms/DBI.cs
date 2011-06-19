@@ -9,6 +9,7 @@ using WeifenLuo.WinFormsUI.Docking;
 using System.Data.SqlClient;
 using System.Data.Common;
 using Apq.TreeListView;
+using System.IO;
 
 namespace ApqDBCManager.Forms
 {
@@ -52,13 +53,13 @@ namespace ApqDBCManager.Forms
 			columnHeader5.Text = Apq.GlobalObject.UILang["IP"];
 			columnHeader6.Text = Apq.GlobalObject.UILang["端口"];
 
-			sfd.Filter = Apq.GlobalObject.UILang["DBC文件(*.res)|*.res"];
+			sfd.Filter = Apq.GlobalObject.UILang["DBC文件(*.res)|*.res|所有文件(*.*)|*.*"];
 		}
 
 		private void DBI_Load(object sender, EventArgs e)
 		{
 			#region 添加图标
-			this.tsbSave.Image = System.Drawing.Image.FromFile(@"Res\png\File\Save.png");
+			this.tsbSave.Image = System.Drawing.Image.FromFile(Application.StartupPath + @"\Res\png\File\Save.png");
 			#endregion
 		}
 
@@ -264,17 +265,18 @@ namespace ApqDBCManager.Forms
 		//生成文件
 		private void tsbCreateFile_Click(object sender, EventArgs e)
 		{
+			treeListView1.EndUpdate();
 			sfd.InitialDirectory = GlobalObject.XmlConfigChain[this.GetType(), "sfd_InitialDirectory"];
 			if (sfd.ShowDialog(this) == DialogResult.OK)
 			{
 				GlobalObject.XmlConfigChain[this.GetType(), "sfd_InitialDirectory"] = System.IO.Path.GetDirectoryName(sfd.FileName);
 
-				DBS_XSD xsd = new DBS_XSD();
+				Apq.DBC.XSD xsd = new Apq.DBC.XSD();
 				xsd.DBI.Merge(GlobalObject.Lookup.DBI);
-				xsd.DBI.Columns.Remove("PwdD");
-				xsd.DBI.Columns.Remove("ComputerName");
-				xsd.DBI.WriteXml(sfd.FileName);
-
+				xsd.DBI.Columns.Remove("PwdC");
+				StringWriter sw = new StringWriter();
+				xsd.WriteXml(sw, XmlWriteMode.IgnoreSchema);
+				Common.SaveCSFile(sfd.FileName, sw.ToString());
 				tsslOutInfo.Text = Apq.GlobalObject.UILang["保存文件成功"];
 			}
 		}

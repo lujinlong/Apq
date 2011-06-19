@@ -22,11 +22,40 @@ namespace ApqDBCManager.Forms
 			Apq.Windows.Forms.DataGridViewHelper.AddBehaivor(dataGridView1);
 		}
 
+		public override void SetUILang(Apq.UILang.UILang UILang)
+		{
+			this.Text = Apq.GlobalObject.UILang["DB连接管理"];
+			this.TabText = this.Text;
+
+			acOpenFile.Text = Apq.GlobalObject.UILang["打开(&O)"];
+			acOpenFile.Image = System.Drawing.Image.FromFile(Application.StartupPath + @"\Res\png\File\Open.png");
+			tsbSave.Text = Apq.GlobalObject.UILang["保存(&S)"];
+			tsbSelectAll.Text = Apq.GlobalObject.UILang["全选(&A)"];
+			tssbSlts.Text = Apq.GlobalObject.UILang["批量设置(&E)"];
+			tsmiSltsUserId.Text = Apq.GlobalObject.UILang["登录名"];
+			tsmiSltsPwdD.Text = Apq.GlobalObject.UILang["密码"];
+			tssbCreateCSFile.Text = Apq.GlobalObject.UILang["生成文件(&G)"];
+
+			dBCIDDataGridViewTextBoxColumn.HeaderText = Apq.GlobalObject.UILang["编号"];
+			dBCNameDataGridViewTextBoxColumn.HeaderText = Apq.GlobalObject.UILang["连接名"];
+			computerIDDataGridViewComBoxColumn.HeaderText = Apq.GlobalObject.UILang["服务器"];
+			dBIIDDataGridViewComboBoxColumn.HeaderText = Apq.GlobalObject.UILang["数据库实例"];
+			dBNameDataGridViewTextBoxColumn.HeaderText = Apq.GlobalObject.UILang["数据库名"];
+			dBCUseTypeDataGridViewComboBoxColumn.HeaderText = Apq.GlobalObject.UILang["使用类型"];
+			userIdDataGridViewTextBoxColumn.HeaderText = Apq.GlobalObject.UILang["登录名"];
+			pwdDDataGridViewTextBoxColumn.HeaderText = Apq.GlobalObject.UILang["密码"];
+			useTrustedDataGridViewCheckBoxColumn.HeaderText = Apq.GlobalObject.UILang["使用信任连接"];
+			mirrorDataGridViewTextBoxColumn.HeaderText = Apq.GlobalObject.UILang["镜像"];
+			optionDataGridViewTextBoxColumn.HeaderText = Apq.GlobalObject.UILang["选项"];
+
+			sfd.Filter = Apq.GlobalObject.UILang["DBC文件(*.res)|*.res|所有文件(*.*)|*.*"];
+			ofd.Filter = Apq.GlobalObject.UILang["DBC文件(*.res)|*.res|所有文件(*.*)|*.*"];
+		}
+
 		private void DBC_Load(object sender, EventArgs e)
 		{
 			#region 添加图标
-			this.tsbOpenFile.Image = System.Drawing.Image.FromFile(@"Res\png\File\Open.png");
-			this.tsbSave.Image = System.Drawing.Image.FromFile(@"Res\png\File\Save.png");
+			this.tsbSave.Image = System.Drawing.Image.FromFile(Application.StartupPath + @"\Res\png\File\Save.png");
 			#endregion
 
 			// 加载生成菜单
@@ -40,11 +69,11 @@ namespace ApqDBCManager.Forms
 			}
 		}
 
-		private DBS_XSD xsd = new DBS_XSD();
-
 		// 生成数据库连接文件
 		void tsmiCreatCSFile_Click(object sender, EventArgs e)
 		{
+			dataGridView1.EndEdit();
+
 			ToolStripMenuItem tsb = sender as ToolStripMenuItem;
 			sfd.InitialDirectory = GlobalObject.XmlConfigChain[this.GetType(), "sfd_InitialDirectory"];
 			if (tsb != null && sfd.ShowDialog(this) == DialogResult.OK)
@@ -52,42 +81,34 @@ namespace ApqDBCManager.Forms
 				GlobalObject.XmlConfigChain[this.GetType(), "sfd_InitialDirectory"] = System.IO.Path.GetDirectoryName(sfd.FileName);
 
 				int nDBCUseType = Apq.Convert.ChangeType<int>(tsb.Tag);
-				DataSet ds = new DataSet("XSD");
-				ds.Namespace = _DBS_XSD.Namespace;
-				DataTable dt = _DBS_XSD.DBC.Copy();
-				ds.Tables.Add(dt);
-				dt.Columns.Add("ServerName");
-				dt.Columns.Remove("PwdC");
+				Apq.DBC.XSD xsd = new Apq.DBC.XSD();
+				xsd.DBC.Merge(xsdDBC.DBC);
+				xsd.DBC.Columns.Remove("ComputerID");
+				xsd.DBC.Columns.Remove("PwdC");
 
-				for (int i = dt.Rows.Count - 1; i >= 0; i--)
+				for (int i = xsd.DBC.Rows.Count - 1; i >= 0; i--)
 				{
-					if (Apq.Convert.ChangeType<int>(dt.Rows[i]["DBCUseType"]) != nDBCUseType)
+					if (Apq.Convert.ChangeType<int>(xsd.DBC.Rows[i]["DBCUseType"]) != nDBCUseType)
 					{
-						dt.Rows.RemoveAt(i);
+						xsd.DBC.Rows.RemoveAt(i);
 						continue;
 					}
-
-					// 计算ServerName
-					DBS_XSD.DBIRow DBI = GlobalObject.Lookup.DBI.FindByDBIID(Apq.Convert.ChangeType<int>(dt.Rows[i]["DBIID"]));
-					dt.Rows[i]["ServerName"] = DBI.IP;
-					if (DBI != null && DBI.Port > 0)
-					{
-						dt.Rows[i]["ServerName"] += "," + DBI.Port;
-					}
 				}
-				string csStr = ds.GetXml();
-				string desKey = GlobalObject.XmlConfigChain["Crypt", "DESKey"];
-				string desIV = GlobalObject.XmlConfigChain["Crypt", "DESIV"];
-				string strCs = Apq.Security.Cryptography.DESHelper.EncryptString(csStr, desKey, desIV);
-				File.WriteAllText(sfd.FileName, strCs, Encoding.UTF8);
+
+				StringWriter sw = new StringWriter();
+				xsd.WriteXml(sw, XmlWriteMode.IgnoreSchema);
+				Common.SaveCSFile(sfd.FileName,sw.ToString());
 				tsslOutInfo.Text = Apq.GlobalObject.UILang["保存文件成功"];
 			}
 		}
 
 		private void tsbOpenFile_Click(object sender, EventArgs e)
 		{
+			ofd.InitialDirectory = GlobalObject.XmlConfigChain[this.GetType(), "ofd_InitialDirectory"];
 			if (ofd.ShowDialog(this) == DialogResult.OK)
 			{
+				GlobalObject.XmlConfigChain[this.GetType(), "ofd_InitialDirectory"] = System.IO.Path.GetDirectoryName(ofd.FileName);
+
 				LoadData(FormDataSet);
 				tsslOutInfo.Text = Apq.GlobalObject.UILang["加载成功"];
 			}
@@ -111,7 +132,32 @@ namespace ApqDBCManager.Forms
 
 			#region 加载所有字典表
 			#endregion
+
+			xsdDBC.DBC.ColumnChanged += new DataColumnChangeEventHandler(DBC_ColumnChanged);
+			xsdDBC.DBC.RowChanged += new DataRowChangeEventHandler(DBC_RowChanged);
 		}
+
+		private void DBC_RowChanged(object sender, DataRowChangeEventArgs e)
+		{
+			if (e.Action == DataRowAction.Add)
+			{
+				DBS_XSD.DBIRow drDBI = GlobalObject.Lookup.DBI.FindByDBIID(Convert.ToInt32(e.Row["DBIID"]));
+				if (drDBI != null)
+				{
+					e.Row["ComputerID"] = drDBI.ComputerID;
+				}
+			}
+		}
+
+		private void DBC_ColumnChanged(object sender, DataColumnChangeEventArgs e)
+		{
+			if (e.Column.ColumnName == "DBIID" && !Apq.Convert.LikeDBNull(e.Row["DBIID"]))
+			{
+				DBS_XSD.DBIRow drDBI = GlobalObject.Lookup.DBI.FindByDBIID(Convert.ToInt32(e.Row["DBIID"]));
+				e.Row["ComputerID"] = drDBI.ComputerID;
+			}
+		}
+
 		/// <summary>
 		/// 加载数据
 		/// </summary>
@@ -122,11 +168,12 @@ namespace ApqDBCManager.Forms
 			{
 				try
 				{
-					Apq.DBC.XSD _ds = new Apq.DBC.XSD();
-					_ds.DBC.ReadXml(FileName);
-
-					xsd.Clear();
-					xsd.DBC.Merge(_ds.DBC);
+					string strCs = File.ReadAllText(FileName, Encoding.UTF8);
+					string str = Apq.Security.Cryptography.DESHelper.DecryptString(strCs,
+						GlobalObject.XmlConfigChain["Crypt", "DESKey"], GlobalObject.XmlConfigChain["Crypt", "DESIV"]);
+					StringReader sr = new StringReader(str);
+					xsdDBC.Clear();
+					xsdDBC.DBC.ReadXml(sr);
 				}
 				catch { }
 			}
@@ -138,27 +185,27 @@ namespace ApqDBCManager.Forms
 		{
 			#region 设置Lookup
 			bsComputer.DataSource = GlobalObject.Lookup;
+			bsDBI.DataSource = GlobalObject.Lookup;
+			bsDBCUseType.DataSource = GlobalObject.Lookup;
 			#endregion
 
-			bsDBC.DataSource = xsd;
+			bsDBC.DataSource = xsdDBC;
 		}
 
 		#endregion
 
+		//打开
+		private void acOpenFile_Execute(object sender, EventArgs e)
+		{
+			dataGridView1.EndEdit();
+			Open();
+		}
+
 		//保存
 		private void tsbSave_Click(object sender, EventArgs e)
 		{
-			Apq.DBC.XSD _ds = new Apq.DBC.XSD();
-			_ds.DBC.Merge(xsd.DBC);
-
-			// 密码加密
-			Common.PwdD2C(_ds.DBC);
-
-			if (!string.IsNullOrEmpty(FileName))
-			{
-				_ds.DBC.WriteXml(FileName, XmlWriteMode.IgnoreSchema);
-				tsslOutInfo.Text = Apq.GlobalObject.UILang["保存成功"];
-			}
+			dataGridView1.EndEdit();
+			Save();
 		}
 
 		//全选
@@ -265,44 +312,48 @@ namespace ApqDBCManager.Forms
 
 		public void Open()
 		{
-			LoadData(FormDataSet);
+			ofd.InitialDirectory = GlobalObject.XmlConfigChain[this.GetType(), "ofd_InitialDirectory"];
+			if (ofd.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
+			{
+				GlobalObject.XmlConfigChain[this.GetType(), "ofd_InitialDirectory"] = System.IO.Path.GetDirectoryName(ofd.FileName);
+
+				FileName = ofd.FileName;
+				Apq.DBC.XSD xsd = new Apq.DBC.XSD();
+
+				string strCs = File.ReadAllText(ofd.FileName, Encoding.UTF8);
+				string str = Apq.Security.Cryptography.DESHelper.DecryptString(strCs,
+					GlobalObject.XmlConfigChain["Crypt", "DESKey"], GlobalObject.XmlConfigChain["Crypt", "DESIV"]);
+				StringReader sr = new StringReader(str);
+				xsd.ReadXml(sr);
+				xsdDBC.DBC.Merge(xsd.DBC);
+				tsslOutInfo.Text = Apq.GlobalObject.UILang["打开文件成功"];
+			}
 		}
 
 		public void Save()
 		{
-			sfd.InitialDirectory = System.IO.Path.GetDirectoryName(FileName);
-			if (string.IsNullOrEmpty(FileName))
+			if (!string.IsNullOrEmpty(FileName))
 			{
-				sfd.InitialDirectory = GlobalObject.XmlConfigChain[this.GetType(), "sfd_InitialDirectory"];
-				if (ofd.ShowDialog(this) == DialogResult.OK)
-				{
-					GlobalObject.XmlConfigChain[this.GetType(), "sfd_InitialDirectory"] = System.IO.Path.GetDirectoryName(sfd.FileName);
-
-					FileName = ofd.FileName;
-				}
+				Apq.DBC.XSD xsd = new Apq.DBC.XSD();
+				xsd.DBC.Merge(xsdDBC.DBC);
+				xsd.DBC.Columns.Remove("ComputerID");
+				xsd.DBC.Columns.Remove("PwdC");
+				StringWriter sw = new StringWriter();
+				xsd.WriteXml(sw, XmlWriteMode.IgnoreSchema);
+				Common.SaveCSFile(FileName, sw.ToString());
+				tsslOutInfo.Text = Apq.GlobalObject.UILang["保存文件成功"];
 			}
-
-			SaveToFile();
 		}
 
 		public void SaveAs(string FileName)
 		{
-			ofd.InitialDirectory = GlobalObject.XmlConfigChain[this.GetType(), "sfd_InitialDirectory"];
-			if (ofd.ShowDialog(this) == DialogResult.OK)
+			sfd.InitialDirectory = GlobalObject.XmlConfigChain[this.GetType(), "sfd_InitialDirectory"];
+			if (sfd.ShowDialog(this) == DialogResult.OK)
 			{
-				FileName = ofd.FileName;
-			}
+				GlobalObject.XmlConfigChain[this.GetType(), "sfd_InitialDirectory"] = System.IO.Path.GetDirectoryName(sfd.FileName);
 
-			SaveToFile();
-		}
-
-		private void SaveToFile()
-		{
-			if (!string.IsNullOrEmpty(FileName))
-			{
-				Apq.DBC.XSD xsd = new Apq.DBC.XSD();
-				xsd.DBC.Merge(_DBS_XSD.DBC);
-				xsd.DBC.WriteXml(FileName, XmlWriteMode.IgnoreSchema);
+				this.FileName = sfd.FileName;
+				Save();
 			}
 		}
 

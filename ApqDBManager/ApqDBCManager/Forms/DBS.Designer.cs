@@ -39,11 +39,11 @@
 			this.bsDBS = new System.Windows.Forms.BindingSource(this.components);
 			this.toolStrip1 = new System.Windows.Forms.ToolStrip();
 			this.tsbSave = new System.Windows.Forms.ToolStripButton();
+			this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
 			this.tsbInput = new System.Windows.Forms.ToolStripButton();
 			this.statusStrip1 = new System.Windows.Forms.StatusStrip();
 			this.tsslOutInfo = new System.Windows.Forms.ToolStripStatusLabel();
 			this.tsslTest = new System.Windows.Forms.ToolStripStatusLabel();
-			this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.bsComputerType)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this._dbS_XSD1)).BeginInit();
@@ -128,12 +128,18 @@
 			// 
 			// tsbSave
 			// 
+			this.tsbSave.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
 			this.tsbSave.Image = ((System.Drawing.Image)(resources.GetObject("tsbSave.Image")));
 			this.tsbSave.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.tsbSave.Name = "tsbSave";
-			this.tsbSave.Size = new System.Drawing.Size(67, 22);
+			this.tsbSave.Size = new System.Drawing.Size(23, 22);
 			this.tsbSave.Text = "保存(&S)";
 			this.tsbSave.Click += new System.EventHandler(this.tsbSave_Click);
+			// 
+			// toolStripSeparator1
+			// 
+			this.toolStripSeparator1.Name = "toolStripSeparator1";
+			this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
 			// 
 			// tsbInput
 			// 
@@ -168,11 +174,6 @@
 			this.tsslTest.Name = "tsslTest";
 			this.tsslTest.Size = new System.Drawing.Size(0, 17);
 			// 
-			// toolStripSeparator1
-			// 
-			this.toolStripSeparator1.Name = "toolStripSeparator1";
-			this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
-			// 
 			// DBS
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
@@ -186,8 +187,8 @@
 			this.Name = "DBS";
 			this.TabText = "服务器列表";
 			this.Text = "服务器列表";
-			this.Load += new System.EventHandler(this.DBServer_Load);
 			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.DBServer_FormClosing);
+			this.Load += new System.EventHandler(this.DBServer_Load);
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.bsComputerType)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this._dbS_XSD1)).EndInit();

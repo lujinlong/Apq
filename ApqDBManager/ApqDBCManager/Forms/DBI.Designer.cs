@@ -36,13 +36,13 @@
 			this.tsmiAdd = new System.Windows.Forms.ToolStripMenuItem();
 			this.tsmiDel = new System.Windows.Forms.ToolStripMenuItem();
 			this.treeListView1 = new System.Windows.Forms.TreeListView();
-			this.columnHeader1 = new System.Windows.Forms.ColumnHeader();
-			this.columnHeader2 = new System.Windows.Forms.ColumnHeader();
-			this.columnHeader7 = new System.Windows.Forms.ColumnHeader();
-			this.columnHeader3 = new System.Windows.Forms.ColumnHeader();
-			this.columnHeader4 = new System.Windows.Forms.ColumnHeader();
-			this.columnHeader5 = new System.Windows.Forms.ColumnHeader();
-			this.columnHeader6 = new System.Windows.Forms.ColumnHeader();
+			this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.imageList2 = new System.Windows.Forms.ImageList(this.components);
 			this.toolStrip1 = new System.Windows.Forms.ToolStrip();
 			this.tsbSave = new System.Windows.Forms.ToolStripButton();
@@ -197,9 +197,10 @@
 			// tsbSave
 			// 
 			this.actionList1.SetAction(this.tsbSave, this.acSave);
+			this.tsbSave.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
 			this.tsbSave.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.tsbSave.Name = "tsbSave";
-			this.tsbSave.Size = new System.Drawing.Size(51, 22);
+			this.tsbSave.Size = new System.Drawing.Size(23, 22);
 			this.tsbSave.Text = "保存(&S)";
 			// 
 			// toolStripSeparator1
@@ -375,8 +376,8 @@
 			this.Name = "DBI";
 			this.TabText = "数据库列表";
 			this.Text = "数据库列表";
-			this.Load += new System.EventHandler(this.DBI_Load);
 			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.DBI_FormClosing);
+			this.Load += new System.EventHandler(this.DBI_Load);
 			this.cmTreeMenu.ResumeLayout(false);
 			this.toolStrip1.ResumeLayout(false);
 			this.toolStrip1.PerformLayout();

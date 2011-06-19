@@ -53,9 +53,9 @@ namespace ApqDBCManager
 			#endregion
 
 			#region 添加图标
-			//Icon = new Icon(@"Res\ico\sign125.ico");
+			//Icon = new Icon(Application.StartupPath + @"\Res\ico\sign125.ico");
 
-			this.tsmiNew.Image = System.Drawing.Image.FromFile(@"Res\png\File\New.png");
+			this.tsmiNew.Image = System.Drawing.Image.FromFile(Application.StartupPath + @"\Res\png\File\New.png");
 			#endregion
 
 			tsmiNew_Click(tsmiNew, null);

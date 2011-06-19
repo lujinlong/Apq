@@ -393,8 +393,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Res\ico\Text.ico" />
-    <None Include="ApqDBCManager[冰川].reg" />
-    <None Include="ApqDBCManager[雪羽].reg" />
     <None Include="Forms\DBS_XSD.xsc">
       <DependentUpon>DBS_XSD.xsd</DependentUpon>
     </None>

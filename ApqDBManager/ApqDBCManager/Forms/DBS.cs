@@ -36,7 +36,7 @@ namespace ApqDBCManager.Forms
 		private void DBServer_Load(object sender, EventArgs e)
 		{
 			#region 添加图标
-			this.tsbSave.Image = System.Drawing.Image.FromFile(@"Res\png\File\Save.png");
+			this.tsbSave.Image = System.Drawing.Image.FromFile(Application.StartupPath + @"\Res\png\File\Save.png");
 			#endregion
 		}
 

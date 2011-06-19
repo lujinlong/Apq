@@ -50,15 +50,15 @@ namespace ApqDBCManager.Forms
 		public partial class ComputerDataTable
 		{
 			/// <summary>
-			/// 根据服务器名查找数据行
+			/// 根据服务器编号查找数据行
 			/// </summary>
 			/// <param name="DBIID"></param>
 			/// <returns></returns>
-			public ComputerRow FindByComputerName(string ComputerName)
+			public ComputerRow FindByComputerID(int ComputerID)
 			{
 				foreach (ComputerRow dr in this.Rows)
 				{
-					if (dr.ComputerName == ComputerName)
+					if (dr.ComputerID == ComputerID)
 					{
 						return dr;
 					}
@@ -67,16 +67,16 @@ namespace ApqDBCManager.Forms
 			}
 		}
 
-		public partial class DBCDataTable
+		public partial class DBIDataTable
 		{
 			/// <summary>
-			/// 根据DBName查找数据行
+			/// 根据实例编号查找数据行
 			/// </summary>
-			public DBCRow FindByDBName(string DBName)
+			public DBIRow FindByDBIID(int DBIID)
 			{
-				foreach (DBCRow dr in this.Rows)
+				foreach (DBIRow dr in this.Rows)
 				{
-					if (dr.DBName.ToLower() == DBName.ToLower())
+					if (dr.DBIID == DBIID)
 					{
 						return dr;
 					}
@@ -84,5 +84,6 @@ namespace ApqDBCManager.Forms
 				return null;
 			}
 		}
+
 	}
 }
