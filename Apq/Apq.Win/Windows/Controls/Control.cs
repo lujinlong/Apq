@@ -72,11 +72,11 @@ namespace Apq.Windows.Controls
 			IntPtr HIme = Apq.DllImports.Imm32.ImmGetContext(Ctrl.Handle);
 			if (Apq.DllImports.Imm32.ImmGetOpenStatus(HIme))
 			{
-				int iMode = 0;
-				int iSentence = 0;
+				uint[] iMode = new uint[] { 0 };
+				uint[] iSentence = new uint[] { 0 };
 				if (Apq.DllImports.Imm32.ImmGetConversionStatus(HIme, ref iMode, ref iSentence))
 				{
-					if ((iMode & Apq.DllImports.Imm32.IME_CMODE_FULLSHAPE) > 0) //如果是全角
+					if ((iMode[0] & Apq.DllImports.Imm32.IME_CMODE_FULLSHAPE) > 0) //如果是全角
 					{
 						Apq.DllImports.Imm32.ImmSimulateHotKey(Ctrl.Handle, Apq.DllImports.Imm32.IME_CHOTKEY_SHAPE_TOGGLE); //转换成半角
 					}

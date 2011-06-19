@@ -278,7 +278,6 @@
     <None Include="Shell\Common.cs" />
     <None Include="Shell\State.cs" />
     <Compile Include="Text\StringBuilder.cs" />
-    <Compile Include="Utils\Win32.cs" />
     <Compile Include="Config\XmlConfig.cs" />
     <Compile Include="Xml\XmlElement.cs" />
     <Compile Include="XSD\Explorer.cs">

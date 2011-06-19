@@ -121,14 +121,14 @@ namespace Apq.DllImports
 		/// </summary>
 		/// <returns></returns>
 		[DllImport("User32.dll")]
-		public extern static int GetWindowRect(int hwnd, ref RECT lpRect);
+		public extern static int GetWindowRect(IntPtr hwnd, ref RECT lpRect);
 
 		/// <summary>
 		/// 启用/禁用 窗口
 		/// </summary>
 		/// <returns></returns>
 		[DllImport("User32.dll")]
-		public extern static int EnableWindow(int hwnd, int fEnable);
+		public extern static int EnableWindow(IntPtr hwnd, int fEnable);
 
 		/// <summary>
 		/// 显示/隐藏 窗口

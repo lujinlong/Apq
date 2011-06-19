@@ -13,15 +13,15 @@ namespace Apq.Sim
 		/// <summary>
 		/// 移动鼠标
 		/// </summary>
-		/// <param name="From_Handle_ToInt32">From控件Handle</param>
-		/// <param name="To_Handle_ToInt32">To控件Handle</param>
-		public static void Move(int From_Handle_ToInt32, int To_Handle_ToInt32)
+		/// <param name="From_Handle_Toint">From控件Handle</param>
+		/// <param name="To_Handle_Toint">To控件Handle</param>
+		public static void Move(int From_Handle_Toint, int To_Handle_Toint)
 		{
 			DllImports.User32.RECT rectFrom = new DllImports.User32.RECT();
 			DllImports.User32.RECT rectTo = new DllImports.User32.RECT();
 			int i;
-			DllImports.User32.GetWindowRect(From_Handle_ToInt32, ref rectFrom);
-			DllImports.User32.GetWindowRect(To_Handle_ToInt32, ref rectTo);
+			DllImports.User32.GetWindowRect((IntPtr)From_Handle_Toint, ref rectFrom);
+			DllImports.User32.GetWindowRect((IntPtr)To_Handle_Toint, ref rectTo);
 
 			if ((rectFrom.left + rectFrom.right) / 2 - (rectTo.left + rectTo.right) / 2 > 0)
 			{

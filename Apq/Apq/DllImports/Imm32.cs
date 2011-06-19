@@ -34,7 +34,7 @@ namespace Apq.DllImports
 		/// <param name="b"></param>
 		/// <returns></returns>
 		[DllImport("Imm32.dll")]
-		public static extern bool ImmSetOpenStatus(IntPtr himc, bool b);
+		public static extern bool ImmSetOpenStatus(IntPtr himc, int b);
 		#endregion
 
 		/// <summary>
@@ -53,7 +53,7 @@ namespace Apq.DllImports
 		/// <param name="lpdw2"></param>
 		/// <returns></returns>
 		[DllImport("Imm32.dll")]
-		public static extern bool ImmGetConversionStatus(IntPtr himc, ref int lpdw, ref int lpdw2);
+		public static extern bool ImmGetConversionStatus(IntPtr himc, ref uint[] lpdw, ref uint[] lpdw2);
 		/// <summary>
 		/// 模拟按键(用于转换半角)
 		/// </summary>
@@ -61,6 +61,6 @@ namespace Apq.DllImports
 		/// <param name="lngHotkey"></param>
 		/// <returns></returns>
 		[DllImport("Imm32.dll")]
-		public static extern int ImmSimulateHotKey(IntPtr hwnd, int lngHotkey);
+		public static extern int ImmSimulateHotKey(IntPtr hwnd, uint lngHotkey);
 	}
 }

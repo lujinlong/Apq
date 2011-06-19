@@ -36,29 +36,6 @@ namespace Apq.Data
 		#endregion
 
 		#region ExportToExcel
-		/// <summary>
-		/// 导出指定表到 Excel 文件
-		/// </summary>
-		/// <param name="ds"></param>
-		/// <param name="dtmc">需要导出的表列映射(空列表表示全部)</param>
-		/// <param name="odc"></param>
-		public static void ExportToExcel(System.Data.DataSet ds, System.Data.OleDb.OleDbConnection odc, System.Data.Common.DataTableMappingCollection dtmc)
-		{
-			if (dtmc == null || dtmc.Count == 0)
-			{
-				foreach (System.Data.DataTable dt in ds.Tables)
-				{
-					Apq.Data.DataTable.ExportToExcel(dt, odc, null);
-				}
-			}
-			else
-			{
-				foreach (System.Data.Common.DataTableMapping dtm in dtmc)
-				{
-					Apq.Data.DataTable.ExportToExcel(ds.Tables[dtm.DataSetTable], odc, dtm.ColumnMappings);
-				}
-			}
-		}
 
 		/// <summary>
 		/// 按最大行数限制组织表(新建表,转移数据,新表名为原表名+"续"+编号)
@@ -76,7 +53,7 @@ namespace Apq.Data
 				{
 					// 加入表
 					System.Data.DataTable dtClone = dt.Clone();
-					dtClone.TableName = dt.TableName + "续" + ++nAddNo;
+					dtClone.TableName = dt.TableName + GlobalObject.UILang["续"] + ++nAddNo;
 					ds.Tables.Add(dtClone);
 
 					// 转移数据

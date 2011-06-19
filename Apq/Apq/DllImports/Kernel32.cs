@@ -64,6 +64,6 @@ namespace Apq.DllImports
 		/// ½ø³ÌÔİÍ£ºÁÃëÊı
 		/// </summary>
 		[DllImport("Kernel32.dll")]
-		public static extern void Sleep(int dwMilliseconds);
+		public static extern void Sleep(uint dwMilliseconds);
 	}
 }

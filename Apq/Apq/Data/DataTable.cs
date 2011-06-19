@@ -57,7 +57,6 @@ namespace Apq.Data
 		}
 		#endregion
 
-
 		#region GetColNames
 		/// <summary>
 		/// 获取列名数组
@@ -293,111 +292,6 @@ namespace Apq.Data
 		}
 		#endregion
 
-		#region Excel
-
-		/// <summary>
-		/// 在 Excel 文件中添加该表映射的页(Worksheet)和列.(对已存在的页则清空原数据)
-		/// </summary>
-		/// <param name="odc">已打开的连接</param>
-		/// <param name="dtm">该表的映射关系</param>
-		[Obsolete("此方法暂未启用:未完成")]
-		public static void BuildExcelSheet(System.Data.OleDb.OleDbConnection odc, System.Data.Common.DataTableMapping dtm)
-		{
-			// 获取已有结构
-			System.Data.DataSet dsSheet = new System.Data.DataSet();
-			dsSheet.Tables.Add(odc.GetOleDbSchemaTable(System.Data.OleDb.OleDbSchemaGuid.Tables, null));
-			System.Data.OleDb.OleDbDataAdapter odda = new System.Data.OleDb.OleDbDataAdapter(string.Empty, odc);
-			foreach (System.Data.DataRow dr in dsSheet.Tables[0].Rows)
-			{
-				string SheetName = dr[2].ToString().Trim('\'');
-				odda.SelectCommand.CommandText = "SELECT * FROM [" + SheetName + "]";
-				odda.FillSchema(dsSheet, SchemaType.Mapped, SheetName);
-			}
-		}
-
-		/// <summary>
-		/// 导出到 Excel 文件
-		/// </summary>
-		/// <param name="dt">表</param>
-		/// <param name="odc"></param>
-		/// <param name="dcmc">列映射</param>
-		public static void ExportToExcel(System.Data.DataTable dt, System.Data.OleDb.OleDbConnection odc, System.Data.Common.DataColumnMappingCollection dcmc)
-		{
-			System.Data.Common.DataColumnMappingCollection dcmc1 = new System.Data.Common.DataColumnMappingCollection();
-			if (dcmc == null || dcmc.Count == 0)
-			{
-				foreach (DataColumn dc in dt.Columns)
-				{
-					dcmc1.Add(dc.ColumnName, dc.ColumnName);
-				}
-			}
-			else
-			{
-				dcmc1 = dcmc;
-			}
-
-			string[] ColNames = Apq.Data.Common.DataColumnMappingCollectionHelper.GetSourceColNames(dcmc1);
-			string strColNames = string.Join(",", ColNames);
-			string strInsert = Apq.Data.Common.SQLHelper.BuildInsertSegment("[" + dt.TableName + "$]", strColNames, true);
-
-			try
-			{
-				Apq.Data.Common.DbConnectionHelper.Open(odc);
-				foreach (System.Data.DataRow dr in dt.Rows)
-				{
-					string[] aryRows = new string[ColNames.Length];
-					for (int i = 0; i < aryRows.Length; i++)
-					{
-						aryRows[i] = Apq.Data.SqlClient.Common.ConvertToSqlON(SqlDbType.VarChar, dr[ColNames[i]]);
-					}
-					string strRows = string.Join(",", aryRows);
-					string strValues = Apq.Data.Common.SQLHelper.BuildValuesSegment(strRows);
-					string sql = string.Format("{0}{1}", strInsert, strValues);
-					try
-					{
-						System.Data.Common.DbCommand dbcmd = odc.CreateCommand();
-						dbcmd.CommandText = sql;
-						dbcmd.ExecuteNonQuery();
-					}
-					catch (System.Exception ex)
-					{
-						Apq.GlobalObject.ApqLog.Warn(ex.Message);
-					}
-				}
-			}
-			catch (System.Exception ex)
-			{
-				Apq.GlobalObject.ApqLog.Warn(ex.Message);
-			}
-		}
-		/// <summary>
-		/// 导出到 Excel 文件
-		/// </summary>
-		/// <param name="dt">表</param>
-		/// <param name="odc"></param>
-		public static void ExportToExcel(System.Data.DataTable dt, System.Data.OleDb.OleDbConnection odc)
-		{
-			ExportToExcel(dt, odc, null);
-		}
-		/// <summary>
-		/// 导出到 Excel 文件
-		/// </summary>
-		/// <param name="odc"></param>
-		/// <param name="dcmc">列映射</param>
-		public void ExportToExcel(System.Data.OleDb.OleDbConnection odc, System.Data.Common.DataColumnMappingCollection dcmc)
-		{
-			ExportToExcel(Table, odc, dcmc);
-		}
-		/// <summary>
-		/// 导出到 Excel 文件
-		/// </summary>
-		/// <param name="odc"></param>
-		public void ExportToExcel(System.Data.OleDb.OleDbConnection odc)
-		{
-			ExportToExcel(Table, odc);
-		}
-		#endregion
-
 		#region Text
 
 		/// <summary>
@@ -408,7 +302,7 @@ namespace Apq.Data
 		/// <param name="strColSpliter">列分隔符</param>
 		/// <param name="strRowSpliter">行分隔符</param>
 		/// <param name="ContainsColName">是否包含列名</param>
-		public static void ExportToText(System.Data.DataTable dt, string FileName, string strColSpliter, string strRowSpliter, bool ContainsColName)
+		public static void ExportToText(System.Data.DataTable dt, string FileName, string strColSpliter, string strRowSpliter, bool ContainsColName = false)
 		{
 			using (StreamWriter sw = File.AppendText(FileName))
 			{
@@ -448,34 +342,13 @@ namespace Apq.Data
 		/// <summary>
 		/// 导出到文本文件
 		/// </summary>
-		/// <param name="dt">表</param>
-		/// <param name="FileName"></param>
-		/// <param name="strColSpliter">列分隔符</param>
-		/// <param name="strRowSpliter">行分隔符</param>
-		public static void ExportToText(System.Data.DataTable dt, string FileName, string strColSpliter, string strRowSpliter)
-		{
-			ExportToText(dt, FileName, strColSpliter, strRowSpliter, false);
-		}
-		/// <summary>
-		/// 导出到文本文件
-		/// </summary>
 		/// <param name="FileName"></param>
 		/// <param name="strColSpliter">列分隔符</param>
 		/// <param name="strRowSpliter">行分隔符</param>
 		/// <param name="ContainsColName">是否包含列名</param>
-		public void ExportToText(string FileName, string strColSpliter, string strRowSpliter, bool ContainsColName)
+		public void ExportToText(string FileName, string strColSpliter, string strRowSpliter, bool ContainsColName = false)
 		{
 			ExportToText(Table, FileName, strColSpliter, strRowSpliter, ContainsColName);
-		}
-		/// <summary>
-		/// 导出到文本文件
-		/// </summary>
-		/// <param name="FileName"></param>
-		/// <param name="strColSpliter">列分隔符</param>
-		/// <param name="strRowSpliter">行分隔符</param>
-		public void ExportToText(string FileName, string strColSpliter, string strRowSpliter)
-		{
-			ExportToText(Table, FileName, strColSpliter, strRowSpliter, false);
 		}
 		#endregion
 		#endregion

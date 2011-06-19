@@ -434,7 +434,7 @@ namespace Microshaoft.Utils
 				{
 					s = s.Replace("bytes ", "");
 					s = s.Substring(0, s.IndexOf("-"));
-					P = Convert.ToInt32(s);
+					P = Convert.Toint(s);
 				}
 				num = 0;
 
