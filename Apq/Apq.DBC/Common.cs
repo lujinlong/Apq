@@ -65,7 +65,7 @@ namespace Apq.DBC
 			string str = Apq.Security.Cryptography.DESHelper.DecryptString(strCs, desKey, desIV);
 			StringReader sr = new StringReader(str);
 			_xsd.Clear();
-			_xsd.DBC.ReadXml(sr);
+			_xsd.ReadXml(sr);
 
 			// 读取完成,计算所有连接字符串
 			/*
@@ -99,7 +99,7 @@ namespace Apq.DBC
 
 		#region 创建连接
 		/// <summary>
-		/// 创建数据库连接(类型)
+		/// 创建数据库连接(DBC)
 		/// </summary>
 		public static DbConnection CreateDBConnection(string DBName, ref DbConnection DbConnection)
 		{
@@ -130,7 +130,7 @@ namespace Apq.DBC
 		}
 
 		/// <summary>
-		/// 创建数据库连接(类型)
+		/// 创建数据库连接(DBI)
 		/// </summary>
 		public static DbConnection CreateDBIConnection(string DBIName, ref DbConnection DbConnection)
 		{
