@@ -312,13 +312,15 @@ namespace Apq.DBC {
         ///</summary>
         [global::System.Serializable()]
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class DBCDataTable : global::System.Data.DataTable, global::System.Collections.IEnumerable {
+        public partial class DBCDataTable : global::System.Data.TypedTableBase<DBCRow> {
             
             private global::System.Data.DataColumn columnComputerID;
             
             private global::System.Data.DataColumn columnDBIID;
             
             private global::System.Data.DataColumn columnDBCID;
+            
+            private global::System.Data.DataColumn columnDBCName;
             
             private global::System.Data.DataColumn columnDBCUseType;
             
@@ -396,6 +398,14 @@ namespace Apq.DBC {
             public global::System.Data.DataColumn DBCIDColumn {
                 get {
                     return this.columnDBCID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn DBCNameColumn {
+                get {
+                    return this.columnDBCName;
                 }
             }
             
@@ -524,12 +534,13 @@ namespace Apq.DBC {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public DBCRow AddDBCRow(int ComputerID, int DBIID, int DBCID, int DBCUseType, bool UseTrusted, string DBName, string UserId, string PwdC, string PwdD, string Mirror, string Option, string IP, int Port, int DBProduct) {
+            public DBCRow AddDBCRow(int ComputerID, int DBIID, int DBCID, string DBCName, int DBCUseType, bool UseTrusted, string DBName, string UserId, string PwdC, string PwdD, string Mirror, string Option, string IP, int Port, int DBProduct) {
                 DBCRow rowDBCRow = ((DBCRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         ComputerID,
                         DBIID,
                         DBCID,
+                        DBCName,
                         DBCUseType,
                         UseTrusted,
                         DBName,
@@ -548,15 +559,9 @@ namespace Apq.DBC {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public DBCRow FindByDBCID(int DBCID) {
+            public DBCRow FindByDBCName(string DBCName) {
                 return ((DBCRow)(this.Rows.Find(new object[] {
-                            DBCID})));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public virtual global::System.Collections.IEnumerator GetEnumerator() {
-                return this.Rows.GetEnumerator();
+                            DBCName})));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -579,6 +584,7 @@ namespace Apq.DBC {
                 this.columnComputerID = base.Columns["ComputerID"];
                 this.columnDBIID = base.Columns["DBIID"];
                 this.columnDBCID = base.Columns["DBCID"];
+                this.columnDBCName = base.Columns["DBCName"];
                 this.columnDBCUseType = base.Columns["DBCUseType"];
                 this.columnUseTrusted = base.Columns["UseTrusted"];
                 this.columnDBName = base.Columns["DBName"];
@@ -601,6 +607,8 @@ namespace Apq.DBC {
                 base.Columns.Add(this.columnDBIID);
                 this.columnDBCID = new global::System.Data.DataColumn("DBCID", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnDBCID);
+                this.columnDBCName = new global::System.Data.DataColumn("DBCName", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDBCName);
                 this.columnDBCUseType = new global::System.Data.DataColumn("DBCUseType", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnDBCUseType);
                 this.columnUseTrusted = new global::System.Data.DataColumn("UseTrusted", typeof(bool), null, global::System.Data.MappingType.Element);
@@ -624,12 +632,14 @@ namespace Apq.DBC {
                 this.columnDBProduct = new global::System.Data.DataColumn("DBProduct", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnDBProduct);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
-                                this.columnDBCID}, true));
+                                this.columnDBCName}, true));
                 this.columnComputerID.DefaultValue = ((int)(0));
                 this.columnDBIID.DefaultValue = ((int)(0));
                 this.columnDBCID.AllowDBNull = false;
-                this.columnDBCID.Unique = true;
                 this.columnDBCID.DefaultValue = ((int)(0));
+                this.columnDBCName.AllowDBNull = false;
+                this.columnDBCName.Unique = true;
+                this.columnDBCName.DefaultValue = ((string)("新建连接"));
                 this.columnDBCUseType.Caption = "连接用途";
                 this.columnDBCUseType.DefaultValue = ((int)(1));
                 this.columnUseTrusted.DefaultValue = ((bool)(false));
@@ -784,7 +794,7 @@ namespace Apq.DBC {
         ///</summary>
         [global::System.Serializable()]
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class DBIDataTable : global::System.Data.DataTable, global::System.Collections.IEnumerable {
+        public partial class DBIDataTable : global::System.Data.TypedTableBase<DBIRow> {
             
             private global::System.Data.DataColumn columnComputerID;
             
@@ -976,15 +986,9 @@ namespace Apq.DBC {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public DBIRow FindByDBIID(int DBIID) {
+            public DBIRow FindByDBIName(string DBIName) {
                 return ((DBIRow)(this.Rows.Find(new object[] {
-                            DBIID})));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public virtual global::System.Collections.IEnumerator GetEnumerator() {
-                return this.Rows.GetEnumerator();
+                            DBIName})));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1040,15 +1044,15 @@ namespace Apq.DBC {
                 this.columnPwdD = new global::System.Data.DataColumn("PwdD", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnPwdD);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
-                                this.columnDBIID}, true));
+                                this.columnDBIName}, true));
                 this.columnComputerID.AllowDBNull = false;
                 this.columnComputerID.Caption = "服务器";
                 this.columnComputerID.DefaultValue = ((int)(0));
                 this.columnDBIID.AllowDBNull = false;
-                this.columnDBIID.Unique = true;
                 this.columnDBIID.Caption = "实例";
                 this.columnDBIID.DefaultValue = ((int)(0));
                 this.columnDBIName.AllowDBNull = false;
+                this.columnDBIName.Unique = true;
                 this.columnDBIName.Caption = "实例名称";
                 this.columnDBIName.DefaultValue = ((string)("新建实例"));
                 this.columnDBIName.MaxLength = 50;
@@ -1250,6 +1254,17 @@ namespace Apq.DBC {
                 }
                 set {
                     this[this.tableDBC.DBCIDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string DBCName {
+                get {
+                    return ((string)(this[this.tableDBC.DBCNameColumn]));
+                }
+                set {
+                    this[this.tableDBC.DBCNameColumn] = value;
                 }
             }
             

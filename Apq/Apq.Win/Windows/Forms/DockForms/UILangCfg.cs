@@ -20,6 +20,9 @@ namespace Apq.Windows.Forms.DockForms
 		public UILangCfg()
 		{
 			InitializeComponent();
+
+			DataGridViewHelper.SetDefaultStyle(dataGridView1);
+			DataGridViewHelper.AddBehaivor(dataGridView1);
 		}
 
 		/// <summary>
@@ -45,6 +48,8 @@ namespace Apq.Windows.Forms.DockForms
 
 		private void UILangCfg_Load(object sender, EventArgs e)
 		{
+			this.DataBindings.Add("FileName", tscbFile, "Text");
+
 			// 读取文件列表,"UILang\"
 			if (System.IO.Directory.Exists("UILang"))
 			{
@@ -59,9 +64,6 @@ namespace Apq.Windows.Forms.DockForms
 			{
 				tscbFile.Text = System.IO.Path.GetFileNameWithoutExtension(strUILangFile);
 			}
-
-			DataGridViewHelper.SetDefaultStyle(dataGridView1);
-			DataGridViewHelper.AddBehaivor(dataGridView1);
 		}
 
 		private void tsbSave_Click(object sender, EventArgs e)
@@ -76,7 +78,7 @@ namespace Apq.Windows.Forms.DockForms
 
 		private void tsbCur_Click(object sender, EventArgs e)
 		{
-			uiLang1._UILang.Clear();
+			//uiLang1._UILang.Clear();
 			uiLang1._UILang.Merge(Apq.GlobalObject.UILang.lst._UILang);
 		}
 
@@ -166,13 +168,13 @@ namespace Apq.Windows.Forms.DockForms
 
 		private void tscbFile_SelectedIndexChanged(object sender, EventArgs e)
 		{
-			FileName = tscbFile.Text;
+			//FileName = tscbFile.Text;
 			Open();
 		}
 
 		private void tscbFile_TextChanged(object sender, EventArgs e)
 		{
-			FileName = tscbFile.Text;
+			//FileName = tscbFile.Text;
 		}
 	}
 }

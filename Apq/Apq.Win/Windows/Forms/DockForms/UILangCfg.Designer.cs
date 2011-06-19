@@ -33,13 +33,13 @@
 			this.toolStrip1 = new System.Windows.Forms.ToolStrip();
 			this.tsbSave = new System.Windows.Forms.ToolStripButton();
 			this.tscbFile = new System.Windows.Forms.ToolStripComboBox();
+			this.tsbCur = new System.Windows.Forms.ToolStripButton();
 			this.tsbApply = new System.Windows.Forms.ToolStripButton();
 			this.dataGridView1 = new System.Windows.Forms.DataGridView();
 			this.col1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.col2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.bsUILang = new System.Windows.Forms.BindingSource(this.components);
 			this.uiLang1 = new Apq.XSD.UILang();
-			this.tsbCur = new System.Windows.Forms.ToolStripButton();
 			this.toolStrip1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.bsUILang)).BeginInit();
@@ -77,6 +77,16 @@
 			this.tscbFile.Size = new System.Drawing.Size(121, 25);
 			this.tscbFile.SelectedIndexChanged += new System.EventHandler(this.tscbFile_SelectedIndexChanged);
 			this.tscbFile.TextChanged += new System.EventHandler(this.tscbFile_TextChanged);
+			// 
+			// tsbCur
+			// 
+			this.tsbCur.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+			this.tsbCur.Image = ((System.Drawing.Image)(resources.GetObject("tsbCur.Image")));
+			this.tsbCur.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.tsbCur.Name = "tsbCur";
+			this.tsbCur.Size = new System.Drawing.Size(51, 22);
+			this.tsbCur.Text = "当前(&U)";
+			this.tsbCur.Click += new System.EventHandler(this.tsbCur_Click);
 			// 
 			// tsbApply
 			// 
@@ -126,16 +136,6 @@
 			// 
 			this.uiLang1.DataSetName = "UILang";
 			this.uiLang1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-			// 
-			// tsbCur
-			// 
-			this.tsbCur.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-			this.tsbCur.Image = ((System.Drawing.Image)(resources.GetObject("tsbCur.Image")));
-			this.tsbCur.ImageTransparentColor = System.Drawing.Color.Magenta;
-			this.tsbCur.Name = "tsbCur";
-			this.tsbCur.Size = new System.Drawing.Size(51, 22);
-			this.tsbCur.Text = "当前(&U)";
-			this.tsbCur.Click += new System.EventHandler(this.tsbCur_Click);
 			// 
 			// UILangCfg
 			// 

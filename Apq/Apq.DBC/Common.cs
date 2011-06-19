@@ -103,7 +103,7 @@ namespace Apq.DBC
 		/// </summary>
 		public static DbConnection CreateDBConnection(string DBName, ref DbConnection DbConnection)
 		{
-			Apq.DBC.XSD.DBCRow dr = _xsd.DBC.FindByDBName(DBName);
+			Apq.DBC.XSD.DBCRow dr = _xsd.DBC.FindByDBCName(DBName);
 			string cs = Apq.Convert.ChangeType<string>(dr["DBConnectionString"]);
 
 			switch (dr.DBProduct)

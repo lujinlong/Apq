@@ -11,6 +11,7 @@ namespace Apq.Windows.Controls
 	/// <summary>
 	/// FolderBrowserDialog
 	/// </summary>
+	[Editor]
 	[DefaultProperty("SelectedPath")]
 	public partial class FolderBrowser : UserControl
 	{
@@ -20,6 +21,8 @@ namespace Apq.Windows.Controls
 		public FolderBrowser()
 		{
 			InitializeComponent();
+
+			btnBrowse.Text = Apq.GlobalObject.UILang["浏览"];
 		}
 
 		/// <summary>
