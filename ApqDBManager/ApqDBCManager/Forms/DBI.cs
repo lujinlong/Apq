@@ -289,32 +289,21 @@ namespace ApqDBCManager.Forms
 			{
 				treeListView1.EndUpdate();
 				TreeListViewItem tln = treeListView1.FocusedItem;
-				long DBIID = Apq.Convert.ChangeType<long>(treeListView1.FocusedItem.SubItems[treeListView1.Columns.Count].Text);
-				DataRow[] drs = GlobalObject.Lookup.DBI.Select("DBIID = " + DBIID);
+				int DBIID = Apq.Convert.ChangeType<int>(treeListView1.FocusedItem.SubItems[treeListView1.Columns.Count].Text);
+				DBS_XSD.DBIRow dr = GlobalObject.Lookup.DBI.FindByDBIID(DBIID);
 
-				if (drs.Length > 0 && tln != null && tln.Parent != null)
+				if (dr != null && tln != null && tln.Parent != null)
 				{
-					string strPwdD = Apq.Convert.ChangeType<string>(drs[0]["PwdD"]);
-					if (string.IsNullOrEmpty(strPwdD))
-					{
-						strPwdD = Apq.Security.Cryptography.DESHelper.DecryptString(drs[0]["PwdC"].ToString(), GlobalObject.XmlConfigChain["Crypt", "DESKey"], GlobalObject.XmlConfigChain["Crypt", "DESIV"]);
-					}
-
-					string strServerName = Apq.Convert.ChangeType<string>(drs[0]["IP"]);
-					if (Apq.Convert.ChangeType<int>(drs[0]["Port"]) > 0)
-					{
-						strServerName += "," + Apq.Convert.ChangeType<int>(drs[0]["Port"]);
-					}
-					string strConn = "";
-					SqlConnection sc = new SqlConnection(strConn);
+					DbConnection sc = new SqlConnection();
+					sc = Apq.DBC.Common.CreateDBIConnection(dr.DBIName,ref sc);
 					try
 					{
 						Apq.Data.Common.DbConnectionHelper.Open(sc);
-						tsslTest.Text = drs[0]["SqlName"] + "-->连接成功.";
+						tsslTest.Text = dr["SqlName"] + "-->连接成功.";
 					}
 					catch
 					{
-						tsslTest.Text = drs[0]["SqlName"] + "-X-连接失败!";
+						tsslTest.Text = dr["SqlName"] + "-X-连接失败!";
 					}
 					finally
 					{

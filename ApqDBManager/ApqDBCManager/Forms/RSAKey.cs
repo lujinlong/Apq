@@ -6,19 +6,43 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using ICSharpCode.TextEditor.Document;
 using System.Security.Cryptography;
+using ICSharpCode.AvalonEdit;
+using ICSharpCode.AvalonEdit.Highlighting;
+using ICSharpCode.AvalonEdit.Highlighting.Xshd;
+using System.Xml;
+using ICSharpCode.AvalonEdit.Indentation;
+using ICSharpCode.AvalonEdit.Folding;
+using System.Windows.Threading;
 
 namespace ApqDBCManager.Forms
 {
 	public partial class RSAKey : Apq.Windows.Forms.DockForm
 	{
+		private TextEditor txtRSAUKey = new TextEditor();
+		private TextEditor txtRSAPKey = new TextEditor();
+
 		public RSAKey()
 		{
 			InitializeComponent();
 
 			txtRSAUKey.Encoding = System.Text.Encoding.Default;
 			txtRSAPKey.Encoding = System.Text.Encoding.Default;
+
+			txtRSAUKey.IsReadOnly = false;
+			txtRSAUKey.Options.ShowSpaces = true;
+			txtRSAUKey.Options.ShowTabs = true;
+			txtRSAUKey.Options.IndentationSize = 100;
+			txtRSAUKey.Options.AllowScrollBelowDocument = true;
+
+			txtRSAPKey.IsReadOnly = false;
+			txtRSAPKey.Options.ShowSpaces = true;
+			txtRSAPKey.Options.ShowTabs = true;
+			txtRSAPKey.Options.IndentationSize = 100;
+			txtRSAPKey.Options.AllowScrollBelowDocument = true;
+
+			elementHost1.Child = txtRSAUKey;
+			elementHost2.Child = txtRSAPKey;
 		}
 
 		public override void SetUILang(Apq.UILang.UILang UILang)
@@ -38,15 +62,24 @@ namespace ApqDBCManager.Forms
 
 		private void RSAKey_Load(object sender, EventArgs e)
 		{
-			txtRSAUKey.Document.HighlightingStrategy = HighlightingStrategyFactory.CreateHighlightingStrategy("XML");
-			txtRSAPKey.Document.HighlightingStrategy = HighlightingStrategyFactory.CreateHighlightingStrategy("XML");
+			// Load our custom highlighting definition
+			IHighlightingDefinition customHighlighting;
+			using (XmlReader reader = new XmlTextReader(Application.StartupPath + "\\XML-Mode.xshd"))
+			{
+				customHighlighting = ICSharpCode.AvalonEdit.Highlighting.Xshd.
+					HighlightingLoader.Load(reader, HighlightingManager.Instance);
+			}
+			// and register it in the HighlightingManager
+			HighlightingManager.Instance.RegisterHighlighting("Custom Highlighting", new string[] { ".xml" }, customHighlighting);
+
+			txtRSAUKey.SyntaxHighlighting = HighlightingManager.Instance.GetDefinitionByExtension(".XML");
+			txtRSAPKey.SyntaxHighlighting = HighlightingManager.Instance.GetDefinitionByExtension(".XML");
 		}
 
 		private void btnCreate_Click(object sender, EventArgs e)
 		{
 			txtRSAUKey.Text = string.Empty;
 			txtRSAPKey.Text = string.Empty;
-			txtRSAPKey.Refresh();
 
 			RSACryptoServiceProvider rsa = new RSACryptoServiceProvider();
 			txtRSAUKey.Text = rsa.ToXmlString(false);
@@ -63,7 +96,7 @@ namespace ApqDBCManager.Forms
 			{
 				GlobalObject.XmlConfigChain[this.GetType(), "sfdU_InitialDirectory"] = System.IO.Path.GetDirectoryName(sfdU.FileName);
 
-				txtRSAUKey.SaveFile(sfdU.FileName);
+				txtRSAUKey.Save(sfdU.FileName);
 			}
 		}
 
@@ -73,8 +106,8 @@ namespace ApqDBCManager.Forms
 			if (sfdP.ShowDialog(this) == DialogResult.OK)
 			{
 				GlobalObject.XmlConfigChain[this.GetType(), "sfdP_InitialDirectory"] = System.IO.Path.GetDirectoryName(sfdP.FileName);
-				
-				txtRSAPKey.SaveFile(sfdP.FileName);
+
+				txtRSAPKey.Save(sfdP.FileName);
 			}
 		}
 	}

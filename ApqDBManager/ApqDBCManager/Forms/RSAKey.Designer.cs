@@ -28,49 +28,15 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RSAKey));
-			this.txtRSAUKey = new ICSharpCode.TextEditor.TextEditorControl();
-			this.txtRSAPKey = new ICSharpCode.TextEditor.TextEditorControl();
 			this.cbContainsPKey = new System.Windows.Forms.CheckBox();
 			this.btnCreate = new System.Windows.Forms.Button();
 			this.btnSaveUToFile = new System.Windows.Forms.Button();
 			this.btnSavePToFile = new System.Windows.Forms.Button();
 			this.sfdU = new System.Windows.Forms.SaveFileDialog();
 			this.sfdP = new System.Windows.Forms.SaveFileDialog();
+			this.elementHost1 = new System.Windows.Forms.Integration.ElementHost();
+			this.elementHost2 = new System.Windows.Forms.Integration.ElementHost();
 			this.SuspendLayout();
-			// 
-			// txtRSAUKey
-			// 
-			this.txtRSAUKey.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-						| System.Windows.Forms.AnchorStyles.Right)));
-			this.txtRSAUKey.Encoding = ((System.Text.Encoding)(resources.GetObject("txtRSAUKey.Encoding")));
-			this.txtRSAUKey.IsIconBarVisible = false;
-			this.txtRSAUKey.Location = new System.Drawing.Point(0, 42);
-			this.txtRSAUKey.Name = "txtRSAUKey";
-			this.txtRSAUKey.ShowEOLMarkers = true;
-			this.txtRSAUKey.ShowInvalidLines = false;
-			this.txtRSAUKey.ShowSpaces = true;
-			this.txtRSAUKey.ShowTabs = true;
-			this.txtRSAUKey.ShowVRuler = true;
-			this.txtRSAUKey.Size = new System.Drawing.Size(760, 144);
-			this.txtRSAUKey.TabIndex = 4;
-			// 
-			// txtRSAPKey
-			// 
-			this.txtRSAPKey.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-						| System.Windows.Forms.AnchorStyles.Left)
-						| System.Windows.Forms.AnchorStyles.Right)));
-			this.txtRSAPKey.Encoding = ((System.Text.Encoding)(resources.GetObject("txtRSAPKey.Encoding")));
-			this.txtRSAPKey.IsIconBarVisible = false;
-			this.txtRSAPKey.Location = new System.Drawing.Point(0, 192);
-			this.txtRSAPKey.Name = "txtRSAPKey";
-			this.txtRSAPKey.ShowEOLMarkers = true;
-			this.txtRSAPKey.ShowInvalidLines = false;
-			this.txtRSAPKey.ShowSpaces = true;
-			this.txtRSAPKey.ShowTabs = true;
-			this.txtRSAPKey.ShowVRuler = true;
-			this.txtRSAPKey.Size = new System.Drawing.Size(760, 217);
-			this.txtRSAPKey.TabIndex = 5;
 			// 
 			// cbContainsPKey
 			// 
@@ -124,17 +90,40 @@
 			this.sfdP.DefaultExt = "xml";
 			this.sfdP.RestoreDirectory = true;
 			// 
+			// elementHost1
+			// 
+			this.elementHost1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+						| System.Windows.Forms.AnchorStyles.Right)));
+			this.elementHost1.Location = new System.Drawing.Point(0, 42);
+			this.elementHost1.Name = "elementHost1";
+			this.elementHost1.Size = new System.Drawing.Size(760, 144);
+			this.elementHost1.TabIndex = 11;
+			this.elementHost1.Text = "elementHost1";
+			this.elementHost1.Child = null;
+			// 
+			// elementHost2
+			// 
+			this.elementHost2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+						| System.Windows.Forms.AnchorStyles.Left)
+						| System.Windows.Forms.AnchorStyles.Right)));
+			this.elementHost2.Location = new System.Drawing.Point(0, 192);
+			this.elementHost2.Name = "elementHost2";
+			this.elementHost2.Size = new System.Drawing.Size(760, 217);
+			this.elementHost2.TabIndex = 12;
+			this.elementHost2.Text = "elementHost2";
+			this.elementHost2.Child = null;
+			// 
 			// RSAKey
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(760, 410);
+			this.Controls.Add(this.elementHost2);
+			this.Controls.Add(this.elementHost1);
 			this.Controls.Add(this.btnSavePToFile);
 			this.Controls.Add(this.btnSaveUToFile);
 			this.Controls.Add(this.btnCreate);
 			this.Controls.Add(this.cbContainsPKey);
-			this.Controls.Add(this.txtRSAPKey);
-			this.Controls.Add(this.txtRSAUKey);
 			this.DockAreas = ((WeifenLuo.WinFormsUI.Docking.DockAreas)((WeifenLuo.WinFormsUI.Docking.DockAreas.Float | WeifenLuo.WinFormsUI.Docking.DockAreas.Document)));
 			this.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
 			this.Name = "RSAKey";
@@ -148,13 +137,13 @@
 
 		#endregion
 
-		private ICSharpCode.TextEditor.TextEditorControl txtRSAUKey;
-		private ICSharpCode.TextEditor.TextEditorControl txtRSAPKey;
 		private System.Windows.Forms.CheckBox cbContainsPKey;
 		private System.Windows.Forms.Button btnCreate;
 		private System.Windows.Forms.Button btnSaveUToFile;
 		private System.Windows.Forms.Button btnSavePToFile;
 		private System.Windows.Forms.SaveFileDialog sfdU;
 		private System.Windows.Forms.SaveFileDialog sfdP;
+		private System.Windows.Forms.Integration.ElementHost elementHost1;
+		private System.Windows.Forms.Integration.ElementHost elementHost2;
 	}
 }

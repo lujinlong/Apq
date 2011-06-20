@@ -10,7 +10,7 @@ using WeifenLuo.WinFormsUI.Docking;
 
 namespace ApqDBCManager
 {
-	public partial class MainForm : Apq.Windows.Forms.ImeForm
+	public partial class MainForm : Apq.Windows.Forms.DockForm
 	{
 		public MainForm()
 		{
