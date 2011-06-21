@@ -16,14 +16,34 @@ namespace ApqDBCManager.Forms
 			InitializeComponent();
 		}
 
+		public override void SetUILang(Apq.UILang.UILang UILang)
+		{
+			this.Text = Apq.GlobalObject.UILang["选项"];
+
+			label1.Text = Apq.GlobalObject.UILang["加解密密码(至少9个字符)"];
+			btnShowPwd.Text = Apq.GlobalObject.UILang["显示密码"];
+			btnConfirm.Text = Apq.GlobalObject.UILang["确定"];
+			btnCancel.Text = Apq.GlobalObject.UILang["取消"];
+		}
+
 		private void btnConfirm_Click(object sender, EventArgs e)
 		{
-			if (Apq.Convert.HasMean(txtDesKey.Text))
+			if (txtDesKey.Text.Length > 8)
 			{
-				GlobalObject.XmlConfigChain[this.GetType(), "DesKey"] = txtDesKey.Text.Trim();
+				string strDESKey = txtDesKey.Text.Substring(0, 8);
+				string strDESIV = txtDesKey.Text.Substring(8);
+				if (Apq.Convert.HasMean(txtDesKey.Text))
+				{
+					GlobalObject.XmlConfigChain["Crypt", "DESKey"] = strDESKey;
+					GlobalObject.XmlConfigChain["Crypt", "DESIV"] = strDESIV;
+				}
+				GlobalObject.XmlConfigChain.Save();
+				this.Close();
 			}
-			GlobalObject.XmlConfigChain.Save();
-			this.Close();
+			else
+			{
+				MessageBox.Show(Apq.GlobalObject.UILang["密码太短"]);
+			}
 		}
 
 		private void btnCancel_Click(object sender, EventArgs e)
@@ -40,7 +60,10 @@ namespace ApqDBCManager.Forms
 		{
 			if (!Apq.Convert.HasMean(txtDesKey.Text))
 			{
-				txtDesKey.Text = GlobalObject.XmlConfigChain[this.GetType(), "DesKey"];
+				string strDESKey = GlobalObject.XmlConfigChain["Crypt", "DESKey"];
+				string strDESIV = GlobalObject.XmlConfigChain["Crypt", "DESIV"];
+
+				txtDesKey.Text = strDESKey + strDESIV;
 			}
 		}
 	}

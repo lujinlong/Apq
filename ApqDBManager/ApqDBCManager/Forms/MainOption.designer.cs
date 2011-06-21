@@ -59,23 +59,23 @@
 			// label1
 			// 
 			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(67, 109);
+			this.label1.Location = new System.Drawing.Point(28, 53);
 			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(65, 12);
+			this.label1.Size = new System.Drawing.Size(143, 12);
 			this.label1.TabIndex = 6;
-			this.label1.Text = "加解密密码";
+			this.label1.Text = "加解密密码(至少9个字符)";
 			// 
 			// txtDesKey
 			// 
-			this.txtDesKey.Location = new System.Drawing.Point(147, 106);
+			this.txtDesKey.Location = new System.Drawing.Point(177, 50);
 			this.txtDesKey.Name = "txtDesKey";
 			this.txtDesKey.PasswordChar = '*';
-			this.txtDesKey.Size = new System.Drawing.Size(278, 21);
+			this.txtDesKey.Size = new System.Drawing.Size(260, 21);
 			this.txtDesKey.TabIndex = 7;
 			// 
 			// btnShowPwd
 			// 
-			this.btnShowPwd.Location = new System.Drawing.Point(445, 104);
+			this.btnShowPwd.Location = new System.Drawing.Point(452, 48);
 			this.btnShowPwd.Name = "btnShowPwd";
 			this.btnShowPwd.Size = new System.Drawing.Size(75, 23);
 			this.btnShowPwd.TabIndex = 8;

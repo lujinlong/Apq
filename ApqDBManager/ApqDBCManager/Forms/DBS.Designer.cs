@@ -149,6 +149,7 @@
 			this.tsbInput.Name = "tsbInput";
 			this.tsbInput.Size = new System.Drawing.Size(51, 22);
 			this.tsbInput.Text = "导入(&I)";
+			this.tsbInput.Visible = false;
 			this.tsbInput.Click += new System.EventHandler(this.tsbInput_Click);
 			// 
 			// statusStrip1
