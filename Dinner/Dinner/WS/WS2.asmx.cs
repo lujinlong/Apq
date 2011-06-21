@@ -7,6 +7,7 @@ using System.Data.SqlClient;
 using System.Web.Script.Services;
 using System.Net;
 using System.Xml.Serialization;
+using System.Data.Common;
 
 namespace Dinner.WS
 {
@@ -58,9 +59,13 @@ namespace Dinner.WS
 			System.Security.Cryptography.SHA512 SHA512 = System.Security.Cryptography.SHA512.Create();
 			byte[] binLoginPwd = SHA512.ComputeHash(System.Text.Encoding.Unicode.GetBytes(LoginPwd));
 			string SqlLoginPwd = Apq.Data.SqlClient.Common.ConvertToSqlON(binLoginPwd);
-			using (SqlConnection SqlConn = new SqlConnection(Apq.DBC.Common.GetDBConnectoinString("Dinner")))
+
+			DbConnection SqlConn = null;
+			using (SqlConn = Apq.DBC.Common.CreateDBConnection("Dinner", ref SqlConn))
 			{
-				SqlCommand sc = new SqlCommand("dbo.Dinner_RegEmployee", SqlConn);
+				Apq.Data.Common.DbConnectionHelper dbch = new Apq.Data.Common.DbConnectionHelper(SqlConn);
+				DbCommand sc = SqlConn.CreateCommand();
+				sc.CommandText = "dbo.Dinner_RegEmployee";
 				sc.CommandType = CommandType.StoredProcedure;
 				Apq.Data.Common.DbCommandHelper dch = new Apq.Data.Common.DbCommandHelper(sc);
 				dch.AddParameter("rtn", 0, DbType.Int32);
@@ -123,10 +128,13 @@ namespace Dinner.WS
 		{
 			Apq.STReturn stReturn = new Apq.STReturn();
 			DataSet ds = new DataSet();
-
-			using (SqlConnection SqlConn = new SqlConnection(Apq.DBC.Common.GetDBConnectoinString("Dinner")))
+			
+			DbConnection SqlConn = null;
+			using (SqlConn = Apq.DBC.Common.CreateDBConnection("Dinner", ref SqlConn))
 			{
-				SqlDataAdapter sda = new SqlDataAdapter("dbo.Dinner_Login", SqlConn);
+				Apq.Data.Common.DbConnectionHelper dbch = new Apq.Data.Common.DbConnectionHelper(SqlConn);
+				DbDataAdapter sda = dbch.CreateAdapter();
+				sda.SelectCommand.CommandText = "dbo.Dinner_Login";
 				sda.SelectCommand.CommandType = CommandType.StoredProcedure;
 				Apq.Data.Common.DbCommandHelper dch = new Apq.Data.Common.DbCommandHelper(sda.SelectCommand);
 				dch.AddParameter("rtn", 0, DbType.Int32);

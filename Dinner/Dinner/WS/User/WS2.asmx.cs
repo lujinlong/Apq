@@ -9,6 +9,7 @@ using System.Web.Script.Services;
 
 using System.Xml;
 using System.Net;
+using System.Data.Common;
 
 namespace Dinner.WS.User
 {
@@ -44,10 +45,13 @@ namespace Dinner.WS.User
 			{
 				return stReturn;
 			}
-
-			using (SqlConnection SqlConn = new SqlConnection(Apq.DBC.Common.GetDBConnectoinString("Dinner")))
+			
+			DbConnection SqlConn = null;
+			using (SqlConn = Apq.DBC.Common.CreateDBConnection("Dinner", ref SqlConn))
 			{
-				SqlCommand sc = new SqlCommand("Dinner.Dinner_User_UpdateSelf", SqlConn);
+				Apq.Data.Common.DbConnectionHelper dbch = new Apq.Data.Common.DbConnectionHelper(SqlConn);
+				DbCommand sc = SqlConn.CreateCommand();
+				sc.CommandText = "Dinner.Dinner_User_UpdateSelf";
 				sc.CommandType = CommandType.StoredProcedure;
 				Apq.Data.Common.DbCommandHelper dch = new Apq.Data.Common.DbCommandHelper(sc);
 				dch.AddParameter("rtn", 0, DbType.Int32);
@@ -117,9 +121,12 @@ namespace Dinner.WS.User
 			}
 
 			byte[] binLoginPwd = SHA512.ComputeHash(System.Text.Encoding.Unicode.GetBytes(LoginPwd));
-			using (SqlConnection SqlConn = new SqlConnection(Apq.DBC.Common.GetDBConnectoinString("Dinner")))
+			DbConnection SqlConn = null;
+			using (SqlConn = Apq.DBC.Common.CreateDBConnection("Dinner", ref SqlConn))
 			{
-				SqlCommand sc = new SqlCommand("dbo.Dinner_User_UpdateLoginPwd", SqlConn);
+				Apq.Data.Common.DbConnectionHelper dbch = new Apq.Data.Common.DbConnectionHelper(SqlConn);
+				DbCommand sc = SqlConn.CreateCommand();
+				sc.CommandText = "dbo.Dinner_User_UpdateLoginPwd";
 				sc.CommandType = CommandType.StoredProcedure;
 				Apq.Data.Common.DbCommandHelper dch = new Apq.Data.Common.DbCommandHelper(sc);
 				dch.AddParameter("rtn", 0, DbType.Int32);
@@ -168,10 +175,13 @@ namespace Dinner.WS.User
 			}
 
 			DataSet ds = new DataSet();
-
-			using (SqlConnection SqlConn = new SqlConnection(Apq.DBC.Common.GetDBConnectoinString("Dinner")))
+			
+			DbConnection SqlConn = null;
+			using (SqlConn = Apq.DBC.Common.CreateDBConnection("Dinner", ref SqlConn))
 			{
-				SqlDataAdapter sda = new SqlDataAdapter("dbo.Dinner_Restaurant_List", SqlConn);
+				Apq.Data.Common.DbConnectionHelper dbch = new Apq.Data.Common.DbConnectionHelper(SqlConn);
+				DbDataAdapter sda = dbch.CreateAdapter();
+				sda.SelectCommand.CommandText = "dbo.Dinner_Restaurant_List";
 				sda.SelectCommand.CommandType = CommandType.StoredProcedure;
 				Apq.Data.Common.DbCommandHelper dch = new Apq.Data.Common.DbCommandHelper(sda.SelectCommand);
 				dch.AddParameter("rtn", 0, DbType.Int32);
@@ -207,10 +217,13 @@ namespace Dinner.WS.User
 			}
 
 			DataSet ds = new DataSet();
-
-			using (SqlConnection SqlConn = new SqlConnection(Apq.DBC.Common.GetDBConnectoinString("Dinner")))
+			
+			DbConnection SqlConn = null;
+			using (SqlConn = Apq.DBC.Common.CreateDBConnection("Dinner", ref SqlConn))
 			{
-				SqlDataAdapter sda = new SqlDataAdapter("dbo.Dinner_Food_List", SqlConn);
+				Apq.Data.Common.DbConnectionHelper dbch = new Apq.Data.Common.DbConnectionHelper(SqlConn);
+				DbDataAdapter sda = dbch.CreateAdapter();
+				sda.SelectCommand.CommandText = "dbo.Dinner_Food_List";
 				sda.SelectCommand.CommandType = CommandType.StoredProcedure;
 				Apq.Data.Common.DbCommandHelper dch = new Apq.Data.Common.DbCommandHelper(sda.SelectCommand);
 				dch.AddParameter("rtn", 0, DbType.Int32);
@@ -251,10 +264,13 @@ namespace Dinner.WS.User
 			}
 
 			DataSet ds = new DataSet();
-
-			using (SqlConnection SqlConn = new SqlConnection(Apq.DBC.Common.GetDBConnectoinString("Dinner")))
+			
+			DbConnection SqlConn = null;
+			using (SqlConn = Apq.DBC.Common.CreateDBConnection("Dinner", ref SqlConn))
 			{
-				SqlCommand sc = new SqlCommand("dbo.Dinner_EmDinner_Insert", SqlConn);
+				Apq.Data.Common.DbConnectionHelper dbch = new Apq.Data.Common.DbConnectionHelper(SqlConn);
+				DbCommand sc = SqlConn.CreateCommand();
+				sc.CommandText = "dbo.Dinner_EmDinner_Insert";
 				sc.CommandType = CommandType.StoredProcedure;
 				Apq.Data.Common.DbCommandHelper dch = new Apq.Data.Common.DbCommandHelper(sc);
 				dch.AddParameter("rtn", 0, DbType.Int32);
@@ -300,10 +316,13 @@ namespace Dinner.WS.User
 			}
 
 			DataSet ds = new DataSet();
-
-			using (SqlConnection SqlConn = new SqlConnection(Apq.DBC.Common.GetDBConnectoinString("Dinner")))
+			
+			DbConnection SqlConn = null;
+			using (SqlConn = Apq.DBC.Common.CreateDBConnection("Dinner", ref SqlConn))
 			{
-				SqlDataAdapter sda = new SqlDataAdapter("dbo.Dinner_EmDinner_ListPager", SqlConn);
+				Apq.Data.Common.DbConnectionHelper dbch = new Apq.Data.Common.DbConnectionHelper(SqlConn);
+				DbDataAdapter sda = dbch.CreateAdapter();
+				sda.SelectCommand.CommandText = "dbo.Dinner_EmDinner_ListPager";
 				sda.SelectCommand.CommandType = CommandType.StoredProcedure;
 				Apq.Data.Common.DbCommandHelper dch = new Apq.Data.Common.DbCommandHelper(sda.SelectCommand);
 				dch.AddParameter("rtn", 0, DbType.Int32);
@@ -352,10 +371,13 @@ namespace Dinner.WS.User
 			}
 
 			DataSet ds = new DataSet();
-
-			using (SqlConnection SqlConn = new SqlConnection(Apq.DBC.Common.GetDBConnectoinString("Dinner")))
+			
+			DbConnection SqlConn = null;
+			using (SqlConn = Apq.DBC.Common.CreateDBConnection("Dinner", ref SqlConn))
 			{
-				SqlCommand sc = new SqlCommand("dbo.Dinner_EmDinner_Delete", SqlConn);
+				Apq.Data.Common.DbConnectionHelper dbch = new Apq.Data.Common.DbConnectionHelper(SqlConn);
+				DbCommand sc = SqlConn.CreateCommand();
+				sc.CommandText = "dbo.Dinner_EmDinner_Delete";
 				sc.CommandType = CommandType.StoredProcedure;
 				Apq.Data.Common.DbCommandHelper dch = new Apq.Data.Common.DbCommandHelper(sc);
 				dch.AddParameter("rtn", 0, DbType.Int32);
