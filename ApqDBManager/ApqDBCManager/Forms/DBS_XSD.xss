@@ -11,7 +11,7 @@
     <Shape ID="DesignTable:ComputerType" ZOrder="4" X="11" Y="447" Height="61" Width="150" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="57" />
     <Shape ID="DesignTable:DBI" ZOrder="2" X="158" Y="29" Height="197" Width="150" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="22" SplitterPosition="193" />
     <Shape ID="DesignTable:DBProduct" ZOrder="3" X="171" Y="448" Height="61" Width="150" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="22" SplitterPosition="57" />
-    <Shape ID="DesignTable:DBC" ZOrder="1" X="316" Y="56" Height="214" Width="150" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="210" />
+    <Shape ID="DesignTable:DBC" ZOrder="1" X="316" Y="56" Height="232" Width="150" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="228" />
   </Shapes>
   <Connectors />
 </DiagramLayout>

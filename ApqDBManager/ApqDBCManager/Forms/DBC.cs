@@ -93,11 +93,19 @@ namespace ApqDBCManager.Forms
 						xsd.DBC.Rows.RemoveAt(i);
 						continue;
 					}
+
+					DBS_XSD.DBIRow drDBI = GlobalObject.Lookup.DBI.FindByDBIID(Apq.Convert.ChangeType<int>(xsd.DBC.Rows[i]["DBIID"]));
+					if (drDBI != null)
+					{
+						xsd.DBC.Rows[i]["DBProduct"] = drDBI.DBProduct;
+						xsd.DBC.Rows[i]["IP"] = drDBI.IP;
+						xsd.DBC.Rows[i]["Port"] = drDBI.Port;
+					}
 				}
 
 				StringWriter sw = new StringWriter();
 				xsd.WriteXml(sw, XmlWriteMode.IgnoreSchema);
-				Common.SaveCSFile(sfd.FileName,sw.ToString());
+				Common.SaveCSFile(sfd.FileName, sw.ToString());
 				tsslOutInfo.Text = Apq.GlobalObject.UILang["保存文件成功"];
 			}
 		}
@@ -338,6 +346,18 @@ namespace ApqDBCManager.Forms
 				xsd.DBC.Merge(xsdDBC.DBC);
 				xsd.DBC.Columns.Remove("ComputerID");
 				xsd.DBC.Columns.Remove("PwdC");
+
+				foreach (Apq.DBC.XSD.DBCRow drDBC in xsd.DBC.Rows)
+				{
+					DBS_XSD.DBIRow drDBI = GlobalObject.Lookup.DBI.FindByDBIID(Apq.Convert.ChangeType<int>(drDBC.DBIID));
+					if (drDBI != null)
+					{
+						drDBC.DBProduct = drDBI.DBProduct;
+						drDBC.IP = drDBI.IP;
+						drDBC.Port = drDBI.Port;
+					}
+				}
+
 				StringWriter sw = new StringWriter();
 				xsd.WriteXml(sw, XmlWriteMode.IgnoreSchema);
 				Common.SaveCSFile(FileName, sw.ToString());

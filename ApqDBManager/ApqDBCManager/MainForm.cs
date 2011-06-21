@@ -133,10 +133,14 @@ namespace ApqDBCManager
 		#region 窗口
 		private void tsmiCloseAll_Click(object sender, EventArgs e)
 		{
-			foreach (DockContent childForm in dockPanel1.Contents)
+			try
 			{
-				childForm.Close();
+				foreach (DockContent childForm in dockPanel1.Contents)
+				{
+					childForm.Close();
+				}
 			}
+			catch { }
 		}
 		#endregion
 
