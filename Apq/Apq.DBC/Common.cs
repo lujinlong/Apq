@@ -18,6 +18,13 @@ namespace Apq.DBC
 		private static FileSystemWatcher fsw = new FileSystemWatcher();
 
 		private static XSD _xsd = null;
+		/// <summary>
+		/// 获取DB连接解密后的数据集
+		/// </summary>
+		public static XSD XSD
+		{
+			get { return _xsd; }
+		}
 
 		static Common()
 		{
@@ -96,6 +103,7 @@ namespace Apq.DBC
 					dr.IP, dr.Port, dr.UserId, dr.PwdD, dr.DBName);
 			}
 		}
+
 
 		#region 创建连接
 		/// <summary>
