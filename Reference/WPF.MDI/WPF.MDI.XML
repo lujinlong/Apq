@@ -1,0 +1,542 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>WPF.MDI</name>
+    </assembly>
+    <members>
+        <member name="M:WPF.MDI.ClosingEventArgs.#ctor(System.Windows.RoutedEvent)">
+            <summary>
+            Initializes a new instance of the <see cref="T:WPF.MDI.ClosingEventArgs"/> class.
+            </summary>
+            <param name="routedEvent">The routed event.</param>
+        </member>
+        <!-- 对于成员“P:WPF.MDI.ClosingEventArgs.Cancel”忽略有格式错误的 XML 注释 -->
+        <member name="F:WPF.MDI.MdiContainer.WindowOffset">
+            <summary>
+            Offset for iniial placement of window, and for cascade mode.
+            </summary>
+        </member>
+        <member name="F:WPF.MDI.MdiContainer.ThemeProperty">
+            <summary>
+            Identifies the WPF.MDI.MdiContainer.Theme dependency property.
+            </summary>
+            <returns>The identifier for the WPF.MDI.MdiContainer.Theme property.</returns>
+        </member>
+        <member name="F:WPF.MDI.MdiContainer.MenuProperty">
+            <summary>
+            Identifies the WPF.MDI.MdiContainer.Menu dependency property.
+            </summary>
+            <returns>The identifier for the WPF.MDI.MdiContainer.Menu property.</returns>
+        </member>
+        <member name="F:WPF.MDI.MdiContainer.MdiLayoutProperty">
+            <summary>
+            Identifies the WPF.MDI.MdiContainer.MdiLayout dependency property.
+            </summary>
+            <returns>The identifier for the WPF.MDI.MdiContainer.MdiLayout property.</returns>
+        </member>
+        <member name="F:WPF.MDI.MdiContainer._menu">
+            <summary>
+            Contains user-specified element.
+            </summary>
+        </member>
+        <member name="F:WPF.MDI.MdiContainer._buttons">
+            <summary>
+            Contains window buttons in maximized mode.
+            </summary>
+        </member>
+        <member name="F:WPF.MDI.MdiContainer._topPanel">
+            <summary>
+            Container for _buttons and _menu.
+            </summary>
+        </member>
+        <member name="F:WPF.MDI.MdiContainer._windowOffset">
+            <summary>
+            Offset for new window.
+            </summary>
+        </member>
+        <member name="F:WPF.MDI.MdiContainer.AllowWindowStateMax">
+            <summary>
+            Allows setting WindowState of all windows to Maximized.
+            </summary>
+        </member>
+        <member name="M:WPF.MDI.MdiContainer.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:WPF.MDI.MdiContainer"/> class.
+            </summary>
+        </member>
+        <member name="M:WPF.MDI.MdiContainer.MdiContainer_Loaded(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Handles the Loaded event of the MdiContainer control.
+            </summary>
+            <param name="sender">The source of the event.</param>
+            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="M:WPF.MDI.MdiContainer.MdiContainer_Activated(System.Object,System.EventArgs)">
+            <summary>
+            Handles the Activated event of the MdiContainer control.
+            </summary>
+            <param name="sender">The source of the event.</param>
+            <param name="e">The <see cref="T:System.EventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="M:WPF.MDI.MdiContainer.MdiContainer_Deactivated(System.Object,System.EventArgs)">
+            <summary>
+            Handles the Deactivated event of the MdiContainer control.
+            </summary>
+            <param name="sender">The source of the event.</param>
+            <param name="e">The <see cref="T:System.EventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="M:WPF.MDI.MdiContainer.MdiContainer_SizeChanged(System.Object,System.Windows.SizeChangedEventArgs)">
+            <summary>
+            Handles the SizeChanged event of the MdiContainer control.
+            </summary>
+            <param name="sender">The source of the event.</param>
+            <param name="e">The <see cref="T:System.Windows.SizeChangedEventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="M:WPF.MDI.MdiContainer.Children_CollectionChanged(System.Object,System.Collections.Specialized.NotifyCollectionChangedEventArgs)">
+            <summary>
+            Handles the CollectionChanged event of the Children control.
+            </summary>
+            <param name="sender">The source of the event.</param>
+            <param name="e">The <see cref="T:System.Collections.Specialized.NotifyCollectionChangedEventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="M:WPF.MDI.MdiContainer.Focus(WPF.MDI.MdiChild)">
+            <summary>
+            Focuses a child and brings it into view.
+            </summary>
+            <param name="mdiChild">The MDI child.</param>
+        </member>
+        <member name="M:WPF.MDI.MdiContainer.InvalidateSize">
+            <summary>
+            Invalidates the size checking to see if the furthest
+            child point exceeds the current height and width.
+            </summary>
+        </member>
+        <member name="M:WPF.MDI.MdiContainer.GetTopChild">
+            <summary>
+            Gets MdiChild with maximum ZIndex.
+            </summary>
+        </member>
+        <member name="M:WPF.MDI.MdiContainer.ThemeValueChanged(System.Windows.DependencyObject,System.Windows.DependencyPropertyChangedEventArgs)">
+            <summary>
+            Dependency property event once the theme value has changed.
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The <see cref="T:System.Windows.DependencyPropertyChangedEventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="M:WPF.MDI.MdiContainer.MenuValueChanged(System.Windows.DependencyObject,System.Windows.DependencyPropertyChangedEventArgs)">
+            <summary>
+            Dependency property event once the menu element has changed.
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The <see cref="T:System.Windows.DependencyPropertyChangedEventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="M:WPF.MDI.MdiContainer.MdiLayoutValueChanged(System.Windows.DependencyObject,System.Windows.DependencyPropertyChangedEventArgs)">
+            <summary>
+            Dependency property event once the MDI layout value has changed.
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The <see cref="T:System.Windows.DependencyPropertyChangedEventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="P:WPF.MDI.MdiContainer.Theme">
+            <summary>
+            Gets or sets the container theme.
+            The default is determined by the operating system.
+            This is a dependency property.
+            </summary>
+            <value>The container theme.</value>
+        </member>
+        <member name="P:WPF.MDI.MdiContainer.Menu">
+            <summary>
+            Gets or sets the element to display as menu.
+            Window buttons in maximized mode will be on the same level.
+            This is a dependency property.
+            </summary>
+            <value>The container theme.</value>
+        </member>
+        <member name="P:WPF.MDI.MdiContainer.MdiLayout">
+            <summary>
+            Gets or sets the element to display as menu.
+            Window buttons in maximized mode will be on the same level.
+            This is a dependency property.
+            </summary>
+            <value>The container theme.</value>
+        </member>
+        <member name="P:WPF.MDI.MdiContainer.InnerHeight">
+            <summary>
+            Gets correct canvas height for internal usage.
+            </summary>
+        </member>
+        <member name="P:WPF.MDI.MdiContainer.Children">
+            <summary>
+            Gets or sets the child elements.
+            </summary>
+            <value>The child elements.</value>
+        </member>
+        <member name="T:WPF.MDI.MdiLayout">
+            <summary>
+            Specifies the layout of MdiChild windows in an MdiContainer control.
+            </summary>
+        </member>
+        <member name="F:WPF.MDI.MdiLayout.Cascade">
+            <summary>
+            All MdiChild windows are cascaded within the client region of the MdiContainer control.
+            </summary>
+        </member>
+        <member name="F:WPF.MDI.MdiLayout.TileHorizontal">
+            <summary>
+            All MdiChild windows are tiled horizontally within the client region of the MdiContainer control.
+            </summary>
+        </member>
+        <member name="F:WPF.MDI.MdiLayout.TileVertical">
+            <summary>
+            All MdiChild windows are tiled vertically within the client region of the MdiContainer control.
+            </summary>
+        </member>
+        <member name="F:WPF.MDI.MdiLayout.ArrangeIcons">
+            <summary>
+            All MdiChild icons are arranged within the client region of the MdiContainer control.
+            </summary>
+        </member>
+        <member name="T:WPF.MDI.ThemeType">
+            <summary>
+            Type of theme to use.
+            </summary>
+        </member>
+        <member name="F:WPF.MDI.ThemeType.Generic">
+            <summary>
+            Generic Visual Studio designer theme.
+            </summary>
+        </member>
+        <member name="F:WPF.MDI.ThemeType.Luna">
+            <summary>
+            Windows XP blue theme.
+            </summary>
+        </member>
+        <member name="F:WPF.MDI.ThemeType.Aero">
+            <summary>
+            Windows Vista and 7 theme.
+            </summary>
+        </member>
+        <member name="F:WPF.MDI.MdiChild.MinimizedWidth">
+            <summary>
+            Width of minimized window.
+            </summary>
+        </member>
+        <member name="F:WPF.MDI.MdiChild.MinimizedHeight">
+            <summary>
+            Height of minimized window.
+            </summary>
+        </member>
+        <member name="F:WPF.MDI.MdiChild.ContentProperty">
+            <summary>
+            Identifies the WPF.MDI.MdiChild.ContentProperty dependency property.
+            </summary>
+            <returns>The identifier for the WPF.MDI.MdiChild.ContentProperty property.</returns>
+        </member>
+        <member name="F:WPF.MDI.MdiChild.TitleProperty">
+            <summary>
+            Identifies the WPF.MDI.MdiChild.TitleProperty dependency property.
+            </summary>
+            <returns>The identifier for the WPF.MDI.MdiChild.TitleProperty property.</returns>
+        </member>
+        <member name="F:WPF.MDI.MdiChild.IconProperty">
+            <summary>
+            Identifies the WPF.MDI.MdiChild.IconProperty dependency property.
+            </summary>
+            <returns>The identifier for the WPF.MDI.MdiChild.IconProperty property.</returns>
+        </member>
+        <member name="F:WPF.MDI.MdiChild.ShowIconProperty">
+            <summary>
+            Identifies the WPF.MDI.MdiChild.ShowIconProperty dependency property.
+            </summary>
+            <returns>The identifier for the WPF.MDI.MdiChild.ShowIconProperty property.</returns>
+        </member>
+        <member name="F:WPF.MDI.MdiChild.ResizableProperty">
+            <summary>
+            Identifies the WPF.MDI.MdiChild.ResizableProperty dependency property.
+            </summary>
+            <returns>The identifier for the WPF.MDI.MdiChild.ResizableProperty property.</returns>
+        </member>
+        <member name="F:WPF.MDI.MdiChild.FocusedProperty">
+            <summary>
+            Identifies the WPF.MDI.MdiChild.FocusedProperty dependency property.
+            </summary>
+            <returns>The identifier for the WPF.MDI.MdiChild.FocusedProperty property.</returns>
+        </member>
+        <member name="F:WPF.MDI.MdiChild.MinimizeBoxProperty">
+            <summary>
+            Identifies the WPF.MDI.MdiChild.MinimizeBoxProperty dependency property.
+            </summary>
+            <returns>The identifier for the WPF.MDI.MdiChild.MinimizeBoxProperty property.</returns>
+        </member>
+        <member name="F:WPF.MDI.MdiChild.MaximizeBoxProperty">
+            <summary>
+            Identifies the WPF.MDI.MdiChild.MaximizeBoxProperty dependency property.
+            </summary>
+            <returns>The identifier for the WPF.MDI.MdiChild.MaximizeBoxProperty property.</returns>
+        </member>
+        <member name="F:WPF.MDI.MdiChild.WindowStateProperty">
+            <summary>
+            Identifies the WPF.MDI.MdiChild.WindowStateProperty dependency property.
+            </summary>
+            <returns>The identifier for the WPF.MDI.MdiChild.WindowStateProperty property.</returns>
+        </member>
+        <member name="F:WPF.MDI.MdiChild.PositionProperty">
+            <summary>
+            Identifies the WPF.MDI.MdiChild.PositionProperty dependency property.
+            </summary>
+            <returns>The identifier for the WPF.MDI.MdiChild.PositionProperty property.</returns>
+        </member>
+        <member name="F:WPF.MDI.MdiChild.ButtonsProperty">
+            <summary>
+            Identifies the WPF.MDI.MdiChild.ButtonsProperty dependency property.
+            </summary>
+            <returns>The identifier for the WPF.MDI.MdiChild.ButtonsProperty property.</returns>
+        </member>
+        <member name="F:WPF.MDI.MdiChild.ClosingEvent">
+            <summary>
+            Identifies the WPF.MDI.MdiChild.ClosingEvent routed event.
+            </summary>
+            <returns>The identifier for the WPF.MDI.MdiChild.ClosingEvent routed event.</returns>
+        </member>
+        <member name="F:WPF.MDI.MdiChild.ClosedEvent">
+            <summary>
+            Identifies the WPF.MDI.MdiChild.ClosedEvent routed event.
+            </summary>
+            <returns>The identifier for the WPF.MDI.MdiChild.ClosedEvent routed event.</returns>
+        </member>
+        <member name="F:WPF.MDI.MdiChild.originalDimension">
+            <summary>
+            Dimensions of window in Normal state.
+            </summary>
+        </member>
+        <member name="F:WPF.MDI.MdiChild.minimizedPosition">
+            <summary>
+            Position of window in Minimized state.
+            </summary>
+        </member>
+        <member name="M:WPF.MDI.MdiChild.#cctor">
+            <summary>
+            Initializes the <see cref="T:WPF.MDI.MdiChild"/> class.
+            </summary>
+        </member>
+        <member name="M:WPF.MDI.MdiChild.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:WPF.MDI.MdiChild"/> class.
+            </summary>
+        </member>
+        <member name="M:WPF.MDI.MdiChild.MdiChild_Loaded(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Handles the Loaded event of the MdiChild control.
+            </summary>
+            <param name="sender">The source of the event.</param>
+            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="M:WPF.MDI.MdiChild.MdiChild_GotFocus(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Handles the GotFocus event of the MdiChild control.
+            </summary>
+            <param name="sender">The source of the event.</param>
+            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="M:WPF.MDI.MdiChild.OnApplyTemplate">
+            <summary>
+            When overridden in a derived class, is invoked whenever application code or internal processes call <see cref="M:System.Windows.FrameworkElement.ApplyTemplate"/>.
+            </summary>
+        </member>
+        <member name="M:WPF.MDI.MdiChild.OnMouseDown(System.Windows.Input.MouseButtonEventArgs)">
+            <summary>
+            Invoked when an unhandled <see cref="E:System.Windows.Input.Mouse.MouseDown"/> attached event reaches an element in its route that is derived from this class. Implement this method to add class handling for this event.
+            </summary>
+            <param name="e">The <see cref="T:System.Windows.Input.MouseButtonEventArgs"/> that contains the event data. This event data reports details about the mouse button that was pressed and the handled state.</param>
+        </member>
+        <member name="M:WPF.MDI.MdiChild.minimizeButton_Click(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Handles the Click event of the minimizeButton control.
+            </summary>
+            <param name="sender">The source of the event.</param>
+            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="M:WPF.MDI.MdiChild.maximizeButton_Click(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Handles the Click event of the maximizeButton control.
+            </summary>
+            <param name="sender">The source of the event.</param>
+            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="M:WPF.MDI.MdiChild.closeButton_Click(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Handles the Click event of the closeButton control.
+            </summary>
+            <param name="sender">The source of the event.</param>
+            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="M:WPF.MDI.MdiChild.Thumb_DragStarted(System.Object,System.Windows.Controls.Primitives.DragStartedEventArgs)">
+            <summary>
+            Handles the DragStarted event of the Thumb control.
+            </summary>
+            <param name="sender">The source of the event.</param>
+            <param name="e">The <see cref="T:System.Windows.Controls.Primitives.DragStartedEventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="M:WPF.MDI.MdiChild.ResizeLeft_DragDelta(System.Object,System.Windows.Controls.Primitives.DragDeltaEventArgs)">
+            <summary>
+            Handles the DragDelta event of the ResizeLeft control.
+            </summary>
+            <param name="sender">The source of the event.</param>
+            <param name="e">The <see cref="T:System.Windows.Controls.Primitives.DragDeltaEventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="M:WPF.MDI.MdiChild.ResizeTop_DragDelta(System.Object,System.Windows.Controls.Primitives.DragDeltaEventArgs)">
+            <summary>
+            Handles the DragDelta event of the ResizeTop control.
+            </summary>
+            <param name="sender">The source of the event.</param>
+            <param name="e">The <see cref="T:System.Windows.Controls.Primitives.DragDeltaEventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="M:WPF.MDI.MdiChild.ResizeRight_DragDelta(System.Object,System.Windows.Controls.Primitives.DragDeltaEventArgs)">
+            <summary>
+            Handles the DragDelta event of the ResizeRight control.
+            </summary>
+            <param name="sender">The source of the event.</param>
+            <param name="e">The <see cref="T:System.Windows.Controls.Primitives.DragDeltaEventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="M:WPF.MDI.MdiChild.ResizeBottom_DragDelta(System.Object,System.Windows.Controls.Primitives.DragDeltaEventArgs)">
+            <summary>
+            Handles the DragDelta event of the ResizeBottom control.
+            </summary>
+            <param name="sender">The source of the event.</param>
+            <param name="e">The <see cref="T:System.Windows.Controls.Primitives.DragDeltaEventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="M:WPF.MDI.MdiChild.dragThumb_DragDelta(System.Object,System.Windows.Controls.Primitives.DragDeltaEventArgs)">
+            <summary>
+            Handles the DragDelta event of the dragThumb control.
+            </summary>
+            <param name="sender">The source of the event.</param>
+            <param name="e">The <see cref="T:System.Windows.Controls.Primitives.DragDeltaEventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="M:WPF.MDI.MdiChild.PositionValueChanged(System.Windows.DependencyObject,System.Windows.DependencyPropertyChangedEventArgs)">
+            <summary>
+            Dependency property event once the position value has changed.
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The <see cref="T:System.Windows.DependencyPropertyChangedEventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="M:WPF.MDI.MdiChild.FocusedValueChanged(System.Windows.DependencyObject,System.Windows.DependencyPropertyChangedEventArgs)">
+            <summary>
+            Dependency property event once the focused value has changed.
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The <see cref="T:System.Windows.DependencyPropertyChangedEventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="M:WPF.MDI.MdiChild.MinimizeBoxValueChanged(System.Windows.DependencyObject,System.Windows.DependencyPropertyChangedEventArgs)">
+            <summary>
+            Dependency property event once the minimize box value has changed.
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The <see cref="T:System.Windows.DependencyPropertyChangedEventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="M:WPF.MDI.MdiChild.MaximizeBoxValueChanged(System.Windows.DependencyObject,System.Windows.DependencyPropertyChangedEventArgs)">
+            <summary>
+            Dependency property event once the maximize box value has changed.
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The <see cref="T:System.Windows.DependencyPropertyChangedEventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="M:WPF.MDI.MdiChild.WindowStateValueChanged(System.Windows.DependencyObject,System.Windows.DependencyPropertyChangedEventArgs)">
+            <summary>
+            Dependency property event once the windows state value has changed.
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The <see cref="T:System.Windows.DependencyPropertyChangedEventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="M:WPF.MDI.MdiChild.Focus">
+            <summary>
+            Set focus to the child window and brings into view.
+            </summary>
+        </member>
+        <member name="M:WPF.MDI.MdiChild.Close">
+            <summary>
+            Manually closes the child window.
+            </summary>
+        </member>
+        <member name="P:WPF.MDI.MdiChild.Content">
+            <summary>
+            Gets or sets the content.
+            This is a dependency property.
+            </summary>
+            <value>The content.</value>
+        </member>
+        <member name="P:WPF.MDI.MdiChild.Title">
+            <summary>
+            Gets or sets the window title.
+            This is a dependency property.
+            </summary>
+            <value>The window title.</value>
+        </member>
+        <member name="P:WPF.MDI.MdiChild.Icon">
+            <summary>
+            Gets or sets the window icon.
+            This is a dependency property.
+            </summary>
+            <value>The window icon.</value>
+        </member>
+        <member name="P:WPF.MDI.MdiChild.ShowIcon">
+            <summary>
+            Gets or sets a value indicating whether to [show the window icon].
+            This is a dependency property.
+            </summary>
+            <value><c>true</c> if [show the window icon]; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="P:WPF.MDI.MdiChild.Resizable">
+            <summary>
+            Gets or sets a value indicating whether the [window is resizable].
+            This is a dependency property.
+            </summary>
+            <value><c>true</c> if [window is resizable]; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="P:WPF.MDI.MdiChild.Focused">
+            <summary>
+            Gets or sets a value indicating whether the [window is focused].
+            This is a dependency property.
+            </summary>
+            <value><c>true</c> if [window is focused]; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="P:WPF.MDI.MdiChild.MinimizeBox">
+            <summary>
+            Gets or sets a value indicating whether to [show the minimize box button].
+            This is a dependency property.
+            </summary>
+            <value><c>true</c> if [show the minimize box button]; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="P:WPF.MDI.MdiChild.MaximizeBox">
+            <summary>
+            Gets or sets a value indicating whether to [show the maximize box button].
+            This is a dependency property.
+            </summary>
+            <value><c>true</c> if [show the maximize box button]; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="P:WPF.MDI.MdiChild.WindowState">
+            <summary>
+            Gets or sets the state of the window.
+            This is a dependency property.
+            </summary>
+            <value>The state of the window.</value>
+        </member>
+        <member name="P:WPF.MDI.MdiChild.Position">
+            <summary>
+            Gets or sets position of top left corner of window.
+            This is a dependency property.
+            </summary>
+        </member>
+        <member name="P:WPF.MDI.MdiChild.Buttons">
+            <summary>
+            Gets buttons for window in maximized state.
+            </summary>
+        </member>
+        <member name="P:WPF.MDI.MdiChild.Container">
+            <summary>
+            Gets or sets the container.
+            </summary>
+            <value>The container.</value>
+        </member>
+    </members>
+</doc>
