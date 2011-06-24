@@ -802,6 +802,8 @@ namespace Apq.DBC {
             
             private global::System.Data.DataColumn columnDBIName;
             
+            private global::System.Data.DataColumn columnDBIType;
+            
             private global::System.Data.DataColumn columnParentID;
             
             private global::System.Data.DataColumn columnDBProduct;
@@ -870,6 +872,14 @@ namespace Apq.DBC {
             public global::System.Data.DataColumn DBINameColumn {
                 get {
                     return this.columnDBIName;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn DBITypeColumn {
+                get {
+                    return this.columnDBIType;
                 }
             }
             
@@ -966,12 +976,13 @@ namespace Apq.DBC {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public DBIRow AddDBIRow(int ComputerID, int DBIID, string DBIName, int ParentID, int DBProduct, string IP, int Port, string UserId, string PwdC, string PwdD) {
+            public DBIRow AddDBIRow(int ComputerID, int DBIID, string DBIName, int DBIType, int ParentID, int DBProduct, string IP, int Port, string UserId, string PwdC, string PwdD) {
                 DBIRow rowDBIRow = ((DBIRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         ComputerID,
                         DBIID,
                         DBIName,
+                        DBIType,
                         ParentID,
                         DBProduct,
                         IP,
@@ -1011,6 +1022,7 @@ namespace Apq.DBC {
                 this.columnComputerID = base.Columns["ComputerID"];
                 this.columnDBIID = base.Columns["DBIID"];
                 this.columnDBIName = base.Columns["DBIName"];
+                this.columnDBIType = base.Columns["DBIType"];
                 this.columnParentID = base.Columns["ParentID"];
                 this.columnDBProduct = base.Columns["DBProduct"];
                 this.columnIP = base.Columns["IP"];
@@ -1029,6 +1041,8 @@ namespace Apq.DBC {
                 base.Columns.Add(this.columnDBIID);
                 this.columnDBIName = new global::System.Data.DataColumn("DBIName", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnDBIName);
+                this.columnDBIType = new global::System.Data.DataColumn("DBIType", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDBIType);
                 this.columnParentID = new global::System.Data.DataColumn("ParentID", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnParentID);
                 this.columnDBProduct = new global::System.Data.DataColumn("DBProduct", typeof(int), null, global::System.Data.MappingType.Element);
@@ -1056,6 +1070,8 @@ namespace Apq.DBC {
                 this.columnDBIName.Caption = "实例名称";
                 this.columnDBIName.DefaultValue = ((string)("新建实例"));
                 this.columnDBIName.MaxLength = 50;
+                this.columnDBIType.Caption = "实例类型";
+                this.columnDBIType.DefaultValue = ((int)(1));
                 this.columnParentID.Caption = "上级";
                 this.columnParentID.DefaultValue = ((int)(0));
                 this.columnDBProduct.AllowDBNull = false;
@@ -1548,6 +1564,22 @@ namespace Apq.DBC {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int DBIType {
+                get {
+                    try {
+                        return ((int)(this[this.tableDBI.DBITypeColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("表“DBI”中列“DBIType”的值为 DBNull。", e);
+                    }
+                }
+                set {
+                    this[this.tableDBI.DBITypeColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public int ParentID {
                 get {
                     try {
@@ -1636,6 +1668,18 @@ namespace Apq.DBC {
                 set {
                     this[this.tableDBI.PwdDColumn] = value;
                 }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsDBITypeNull() {
+                return this.IsNull(this.tableDBI.DBITypeColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetDBITypeNull() {
+                this[this.tableDBI.DBITypeColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]

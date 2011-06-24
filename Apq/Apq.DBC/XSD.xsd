@@ -14,7 +14,7 @@
   <xs:element name="XSD" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="XSD" msprop:Generator_UserDSName="XSD">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="DBC" msprop:Generator_UserTableName="DBC" msprop:Generator_RowEvArgName="DBCRowChangeEvent" msprop:Generator_TableVarName="tableDBC" msprop:Generator_TablePropName="DBC" msprop:Generator_RowDeletingName="DBCRowDeleting" msprop:Generator_RowChangingName="DBCRowChanging" msprop:Generator_RowDeletedName="DBCRowDeleted" msprop:Generator_TableClassName="DBCDataTable" msprop:Generator_RowChangedName="DBCRowChanged" msprop:Generator_RowEvHandlerName="DBCRowChangeEventHandler" msprop:Generator_RowClassName="DBCRow">
+        <xs:element name="DBC" msprop:Generator_UserTableName="DBC" msprop:Generator_RowEvArgName="DBCRowChangeEvent" msprop:Generator_TableVarName="tableDBC" msprop:Generator_TablePropName="DBC" msprop:Generator_RowDeletingName="DBCRowDeleting" msprop:Generator_RowChangingName="DBCRowChanging" msprop:Generator_RowDeletedName="DBCRowDeleted" msprop:Generator_RowEvHandlerName="DBCRowChangeEventHandler" msprop:Generator_RowChangedName="DBCRowChanged" msprop:Generator_TableClassName="DBCDataTable" msprop:Generator_RowClassName="DBCRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="ComputerID" msprop:Generator_ColumnVarNameInTable="columnComputerID" msprop:Generator_ColumnPropNameInRow="ComputerID" msprop:Generator_ColumnPropNameInTable="ComputerIDColumn" msprop:Generator_UserColumnName="ComputerID" type="xs:int" default="0" minOccurs="0" />
@@ -83,6 +83,7 @@
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
+              <xs:element name="DBIType" msdata:Caption="实例类型" msprop:Generator_ColumnVarNameInTable="columnDBIType" msprop:Generator_ColumnPropNameInRow="DBIType" msprop:Generator_ColumnPropNameInTable="DBITypeColumn" msprop:Generator_UserColumnName="DBIType" type="xs:int" default="1" minOccurs="0" />
               <xs:element name="ParentID" msdata:Caption="上级" msprop:Generator_ColumnVarNameInTable="columnParentID" msprop:Generator_ColumnPropNameInRow="ParentID" msprop:Generator_ColumnPropNameInTable="ParentIDColumn" msprop:Generator_UserColumnName="ParentID" type="xs:int" default="0" minOccurs="0" />
               <xs:element name="DBProduct" msdata:Caption="实例类型" msprop:Generator_ColumnVarNameInTable="columnDBProduct" msprop:Generator_ColumnPropNameInRow="DBProduct" msprop:Generator_ColumnPropNameInTable="DBProductColumn" msprop:Generator_UserColumnName="DBProduct" type="xs:int" default="1" />
               <xs:element name="IP" msprop:Generator_ColumnVarNameInTable="columnIP" msprop:Generator_ColumnPropNameInRow="IP" msprop:Generator_ColumnPropNameInTable="IPColumn" msprop:Generator_UserColumnName="IP" default="">
