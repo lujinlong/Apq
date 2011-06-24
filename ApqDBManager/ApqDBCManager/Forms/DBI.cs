@@ -46,6 +46,7 @@ namespace ApqDBCManager.Forms
 			tsmiDel.Text = Apq.GlobalObject.UILang["删除(&D)"];
 
 			columnHeader1.Text = Apq.GlobalObject.UILang["名称"];
+			columnHeader8.Text = Apq.GlobalObject.UILang["类型"];
 			columnHeader2.Text = Apq.GlobalObject.UILang["服务器"];
 			columnHeader7.Text = Apq.GlobalObject.UILang["DBMS"];
 			columnHeader3.Text = Apq.GlobalObject.UILang["登录名"];
@@ -78,6 +79,17 @@ namespace ApqDBCManager.Forms
 				cb.DisplayMember = "ComputerName";
 				cb.ValueMember = "ComputerName";
 				cb.DataSource = GlobalObject.Lookup.Computer;
+
+				e.Editor = cb;
+			}
+
+			if (e.Item.ListView.Columns[e.ColumnIndex].Text == Apq.GlobalObject.UILang["类型"])
+			{
+				ComboBox cb = new ComboBox();
+				cb.DropDownStyle = ComboBoxStyle.DropDownList;
+				cb.DisplayMember = "TypeCaption";
+				cb.ValueMember = "TypeCaption";
+				cb.DataSource = GlobalObject.Lookup.DBIType;
 
 				e.Editor = cb;
 			}
@@ -220,6 +232,7 @@ namespace ApqDBCManager.Forms
 		{
 			tlvHelper = new TreeListViewHelper(treeListView1);
 			tlvHelper.TableMapping.ColumnMappings.Add(Apq.GlobalObject.UILang["名称"], "DBIName");
+			tlvHelper.TableMapping.ColumnMappings.Add(Apq.GlobalObject.UILang["类型"], "DBITypeName");
 			tlvHelper.TableMapping.ColumnMappings.Add(Apq.GlobalObject.UILang["服务器"], "ComputerName");
 			tlvHelper.TableMapping.ColumnMappings.Add(Apq.GlobalObject.UILang["DBMS"], "DBMS");
 			tlvHelper.TableMapping.ColumnMappings.Add(Apq.GlobalObject.UILang["登录名"], "UserId");
@@ -262,25 +275,6 @@ namespace ApqDBCManager.Forms
 		}
 		#endregion
 
-		//生成文件
-		private void tsbCreateFile_Click(object sender, EventArgs e)
-		{
-			treeListView1.EndUpdate();
-			sfd.InitialDirectory = GlobalObject.XmlConfigChain[this.GetType(), "sfd_InitialDirectory"];
-			if (sfd.ShowDialog(this) == DialogResult.OK)
-			{
-				GlobalObject.XmlConfigChain[this.GetType(), "sfd_InitialDirectory"] = System.IO.Path.GetDirectoryName(sfd.FileName);
-
-				Apq.DBC.XSD xsd = new Apq.DBC.XSD();
-				xsd.DBI.Merge(GlobalObject.Lookup.DBI);
-				xsd.DBI.Columns.Remove("PwdC");
-				StringWriter sw = new StringWriter();
-				xsd.WriteXml(sw, XmlWriteMode.IgnoreSchema);
-				Common.SaveCSFile(sfd.FileName, sw.ToString());
-				tsslOutInfo.Text = Apq.GlobalObject.UILang["保存文件成功"];
-			}
-		}
-
 		private void tsmiTestOpen_Click(object sender, EventArgs e)
 		{
 			this.Cursor = Cursors.WaitCursor;
@@ -295,15 +289,15 @@ namespace ApqDBCManager.Forms
 				if (dr != null && tln != null && tln.Parent != null)
 				{
 					DbConnection sc = new SqlConnection();
-					sc = Apq.DBC.Common.CreateDBIConnection(dr.DBIName,ref sc);
+					sc = Apq.DBC.Common.CreateDBIConnection(dr.DBIName, ref sc);
 					try
 					{
 						Apq.Data.Common.DbConnectionHelper.Open(sc);
-						tsslTest.Text = dr["SqlName"] + "-->连接成功.";
+						tsslTest.Text = dr["SqlName"] + Apq.GlobalObject.UILang["-->连接成功."];
 					}
 					catch
 					{
-						tsslTest.Text = dr["SqlName"] + "-X-连接失败!";
+						tsslTest.Text = dr["SqlName"] + Apq.GlobalObject.UILang["-X-连接失败!"];
 					}
 					finally
 					{
@@ -361,19 +355,17 @@ namespace ApqDBCManager.Forms
 		private void acCreateFile_Execute(object sender, EventArgs e)
 		{
 			treeListView1.EndUpdate();
-
-			DBS_XSD xsd = new DBS_XSD();
-			xsd.DBI.Merge(GlobalObject.Lookup.DBI);
-			xsd.DBI.Columns.Remove("PwdD");
-			xsd.DBI.Columns.Remove("ComputerName");
-			xsd.DBI.Columns.Remove("DBMS");
-
 			sfd.InitialDirectory = GlobalObject.XmlConfigChain[this.GetType(), "sfd_InitialDirectory"];
-			if(sfd.ShowDialog(this)== DialogResult.OK)
+			if (sfd.ShowDialog(this) == DialogResult.OK)
 			{
 				GlobalObject.XmlConfigChain[this.GetType(), "sfd_InitialDirectory"] = System.IO.Path.GetDirectoryName(sfd.FileName);
 
-				xsd.DBI.WriteXml(sfd.FileName, XmlWriteMode.IgnoreSchema);
+				Apq.DBC.XSD xsd = new Apq.DBC.XSD();
+				xsd.DBI.Merge(GlobalObject.Lookup.DBI, false, MissingSchemaAction.Ignore);
+				xsd.DBI.Columns.Remove("PwdC");
+				StringWriter sw = new StringWriter();
+				xsd.WriteXml(sw, XmlWriteMode.IgnoreSchema);
+				Common.SaveCSFile(sfd.FileName, sw.ToString());
 				tsslOutInfo.Text = Apq.GlobalObject.UILang["保存文件成功"];
 			}
 		}

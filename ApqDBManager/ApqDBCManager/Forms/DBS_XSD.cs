@@ -67,6 +67,25 @@ namespace ApqDBCManager.Forms
 			}
 		}
 
+		public partial class DBITypeDataTable
+		{
+			/// <summary>
+			/// 根据实例类型名称查找数据行
+			/// </summary>
+			/// <returns></returns>
+			public DBITypeRow FindByTypeCaption(string TypeCaption)
+			{
+				foreach (DBITypeRow dr in this.Rows)
+				{
+					if (dr.TypeCaption == TypeCaption)
+					{
+						return dr;
+					}
+				}
+				return null;
+			}
+		}
+
 		public partial class DBIDataTable
 		{
 			/// <summary>

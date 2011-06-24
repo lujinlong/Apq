@@ -68,6 +68,7 @@
 			this.acReverse = new Crad.Windows.Forms.Actions.Action();
 			this.acExpandAll = new Crad.Windows.Forms.Actions.Action();
 			this.acCreateFile = new Crad.Windows.Forms.Actions.Action();
+			this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.cmTreeMenu.SuspendLayout();
 			this.toolStrip1.SuspendLayout();
 			this.statusStrip1.SuspendLayout();
@@ -109,6 +110,7 @@
 			this.treeListView1.CheckBoxes = System.Windows.Forms.CheckBoxesTypes.Simple;
 			this.treeListView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1,
+            this.columnHeader8,
             this.columnHeader2,
             this.columnHeader7,
             this.columnHeader3,
@@ -363,6 +365,11 @@
 			this.acCreateFile.ToolTipText = "生成文件";
 			this.acCreateFile.Execute += new System.EventHandler(this.acCreateFile_Execute);
 			// 
+			// columnHeader8
+			// 
+			this.columnHeader8.Text = "类型";
+			this.columnHeader8.Width = 100;
+			// 
 			// DBI
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
@@ -428,6 +435,7 @@
 		private Crad.Windows.Forms.Actions.Action acExpandAll;
 		private Crad.Windows.Forms.Actions.Action acSelectAll;
 		private Crad.Windows.Forms.Actions.Action acCreateFile;
+		private System.Windows.Forms.ColumnHeader columnHeader8;
 
 	}
 }

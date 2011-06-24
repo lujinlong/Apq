@@ -198,6 +198,7 @@ namespace ApqDBCManager
 
 					// 增加TreeListView需要的Lookup列及取值
 					_Lookup.DBI.Columns.Add("ComputerName");
+					_Lookup.DBI.Columns.Add("DBITypeName");
 					_Lookup.DBI.Columns.Add("DBMS");
 					foreach (DBS_XSD.DBIRow dr in _Lookup.DBI.Rows)
 					{
@@ -205,6 +206,13 @@ namespace ApqDBCManager
 						{
 							DBS_XSD.ComputerRow drDBS = _Lookup.Computer.FindByComputerID(dr.ComputerID);
 							dr["ComputerName"] = drDBS.ComputerName;
+						}
+						catch { }
+
+						try
+						{
+							DBS_XSD.DBITypeRow drDBIType = _Lookup.DBIType.FindByDBIType(dr.DBIType);
+							dr["DBITypeName"] = drDBIType.TypeCaption;
 						}
 						catch { }
 
@@ -236,6 +244,11 @@ namespace ApqDBCManager
 				e.Row["ComputerID"] = _Lookup.Computer.FindByComputerName(e.Row["ComputerName"].ToString())["ComputerID"];
 			}
 
+			if (e.Column.ColumnName == "DBITypeName" && !Apq.Convert.LikeDBNull(e.Row["DBITypeName"]))
+			{
+				e.Row["DBIType"] = _Lookup.DBIType.FindByTypeCaption(e.Row["DBITypeName"].ToString())["DBIType"];
+			}
+
 			if (e.Column.ColumnName == "DBMS" && !Apq.Convert.LikeDBNull(e.Row["DBMS"]))
 			{
 				e.Row["DBProduct"] = Enum.Parse(typeof(Apq.Data.Common.DBProduct), e.Row["DBMS"].ToString());
@@ -253,6 +266,7 @@ namespace ApqDBCManager
 			xsd.Tables.Remove(xsd.DBC);
 			xsd.DBI.Columns.Remove("PwdD");
 			xsd.DBI.Columns.Remove("ComputerName");
+			xsd.DBI.Columns.Remove("DBITypeName");
 			xsd.DBI.Columns.Remove("DBMS");
 
 			xsd.WriteXml(XmlConfigChain["ApqDBCManager", "file_Lookup"], XmlWriteMode.IgnoreSchema);

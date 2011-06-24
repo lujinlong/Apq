@@ -364,6 +364,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Lookup.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Res\ico\blockOS 43 System File.ico" />
     <Content Include="Res\ico\Key.ico" />
     <Content Include="Res\ico\sign125.ico">
