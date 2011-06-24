@@ -26,8 +26,8 @@ namespace ApqDBCManager.Forms
 		{
 			InitializeComponent();
 
-			txtRSAUKey.Encoding = System.Text.Encoding.Default;
-			txtRSAPKey.Encoding = System.Text.Encoding.Default;
+			txtRSAUKey.Encoding = System.Text.Encoding.UTF8;
+			txtRSAPKey.Encoding = System.Text.Encoding.UTF8;
 
 			txtRSAUKey.IsReadOnly = false;
 			txtRSAUKey.Options.ShowSpaces = true;
