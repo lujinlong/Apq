@@ -143,42 +143,6 @@ namespace ApqDBManager
 		}
 		#endregion
 
-		#region UserDockPanalConfigFile
-		private static string _UserDockPanalConfigFile;
-		/// <summary>
-		/// 用户DockPanal配置文件(DockPanel.登录名.config)
-		/// </summary>
-		public static string UserDockPanalConfigFile
-		{
-			get
-			{
-				if (_UserDockPanalConfigFile == null)
-				{
-					_UserDockPanalConfigFile = AppDomain.CurrentDomain.BaseDirectory + "DockPanel." + Environment.UserName + ".config";
-				}
-				return _UserDockPanalConfigFile;
-			}
-		}
-		#endregion
-
-		#region AsmDockPanalConfigFile
-		private static string _AsmDockPanalConfigFile;
-		/// <summary>
-		/// 用户DockPanal配置文件(DockPanel.config)
-		/// </summary>
-		public static string AsmDockPanalConfigFile
-		{
-			get
-			{
-				if (_AsmDockPanalConfigFile == null)
-				{
-					_AsmDockPanalConfigFile = AppDomain.CurrentDomain.BaseDirectory + "DockPanel.config";
-				}
-				return _AsmDockPanalConfigFile;
-			}
-		}
-		#endregion
-
 		#region MainForm
 		private static MainForm _MainForm;
 		/// <summary>
@@ -193,47 +157,6 @@ namespace ApqDBManager
 					_MainForm = new MainForm();
 				}
 				return _MainForm;
-			}
-		}
-		#endregion
-
-		#region 管理库连接字符串
-		/// <summary>
-		/// 获取管理库连接字符串
-		/// </summary>
-		public static string SqlConn
-		{
-			get
-			{
-				Apq.ConnectionStrings.SQLServer.SqlConnection scHelper = new Apq.ConnectionStrings.SQLServer.SqlConnection();
-				scHelper.DBName = GlobalObject.XmlConfigChain["ApqDBManager.Controls.MainOption.DBC", "DBName"];
-				scHelper.ServerName = GlobalObject.XmlConfigChain["ApqDBManager.Controls.MainOption.DBC", "ServerName"];
-				scHelper.UserId = GlobalObject.XmlConfigChain["ApqDBManager.Controls.MainOption.DBC", "UserId"];
-				string PwdC = GlobalObject.XmlConfigChain["ApqDBManager.Controls.MainOption.DBC", "Pwd"];
-				if (!string.IsNullOrEmpty(PwdC))
-				{
-					string PwdD = Apq.Security.Cryptography.DESHelper.DecryptString(PwdC, GlobalObject.RegConfigChain["Crypt", "DESKey"], GlobalObject.RegConfigChain["Crypt", "DESIV"]);
-					scHelper.Pwd = PwdD;
-				}
-				return scHelper.GetConnectionString();
-			}
-		}
-		#endregion
-
-		#region SolutionExplorer
-		private static SqlIns _SolutionExplorer;
-		/// <summary>
-		/// 获取解决方案视图
-		/// </summary>
-		public static SqlIns SolutionExplorer
-		{
-			get
-			{
-				if (_SolutionExplorer == null)
-				{
-					_SolutionExplorer = new SqlIns();
-				}
-				return _SolutionExplorer;
 			}
 		}
 		#endregion
@@ -256,104 +179,34 @@ namespace ApqDBManager
 		}
 		#endregion
 
-		#region ErrList
-		private static ErrList _ErrList;
-		/// <summary>
-		/// 获取错误列表视图
-		/// </summary>
-		public static ErrList ErrList
-		{
-			get
-			{
-				if (_ErrList == null)
-				{
-					_ErrList = new ErrList();
-				}
-				return _ErrList;
-			}
-		}
-		#endregion
-
-		#region SqlInstances
-		private static ApqDBManager.Forms.SrvsMgr.SrvsMgr_XSD _Sqls;
+		#region xsdDBC
+		private static Apq.DBC.XSD _xsdDBC;
 		/// <summary>
 		/// 获取服务器集
 		/// </summary>
-		public static ApqDBManager.Forms.SrvsMgr.SrvsMgr_XSD Sqls
+		public static Apq.DBC.XSD xsdDBC
 		{
 			get
 			{
-				if (_Sqls == null)
+				if (_xsdDBC == null)
 				{
-					SqlsLoadFromDB();
+					_xsdDBC = Apq.DBC.Common.XSD.Copy() as Apq.DBC.XSD;
+					xsdDBCAdjust();
 				}
-				return _Sqls;
+				return _xsdDBC;
 			}
 		}
 
-		public static void SqlsLoadFromDB()
+		public static void xsdDBCAdjust()
 		{
-			#region 从数据库加载实例列表
-			if (_Sqls == null)
-			{
-				_Sqls = new ApqDBManager.Forms.SrvsMgr.SrvsMgr_XSD();
-				_Sqls.SqlInstance.Columns.Add("CheckState", typeof(bool));
-				_Sqls.SqlInstance.Columns.Add("_Expanded", typeof(bool));
-				_Sqls.SqlInstance.Columns.Add("_Selected", typeof(bool));
-				_Sqls.SqlInstance.Columns.Add("IsReadyToGo", typeof(bool));
-				_Sqls.SqlInstance.Columns.Add("Err", typeof(bool));
-				_Sqls.SqlInstance.Columns.Add("DBConnectionString");
-
-				_Sqls.SqlInstance.Columns["CheckState"].DefaultValue = false;
-				_Sqls.SqlInstance.Columns["_Expanded"].DefaultValue = true;
-				_Sqls.SqlInstance.Columns["_Selected"].DefaultValue = false;
-				_Sqls.SqlInstance.Columns["IsReadyToGo"].DefaultValue = false;
-				_Sqls.SqlInstance.Columns["Err"].DefaultValue = false;
-			}
-			_Sqls.SqlInstance.Clear();
-
-			try
-			{
-				SqlDataAdapter sda = new SqlDataAdapter("dbo.ApqDBMgr_SqlInstance_List", SqlConn);
-				sda.Fill(_Sqls.SqlInstance);
-			}
-			catch
-			{
-				return;
-			}
-
-			#endregion
-
-			//解密密码
-			Common.PwdC2D(_Sqls.SqlInstance);
-
-			//生成连接字符串
-			foreach (ApqDBManager.Forms.SrvsMgr.SrvsMgr_XSD.SqlInstanceRow dr in _Sqls.SqlInstance.Rows)
-			{
-				if (!Apq.Convert.LikeDBNull(dr["PwdD"]))
-				{
-					Apq.ConnectionStrings.SQLServer.SqlConnection scHelper = new Apq.ConnectionStrings.SQLServer.SqlConnection();
-					scHelper.DBName = "master";
-					scHelper.ServerName = dr.IP;
-					if (dr.SqlPort > 0)
-					{
-						scHelper.ServerName += "," + dr.SqlPort;
-					}
-					scHelper.UserId = dr.UserId;
-					scHelper.Pwd = dr.PwdD;
-					dr["DBConnectionString"] = scHelper.GetConnectionString();
-				}
-			}
-
 #if Debug_Home
-			foreach (ApqDBManager.Forms.SrvsMgr.SrvsMgr_XSD.SqlInstanceRow dr in _Sqls.SqlInstance.Rows)
+			if (_xsdDBC != null)
+			foreach (Apq.DBC.XSD.SqlInstanceRow dr in _Sqls.SqlInstance.Rows)
 			{
 				dr["DBConnectionString"] = "Data Source=.;User ID=apq;Password=f;";
 				dr.IP = "127.0.0.1";
 			}
 #endif
-
-			_Sqls.SqlInstance.AcceptChanges();
 		}
 		#endregion
 
