@@ -1,16 +1,20 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 10.00
-# Visual Studio 2008
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApqDBManager", "ApqDBManager\ApqDBManager.csproj", "{9D89E72C-ACDD-47BE-84E3-270BACA7A8A4}"
-EndProject
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_说明", "_说明", "{40D4AA87-24A1-469D-9EE5-C2B318206342}"
 	ProjectSection(SolutionItems) = preProject
 		AssemblyInfo.txt = AssemblyInfo.txt
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApqDBManager", "ApqDBManager\ApqDBManager.csproj", "{9D89E72C-ACDD-47BE-84E3-270BACA7A8A4}"
+EndProject
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "ApqDBManager_Setup", "ApqDBManager_Setup\ApqDBManager_Setup.vdproj", "{102C478D-0E13-411C-813C-C325612C2C85}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApqDBMgrReg", "ApqDBMgrReg\ApqDBMgrReg.csproj", "{FAD01FA9-2958-4381-AE45-EE08DFD8C723}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApqDBCManager", "ApqDBCManager\ApqDBCManager.csproj", "{126C9D81-26AA-43FB-8554-0CB8241896F8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApqDBMgr", "ApqDBMgr\ApqDBMgr.csproj", "{867AFCE7-6229-4821-BFCA-97E74C5D8AAC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -52,6 +56,27 @@ Global
 		{FAD01FA9-2958-4381-AE45-EE08DFD8C723}.Release|Any CPU.Build.0 = Release|Any CPU
 		{FAD01FA9-2958-4381-AE45-EE08DFD8C723}.Release|x86.ActiveCfg = Release|x86
 		{FAD01FA9-2958-4381-AE45-EE08DFD8C723}.Release|x86.Build.0 = Release|x86
+		{126C9D81-26AA-43FB-8554-0CB8241896F8}.Debug_Home|Any CPU.ActiveCfg = Debug_Home|Any CPU
+		{126C9D81-26AA-43FB-8554-0CB8241896F8}.Debug_Home|Any CPU.Build.0 = Debug_Home|Any CPU
+		{126C9D81-26AA-43FB-8554-0CB8241896F8}.Debug_Home|x86.ActiveCfg = Debug_Home|x86
+		{126C9D81-26AA-43FB-8554-0CB8241896F8}.Debug_Home|x86.Build.0 = Debug_Home|x86
+		{126C9D81-26AA-43FB-8554-0CB8241896F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{126C9D81-26AA-43FB-8554-0CB8241896F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{126C9D81-26AA-43FB-8554-0CB8241896F8}.Debug|x86.ActiveCfg = Debug|x86
+		{126C9D81-26AA-43FB-8554-0CB8241896F8}.Debug|x86.Build.0 = Debug|x86
+		{126C9D81-26AA-43FB-8554-0CB8241896F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{126C9D81-26AA-43FB-8554-0CB8241896F8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{126C9D81-26AA-43FB-8554-0CB8241896F8}.Release|x86.ActiveCfg = Release|x86
+		{126C9D81-26AA-43FB-8554-0CB8241896F8}.Release|x86.Build.0 = Release|x86
+		{867AFCE7-6229-4821-BFCA-97E74C5D8AAC}.Debug_Home|Any CPU.ActiveCfg = Debug|x86
+		{867AFCE7-6229-4821-BFCA-97E74C5D8AAC}.Debug_Home|x86.ActiveCfg = Debug|x86
+		{867AFCE7-6229-4821-BFCA-97E74C5D8AAC}.Debug_Home|x86.Build.0 = Debug|x86
+		{867AFCE7-6229-4821-BFCA-97E74C5D8AAC}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{867AFCE7-6229-4821-BFCA-97E74C5D8AAC}.Debug|x86.ActiveCfg = Debug|x86
+		{867AFCE7-6229-4821-BFCA-97E74C5D8AAC}.Debug|x86.Build.0 = Debug|x86
+		{867AFCE7-6229-4821-BFCA-97E74C5D8AAC}.Release|Any CPU.ActiveCfg = Release|x86
+		{867AFCE7-6229-4821-BFCA-97E74C5D8AAC}.Release|x86.ActiveCfg = Release|x86
+		{867AFCE7-6229-4821-BFCA-97E74C5D8AAC}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
