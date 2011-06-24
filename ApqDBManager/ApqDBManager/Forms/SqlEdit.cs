@@ -9,9 +9,6 @@ using WeifenLuo.WinFormsUI.Docking;
 using System.Threading;
 using System.Data.SqlClient;
 using System.Data.Common;
-using ApqDBManager.Controls;
-using ICSharpCode.TextEditor.Document;
-using System.Text.RegularExpressions;
 using ApqDBManager.Forms;
 
 namespace ApqDBManager
@@ -28,6 +25,23 @@ namespace ApqDBManager
 
 		public SqlOut SqlOut = new SqlOut();
 		public SqlEditDoc SqlEditDoc = new SqlEditDoc();
+		public ErrList ErrList = new ErrList();
+
+		public override void SetUILang(Apq.UILang.UILang UILang)
+		{
+			#region 工具栏
+			acOpen.Text = Apq.GlobalObject.UILang["打开(&O)"];
+			acSave.Text = Apq.GlobalObject.UILang["保存(&S)"];
+			acSaveAs.Text = Apq.GlobalObject.UILang["另存为(&A)"];
+
+			acDBI.Text = Apq.GlobalObject.UILang["数据库列表(&L)"];
+			acOut.Text = Apq.GlobalObject.UILang["输出(&O)"];
+			acErrList.Text = Apq.GlobalObject.UILang["错误列表(&E)"];
+			#endregion
+
+			this.acOpen.Image = System.Drawing.Image.FromFile(Application.StartupPath + @"\Res\png\File\Open.png");
+			this.acSave.Image = System.Drawing.Image.FromFile(Application.StartupPath + @"\Res\png\File\Save.png");
+		}
 
 		private void SqlEdit_Load(object sender, EventArgs e)
 		{
@@ -37,14 +51,11 @@ namespace ApqDBManager
 
 		private void SqlEdit_Activated(object sender, EventArgs e)
 		{
-			// 设置服务器和错误列表
-			GlobalObject.SolutionExplorer.SetServers(SqlEditDoc._Sqls);
-			GlobalObject.ErrList.Set_ErrList(SqlEditDoc.dsUI);
 		}
 
 		private void SqlEdit_Deactivate(object sender, EventArgs e)
 		{
-			GlobalObject.SolutionExplorer.SaveState2XSD();
+
 		}
 	}
 }

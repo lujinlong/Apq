@@ -125,7 +125,7 @@
 			// 
 			this.cbContainsColName.AutoSize = true;
 			this.cbContainsColName.Checked = true;
-			this.cbContainsColName.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.cbContainsColName._CheckState = System.Windows.Forms._CheckState.Checked;
 			this.cbContainsColName.Location = new System.Drawing.Point(86, 71);
 			this.cbContainsColName.Name = "cbContainsColName";
 			this.cbContainsColName.Size = new System.Drawing.Size(84, 16);

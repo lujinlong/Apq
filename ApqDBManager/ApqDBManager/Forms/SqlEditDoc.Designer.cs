@@ -28,7 +28,6 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SqlEditDoc));
 			this.tslDBName = new System.Windows.Forms.ToolStripLabel();
 			this.tscbDBName = new System.Windows.Forms.ToolStripComboBox();
@@ -41,8 +40,6 @@
 			this.tsmiResult1 = new System.Windows.Forms.ToolStripMenuItem();
 			this.tsbExport = new System.Windows.Forms.ToolStripButton();
 			this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-			this.txtSql = new ICSharpCode.TextEditor.TextEditorControl();
-			this.cms1 = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.tsmiUndo = new System.Windows.Forms.ToolStripMenuItem();
 			this.tsmiRedo = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
@@ -52,11 +49,16 @@
 			this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
 			this.tsmiSelectAll = new System.Windows.Forms.ToolStripMenuItem();
 			this.dsUI = new ApqDBManager.Forms.ErrList_XSD();
-			this._Sqls = new ApqDBManager.Forms.SrvsMgr.SrvsMgr_XSD();
+			this._Sqls = new Apq.DBC.XSD();
+			this.elementHost1 = new System.Windows.Forms.Integration.ElementHost();
+			this.actionList1 = new Crad.Windows.Forms.Actions.ActionList();
+			this.acOpen = new Crad.Windows.Forms.Actions.Action();
+			this.acSave = new Crad.Windows.Forms.Actions.Action();
+			this.acSaveAs = new Crad.Windows.Forms.Actions.Action();
 			this.toolStrip1.SuspendLayout();
-			this.cms1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dsUI)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this._Sqls)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.actionList1)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// tslDBName
@@ -124,13 +126,13 @@
 			this.tsmiResult0.Checked = true;
 			this.tsmiResult0.CheckState = System.Windows.Forms.CheckState.Checked;
 			this.tsmiResult0.Name = "tsmiResult0";
-			this.tsmiResult0.Size = new System.Drawing.Size(152, 22);
+			this.tsmiResult0.Size = new System.Drawing.Size(94, 22);
 			this.tsmiResult0.Text = "分列";
 			// 
 			// tsmiResult1
 			// 
 			this.tsmiResult1.Name = "tsmiResult1";
-			this.tsmiResult1.Size = new System.Drawing.Size(152, 22);
+			this.tsmiResult1.Size = new System.Drawing.Size(94, 22);
 			this.tsmiResult1.Text = "合并";
 			// 
 			// tsbExport
@@ -159,36 +161,6 @@
 			this.toolStrip1.Size = new System.Drawing.Size(760, 25);
 			this.toolStrip1.TabIndex = 8;
 			this.toolStrip1.Text = "toolStrip1";
-			// 
-			// txtSql
-			// 
-			this.txtSql.AutoScroll = true;
-			this.txtSql.ContextMenuStrip = this.cms1;
-			this.txtSql.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.txtSql.Encoding = ((System.Text.Encoding)(resources.GetObject("txtSql.Encoding")));
-			this.txtSql.IsIconBarVisible = false;
-			this.txtSql.Location = new System.Drawing.Point(0, 25);
-			this.txtSql.Name = "txtSql";
-			this.txtSql.ShowEOLMarkers = true;
-			this.txtSql.ShowSpaces = true;
-			this.txtSql.ShowTabs = true;
-			this.txtSql.ShowVRuler = true;
-			this.txtSql.Size = new System.Drawing.Size(760, 441);
-			this.txtSql.TabIndex = 9;
-			// 
-			// cms1
-			// 
-			this.cms1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmiUndo,
-            this.tsmiRedo,
-            this.toolStripSeparator1,
-            this.tsmiCut,
-            this.tsmiCopy,
-            this.tsmiPaste,
-            this.toolStripSeparator2,
-            this.tsmiSelectAll});
-			this.cms1.Name = "contextMenuStrip1";
-			this.cms1.Size = new System.Drawing.Size(154, 148);
 			// 
 			// tsmiUndo
 			// 
@@ -258,12 +230,29 @@
 			this._Sqls.DataSetName = "Sqls";
 			this._Sqls.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
 			// 
+			// elementHost1
+			// 
+			this.elementHost1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.elementHost1.Location = new System.Drawing.Point(0, 25);
+			this.elementHost1.Name = "elementHost1";
+			this.elementHost1.Size = new System.Drawing.Size(760, 441);
+			this.elementHost1.TabIndex = 9;
+			this.elementHost1.Text = "elementHost1";
+			this.elementHost1.Child = null;
+			// 
+			// actionList1
+			// 
+			this.actionList1.Actions.Add(this.acOpen);
+			this.actionList1.Actions.Add(this.acSave);
+			this.actionList1.Actions.Add(this.acSaveAs);
+			this.actionList1.ContainerControl = this;
+			// 
 			// SqlEditDoc
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(760, 466);
-			this.Controls.Add(this.txtSql);
+			this.Controls.Add(this.elementHost1);
 			this.Controls.Add(this.toolStrip1);
 			this.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
 			this.Name = "SqlEditDoc";
@@ -272,9 +261,9 @@
 			this.Load += new System.EventHandler(this.SqlEditDoc_Load);
 			this.toolStrip1.ResumeLayout(false);
 			this.toolStrip1.PerformLayout();
-			this.cms1.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.dsUI)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this._Sqls)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.actionList1)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -293,7 +282,6 @@
 		private System.Windows.Forms.ToolStripMenuItem tsmiResult1;
 		private System.Windows.Forms.ToolStripButton tsbExport;
 		private System.Windows.Forms.ToolStrip toolStrip1;
-		private ICSharpCode.TextEditor.TextEditorControl txtSql;
 		private System.Windows.Forms.ContextMenuStrip cms1;
 		private System.Windows.Forms.ToolStripMenuItem tsmiUndo;
 		private System.Windows.Forms.ToolStripMenuItem tsmiRedo;
@@ -304,7 +292,12 @@
 		private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
 		private System.Windows.Forms.ToolStripMenuItem tsmiSelectAll;
 		public ErrList_XSD dsUI;
-		public ApqDBManager.Forms.SrvsMgr.SrvsMgr_XSD _Sqls;
+		public Apq.DBC.XSD _Sqls;
+		private System.Windows.Forms.Integration.ElementHost elementHost1;
+		private Crad.Windows.Forms.Actions.ActionList actionList1;
+		private Crad.Windows.Forms.Actions.Action acOpen;
+		private Crad.Windows.Forms.Actions.Action acSave;
+		private Crad.Windows.Forms.Actions.Action acSaveAs;
 
 
 	}

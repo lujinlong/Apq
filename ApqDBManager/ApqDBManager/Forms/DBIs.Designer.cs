@@ -1,6 +1,6 @@
 ﻿namespace ApqDBManager.Forms
 {
-	partial class SqlIns
+	partial class DBIs
 	{
 		/// <summary>
 		/// Required designer variable.
@@ -28,7 +28,7 @@
 		private void InitializeComponent()
 		{
 			this.components = new System.ComponentModel.Container();
-			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SqlIns));
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DBIs));
 			System.Windows.Forms.TreeListViewItemCollection.TreeListViewItemCollectionComparer treeListViewItemCollectionComparer1 = new System.Windows.Forms.TreeListViewItemCollection.TreeListViewItemCollectionComparer();
 			this.cmTreeMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.tsmiCopy = new System.Windows.Forms.ToolStripMenuItem();

@@ -11,12 +11,12 @@ using Apq.TreeListView;
 
 namespace ApqDBManager.Forms
 {
-	public partial class SqlIns : Apq.Windows.Forms.DockForm
+	public partial class DBIs : Apq.Windows.Forms.DockForm
 	{
-		private ApqDBManager.Forms.SrvsMgr.SrvsMgr_XSD _Sqls = null;
+		private Apq.DBC.XSD _Sqls = null;
 		private TreeListViewHelper tlvHelper;
 
-		public SqlIns()
+		public DBIs()
 		{
 			InitializeComponent();
 		}
@@ -45,7 +45,7 @@ namespace ApqDBManager.Forms
 					dv.RowFilter = "SqlName = " + Apq.Data.SqlClient.Common.ConvertToSqlON(SqlDbType.VarChar, strCheckedName);
 					foreach (DataRowView dr in dv)
 					{
-						dr["CheckState"] = 1;
+						dr["_CheckState"] = 1;
 					}
 				}
 				_Sqls.SqlInstance.AcceptChanges();
@@ -226,7 +226,7 @@ namespace ApqDBManager.Forms
 			DataRow[] drs = _Sqls.SqlInstance.Select("SqlID = " + SqlID);
 			if (drs.Length > 0)
 			{
-				drs[0]["CheckState"] = node.Checked;
+				drs[0]["_CheckState"] = node.Checked;
 				drs[0]["_Selected"] = node.Selected;
 			}
 
@@ -266,7 +266,7 @@ namespace ApqDBManager.Forms
 			tlvHelper = new TreeListViewHelper(treeListView1);
 			tlvHelper.TableMapping.ColumnMappings.Add("名称", "SqlName");
 			tlvHelper.Key = "SqlID";
-			tlvHelper.HiddenColNames = new List<string>(new string[] { "SqlID", "CheckState", "_Expanded", "_Selected" });
+			tlvHelper.HiddenColNames = new List<string>(new string[] { "SqlID", "_CheckState", "_Expanded", "_Selected" });
 		}
 		#endregion
 
@@ -274,7 +274,7 @@ namespace ApqDBManager.Forms
 		/// <summary>
 		/// 改变服务器列表
 		/// </summary>
-		public void SetServers(ApqDBManager.Forms.SrvsMgr.SrvsMgr_XSD Sqls)
+		public void SetServers(Apq.DBC.XSD Sqls)
 		{
 			_Sqls = Sqls;
 

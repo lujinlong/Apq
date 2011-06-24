@@ -10,19 +10,30 @@ using ICSharpCode.TextEditor.Document;
 using System.Threading;
 using System.Text.RegularExpressions;
 using System.Data.SqlClient;
+using ICSharpCode.AvalonEdit;
 
 namespace ApqDBManager.Forms
 {
 	public partial class SqlEditDoc : Apq.Windows.Forms.DockForm, Apq.Editor.ITextEditor
 	{
+		private TextEditor txtSql = new TextEditor();
+
 		public SqlEditDoc()
 		{
 			InitializeComponent();
 
-			txtSql.Encoding = System.Text.Encoding.Default;
+			txtSql.Encoding = System.Text.Encoding.UTF8;
+
+			txtSql.IsReadOnly = false;
+			txtSql.Options.ShowSpaces = true;
+			txtSql.Options.ShowTabs = true;
+			//txtSql.Options.IndentationSize = 100;
+			txtSql.Options.AllowScrollBelowDocument = true;
+
+			elementHost1.Child = txtSql;
 
 			// 获取服务器列表
-			_Sqls = GlobalObject.Sqls.Copy() as ApqDBManager.Forms.SrvsMgr.SrvsMgr_XSD;
+			_Sqls = GlobalObject.xsdDBC.Copy() as Apq.DBC.XSD;
 		}
 
 		public SqlEdit SqlEdit
@@ -265,7 +276,7 @@ UNION ALL SELECT 2,2;";
 			{
 				#region 注册检测
 				DataView dv = new DataView(_Sqls.SqlInstance);
-				dv.RowFilter = "CheckState = 1 AND SqlID > 1";
+				dv.RowFilter = "_CheckState = 1 AND SqlID > 1";
 				if (dv.Count > 3 && !Apq.Reg.Client.Common.IsRegistration)
 				{
 					MessageBox.Show("谢谢您支持共享软件!共享版最多支持同时连接3个服务器,要获得更多的连接支持,请注册,谢谢使用", "注册提示");
@@ -359,7 +370,7 @@ UNION ALL SELECT 2,2;";
 		private void MainBackThread_Start()
 		{
 			DataView dv = new DataView(_Sqls.SqlInstance);
-			dv.RowFilter = "CheckState = 1 AND SqlID > 1";
+			dv.RowFilter = "_CheckState = 1 AND SqlID > 1";
 			if (dv.Count == 0)
 			{
 				return;
@@ -441,7 +452,7 @@ UNION ALL SELECT 2,2;";
 			{
 				#region 获取服务器列表
 				DataView dv = new DataView(_Sqls.SqlInstance);
-				dv.RowFilter = "CheckState = 1 AND SqlID > 1";
+				dv.RowFilter = "_CheckState = 1 AND SqlID > 1";
 				#endregion
 
 				#region 开始
@@ -493,7 +504,7 @@ UNION ALL SELECT 2,2;";
 			object rtLock = GetLock(SqlID.ToString());
 
 			int nSqlID = Apq.Convert.ChangeType<int>(SqlID);
-			ApqDBManager.Forms.SrvsMgr.SrvsMgr_XSD.SqlInstanceRow dr = _Sqls.SqlInstance.FindBySqlID(nSqlID);
+			Apq.DBC.XSD.SqlInstanceRow dr = _Sqls.SqlInstance.FindBySqlID(nSqlID);
 			DataSet dsTabPage = new DataSet(dr.SqlName);
 			dsTabPage.ExtendedProperties.Add("SqlID", nSqlID);
 
