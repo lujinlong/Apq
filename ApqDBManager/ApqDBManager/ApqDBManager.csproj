@@ -1,4 +1,5 @@
-﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -20,11 +21,27 @@
     <RunPostBuildEvent>OnOutputUpdated</RunPostBuildEvent>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
-    <OldToolsVersion>2.0</OldToolsVersion>
+    <OldToolsVersion>3.5</OldToolsVersion>
     <UpgradeBackupLocation>
     </UpgradeBackupLocation>
     <ApplicationIcon>Res\ico\sign125.ico</ApplicationIcon>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <PublishUrl>http://localhost/ApqDBManager/</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Web</InstallFrom>
+    <UpdateEnabled>true</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>true</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -34,6 +51,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -42,6 +60,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug_Home|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -52,6 +71,7 @@
     <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
     <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
     <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <DebugSymbols>true</DebugSymbols>
@@ -62,6 +82,7 @@
     <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
     <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
     <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <OutputPath>bin\x86\Release\</OutputPath>
@@ -72,6 +93,7 @@
     <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
     <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
     <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug_Home|x86' ">
     <DebugSymbols>true</DebugSymbols>
@@ -82,6 +104,7 @@
     <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
     <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
     <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Apq, Version=0.0.0.2, Culture=neutral, processorArchitecture=MSIL">
@@ -112,26 +135,25 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Dlls\Apq.WorkFlow.dll</HintPath>
     </Reference>
-    <Reference Include="CommonTools, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>Dlls\CommonTools.dll</HintPath>
+    <Reference Include="Crad.Windows.Forms.Actions">
+      <HintPath>Dlls\Crad.Windows.Forms.Actions.dll</HintPath>
     </Reference>
-    <Reference Include="ICSharpCode.TextEditor, Version=2.0.0.922, Culture=neutral, PublicKeyToken=4d61825e8dd49f1a, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>Dlls\ICSharpCode.TextEditor.dll</HintPath>
+    <Reference Include="ICSharpCode.AvalonEdit">
+      <HintPath>Dlls\ICSharpCode.AvalonEdit.dll</HintPath>
     </Reference>
     <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Dlls\log4net.dll</HintPath>
     </Reference>
-    <Reference Include="MultiColumnCombo, Version=1.0.4179.29388, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>Dlls\MultiColumnCombo.dll</HintPath>
+    <Reference Include="MySql.Data, Version=6.3.6.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <Private>True</Private>
     </Reference>
     <Reference Include="org.in2bits.MyXls, Version=0.6.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Dlls\org.in2bits.MyXls.dll</HintPath>
     </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
     <Reference Include="System">
       <Private>False</Private>
     </Reference>
@@ -147,18 +169,12 @@
     <Reference Include="System.Data.DataSetExtensions">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
-    <Reference Include="System.Design">
-      <Private>False</Private>
-    </Reference>
     <Reference Include="System.Drawing">
       <Private>False</Private>
     </Reference>
     <Reference Include="System.Runtime.InteropServices.APIs, Version=1.0.4179.19654, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Dlls\System.Runtime.InteropServices.APIs.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Web">
-      <Private>False</Private>
     </Reference>
     <Reference Include="System.Web.Services">
       <Private>False</Private>
@@ -170,16 +186,19 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Dlls\System.Windows.Forms.TreeListView.dll</HintPath>
     </Reference>
+    <Reference Include="System.Xaml" />
     <Reference Include="System.Xml">
       <Private>False</Private>
     </Reference>
+    <Reference Include="UIAutomationProvider" />
     <Reference Include="WeifenLuo.WinFormsUI.Docking, Version=2.2.2864.18696, Culture=neutral, PublicKeyToken=d481317c817cec47, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Dlls\WeifenLuo.WinFormsUI.Docking.dll</HintPath>
     </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Common.cs" />
     <Compile Include="Controls\MainOption\Favorites.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -197,12 +216,6 @@
     </Compile>
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\CryptCS.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\CryptCS.Designer.cs">
-      <DependentUpon>CryptCS.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\ErrList.cs">
       <SubType>Form</SubType>
@@ -233,56 +246,11 @@
     <Compile Include="Forms\MainOption.Designer.cs">
       <DependentUpon>MainOption.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\RSAKey.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\RSAKey.Designer.cs">
-      <DependentUpon>RSAKey.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\FTPFileTrans.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\FTPFileTrans.Designer.cs">
-      <DependentUpon>FTPFileTrans.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\FTPFileUp.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\FTPFileUp.Designer.cs">
-      <DependentUpon>FTPFileUp.cs</DependentUpon>
-    </Compile>
     <Compile Include="Forms\SqlEditDoc.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\SqlEditDoc.Designer.cs">
       <DependentUpon>SqlEditDoc.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\SrvsMgr\DBServer.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\SrvsMgr\DBServer.Designer.cs">
-      <DependentUpon>DBServer.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\SrvsMgr\SrvsMgr_XSD.cs">
-      <DependentUpon>SrvsMgr_XSD.xsd</DependentUpon>
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Forms\SrvsMgr\SrvsMgr_XSD.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>SrvsMgr_XSD.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\SrvsMgr\SqlInstance.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\SrvsMgr\SqlInstance.Designer.cs">
-      <DependentUpon>SqlInstance.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\SrvsMgr\DBC.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\SrvsMgr\DBC.Designer.cs">
-      <DependentUpon>DBC.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\SqlOut.cs">
       <SubType>Form</SubType>
@@ -297,26 +265,6 @@
     <Compile Include="Controls\ResultTable.Designer.cs">
       <DependentUpon>ResultTable.cs</DependentUpon>
     </Compile>
-    <Compile Include="Customization\DockHelper.cs" />
-    <Compile Include="Customization\Extender.cs" />
-    <Compile Include="Customization\InertButton.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Customization\VS2003AutoHideStrip.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Customization\VS2003DockPaneCaption.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Customization\VS2003DockPaneStrip.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Forms\DES.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\DES.Designer.cs">
-      <DependentUpon>DES.cs</DependentUpon>
-    </Compile>
     <Compile Include="GlobalObject.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
@@ -325,27 +273,11 @@
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
-    <Compile Include="Customization\Resources.Designer.cs">
-      <DependentUpon>Resources.resx</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="Customization\Strings.Designer.cs">
-      <DependentUpon>Strings.resx</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="Forms\Random.cs">
+    <Compile Include="Forms\DBIs.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Random.Designer.cs">
-      <DependentUpon>Random.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\SqlIns.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\SqlIns.Designer.cs">
-      <DependentUpon>SqlIns.cs</DependentUpon>
+    <Compile Include="Forms\DBIs.Designer.cs">
+      <DependentUpon>DBIs.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\SqlEdit.cs">
       <SubType>Form</SubType>
@@ -394,20 +326,8 @@
       <SubType>Designer</SubType>
       <DependentUpon>ResultTable.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Customization\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\CryptCS.resx">
-      <DependentUpon>CryptCS.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\DES.resx">
-      <SubType>Designer</SubType>
-      <DependentUpon>DES.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ErrList.resx">
       <DependentUpon>ErrList.cs</DependentUpon>
@@ -421,26 +341,8 @@
     <EmbeddedResource Include="Forms\MainOption.resx">
       <DependentUpon>MainOption.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\RSAKey.resx">
-      <DependentUpon>RSAKey.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FTPFileTrans.resx">
-      <DependentUpon>FTPFileTrans.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FTPFileUp.resx">
-      <DependentUpon>FTPFileUp.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Forms\SqlEditDoc.resx">
       <DependentUpon>SqlEditDoc.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\SrvsMgr\DBServer.resx">
-      <DependentUpon>DBServer.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\SrvsMgr\SqlInstance.resx">
-      <DependentUpon>SqlInstance.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\SrvsMgr\DBC.resx">
-      <DependentUpon>DBC.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\SqlOut.resx">
       <DependentUpon>SqlOut.cs</DependentUpon>
@@ -449,18 +351,8 @@
       <SubType>Designer</SubType>
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Properties\licenses.licx" />
-    <EmbeddedResource Include="Customization\Strings.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Strings.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Random.resx">
-      <DependentUpon>Random.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\SqlIns.resx">
-      <DependentUpon>SqlIns.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\DBIs.resx">
+      <DependentUpon>DBIs.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\SqlEdit.resx">
@@ -471,90 +363,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Customization\Resources\DockIndicator_PaneDiamond.bmp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Customization\Resources\DockPaneStrip_ScrollRightEnabled.bmp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Customization\Resources\DockIndicator_PaneDiamond_Bottom.bmp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Customization\Resources\Dockindicator_PaneDiamond_Fill.bmp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Customization\Resources\DockIndicator_PaneDiamond_Hotspot.bmp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Customization\Resources\DockIndicator_PaneDiamond_HotspotIndex.bmp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Customization\Resources\DockIndicator_PaneDiamond_Left.bmp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Customization\Resources\DockIndicator_PaneDiamond_Right.bmp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Customization\Resources\DockIndicator_PaneDiamond_Top.bmp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Customization\Resources\DockIndicator_PanelBottom.bmp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Customization\Resources\DockIndicator_PanelBottom_Active.bmp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Customization\Resources\DockIndicator_PanelFill.bmp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Customization\Resources\DockIndicator_PanelFill_Active.bmp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Customization\Resources\DockIndicator_PanelLeft.bmp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Customization\Resources\DockIndicator_PanelLeft_Active.bmp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Customization\Resources\DockIndicator_PanelRight.bmp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Customization\Resources\DockIndicator_PanelRight_Active.bmp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Customization\Resources\DockIndicator_PanelTop.bmp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Customization\Resources\DockIndicator_PanelTop_Active.bmp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Customization\Resources\DockPaneCaption_AutoHideNo.bmp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Customization\Resources\DockPaneCaption_AutoHideYes.bmp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Customization\Resources\DockPaneCaption_CloseDisabled.bmp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Customization\Resources\DockPaneCaption_CloseEnabled.bmp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Customization\Resources\DockPaneStrip_CloseDisabled.bmp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Customization\Resources\DockPaneStrip_CloseEnabled.bmp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Customization\Resources\DockPaneStrip_ScrollLeftDisabled.bmp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Customization\Resources\DockPaneStrip_ScrollLeftEnabled.bmp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Customization\Resources\DockPaneStrip_ScrollRightDisabled.bmp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -632,9 +440,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Res\ico\Text.ico" />
-    <Content Include="XmlServers.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="_Doc\安装说明.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -662,17 +467,23 @@
     <None Include="Forms\ErrList_XSD.xss">
       <DependentUpon>ErrList_XSD.xsd</DependentUpon>
     </None>
-    <None Include="Forms\SrvsMgr\SrvsMgr_XSD.xsc">
-      <DependentUpon>SrvsMgr_XSD.xsd</DependentUpon>
-    </None>
-    <None Include="Forms\SrvsMgr\SrvsMgr_XSD.xsd">
-      <SubType>Designer</SubType>
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>SrvsMgr_XSD.Designer.cs</LastGenOutput>
-    </None>
-    <None Include="Forms\SrvsMgr\SrvsMgr_XSD.xss">
-      <DependentUpon>SrvsMgr_XSD.xsd</DependentUpon>
-    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
@@ -707,6 +518,8 @@ xcopy "$(ProjectDir)..\..\Reference\$(ConfigurationName)\Config\Apq.Reg.Client.d
 xcopy "$(ProjectDir)..\..\Reference\$(ConfigurationName)\Config\Apq.Reg.Client.dll.apq" "$(ProjectDir)" /c /q /g /h /r /k /y
 :EndConfig
 
+xcopy "$(ProjectDir)..\..\Reference\CradsActions\Crad.Windows.Forms.Actions.dll" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+
 xcopy "$(ProjectDir)..\..\Reference\$(ConfigurationName)\Apq.dll" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
 xcopy "$(ProjectDir)..\..\Reference\$(ConfigurationName)\Apq.xml" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
 xcopy "$(ProjectDir)..\..\Reference\$(ConfigurationName)\Apq.pdb" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
@@ -735,17 +548,14 @@ xcopy "$(ProjectDir)..\..\Reference\$(ConfigurationName)\Apq.Win.dll" "$(Project
 xcopy "$(ProjectDir)..\..\Reference\$(ConfigurationName)\Apq.Win.xml" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
 xcopy "$(ProjectDir)..\..\Reference\$(ConfigurationName)\Apq.Win.pdb" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
 
-xcopy "$(ProjectDir)..\..\Reference\MultiColumnCombo\MultiColumnCombo.dll" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
-xcopy "$(ProjectDir)..\..\Reference\MultiColumnCombo\MultiColumnCombo.xml" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+xcopy "$(ProjectDir)..\..\Reference\$(ConfigurationName)\Apq.Reg.Client.dll" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+xcopy "$(ProjectDir)..\..\Reference\$(ConfigurationName)\Apq.Reg.Client.pdb" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
 
 xcopy "$(ProjectDir)..\..\Reference\log4net-1.2.10\log4net.dll" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
 xcopy "$(ProjectDir)..\..\Reference\log4net-1.2.10\log4net.xml" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
 
-xcopy "$(ProjectDir)..\..\Reference\ICSharpCode\TextEditor_2.2\ICSharpCode.TextEditor.dll" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
-xcopy "$(ProjectDir)..\..\Reference\ICSharpCode\TextEditor_2.2\ICSharpCode.TextEditor.xml" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
-
-xcopy "$(ProjectDir)..\..\Reference\myxls-0.6.3\org.in2bits.MyXls.dll" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
-xcopy "$(ProjectDir)..\..\Reference\myxls-0.6.3\org.in2bits.MyXls.xml" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+xcopy "$(ProjectDir)..\..\Reference\ICSharpCode\AvalonEdit\ICSharpCode.AvalonEdit.dll" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+xcopy "$(ProjectDir)..\..\Reference\ICSharpCode\AvalonEdit\ICSharpCode.AvalonEdit.xml" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
 
 xcopy "$(ProjectDir)..\..\Reference\DockPanel\WeifenLuo.WinFormsUI.Docking.dll" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
 
@@ -753,9 +563,6 @@ xcopy "$(ProjectDir)..\..\Reference\TreeListView\System.Runtime.InteropServices.
 xcopy "$(ProjectDir)..\..\Reference\TreeListView\System.Runtime.InteropServices.APIs.xml" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
 xcopy "$(ProjectDir)..\..\Reference\TreeListView\System.Windows.Forms.TreeListView.dll" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
 xcopy "$(ProjectDir)..\..\Reference\TreeListView\System.Windows.Forms.TreeListView.xml" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
-
-xcopy "$(ProjectDir)..\..\Reference\$(ConfigurationName)\Apq.Reg.Client.dll" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
-xcopy "$(ProjectDir)..\..\Reference\$(ConfigurationName)\Apq.Reg.Client.pdb" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
 :End
 </PreBuildEvent>
     <PostBuildEvent>
