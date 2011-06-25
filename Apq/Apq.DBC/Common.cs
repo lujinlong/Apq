@@ -49,6 +49,12 @@ namespace Apq.DBC
 			// 从.NET配置文件读取cs.res文件路径
 			string _csFilePath = ConfigurationManager.AppSettings["Apq.DBC.csFile"] ?? @"D:\DBA\cs\cs.res";
 			string strFolder = Path.GetDirectoryName(_csFilePath);
+			if (string.IsNullOrEmpty(strFolder))
+			{
+				strFolder = Path.GetDirectoryName(Apq.GlobalObject.TheProcess.MainModule.FileName);
+				_csFilePath = strFolder + "\\" + _csFilePath;
+			}
+
 			string strFileName = Path.GetFileName(_csFilePath);
 			if (fsw.Path != strFolder)
 			{

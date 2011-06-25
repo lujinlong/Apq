@@ -28,6 +28,24 @@ namespace Apq
 		}
 		#endregion
 
+		#region TheProcess
+		private static System.Diagnostics.Process _TheProcess;
+		/// <summary>
+		/// 获取进程
+		/// </summary>
+		public static System.Diagnostics.Process TheProcess
+		{
+			get
+			{
+				if (_TheProcess == null)
+				{
+					_TheProcess = System.Diagnostics.Process.GetCurrentProcess();
+				}
+				return _TheProcess;
+			}
+		}
+		#endregion
+
 		#region XmlAsmConfig
 		private static Apq.Config.XmlConfig _XmlAsmConfig;
 		/// <summary>
