@@ -6,11 +6,13 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using ICSharpCode.TextEditor.Document;
 using System.Threading;
 using System.Text.RegularExpressions;
 using System.Data.SqlClient;
 using ICSharpCode.AvalonEdit;
+using ICSharpCode.AvalonEdit.Highlighting;
+using System.Xml;
+using ICSharpCode.AvalonEdit.Document;
 
 namespace ApqDBManager.Forms
 {
@@ -81,7 +83,7 @@ namespace ApqDBManager.Forms
 		}
 		#endregion
 
-		private void SqlEditDoc_Load(object sender, EventArgs e)
+		public override void SetUILang(Apq.UILang.UILang UILang)
 		{
 			#region 添加图标
 			//Icon = new Icon(@"Res\ico\sign125.ico");
@@ -93,12 +95,31 @@ namespace ApqDBManager.Forms
 			this.tsmiPaste.Image = System.Drawing.Image.FromFile(@"Res\png\Editor\Paste.png");
 			#endregion
 
-			txtSql.Document.HighlightingStrategy = HighlightingStrategyFactory.CreateHighlightingStrategy("TSQL");
-			txtSql.ShowEOLMarkers = false;
-			txtSql.ShowSpaces = false;
-			txtSql.ShowTabs = false;
-			txtSql.ShowVRuler = false;
-			txtSql.Document.DocumentChanged += new DocumentEventHandler(txtSql_DocumentChanged);
+			//cbContainsPKey.Text = Apq.GlobalObject.UILang["包含私钥"];
+
+			//btnCreate.Text = Apq.GlobalObject.UILang["创建"];
+			//btnSaveUToFile.Text = Apq.GlobalObject.UILang["保存公钥"];
+			//btnSavePToFile.Text = Apq.GlobalObject.UILang["保存私钥"];
+
+			//sfdU.Filter = Apq.GlobalObject.UILang["XML文件(*.xml)|*.xml|所有文件(*.*)|*.*"];
+			//sfdP.Filter = Apq.GlobalObject.UILang["XML文件(*.xml)|*.xml|所有文件(*.*)|*.*"];
+		}
+
+		private void SqlEditDoc_Load(object sender, EventArgs e)
+		{
+
+			// Load our custom highlighting definition
+			IHighlightingDefinition customHighlighting;
+			using (XmlReader reader = new XmlTextReader(Application.StartupPath + "\\SQL2-Mode.xshd"))
+			{
+				customHighlighting = ICSharpCode.AvalonEdit.Highlighting.Xshd.
+					HighlightingLoader.Load(reader, HighlightingManager.Instance);
+			}
+			// and register it in the HighlightingManager
+			HighlightingManager.Instance.RegisterHighlighting("Custom Highlighting", new string[] { ".sql" }, customHighlighting);
+
+			txtSql.SyntaxHighlighting = HighlightingManager.Instance.GetDefinitionByExtension(".sql");
+			txtSql.Document.Changed += new EventHandler<DocumentChangeEventArgs>(txtSql_Changed);
 
 			#region tscbDBName.Items
 			List<string> cbDBName_Items = new List<string>();
@@ -173,7 +194,7 @@ UNION ALL SELECT 2,2;";
 			#endregion
 		}
 
-		void txtSql_DocumentChanged(object sender, DocumentEventArgs e)
+		void txtSql_Changed(object sender, DocumentChangeEventArgs e)
 		{
 			GlobalObject.XmlConfigChain[this.GetType(), "txtSql_Text"] = txtSql.Text;
 		}
@@ -225,10 +246,7 @@ UNION ALL SELECT 2,2;";
 
 		private void tsbExec_Click(object sender, EventArgs e)
 		{
-			// 读取服务器列表状态
-			GlobalObject.SolutionExplorer.SaveState2XSD();
-
-			string strSql = txtSql.ActiveTextAreaControl.TextArea.SelectionManager.SelectedText;
+			string strSql = txtSql.TextArea.Selection.GetText(txtSql.Document);
 			if (string.IsNullOrEmpty(strSql))
 			{
 				strSql = txtSql.Text;
@@ -275,11 +293,12 @@ UNION ALL SELECT 2,2;";
 			if (!string.IsNullOrEmpty(strSql))
 			{
 				#region 注册检测
-				DataView dv = new DataView(_Sqls.SqlInstance);
-				dv.RowFilter = "_CheckState = 1 AND SqlID > 1";
+				DataView dv = new DataView(_Sqls.DBI);
+				dv.RowFilter = "_CheckState = 1";
 				if (dv.Count > 3 && !Apq.Reg.Client.Common.IsRegistration)
 				{
-					MessageBox.Show("谢谢您支持共享软件!共享版最多支持同时连接3个服务器,要获得更多的连接支持,请注册,谢谢使用", "注册提示");
+					MessageBox.Show("谢谢您支持共享软件!共享版最多支持同时勾选3个服务器。要获得更多的连接支持,请注册,谢谢使用！",
+						"注册提示");
 					return;
 				}
 				#endregion
@@ -332,12 +351,12 @@ UNION ALL SELECT 2,2;";
 				// 增加服务器名列
 				foreach (DataTable dt in ds.Tables)
 				{
-					dt.Columns.Add("__ServerName");
+					dt.Columns.Add("__DBIName");
 					// 设置第一个数据集的服务器名
 					// 设置服务器名
 					foreach (DataRow dr in dt.Rows)
 					{
-						dr["__ServerName"] = ds.DataSetName;
+						dr["__DBIName"] = ds.DataSetName;
 					}
 				}
 
@@ -349,9 +368,9 @@ UNION ALL SELECT 2,2;";
 					{
 						foreach (DataRow dr in dt.Rows)
 						{
-							if (Apq.Convert.LikeDBNull(dr["__ServerName"]))
+							if (Apq.Convert.LikeDBNull(dr["__DBIName"]))
 							{
-								dr["__ServerName"] = lstds[i].DataSetName;
+								dr["__DBIName"] = lstds[i].DataSetName;
 							}
 						}
 					}
@@ -369,8 +388,8 @@ UNION ALL SELECT 2,2;";
 		/// </summary>
 		private void MainBackThread_Start()
 		{
-			DataView dv = new DataView(_Sqls.SqlInstance);
-			dv.RowFilter = "_CheckState = 1 AND SqlID > 1";
+			DataView dv = new DataView(_Sqls.DBI);
+			dv.RowFilter = "_CheckState = 1 AND DBIID > 1";
 			if (dv.Count == 0)
 			{
 				return;
@@ -381,7 +400,7 @@ UNION ALL SELECT 2,2;";
 				dsUI.ErrList.Clear();
 				dsUI.ErrList.AcceptChanges();
 			});
-			foreach (DataRow dr in _Sqls.SqlInstance.Rows)
+			foreach (DataRow dr in _Sqls.DBI.Rows)
 			{
 				dr["Err"] = false;
 				dr["IsReadyToGo"] = false;
@@ -390,7 +409,7 @@ UNION ALL SELECT 2,2;";
 			{
 				drv["IsReadyToGo"] = true;
 			}
-			_Sqls.SqlInstance.AcceptChanges();
+			_Sqls.DBI.AcceptChanges();
 
 			if (tsbSingleThread.Checked)
 			{
@@ -451,8 +470,8 @@ UNION ALL SELECT 2,2;";
 			try
 			{
 				#region 获取服务器列表
-				DataView dv = new DataView(_Sqls.SqlInstance);
-				dv.RowFilter = "_CheckState = 1 AND SqlID > 1";
+				DataView dv = new DataView(_Sqls.DBI);
+				dv.RowFilter = "_CheckState = 1 AND DBIID > 1";
 				#endregion
 
 				#region 开始
@@ -471,10 +490,10 @@ UNION ALL SELECT 2,2;";
 					ParameterizedThreadStart pts = new ParameterizedThreadStart(Worker_Start);
 					try
 					{
-						Thread t = Apq.Threading.Thread.StartNewThread(pts, drv["SqlID"]);
-						if (!Convert.IsDBNull(drv["SqlName"]))
+						Thread t = Apq.Threading.Thread.StartNewThread(pts, drv["DBIID"]);
+						if (!Convert.IsDBNull(drv["DBIName"]))
 						{
-							t.Name = drv["SqlName"].ToString();
+							t.Name = drv["DBIName"].ToString();
 						}
 						thds.Add(t);
 					}
@@ -498,15 +517,16 @@ UNION ALL SELECT 2,2;";
 		/// 到一个服务器执行并显示结果[多线程入口]
 		/// </summary>
 		/// <param name="ServerID"></param>
-		private void Worker_Start(object SqlID)
+		private void Worker_Start(object DBIID)
 		{
+			/*
 			object rtLock0 = GetLock("0");
-			object rtLock = GetLock(SqlID.ToString());
+			object rtLock = GetLock(DBIID.ToString());
 
-			int nSqlID = Apq.Convert.ChangeType<int>(SqlID);
-			Apq.DBC.XSD.SqlInstanceRow dr = _Sqls.SqlInstance.FindBySqlID(nSqlID);
-			DataSet dsTabPage = new DataSet(dr.SqlName);
-			dsTabPage.ExtendedProperties.Add("SqlID", nSqlID);
+			int nDBIID = Apq.Convert.ChangeType<int>(DBIID);
+			Apq.DBC.XSD.DBIRow dr = _Sqls.DBI.FindByDBIID(nDBIID);
+			DataSet dsTabPage = new DataSet(dr.DBIName);
+			dsTabPage.ExtendedProperties.Add("DBIID", nDBIID);
 
 			// 0.结果DataSet准备
 			int nbliResult_ItemIndex = Apq.Convert.ChangeType<int>(Apq.Windows.Controls.ControlExtension.GetControlValues(this, "bliResult.ItemIndex"));
@@ -577,15 +597,15 @@ UNION ALL SELECT 2,2;";
 					Apq.Windows.Delegates.Action_UI<ToolStripLabel>(this, tslDBName, delegate(ToolStripLabel ctrl)
 					{
 						ErrList_XSD.ErrListRow drErrList = dsUI.ErrList.NewErrListRow();
-						drErrList.RSrvID = nSqlID;
-						drErrList["__ServerName"] = dr.SqlName;
+						drErrList.RSrvID = nDBIID;
+						drErrList["__DBIName"] = dr.DBIName;
 						drErrList.s = ex.Message;
 						dsUI.ErrList.Rows.Add(drErrList);
 
 						dr["Err"] = true;
 					});
 				}
-				Apq.GlobalObject.ApqLog.Warn(dr["SqlName"], ex);
+				Apq.GlobalObject.ApqLog.Warn(dr["DBIName"], ex);
 			}
 			finally
 			{
@@ -599,25 +619,25 @@ UNION ALL SELECT 2,2;";
 							SqlEdit.tspb.Value++;
 							if (SqlEdit.tspb.Value == SqlEdit.tspb.Maximum)
 							{
-								_Sqls.SqlInstance.AcceptChanges();
+								_Sqls.DBI.AcceptChanges();
 								dsUI.ErrList.AcceptChanges();
 								SqlEdit.tsslStatus.Text = "已全部完成";
 								tsbCancel.Enabled = false;
 								tsbExec.Enabled = true;
 
-								DataView dvErr = new DataView(_Sqls.SqlInstance);
+								DataView dvErr = new DataView(_Sqls.DBI);
 								dvErr.RowFilter = "Err = 1";
 								// 标记本服执行出错
 								if (dvErr.Count > 0)
 								{
 									SqlEdit.tsslStatus.Text += ",但有错误发生,请查看";
-									GlobalObject.SolutionExplorer.FocusAndExpandByID(Apq.Convert.ChangeType<int>(dr["SqlID"]));
 								}
 							}
 						}
 					});
 				}
 			}
+			*/
 		}
 		#endregion
 
@@ -688,7 +708,7 @@ UNION ALL SELECT 2,2;";
 				}
 			}
 
-			txtSql.SaveFile(FileName);
+			txtSql.Save(FileName);
 		}
 
 		public void SaveAs(string FileName)
@@ -700,13 +720,17 @@ UNION ALL SELECT 2,2;";
 		public void Copy()
 		{
 			System.Windows.Forms.Clipboard.SetData(DataFormats.UnicodeText,
-				string.IsNullOrEmpty(txtSql.ActiveTextAreaControl.SelectionManager.SelectedText) ? txtSql.Text
-				: txtSql.ActiveTextAreaControl.SelectionManager.SelectedText);
+				txtSql.TextArea.Selection.IsEmpty ? txtSql.Text
+				: txtSql.TextArea.Selection.GetText(txtSql.Document));
 		}
 
 		public void Delete()
 		{
-			txtSql.ActiveTextAreaControl.SelectionManager.RemoveSelectedText();
+			for (int i = txtSql.TextArea.Selection.Segments.Count<ISegment>(); i >= 0; i--)
+			{
+				ISegment segment = txtSql.TextArea.Selection.Segments.ElementAt<ISegment>(i);
+				txtSql.Document.Remove(segment);
+			}
 		}
 
 		public void Open()
@@ -717,14 +741,14 @@ UNION ALL SELECT 2,2;";
 			if (openFileDialog.ShowDialog(this) == DialogResult.OK)
 			{
 				FileName = openFileDialog.FileName;
-				txtSql.LoadFile(FileName);
+				txtSql.Load(FileName);
 			}
 		}
 
 		public void Paste()
 		{
 			string str = System.Windows.Forms.Clipboard.GetData(DataFormats.UnicodeText) as string;
-			if (str != null) txtSql.ActiveTextAreaControl.TextArea.InsertString(str);
+			//if (str != null) txtSql.Document.Insert(str);
 		}
 
 		public void Redo()
@@ -738,17 +762,6 @@ UNION ALL SELECT 2,2;";
 
 		public void SelectAll()
 		{
-			Point startPoint = new Point(0, 0);
-			Point endPoint = txtSql.Document.OffsetToPosition(txtSql.Document.TextLength);
-			if (txtSql.ActiveTextAreaControl.SelectionManager.HasSomethingSelected)
-			{
-				if (txtSql.ActiveTextAreaControl.SelectionManager.SelectionCollection[0].StartPosition == startPoint &&
-					txtSql.ActiveTextAreaControl.SelectionManager.SelectionCollection[0].EndPosition == endPoint)
-				{
-					return;
-				}
-			}
-			txtSql.ActiveTextAreaControl.SelectionManager.SetSelection(new DefaultSelection(txtSql.Document, startPoint, endPoint));
 		}
 
 		public void Undo()
@@ -761,7 +774,7 @@ UNION ALL SELECT 2,2;";
 		public void LoadFile(string FileName)
 		{
 			this.FileName = FileName;
-			txtSql.LoadFile(FileName);
+			txtSql.Load(FileName);
 		}
 	}
 }

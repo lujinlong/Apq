@@ -281,7 +281,7 @@ namespace ApqDBManager.Forms {
             
             private global::System.Data.DataColumn columnRSrvID;
             
-            private global::System.Data.DataColumn column__ServerName;
+            private global::System.Data.DataColumn column__DBIName;
             
             private global::System.Data.DataColumn columns;
             
@@ -328,9 +328,9 @@ namespace ApqDBManager.Forms {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn @__ServerNameColumn {
+            public global::System.Data.DataColumn @__DBINameColumn {
                 get {
-                    return this.column__ServerName;
+                    return this.column__DBIName;
                 }
             }
             
@@ -379,11 +379,11 @@ namespace ApqDBManager.Forms {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public ErrListRow AddErrListRow(int RSrvID, string @__ServerName, string s) {
+            public ErrListRow AddErrListRow(int RSrvID, string @__DBIName, string s) {
                 ErrListRow rowErrListRow = ((ErrListRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         RSrvID,
-                        @__ServerName,
+                        @__DBIName,
                         s};
                 rowErrListRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowErrListRow);
@@ -408,7 +408,7 @@ namespace ApqDBManager.Forms {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             internal void InitVars() {
                 this.columnRSrvID = base.Columns["RSrvID"];
-                this.column__ServerName = base.Columns["__ServerName"];
+                this.column__DBIName = base.Columns["__DBIName"];
                 this.columns = base.Columns["s"];
             }
             
@@ -417,8 +417,8 @@ namespace ApqDBManager.Forms {
             private void InitClass() {
                 this.columnRSrvID = new global::System.Data.DataColumn("RSrvID", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnRSrvID);
-                this.column__ServerName = new global::System.Data.DataColumn("__ServerName", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.column__ServerName);
+                this.column__DBIName = new global::System.Data.DataColumn("__DBIName", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.column__DBIName);
                 this.columns = new global::System.Data.DataColumn("s", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columns);
                 this.columnRSrvID.Caption = "ServerID";
@@ -580,17 +580,17 @@ namespace ApqDBManager.Forms {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string @__ServerName {
+            public string @__DBIName {
                 get {
                     try {
-                        return ((string)(this[this.tableErrList.@__ServerNameColumn]));
+                        return ((string)(this[this.tableErrList.@__DBINameColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("表“ErrList”中列“__ServerName”的值为 DBNull。", e);
+                        throw new global::System.Data.StrongTypingException("表“ErrList”中列“__DBIName”的值为 DBNull。", e);
                     }
                 }
                 set {
-                    this[this.tableErrList.@__ServerNameColumn] = value;
+                    this[this.tableErrList.@__DBINameColumn] = value;
                 }
             }
             
@@ -624,14 +624,14 @@ namespace ApqDBManager.Forms {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool Is__ServerNameNull() {
-                return this.IsNull(this.tableErrList.@__ServerNameColumn);
+            public bool Is__DBINameNull() {
+                return this.IsNull(this.tableErrList.@__DBINameColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void Set__ServerNameNull() {
-                this[this.tableErrList.@__ServerNameColumn] = global::System.Convert.DBNull;
+            public void Set__DBINameNull() {
+                this[this.tableErrList.@__DBINameColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]

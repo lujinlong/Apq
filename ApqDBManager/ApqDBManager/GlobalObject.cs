@@ -201,7 +201,7 @@ namespace ApqDBManager
 		{
 #if Debug_Home
 			if (_xsdDBC != null)
-			foreach (Apq.DBC.XSD.SqlInstanceRow dr in _Sqls.SqlInstance.Rows)
+			foreach (Apq.DBC.XSD.DBIRow dr in _Sqls.DBI.Rows)
 			{
 				dr["DBConnectionString"] = "Data Source=.;User ID=apq;Password=f;";
 				dr.IP = "127.0.0.1";

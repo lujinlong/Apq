@@ -223,11 +223,11 @@ namespace ApqDBManager
 					}
 				}
 
-				org.in2bits.MyXls.XlsDocument xd = new org.in2bits.MyXls.XlsDocument(dsExcel);
-				FileStream fs = new FileStream(sfd.FileName, FileMode.Create);
-				xd.Save(fs);
-				fs.Flush();
-				fs.Close();
+				//org.in2bits.MyXls.XlsDocument xd = new org.in2bits.MyXls.XlsDocument(dsExcel);
+				//FileStream fs = new FileStream(sfd.FileName, FileMode.Create);
+				//xd.Save(fs);
+				//fs.Flush();
+				//fs.Close();
 				return true;
 			}
 			catch (System.IO.DirectoryNotFoundException)

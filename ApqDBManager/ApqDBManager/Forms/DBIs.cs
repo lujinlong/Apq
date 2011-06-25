@@ -13,12 +13,22 @@ namespace ApqDBManager.Forms
 {
 	public partial class DBIs : Apq.Windows.Forms.DockForm
 	{
-		private Apq.DBC.XSD _Sqls = null;
 		private TreeListViewHelper tlvHelper;
 
 		public DBIs()
 		{
 			InitializeComponent();
+		}
+
+		public override void SetUILang(Apq.UILang.UILang UILang)
+		{
+			tssbSelect.Text = Apq.GlobalObject.UILang["选择(&L)"];
+			tsbSelectAll.Text = Apq.GlobalObject.UILang["全选(&A)"];
+			tsbReverse.Text = Apq.GlobalObject.UILang["反选(&S)"];
+
+			tsbExpandAll.Text = Apq.GlobalObject.UILang["全部收起(&D)"];
+			tsbFail.Text = Apq.GlobalObject.UILang["失败(&F)"];
+			tsbResult.Text = Apq.GlobalObject.UILang["结果(&T)"];
 		}
 
 		#region UI线程
@@ -41,19 +51,19 @@ namespace ApqDBManager.Forms
 				string[] aryCheckedServerNames = cfgCheckedNames.Split(',');
 				foreach (string strCheckedName in aryCheckedServerNames)
 				{
-					DataView dv = new DataView(_Sqls.SqlInstance);
-					dv.RowFilter = "SqlName = " + Apq.Data.SqlClient.Common.ConvertToSqlON(SqlDbType.VarChar, strCheckedName);
+					DataView dv = new DataView(dsDBC.DBI);
+					dv.RowFilter = "DBIName = " + Apq.Data.SqlClient.Common.ConvertToSqlON(SqlDbType.VarChar, strCheckedName);
 					foreach (DataRowView dr in dv)
 					{
 						dr["_CheckState"] = 1;
 					}
 				}
-				_Sqls.SqlInstance.AcceptChanges();
+				dsDBC.DBI.AcceptChanges();
 			}
 			#endregion
 		}
 
-		private void SolutionExplorer_Shown(object sender, EventArgs e)
+		private void DBIs_Shown(object sender, EventArgs e)
 		{
 			// 展开顶级
 			if (treeListView1.Items.Count > 0) treeListView1.Items[0].Expand();
@@ -72,14 +82,14 @@ namespace ApqDBManager.Forms
 				int idxLength = tsmi.Text.Length - 1 - idxBegin;
 				int idx = Apq.Convert.ChangeType<int>(tsmi.Text.Substring(idxBegin, idxLength), -1);
 
-				DataView dv = new DataView(_Sqls.SqlInstance);
-				dv.RowFilter = "SqlType = " + idx;
-				if (idx == 0) dv.RowFilter = dv.RowFilter + " OR SqlType IS NULL";
+				DataView dv = new DataView(dsDBC.DBI);
+				dv.RowFilter = "DBIType = " + idx;
+				if (idx == 0) dv.RowFilter = dv.RowFilter + " OR DBIType IS NULL";
 
 				foreach (DataRowView drv in dv)
 				{
-					string strSqlID = Apq.Convert.ChangeType<string>(drv["SqlID"]);
-					TreeListViewItem node = tlvHelper.FindNodeByKey(strSqlID);
+					string strDBIID = Apq.Convert.ChangeType<string>(drv["DBIID"]);
+					TreeListViewItem node = tlvHelper.FindNodeByKey(strDBIID);
 					node.Checked = tsmi.Checked;
 				}
 			}
@@ -122,12 +132,12 @@ namespace ApqDBManager.Forms
 			tsbSelectAll_Click(sender, e);
 			tsbReverse_Click(sender, e);
 
-			DataView dv = new DataView(_Sqls.SqlInstance);
+			DataView dv = new DataView(dsDBC.DBI);
 			dv.RowFilter = "Err = 1";
 			foreach (DataRowView drv in dv)
 			{
-				string strSqlID = Apq.Convert.ChangeType<string>(drv["SqlID"]);
-				TreeListViewItem node = tlvHelper.FindNodeByKey(strSqlID);
+				string strDBIID = Apq.Convert.ChangeType<string>(drv["DBIID"]);
+				TreeListViewItem node = tlvHelper.FindNodeByKey(strDBIID);
 				node.Checked = true;
 			}
 		}
@@ -137,12 +147,12 @@ namespace ApqDBManager.Forms
 			tsbSelectAll_Click(sender, e);
 			tsbReverse_Click(sender, e);
 
-			DataView dv = new DataView(_Sqls.SqlInstance);
+			DataView dv = new DataView(dsDBC.DBI);
 			dv.RowFilter = "IsReadyToGo = 1";
 			foreach (DataRowView drv in dv)
 			{
-				string strSqlID = Apq.Convert.ChangeType<string>(drv["SqlID"]);
-				TreeListViewItem node = tlvHelper.FindNodeByKey(strSqlID);
+				string strDBIID = Apq.Convert.ChangeType<string>(drv["DBIID"]);
+				TreeListViewItem node = tlvHelper.FindNodeByKey(strDBIID);
 				node.Checked = true;
 			}
 		}
@@ -153,9 +163,9 @@ namespace ApqDBManager.Forms
 
 		private void treeListView1_AfterExpand(object sender, TreeListViewEventArgs e)
 		{
-			long SqlID = Apq.Convert.ChangeType<long>(e.Item.SubItems[e.Item.ListView.Columns.Count].Text);
+			long DBIID = Apq.Convert.ChangeType<long>(e.Item.SubItems[e.Item.ListView.Columns.Count].Text);
 
-			DataRow[] drs = _Sqls.SqlInstance.Select("SqlID = " + SqlID);
+			DataRow[] drs = dsDBC.DBI.Select("DBIID = " + DBIID);
 			if (drs.Length > 0)
 			{
 				drs[0]["_Expanded"] = true;
@@ -164,9 +174,9 @@ namespace ApqDBManager.Forms
 
 		private void treeListView1_AfterCollapse(object sender, TreeListViewEventArgs e)
 		{
-			long SqlID = Apq.Convert.ChangeType<long>(e.Item.SubItems[e.Item.ListView.Columns.Count].Text);
+			long DBIID = Apq.Convert.ChangeType<long>(e.Item.SubItems[e.Item.ListView.Columns.Count].Text);
 
-			DataRow[] drs = _Sqls.SqlInstance.Select("SqlID = " + SqlID);
+			DataRow[] drs = dsDBC.DBI.Select("DBIID = " + DBIID);
 			if (drs.Length > 0)
 			{
 				drs[0]["_Expanded"] = false;
@@ -221,9 +231,9 @@ namespace ApqDBManager.Forms
 
 		private void SaveState2XSD(TreeListViewItem node)
 		{
-			long SqlID = Apq.Convert.ChangeType<long>(node.SubItems[node.ListView.Columns.Count].Text);
+			long DBIID = Apq.Convert.ChangeType<long>(node.SubItems[node.ListView.Columns.Count].Text);
 
-			DataRow[] drs = _Sqls.SqlInstance.Select("SqlID = " + SqlID);
+			DataRow[] drs = dsDBC.DBI.Select("DBIID = " + DBIID);
 			if (drs.Length > 0)
 			{
 				drs[0]["_CheckState"] = node.Checked;
@@ -264,43 +274,9 @@ namespace ApqDBManager.Forms
 		public override void InitDataBefore()
 		{
 			tlvHelper = new TreeListViewHelper(treeListView1);
-			tlvHelper.TableMapping.ColumnMappings.Add("名称", "SqlName");
-			tlvHelper.Key = "SqlID";
-			tlvHelper.HiddenColNames = new List<string>(new string[] { "SqlID", "_CheckState", "_Expanded", "_Selected" });
-		}
-		#endregion
-
-		#region UI 公开方法
-		/// <summary>
-		/// 改变服务器列表
-		/// </summary>
-		public void SetServers(Apq.DBC.XSD Sqls)
-		{
-			_Sqls = Sqls;
-
-			// 绑定到TreeListView
-			treeListView1.Items.Clear();
-			if (_Sqls.SqlInstance.Rows.Count > 0)
-			{
-				tlvHelper.BindDataTable(_Sqls.SqlInstance);
-
-				foreach (TreeListViewItem root in treeListView1.Items)
-				{
-					SetStateByHiddenCol(root);
-				}
-			}
-			SolutionExplorer_Shown(null, null);
-		}
-
-		/// <summary>
-		/// 保存选中展开状态到XSD
-		/// </summary>
-		public void SaveState2XSD()
-		{
-			foreach (TreeListViewItem root in treeListView1.Items)
-			{
-				SaveState2XSD(root);
-			}
+			tlvHelper.TableMapping.ColumnMappings.Add("名称", "DBIName");
+			tlvHelper.Key = "DBIID";
+			tlvHelper.HiddenColNames = new List<string>(new string[] { "DBIID", "_CheckState", "_Expanded", "_Selected" });
 		}
 		#endregion
 	}

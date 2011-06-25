@@ -2,9 +2,7 @@
 <Root>
 	<!-- 类配置文档 -->
 	<Crypt DESKey="pD?y/Mn^" DESIV="$`5iNL8j" />
-	<ApqDBManager.Controls.MainOption.DBC DBName="Apq_DBA" ServerName="(local)" UserId="apq" Pwd="C8Pi4NdZQac=" />
-	<ApqDBManager.Controls.MainOption.Favorites CFolder="Favorites" />
 	<ApqDBManager.MainForm Text="UM"/>
+	<ApqDBManager.Controls.MainOption.Favorites CFolder="Favorites" />
 	<ApqDBManager.SqlEdit cbDBName="Apq_DBA" cbDBName_Items="Apq_DBA"/>
-	<ApqDBManager.Forms.DBIs RDBTypes="未分类(&amp;0),通行证(&amp;1),用户中心(&amp;2),数据中心(&amp;3),日志中心(&amp;4),游戏库(&amp;5),日志库(&amp;6),充值中心(&amp;7),统计库(&amp;8),Web(&amp;1001)"/>
 </Root>

@@ -314,6 +314,9 @@
     <None Include="Images\TaskListWindow.ico" />
     <None Include="Images\ToolboxWindow.ico" />
     <None Include="Images\XmlFile.ico" />
+    <None Include="SQL2-Mode.xshd">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Controls\MainOption\Favorites.resx">

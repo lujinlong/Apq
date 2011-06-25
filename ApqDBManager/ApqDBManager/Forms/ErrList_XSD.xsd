@@ -16,7 +16,7 @@
           <xs:complexType>
             <xs:sequence>
               <xs:element name="RSrvID" msdata:Caption="ServerID" msprop:Generator_UserColumnName="RSrvID" msprop:Generator_ColumnPropNameInRow="RSrvID" msprop:Generator_ColumnVarNameInTable="columnRSrvID" msprop:Generator_ColumnPropNameInTable="RSrvIDColumn" type="xs:int" minOccurs="0" />
-              <xs:element name="__ServerName" msprop:Generator_UserColumnName="__ServerName" msprop:Generator_ColumnPropNameInRow="__ServerName" msprop:Generator_ColumnVarNameInTable="column__ServerName" msprop:Generator_ColumnPropNameInTable="__ServerNameColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="__DBIName" msprop:Generator_UserColumnName="__DBIName" msprop:Generator_ColumnPropNameInRow="__DBIName" msprop:Generator_ColumnVarNameInTable="column__DBIName" msprop:Generator_ColumnPropNameInTable="__DBINameColumn" type="xs:string" minOccurs="0" />
               <xs:element name="s" msprop:Generator_UserColumnName="s" msprop:Generator_ColumnPropNameInRow="s" msprop:Generator_ColumnVarNameInTable="columns" msprop:Generator_ColumnPropNameInTable="sColumn" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>

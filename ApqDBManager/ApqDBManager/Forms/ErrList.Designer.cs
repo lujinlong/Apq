@@ -71,7 +71,7 @@
 			// 
 			// Column2
 			// 
-			this.Column2.DataPropertyName = "__ServerName";
+			this.Column2.DataPropertyName = "__DBIName";
 			this.Column2.HeaderText = "服务器";
 			this.Column2.Name = "Column2";
 			this.Column2.ReadOnly = true;

@@ -25,7 +25,7 @@ namespace ApqDBManager.Forms
 		//定位对应节点
 		private void tsmiShowNode_Click(object sender, EventArgs e)
 		{
-			GlobalObject.SolutionExplorer.FocusAndExpandByID(Apq.Convert.ChangeType<int>(tabControl1.SelectedTab.Tag));
+			//GlobalObject.SolutionExplorer.FocusAndExpandByID(Apq.Convert.ChangeType<int>(tabControl1.SelectedTab.Tag));
 		}
 		#endregion
 

@@ -11,7 +11,7 @@ using System.Windows.Forms;
 using Apq.Com;
 using System.Data.SqlClient;
 using ApqDBManager.Forms;
-using ICSharpCode.TextEditor;
+using ICSharpCode.AvalonEdit;
 
 namespace ApqDBManager.Controls
 {
@@ -267,7 +267,7 @@ namespace ApqDBManager.Controls
 							}
 						}
 
-						DataView dvErr = new DataView(se.SqlEditDoc._Sqls.SqlInstance);
+						DataView dvErr = new DataView(se.SqlEditDoc._Sqls.DBI);
 						dvErr.RowFilter = "SqlID = " + ServerID;
 						// 标记本服执行出错
 						if (dvErr.Count > 0)
@@ -277,7 +277,7 @@ namespace ApqDBManager.Controls
 							{
 								ErrList_XSD.ErrListRow drErrList = se.SqlEditDoc.dsUI.ErrList.NewErrListRow();
 								drErrList.RSrvID = ServerID;
-								drErrList["__ServerName"] = dvErr[0]["SqlName"];
+								drErrList["__DBIName"] = dvErr[0]["SqlName"];
 								drErrList.s = r.Message;
 								se.SqlEditDoc.dsUI.ErrList.Rows.Add(drErrList);
 

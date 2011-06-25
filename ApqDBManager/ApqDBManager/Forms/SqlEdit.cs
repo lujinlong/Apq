@@ -23,6 +23,7 @@ namespace ApqDBManager
 			InitializeComponent();
 		}
 
+		public DBIs DBIs = new DBIs();
 		public SqlOut SqlOut = new SqlOut();
 		public SqlEditDoc SqlEditDoc = new SqlEditDoc();
 		public ErrList ErrList = new ErrList();
@@ -49,6 +50,14 @@ namespace ApqDBManager
 			//SqlOut.Show(dockPanel1);
 		}
 
+		private void SqlEdit_FormClosing(object sender, FormClosingEventArgs e)
+		{
+			ErrList.Close();
+			SqlOut.Close();
+			DBIs.Close();
+			SqlEditDoc.Close();
+		}
+
 		private void SqlEdit_Activated(object sender, EventArgs e)
 		{
 		}
@@ -56,6 +65,45 @@ namespace ApqDBManager
 		private void SqlEdit_Deactivate(object sender, EventArgs e)
 		{
 
+		}
+
+		private void acDBI_Execute(object sender, EventArgs e)
+		{
+			acDBI.Checked = !acDBI.Checked;
+			if (acDBI.Checked)
+			{
+				DBIs.Show(dockPanel1);
+			}
+			else
+			{
+				DBIs.Hide();
+			}
+		}
+
+		private void acOut_Execute(object sender, EventArgs e)
+		{
+			acOut.Checked = !acOut.Checked;
+			if (acOut.Checked)
+			{
+				SqlOut.Show(dockPanel1);
+			}
+			else
+			{
+				SqlOut.Hide();
+			}
+		}
+
+		private void acErrList_Execute(object sender, EventArgs e)
+		{
+			acErrList.Checked = !acErrList.Checked;
+			if (acErrList.Checked)
+			{
+				ErrList.Show(dockPanel1);
+			}
+			else
+			{
+				ErrList.Hide();
+			}
 		}
 	}
 }
