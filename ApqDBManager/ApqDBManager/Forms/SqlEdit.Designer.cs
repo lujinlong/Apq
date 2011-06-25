@@ -30,21 +30,21 @@ namespace ApqDBManager
 		private void InitializeComponent()
 		{
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SqlEdit));
-			WeifenLuo.WinFormsUI.Docking.DockPanelSkin dockPanelSkin5 = new WeifenLuo.WinFormsUI.Docking.DockPanelSkin();
-			WeifenLuo.WinFormsUI.Docking.AutoHideStripSkin autoHideStripSkin5 = new WeifenLuo.WinFormsUI.Docking.AutoHideStripSkin();
-			WeifenLuo.WinFormsUI.Docking.DockPanelGradient dockPanelGradient13 = new WeifenLuo.WinFormsUI.Docking.DockPanelGradient();
-			WeifenLuo.WinFormsUI.Docking.TabGradient tabGradient29 = new WeifenLuo.WinFormsUI.Docking.TabGradient();
-			WeifenLuo.WinFormsUI.Docking.DockPaneStripSkin dockPaneStripSkin5 = new WeifenLuo.WinFormsUI.Docking.DockPaneStripSkin();
-			WeifenLuo.WinFormsUI.Docking.DockPaneStripGradient dockPaneStripGradient5 = new WeifenLuo.WinFormsUI.Docking.DockPaneStripGradient();
-			WeifenLuo.WinFormsUI.Docking.TabGradient tabGradient30 = new WeifenLuo.WinFormsUI.Docking.TabGradient();
-			WeifenLuo.WinFormsUI.Docking.DockPanelGradient dockPanelGradient14 = new WeifenLuo.WinFormsUI.Docking.DockPanelGradient();
-			WeifenLuo.WinFormsUI.Docking.TabGradient tabGradient31 = new WeifenLuo.WinFormsUI.Docking.TabGradient();
-			WeifenLuo.WinFormsUI.Docking.DockPaneStripToolWindowGradient dockPaneStripToolWindowGradient5 = new WeifenLuo.WinFormsUI.Docking.DockPaneStripToolWindowGradient();
-			WeifenLuo.WinFormsUI.Docking.TabGradient tabGradient32 = new WeifenLuo.WinFormsUI.Docking.TabGradient();
-			WeifenLuo.WinFormsUI.Docking.TabGradient tabGradient33 = new WeifenLuo.WinFormsUI.Docking.TabGradient();
-			WeifenLuo.WinFormsUI.Docking.DockPanelGradient dockPanelGradient15 = new WeifenLuo.WinFormsUI.Docking.DockPanelGradient();
-			WeifenLuo.WinFormsUI.Docking.TabGradient tabGradient34 = new WeifenLuo.WinFormsUI.Docking.TabGradient();
-			WeifenLuo.WinFormsUI.Docking.TabGradient tabGradient35 = new WeifenLuo.WinFormsUI.Docking.TabGradient();
+			WeifenLuo.WinFormsUI.Docking.DockPanelSkin dockPanelSkin1 = new WeifenLuo.WinFormsUI.Docking.DockPanelSkin();
+			WeifenLuo.WinFormsUI.Docking.AutoHideStripSkin autoHideStripSkin1 = new WeifenLuo.WinFormsUI.Docking.AutoHideStripSkin();
+			WeifenLuo.WinFormsUI.Docking.DockPanelGradient dockPanelGradient1 = new WeifenLuo.WinFormsUI.Docking.DockPanelGradient();
+			WeifenLuo.WinFormsUI.Docking.TabGradient tabGradient1 = new WeifenLuo.WinFormsUI.Docking.TabGradient();
+			WeifenLuo.WinFormsUI.Docking.DockPaneStripSkin dockPaneStripSkin1 = new WeifenLuo.WinFormsUI.Docking.DockPaneStripSkin();
+			WeifenLuo.WinFormsUI.Docking.DockPaneStripGradient dockPaneStripGradient1 = new WeifenLuo.WinFormsUI.Docking.DockPaneStripGradient();
+			WeifenLuo.WinFormsUI.Docking.TabGradient tabGradient2 = new WeifenLuo.WinFormsUI.Docking.TabGradient();
+			WeifenLuo.WinFormsUI.Docking.DockPanelGradient dockPanelGradient2 = new WeifenLuo.WinFormsUI.Docking.DockPanelGradient();
+			WeifenLuo.WinFormsUI.Docking.TabGradient tabGradient3 = new WeifenLuo.WinFormsUI.Docking.TabGradient();
+			WeifenLuo.WinFormsUI.Docking.DockPaneStripToolWindowGradient dockPaneStripToolWindowGradient1 = new WeifenLuo.WinFormsUI.Docking.DockPaneStripToolWindowGradient();
+			WeifenLuo.WinFormsUI.Docking.TabGradient tabGradient4 = new WeifenLuo.WinFormsUI.Docking.TabGradient();
+			WeifenLuo.WinFormsUI.Docking.TabGradient tabGradient5 = new WeifenLuo.WinFormsUI.Docking.TabGradient();
+			WeifenLuo.WinFormsUI.Docking.DockPanelGradient dockPanelGradient3 = new WeifenLuo.WinFormsUI.Docking.DockPanelGradient();
+			WeifenLuo.WinFormsUI.Docking.TabGradient tabGradient6 = new WeifenLuo.WinFormsUI.Docking.TabGradient();
+			WeifenLuo.WinFormsUI.Docking.TabGradient tabGradient7 = new WeifenLuo.WinFormsUI.Docking.TabGradient();
 			this.toolStrip1 = new System.Windows.Forms.ToolStrip();
 			this.tsbOpen = new System.Windows.Forms.ToolStripButton();
 			this.tsbSave = new System.Windows.Forms.ToolStripButton();
@@ -54,12 +54,12 @@ namespace ApqDBManager
 			this.tsbOut = new System.Windows.Forms.ToolStripButton();
 			this.tsbErrList = new System.Windows.Forms.ToolStripButton();
 			this.actionList1 = new Crad.Windows.Forms.Actions.ActionList();
-			this.acDBI = new Crad.Windows.Forms.Actions.Action();
-			this.acOut = new Crad.Windows.Forms.Actions.Action();
-			this.acErrList = new Crad.Windows.Forms.Actions.Action();
 			this.acOpen = new Crad.Windows.Forms.Actions.Action();
 			this.acSave = new Crad.Windows.Forms.Actions.Action();
 			this.acSaveAs = new Crad.Windows.Forms.Actions.Action();
+			this.acDBI = new Crad.Windows.Forms.Actions.Action();
+			this.acOut = new Crad.Windows.Forms.Actions.Action();
+			this.acErrList = new Crad.Windows.Forms.Actions.Action();
 			this.dockPanel1 = new WeifenLuo.WinFormsUI.Docking.DockPanel();
 			this.tsslStatus = new System.Windows.Forms.ToolStripStatusLabel();
 			this.tspb = new System.Windows.Forms.ToolStripProgressBar();
@@ -131,8 +131,6 @@ namespace ApqDBManager
 			// tsbOut
 			// 
 			this.actionList1.SetAction(this.tsbOut, this.acOut);
-			this.tsbOut.Checked = true;
-			this.tsbOut.CheckState = System.Windows.Forms.CheckState.Checked;
 			this.tsbOut.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
 			this.tsbOut.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.tsbOut.Name = "tsbOut";
@@ -142,8 +140,6 @@ namespace ApqDBManager
 			// tsbErrList
 			// 
 			this.actionList1.SetAction(this.tsbErrList, this.acErrList);
-			this.tsbErrList.Checked = true;
-			this.tsbErrList.CheckState = System.Windows.Forms.CheckState.Checked;
 			this.tsbErrList.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
 			this.tsbErrList.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.tsbErrList.Name = "tsbErrList";
@@ -159,27 +155,6 @@ namespace ApqDBManager
 			this.actionList1.Actions.Add(this.acOut);
 			this.actionList1.Actions.Add(this.acErrList);
 			this.actionList1.ContainerControl = this;
-			// 
-			// acDBI
-			// 
-			this.acDBI.Checked = true;
-			this.acDBI.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.acDBI.Text = "数据库列表(&L)";
-			this.acDBI.Execute += new System.EventHandler(this.acDBI_Execute);
-			// 
-			// acOut
-			// 
-			this.acOut.Checked = true;
-			this.acOut.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.acOut.Text = "输出(&O)";
-			this.acOut.Execute += new System.EventHandler(this.acOut_Execute);
-			// 
-			// acErrList
-			// 
-			this.acErrList.Checked = true;
-			this.acErrList.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.acErrList.Text = "错误列表(&E)";
-			this.acErrList.Execute += new System.EventHandler(this.acErrList_Execute);
 			// 
 			// acOpen
 			// 
@@ -197,6 +172,23 @@ namespace ApqDBManager
 						| System.Windows.Forms.Keys.S)));
 			this.acSaveAs.Text = "另存为(&A)";
 			// 
+			// acDBI
+			// 
+			this.acDBI.Checked = true;
+			this.acDBI.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.acDBI.Text = "数据库列表(&L)";
+			this.acDBI.Execute += new System.EventHandler(this.acDBI_Execute);
+			// 
+			// acOut
+			// 
+			this.acOut.Text = "输出(&O)";
+			this.acOut.Execute += new System.EventHandler(this.acOut_Execute);
+			// 
+			// acErrList
+			// 
+			this.acErrList.Text = "错误列表(&E)";
+			this.acErrList.Execute += new System.EventHandler(this.acErrList_Execute);
+			// 
 			// dockPanel1
 			// 
 			this.dockPanel1.ActiveAutoHideContent = null;
@@ -206,52 +198,52 @@ namespace ApqDBManager
 			this.dockPanel1.Location = new System.Drawing.Point(0, 25);
 			this.dockPanel1.Name = "dockPanel1";
 			this.dockPanel1.Size = new System.Drawing.Size(760, 419);
-			dockPanelGradient13.EndColor = System.Drawing.SystemColors.ControlLight;
-			dockPanelGradient13.StartColor = System.Drawing.SystemColors.ControlLight;
-			autoHideStripSkin5.DockStripGradient = dockPanelGradient13;
-			tabGradient29.EndColor = System.Drawing.SystemColors.Control;
-			tabGradient29.StartColor = System.Drawing.SystemColors.Control;
-			tabGradient29.TextColor = System.Drawing.SystemColors.ControlDarkDark;
-			autoHideStripSkin5.TabGradient = tabGradient29;
-			autoHideStripSkin5.TextFont = new System.Drawing.Font("宋体", 9F);
-			dockPanelSkin5.AutoHideStripSkin = autoHideStripSkin5;
-			tabGradient30.EndColor = System.Drawing.SystemColors.ControlLightLight;
-			tabGradient30.StartColor = System.Drawing.SystemColors.ControlLightLight;
-			tabGradient30.TextColor = System.Drawing.SystemColors.ControlText;
-			dockPaneStripGradient5.ActiveTabGradient = tabGradient30;
-			dockPanelGradient14.EndColor = System.Drawing.SystemColors.Control;
-			dockPanelGradient14.StartColor = System.Drawing.SystemColors.Control;
-			dockPaneStripGradient5.DockStripGradient = dockPanelGradient14;
-			tabGradient31.EndColor = System.Drawing.SystemColors.ControlLight;
-			tabGradient31.StartColor = System.Drawing.SystemColors.ControlLight;
-			tabGradient31.TextColor = System.Drawing.SystemColors.ControlText;
-			dockPaneStripGradient5.InactiveTabGradient = tabGradient31;
-			dockPaneStripSkin5.DocumentGradient = dockPaneStripGradient5;
-			dockPaneStripSkin5.TextFont = new System.Drawing.Font("宋体", 9F);
-			tabGradient32.EndColor = System.Drawing.SystemColors.ActiveCaption;
-			tabGradient32.LinearGradientMode = System.Drawing.Drawing2D.LinearGradientMode.Vertical;
-			tabGradient32.StartColor = System.Drawing.SystemColors.GradientActiveCaption;
-			tabGradient32.TextColor = System.Drawing.SystemColors.ActiveCaptionText;
-			dockPaneStripToolWindowGradient5.ActiveCaptionGradient = tabGradient32;
-			tabGradient33.EndColor = System.Drawing.SystemColors.Control;
-			tabGradient33.StartColor = System.Drawing.SystemColors.Control;
-			tabGradient33.TextColor = System.Drawing.SystemColors.ControlText;
-			dockPaneStripToolWindowGradient5.ActiveTabGradient = tabGradient33;
-			dockPanelGradient15.EndColor = System.Drawing.SystemColors.ControlLight;
-			dockPanelGradient15.StartColor = System.Drawing.SystemColors.ControlLight;
-			dockPaneStripToolWindowGradient5.DockStripGradient = dockPanelGradient15;
-			tabGradient34.EndColor = System.Drawing.SystemColors.InactiveCaption;
-			tabGradient34.LinearGradientMode = System.Drawing.Drawing2D.LinearGradientMode.Vertical;
-			tabGradient34.StartColor = System.Drawing.SystemColors.GradientInactiveCaption;
-			tabGradient34.TextColor = System.Drawing.SystemColors.InactiveCaptionText;
-			dockPaneStripToolWindowGradient5.InactiveCaptionGradient = tabGradient34;
-			tabGradient35.EndColor = System.Drawing.Color.Transparent;
-			tabGradient35.StartColor = System.Drawing.Color.Transparent;
-			tabGradient35.TextColor = System.Drawing.SystemColors.ControlDarkDark;
-			dockPaneStripToolWindowGradient5.InactiveTabGradient = tabGradient35;
-			dockPaneStripSkin5.ToolWindowGradient = dockPaneStripToolWindowGradient5;
-			dockPanelSkin5.DockPaneStripSkin = dockPaneStripSkin5;
-			this.dockPanel1.Skin = dockPanelSkin5;
+			dockPanelGradient1.EndColor = System.Drawing.SystemColors.ControlLight;
+			dockPanelGradient1.StartColor = System.Drawing.SystemColors.ControlLight;
+			autoHideStripSkin1.DockStripGradient = dockPanelGradient1;
+			tabGradient1.EndColor = System.Drawing.SystemColors.Control;
+			tabGradient1.StartColor = System.Drawing.SystemColors.Control;
+			tabGradient1.TextColor = System.Drawing.SystemColors.ControlDarkDark;
+			autoHideStripSkin1.TabGradient = tabGradient1;
+			autoHideStripSkin1.TextFont = new System.Drawing.Font("宋体", 9F);
+			dockPanelSkin1.AutoHideStripSkin = autoHideStripSkin1;
+			tabGradient2.EndColor = System.Drawing.SystemColors.ControlLightLight;
+			tabGradient2.StartColor = System.Drawing.SystemColors.ControlLightLight;
+			tabGradient2.TextColor = System.Drawing.SystemColors.ControlText;
+			dockPaneStripGradient1.ActiveTabGradient = tabGradient2;
+			dockPanelGradient2.EndColor = System.Drawing.SystemColors.Control;
+			dockPanelGradient2.StartColor = System.Drawing.SystemColors.Control;
+			dockPaneStripGradient1.DockStripGradient = dockPanelGradient2;
+			tabGradient3.EndColor = System.Drawing.SystemColors.ControlLight;
+			tabGradient3.StartColor = System.Drawing.SystemColors.ControlLight;
+			tabGradient3.TextColor = System.Drawing.SystemColors.ControlText;
+			dockPaneStripGradient1.InactiveTabGradient = tabGradient3;
+			dockPaneStripSkin1.DocumentGradient = dockPaneStripGradient1;
+			dockPaneStripSkin1.TextFont = new System.Drawing.Font("宋体", 9F);
+			tabGradient4.EndColor = System.Drawing.SystemColors.ActiveCaption;
+			tabGradient4.LinearGradientMode = System.Drawing.Drawing2D.LinearGradientMode.Vertical;
+			tabGradient4.StartColor = System.Drawing.SystemColors.GradientActiveCaption;
+			tabGradient4.TextColor = System.Drawing.SystemColors.ActiveCaptionText;
+			dockPaneStripToolWindowGradient1.ActiveCaptionGradient = tabGradient4;
+			tabGradient5.EndColor = System.Drawing.SystemColors.Control;
+			tabGradient5.StartColor = System.Drawing.SystemColors.Control;
+			tabGradient5.TextColor = System.Drawing.SystemColors.ControlText;
+			dockPaneStripToolWindowGradient1.ActiveTabGradient = tabGradient5;
+			dockPanelGradient3.EndColor = System.Drawing.SystemColors.ControlLight;
+			dockPanelGradient3.StartColor = System.Drawing.SystemColors.ControlLight;
+			dockPaneStripToolWindowGradient1.DockStripGradient = dockPanelGradient3;
+			tabGradient6.EndColor = System.Drawing.SystemColors.InactiveCaption;
+			tabGradient6.LinearGradientMode = System.Drawing.Drawing2D.LinearGradientMode.Vertical;
+			tabGradient6.StartColor = System.Drawing.SystemColors.GradientInactiveCaption;
+			tabGradient6.TextColor = System.Drawing.SystemColors.InactiveCaptionText;
+			dockPaneStripToolWindowGradient1.InactiveCaptionGradient = tabGradient6;
+			tabGradient7.EndColor = System.Drawing.Color.Transparent;
+			tabGradient7.StartColor = System.Drawing.Color.Transparent;
+			tabGradient7.TextColor = System.Drawing.SystemColors.ControlDarkDark;
+			dockPaneStripToolWindowGradient1.InactiveTabGradient = tabGradient7;
+			dockPaneStripSkin1.ToolWindowGradient = dockPaneStripToolWindowGradient1;
+			dockPanelSkin1.DockPaneStripSkin = dockPaneStripSkin1;
+			this.dockPanel1.Skin = dockPanelSkin1;
 			this.dockPanel1.TabIndex = 1;
 			// 
 			// tsslStatus

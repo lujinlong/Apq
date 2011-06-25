@@ -42,7 +42,6 @@ namespace ApqDBManager
 			this.acNew.Image = System.Drawing.Image.FromFile(Application.StartupPath + @"\Res\png\File\New.png");
 			this.tsmiOpen.Image = System.Drawing.Image.FromFile(Application.StartupPath + @"\Res\png\File\Open.png");
 			this.tsmiSave.Image = System.Drawing.Image.FromFile(Application.StartupPath + @"\Res\png\File\Save.png");
-			this.tsmiSaveAs.Image = System.Drawing.Image.FromFile(Application.StartupPath + @"\Res\png\File\SaveAs.png");
 		}
 
 		private void MainForm_Load(object sender, EventArgs e)

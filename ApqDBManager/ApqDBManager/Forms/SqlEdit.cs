@@ -47,7 +47,7 @@ namespace ApqDBManager
 		private void SqlEdit_Load(object sender, EventArgs e)
 		{
 			SqlEditDoc.Show(dockPanel1);
-			//SqlOut.Show(dockPanel1);
+			DBIs.Show(dockPanel1);
 		}
 
 		private void SqlEdit_FormClosing(object sender, FormClosingEventArgs e)

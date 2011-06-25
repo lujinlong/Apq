@@ -254,6 +254,7 @@
 			this.ClientSize = new System.Drawing.Size(760, 466);
 			this.Controls.Add(this.elementHost1);
 			this.Controls.Add(this.toolStrip1);
+			this.DockAreas = WeifenLuo.WinFormsUI.Docking.DockAreas.Document;
 			this.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
 			this.Name = "SqlEditDoc";
 			this.TabText = "Sql编辑";
