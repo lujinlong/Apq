@@ -239,24 +239,23 @@
   </Target>
   -->
   <PropertyGroup>
-    <PreBuildEvent>if "%25Reference%25" == "" goto End
-if "" == "" goto EndConfig
-xcopy "%25Reference%25\$(ConfigurationName)\Config\Apq.dll.config" "$(ProjectDir)" /c /q /g /h /r /k /y
-xcopy "%25Reference%25\$(ConfigurationName)\Config\Apq.dll.apq" "$(ProjectDir)" /c /q /g /h /r /k /y
-xcopy "%25Reference%25\$(ConfigurationName)\Config\Apq.dll.log4net" "$(ProjectDir)" /c /q /g /h /r /k /y
+    <PreBuildEvent>if "" == "" goto EndConfig
+xcopy "$(ProjectDir)..\..\Reference\$(ConfigurationName)\Config\Apq.dll.config" "$(ProjectDir)" /c /q /g /h /r /k /y
+xcopy "$(ProjectDir)..\..\Reference\$(ConfigurationName)\Config\Apq.dll.apq" "$(ProjectDir)" /c /q /g /h /r /k /y
+xcopy "$(ProjectDir)..\..\Reference\$(ConfigurationName)\Config\Apq.dll.log4net" "$(ProjectDir)" /c /q /g /h /r /k /y
 
-:xcopy "%25Reference%25\$(ConfigurationName)\Config\Apq.WorkFlow.dll.config" "$(ProjectDir)" /c /q /g /h /r /k /y
-:xcopy "%25Reference%25\$(ConfigurationName)\Config\Apq.WorkFlow.dll.apq" "$(ProjectDir)" /c /q /g /h /r /k /y
+:xcopy "$(ProjectDir)..\..\Reference\$(ConfigurationName)\Config\Apq.WorkFlow.dll.config" "$(ProjectDir)" /c /q /g /h /r /k /y
+:xcopy "$(ProjectDir)..\..\Reference\$(ConfigurationName)\Config\Apq.WorkFlow.dll.apq" "$(ProjectDir)" /c /q /g /h /r /k /y
 :EndConfig
 
-if "%25Reference%25" == "" goto End
-xcopy "%25Reference%25\$(ConfigurationName)\Apq.dll" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
-xcopy "%25Reference%25\$(ConfigurationName)\Apq.xml" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
-xcopy "%25Reference%25\$(ConfigurationName)\Apq.pdb" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+if "$(ProjectDir)..\..\Reference" == "" goto End
+xcopy "$(ProjectDir)..\..\Reference\$(ConfigurationName)\Apq.dll" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+xcopy "$(ProjectDir)..\..\Reference\$(ConfigurationName)\Apq.xml" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+xcopy "$(ProjectDir)..\..\Reference\$(ConfigurationName)\Apq.pdb" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
 
-xcopy "%25Reference%25\$(ConfigurationName)\Apq.WorkFlow.dll" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
-xcopy "%25Reference%25\$(ConfigurationName)\Apq.WorkFlow.xml" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
-xcopy "%25Reference%25\$(ConfigurationName)\Apq.WorkFlow.pdb" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+xcopy "$(ProjectDir)..\..\Reference\$(ConfigurationName)\Apq.WorkFlow.dll" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+xcopy "$(ProjectDir)..\..\Reference\$(ConfigurationName)\Apq.WorkFlow.xml" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+xcopy "$(ProjectDir)..\..\Reference\$(ConfigurationName)\Apq.WorkFlow.pdb" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
 :End</PreBuildEvent>
     <PostBuildEvent>if "%25Reference%25" == "" goto End
 xcopy "%25Reference%25\Res\$(ProjectName)" "$(TargetDir)Res\" /c /q /g /h /r /k /y /e
