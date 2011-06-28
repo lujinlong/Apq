@@ -179,6 +179,33 @@ namespace ApqDBManager
 		}
 		#endregion
 
+		#region Lookup
+		private static Forms.DBIType_XSD _Lookup;
+		public static Forms.DBIType_XSD Lookup
+		{
+			get
+			{
+				if (_Lookup == null)
+				{
+					_Lookup = new Forms.DBIType_XSD();
+					_Lookup.Namespace = string.Empty;
+
+					// 从文档加载数据
+					string strFile = GlobalObject.XmlConfigChain["ApqDBManager", "file_Lookup"];
+					if (System.IO.File.Exists(strFile))
+					{
+						try
+						{
+							_Lookup.ReadXml(strFile);
+						}
+						catch { }
+					}
+				}
+				return _Lookup;
+			}
+		}
+		#endregion
+
 		#region xsdDBC
 		private static Apq.DBC.XSD _xsdDBC;
 		/// <summary>
@@ -191,22 +218,9 @@ namespace ApqDBManager
 				if (_xsdDBC == null)
 				{
 					_xsdDBC = Apq.DBC.Common.XSD.Copy() as Apq.DBC.XSD;
-					xsdDBCAdjust();
 				}
 				return _xsdDBC;
 			}
-		}
-
-		public static void xsdDBCAdjust()
-		{
-#if Debug_Home
-			if (_xsdDBC != null)
-			foreach (Apq.DBC.XSD.DBIRow dr in _Sqls.DBI.Rows)
-			{
-				dr["DBConnectionString"] = "Data Source=.;User ID=apq;Password=f;";
-				dr.IP = "127.0.0.1";
-			}
-#endif
 		}
 		#endregion
 

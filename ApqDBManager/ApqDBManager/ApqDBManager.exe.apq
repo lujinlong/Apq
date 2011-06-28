@@ -3,6 +3,7 @@
 	<!-- 类配置文档 -->
 	<Crypt DESKey="pD?y/Mn^" DESIV="$`5iNL8j" />
 	<ApqDBManager.MainForm Text="UM"/>
+	<ApqDBManager file_Lookup="Lookup.xml"/>
 	<ApqDBManager.Controls.MainOption.Favorites CFolder="Favorites" />
 	<ApqDBManager.SqlEdit cbDBName="Apq_DBA" cbDBName_Items="Apq_DBA"/>
 </Root>

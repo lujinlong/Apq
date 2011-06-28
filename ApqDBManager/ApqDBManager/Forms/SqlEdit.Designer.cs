@@ -69,6 +69,16 @@ namespace ApqDBManager
 			this.statusStrip1.SuspendLayout();
 			this.SuspendLayout();
 			// 
+			// actionList1
+			// 
+			this.actionList1.Actions.Add(this.acOpen);
+			this.actionList1.Actions.Add(this.acSave);
+			this.actionList1.Actions.Add(this.acSaveAs);
+			this.actionList1.Actions.Add(this.acDBI);
+			this.actionList1.Actions.Add(this.acOut);
+			this.actionList1.Actions.Add(this.acErrList);
+			this.actionList1.ContainerControl = this;
+			// 
 			// toolStrip1
 			// 
 			this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -145,16 +155,6 @@ namespace ApqDBManager
 			this.tsbErrList.Name = "tsbErrList";
 			this.tsbErrList.Size = new System.Drawing.Size(75, 22);
 			this.tsbErrList.Text = "错误列表(&E)";
-			// 
-			// actionList1
-			// 
-			this.actionList1.Actions.Add(this.acOpen);
-			this.actionList1.Actions.Add(this.acSave);
-			this.actionList1.Actions.Add(this.acSaveAs);
-			this.actionList1.Actions.Add(this.acDBI);
-			this.actionList1.Actions.Add(this.acOut);
-			this.actionList1.Actions.Add(this.acErrList);
-			this.actionList1.ContainerControl = this;
 			// 
 			// acOpen
 			// 

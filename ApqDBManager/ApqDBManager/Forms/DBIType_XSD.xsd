@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DBIType_XSD" targetNamespace="http://tempuri.org/DBIType_XSD.xsd" xmlns:mstns="http://tempuri.org/DBIType_XSD.xsd" xmlns="http://tempuri.org/DBIType_XSD.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DBIType_XSD" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DBIType_XSD" msprop:Generator_UserDSName="DBIType_XSD">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="DBIType" msprop:Generator_TableClassName="DBITypeDataTable" msprop:Generator_TableVarName="tableDBIType" msprop:Generator_TablePropName="DBIType" msprop:Generator_RowDeletingName="DBITypeRowDeleting" msprop:Generator_UserTableName="DBIType" msprop:Generator_RowChangingName="DBITypeRowChanging" msprop:Generator_RowEvHandlerName="DBITypeRowChangeEventHandler" msprop:Generator_RowDeletedName="DBITypeRowDeleted" msprop:Generator_RowEvArgName="DBITypeRowChangeEvent" msprop:Generator_RowChangedName="DBITypeRowChanged" msprop:Generator_RowClassName="DBITypeRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="DBIType" msdata:Caption="实例类型" msprop:Generator_ColumnVarNameInTable="columnDBIType" msprop:Generator_ColumnPropNameInRow="DBIType" msprop:Generator_ColumnPropNameInTable="DBITypeColumn" msprop:Generator_UserColumnName="DBIType" type="xs:int" />
+              <xs:element name="TypeCaption" msdata:Caption="类型名称" msprop:Generator_ColumnVarNameInTable="columnTypeCaption" msprop:Generator_ColumnPropNameInRow="TypeCaption" msprop:Generator_ColumnPropNameInTable="TypeCaptionColumn" msprop:Generator_UserColumnName="TypeCaption">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:DBIType" />
+      <xs:field xpath="mstns:DBIType" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

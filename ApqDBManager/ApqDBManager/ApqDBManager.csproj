@@ -217,6 +217,11 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\DBIType_XSD.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DBIType_XSD.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Forms\ErrList.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -292,6 +297,17 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Forms\DBIType_XSD.xsc">
+      <DependentUpon>DBIType_XSD.xsd</DependentUpon>
+    </None>
+    <None Include="Forms\DBIType_XSD.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DBIType_XSD.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Forms\DBIType_XSD.xss">
+      <DependentUpon>DBIType_XSD.xsd</DependentUpon>
+    </None>
     <None Include="Images\ArrowDown.bmp" />
     <None Include="Images\ArrowUp.bmp" />
     <None Include="Images\Bitmap.ico" />
@@ -401,6 +417,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Lookup.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Res\ico\blockOS 43 System File.ico" />
     <Content Include="Res\ico\Key.ico" />
     <Content Include="Res\ico\sign125.ico">

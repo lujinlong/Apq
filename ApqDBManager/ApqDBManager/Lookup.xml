@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<DBS_XSD>
+	<DBIType>
+		<DBIType>0</DBIType>
+		<TypeCaption>未分类(&amp;0)</TypeCaption>
+	</DBIType>
+	<DBIType>
+		<DBIType>1</DBIType>
+		<TypeCaption>通行证(&amp;1)</TypeCaption>
+	</DBIType>
+	<DBIType>
+		<DBIType>2</DBIType>
+		<TypeCaption>用户中心(&amp;2)</TypeCaption>
+	</DBIType>
+	<DBIType>
+		<DBIType>3</DBIType>
+		<TypeCaption>数据中心(&amp;3)</TypeCaption>
+	</DBIType>
+	<DBIType>
+		<DBIType>4</DBIType>
+		<TypeCaption>日志中心(&amp;4)</TypeCaption>
+	</DBIType>
+	<DBIType>
+		<DBIType>5</DBIType>
+		<TypeCaption>游戏库(&amp;5)</TypeCaption>
+	</DBIType>
+	<DBIType>
+		<DBIType>6</DBIType>
+		<TypeCaption>日志库(&amp;6)</TypeCaption>
+	</DBIType>
+	<DBIType>
+		<DBIType>7</DBIType>
+		<TypeCaption>充值中心(&amp;7)</TypeCaption>
+	</DBIType>
+	<DBIType>
+		<DBIType>8</DBIType>
+		<TypeCaption>统计库(&amp;8)</TypeCaption>
+	</DBIType>
+	<DBIType>
+		<DBIType>1001</DBIType>
+		<TypeCaption>Web(&amp;1001)</TypeCaption>
+	</DBIType>
+</DBS_XSD>

@@ -42,11 +42,11 @@ namespace ApqDBManager.Forms
 		private void SqlIns_Load(object sender, EventArgs e)
 		{
 			// 加载选择菜单
-			string[] bciNames = GlobalObject.XmlConfigChain[this.GetType(), "RDBTypes"].Split(',');
-			for (int i = 0; i < bciNames.Length; i++)
+			foreach (DBIType_XSD.DBITypeRow dr in GlobalObject.Lookup.DBIType.Rows)
 			{
 				ToolStripMenuItem tsmi = new ToolStripMenuItem();
-				tsmi.Text = bciNames[i];
+				tsmi.Text = dr.TypeCaption;
+				tsmi.Tag = dr.DBIType;
 				tsmi.Click += new EventHandler(tsmiSelect_Click);
 				tssbSelect.DropDownItems.Add(tsmi);
 			}
@@ -85,13 +85,11 @@ namespace ApqDBManager.Forms
 				tsmi.Checked = !tsmi.Checked;
 
 				// 获取类型值
-				int idxBegin = tsmi.Text.IndexOf("&") + 1;
-				int idxLength = tsmi.Text.Length - 1 - idxBegin;
-				int idx = Apq.Convert.ChangeType<int>(tsmi.Text.Substring(idxBegin, idxLength), -1);
+				int DBIType = Apq.Convert.ChangeType<int>(tsmi.Tag, -1);
 
 				DataView dv = new DataView(dsDBC.DBI);
-				dv.RowFilter = "DBIType = " + idx;
-				if (idx == 0) dv.RowFilter = dv.RowFilter + " OR DBIType IS NULL";
+				dv.RowFilter = "DBIType = " + DBIType;
+				if (DBIType == 0) dv.RowFilter = dv.RowFilter + " OR DBIType IS NULL";
 
 				foreach (DataRowView drv in dv)
 				{
@@ -120,16 +118,16 @@ namespace ApqDBManager.Forms
 		//全部展开
 		private void tsbExpandAll_Click(object sender, EventArgs e)
 		{
-			if (tsbExpandAll.Text == "全部展开(&D)")
+			if (tsbExpandAll.Text == Apq.GlobalObject.UILang["全部展开(&D)"])
 			{
 				treeListView1.ExpandAll();
-				tsbExpandAll.Text = "全部收起(&D)";
+				tsbExpandAll.Text = Apq.GlobalObject.UILang["全部收起(&D)"];
 				return;
 			}
-			if (tsbExpandAll.Text == "全部收起(&D)")
+			if (tsbExpandAll.Text == Apq.GlobalObject.UILang["全部收起(&D)"])
 			{
 				treeListView1.CollapseAll();
-				tsbExpandAll.Text = "全部展开(&D)";
+				tsbExpandAll.Text = Apq.GlobalObject.UILang["全部展开(&D)"];
 				return;
 			}
 		}
@@ -166,7 +164,7 @@ namespace ApqDBManager.Forms
 
 		#endregion
 
-		#region treeList1
+		#region treeListView1
 
 		private void treeListView1_AfterExpand(object sender, TreeListViewEventArgs e)
 		{
@@ -284,6 +282,39 @@ namespace ApqDBManager.Forms
 			tlvHelper.TableMapping.ColumnMappings.Add("名称", "DBIName");
 			tlvHelper.Key = "DBIID";
 			tlvHelper.HiddenColNames = new List<string>(new string[] { "DBIID", "_CheckState", "_Expanded", "_Selected" });
+		}
+		/// <summary>
+		/// 初始数据(如Lookup数据等)
+		/// </summary>
+		/// <param name="ds"></param>
+		public override void InitData(DataSet ds)
+		{
+			#region 准备数据集结构
+			dsDBC.DBI.Columns.Add("_CheckState", typeof(int));
+			dsDBC.DBI.Columns.Add("_Expanded", typeof(bool));
+			dsDBC.DBI.Columns.Add("_Selected", typeof(bool));
+			dsDBC.DBI.Columns.Add("IsReadyToGo", typeof(bool));
+			dsDBC.DBI.Columns.Add("Err", typeof(bool));
+			#endregion
+
+			#region 加载所有字典表
+			#endregion
+		}
+		/// <summary>
+		/// 加载数据
+		/// </summary>
+		/// <param name="ds"></param>
+		public override void LoadData(DataSet ds)
+		{
+			// 绑定到TreeListView
+			treeListView1.Items.Clear();
+			dsDBC.Clear();
+			dsDBC.DBI.Merge(GlobalObject.xsdDBC.DBI,false, MissingSchemaAction.Ignore);
+			if (dsDBC.DBI.Rows.Count > 0)
+			{
+				tlvHelper.BindDataTable(dsDBC.DBI);
+				treeListView1.ExpandAll();
+			}
 		}
 		#endregion
 	}
