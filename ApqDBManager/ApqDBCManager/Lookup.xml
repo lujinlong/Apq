@@ -1,4 +1,4 @@
-<?xml version="1.0" standalone="yes"?>
+﻿<?xml version="1.0" standalone="yes"?>
 <DBS_XSD xmlns="http://tempuri.org/DBS_XSD.xsd">
   <Computer>
 	<ComputerID>1</ComputerID>
