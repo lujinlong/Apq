@@ -13,6 +13,13 @@ namespace ApqDBManager.Forms
 {
 	public partial class DBIs : Apq.Windows.Forms.DockForm
 	{
+		private SqlEdit _SqlEdit = null;
+		public SqlEdit SqlEdit
+		{
+			get { return _SqlEdit; }
+			set { _SqlEdit = value; }
+		}
+
 		private TreeListViewHelper tlvHelper;
 
 		public DBIs()

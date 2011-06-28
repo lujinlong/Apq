@@ -11,6 +11,13 @@ namespace ApqDBManager.Forms
 {
 	public partial class ErrList : Apq.Windows.Forms.DockForm
 	{
+		private SqlEdit _SqlEdit = null;
+		public SqlEdit SqlEdit
+		{
+			get { return _SqlEdit; }
+			set { _SqlEdit = value; }
+		}
+
 		public ErrList()
 		{
 			InitializeComponent();

@@ -18,6 +18,13 @@ namespace ApqDBManager.Forms
 {
 	public partial class SqlEditDoc : Apq.Windows.Forms.DockForm, Apq.Editor.ITextEditor
 	{
+		private SqlEdit _SqlEdit = null;
+		public SqlEdit SqlEdit
+		{
+			get { return _SqlEdit; }
+			set { _SqlEdit = value; }
+		}
+
 		private TextEditor txtSql = new TextEditor();
 
 		public SqlEditDoc()
@@ -36,11 +43,6 @@ namespace ApqDBManager.Forms
 
 			// 获取服务器列表
 			_Sqls = GlobalObject.xsdDBC.Copy() as Apq.DBC.XSD;
-		}
-
-		public SqlEdit SqlEdit
-		{
-			get { return Parent as SqlEdit; }
 		}
 
 		private static string[] aryGo = { "\r\ngo\r\n", "\r\ngO\r\n", "\r\nGo\r\n", "\r\nGO\r\n" };

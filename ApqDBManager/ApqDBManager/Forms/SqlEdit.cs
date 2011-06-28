@@ -21,6 +21,11 @@ namespace ApqDBManager
 		public SqlEdit()
 		{
 			InitializeComponent();
+
+			DBIs.SqlEdit = this;
+			SqlOut.SqlEdit = this;
+			SqlEditDoc.SqlEdit = this;
+			ErrList.SqlEdit = this;
 		}
 
 		public DBIs DBIs = new DBIs();
