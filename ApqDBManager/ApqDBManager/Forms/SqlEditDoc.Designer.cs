@@ -51,14 +51,9 @@
 			this.dsUI = new ApqDBManager.Forms.ErrList_XSD();
 			this._Sqls = new Apq.DBC.XSD();
 			this.elementHost1 = new System.Windows.Forms.Integration.ElementHost();
-			this.actionList1 = new Crad.Windows.Forms.Actions.ActionList();
-			this.acOpen = new Crad.Windows.Forms.Actions.Action();
-			this.acSave = new Crad.Windows.Forms.Actions.Action();
-			this.acSaveAs = new Crad.Windows.Forms.Actions.Action();
 			this.toolStrip1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dsUI)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this._Sqls)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.actionList1)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// tslDBName
@@ -240,13 +235,6 @@
 			this.elementHost1.Text = "elementHost1";
 			this.elementHost1.Child = null;
 			// 
-			// actionList1
-			// 
-			this.actionList1.Actions.Add(this.acOpen);
-			this.actionList1.Actions.Add(this.acSave);
-			this.actionList1.Actions.Add(this.acSaveAs);
-			this.actionList1.ContainerControl = this;
-			// 
 			// SqlEditDoc
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -264,7 +252,6 @@
 			this.toolStrip1.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dsUI)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this._Sqls)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.actionList1)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -295,11 +282,5 @@
 		public ErrList_XSD dsUI;
 		public Apq.DBC.XSD _Sqls;
 		private System.Windows.Forms.Integration.ElementHost elementHost1;
-		private Crad.Windows.Forms.Actions.ActionList actionList1;
-		private Crad.Windows.Forms.Actions.Action acOpen;
-		private Crad.Windows.Forms.Actions.Action acSave;
-		private Crad.Windows.Forms.Actions.Action acSaveAs;
-
-
 	}
 }

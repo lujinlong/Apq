@@ -66,17 +66,7 @@
 			this.tsmiHelp = new System.Windows.Forms.ToolStripMenuItem();
 			this.tsmiSN = new System.Windows.Forms.ToolStripMenuItem();
 			this.tsmiAbout = new System.Windows.Forms.ToolStripMenuItem();
-			this.actionList1 = new Crad.Windows.Forms.Actions.ActionList();
-			this.acNew = new Crad.Windows.Forms.Actions.Action();
-			this.acExit = new Crad.Windows.Forms.Actions.Action();
-			this.acOption = new Crad.Windows.Forms.Actions.Action();
-			this.acUILang = new Crad.Windows.Forms.Actions.Action();
-			this.acCloseAll = new Crad.Windows.Forms.Actions.Action();
-			this.acNewApp = new Crad.Windows.Forms.Actions.Action();
-			this.acSN = new Crad.Windows.Forms.Actions.Action();
-			this.acAbout = new Crad.Windows.Forms.Actions.Action();
 			this.menuStrip1.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.actionList1)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// dockPanel1
@@ -170,11 +160,11 @@
 			// 
 			// tsmiNew
 			// 
-			this.actionList1.SetAction(this.tsmiNew, this.acNew);
 			this.tsmiNew.Name = "tsmiNew";
 			this.tsmiNew.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
 			this.tsmiNew.Size = new System.Drawing.Size(201, 22);
 			this.tsmiNew.Text = "新建(&N)";
+			this.tsmiNew.Click += new System.EventHandler(this.tsmiNew_Click);
 			// 
 			// tsmiOpen
 			// 
@@ -198,8 +188,8 @@
 			// tsmiSaveAs
 			// 
 			this.tsmiSaveAs.Name = "tsmiSaveAs";
-			this.tsmiSaveAs.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift)
-						| System.Windows.Forms.Keys.S)));
+			this.tsmiSaveAs.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
+            | System.Windows.Forms.Keys.S)));
 			this.tsmiSaveAs.Size = new System.Drawing.Size(201, 22);
 			this.tsmiSaveAs.Text = "另存为(&A)";
 			// 
@@ -210,10 +200,10 @@
 			// 
 			// tsmiExit
 			// 
-			this.actionList1.SetAction(this.tsmiExit, this.acExit);
 			this.tsmiExit.Name = "tsmiExit";
 			this.tsmiExit.Size = new System.Drawing.Size(201, 22);
 			this.tsmiExit.Text = "退出(&X)";
+			this.tsmiExit.Click += new System.EventHandler(this.tsmiExit_Click);
 			// 
 			// tsmiTool
 			// 
@@ -229,17 +219,17 @@
 			// 
 			// tsmiOption
 			// 
-			this.actionList1.SetAction(this.tsmiOption, this.acOption);
 			this.tsmiOption.Name = "tsmiOption";
 			this.tsmiOption.Size = new System.Drawing.Size(152, 22);
 			this.tsmiOption.Text = "选项(&O)";
+			this.tsmiOption.Click += new System.EventHandler(this.tsmiOption_Click);
 			// 
 			// tsmiUILang
 			// 
-			this.actionList1.SetAction(this.tsmiUILang, this.acUILang);
 			this.tsmiUILang.Name = "tsmiUILang";
 			this.tsmiUILang.Size = new System.Drawing.Size(152, 22);
 			this.tsmiUILang.Text = "语言(&L)";
+			this.tsmiUILang.Click += new System.EventHandler(this.tsmiUILang_Click);
 			// 
 			// toolStripSeparator6
 			// 
@@ -271,18 +261,18 @@
 			// 
 			// tsmiCloseAll
 			// 
-			this.actionList1.SetAction(this.tsmiCloseAll, this.acCloseAll);
 			this.tsmiCloseAll.Name = "tsmiCloseAll";
 			this.tsmiCloseAll.Size = new System.Drawing.Size(159, 22);
 			this.tsmiCloseAll.Text = "全部关闭(&L)";
+			this.tsmiCloseAll.Click += new System.EventHandler(this.tsmiCloseAll_Click);
 			// 
 			// tsmiNewApp
 			// 
-			this.actionList1.SetAction(this.tsmiNewApp, this.acNewApp);
 			this.tsmiNewApp.Name = "tsmiNewApp";
 			this.tsmiNewApp.ShortcutKeys = System.Windows.Forms.Keys.F12;
 			this.tsmiNewApp.Size = new System.Drawing.Size(159, 22);
 			this.tsmiNewApp.Text = "另开窗口(&N)";
+			this.tsmiNewApp.Click += new System.EventHandler(this.tsmiNewApp_Click);
 			// 
 			// tsmiHelp
 			// 
@@ -295,71 +285,17 @@
 			// 
 			// tsmiSN
 			// 
-			this.actionList1.SetAction(this.tsmiSN, this.acSN);
 			this.tsmiSN.Name = "tsmiSN";
 			this.tsmiSN.Size = new System.Drawing.Size(152, 22);
 			this.tsmiSN.Text = "注册信息(&R)";
+			this.tsmiSN.Click += new System.EventHandler(this.tsmiSN_Click);
 			// 
 			// tsmiAbout
 			// 
-			this.actionList1.SetAction(this.tsmiAbout, this.acAbout);
 			this.tsmiAbout.Name = "tsmiAbout";
 			this.tsmiAbout.Size = new System.Drawing.Size(152, 22);
 			this.tsmiAbout.Text = "关于(&A)";
-			// 
-			// actionList1
-			// 
-			this.actionList1.Actions.Add(this.acNew);
-			this.actionList1.Actions.Add(this.acExit);
-			this.actionList1.Actions.Add(this.acOption);
-			this.actionList1.Actions.Add(this.acUILang);
-			this.actionList1.Actions.Add(this.acCloseAll);
-			this.actionList1.Actions.Add(this.acNewApp);
-			this.actionList1.Actions.Add(this.acSN);
-			this.actionList1.Actions.Add(this.acAbout);
-			this.actionList1.ContainerControl = this;
-			// 
-			// acNew
-			// 
-			this.acNew.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
-			this.acNew.Text = "新建(&N)";
-			this.acNew.Execute += new System.EventHandler(this.acNew_Execute);
-			// 
-			// acExit
-			// 
-			this.acExit.Text = "退出(&X)";
-			this.acExit.Execute += new System.EventHandler(this.acExit_Execute);
-			// 
-			// acOption
-			// 
-			this.acOption.Text = "选项(&O)";
-			this.acOption.Execute += new System.EventHandler(this.acOption_Execute);
-			// 
-			// acUILang
-			// 
-			this.acUILang.Text = "语言(&L)";
-			this.acUILang.Execute += new System.EventHandler(this.acUILang_Execute);
-			// 
-			// acCloseAll
-			// 
-			this.acCloseAll.Text = "全部关闭(&L)";
-			this.acCloseAll.Execute += new System.EventHandler(this.acCloseAll_Execute);
-			// 
-			// acNewApp
-			// 
-			this.acNewApp.ShortcutKeys = System.Windows.Forms.Keys.F12;
-			this.acNewApp.Text = "另开窗口(&N)";
-			this.acNewApp.Execute += new System.EventHandler(this.acNewApp_Execute);
-			// 
-			// acSN
-			// 
-			this.acSN.Text = "注册信息(&R)";
-			this.acSN.Execute += new System.EventHandler(this.acSN_Execute);
-			// 
-			// acAbout
-			// 
-			this.acAbout.Text = "关于(&A)";
-			this.acAbout.Execute += new System.EventHandler(this.acAbout_Execute);
+			this.tsmiAbout.Click += new System.EventHandler(this.tsmiAbout_Click);
 			// 
 			// MainForm
 			// 
@@ -377,7 +313,6 @@
 			this.Load += new System.EventHandler(this.MainForm_Load);
 			this.menuStrip1.ResumeLayout(false);
 			this.menuStrip1.PerformLayout();
-			((System.ComponentModel.ISupportInitialize)(this.actionList1)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -404,15 +339,6 @@
 		private System.Windows.Forms.ToolStripMenuItem tsmiSN;
 		private System.Windows.Forms.ToolStripMenuItem tsmiAbout;
 		private System.Windows.Forms.ToolStripMenuItem tsmiUILang;
-		private Crad.Windows.Forms.Actions.ActionList actionList1;
-		private Crad.Windows.Forms.Actions.Action acNew;
-		private Crad.Windows.Forms.Actions.Action acExit;
-		private Crad.Windows.Forms.Actions.Action acOption;
-		private Crad.Windows.Forms.Actions.Action acUILang;
-		private Crad.Windows.Forms.Actions.Action acCloseAll;
-		private Crad.Windows.Forms.Actions.Action acNewApp;
-		private Crad.Windows.Forms.Actions.Action acSN;
-		private Crad.Windows.Forms.Actions.Action acAbout;
 		public System.Windows.Forms.ToolStripMenuItem tsmiOpen;
 		public System.Windows.Forms.ToolStripMenuItem tsmiSave;
 		public System.Windows.Forms.ToolStripMenuItem tsmiSaveAs;

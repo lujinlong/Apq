@@ -50,34 +50,17 @@ namespace ApqDBManager
 			this.tsbSave = new System.Windows.Forms.ToolStripButton();
 			this.tsbSaveAs = new System.Windows.Forms.ToolStripButton();
 			this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-			this.tsbDBI = new System.Windows.Forms.ToolStripButton();
-			this.tsbOut = new System.Windows.Forms.ToolStripButton();
-			this.tsbErrList = new System.Windows.Forms.ToolStripButton();
-			this.actionList1 = new Crad.Windows.Forms.Actions.ActionList();
-			this.acOpen = new Crad.Windows.Forms.Actions.Action();
-			this.acSave = new Crad.Windows.Forms.Actions.Action();
-			this.acSaveAs = new Crad.Windows.Forms.Actions.Action();
-			this.acDBI = new Crad.Windows.Forms.Actions.Action();
-			this.acOut = new Crad.Windows.Forms.Actions.Action();
-			this.acErrList = new Crad.Windows.Forms.Actions.Action();
+			this.tsddbView = new System.Windows.Forms.ToolStripDropDownButton();
+			this.tsmiDBI = new System.Windows.Forms.ToolStripMenuItem();
+			this.tsmiOut = new System.Windows.Forms.ToolStripMenuItem();
+			this.tsmiErrList = new System.Windows.Forms.ToolStripMenuItem();
 			this.dockPanel1 = new WeifenLuo.WinFormsUI.Docking.DockPanel();
 			this.tsslStatus = new System.Windows.Forms.ToolStripStatusLabel();
 			this.tspb = new System.Windows.Forms.ToolStripProgressBar();
 			this.statusStrip1 = new System.Windows.Forms.StatusStrip();
 			this.toolStrip1.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.actionList1)).BeginInit();
 			this.statusStrip1.SuspendLayout();
 			this.SuspendLayout();
-			// 
-			// actionList1
-			// 
-			this.actionList1.Actions.Add(this.acOpen);
-			this.actionList1.Actions.Add(this.acSave);
-			this.actionList1.Actions.Add(this.acSaveAs);
-			this.actionList1.Actions.Add(this.acDBI);
-			this.actionList1.Actions.Add(this.acOut);
-			this.actionList1.Actions.Add(this.acErrList);
-			this.actionList1.ContainerControl = this;
 			// 
 			// toolStrip1
 			// 
@@ -86,9 +69,7 @@ namespace ApqDBManager
             this.tsbSave,
             this.tsbSaveAs,
             this.toolStripSeparator1,
-            this.tsbDBI,
-            this.tsbOut,
-            this.tsbErrList});
+            this.tsddbView});
 			this.toolStrip1.Location = new System.Drawing.Point(0, 0);
 			this.toolStrip1.Name = "toolStrip1";
 			this.toolStrip1.Size = new System.Drawing.Size(760, 25);
@@ -127,73 +108,54 @@ namespace ApqDBManager
 			this.toolStripSeparator1.Name = "toolStripSeparator1";
 			this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
 			// 
-			// tsbDBI
+			// tsddbView
 			// 
-			this.actionList1.SetAction(this.tsbDBI, this.acDBI);
-			this.tsbDBI.Checked = true;
-			this.tsbDBI.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.tsbDBI.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-			this.tsbDBI.ImageTransparentColor = System.Drawing.Color.Magenta;
-			this.tsbDBI.Name = "tsbDBI";
-			this.tsbDBI.Size = new System.Drawing.Size(87, 22);
-			this.tsbDBI.Text = "数据库列表(&L)";
+			this.tsddbView.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+			this.tsddbView.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiDBI,
+            this.tsmiOut,
+            this.tsmiErrList});
+			this.tsddbView.Image = ((System.Drawing.Image)(resources.GetObject("tsddbView.Image")));
+			this.tsddbView.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.tsddbView.Name = "tsddbView";
+			this.tsddbView.Size = new System.Drawing.Size(60, 22);
+			this.tsddbView.Text = "视图(&V)";
 			// 
-			// tsbOut
+			// tsmiDBI
 			// 
-			this.actionList1.SetAction(this.tsbOut, this.acOut);
-			this.tsbOut.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-			this.tsbOut.ImageTransparentColor = System.Drawing.Color.Magenta;
-			this.tsbOut.Name = "tsbOut";
-			this.tsbOut.Size = new System.Drawing.Size(51, 22);
-			this.tsbOut.Text = "输出(&O)";
+			this.tsmiDBI.Checked = true;
+			this.tsmiDBI.CheckOnClick = true;
+			this.tsmiDBI.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.tsmiDBI.Name = "tsmiDBI";
+			this.tsmiDBI.Size = new System.Drawing.Size(152, 22);
+			this.tsmiDBI.Text = "数据库列表(&L)";
+			this.tsmiDBI.CheckedChanged += new System.EventHandler(this.tsmiDBI_CheckedChanged);
 			// 
-			// tsbErrList
+			// tsmiOut
 			// 
-			this.actionList1.SetAction(this.tsbErrList, this.acErrList);
-			this.tsbErrList.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-			this.tsbErrList.ImageTransparentColor = System.Drawing.Color.Magenta;
-			this.tsbErrList.Name = "tsbErrList";
-			this.tsbErrList.Size = new System.Drawing.Size(75, 22);
-			this.tsbErrList.Text = "错误列表(&E)";
+			this.tsmiOut.CheckOnClick = true;
+			this.tsmiOut.Name = "tsmiOut";
+			this.tsmiOut.Size = new System.Drawing.Size(152, 22);
+			this.tsmiOut.Text = "输出(&O)";
+			this.tsmiOut.CheckedChanged += new System.EventHandler(this.tsmiOut_CheckedChanged);
 			// 
-			// acOpen
+			// tsmiErrList
 			// 
-			this.acOpen.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-			this.acOpen.Text = "打开(&O)";
-			// 
-			// acSave
-			// 
-			this.acSave.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-			this.acSave.Text = "保存(&S)";
-			// 
-			// acSaveAs
-			// 
-			this.acSaveAs.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift)
-						| System.Windows.Forms.Keys.S)));
-			this.acSaveAs.Text = "另存为(&A)";
-			// 
-			// acDBI
-			// 
-			this.acDBI.Checked = true;
-			this.acDBI.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.acDBI.Text = "数据库列表(&L)";
-			this.acDBI.Execute += new System.EventHandler(this.acDBI_Execute);
-			// 
-			// acOut
-			// 
-			this.acOut.Text = "输出(&O)";
-			this.acOut.Execute += new System.EventHandler(this.acOut_Execute);
-			// 
-			// acErrList
-			// 
-			this.acErrList.Text = "错误列表(&E)";
-			this.acErrList.Execute += new System.EventHandler(this.acErrList_Execute);
+			this.tsmiErrList.CheckOnClick = true;
+			this.tsmiErrList.Name = "tsmiErrList";
+			this.tsmiErrList.Size = new System.Drawing.Size(152, 22);
+			this.tsmiErrList.Text = "错误列表(&E)";
+			this.tsmiErrList.CheckedChanged += new System.EventHandler(this.tsmiErrList_CheckedChanged);
 			// 
 			// dockPanel1
 			// 
 			this.dockPanel1.ActiveAutoHideContent = null;
 			this.dockPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.dockPanel1.DockBackColor = System.Drawing.SystemColors.Control;
+			this.dockPanel1.DockBottomPortion = 0.2D;
+			this.dockPanel1.DockLeftPortion = 240D;
+			this.dockPanel1.DockRightPortion = 240D;
+			this.dockPanel1.DockTopPortion = 0.2D;
 			this.dockPanel1.DocumentStyle = WeifenLuo.WinFormsUI.Docking.DocumentStyle.DockingSdi;
 			this.dockPanel1.Location = new System.Drawing.Point(0, 25);
 			this.dockPanel1.Name = "dockPanel1";
@@ -287,7 +249,6 @@ namespace ApqDBManager
 			this.Load += new System.EventHandler(this.SqlEdit_Load);
 			this.toolStrip1.ResumeLayout(false);
 			this.toolStrip1.PerformLayout();
-			((System.ComponentModel.ISupportInitialize)(this.actionList1)).EndInit();
 			this.statusStrip1.ResumeLayout(false);
 			this.statusStrip1.PerformLayout();
 			this.ResumeLayout(false);
@@ -301,20 +262,14 @@ namespace ApqDBManager
 		private System.Windows.Forms.ToolStripButton tsbOpen;
 		private System.Windows.Forms.ToolStripButton tsbSave;
 		private System.Windows.Forms.ToolStripButton tsbSaveAs;
-		private Crad.Windows.Forms.Actions.ActionList actionList1;
-		private Crad.Windows.Forms.Actions.Action acOpen;
-		private Crad.Windows.Forms.Actions.Action acSave;
-		private Crad.Windows.Forms.Actions.Action acSaveAs;
 		private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-		private System.Windows.Forms.ToolStripButton tsbDBI;
-		private System.Windows.Forms.ToolStripButton tsbOut;
-		private System.Windows.Forms.ToolStripButton tsbErrList;
-		private Crad.Windows.Forms.Actions.Action acDBI;
-		private Crad.Windows.Forms.Actions.Action acOut;
-		private Crad.Windows.Forms.Actions.Action acErrList;
 		public WeifenLuo.WinFormsUI.Docking.DockPanel dockPanel1;
 		private System.Windows.Forms.StatusStrip statusStrip1;
 		public System.Windows.Forms.ToolStripStatusLabel tsslStatus;
 		public System.Windows.Forms.ToolStripProgressBar tspb;
+		private System.Windows.Forms.ToolStripMenuItem tsmiDBI;
+		private System.Windows.Forms.ToolStripMenuItem tsmiOut;
+		private System.Windows.Forms.ToolStripMenuItem tsmiErrList;
+		private System.Windows.Forms.ToolStripDropDownButton tsddbView;
 	}
 }

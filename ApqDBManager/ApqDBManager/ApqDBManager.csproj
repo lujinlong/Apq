@@ -135,9 +135,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Dlls\Apq.WorkFlow.dll</HintPath>
     </Reference>
-    <Reference Include="Crad.Windows.Forms.Actions">
-      <HintPath>Dlls\Crad.Windows.Forms.Actions.dll</HintPath>
-    </Reference>
     <Reference Include="ICSharpCode.AvalonEdit">
       <HintPath>Dlls\ICSharpCode.AvalonEdit.dll</HintPath>
     </Reference>
@@ -147,10 +144,6 @@
     </Reference>
     <Reference Include="MySql.Data, Version=6.3.6.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <Private>True</Private>
-    </Reference>
-    <Reference Include="org.in2bits.MyXls, Version=0.6.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>Dlls\org.in2bits.MyXls.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
@@ -540,7 +533,7 @@ xcopy "$(ProjectDir)..\..\Reference\$(ConfigurationName)\Config\Apq.Reg.Client.d
 xcopy "$(ProjectDir)..\..\Reference\$(ConfigurationName)\Config\Apq.Reg.Client.dll.apq" "$(ProjectDir)" /c /q /g /h /r /k /y
 :EndConfig
 
-xcopy "$(ProjectDir)..\..\Reference\CradsActions\Crad.Windows.Forms.Actions.dll" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+:xcopy "$(ProjectDir)..\..\Reference\CradsActions\Crad.Windows.Forms.Actions.dll" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
 
 xcopy "$(ProjectDir)..\..\Reference\$(ConfigurationName)\Apq.dll" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
 xcopy "$(ProjectDir)..\..\Reference\$(ConfigurationName)\Apq.xml" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y

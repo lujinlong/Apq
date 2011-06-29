@@ -34,7 +34,7 @@ namespace ApqDBManager.Forms
 			txtSql.Encoding = System.Text.Encoding.UTF8;
 
 			txtSql.IsReadOnly = false;
-			txtSql.Options.ShowSpaces = true;
+			//txtSql.Options.ShowSpaces = true;
 			txtSql.Options.ShowTabs = true;
 			//txtSql.Options.IndentationSize = 100;
 			txtSql.Options.AllowScrollBelowDocument = true;

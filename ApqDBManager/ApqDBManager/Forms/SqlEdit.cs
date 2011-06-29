@@ -13,9 +13,6 @@ using ApqDBManager.Forms;
 
 namespace ApqDBManager
 {
-	/// <summary>
-	/// 可作为 后台多线程示例
-	/// </summary>
 	public partial class SqlEdit : Apq.Windows.Forms.DockForm
 	{
 		public SqlEdit()
@@ -36,17 +33,18 @@ namespace ApqDBManager
 		public override void SetUILang(Apq.UILang.UILang UILang)
 		{
 			#region 工具栏
-			acOpen.Text = Apq.GlobalObject.UILang["打开(&O)"];
-			acSave.Text = Apq.GlobalObject.UILang["保存(&S)"];
-			acSaveAs.Text = Apq.GlobalObject.UILang["另存为(&A)"];
+			tsbOpen.Text = Apq.GlobalObject.UILang["打开(&O)"];
+			tsbSave.Text = Apq.GlobalObject.UILang["保存(&S)"];
+			tsbSaveAs.Text = Apq.GlobalObject.UILang["另存为(&A)"];
 
-			acDBI.Text = Apq.GlobalObject.UILang["数据库列表(&L)"];
-			acOut.Text = Apq.GlobalObject.UILang["输出(&O)"];
-			acErrList.Text = Apq.GlobalObject.UILang["错误列表(&E)"];
+			tsddbView.Text = Apq.GlobalObject.UILang["视图(&V)"];
+			tsmiDBI.Text = Apq.GlobalObject.UILang["数据库列表(&L)"];
+			tsmiOut.Text = Apq.GlobalObject.UILang["输出(&O)"];
+			tsmiErrList.Text = Apq.GlobalObject.UILang["错误列表(&E)"];
 			#endregion
 
-			this.acOpen.Image = System.Drawing.Image.FromFile(Application.StartupPath + @"\Res\png\File\Open.png");
-			this.acSave.Image = System.Drawing.Image.FromFile(Application.StartupPath + @"\Res\png\File\Save.png");
+			this.tsbOpen.Image = System.Drawing.Image.FromFile(Application.StartupPath + @"\Res\png\File\Open.png");
+			this.tsbSave.Image = System.Drawing.Image.FromFile(Application.StartupPath + @"\Res\png\File\Save.png");
 		}
 
 		private void SqlEdit_Load(object sender, EventArgs e)
@@ -72,10 +70,9 @@ namespace ApqDBManager
 
 		}
 
-		private void acDBI_Execute(object sender, EventArgs e)
+		private void tsmiDBI_CheckedChanged(object sender, EventArgs e)
 		{
-			acDBI.Checked = !acDBI.Checked;
-			if (acDBI.Checked)
+			if (tsmiDBI.Checked)
 			{
 				DBIs.Show(dockPanel1);
 			}
@@ -85,10 +82,9 @@ namespace ApqDBManager
 			}
 		}
 
-		private void acOut_Execute(object sender, EventArgs e)
+		private void tsmiOut_CheckedChanged(object sender, EventArgs e)
 		{
-			acOut.Checked = !acOut.Checked;
-			if (acOut.Checked)
+			if (tsmiOut.Checked)
 			{
 				SqlOut.Show(dockPanel1);
 			}
@@ -98,10 +94,9 @@ namespace ApqDBManager
 			}
 		}
 
-		private void acErrList_Execute(object sender, EventArgs e)
+		private void tsmiErrList_CheckedChanged(object sender, EventArgs e)
 		{
-			acErrList.Checked = !acErrList.Checked;
-			if (acErrList.Checked)
+			if (tsmiErrList.Checked)
 			{
 				ErrList.Show(dockPanel1);
 			}
