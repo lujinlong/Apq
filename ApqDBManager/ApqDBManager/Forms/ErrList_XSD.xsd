@@ -9,15 +9,15 @@
       </DataSource>
     </xs:appinfo>
   </xs:annotation>
-  <xs:element name="ErrList_XSD" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_DataSetName="ErrList_XSD" msprop:Generator_UserDSName="ErrList_XSD" msprop:EnableTableAdapterManager="true">
+  <xs:element name="ErrList_XSD" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="ErrList_XSD" msprop:Generator_UserDSName="ErrList_XSD">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="ErrList" msprop:Generator_UserTableName="ErrList" msprop:Generator_RowDeletedName="ErrListRowDeleted" msprop:Generator_TableClassName="ErrListDataTable" msprop:Generator_RowChangedName="ErrListRowChanged" msprop:Generator_RowClassName="ErrListRow" msprop:Generator_RowChangingName="ErrListRowChanging" msprop:Generator_RowEvArgName="ErrListRowChangeEvent" msprop:Generator_RowEvHandlerName="ErrListRowChangeEventHandler" msprop:Generator_TablePropName="ErrList" msprop:Generator_TableVarName="tableErrList" msprop:Generator_RowDeletingName="ErrListRowDeleting">
+        <xs:element name="ErrList" msprop:Generator_TableClassName="ErrListDataTable" msprop:Generator_RowEvArgName="ErrListRowChangeEvent" msprop:Generator_TableVarName="tableErrList" msprop:Generator_TablePropName="ErrList" msprop:Generator_RowDeletingName="ErrListRowDeleting" msprop:Generator_UserTableName="ErrList" msprop:Generator_RowChangingName="ErrListRowChanging" msprop:Generator_RowDeletedName="ErrListRowDeleted" msprop:Generator_RowChangedName="ErrListRowChanged" msprop:Generator_RowEvHandlerName="ErrListRowChangeEventHandler" msprop:Generator_RowClassName="ErrListRow">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="RSrvID" msdata:Caption="ServerID" msprop:Generator_UserColumnName="RSrvID" msprop:Generator_ColumnPropNameInRow="RSrvID" msprop:Generator_ColumnVarNameInTable="columnRSrvID" msprop:Generator_ColumnPropNameInTable="RSrvIDColumn" type="xs:int" minOccurs="0" />
-              <xs:element name="__DBIName" msprop:Generator_UserColumnName="__DBIName" msprop:Generator_ColumnPropNameInRow="__DBIName" msprop:Generator_ColumnVarNameInTable="column__DBIName" msprop:Generator_ColumnPropNameInTable="__DBINameColumn" type="xs:string" minOccurs="0" />
-              <xs:element name="s" msprop:Generator_UserColumnName="s" msprop:Generator_ColumnPropNameInRow="s" msprop:Generator_ColumnVarNameInTable="columns" msprop:Generator_ColumnPropNameInTable="sColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="DBIID" msdata:Caption="ServerID" msprop:Generator_ColumnVarNameInTable="columnDBIID" msprop:Generator_ColumnPropNameInRow="DBIID" msprop:Generator_ColumnPropNameInTable="DBIIDColumn" msprop:Generator_UserColumnName="DBIID" type="xs:int" minOccurs="0" />
+              <xs:element name="__DBIName" msprop:Generator_ColumnVarNameInTable="column__DBIName" msprop:Generator_ColumnPropNameInRow="__DBIName" msprop:Generator_ColumnPropNameInTable="__DBINameColumn" msprop:Generator_UserColumnName="__DBIName" type="xs:string" minOccurs="0" />
+              <xs:element name="s" msprop:Generator_ColumnVarNameInTable="columns" msprop:Generator_ColumnPropNameInRow="s" msprop:Generator_ColumnPropNameInTable="sColumn" msprop:Generator_UserColumnName="s" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

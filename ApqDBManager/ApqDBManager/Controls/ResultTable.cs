@@ -267,19 +267,19 @@ namespace ApqDBManager.Controls
 							}
 						}
 
-						DataView dvErr = new DataView(se.SqlEditDoc._Sqls.DBI);
-						dvErr.RowFilter = "SqlID = " + ServerID;
+						DataView dvErr = new DataView(se.SqlEditDoc.dsDBC.DBI);
+						dvErr.RowFilter = "DBIID = " + ServerID;
 						// 标记本服执行出错
 						if (dvErr.Count > 0)
 						{
 							object rtLock = se.SqlEditDoc.GetLock(ServerID.ToString());
 							lock (rtLock)
 							{
-								ErrList_XSD.ErrListRow drErrList = se.SqlEditDoc.dsUI.ErrList.NewErrListRow();
-								drErrList.RSrvID = ServerID;
+								ErrList_XSD.ErrListRow drErrList = se.SqlEditDoc.dsErr.ErrList.NewErrListRow();
+								drErrList.DBIID = ServerID;
 								drErrList["__DBIName"] = dvErr[0]["SqlName"];
 								drErrList.s = r.Message;
-								se.SqlEditDoc.dsUI.ErrList.Rows.Add(drErrList);
+								se.SqlEditDoc.dsErr.ErrList.Rows.Add(drErrList);
 
 								dvErr[0]["Err"] = true;
 							}

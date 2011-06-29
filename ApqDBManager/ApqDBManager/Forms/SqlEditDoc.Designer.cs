@@ -29,6 +29,16 @@
 		private void InitializeComponent()
 		{
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SqlEditDoc));
+			this.tsmiUndo = new System.Windows.Forms.ToolStripMenuItem();
+			this.tsmiRedo = new System.Windows.Forms.ToolStripMenuItem();
+			this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+			this.tsmiCut = new System.Windows.Forms.ToolStripMenuItem();
+			this.tsmiCopy = new System.Windows.Forms.ToolStripMenuItem();
+			this.tsmiPaste = new System.Windows.Forms.ToolStripMenuItem();
+			this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+			this.tsmiSelectAll = new System.Windows.Forms.ToolStripMenuItem();
+			this.elementHost1 = new System.Windows.Forms.Integration.ElementHost();
+			this.toolStrip1 = new System.Windows.Forms.ToolStrip();
 			this.tslDBName = new System.Windows.Forms.ToolStripLabel();
 			this.tscbDBName = new System.Windows.Forms.ToolStripComboBox();
 			this.tsbExec = new System.Windows.Forms.ToolStripButton();
@@ -39,22 +49,97 @@
 			this.tsmiResult0 = new System.Windows.Forms.ToolStripMenuItem();
 			this.tsmiResult1 = new System.Windows.Forms.ToolStripMenuItem();
 			this.tsbExport = new System.Windows.Forms.ToolStripButton();
-			this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-			this.tsmiUndo = new System.Windows.Forms.ToolStripMenuItem();
-			this.tsmiRedo = new System.Windows.Forms.ToolStripMenuItem();
-			this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-			this.tsmiCut = new System.Windows.Forms.ToolStripMenuItem();
-			this.tsmiCopy = new System.Windows.Forms.ToolStripMenuItem();
-			this.tsmiPaste = new System.Windows.Forms.ToolStripMenuItem();
-			this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-			this.tsmiSelectAll = new System.Windows.Forms.ToolStripMenuItem();
-			this.dsUI = new ApqDBManager.Forms.ErrList_XSD();
-			this._Sqls = new Apq.DBC.XSD();
-			this.elementHost1 = new System.Windows.Forms.Integration.ElementHost();
+			this._dsDBC = new Apq.DBC.XSD();
+			this._dsErr = new ApqDBManager.Forms.ErrList_XSD();
 			this.toolStrip1.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.dsUI)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this._Sqls)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this._dsDBC)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this._dsErr)).BeginInit();
 			this.SuspendLayout();
+			// 
+			// tsmiUndo
+			// 
+			this.tsmiUndo.Name = "tsmiUndo";
+			this.tsmiUndo.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Z)));
+			this.tsmiUndo.Size = new System.Drawing.Size(153, 22);
+			this.tsmiUndo.Text = "撤消(&U)";
+			this.tsmiUndo.Click += new System.EventHandler(this.tsmiUndo_Click);
+			// 
+			// tsmiRedo
+			// 
+			this.tsmiRedo.Name = "tsmiRedo";
+			this.tsmiRedo.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Y)));
+			this.tsmiRedo.Size = new System.Drawing.Size(153, 22);
+			this.tsmiRedo.Text = "重做(&R)";
+			this.tsmiRedo.Click += new System.EventHandler(this.tsmiRedo_Click);
+			// 
+			// toolStripSeparator1
+			// 
+			this.toolStripSeparator1.Name = "toolStripSeparator1";
+			this.toolStripSeparator1.Size = new System.Drawing.Size(150, 6);
+			// 
+			// tsmiCut
+			// 
+			this.tsmiCut.Name = "tsmiCut";
+			this.tsmiCut.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.X)));
+			this.tsmiCut.Size = new System.Drawing.Size(153, 22);
+			this.tsmiCut.Text = "剪切(&T)";
+			this.tsmiCut.Click += new System.EventHandler(this.tsmiCut_Click);
+			// 
+			// tsmiCopy
+			// 
+			this.tsmiCopy.Name = "tsmiCopy";
+			this.tsmiCopy.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.C)));
+			this.tsmiCopy.Size = new System.Drawing.Size(153, 22);
+			this.tsmiCopy.Text = "复制(&C)";
+			this.tsmiCopy.Click += new System.EventHandler(this.tsmiCopy_Click);
+			// 
+			// tsmiPaste
+			// 
+			this.tsmiPaste.Name = "tsmiPaste";
+			this.tsmiPaste.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.V)));
+			this.tsmiPaste.Size = new System.Drawing.Size(153, 22);
+			this.tsmiPaste.Text = "粘贴(&P)";
+			this.tsmiPaste.Click += new System.EventHandler(this.tsmiPaste_Click);
+			// 
+			// toolStripSeparator2
+			// 
+			this.toolStripSeparator2.Name = "toolStripSeparator2";
+			this.toolStripSeparator2.Size = new System.Drawing.Size(150, 6);
+			// 
+			// tsmiSelectAll
+			// 
+			this.tsmiSelectAll.Name = "tsmiSelectAll";
+			this.tsmiSelectAll.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.A)));
+			this.tsmiSelectAll.Size = new System.Drawing.Size(153, 22);
+			this.tsmiSelectAll.Text = "全选(&A)";
+			this.tsmiSelectAll.Click += new System.EventHandler(this.tsmiSelectAll_Click);
+			// 
+			// elementHost1
+			// 
+			this.elementHost1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.elementHost1.Location = new System.Drawing.Point(0, 25);
+			this.elementHost1.Name = "elementHost1";
+			this.elementHost1.Size = new System.Drawing.Size(760, 415);
+			this.elementHost1.TabIndex = 9;
+			this.elementHost1.Text = "elementHost1";
+			this.elementHost1.Child = null;
+			// 
+			// toolStrip1
+			// 
+			this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tslDBName,
+            this.tscbDBName,
+            this.tsbExec,
+            this.tsbCancel,
+            this.tsbSingleThread,
+            this.toolStripSeparator3,
+            this.tssbResult,
+            this.tsbExport});
+			this.toolStrip1.Location = new System.Drawing.Point(0, 0);
+			this.toolStrip1.Name = "toolStrip1";
+			this.toolStrip1.Size = new System.Drawing.Size(760, 25);
+			this.toolStrip1.TabIndex = 8;
+			this.toolStrip1.Text = "toolStrip1";
 			// 
 			// tslDBName
 			// 
@@ -140,106 +225,21 @@
 			this.tsbExport.Text = "导出(&T)";
 			this.tsbExport.Click += new System.EventHandler(this.tsbExport_Click);
 			// 
-			// toolStrip1
+			// _dsDBC
 			// 
-			this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tslDBName,
-            this.tscbDBName,
-            this.tsbExec,
-            this.tsbCancel,
-            this.tsbSingleThread,
-            this.toolStripSeparator3,
-            this.tssbResult,
-            this.tsbExport});
-			this.toolStrip1.Location = new System.Drawing.Point(0, 0);
-			this.toolStrip1.Name = "toolStrip1";
-			this.toolStrip1.Size = new System.Drawing.Size(760, 25);
-			this.toolStrip1.TabIndex = 8;
-			this.toolStrip1.Text = "toolStrip1";
+			this._dsDBC.DataSetName = "Sqls";
+			this._dsDBC.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
 			// 
-			// tsmiUndo
+			// _dsErr
 			// 
-			this.tsmiUndo.Name = "tsmiUndo";
-			this.tsmiUndo.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Z)));
-			this.tsmiUndo.Size = new System.Drawing.Size(153, 22);
-			this.tsmiUndo.Text = "撤消(&U)";
-			this.tsmiUndo.Click += new System.EventHandler(this.tsmiUndo_Click);
-			// 
-			// tsmiRedo
-			// 
-			this.tsmiRedo.Name = "tsmiRedo";
-			this.tsmiRedo.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Y)));
-			this.tsmiRedo.Size = new System.Drawing.Size(153, 22);
-			this.tsmiRedo.Text = "重做(&R)";
-			this.tsmiRedo.Click += new System.EventHandler(this.tsmiRedo_Click);
-			// 
-			// toolStripSeparator1
-			// 
-			this.toolStripSeparator1.Name = "toolStripSeparator1";
-			this.toolStripSeparator1.Size = new System.Drawing.Size(150, 6);
-			// 
-			// tsmiCut
-			// 
-			this.tsmiCut.Name = "tsmiCut";
-			this.tsmiCut.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.X)));
-			this.tsmiCut.Size = new System.Drawing.Size(153, 22);
-			this.tsmiCut.Text = "剪切(&T)";
-			this.tsmiCut.Click += new System.EventHandler(this.tsmiCut_Click);
-			// 
-			// tsmiCopy
-			// 
-			this.tsmiCopy.Name = "tsmiCopy";
-			this.tsmiCopy.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.C)));
-			this.tsmiCopy.Size = new System.Drawing.Size(153, 22);
-			this.tsmiCopy.Text = "复制(&C)";
-			this.tsmiCopy.Click += new System.EventHandler(this.tsmiCopy_Click);
-			// 
-			// tsmiPaste
-			// 
-			this.tsmiPaste.Name = "tsmiPaste";
-			this.tsmiPaste.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.V)));
-			this.tsmiPaste.Size = new System.Drawing.Size(153, 22);
-			this.tsmiPaste.Text = "粘贴(&P)";
-			this.tsmiPaste.Click += new System.EventHandler(this.tsmiPaste_Click);
-			// 
-			// toolStripSeparator2
-			// 
-			this.toolStripSeparator2.Name = "toolStripSeparator2";
-			this.toolStripSeparator2.Size = new System.Drawing.Size(150, 6);
-			// 
-			// tsmiSelectAll
-			// 
-			this.tsmiSelectAll.Name = "tsmiSelectAll";
-			this.tsmiSelectAll.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.A)));
-			this.tsmiSelectAll.Size = new System.Drawing.Size(153, 22);
-			this.tsmiSelectAll.Text = "全选(&A)";
-			this.tsmiSelectAll.Click += new System.EventHandler(this.tsmiSelectAll_Click);
-			// 
-			// dsUI
-			// 
-			this.dsUI.DataSetName = "UI";
-			this.dsUI.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-			// 
-			// _Sqls
-			// 
-			this._Sqls.DataSetName = "Sqls";
-			this._Sqls.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-			// 
-			// elementHost1
-			// 
-			this.elementHost1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.elementHost1.Location = new System.Drawing.Point(0, 25);
-			this.elementHost1.Name = "elementHost1";
-			this.elementHost1.Size = new System.Drawing.Size(760, 441);
-			this.elementHost1.TabIndex = 9;
-			this.elementHost1.Text = "elementHost1";
-			this.elementHost1.Child = null;
+			this._dsErr.DataSetName = "UI";
+			this._dsErr.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
 			// 
 			// SqlEditDoc
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(760, 466);
+			this.ClientSize = new System.Drawing.Size(760, 440);
 			this.Controls.Add(this.elementHost1);
 			this.Controls.Add(this.toolStrip1);
 			this.DockAreas = WeifenLuo.WinFormsUI.Docking.DockAreas.Document;
@@ -250,8 +250,8 @@
 			this.Load += new System.EventHandler(this.SqlEditDoc_Load);
 			this.toolStrip1.ResumeLayout(false);
 			this.toolStrip1.PerformLayout();
-			((System.ComponentModel.ISupportInitialize)(this.dsUI)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this._Sqls)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this._dsDBC)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this._dsErr)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -279,8 +279,8 @@
 		private System.Windows.Forms.ToolStripMenuItem tsmiPaste;
 		private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
 		private System.Windows.Forms.ToolStripMenuItem tsmiSelectAll;
-		public ErrList_XSD dsUI;
-		public Apq.DBC.XSD _Sqls;
 		private System.Windows.Forms.Integration.ElementHost elementHost1;
+		private Apq.DBC.XSD _dsDBC;
+		private ErrList_XSD _dsErr;
 	}
 }

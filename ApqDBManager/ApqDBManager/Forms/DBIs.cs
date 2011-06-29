@@ -21,6 +21,10 @@ namespace ApqDBManager.Forms
 		}
 
 		private TreeListViewHelper tlvHelper;
+		public Apq.DBC.XSD dsDBC
+		{
+			get { return SqlEdit.SqlEditDoc.dsDBC; }
+		}
 
 		public DBIs()
 		{
@@ -62,7 +66,7 @@ namespace ApqDBManager.Forms
 					dv.RowFilter = "DBIName = " + Apq.Data.SqlClient.Common.ConvertToSqlON(SqlDbType.VarChar, strCheckedName);
 					foreach (DataRowView dr in dv)
 					{
-						dr["_CheckState"] = 1;
+						dr["_Checked"] = 1;
 					}
 				}
 				dsDBC.DBI.AcceptChanges();
@@ -188,6 +192,19 @@ namespace ApqDBManager.Forms
 			}
 		}
 
+		private void treeListView1_ItemChecked(object sender, ItemCheckedEventArgs e)
+		{
+			if (e.Item != null && e.Item.SubItems.Count > e.Item.ListView.Columns.Count)
+			{
+				long DBIID = Apq.Convert.ChangeType<long>(e.Item.SubItems[e.Item.ListView.Columns.Count].Text);
+				DataRow[] drs = dsDBC.DBI.Select("DBIID = " + DBIID);
+				if (drs.Length > 0)
+				{
+					drs[0]["_Checked"] = e.Item.Checked;
+				}
+			}
+		}
+
 		private void treeListView1_SelectedIndexChanged(object sender, EventArgs e)
 		{
 			if (treeListView1.FocusedItem != null)
@@ -241,7 +258,7 @@ namespace ApqDBManager.Forms
 			DataRow[] drs = dsDBC.DBI.Select("DBIID = " + DBIID);
 			if (drs.Length > 0)
 			{
-				drs[0]["_CheckState"] = node.Checked;
+				drs[0]["_Checked"] = node.Checked;
 				drs[0]["_Selected"] = node.Selected;
 			}
 
@@ -281,24 +298,7 @@ namespace ApqDBManager.Forms
 			tlvHelper = new TreeListViewHelper(treeListView1);
 			tlvHelper.TableMapping.ColumnMappings.Add("名称", "DBIName");
 			tlvHelper.Key = "DBIID";
-			tlvHelper.HiddenColNames = new List<string>(new string[] { "DBIID", "_CheckState", "_Expanded", "_Selected" });
-		}
-		/// <summary>
-		/// 初始数据(如Lookup数据等)
-		/// </summary>
-		/// <param name="ds"></param>
-		public override void InitData(DataSet ds)
-		{
-			#region 准备数据集结构
-			dsDBC.DBI.Columns.Add("_CheckState", typeof(int));
-			dsDBC.DBI.Columns.Add("_Expanded", typeof(bool));
-			dsDBC.DBI.Columns.Add("_Selected", typeof(bool));
-			dsDBC.DBI.Columns.Add("IsReadyToGo", typeof(bool));
-			dsDBC.DBI.Columns.Add("Err", typeof(bool));
-			#endregion
-
-			#region 加载所有字典表
-			#endregion
+			tlvHelper.HiddenColNames = new List<string>(new string[] { "DBIID", "_Checked", "_Expanded", "_Selected" });
 		}
 		/// <summary>
 		/// 加载数据
@@ -308,8 +308,6 @@ namespace ApqDBManager.Forms
 		{
 			// 绑定到TreeListView
 			treeListView1.Items.Clear();
-			dsDBC.Clear();
-			dsDBC.DBI.Merge(GlobalObject.xsdDBC.DBI,false, MissingSchemaAction.Ignore);
 			if (dsDBC.DBI.Rows.Count > 0)
 			{
 				tlvHelper.BindDataTable(dsDBC.DBI);

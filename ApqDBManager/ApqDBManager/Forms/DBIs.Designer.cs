@@ -29,7 +29,7 @@
 		{
 			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DBIs));
-			System.Windows.Forms.TreeListViewItemCollection.TreeListViewItemCollectionComparer treeListViewItemCollectionComparer2 = new System.Windows.Forms.TreeListViewItemCollection.TreeListViewItemCollectionComparer();
+			System.Windows.Forms.TreeListViewItemCollection.TreeListViewItemCollectionComparer treeListViewItemCollectionComparer1 = new System.Windows.Forms.TreeListViewItemCollection.TreeListViewItemCollectionComparer();
 			this.cmTreeMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.tsmiCopy = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
@@ -44,7 +44,6 @@
 			this.tssbSelect = new System.Windows.Forms.ToolStripSplitButton();
 			this.tsbSelectAll = new System.Windows.Forms.ToolStripButton();
 			this.tsbReverse = new System.Windows.Forms.ToolStripButton();
-			this.dsDBC = new Apq.DBC.XSD();
 			this.cmTreeMenu.SuspendLayout();
 			this.toolStripContainer1.BottomToolStripPanel.SuspendLayout();
 			this.toolStripContainer1.ContentPanel.SuspendLayout();
@@ -52,7 +51,6 @@
 			this.toolStripContainer1.SuspendLayout();
 			this.toolStrip2.SuspendLayout();
 			this.toolStrip1.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.dsDBC)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// cmTreeMenu
@@ -141,9 +139,9 @@
 			this.treeListView1.CheckBoxes = System.Windows.Forms.CheckBoxesTypes.Simple;
 			this.treeListView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1});
-			treeListViewItemCollectionComparer2.Column = 0;
-			treeListViewItemCollectionComparer2.SortOrder = System.Windows.Forms.SortOrder.Ascending;
-			this.treeListView1.Comparer = treeListViewItemCollectionComparer2;
+			treeListViewItemCollectionComparer1.Column = 0;
+			treeListViewItemCollectionComparer1.SortOrder = System.Windows.Forms.SortOrder.Ascending;
+			this.treeListView1.Comparer = treeListViewItemCollectionComparer1;
 			this.treeListView1.ContextMenuStrip = this.cmTreeMenu;
 			this.treeListView1.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.treeListView1.Location = new System.Drawing.Point(0, 0);
@@ -154,6 +152,7 @@
 			this.treeListView1.UseCompatibleStateImageBehavior = false;
 			this.treeListView1.AfterExpand += new System.Windows.Forms.TreeListViewEventHandler(this.treeListView1_AfterExpand);
 			this.treeListView1.AfterCollapse += new System.Windows.Forms.TreeListViewEventHandler(this.treeListView1_AfterCollapse);
+			this.treeListView1.ItemChecked += new System.Windows.Forms.ItemCheckedEventHandler(this.treeListView1_ItemChecked);
 			this.treeListView1.SelectedIndexChanged += new System.EventHandler(this.treeListView1_SelectedIndexChanged);
 			this.treeListView1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.treeListView1_KeyDown);
 			// 
@@ -213,19 +212,14 @@
 			this.tsbReverse.Text = "反选(&S)";
 			this.tsbReverse.Click += new System.EventHandler(this.tsbReverse_Click);
 			// 
-			// dsDBC
-			// 
-			this.dsDBC.DataSetName = "XSD";
-			this.dsDBC.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-			// 
 			// DBIs
 			// 
 			this.ClientSize = new System.Drawing.Size(232, 416);
 			this.Controls.Add(this.toolStripContainer1);
-			this.DockAreas = ((WeifenLuo.WinFormsUI.Docking.DockAreas)(((((WeifenLuo.WinFormsUI.Docking.DockAreas.Float | WeifenLuo.WinFormsUI.Docking.DockAreas.DockLeft)
-						| WeifenLuo.WinFormsUI.Docking.DockAreas.DockRight)
-						| WeifenLuo.WinFormsUI.Docking.DockAreas.DockTop)
-						| WeifenLuo.WinFormsUI.Docking.DockAreas.DockBottom)));
+			this.DockAreas = ((WeifenLuo.WinFormsUI.Docking.DockAreas)(((((WeifenLuo.WinFormsUI.Docking.DockAreas.Float | WeifenLuo.WinFormsUI.Docking.DockAreas.DockLeft) 
+            | WeifenLuo.WinFormsUI.Docking.DockAreas.DockRight) 
+            | WeifenLuo.WinFormsUI.Docking.DockAreas.DockTop) 
+            | WeifenLuo.WinFormsUI.Docking.DockAreas.DockBottom)));
 			this.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
 			this.HideOnClose = true;
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -247,7 +241,6 @@
 			this.toolStrip2.PerformLayout();
 			this.toolStrip1.ResumeLayout(false);
 			this.toolStrip1.PerformLayout();
-			((System.ComponentModel.ISupportInitialize)(this.dsDBC)).EndInit();
 			this.ResumeLayout(false);
 
 		}
@@ -267,7 +260,6 @@
 		private System.Windows.Forms.TreeListView treeListView1;
 		private System.Windows.Forms.ColumnHeader columnHeader1;
 		private System.Windows.Forms.ImageList imageList2;
-		private Apq.DBC.XSD dsDBC;
 
 	}
 }

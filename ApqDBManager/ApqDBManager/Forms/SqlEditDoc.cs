@@ -13,6 +13,7 @@ using ICSharpCode.AvalonEdit;
 using ICSharpCode.AvalonEdit.Highlighting;
 using System.Xml;
 using ICSharpCode.AvalonEdit.Document;
+using System.Data.Common;
 
 namespace ApqDBManager.Forms
 {
@@ -25,7 +26,14 @@ namespace ApqDBManager.Forms
 			set { _SqlEdit = value; }
 		}
 
-		private TextEditor txtSql = new TextEditor();
+		public Apq.DBC.XSD dsDBC
+		{
+			get { return _dsDBC; }
+		}
+		public ErrList_XSD dsErr
+		{
+			get { return _dsErr; }
+		}
 
 		public SqlEditDoc()
 		{
@@ -40,10 +48,9 @@ namespace ApqDBManager.Forms
 			txtSql.Options.AllowScrollBelowDocument = true;
 
 			elementHost1.Child = txtSql;
-
-			// 获取服务器列表
-			_Sqls = GlobalObject.xsdDBC.Copy() as Apq.DBC.XSD;
 		}
+
+		private TextEditor txtSql = new TextEditor();
 
 		private static string[] aryGo = { "\r\ngo\r\n", "\r\ngO\r\n", "\r\nGo\r\n", "\r\nGO\r\n" };
 
@@ -196,6 +203,35 @@ UNION ALL SELECT 2,2;";
 			#endregion
 		}
 
+		#region IDataShow 成员
+		/// <summary>
+		/// 初始数据(如Lookup数据等)
+		/// </summary>
+		/// <param name="ds"></param>
+		public override void InitData(DataSet ds)
+		{
+			#region 准备数据集结构
+			dsDBC.DBI.Columns.Add("_Checked", typeof(bool));
+			dsDBC.DBI.Columns.Add("_Expanded", typeof(bool));
+			dsDBC.DBI.Columns.Add("_Selected", typeof(bool));
+			dsDBC.DBI.Columns.Add("IsReadyToGo", typeof(bool));
+			dsDBC.DBI.Columns.Add("Err", typeof(bool));
+			#endregion
+
+			#region 加载所有字典表
+			#endregion
+		}
+		/// <summary>
+		/// 加载数据
+		/// </summary>
+		/// <param name="ds"></param>
+		public override void LoadData(DataSet ds)
+		{
+			dsDBC.Clear();
+			dsDBC.DBI.Merge(GlobalObject.xsdDBC.DBI, false, MissingSchemaAction.Ignore);
+		}
+		#endregion
+
 		void txtSql_Changed(object sender, DocumentChangeEventArgs e)
 		{
 			GlobalObject.XmlConfigChain[this.GetType(), "txtSql_Text"] = txtSql.Text;
@@ -295,8 +331,8 @@ UNION ALL SELECT 2,2;";
 			if (!string.IsNullOrEmpty(strSql))
 			{
 				#region 注册检测
-				DataView dv = new DataView(_Sqls.DBI);
-				dv.RowFilter = "_CheckState = 1";
+				DataView dv = new DataView(_dsDBC.DBI);
+				dv.RowFilter = "_Checked = 1";
 				if (dv.Count > 3 && !Apq.Reg.Client.Common.IsRegistration)
 				{
 					MessageBox.Show("谢谢您支持共享软件!共享版最多支持同时勾选3个服务器。要获得更多的连接支持,请注册,谢谢使用！",
@@ -390,8 +426,8 @@ UNION ALL SELECT 2,2;";
 		/// </summary>
 		private void MainBackThread_Start()
 		{
-			DataView dv = new DataView(_Sqls.DBI);
-			dv.RowFilter = "_CheckState = 1 AND DBIID > 1";
+			DataView dv = new DataView(_dsDBC.DBI);
+			dv.RowFilter = "_Checked = 1 AND DBIID > 1";
 			if (dv.Count == 0)
 			{
 				return;
@@ -399,10 +435,10 @@ UNION ALL SELECT 2,2;";
 
 			Apq.Windows.Delegates.Action_UI<ToolStripLabel>(this, tslDBName, delegate(ToolStripLabel ctrl)
 			{
-				dsUI.ErrList.Clear();
-				dsUI.ErrList.AcceptChanges();
+				_dsErr.ErrList.Clear();
+				_dsErr.ErrList.AcceptChanges();
 			});
-			foreach (DataRow dr in _Sqls.DBI.Rows)
+			foreach (DataRow dr in _dsDBC.DBI.Rows)
 			{
 				dr["Err"] = false;
 				dr["IsReadyToGo"] = false;
@@ -411,7 +447,7 @@ UNION ALL SELECT 2,2;";
 			{
 				drv["IsReadyToGo"] = true;
 			}
-			_Sqls.DBI.AcceptChanges();
+			_dsDBC.DBI.AcceptChanges();
 
 			if (tsbSingleThread.Checked)
 			{
@@ -419,7 +455,7 @@ UNION ALL SELECT 2,2;";
 
 				foreach (DataRowView drv in dv)
 				{
-					Worker_Start(drv["ID"]);
+					Worker_Start(drv["DBIID"]);
 				}
 			}
 			else
@@ -472,8 +508,8 @@ UNION ALL SELECT 2,2;";
 			try
 			{
 				#region 获取服务器列表
-				DataView dv = new DataView(_Sqls.DBI);
-				dv.RowFilter = "_CheckState = 1 AND DBIID > 1";
+				DataView dv = new DataView(_dsDBC.DBI);
+				dv.RowFilter = "_Checked = 1 AND DBIID > 1";
 				#endregion
 
 				#region 开始
@@ -521,14 +557,15 @@ UNION ALL SELECT 2,2;";
 		/// <param name="ServerID"></param>
 		private void Worker_Start(object DBIID)
 		{
-			/*
 			object rtLock0 = GetLock("0");
 			object rtLock = GetLock(DBIID.ToString());
 
-			int nDBIID = Apq.Convert.ChangeType<int>(DBIID);
-			Apq.DBC.XSD.DBIRow dr = _Sqls.DBI.FindByDBIID(nDBIID);
-			DataSet dsTabPage = new DataSet(dr.DBIName);
-			dsTabPage.ExtendedProperties.Add("DBIID", nDBIID);
+			DataView dvDBI = new DataView(_dsDBC.DBI);
+			dvDBI.RowFilter = "DBIID = " + DBIID;
+
+			DataRowView drv = dvDBI[0];
+			DataSet dsTabPage = new DataSet(drv["DBIName"].ToString());
+			dsTabPage.ExtendedProperties.Add("DBIID", DBIID);
 
 			// 0.结果DataSet准备
 			int nbliResult_ItemIndex = Apq.Convert.ChangeType<int>(Apq.Windows.Controls.ControlExtension.GetControlValues(this, "bliResult.ItemIndex"));
@@ -548,12 +585,14 @@ UNION ALL SELECT 2,2;";
 				dsTabPage = lstds[0];
 			}
 
-			SqlConnection sc = null;
+			DbConnection sc = null;
 			try
 			{
-				sc = new SqlConnection(dr["DBConnectionString"].ToString());
+				sc = Apq.DBC.Common.CreateDBIConnection(drv["DBIName"].ToString(), ref sc);
+				Apq.Data.Common.DbConnectionHelper dch = new Apq.Data.Common.DbConnectionHelper(sc);
 
-				SqlDataAdapter sda = new SqlDataAdapter(string.Empty, sc);
+				DbDataAdapter sda = dch.CreateAdapter();
+
 				sda.SelectCommand.CommandTimeout = 86400;//3600*24
 
 				// 1.设置数据库
@@ -598,16 +637,16 @@ UNION ALL SELECT 2,2;";
 				{
 					Apq.Windows.Delegates.Action_UI<ToolStripLabel>(this, tslDBName, delegate(ToolStripLabel ctrl)
 					{
-						ErrList_XSD.ErrListRow drErrList = dsUI.ErrList.NewErrListRow();
-						drErrList.RSrvID = nDBIID;
-						drErrList["__DBIName"] = dr.DBIName;
+						ErrList_XSD.ErrListRow drErrList = _dsErr.ErrList.NewErrListRow();
+						drErrList.DBIID = (int)DBIID;
+						drErrList["__DBIName"] = drv["DBIName"];
 						drErrList.s = ex.Message;
-						dsUI.ErrList.Rows.Add(drErrList);
+						_dsErr.ErrList.Rows.Add(drErrList);
 
-						dr["Err"] = true;
+						drv["Err"] = true;
 					});
 				}
-				Apq.GlobalObject.ApqLog.Warn(dr["DBIName"], ex);
+				Apq.GlobalObject.ApqLog.Warn(drv["DBIName"], ex);
 			}
 			finally
 			{
@@ -621,13 +660,13 @@ UNION ALL SELECT 2,2;";
 							SqlEdit.tspb.Value++;
 							if (SqlEdit.tspb.Value == SqlEdit.tspb.Maximum)
 							{
-								_Sqls.DBI.AcceptChanges();
-								dsUI.ErrList.AcceptChanges();
+								_dsDBC.DBI.AcceptChanges();
+								_dsErr.ErrList.AcceptChanges();
 								SqlEdit.tsslStatus.Text = "已全部完成";
 								tsbCancel.Enabled = false;
 								tsbExec.Enabled = true;
 
-								DataView dvErr = new DataView(_Sqls.DBI);
+								DataView dvErr = new DataView(_dsDBC.DBI);
 								dvErr.RowFilter = "Err = 1";
 								// 标记本服执行出错
 								if (dvErr.Count > 0)
@@ -639,7 +678,6 @@ UNION ALL SELECT 2,2;";
 					});
 				}
 			}
-			*/
 		}
 		#endregion
 
