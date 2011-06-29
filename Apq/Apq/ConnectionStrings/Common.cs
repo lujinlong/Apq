@@ -15,32 +15,25 @@ namespace Apq.ConnectionStrings
 		/// <summary>
 		/// 获取连接字符串
 		/// </summary>
-		public static string GetConnectionString(DBProduct p, string Server, int Port, string Uid, string Pwd)
+		public static string GetConnectionString(DBProduct p, string Server, int Port, string Uid, string Pwd, string dbName = "master", string Option = "")
 		{
-			return GetConnectionString(p, Server, Port, Uid, Pwd, "master");
-		}
-		/// <summary>
-		/// 获取连接字符串
-		/// </summary>
-		public static string GetConnectionString(DBProduct p, string Server, int Port, string Uid, string Pwd, string dbName)
-		{
+			string str = string.Empty;
 			switch (p)
 			{
 				case DBProduct.MySql:
-					return MySql.MySqlConnection.GetConnectionString(Server, Port, Uid, Pwd, dbName);
+					str = MySql.MySqlConnection.GetConnectionString(Server, Port, Uid, Pwd, dbName);
+					break;
 
 				case DBProduct.MSSql:
 				default:
-					return SQLServer.SqlConnection.GetConnectionString(Server, Port, Uid, Pwd, dbName);
+					str = SQLServer.SqlConnection.GetConnectionString(Server, Port, Uid, Pwd, dbName);
+					break;
 			}
-		}
-		/// <summary>
-		/// 获取连接字符串
-		/// </summary>
-		public static string GetConnectionString(DBProduct p, string Server, int Port, string Uid, string Pwd, string dbName, string Option)
-		{
-			string str = GetConnectionString(p, Server, Port, Uid, Pwd, dbName);
-			str += Option;
+
+			if (!string.IsNullOrEmpty(Option))
+			{
+				str += Option;
+			}
 			return str;
 		}
 		#endregion

@@ -46,6 +46,14 @@ namespace Apq.DBC
 
 		private static void ReadFile()
 		{
+			#region 密钥
+			//string desKey = GlobalObject.XmlConfigChain[typeof(Apq.DBC.Common), "DESKey"];
+			//string desIV = GlobalObject.XmlConfigChain[typeof(Apq.DBC.Common), "DESIV"];
+
+			string desKey = "pD?y/Mn^";
+			string desIV = "$`5iNL8j";
+			#endregion
+
 			// 从.NET配置文件读取cs.res文件路径
 			string _csFilePath = ConfigurationManager.AppSettings["Apq.DBC.csFile"] ?? @"D:\DBA\cs\cs.res";
 			string strFolder = Path.GetDirectoryName(_csFilePath);
@@ -55,68 +63,62 @@ namespace Apq.DBC
 				_csFilePath = strFolder + "\\" + _csFilePath;
 			}
 
-			string strFileName = Path.GetFileName(_csFilePath);
-			if (fsw.Path != strFolder)
+			if (File.Exists(_csFilePath))
 			{
-				fsw.Path = strFolder;
-				fsw.EnableRaisingEvents = true;
-			}
-			if (fsw.Filter != strFileName)
-			{
-				fsw.Filter = strFileName;
-			}
-
-			#region 密钥
-			//string desKey = GlobalObject.XmlConfigChain[typeof(Apq.DBC.Common), "DESKey"];
-			//string desIV = GlobalObject.XmlConfigChain[typeof(Apq.DBC.Common), "DESIV"];
-
-			string desKey = "pD?y/Mn^";
-			string desIV = "$`5iNL8j";
-			#endregion
-
-			try
-			{
-				string strCs = File.ReadAllText(_csFilePath, Encoding.UTF8);
-				string str = Apq.Security.Cryptography.DESHelper.DecryptString(strCs, desKey, desIV);
-				StringReader sr = new StringReader(str);
-				_xsd.Clear();
-				_xsd.ReadXml(sr);
-			}
-			catch(System.Exception ex)
-			{
-				Apq.GlobalObject.ApqLog.Error("DBC文件加载失败", ex);
-			}
-
-			// 读取完成,计算所有连接字符串
-			/*
-			foreach (XSD.SqlInstanceRow dr in _xsd.SqlInstance.Rows)
-			{
-				Apq.ConnectionStrings.SQLServer.SqlConnection sc = new Apq.ConnectionStrings.SQLServer.SqlConnection();
-				sc.ServerName = dr.IP;
-				if (dr.SqlPort > 0)
+				if (fsw.Path != strFolder)
 				{
-					sc.ServerName += "," + dr.SqlPort;
+					fsw.Path = strFolder;
+					fsw.EnableRaisingEvents = true;
 				}
-				sc.DBName = "master";
-				sc.UserId = dr.UserId;
-				sc.Pwd = dr.PwdD;
-				dr["DBConnectionString"] = sc.GetConnectionString();
-			}
-			*/
-			foreach (Apq.DBC.XSD.DBIRow dr in _xsd.DBI.Rows)
-			{
-				dr["DBConnectionString"] = Apq.ConnectionStrings.Common.GetConnectionString(
-					(DBProduct)dr.DBProduct,
-					dr.IP, dr.Port, dr.UserId, dr.PwdD);
-			}
-			foreach (Apq.DBC.XSD.DBCRow dr in _xsd.DBC.Rows)
-			{
-				dr["DBConnectionString"] = Apq.ConnectionStrings.Common.GetConnectionString(
-					(DBProduct)dr.DBProduct,
-					dr.IP, dr.Port, dr.UserId, dr.PwdD, dr.DBName);
+				string strFileName = Path.GetFileName(_csFilePath);
+				if (fsw.Filter != strFileName)
+				{
+					fsw.Filter = strFileName;
+				}
+
+				try
+				{
+					string strCs = File.ReadAllText(_csFilePath, Encoding.UTF8);
+					string str = Apq.Security.Cryptography.DESHelper.DecryptString(strCs, desKey, desIV);
+					StringReader sr = new StringReader(str);
+					_xsd.Clear();
+					_xsd.ReadXml(sr);
+
+					// 计算所有连接字符串
+					/*
+					foreach (XSD.SqlInstanceRow dr in _xsd.SqlInstance.Rows)
+					{
+						Apq.ConnectionStrings.SQLServer.SqlConnection sc = new Apq.ConnectionStrings.SQLServer.SqlConnection();
+						sc.ServerName = dr.IP;
+						if (dr.SqlPort > 0)
+						{
+							sc.ServerName += "," + dr.SqlPort;
+						}
+						sc.DBName = "master";
+						sc.UserId = dr.UserId;
+						sc.Pwd = dr.PwdD;
+						dr["DBConnectionString"] = sc.GetConnectionString();
+					}
+					*/
+					foreach (Apq.DBC.XSD.DBIRow dr in _xsd.DBI.Rows)
+					{
+						dr["DBConnectionString"] = Apq.ConnectionStrings.Common.GetConnectionString(
+							(DBProduct)dr.DBProduct,
+							dr.IP, dr.Port, dr.UserId, dr.PwdD);
+					}
+					foreach (Apq.DBC.XSD.DBCRow dr in _xsd.DBC.Rows)
+					{
+						dr["DBConnectionString"] = Apq.ConnectionStrings.Common.GetConnectionString(
+							(DBProduct)dr.DBProduct,
+							dr.IP, dr.Port, dr.UserId, dr.PwdD, dr.DBName);
+					}
+				}
+				catch (System.Exception ex)
+				{
+					Apq.GlobalObject.ApqLog.Error("DBC文件加载失败", ex);
+				}
 			}
 		}
-
 
 		#region 创建连接
 		/// <summary>

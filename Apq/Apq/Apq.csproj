@@ -272,7 +272,6 @@
     <Compile Include="DllImports\User32.cs" />
     <Compile Include="Apq\Exception.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <None Include="Migrated rules for Apq.ruleset" />
     <None Include="Shell\ParseResult.cs" />
     <None Include="Shell\Char.cs" />
     <None Include="Shell\Common.cs" />
