@@ -74,11 +74,18 @@ namespace Apq.DBC
 			string desIV = "$`5iNL8j";
 			#endregion
 
-			string strCs = File.ReadAllText(_csFilePath, Encoding.UTF8);
-			string str = Apq.Security.Cryptography.DESHelper.DecryptString(strCs, desKey, desIV);
-			StringReader sr = new StringReader(str);
-			_xsd.Clear();
-			_xsd.ReadXml(sr);
+			try
+			{
+				string strCs = File.ReadAllText(_csFilePath, Encoding.UTF8);
+				string str = Apq.Security.Cryptography.DESHelper.DecryptString(strCs, desKey, desIV);
+				StringReader sr = new StringReader(str);
+				_xsd.Clear();
+				_xsd.ReadXml(sr);
+			}
+			catch(System.Exception ex)
+			{
+				Apq.GlobalObject.ApqLog.Error("DBC文件加载失败", ex);
+			}
 
 			// 读取完成,计算所有连接字符串
 			/*
