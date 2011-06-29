@@ -81,11 +81,11 @@ namespace Apq.Data.Common
 		/// [反射]创建 DataAdapter
 		/// </summary>
 		/// <returns></returns>
-		public System.Data.Common.DbDataAdapter CreateAdapter()
+		public System.Data.Common.DbDataAdapter CreateAdapter(string cmdSelect = "")
 		{
 			Type tConnection = Connection.GetType();
 			Type tAdapter = tConnection.Assembly.GetType(tConnection.FullName.Replace("Connection", "DataAdapter"));
-			return System.Activator.CreateInstance(tAdapter, string.Empty, Connection) as System.Data.Common.DbDataAdapter;
+			return System.Activator.CreateInstance(tAdapter, cmdSelect, Connection) as System.Data.Common.DbDataAdapter;
 		}
 		#endregion
 	}

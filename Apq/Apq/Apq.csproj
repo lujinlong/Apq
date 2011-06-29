@@ -216,6 +216,7 @@
     <Compile Include="ConnectionStrings\SQLServer\SqlConnection.cs" />
     <Compile Include="ConnectionStrings\Textfile\OleDbConnection.cs" />
     <Compile Include="Data\Common\DataColumnMappingCollectionHelper.cs" />
+    <Compile Include="Data\Common\DbProviderFactoryHelper.cs" />
     <Compile Include="Data\Common\SQLHelper.cs" />
     <Compile Include="Data\DataSet.cs" />
     <Compile Include="Data\DataView.cs" />
