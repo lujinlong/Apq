@@ -230,6 +230,7 @@
     <Compile Include="Config\IniConfig.cs" />
     <Compile Include="Config\RegConfig.cs" />
     <Content Include="DB\Apq_String.cs.txt" />
+    <Compile Include="DllImports\Shell32.cs" />
     <Compile Include="Dos\Common.cs" />
     <Compile Include="Drawing\GraphicsHelper.cs" />
     <Compile Include="Editor\ITextEditor.cs" />

@@ -262,5 +262,15 @@ namespace Apq.DllImports
 		[DllImport("User32.dll")]
 		public extern static int SetDoubleClickTime(int wCount);
 		#endregion
+
+		#region 文件系统
+		/// <summary>
+		/// 释放图标资源
+		/// </summary>
+		/// <param name="hIcon"></param>
+		/// <returns></returns>
+		[DllImport("User32.dll", EntryPoint = "DestroyIcon")]
+		public static extern int DestroyIcon(IntPtr hIcon);
+		#endregion
 	}
 }
