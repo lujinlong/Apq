@@ -10,6 +10,8 @@ using System.Threading;
 using System.Data.SqlClient;
 using System.Data.Common;
 using Apq_LocalTools.Forms;
+using Apq.TreeListView;
+using System.IO;
 
 namespace Apq_LocalTools
 {
@@ -22,14 +24,34 @@ namespace Apq_LocalTools
 			InitializeComponent();
 		}
 
+		private TreeListViewHelper tlvHelper;
+
 		public override void SetUILang(Apq.UILang.UILang UILang)
 		{
 			Text = Apq.GlobalObject.UILang["文本文件编码转换"] + " - " + ++FormCount;
 			TabText = Text;
 
 			groupBox1.Text = Apq.GlobalObject.UILang["读取参数"];
+			label3.Text = Apq.GlobalObject.UILang["原始编码："];
+			label2.Text = Apq.GlobalObject.UILang["默认编码："];
+			label5.Text = Apq.GlobalObject.UILang["文件类型："];
+			label4.Text = Apq.GlobalObject.UILang["自动检测无法确定编码时使用默认编码读取原始文件"];
+			cbContainsChildren.Text = Apq.GlobalObject.UILang["包含子目录"];
 
 			groupBox1.Text = Apq.GlobalObject.UILang["转换参数"];
+			label6.Text = Apq.GlobalObject.UILang["目标编码："];
+			label1.Text = Apq.GlobalObject.UILang["重命名："];
+			rbKeep.Text = Apq.GlobalObject.UILang["原名"];
+			rbKeep.Text = Apq.GlobalObject.UILang["原名_编码"];
+			rbKeep.Text = Apq.GlobalObject.UILang["原名_自定义"];
+
+			btnTrans.Text = Apq.GlobalObject.UILang["开始转换(&T)"];
+
+			columnHeader1.Text = Apq.GlobalObject.UILang["名称"];
+			columnHeader2.Text = Apq.GlobalObject.UILang["大小"];
+			columnHeader3.Text = Apq.GlobalObject.UILang["类型"];
+			columnHeader5.Text = Apq.GlobalObject.UILang["创建日期"];
+			columnHeader4.Text = Apq.GlobalObject.UILang["修改日期"];
 		}
 
 		private void TxtEncoding_Load(object sender, EventArgs e)
@@ -37,13 +59,90 @@ namespace Apq_LocalTools
 			TransFinished += new EventHandler(TxtEncoding_TransFinished);
 		}
 
+		#region IDataShow 成员
+		/// <summary>
+		/// 前期准备(如数据库连接或文件等)
+		/// </summary>
+		public override void InitDataBefore()
+		{
+			tlvHelper = new TreeListViewHelper(treeListView1);
+
+			#region 数据库连接
+			#endregion
+		}
+		/// <summary>
+		/// 初始数据(如Lookup数据等)
+		/// </summary>
+		/// <param name="ds"></param>
+		public override void InitData(DataSet ds)
+		{
+			#region 准备数据集结构
+			#endregion
+
+			#region 加载所有字典表
+			#endregion
+		}
+		/// <summary>
+		/// 加载数据
+		/// </summary>
+		/// <param name="ds"></param>
+		public override void LoadData(DataSet ds)
+		{
+			try
+			{
+				// 为TreeListView添加根结点
+				treeListView1.Items.Clear();
+
+				DriveInfo[] fsDrives = DriveInfo.GetDrives();
+
+				foreach (DriveInfo fsDrive in fsDrives)
+				{
+					string strExt = fsDrive.DriveType.ToString();
+					if (!imgList.Images.ContainsKey(strExt))
+					{
+						Icon img = Apq.DllImports.Shell32.GetIcon(strExt, false);
+						imgList.Images.Add(strExt, img);
+					}
+
+					TreeListViewItem ndRoot = new TreeListViewItem(fsDrive.Name.Substring(0, 1));
+					treeListView1.Items.Add(ndRoot);
+					ndRoot.ImageIndex = imgList.Images.IndexOfKey(strExt);
+					if (fsDrive.IsReady)
+					{
+						ndRoot.SubItems.Add(fsDrive.TotalSize.ToString());
+					}
+					else
+					{
+						ndRoot.SubItems.Add("0");
+					}
+					ndRoot.SubItems.Add(Apq.Convert.ChangeType<string>(fsDrive.DriveType));
+					ndRoot.SubItems.Add(fsDrive.RootDirectory.CreationTime.ToString("yyyy-MM-dd hh:mm:ss"));
+					ndRoot.SubItems.Add(fsDrive.RootDirectory.LastWriteTime.ToString("yyyy-MM-dd hh:mm:ss"));
+
+					ndRoot.SubItems.Add(fsDrive.Name);
+					ndRoot.SubItems.Add(fsDrive.IsReady ? "0" : "-1");
+				}
+			}
+			catch { }
+		}
+		#endregion
+
+		#region treeListView1
+		private void treeListView1_BeforeExpand(object sender, TreeListViewCancelEventArgs e)
+		{
+
+		}
+		#endregion
+
 		public void UIEnable(bool Enable)
 		{
 			treeListView1.Enabled = Enable;
 			cbSrcEncoding.Enabled = Enable;
 			cbDefaultEncoding.Enabled = Enable;
-			cbDstEncoding.Enabled = Enable;
+			txtExt.Enabled = Enable;
 			cbContainsChildren.Enabled = Enable;
+
+			cbDstEncoding.Enabled = Enable;
 			rbKeep.Enabled = Enable;
 			rbEncodeName.Enabled = Enable;
 			rbCustomer.Enabled = Enable;
