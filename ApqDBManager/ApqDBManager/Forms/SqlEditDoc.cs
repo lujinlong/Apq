@@ -253,7 +253,7 @@ UNION ALL SELECT 2,2;";
 				}
 			}
 
-			if (!IsFound)
+			if (!IsFound && !string.IsNullOrWhiteSpace(strDBName))
 			{
 				tscbDBName.Items.Add(strDBName);
 
@@ -427,7 +427,7 @@ UNION ALL SELECT 2,2;";
 		private void MainBackThread_Start()
 		{
 			DataView dv = new DataView(_dsDBC.DBI);
-			dv.RowFilter = "_Checked = 1 AND DBIID > 1";
+			dv.RowFilter = "_Checked = 1";
 			if (dv.Count == 0)
 			{
 				return;
@@ -509,7 +509,7 @@ UNION ALL SELECT 2,2;";
 			{
 				#region 获取服务器列表
 				DataView dv = new DataView(_dsDBC.DBI);
-				dv.RowFilter = "_Checked = 1 AND DBIID > 1";
+				dv.RowFilter = "_Checked = 1";
 				#endregion
 
 				#region 开始
@@ -580,7 +580,7 @@ UNION ALL SELECT 2,2;";
 					});
 				}
 			}
-			else
+			else//合并
 			{
 				dsTabPage = lstds[0];
 			}
