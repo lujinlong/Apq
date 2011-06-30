@@ -7,7 +7,10 @@ using System.Drawing;
 
 namespace Apq.DllImports
 {
-	class Shell32
+	/// <summary>
+	/// Shell32
+	/// </summary>
+	public class Shell32
 	{
 		/// <summary>
 		/// 获取文件信息
@@ -32,7 +35,13 @@ namespace Apq.DllImports
 		[StructLayout(LayoutKind.Sequential, CharSet = CharSet.Auto)]
 		public struct SHFILEINFO
 		{
+			/// <summary>
+			/// 图标
+			/// </summary>
 			public IntPtr hIcon;
+			/// <summary>
+			/// 图标索引
+			/// </summary>
 			public int iIcon;
 		}
 		/// <summary>
