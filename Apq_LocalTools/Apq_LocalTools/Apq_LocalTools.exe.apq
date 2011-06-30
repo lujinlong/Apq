@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Root>
+	<!-- 类配置文档 -->
+	<Apq_LocalTools.MainForm Text="Apq本地工具集"/>
+	<Apq_LocalTools.Controls.MainOption.Favorites CFolder="Favorites" />
+</Root>
