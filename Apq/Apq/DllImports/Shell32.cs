@@ -88,13 +88,13 @@ namespace Apq.DllImports
 		public static extern IntPtr SHGetFileInfo(string pszPath, uint dwFileAttributes, ref SHFILEINFO psfi, uint cbFileInfo, uint uFlags);
 		private const uint SHGFI_USEFILEATTRIBUTES = 0x10;
 		/// <summary>
-		/// 获取文件的关联图标
+		/// 获取文件信息
 		/// </summary>
 		/// <param name="fileName">文件类型的扩展名 或 文件的绝对路径</param>
 		/// <param name="LargeIcon">大图标</param>
 		/// <param name="SmallIcon">小图标</param>
 		/// <returns>获取到的小图标</returns>
-		public static Icon GetIcon(string fileName, ref Icon LargeIcon, ref Icon SmallIcon)
+		public static SHFILEINFO GetFileInfo(string fileName, ref Icon LargeIcon, ref Icon SmallIcon)
 		{
 			SHFILEINFO shfi = new SHFILEINFO();
 			SHGetFileInfo(fileName, 0, ref shfi, (uint)Marshal.SizeOf(shfi),
@@ -108,7 +108,7 @@ namespace Apq.DllImports
 			SmallIcon = Icon.FromHandle(shfi.iIcon).Clone() as Icon;
 			User32.DestroyIcon(shfi.hIcon); //释放资源
 			User32.DestroyIcon(shfi.iIcon); //释放资源
-			return SmallIcon;
+			return shfi;
 		}
 	}
 }
