@@ -88,9 +88,9 @@ namespace Apq_LocalTools
 			// 
 			// treeListView1
 			// 
-			this.treeListView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+			this.treeListView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+						| System.Windows.Forms.AnchorStyles.Left)
+						| System.Windows.Forms.AnchorStyles.Right)));
 			this.treeListView1.CheckBoxes = System.Windows.Forms.CheckBoxesTypes.Recursive;
 			this.treeListView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1,
@@ -158,7 +158,7 @@ namespace Apq_LocalTools
 			this.cbSrcEncoding.FormattingEnabled = true;
 			this.cbSrcEncoding.Items.AddRange(new object[] {
             "自动检测",
-            "UFT8",
+            "UTF-8",
             "GB2312",
             "ASCII"});
 			this.cbSrcEncoding.Location = new System.Drawing.Point(77, 35);
@@ -180,7 +180,7 @@ namespace Apq_LocalTools
 			this.cbDefaultEncoding.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.cbDefaultEncoding.FormattingEnabled = true;
 			this.cbDefaultEncoding.Items.AddRange(new object[] {
-            "UFT8",
+            "UTF-8",
             "GB2312",
             "ASCII"});
 			this.cbDefaultEncoding.Location = new System.Drawing.Point(77, 67);
@@ -212,7 +212,7 @@ namespace Apq_LocalTools
 			this.txtExt.Name = "txtExt";
 			this.txtExt.Size = new System.Drawing.Size(150, 21);
 			this.txtExt.TabIndex = 17;
-			this.txtExt.Text = "*.txt;*.sql;*.log;";
+			this.txtExt.Text = "*.txt;*.sql;*.log;*.xml;";
 			// 
 			// label5
 			// 
@@ -324,7 +324,7 @@ namespace Apq_LocalTools
 			this.cbDstEncoding.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.cbDstEncoding.FormattingEnabled = true;
 			this.cbDstEncoding.Items.AddRange(new object[] {
-            "UFT8",
+            "UTF-8",
             "GB2312",
             "ASCII"});
 			this.cbDstEncoding.Location = new System.Drawing.Point(77, 20);

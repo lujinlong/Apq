@@ -12,6 +12,7 @@ using System.Data.Common;
 using Apq_LocalTools.Forms;
 using Apq.TreeListView;
 using System.IO;
+using org.mozilla.intl.chardet;
 
 namespace Apq_LocalTools
 {
@@ -127,6 +128,7 @@ namespace Apq_LocalTools
 
 					ndRoot.SubItems.Add(fsDrive.Name);
 					ndRoot.SubItems.Add(fsDrive.IsReady ? "0" : "-1");
+					ndRoot.SubItems.Add("1");//类型{1:Drive,2:Folder,3:File}
 				}
 			}
 			catch { }
@@ -145,13 +147,11 @@ namespace Apq_LocalTools
 				{
 					LoadFolders(node, node.FullPath);
 					LoadFiles(node, node.FullPath);
-
-					node.SubItems[treeListView1.Columns.Count + 1].Text = node.Items.Count > 0 ? "1" : "-1";
 				}
 			}
 		}
 
-		private void LoadFolders(TreeListViewItem node, string fsFullPath)
+		private void LoadFolders(TreeListViewItem node, string fsFullPath, bool ContainsChildren = false)
 		{
 			try
 			{
@@ -167,11 +167,13 @@ namespace Apq_LocalTools
 				}
 
 				string[] strChildren = Directory.GetDirectories(fsFullPath + "\\");
+				node.SubItems[treeListView1.Columns.Count + 1].Text = strChildren.LongLength > 0 ? "1" : "-1";
 				foreach (string strChild in strChildren)
 				{
 					DirectoryInfo diChild = new DirectoryInfo(strChild);
 					TreeListViewItem ndChild = new TreeListViewItem(diChild.Name);
 					node.Items.Add(ndChild);
+					ndChild.Checked = node.Checked;
 					ndChild.ImageKey = "文件夹收起";
 					ndChild.SubItems.Add("0");
 					ndChild.SubItems.Add(Apq.GlobalObject.UILang["文件夹"]);
@@ -180,6 +182,13 @@ namespace Apq_LocalTools
 
 					ndChild.SubItems.Add(diChild.FullName);
 					ndChild.SubItems.Add("0");
+					ndChild.SubItems.Add("2");//类型{1:Drive,2:Folder,3:File}
+
+					if (ContainsChildren)
+					{
+						LoadFolders(ndChild, ndChild.FullPath, ContainsChildren);
+						LoadFiles(ndChild, ndChild.FullPath);
+					}
 				}
 			}
 			catch { }
@@ -210,6 +219,7 @@ namespace Apq_LocalTools
 
 					TreeListViewItem ndChild = new TreeListViewItem(diChild.Name);
 					node.Items.Add(ndChild);
+					ndChild.Checked = node.Checked;
 					ndChild.ImageIndex = imgList.Images.IndexOfKey(strExt);
 					ndChild.SubItems.Add(diChild.Length.ToString());
 					if (strExt.Contains("\\"))
@@ -223,6 +233,7 @@ namespace Apq_LocalTools
 
 					ndChild.SubItems.Add(diChild.Name);
 					ndChild.SubItems.Add("-1");
+					ndChild.SubItems.Add("3");//类型{1:Drive,2:Folder,3:File}
 				}
 			}
 			catch { }
@@ -312,6 +323,11 @@ namespace Apq_LocalTools
 
 		private void btnTrans_Click(object sender, EventArgs e)
 		{
+			if (treeListView1.CheckedItems.LongLength <= 0)
+			{
+				return;
+			}
+
 			Apq.Threading.Thread.Abort(MainBackThread);
 
 			if (btnTrans.Text == Apq.GlobalObject.UILang["开始转换(&T)"])
@@ -328,9 +344,163 @@ namespace Apq_LocalTools
 			}
 		}
 
+		#region 工作线程
 		private void Work()
 		{
-			tspb_SetValue(0);
+			Apq.Windows.Delegates.Action_UI<ToolStripStatusLabel>(this, tsslStatus, delegate(ToolStripStatusLabel ctrl)
+			{
+				tspb_SetValue(0);
+				tspb.Maximum = 0;
+
+				// 补全资源管理器
+				treeListView1.BeginUpdate();
+				for (long i = treeListView1.CheckedItems.LongLength - 1; i >= 0; i--)
+				{
+					TreeListViewItem node = treeListView1.CheckedItems[i];
+					int HasChildren = Apq.Convert.ChangeType<int>(node.SubItems[treeListView1.Columns.Count + 1].Text);
+					int Type = Apq.Convert.ChangeType<int>(node.SubItems[treeListView1.Columns.Count + 2].Text);
+					if (HasChildren == 0 && Type == 2)
+					{
+						LoadFolders(node, node.FullPath, cbContainsChildren.Checked);
+						LoadFiles(node, node.FullPath);
+					}
+				}
+				treeListView1.EndUpdate();
+
+				foreach (TreeListViewItem node in treeListView1.CheckedItems)
+				{
+					int Type = Apq.Convert.ChangeType<int>(node.SubItems[treeListView1.Columns.Count + 2].Text);
+					if (Type == 3) tspb.Maximum++;
+				}
+
+				int pbFileCount = 0;
+				// 开始处理
+				foreach (TreeListViewItem node in treeListView1.CheckedItems)
+				{
+					int Type = Apq.Convert.ChangeType<int>(node.SubItems[treeListView1.Columns.Count + 2].Text);
+					if (Type == 3)
+					{
+						// 匹配过滤
+						bool bMatch = false;
+						string[] strExts = txtExt.Text.Split(new string[] { ";" }, StringSplitOptions.RemoveEmptyEntries);
+						foreach (string strExt in strExts)
+						{
+							if (Path.GetExtension(node.Text).Equals(Path.GetExtension(strExt), StringComparison.OrdinalIgnoreCase))
+							{
+								bMatch = true;
+								break;
+							}
+						}
+
+						if (bMatch)
+						{
+							string strDstEncodingName = cbDstEncoding.SelectedItem.ToString();
+
+							// 结果文件
+							string strDstFullName = node.FullPath;
+							if (rbEncodeName.Checked)
+							{
+								strDstFullName = Path.GetDirectoryName(node.FullPath) + "\\";
+								strDstFullName += Path.GetFileNameWithoutExtension(node.FullPath) + "_" + strDstEncodingName;
+								strDstFullName += Path.GetExtension(node.FullPath);
+							}
+							if (rbCustomer.Checked)
+							{
+								strDstFullName = Path.GetDirectoryName(node.FullPath) + "\\";
+								strDstFullName += Path.GetFileNameWithoutExtension(node.FullPath) + "_" + txtCustomer.Text;
+								strDstFullName += Path.GetExtension(node.FullPath);
+							}
+
+							TransEncoding(node.FullPath, strDstFullName,
+								strDstEncodingName,
+								cbSrcEncoding.SelectedIndex == 0, cbDefaultEncoding.SelectedItem.ToString());
+						}
+
+						tspb_SetValue(++pbFileCount);
+					}
+				}
+
+				// 处理完成,进度条回0
+				tspb_SetValue(0);
+			});
+		}
+		#endregion
+
+		public static bool found = false;
+		public static string detEncoding = string.Empty;// 自动检测到的文件类型
+		public void TransEncoding(string srcFullName, string dstFullName,
+			string dstEncoding = "utf8",
+			bool IsAutoDet = true, string srcEncoding = "gb2312")
+		{
+			Encoding Edst = Encoding.GetEncoding(dstEncoding);
+			Encoding Esrc = Encoding.GetEncoding(srcEncoding);
+
+			if (IsAutoDet)
+			{
+				#region 检测编码
+				nsDetector det = new nsDetector();
+				Notifier not = new Notifier();
+				det.Init(not);
+
+				byte[] buf = new byte[1024];
+				int len;
+				bool done = false;
+				bool isAscii = true;
+
+				FileStream fs = File.OpenRead(srcFullName);
+				len = fs.Read(buf, 0, buf.Length);
+				while (len > 0)
+				{
+					// Check if the stream is only ascii.
+					if (isAscii)
+						isAscii = det.isAscii(buf, len);
+
+					// DoIt if non-ascii and not done yet.
+					if (!isAscii && !done)
+						done = det.DoIt(buf, len, false);
+
+					len = fs.Read(buf, 0, buf.Length);
+				}
+				det.DataEnd();
+				fs.Close();
+
+				if (isAscii)
+				{
+					found = true;
+					detEncoding = "ASCII";
+				}
+
+				if (!found)
+				{
+					string[] prob = det.getProbableCharsets();
+					if (prob.Length > 0)
+					{
+						detEncoding = prob[0];
+					}
+					else
+					{
+						detEncoding = srcEncoding;
+					}
+				}
+				#endregion
+
+				Esrc = Encoding.GetEncoding(detEncoding);
+			}
+
+			#region 编码转换
+			string strAll = File.ReadAllText(srcFullName, Esrc);
+			File.WriteAllText(dstFullName, strAll, Edst);
+			#endregion
+		}
+	}
+
+	// C# 1 doesn't support anonymous methods...
+	public class Notifier : nsICharsetDetectionObserver
+	{
+		public void Notify(string charset)
+		{
+			TxtEncoding.found = true;
+			TxtEncoding.detEncoding = charset;
 		}
 	}
 }

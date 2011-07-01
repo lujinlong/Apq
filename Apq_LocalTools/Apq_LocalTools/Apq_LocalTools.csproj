@@ -138,8 +138,8 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Dlls\log4net.dll</HintPath>
     </Reference>
-    <Reference Include="Lyquidity.Controls.ExtendedListViews">
-      <HintPath>Dlls\Lyquidity.Controls.ExtendedListViews.dll</HintPath>
+    <Reference Include="NCharDet">
+      <HintPath>Dlls\NCharDet.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
@@ -438,6 +438,9 @@ xcopy "$(ProjectDir)..\..\Reference\TreeListView\System.Windows.Forms.TreeListVi
 
 xcopy "$(ProjectDir)..\..\Reference\ExtendedListViews\Lyquidity.Controls.ExtendedListViews.dll" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
 xcopy "$(ProjectDir)..\..\Reference\ExtendedListViews\Lyquidity.Controls.ExtendedListViews.xml" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+
+xcopy "$(ProjectDir)..\..\Reference\NCharDet-2.0\NCharDet.dll" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+xcopy "$(ProjectDir)..\..\Reference\NCharDet-2.0\NCharDet.xml" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
 
 :End
 </PreBuildEvent>
