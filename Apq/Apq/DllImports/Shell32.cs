@@ -97,7 +97,7 @@ namespace Apq.DllImports
 		{
 			GetFileInfoFlags uIconFlags = isLargeIcon ? GetFileInfoFlags.SHGFI_LARGEICON : GetFileInfoFlags.SHGFI_SMALLICON;
 			SHFILEINFO shfi = new SHFILEINFO();
-			SHGetFileInfo(fileName, 0, ref shfi, (uint)Marshal.SizeOf(shfi),
+			SHGetFileInfo(fileName, (uint)FileAttributeFlags.FILE_ATTRIBUTE_NORMAL, ref shfi, (uint)Marshal.SizeOf(shfi),
 				(uint)(GetFileInfoFlags.SHGFI_USEFILEATTRIBUTES |
 					GetFileInfoFlags.SHGFI_ICON | uIconFlags |
 					GetFileInfoFlags.SHGFI_TYPENAME | GetFileInfoFlags.SHGFI_DISPLAYNAME
@@ -109,7 +109,7 @@ namespace Apq.DllImports
 			return shfi;
 		}
 		/// <summary>
-		/// [功能不正确]获取文件夹图标
+		/// 获取文件夹图标
 		/// </summary>
 		/// <param name="isLargeIcon">是否获取大图标</param>
 		/// <param name="isOpenState">是否打开状态</param>
@@ -118,7 +118,7 @@ namespace Apq.DllImports
 			GetFileInfoFlags uIconFlags = isLargeIcon ? GetFileInfoFlags.SHGFI_LARGEICON : GetFileInfoFlags.SHGFI_SMALLICON;
 			GetFileInfoFlags uOpenFlags = isOpenState ? GetFileInfoFlags.SHGFI_OPENICON : 0;
 			SHFILEINFO shfi = new SHFILEINFO();
-			SHGetFileInfo("C:\\Windows", 0, ref shfi, (uint)Marshal.SizeOf(shfi),
+			SHGetFileInfo(string.Empty, (uint)FileAttributeFlags.FILE_ATTRIBUTE_DIRECTORY, ref shfi, (uint)Marshal.SizeOf(shfi),
 				(uint)(GetFileInfoFlags.SHGFI_USEFILEATTRIBUTES |
 					GetFileInfoFlags.SHGFI_ICON | uIconFlags | uOpenFlags |
 					GetFileInfoFlags.SHGFI_TYPENAME | GetFileInfoFlags.SHGFI_DISPLAYNAME
