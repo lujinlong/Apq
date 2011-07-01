@@ -13,6 +13,69 @@ namespace Apq.DllImports
 	public class Shell32
 	{
 		/// <summary>
+		/// 定义获取资源标识
+		/// </summary>
+		public enum GetFileInfoFlags : uint
+		{
+			SHGFI_ICON = 0x000000100,     // get icon
+			SHGFI_DISPLAYNAME = 0x000000200,     // get display name
+			SHGFI_TYPENAME = 0x000000400,     // get type name
+			SHGFI_ATTRIBUTES = 0x000000800,     // get attributes
+			SHGFI_ICONLOCATION = 0x000001000,     // get icon location
+			SHGFI_EXETYPE = 0x000002000,     // return exe type
+			SHGFI_SYSICONINDEX = 0x000004000,     // get system icon index
+			SHGFI_LINKOVERLAY = 0x000008000,     // put a link overlay on icon
+			SHGFI_SELECTED = 0x000010000,     // show icon in selected state
+			SHGFI_ATTR_SPECIFIED = 0x000020000,     // get only specified attributes
+			SHGFI_LARGEICON = 0x000000000,     // get large icon
+			SHGFI_SMALLICON = 0x000000001,     // get small icon
+			SHGFI_OPENICON = 0x000000002,     // get open icon
+			SHGFI_SHELLICONSIZE = 0x000000004,     // get shell size icon
+			SHGFI_PIDL = 0x000000008,     // pszPath is a pidl
+			SHGFI_USEFILEATTRIBUTES = 0x000000010,     // use passed dwFileAttribute
+			SHGFI_ADDOVERLAYS = 0x000000020,     // apply the appropriate overlays
+			SHGFI_OVERLAYINDEX = 0x000000040      // Get the index of the overlay
+		}
+
+		/// <summary>
+		/// 定义文件属性标识
+		/// </summary>
+		public enum FileAttributeFlags : int
+		{
+			FILE_ATTRIBUTE_READONLY = 0x00000001,
+			FILE_ATTRIBUTE_HIDDEN = 0x00000002,
+			FILE_ATTRIBUTE_SYSTEM = 0x00000004,
+			FILE_ATTRIBUTE_DIRECTORY = 0x00000010,
+			FILE_ATTRIBUTE_ARCHIVE = 0x00000020,
+			FILE_ATTRIBUTE_DEVICE = 0x00000040,
+			FILE_ATTRIBUTE_NORMAL = 0x00000080,
+			FILE_ATTRIBUTE_TEMPORARY = 0x00000100,
+			FILE_ATTRIBUTE_SPARSE_FILE = 0x00000200,
+			FILE_ATTRIBUTE_REPARSE_POINT = 0x00000400,
+			FILE_ATTRIBUTE_COMPRESSED = 0x00000800,
+			FILE_ATTRIBUTE_OFFLINE = 0x00001000,
+			FILE_ATTRIBUTE_NOT_CONTENT_INDEXED = 0x00002000,
+			FILE_ATTRIBUTE_ENCRYPTED = 0x00004000
+		}
+
+		/// <summary>
+		/// 定义SHFILEINFO结构(名字随便起，这里用FileInfomation)
+		/// </summary>
+		[StructLayout(LayoutKind.Sequential)]
+		public struct SHFILEINFO
+		{
+			public IntPtr hIcon;
+			public IntPtr iIcon;
+			public int dwAttributes;
+
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 260)]
+			public string szDisplayName;
+
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 80)]
+			public string szTypeName;
+		}
+
+		/// <summary>
 		/// 获取文件信息
 		/// </summary>
 		/// <param name="pszPath">文件名(需要无扩展名文件信息时请传入不带扩展名的任意字符串)</param>
@@ -23,48 +86,29 @@ namespace Apq.DllImports
 		/// <returns></returns>
 		[DllImport("Shell32.dll", EntryPoint = "SHGetFileInfo", SetLastError = true, CharSet = CharSet.Auto)]
 		public static extern IntPtr SHGetFileInfo(string pszPath, uint dwFileAttributes, ref SHFILEINFO psfi, uint cbFileInfo, uint uFlags);
-		#region API 参数的常量定义
-		private const uint SHGFI_ICON = 0x100;
-		private const uint SHGFI_LARGEICON = 0x0; //大图标 32×32
-		private const uint SHGFI_SMALLICON = 0x1; //小图标 16×16
 		private const uint SHGFI_USEFILEATTRIBUTES = 0x10;
-		#endregion
 		/// <summary>
-		/// 保存文件信息的结构体
+		/// 获取文件的关联图标
 		/// </summary>
-		[StructLayout(LayoutKind.Sequential, CharSet = CharSet.Auto)]
-		public struct SHFILEINFO
-		{
-			/// <summary>
-			/// 图标
-			/// </summary>
-			public IntPtr hIcon;
-			/// <summary>
-			/// 图标索引
-			/// </summary>
-			public int iIcon;
-		}
-		/// <summary>
-		/// 获取文件类型的关联图标
-		/// </summary>
-		/// <param name="fileName">文件类型的扩展名或文件的绝对路径</param>
-		/// <param name="isLargeIcon">是否返回大图标</param>
-		/// <returns>获取到的图标</returns>
-		public static Icon GetIcon(string fileName, bool isLargeIcon)
+		/// <param name="fileName">文件类型的扩展名 或 文件的绝对路径</param>
+		/// <param name="LargeIcon">大图标</param>
+		/// <param name="SmallIcon">小图标</param>
+		/// <returns>获取到的小图标</returns>
+		public static Icon GetIcon(string fileName, ref Icon LargeIcon, ref Icon SmallIcon)
 		{
 			SHFILEINFO shfi = new SHFILEINFO();
-			IntPtr hI;
-			if (isLargeIcon)
-			{
-				hI = SHGetFileInfo(fileName, 0, ref shfi, (uint)Marshal.SizeOf(shfi), SHGFI_ICON | SHGFI_USEFILEATTRIBUTES | SHGFI_LARGEICON);
-			}
-			else
-			{
-				hI = SHGetFileInfo(fileName, 0, ref shfi, (uint)Marshal.SizeOf(shfi), SHGFI_ICON | SHGFI_USEFILEATTRIBUTES | SHGFI_SMALLICON);
-			}
-			Icon icon = Icon.FromHandle(shfi.hIcon).Clone() as Icon;
+			SHGetFileInfo(fileName, 0, ref shfi, (uint)Marshal.SizeOf(shfi),
+				(uint)(GetFileInfoFlags.SHGFI_USEFILEATTRIBUTES | 
+					GetFileInfoFlags.SHGFI_ICON | GetFileInfoFlags.SHGFI_LARGEICON | GetFileInfoFlags.SHGFI_SMALLICON |
+					GetFileInfoFlags.SHGFI_TYPENAME | GetFileInfoFlags.SHGFI_DISPLAYNAME
+				)
+			);
+
+			LargeIcon = Icon.FromHandle(shfi.hIcon).Clone() as Icon;
+			SmallIcon = Icon.FromHandle(shfi.iIcon).Clone() as Icon;
 			User32.DestroyIcon(shfi.hIcon); //释放资源
-			return icon;
+			User32.DestroyIcon(shfi.iIcon); //释放资源
+			return SmallIcon;
 		}
 	}
 }

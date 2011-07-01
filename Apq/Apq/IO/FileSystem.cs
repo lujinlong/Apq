@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.IO;
 using System.Data;
+using System.Drawing;
+using Microsoft.Win32;
 
 namespace Apq.IO
 {

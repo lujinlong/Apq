@@ -387,8 +387,8 @@ xcopy "$(ProjectDir)..\..\Reference\TreeListView\System.Runtime.InteropServices.
 xcopy "$(ProjectDir)..\..\Reference\TreeListView\System.Windows.Forms.TreeListView.dll" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
 xcopy "$(ProjectDir)..\..\Reference\TreeListView\System.Windows.Forms.TreeListView.xml" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
 
-xcopy "$(ProjectDir)..\..\Reference\ExtendedListViews\SynapticEffect.Forms.dll" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
-xcopy "$(ProjectDir)..\..\Reference\ExtendedListViews\SynapticEffect.Forms.xml" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+:xcopy "$(ProjectDir)..\..\Reference\ExtendedListViews\SynapticEffect.Forms.dll" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+:xcopy "$(ProjectDir)..\..\Reference\ExtendedListViews\SynapticEffect.Forms.xml" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
 
 :End
 </PreBuildEvent>
