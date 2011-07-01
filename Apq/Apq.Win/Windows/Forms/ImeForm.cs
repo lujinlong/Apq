@@ -58,7 +58,15 @@ namespace Apq.Windows.Forms
 		#endregion
 
 		#region FormDataSet
-		private int _dsCount = 0;
+		private static int _dsCount = 0;
+		/// <summary>
+		/// 自动生成的数据集编号
+		/// </summary>
+		public static int dsCount
+		{
+			set { _dsCount = value; }
+			get { return _dsCount; }
+		}
 		private DataSet _FormDataSet = null;
 		/// <summary>
 		/// 获取或设置数据集(存放所有表)

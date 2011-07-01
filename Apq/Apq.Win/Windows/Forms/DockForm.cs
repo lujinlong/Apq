@@ -52,7 +52,6 @@ namespace Apq.Windows.Forms
 		#endregion
 
 		#region FormDataSet
-		private int _dsCount = 0;
 		private DataSet _FormDataSet = null;
 		/// <summary>
 		/// 获取或设置数据集(存放所有表)
@@ -70,7 +69,7 @@ namespace Apq.Windows.Forms
 				if (_FormDataSet == null)
 				{
 					_FormDataSet = new DataSet();
-					_FormDataSet.DataSetName = "DataSet_" + ++_dsCount;
+					_FormDataSet.DataSetName = "DataSet_" + ++ImeForm.dsCount;
 				}
 				return _FormDataSet;
 			}
