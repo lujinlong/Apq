@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Lyquidity.Controls.ExtendedListViews</name>
+    </assembly>
+    <members>
+        <member name="T:Lyquidity.Controls.ExtendedListViews.TreeListView">
+            <summary>
+            TreeListView provides a hybrid listview whos first
+            column can behave as a treeview. This control extends
+            ContainerListView, allowing subitems to contain 
+            controls.
+            </summary>
+        </member>
+        <member name="T:Lyquidity.Controls.ExtendedListViews.ContainerListView">
+            <summary>
+            Provides a listview control in detail mode that
+            provides containers for each cell in a row/column.
+            The container can hold almost any object that derives
+            directly or indirectly from Control.
+            </summary>
+        </member>
+        <member name="M:Lyquidity.Controls.ExtendedListViews.TreeListView.GetPriorNode(Lyquidity.Controls.ExtendedListViews.TreeListNode@)">
+            <summary>
+            Gets the prior visible node.
+            </summary>
+            <param name="cCurNode"></param>
+            <returns>Returns TRUE if already on the first node</returns>
+        </member>
+        <member name="M:Lyquidity.Controls.ExtendedListViews.TreeListView.GetNextNode(Lyquidity.Controls.ExtendedListViews.TreeListNode@)">
+            <summary>
+            Gets the next visible node.
+            </summary>
+            <param name="cCurNode"></param>
+            <returns>Returns TRUE if already on the last node</returns>
+        </member>
+        <member name="M:Lyquidity.Controls.ExtendedListViews.TreeListView.ShowSelectedItems">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Lyquidity.Controls.ExtendedListViews.TreeListView.FirstNodeRelativeToCurrentNode">
+            <summary>
+            The stacks used in this collection could be used to return relative or
+            absolute paths from one node to another.  For the time being, this
+            information is used ONLY to determine whether one node is "above" or
+            below another.
+            </summary>
+        </member>
+        <member name="T:Lyquidity.Controls.IParentChildList">
+            <summary>
+            IParentChildList provides functions to navigate a mutliply-linked
+            list organized in parent-child format. The current node may navigate
+            upwards to its parent node, forward and backwards in the current
+            level, and down to the next level of its children.
+            </summary>
+        </member>
+    </members>
+</doc>
