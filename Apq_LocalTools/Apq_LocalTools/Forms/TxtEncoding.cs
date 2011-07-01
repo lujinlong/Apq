@@ -12,7 +12,6 @@ using System.Data.Common;
 using Apq_LocalTools.Forms;
 using Apq.TreeListView;
 using System.IO;
-using Lyquidity.Controls.ExtendedListViews;
 
 namespace Apq_LocalTools
 {
@@ -25,7 +24,7 @@ namespace Apq_LocalTools
 			InitializeComponent();
 		}
 
-		//private TreeListViewHelper tlvHelper;
+		private TreeListViewHelper tlvHelper;
 
 		public override void SetUILang(Apq.UILang.UILang UILang)
 		{
@@ -48,11 +47,11 @@ namespace Apq_LocalTools
 
 			btnTrans.Text = Apq.GlobalObject.UILang["开始转换(&T)"];
 
-			treeListView1.Columns[0].Text = Apq.GlobalObject.UILang["名称"];
-			treeListView1.Columns[1].Text = Apq.GlobalObject.UILang["大小(B)"];
-			treeListView1.Columns[2].Text = Apq.GlobalObject.UILang["类型"];
-			treeListView1.Columns[3].Text = Apq.GlobalObject.UILang["创建日期"];
-			treeListView1.Columns[4].Text = Apq.GlobalObject.UILang["修改日期"];
+			columnHeader1.Text = Apq.GlobalObject.UILang["名称"];
+			columnHeader2.Text = Apq.GlobalObject.UILang["大小(B)"];
+			columnHeader3.Text = Apq.GlobalObject.UILang["类型"];
+			columnHeader5.Text = Apq.GlobalObject.UILang["创建日期"];
+			columnHeader4.Text = Apq.GlobalObject.UILang["修改日期"];
 		}
 
 		private void TxtEncoding_Load(object sender, EventArgs e)
@@ -66,7 +65,7 @@ namespace Apq_LocalTools
 		/// </summary>
 		public override void InitDataBefore()
 		{
-			//tlvHelper = new TreeListViewHelper(treeListView1);
+			tlvHelper = new TreeListViewHelper(treeListView1);
 
 			#region 数据库连接
 			#endregion
@@ -106,9 +105,8 @@ namespace Apq_LocalTools
 						imgList.Images.Add(strExt, img);
 					}
 
-					TreeListNode ndRoot = new TreeListNode();
-					ndRoot.Text = fsDrive.Name.Substring(0, 2);
-					treeListView1.Nodes.Add(ndRoot);
+					TreeListViewItem ndRoot = new TreeListViewItem(fsDrive.Name.Substring(0, 1));
+					treeListView1.Items.Add(ndRoot);
 					ndRoot.ImageIndex = imgList.Images.IndexOfKey(strExt);
 					if (fsDrive.IsReady)
 					{
@@ -122,8 +120,8 @@ namespace Apq_LocalTools
 					ndRoot.SubItems.Add(fsDrive.RootDirectory.CreationTime.ToString("yyyy-MM-dd hh:mm:ss"));
 					ndRoot.SubItems.Add(fsDrive.RootDirectory.LastWriteTime.ToString("yyyy-MM-dd hh:mm:ss"));
 
-					//ndRoot.SubItems.Add(fsDrive.Name);
-					//ndRoot.SubItems.Add(fsDrive.IsReady ? "0" : "-1");
+					ndRoot.SubItems.Add(fsDrive.Name);
+					ndRoot.SubItems.Add(fsDrive.IsReady ? "0" : "-1");
 				}
 			}
 			catch { }
@@ -131,9 +129,9 @@ namespace Apq_LocalTools
 		#endregion
 
 		#region treeListView1
-		private void treeListView1_ColumnClick(object sender, ColumnClickEventArgs e)
+		private void treeListView1_BeforeExpand(object sender, TreeListViewCancelEventArgs e)
 		{
-			//if(e.Column)
+
 		}
 		#endregion
 

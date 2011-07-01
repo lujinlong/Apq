@@ -161,11 +161,19 @@
     <Reference Include="System.Drawing">
       <Private>False</Private>
     </Reference>
+    <Reference Include="System.Runtime.InteropServices.APIs, Version=1.0.4187.20013, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Dlls\System.Runtime.InteropServices.APIs.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.Services">
       <Private>False</Private>
     </Reference>
     <Reference Include="System.Windows.Forms">
       <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Windows.Forms.TreeListView, Version=1.0.4187.20014, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Dlls\System.Windows.Forms.TreeListView.dll</HintPath>
     </Reference>
     <Reference Include="System.Xaml" />
     <Reference Include="System.Xml">
