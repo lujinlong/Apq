@@ -163,7 +163,7 @@ namespace Apq_LocalTools
             "ASCII"});
 			this.cbSrcEncoding.Location = new System.Drawing.Point(77, 35);
 			this.cbSrcEncoding.Name = "cbSrcEncoding";
-			this.cbSrcEncoding.Size = new System.Drawing.Size(150, 20);
+			this.cbSrcEncoding.Size = new System.Drawing.Size(282, 20);
 			this.cbSrcEncoding.TabIndex = 5;
 			// 
 			// label3
@@ -185,7 +185,7 @@ namespace Apq_LocalTools
             "ASCII"});
 			this.cbDefaultEncoding.Location = new System.Drawing.Point(77, 67);
 			this.cbDefaultEncoding.Name = "cbDefaultEncoding";
-			this.cbDefaultEncoding.Size = new System.Drawing.Size(150, 20);
+			this.cbDefaultEncoding.Size = new System.Drawing.Size(282, 20);
 			this.cbDefaultEncoding.TabIndex = 7;
 			// 
 			// groupBox1
@@ -210,9 +210,9 @@ namespace Apq_LocalTools
 			// 
 			this.txtExt.Location = new System.Drawing.Point(77, 135);
 			this.txtExt.Name = "txtExt";
-			this.txtExt.Size = new System.Drawing.Size(150, 21);
+			this.txtExt.Size = new System.Drawing.Size(279, 21);
 			this.txtExt.TabIndex = 17;
-			this.txtExt.Text = "*.txt;*.sql;*.log;*.xml;";
+			this.txtExt.Text = "*.txt;*.sql;*.xml;*.ini;";
 			// 
 			// label5
 			// 
@@ -225,10 +225,11 @@ namespace Apq_LocalTools
 			// 
 			// label4
 			// 
+			this.label4.AutoSize = true;
 			this.label4.ForeColor = System.Drawing.Color.DarkGreen;
-			this.label4.Location = new System.Drawing.Point(61, 99);
+			this.label4.Location = new System.Drawing.Point(75, 94);
 			this.label4.Name = "label4";
-			this.label4.Size = new System.Drawing.Size(164, 33);
+			this.label4.Size = new System.Drawing.Size(281, 12);
 			this.label4.TabIndex = 9;
 			this.label4.Text = "自动检测无法确定编码时使用默认编码读取原始文件";
 			// 
