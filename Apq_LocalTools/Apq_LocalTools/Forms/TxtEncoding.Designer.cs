@@ -103,7 +103,7 @@ namespace Apq_LocalTools
 			this.treeListView1.Comparer = treeListViewItemCollectionComparer1;
 			this.treeListView1.Location = new System.Drawing.Point(0, 0);
 			this.treeListView1.Name = "treeListView1";
-			this.treeListView1.Size = new System.Drawing.Size(509, 403);
+			this.treeListView1.Size = new System.Drawing.Size(760, 203);
 			this.treeListView1.SmallImageList = this.imgList;
 			this.treeListView1.TabIndex = 2;
 			this.treeListView1.UseCompatibleStateImageBehavior = false;
@@ -190,7 +190,7 @@ namespace Apq_LocalTools
 			// 
 			// groupBox1
 			// 
-			this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.groupBox1.Controls.Add(this.txtExt);
 			this.groupBox1.Controls.Add(this.label5);
 			this.groupBox1.Controls.Add(this.label4);
@@ -199,9 +199,9 @@ namespace Apq_LocalTools
 			this.groupBox1.Controls.Add(this.cbSrcEncoding);
 			this.groupBox1.Controls.Add(this.label2);
 			this.groupBox1.Controls.Add(this.cbContainsChildren);
-			this.groupBox1.Location = new System.Drawing.Point(515, 12);
+			this.groupBox1.Location = new System.Drawing.Point(12, 209);
 			this.groupBox1.Name = "groupBox1";
-			this.groupBox1.Size = new System.Drawing.Size(233, 191);
+			this.groupBox1.Size = new System.Drawing.Size(365, 191);
 			this.groupBox1.TabIndex = 9;
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "读取参数";
@@ -246,7 +246,7 @@ namespace Apq_LocalTools
 			// 
 			// groupBox2
 			// 
-			this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.groupBox2.Controls.Add(this.txtCustomer);
 			this.groupBox2.Controls.Add(this.rbCustomer);
 			this.groupBox2.Controls.Add(this.rbEncodeName);
@@ -254,9 +254,9 @@ namespace Apq_LocalTools
 			this.groupBox2.Controls.Add(this.label1);
 			this.groupBox2.Controls.Add(this.label6);
 			this.groupBox2.Controls.Add(this.cbDstEncoding);
-			this.groupBox2.Location = new System.Drawing.Point(515, 220);
+			this.groupBox2.Location = new System.Drawing.Point(383, 209);
 			this.groupBox2.Name = "groupBox2";
-			this.groupBox2.Size = new System.Drawing.Size(233, 144);
+			this.groupBox2.Size = new System.Drawing.Size(365, 156);
 			this.groupBox2.TabIndex = 10;
 			this.groupBox2.TabStop = false;
 			this.groupBox2.Text = "转换参数";
@@ -334,8 +334,8 @@ namespace Apq_LocalTools
 			// 
 			// btnTrans
 			// 
-			this.btnTrans.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.btnTrans.Location = new System.Drawing.Point(633, 380);
+			this.btnTrans.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.btnTrans.Location = new System.Drawing.Point(383, 371);
 			this.btnTrans.Name = "btnTrans";
 			this.btnTrans.Size = new System.Drawing.Size(109, 23);
 			this.btnTrans.TabIndex = 11;

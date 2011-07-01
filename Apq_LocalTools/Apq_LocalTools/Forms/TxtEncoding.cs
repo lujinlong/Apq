@@ -145,8 +145,10 @@ namespace Apq_LocalTools
 
 				if (node.SubItems[treeListView1.Columns.Count + 1].Text == "0")
 				{
+					treeListView1.BeginUpdate();
 					LoadFolders(node, node.FullPath);
 					LoadFiles(node, node.FullPath);
+					treeListView1.EndUpdate();
 				}
 			}
 		}
@@ -349,6 +351,7 @@ namespace Apq_LocalTools
 		{
 			Apq.Windows.Delegates.Action_UI<ToolStripStatusLabel>(this, tsslStatus, delegate(ToolStripStatusLabel ctrl)
 			{
+				tsslStatus.Text = Apq.GlobalObject.UILang["开始处理..."];
 				tspb_SetValue(0);
 				tspb.Maximum = 0;
 
@@ -385,6 +388,11 @@ namespace Apq_LocalTools
 						string[] strExts = txtExt.Text.Split(new string[] { ";" }, StringSplitOptions.RemoveEmptyEntries);
 						foreach (string strExt in strExts)
 						{
+							if (strExt == "*.*")
+							{
+								bMatch = true;
+								break;
+							}
 							if (Path.GetExtension(node.Text).Equals(Path.GetExtension(strExt), StringComparison.OrdinalIgnoreCase))
 							{
 								bMatch = true;
@@ -417,11 +425,14 @@ namespace Apq_LocalTools
 						}
 
 						tspb_SetValue(++pbFileCount);
+						Application.DoEvents();
 					}
 				}
 
 				// 处理完成,进度条回0
 				tspb_SetValue(0);
+				tsslStatus.Text = Apq.GlobalObject.UILang["转换完成！"];
+				MessageBox.Show(Apq.GlobalObject.UILang["转换完成！"]);
 			});
 		}
 		#endregion
