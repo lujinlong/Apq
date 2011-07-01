@@ -59,13 +59,13 @@ namespace Apq.DllImports
 		}
 
 		/// <summary>
-		/// 定义SHFILEINFO结构(名字随便起，这里用FileInfomation)
+		/// 定义SHFILEINFO结构
 		/// </summary>
-		[StructLayout(LayoutKind.Sequential)]
+		[StructLayout(LayoutKind.Sequential, CharSet = CharSet.Auto)]
 		public struct SHFILEINFO
 		{
 			public IntPtr hIcon;
-			public IntPtr iIcon;
+			public int iIcon;
 			public int dwAttributes;
 
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 260)]
@@ -91,24 +91,43 @@ namespace Apq.DllImports
 		/// 获取文件信息
 		/// </summary>
 		/// <param name="fileName">文件类型的扩展名 或 文件的绝对路径</param>
-		/// <param name="LargeIcon">大图标</param>
-		/// <param name="SmallIcon">小图标</param>
-		/// <returns>获取到的小图标</returns>
-		public static SHFILEINFO GetFileInfo(string fileName, ref Icon LargeIcon, ref Icon SmallIcon)
+		/// <param name="isLargeIcon">是否获取大图标</param>
+		/// <param name="Icon">获取的图标</param>
+		public static SHFILEINFO GetFileInfo(string fileName, bool isLargeIcon, ref Icon Icon)
 		{
+			GetFileInfoFlags uIconFlags = isLargeIcon ? GetFileInfoFlags.SHGFI_LARGEICON : GetFileInfoFlags.SHGFI_SMALLICON;
 			SHFILEINFO shfi = new SHFILEINFO();
 			SHGetFileInfo(fileName, 0, ref shfi, (uint)Marshal.SizeOf(shfi),
-				(uint)(GetFileInfoFlags.SHGFI_USEFILEATTRIBUTES | 
-					GetFileInfoFlags.SHGFI_ICON | GetFileInfoFlags.SHGFI_LARGEICON | GetFileInfoFlags.SHGFI_SMALLICON |
+				(uint)(GetFileInfoFlags.SHGFI_USEFILEATTRIBUTES |
+					GetFileInfoFlags.SHGFI_ICON | uIconFlags |
 					GetFileInfoFlags.SHGFI_TYPENAME | GetFileInfoFlags.SHGFI_DISPLAYNAME
 				)
 			);
 
-			LargeIcon = Icon.FromHandle(shfi.hIcon).Clone() as Icon;
-			SmallIcon = Icon.FromHandle(shfi.iIcon).Clone() as Icon;
+			Icon = Icon.FromHandle(shfi.hIcon).Clone() as Icon;
 			User32.DestroyIcon(shfi.hIcon); //释放资源
-			User32.DestroyIcon(shfi.iIcon); //释放资源
 			return shfi;
+		}
+		/// <summary>
+		/// 获取文件夹图标
+		/// </summary>
+		/// <param name="isLargeIcon">是否获取大图标</param>
+		/// <param name="isOpenState">是否打开状态</param>
+		public static Icon GetFolderIcon(bool isLargeIcon, bool isOpenState)
+		{
+			GetFileInfoFlags uIconFlags = isLargeIcon ? GetFileInfoFlags.SHGFI_LARGEICON : GetFileInfoFlags.SHGFI_SMALLICON;
+			GetFileInfoFlags uOpenFlags = isOpenState ? GetFileInfoFlags.SHGFI_OPENICON : 0;
+			SHFILEINFO shfi = new SHFILEINFO();
+			SHGetFileInfo("C:\\Windows", 0, ref shfi, (uint)Marshal.SizeOf(shfi),
+				(uint)(GetFileInfoFlags.SHGFI_USEFILEATTRIBUTES |
+					GetFileInfoFlags.SHGFI_ICON | uIconFlags | uOpenFlags |
+					GetFileInfoFlags.SHGFI_TYPENAME | GetFileInfoFlags.SHGFI_DISPLAYNAME
+				)
+			);
+
+			Icon SmallIcon = Icon.FromHandle(shfi.hIcon).Clone() as Icon;
+			User32.DestroyIcon(shfi.hIcon); //释放资源
+			return SmallIcon;
 		}
 	}
 }

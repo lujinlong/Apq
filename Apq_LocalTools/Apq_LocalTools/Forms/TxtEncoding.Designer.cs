@@ -91,6 +91,7 @@ namespace Apq_LocalTools
 			this.treeListView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.treeListView1.CheckBoxes = System.Windows.Forms.CheckBoxesTypes.Recursive;
 			this.treeListView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1,
             this.columnHeader2,
@@ -107,32 +108,34 @@ namespace Apq_LocalTools
 			this.treeListView1.TabIndex = 2;
 			this.treeListView1.UseCompatibleStateImageBehavior = false;
 			this.treeListView1.BeforeExpand += new System.Windows.Forms.TreeListViewCancelEventHandler(this.treeListView1_BeforeExpand);
+			this.treeListView1.BeforeCollapse += new System.Windows.Forms.TreeListViewCancelEventHandler(this.treeListView1_BeforeCollapse);
+			this.treeListView1.SelectedIndexChanged += new System.EventHandler(this.treeListView1_SelectedIndexChanged);
 			// 
 			// columnHeader1
 			// 
 			this.columnHeader1.Text = "名称";
-			this.columnHeader1.Width = 292;
+			this.columnHeader1.Width = 400;
 			// 
 			// columnHeader2
 			// 
 			this.columnHeader2.Text = "大小(B)";
 			this.columnHeader2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-			this.columnHeader2.Width = 116;
+			this.columnHeader2.Width = 150;
 			// 
 			// columnHeader3
 			// 
 			this.columnHeader3.Text = "类型";
-			this.columnHeader3.Width = 95;
+			this.columnHeader3.Width = 100;
 			// 
 			// columnHeader5
 			// 
 			this.columnHeader5.Text = "创建日期";
-			this.columnHeader5.Width = 112;
+			this.columnHeader5.Width = 140;
 			// 
 			// columnHeader4
 			// 
 			this.columnHeader4.Text = "修改日期";
-			this.columnHeader4.Width = 118;
+			this.columnHeader4.Width = 140;
 			// 
 			// imgList
 			// 

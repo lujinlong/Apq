@@ -38,12 +38,12 @@ namespace Apq_LocalTools
 			label4.Text = Apq.GlobalObject.UILang["自动检测无法确定编码时使用默认编码读取原始文件"];
 			cbContainsChildren.Text = Apq.GlobalObject.UILang["包含子目录"];
 
-			groupBox1.Text = Apq.GlobalObject.UILang["转换参数"];
+			groupBox2.Text = Apq.GlobalObject.UILang["转换参数"];
 			label6.Text = Apq.GlobalObject.UILang["目标编码："];
 			label1.Text = Apq.GlobalObject.UILang["重命名："];
 			rbKeep.Text = Apq.GlobalObject.UILang["原名"];
-			rbKeep.Text = Apq.GlobalObject.UILang["原名_编码"];
-			rbKeep.Text = Apq.GlobalObject.UILang["原名_自定义"];
+			rbEncodeName.Text = Apq.GlobalObject.UILang["原名_编码"];
+			rbCustomer.Text = Apq.GlobalObject.UILang["原名_自定义"];
 
 			btnTrans.Text = Apq.GlobalObject.UILang["开始转换(&T)"];
 
@@ -56,6 +56,10 @@ namespace Apq_LocalTools
 
 		private void TxtEncoding_Load(object sender, EventArgs e)
 		{
+			cbSrcEncoding.SelectedIndex = 0;
+			cbDefaultEncoding.SelectedIndex = 1;
+			cbDstEncoding.SelectedIndex = 0;
+
 			TransFinished += new EventHandler(TxtEncoding_TransFinished);
 		}
 
@@ -97,17 +101,18 @@ namespace Apq_LocalTools
 
 				foreach (DriveInfo fsDrive in fsDrives)
 				{
-					//string strExt = fsDrive.DriveType.ToString();
 					string strExt = fsDrive.Name;
-					if (!imgList.Images.ContainsKey(strExt))
+					Icon SmallIcon = null;
+					Apq.DllImports.Shell32.SHFILEINFO shFileInfo = Apq.DllImports.Shell32.GetFileInfo(strExt, false, ref SmallIcon);
+
+					if (!imgList.Images.ContainsKey(fsDrive.DriveType.ToString()))
 					{
-						Icon img = Apq.DllImports.Shell32.GetIcon(strExt, false);
-						imgList.Images.Add(strExt, img);
+						imgList.Images.Add(fsDrive.DriveType.ToString(), SmallIcon);
 					}
 
-					TreeListViewItem ndRoot = new TreeListViewItem(fsDrive.Name.Substring(0, 1));
+					TreeListViewItem ndRoot = new TreeListViewItem(fsDrive.Name.Substring(0, 2));
 					treeListView1.Items.Add(ndRoot);
-					ndRoot.ImageIndex = imgList.Images.IndexOfKey(strExt);
+					ndRoot.ImageIndex = imgList.Images.IndexOfKey(fsDrive.DriveType.ToString());
 					if (fsDrive.IsReady)
 					{
 						ndRoot.SubItems.Add(fsDrive.TotalSize.ToString("n0"));
@@ -116,7 +121,7 @@ namespace Apq_LocalTools
 					{
 						ndRoot.SubItems.Add("0");
 					}
-					ndRoot.SubItems.Add(Apq.GlobalObject.UILang[Apq.Convert.ChangeType<string>(fsDrive.DriveType)]);
+					ndRoot.SubItems.Add(shFileInfo.szTypeName);
 					ndRoot.SubItems.Add(fsDrive.RootDirectory.CreationTime.ToString("yyyy-MM-dd hh:mm:ss"));
 					ndRoot.SubItems.Add(fsDrive.RootDirectory.LastWriteTime.ToString("yyyy-MM-dd hh:mm:ss"));
 
@@ -129,9 +134,122 @@ namespace Apq_LocalTools
 		#endregion
 
 		#region treeListView1
+		private void treeListView1_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			TreeListViewItem node = treeListView1.FocusedItem;
+			if (node != null)
+			{
+				tsslStatus.Text = node.FullPath;
+
+				if (node.SubItems[treeListView1.Columns.Count + 1].Text == "0")
+				{
+					LoadFolders(node, node.FullPath);
+					LoadFiles(node, node.FullPath);
+
+					node.SubItems[treeListView1.Columns.Count + 1].Text = node.Items.Count > 0 ? "1" : "-1";
+				}
+			}
+		}
+
+		private void LoadFolders(TreeListViewItem node, string fsFullPath)
+		{
+			try
+			{
+				if (!imgList.Images.ContainsKey("文件夹收起"))
+				{
+					Icon SmallIcon = Apq.DllImports.Shell32.GetFolderIcon(false, false);
+					imgList.Images.Add("文件夹收起", SmallIcon);
+				}
+				if (!imgList.Images.ContainsKey("文件夹展开"))
+				{
+					Icon SmallIcon = Apq.DllImports.Shell32.GetFolderIcon(false, true);
+					imgList.Images.Add("文件夹展开", SmallIcon);
+				}
+
+				string[] strChildren = Directory.GetDirectories(fsFullPath + "\\");
+				foreach (string strChild in strChildren)
+				{
+					DirectoryInfo diChild = new DirectoryInfo(strChild);
+					TreeListViewItem ndChild = new TreeListViewItem(diChild.Name);
+					node.Items.Add(ndChild);
+					ndChild.ImageKey = "文件夹收起";
+					ndChild.SubItems.Add("0");
+					ndChild.SubItems.Add(Apq.GlobalObject.UILang["文件夹"]);
+					ndChild.SubItems.Add(diChild.CreationTime.ToString("yyyy-MM-dd hh:mm:ss"));
+					ndChild.SubItems.Add(diChild.LastWriteTime.ToString("yyyy-MM-dd hh:mm:ss"));
+
+					ndChild.SubItems.Add(diChild.FullName);
+					ndChild.SubItems.Add("0");
+				}
+			}
+			catch { }
+		}
+
+		private void LoadFiles(TreeListViewItem node, string fsFullPath)
+		{
+			try
+			{
+				string[] strChildren = Directory.GetFiles(fsFullPath + "\\");
+				foreach (string strChild in strChildren)
+				{
+					FileInfo diChild = new FileInfo(strChild);
+					//string strExt = fsDrive.DriveType.ToString();
+					string strExt = diChild.Extension.ToLower();
+					if (strExt == ".exe")
+					{
+						strExt = diChild.FullName.ToLower();
+					}
+
+					Icon SmallIcon = null;
+					Apq.DllImports.Shell32.SHFILEINFO shFileInfo = Apq.DllImports.Shell32.GetFileInfo(strExt, false, ref SmallIcon);
+
+					if (!imgList.Images.ContainsKey(strExt))
+					{
+						imgList.Images.Add(strExt, SmallIcon);
+					}
+
+					TreeListViewItem ndChild = new TreeListViewItem(diChild.Name);
+					node.Items.Add(ndChild);
+					ndChild.ImageIndex = imgList.Images.IndexOfKey(strExt);
+					ndChild.SubItems.Add(diChild.Length.ToString());
+					if (strExt.Contains("\\"))
+					{
+						strExt = "应用程序";
+					}
+					//ndChild.SubItems.Add(Apq.GlobalObject.UILang[strExt]);
+					ndChild.SubItems.Add(shFileInfo.szTypeName);
+					ndChild.SubItems.Add(diChild.CreationTime.ToString("yyyy-MM-dd hh:mm:ss"));
+					ndChild.SubItems.Add(diChild.LastWriteTime.ToString("yyyy-MM-dd hh:mm:ss"));
+
+					ndChild.SubItems.Add(diChild.Name);
+					ndChild.SubItems.Add("-1");
+				}
+			}
+			catch { }
+		}
+
+		// 展开文件夹图标
 		private void treeListView1_BeforeExpand(object sender, TreeListViewCancelEventArgs e)
 		{
+			if (e.Item.Level > 0)
+			{
+				if (e.Item.ImageKey == "文件夹收起")
+				{
+					e.Item.ImageKey = "文件夹展开";
+				}
+			}
+		}
 
+		// 收起文件夹图标
+		private void treeListView1_BeforeCollapse(object sender, TreeListViewCancelEventArgs e)
+		{
+			if (e.Item.Level > 0)
+			{
+				if (e.Item.ImageKey == "文件夹展开")
+				{
+					e.Item.ImageKey = "文件夹收起";
+				}
+			}
 		}
 		#endregion
 
@@ -205,6 +323,7 @@ namespace Apq_LocalTools
 			}
 			else
 			{
+				UIEnable(true);
 				btnTrans.Text = Apq.GlobalObject.UILang["开始转换(&T)"];
 			}
 		}
