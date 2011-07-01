@@ -58,10 +58,17 @@ namespace Apq.Windows.Forms
 		#endregion
 
 		#region FormDataSet
+		private int _dsCount = 0;
 		private DataSet _FormDataSet = null;
 		/// <summary>
 		/// 获取或设置数据集(存放所有表)
 		/// </summary>
+		[
+		Browsable(true),
+		Category("Data"),
+		Description("获取或设置数据集"),
+		Editor()
+		]
 		public DataSet FormDataSet
 		{
 			get
@@ -69,7 +76,7 @@ namespace Apq.Windows.Forms
 				if (_FormDataSet == null)
 				{
 					_FormDataSet = new DataSet();
-					_FormDataSet.DataSetName = "DataSet_" + this.Text;
+					_FormDataSet.DataSetName = "DataSet_" + ++_dsCount;
 				}
 				return _FormDataSet;
 			}
