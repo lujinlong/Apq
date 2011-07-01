@@ -1,6 +1,6 @@
 ﻿namespace Apq.Windows.Forms
 {
-	partial class DockForm
+	public partial class DockForm
 	{
 		/// <summary>
 		/// Required designer variable.
