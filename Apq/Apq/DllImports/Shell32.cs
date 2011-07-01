@@ -109,7 +109,7 @@ namespace Apq.DllImports
 			return shfi;
 		}
 		/// <summary>
-		/// 获取文件夹图标
+		/// [功能不正确]获取文件夹图标
 		/// </summary>
 		/// <param name="isLargeIcon">是否获取大图标</param>
 		/// <param name="isOpenState">是否打开状态</param>
