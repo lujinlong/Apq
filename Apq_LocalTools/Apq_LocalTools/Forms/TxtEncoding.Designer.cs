@@ -1,7 +1,7 @@
 ﻿using Apq_LocalTools.Forms;
 namespace Apq_LocalTools
 {
-	partial class TxtEncoding
+	public partial class TxtEncoding
 	{
 		/// <summary>
 		/// 必需的设计器变量。
@@ -30,17 +30,16 @@ namespace Apq_LocalTools
 		private void InitializeComponent()
 		{
 			this.components = new System.ComponentModel.Container();
-			System.Windows.Forms.TreeListViewItemCollection.TreeListViewItemCollectionComparer treeListViewItemCollectionComparer1 = new System.Windows.Forms.TreeListViewItemCollection.TreeListViewItemCollectionComparer();
+			Lyquidity.Controls.ExtendedListViews.ToggleColumnHeader toggleColumnHeader1 = new Lyquidity.Controls.ExtendedListViews.ToggleColumnHeader();
+			Lyquidity.Controls.ExtendedListViews.ToggleColumnHeader toggleColumnHeader2 = new Lyquidity.Controls.ExtendedListViews.ToggleColumnHeader();
+			Lyquidity.Controls.ExtendedListViews.ToggleColumnHeader toggleColumnHeader3 = new Lyquidity.Controls.ExtendedListViews.ToggleColumnHeader();
+			Lyquidity.Controls.ExtendedListViews.ToggleColumnHeader toggleColumnHeader4 = new Lyquidity.Controls.ExtendedListViews.ToggleColumnHeader();
+			Lyquidity.Controls.ExtendedListViews.ToggleColumnHeader toggleColumnHeader5 = new Lyquidity.Controls.ExtendedListViews.ToggleColumnHeader();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TxtEncoding));
 			this.tsslStatus = new System.Windows.Forms.ToolStripStatusLabel();
 			this.tspb = new System.Windows.Forms.ToolStripProgressBar();
 			this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-			this.treeListView1 = new System.Windows.Forms.TreeListView();
-			this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-			this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-			this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-			this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-			this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.imgList = new System.Windows.Forms.ImageList(this.components);
 			this.label2 = new System.Windows.Forms.Label();
 			this.cbSrcEncoding = new System.Windows.Forms.ComboBox();
 			this.label3 = new System.Windows.Forms.Label();
@@ -59,7 +58,7 @@ namespace Apq_LocalTools
 			this.label6 = new System.Windows.Forms.Label();
 			this.cbDstEncoding = new System.Windows.Forms.ComboBox();
 			this.btnTrans = new System.Windows.Forms.Button();
-			this.imgList = new System.Windows.Forms.ImageList(this.components);
+			this.treeListView1 = new Lyquidity.Controls.ExtendedListViews.TreeListView();
 			this.statusStrip1.SuspendLayout();
 			this.groupBox1.SuspendLayout();
 			this.groupBox2.SuspendLayout();
@@ -86,52 +85,11 @@ namespace Apq_LocalTools
 			this.statusStrip1.Size = new System.Drawing.Size(760, 22);
 			this.statusStrip1.TabIndex = 1;
 			// 
-			// treeListView1
+			// imgList
 			// 
-			this.treeListView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-						| System.Windows.Forms.AnchorStyles.Left)
-						| System.Windows.Forms.AnchorStyles.Right)));
-			this.treeListView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader1,
-            this.columnHeader2,
-            this.columnHeader3,
-            this.columnHeader5,
-            this.columnHeader4});
-			treeListViewItemCollectionComparer1.Column = 0;
-			treeListViewItemCollectionComparer1.SortOrder = System.Windows.Forms.SortOrder.Ascending;
-			this.treeListView1.Comparer = treeListViewItemCollectionComparer1;
-			this.treeListView1.Location = new System.Drawing.Point(0, 0);
-			this.treeListView1.Name = "treeListView1";
-			this.treeListView1.Size = new System.Drawing.Size(509, 403);
-			this.treeListView1.SmallImageList = this.imgList;
-			this.treeListView1.TabIndex = 2;
-			this.treeListView1.UseCompatibleStateImageBehavior = false;
-			this.treeListView1.BeforeExpand += new System.Windows.Forms.TreeListViewCancelEventHandler(this.treeListView1_BeforeExpand);
-			// 
-			// columnHeader1
-			// 
-			this.columnHeader1.Text = "名称";
-			this.columnHeader1.Width = 292;
-			// 
-			// columnHeader2
-			// 
-			this.columnHeader2.Text = "大小";
-			this.columnHeader2.Width = 116;
-			// 
-			// columnHeader3
-			// 
-			this.columnHeader3.Text = "类型";
-			this.columnHeader3.Width = 95;
-			// 
-			// columnHeader5
-			// 
-			this.columnHeader5.Text = "创建日期";
-			this.columnHeader5.Width = 112;
-			// 
-			// columnHeader4
-			// 
-			this.columnHeader4.Text = "修改日期";
-			this.columnHeader4.Width = 118;
+			this.imgList.ColorDepth = System.Windows.Forms.ColorDepth.Depth32Bit;
+			this.imgList.ImageSize = new System.Drawing.Size(16, 16);
+			this.imgList.TransparentColor = System.Drawing.Color.Transparent;
 			// 
 			// label2
 			// 
@@ -333,21 +291,94 @@ namespace Apq_LocalTools
 			this.btnTrans.UseVisualStyleBackColor = true;
 			this.btnTrans.Click += new System.EventHandler(this.btnTrans_Click);
 			// 
-			// imgList
+			// treeListView1
 			// 
-			this.imgList.ColorDepth = System.Windows.Forms.ColorDepth.Depth32Bit;
-			this.imgList.ImageSize = new System.Drawing.Size(16, 16);
-			this.imgList.TransparentColor = System.Drawing.Color.Transparent;
+			this.treeListView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.treeListView1.BackColor = System.Drawing.SystemColors.Window;
+			toggleColumnHeader1.Hovered = false;
+			toggleColumnHeader1.Image = null;
+			toggleColumnHeader1.Index = 0;
+			toggleColumnHeader1.Pressed = false;
+			toggleColumnHeader1.ScaleStyle = Lyquidity.Controls.ExtendedListViews.ColumnScaleStyle.Slide;
+			toggleColumnHeader1.Selected = false;
+			toggleColumnHeader1.Text = "名称";
+			toggleColumnHeader1.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+			toggleColumnHeader1.Visible = true;
+			toggleColumnHeader1.Width = 200;
+			toggleColumnHeader2.Hovered = false;
+			toggleColumnHeader2.Image = null;
+			toggleColumnHeader2.Index = 0;
+			toggleColumnHeader2.Pressed = false;
+			toggleColumnHeader2.ScaleStyle = Lyquidity.Controls.ExtendedListViews.ColumnScaleStyle.Slide;
+			toggleColumnHeader2.Selected = false;
+			toggleColumnHeader2.Text = "大小(B)";
+			toggleColumnHeader2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+			toggleColumnHeader2.Visible = true;
+			toggleColumnHeader2.Width = 150;
+			toggleColumnHeader3.Hovered = false;
+			toggleColumnHeader3.Image = null;
+			toggleColumnHeader3.Index = 0;
+			toggleColumnHeader3.Pressed = false;
+			toggleColumnHeader3.ScaleStyle = Lyquidity.Controls.ExtendedListViews.ColumnScaleStyle.Slide;
+			toggleColumnHeader3.Selected = false;
+			toggleColumnHeader3.Text = "类型";
+			toggleColumnHeader3.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+			toggleColumnHeader3.Visible = true;
+			toggleColumnHeader4.Hovered = false;
+			toggleColumnHeader4.Image = null;
+			toggleColumnHeader4.Index = 0;
+			toggleColumnHeader4.Pressed = false;
+			toggleColumnHeader4.ScaleStyle = Lyquidity.Controls.ExtendedListViews.ColumnScaleStyle.Slide;
+			toggleColumnHeader4.Selected = false;
+			toggleColumnHeader4.Text = "创建日期";
+			toggleColumnHeader4.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+			toggleColumnHeader4.Visible = true;
+			toggleColumnHeader4.Width = 140;
+			toggleColumnHeader5.Hovered = false;
+			toggleColumnHeader5.Image = null;
+			toggleColumnHeader5.Index = 0;
+			toggleColumnHeader5.Pressed = false;
+			toggleColumnHeader5.ScaleStyle = Lyquidity.Controls.ExtendedListViews.ColumnScaleStyle.Slide;
+			toggleColumnHeader5.Selected = false;
+			toggleColumnHeader5.Text = "访问日期";
+			toggleColumnHeader5.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+			toggleColumnHeader5.Visible = true;
+			toggleColumnHeader5.Width = 140;
+			this.treeListView1.Columns.AddRange(new Lyquidity.Controls.ExtendedListViews.ToggleColumnHeader[] {
+            toggleColumnHeader1,
+            toggleColumnHeader2,
+            toggleColumnHeader3,
+            toggleColumnHeader4,
+            toggleColumnHeader5});
+			this.treeListView1.ColumnSortColor = System.Drawing.Color.Gainsboro;
+			this.treeListView1.ColumnTrackColor = System.Drawing.Color.WhiteSmoke;
+			this.treeListView1.GridLineColor = System.Drawing.Color.WhiteSmoke;
+			this.treeListView1.HeaderMenu = null;
+			this.treeListView1.ItemHeight = 20;
+			this.treeListView1.ItemMenu = null;
+			this.treeListView1.LabelEdit = false;
+			this.treeListView1.Location = new System.Drawing.Point(0, 0);
+			this.treeListView1.Name = "treeListView1";
+			this.treeListView1.RowSelectColor = System.Drawing.SystemColors.Highlight;
+			this.treeListView1.RowTrackColor = System.Drawing.Color.WhiteSmoke;
+			this.treeListView1.Size = new System.Drawing.Size(509, 403);
+			this.treeListView1.SmallImageList = this.imgList;
+			this.treeListView1.StateImageList = null;
+			this.treeListView1.TabIndex = 12;
+			this.treeListView1.Text = "treeListView2";
+			this.treeListView1.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.treeListView1_ColumnClick);
 			// 
 			// TxtEncoding
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(760, 428);
+			this.Controls.Add(this.treeListView1);
 			this.Controls.Add(this.btnTrans);
 			this.Controls.Add(this.groupBox2);
 			this.Controls.Add(this.groupBox1);
-			this.Controls.Add(this.treeListView1);
 			this.Controls.Add(this.statusStrip1);
 			this.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -373,12 +404,6 @@ namespace Apq_LocalTools
 		#endregion
 
 		private System.Windows.Forms.StatusStrip statusStrip1;
-		private System.Windows.Forms.TreeListView treeListView1;
-		private System.Windows.Forms.ColumnHeader columnHeader1;
-		private System.Windows.Forms.ColumnHeader columnHeader2;
-		private System.Windows.Forms.ColumnHeader columnHeader3;
-		private System.Windows.Forms.ColumnHeader columnHeader5;
-		private System.Windows.Forms.ColumnHeader columnHeader4;
 		private System.Windows.Forms.Label label2;
 		private System.Windows.Forms.ComboBox cbSrcEncoding;
 		private System.Windows.Forms.Label label3;
@@ -400,5 +425,6 @@ namespace Apq_LocalTools
 		private System.Windows.Forms.TextBox txtExt;
 		private System.Windows.Forms.Label label5;
 		private System.Windows.Forms.ImageList imgList;
+		private Lyquidity.Controls.ExtendedListViews.TreeListView treeListView1;
 	}
 }

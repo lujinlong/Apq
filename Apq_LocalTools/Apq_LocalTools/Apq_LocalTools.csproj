@@ -52,6 +52,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <NoWarn>1591;</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -61,6 +62,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <NoWarn>1591;</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug_Home|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -72,6 +74,7 @@
     <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <NoWarn>1591;</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <DebugSymbols>true</DebugSymbols>
@@ -123,7 +126,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Dlls\Apq.Reg.Client.dll</HintPath>
     </Reference>
-    <Reference Include="Apq.Win, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Apq.Win, Version=0.3.4199.23484, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Dlls\Apq.Win.dll</HintPath>
     </Reference>
@@ -134,6 +137,9 @@
     <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Dlls\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Lyquidity.Controls.ExtendedListViews">
+      <HintPath>Dlls\Lyquidity.Controls.ExtendedListViews.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
@@ -155,21 +161,18 @@
     <Reference Include="System.Drawing">
       <Private>False</Private>
     </Reference>
-    <Reference Include="System.Runtime.InteropServices.APIs, Version=1.0.4187.20013, Culture=neutral, PublicKeyToken=null" />
     <Reference Include="System.Web.Services">
       <Private>False</Private>
     </Reference>
     <Reference Include="System.Windows.Forms">
       <Private>False</Private>
     </Reference>
-    <Reference Include="System.Windows.Forms.TreeListView, Version=1.0.4187.20014, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="System.Xaml" />
     <Reference Include="System.Xml">
       <Private>False</Private>
     </Reference>
     <Reference Include="UIAutomationProvider" />
-    <Reference Include="WeifenLuo.WinFormsUI.Docking, Version=2.2.2864.18696, Culture=neutral, PublicKeyToken=d481317c817cec47, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="WeifenLuo.WinFormsUI.Docking">
       <HintPath>Dlls\WeifenLuo.WinFormsUI.Docking.dll</HintPath>
     </Reference>
     <Reference Include="WindowsBase" />
@@ -424,6 +427,10 @@ xcopy "$(ProjectDir)..\..\Reference\TreeListView\System.Runtime.InteropServices.
 xcopy "$(ProjectDir)..\..\Reference\TreeListView\System.Runtime.InteropServices.APIs.xml" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
 xcopy "$(ProjectDir)..\..\Reference\TreeListView\System.Windows.Forms.TreeListView.dll" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
 xcopy "$(ProjectDir)..\..\Reference\TreeListView\System.Windows.Forms.TreeListView.xml" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+
+xcopy "$(ProjectDir)..\..\Reference\ExtendedListViews\Lyquidity.Controls.ExtendedListViews.dll" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+xcopy "$(ProjectDir)..\..\Reference\ExtendedListViews\Lyquidity.Controls.ExtendedListViews.xml" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+
 :End
 </PreBuildEvent>
     <PostBuildEvent>
