@@ -107,10 +107,7 @@ namespace Apq.IO
 		{
 			System.Threading.Mutex mutex = new System.Threading.Mutex(false, "fsw");
 			mutex.WaitOne();
-			if (!_ChangedFullPaths.ContainsKey(e.FullPath))
-			{
-				_ChangedFullPaths.Add(e.FullPath, e);
-			}
+			_ChangedFullPaths[e.FullPath] = e;
 			mutex.ReleaseMutex();
 
 			// 触发计时器
