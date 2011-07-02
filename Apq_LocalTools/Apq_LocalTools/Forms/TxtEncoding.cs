@@ -26,6 +26,7 @@ namespace Apq_LocalTools
 		}
 
 		private TreeListViewHelper tlvHelper;
+		private List<Apq.IO.FsWatcher> lstFsws = new List<Apq.IO.FsWatcher>();
 
 		public override void SetUILang(Apq.UILang.UILang UILang)
 		{
@@ -123,15 +124,139 @@ namespace Apq_LocalTools
 						ndRoot.SubItems.Add("0");
 					}
 					ndRoot.SubItems.Add(shFileInfo.szTypeName);
-					ndRoot.SubItems.Add(fsDrive.RootDirectory.CreationTime.ToString("yyyy-MM-dd hh:mm:ss"));
-					ndRoot.SubItems.Add(fsDrive.RootDirectory.LastWriteTime.ToString("yyyy-MM-dd hh:mm:ss"));
+					ndRoot.SubItems.Add(fsDrive.RootDirectory.CreationTime.ToString("yyyy-MM-dd HH:mm:ss"));
+					ndRoot.SubItems.Add(fsDrive.RootDirectory.LastWriteTime.ToString("yyyy-MM-dd HH:mm:ss"));
 
 					ndRoot.SubItems.Add(fsDrive.Name);
 					ndRoot.SubItems.Add(fsDrive.IsReady ? "0" : "-1");
 					ndRoot.SubItems.Add("1");//类型{1:Drive,2:Folder,3:File}
+
+					// 添加监视器
+					if (fsDrive.IsReady)
+					{
+						Apq.IO.FsWatcher fsw = new Apq.IO.FsWatcher();
+						fsw.FileSystemWatcher.Path = fsDrive.RootDirectory.FullName;
+						fsw.FileSystemWatcher.NotifyFilter = NotifyFilters.CreationTime
+							| NotifyFilters.DirectoryName
+							| NotifyFilters.FileName
+							| NotifyFilters.LastWrite
+							| NotifyFilters.Size;
+						fsw.FileSystemWatcher.IncludeSubdirectories = true;
+						fsw.Created += new FileSystemEventHandler(fsw_Created);
+						fsw.Renamed += new RenamedEventHandler(fsw_Renamed);
+						fsw.Deleted += new FileSystemEventHandler(fsw_Deleted);
+						fsw.Changed += new FileSystemEventHandler(fsw_Changed);
+						lstFsws.Add(fsw);
+						fsw.Start();
+					}
 				}
 			}
 			catch { }
+		}
+
+		void fsw_Created(object sender, FileSystemEventArgs e)
+		{
+			Apq.Windows.Delegates.Action_UI<ToolStripStatusLabel>(this, tsslStatus, delegate(ToolStripStatusLabel ctrl)
+			{
+				try
+				{
+					TreeListViewItem ndFolder = null;
+					string strFolder = e.FullPath;
+
+					strFolder = Path.GetDirectoryName(e.FullPath);
+					ndFolder = tlvHelper.FindNodeByFullPath(strFolder);
+					if (ndFolder != null)
+					{
+						treeListView1.BeginUpdate();
+						// 首次加载时Load,否则Add
+						int HasChildren = Apq.Convert.ChangeType<int>(ndFolder.SubItems[treeListView1.Columns.Count + 1].Text);
+						if (HasChildren == 0)
+						{
+							// 移除子结点，重新添加
+							LoadFolders(ndFolder, strFolder, false);
+							LoadFiles(ndFolder, strFolder);
+						}
+						else
+						{
+							if (File.Exists(e.FullPath))
+							{
+								AddFile(ndFolder, e.FullPath);
+							}
+							else if (Directory.Exists(e.FullPath))
+							{
+								AddFolder(ndFolder, e.FullPath, false);
+							}
+						}
+						treeListView1.EndUpdate();
+					}
+				}
+				catch { }
+			});
+		}
+
+		void fsw_Deleted(object sender, FileSystemEventArgs e)
+		{
+			Apq.Windows.Delegates.Action_UI<ToolStripStatusLabel>(this, tsslStatus, delegate(ToolStripStatusLabel ctrl)
+			{
+				try
+				{
+					TreeListViewItem ndFound = tlvHelper.FindNodeByFullPath(e.FullPath);
+
+					if (ndFound != null)
+					{
+						ndFound.Remove();
+					}
+				}
+				catch { }
+			});
+		}
+
+		void fsw_Renamed(object sender, RenamedEventArgs e)
+		{
+			Apq.Windows.Delegates.Action_UI<ToolStripStatusLabel>(this, tsslStatus, delegate(ToolStripStatusLabel ctrl)
+			{
+				try
+				{
+					TreeListViewItem ndFound = tlvHelper.FindNodeByFullPath(e.OldFullPath);
+
+					if (ndFound != null)
+					{
+						if (File.Exists(e.FullPath))
+						{
+							ndFound.Text = e.Name;
+						}
+						else if (Directory.Exists(e.FullPath))
+						{
+							ndFound.Text = Path.GetFileName(e.FullPath);
+						}
+					}
+				}
+				catch { }
+			});
+		}
+
+		void fsw_Changed(object sender, FileSystemEventArgs e)
+		{
+			Apq.Windows.Delegates.Action_UI<ToolStripStatusLabel>(this, tsslStatus, delegate(ToolStripStatusLabel ctrl)
+			{
+				try
+				{
+					TreeListViewItem ndFound = tlvHelper.FindNodeByFullPath(e.FullPath);
+
+					if (ndFound != null)
+					{
+						if (File.Exists(e.FullPath))
+						{
+							ChangeFile(ndFound, e.FullPath);
+						}
+						else if (Directory.Exists(e.FullPath))
+						{
+							ChangeFolder(ndFound, e.FullPath);
+						}
+					}
+				}
+				catch { }
+			});
 		}
 		#endregion
 
@@ -172,25 +297,7 @@ namespace Apq_LocalTools
 				node.SubItems[treeListView1.Columns.Count + 1].Text = strChildren.LongLength > 0 ? "1" : "-1";
 				foreach (string strChild in strChildren)
 				{
-					DirectoryInfo diChild = new DirectoryInfo(strChild);
-					TreeListViewItem ndChild = new TreeListViewItem(diChild.Name);
-					node.Items.Add(ndChild);
-					ndChild.Checked = node.Checked;
-					ndChild.ImageKey = "文件夹收起";
-					ndChild.SubItems.Add("0");
-					ndChild.SubItems.Add(Apq.GlobalObject.UILang["文件夹"]);
-					ndChild.SubItems.Add(diChild.CreationTime.ToString("yyyy-MM-dd hh:mm:ss"));
-					ndChild.SubItems.Add(diChild.LastWriteTime.ToString("yyyy-MM-dd hh:mm:ss"));
-
-					ndChild.SubItems.Add(diChild.FullName);
-					ndChild.SubItems.Add("0");
-					ndChild.SubItems.Add("2");//类型{1:Drive,2:Folder,3:File}
-
-					if (ContainsChildren)
-					{
-						LoadFolders(ndChild, ndChild.FullPath, ContainsChildren);
-						LoadFiles(ndChild, ndChild.FullPath);
-					}
+					AddFolder(node, strChild, ContainsChildren);
 				}
 			}
 			catch { }
@@ -203,42 +310,91 @@ namespace Apq_LocalTools
 				string[] strChildren = Directory.GetFiles(fsFullPath + "\\");
 				foreach (string strChild in strChildren)
 				{
-					FileInfo diChild = new FileInfo(strChild);
-					//string strExt = fsDrive.DriveType.ToString();
-					string strExt = diChild.Extension.ToLower();
-					if (strExt == ".exe")
-					{
-						strExt = diChild.FullName.ToLower();
-					}
-
-					Icon SmallIcon = null;
-					Apq.DllImports.Shell32.SHFILEINFO shFileInfo = Apq.DllImports.Shell32.GetFileInfo(strExt, false, ref SmallIcon);
-
-					if (!imgList.Images.ContainsKey(strExt))
-					{
-						imgList.Images.Add(strExt, SmallIcon);
-					}
-
-					TreeListViewItem ndChild = new TreeListViewItem(diChild.Name);
-					node.Items.Add(ndChild);
-					ndChild.Checked = node.Checked;
-					ndChild.ImageIndex = imgList.Images.IndexOfKey(strExt);
-					ndChild.SubItems.Add(diChild.Length.ToString());
-					if (strExt.Contains("\\"))
-					{
-						strExt = "应用程序";
-					}
-					//ndChild.SubItems.Add(Apq.GlobalObject.UILang[strExt]);
-					ndChild.SubItems.Add(shFileInfo.szTypeName);
-					ndChild.SubItems.Add(diChild.CreationTime.ToString("yyyy-MM-dd hh:mm:ss"));
-					ndChild.SubItems.Add(diChild.LastWriteTime.ToString("yyyy-MM-dd hh:mm:ss"));
-
-					ndChild.SubItems.Add(diChild.Name);
-					ndChild.SubItems.Add("-1");
-					ndChild.SubItems.Add("3");//类型{1:Drive,2:Folder,3:File}
+					AddFile(node, strChild);
 				}
 			}
 			catch { }
+		}
+
+		private void AddFolder(TreeListViewItem node, string fsFullPath, bool ContainsChildren = false)
+		{
+			DirectoryInfo diChild = new DirectoryInfo(fsFullPath);
+			TreeListViewItem ndChild = new TreeListViewItem(diChild.Name);
+			node.Items.Add(ndChild);
+			ndChild.Checked = node.Checked;
+			ndChild.ImageKey = "文件夹收起";
+			ndChild.SubItems.Add("0");
+			ndChild.SubItems.Add(Apq.GlobalObject.UILang["文件夹"]);
+			ndChild.SubItems.Add(diChild.CreationTime.ToString("yyyy-MM-dd HH:mm:ss"));
+			ndChild.SubItems.Add(diChild.LastWriteTime.ToString("yyyy-MM-dd HH:mm:ss"));
+
+			ndChild.SubItems.Add(diChild.FullName);
+			ndChild.SubItems.Add("0");
+			ndChild.SubItems.Add("2");//类型{1:Drive,2:Folder,3:File}
+
+			if (ContainsChildren)
+			{
+				LoadFolders(ndChild, ndChild.FullPath, ContainsChildren);
+				LoadFiles(ndChild, ndChild.FullPath);
+			}
+		}
+
+		private void ChangeFolder(TreeListViewItem node, string fsFullPath)
+		{
+			DirectoryInfo diChild = new DirectoryInfo(fsFullPath);
+			node.Text = diChild.Name;
+			node.SubItems[3].Text = diChild.CreationTime.ToString("yyyy-MM-dd HH:mm:ss");
+			node.SubItems[4].Text = diChild.LastWriteTime.ToString("yyyy-MM-dd HH:mm:ss");
+
+			node.SubItems[5].Text = (diChild.FullName);
+		}
+
+		private void AddFile(TreeListViewItem node, string fsFullPath)
+		{
+			FileInfo diChild = new FileInfo(fsFullPath);
+			//string strExt = fsDrive.DriveType.ToString();
+			string strExt = diChild.Extension.ToLower();
+			if (strExt == ".exe")
+			{
+				strExt = diChild.FullName.ToLower();
+			}
+
+			Icon SmallIcon = null;
+			Apq.DllImports.Shell32.SHFILEINFO shFileInfo = Apq.DllImports.Shell32.GetFileInfo(strExt, false, ref SmallIcon);
+
+			if (!imgList.Images.ContainsKey(strExt))
+			{
+				imgList.Images.Add(strExt, SmallIcon);
+			}
+
+			TreeListViewItem ndChild = new TreeListViewItem(diChild.Name);
+			node.Items.Add(ndChild);
+			ndChild.Checked = node.Checked;
+			ndChild.ImageIndex = imgList.Images.IndexOfKey(strExt);
+			ndChild.SubItems.Add(diChild.Length.ToString("n0"));
+			if (strExt.Contains("\\"))
+			{
+				strExt = "应用程序";
+			}
+			//ndChild.SubItems.Add(Apq.GlobalObject.UILang[strExt]);
+			ndChild.SubItems.Add(shFileInfo.szTypeName);
+			ndChild.SubItems.Add(diChild.CreationTime.ToString("yyyy-MM-dd HH:mm:ss"));
+			ndChild.SubItems.Add(diChild.LastWriteTime.ToString("yyyy-MM-dd HH:mm:ss"));
+
+			ndChild.SubItems.Add(diChild.Name);
+			ndChild.SubItems.Add("-1");
+			ndChild.SubItems.Add("3");//类型{1:Drive,2:Folder,3:File}
+		}
+
+		private void ChangeFile(TreeListViewItem node, string fsFullPath)
+		{
+			FileInfo diChild = new FileInfo(fsFullPath);
+			node.Text = diChild.Name;
+			node.SubItems[1].Text = diChild.Length.ToString("n0");
+			node.SubItems[3].Text = diChild.CreationTime.ToString("yyyy-MM-dd HH:mm:ss");
+			node.SubItems[4].Text = diChild.LastWriteTime.ToString("yyyy-MM-dd HH:mm:ss");
+
+			node.SubItems[5].Text = (diChild.FullName);
 		}
 
 		// 展开文件夹图标
@@ -356,6 +512,10 @@ namespace Apq_LocalTools
 				tspb.Maximum = 0;
 
 				// 补全资源管理器
+				foreach (Apq.IO.FsWatcher fsw in lstFsws)
+				{
+					fsw.Stop();
+				}
 				treeListView1.BeginUpdate();
 				for (long i = treeListView1.CheckedItems.LongLength - 1; i >= 0; i--)
 				{
@@ -369,6 +529,10 @@ namespace Apq_LocalTools
 					}
 				}
 				treeListView1.EndUpdate();
+				foreach (Apq.IO.FsWatcher fsw in lstFsws)
+				{
+					fsw.Start();
+				}
 
 				foreach (TreeListViewItem node in treeListView1.CheckedItems)
 				{
