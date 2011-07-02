@@ -12,7 +12,7 @@ namespace Apq.Config
 	{
 		private System.Xml.XmlDocument xd = new System.Xml.XmlDocument();
 		private System.Xml.XmlNode xn;
-		private FileSystemWatcher fsw = new FileSystemWatcher();
+		private Apq.IO.FsWatcher fsw = new Apq.IO.FsWatcher();
 
 		/// <summary>
 		/// Xml ≈‰÷√Œƒº˛
@@ -51,14 +51,14 @@ namespace Apq.Config
 
 				string strFolder = System.IO.Path.GetDirectoryName(value);
 				string strFileName = System.IO.Path.GetFileName(value);
-				if (fsw.Path != strFolder)
+				if (fsw.FileSystemWatcher.Filter != strFileName)
 				{
-					fsw.Path = strFolder;
-					fsw.EnableRaisingEvents = true;
+					fsw.FileSystemWatcher.Filter = strFileName;
 				}
-				if (fsw.Filter != strFileName)
+				if (fsw.FileSystemWatcher.Path != strFolder)
 				{
-					fsw.Filter = strFileName;
+					fsw.FileSystemWatcher.Path = strFolder;
+					fsw.Start();
 				}
 
 				base.Path = value;
@@ -95,13 +95,13 @@ namespace Apq.Config
 		/// </summary>
 		public override void Save()
 		{
-			fsw.EnableRaisingEvents = false;
+			fsw.Stop();
 			object lockXml = Apq.Locks.GetFileLock(_Path);
 			lock (lockXml)
 			{
 				xd.Save(_Path);
 			}
-			fsw.EnableRaisingEvents = true;
+			fsw.Start();
 		}
 
 		/// <summary>

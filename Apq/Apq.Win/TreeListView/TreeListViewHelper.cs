@@ -222,6 +222,62 @@ namespace Apq.TreeListView
 		}
 		#endregion
 
+		#region FindNodeByFullPath
+		/// <summary>
+		/// 查找指定全路径的节点
+		/// </summary>
+		public System.Windows.Forms.TreeListViewItem FindNodeByFullPath(string FullPath)
+		{
+			// 查找到对应结点
+			string[] lstPaths = FullPath.Split(new string[] { TreeListView.PathSeparator }, StringSplitOptions.RemoveEmptyEntries);
+			bool IsFound = false;// 是否找到最终结点
+			TreeListViewItem ndFound = null;// 查找过程已搜索到的结点
+			foreach (TreeListViewItem node in TreeListView.Items)
+			{
+				if (node.Text.Equals(lstPaths[0], StringComparison.OrdinalIgnoreCase))
+				{
+					ndFound = node;
+					if (lstPaths.Length == 1)
+					{
+						IsFound = true;
+					}
+				}
+			}
+
+			if (ndFound != null && lstPaths.Length > 1)
+			{
+				int countPath = lstPaths.Length;
+				for (int i = 1; i < countPath; i++)
+				{
+					TreeListViewItem ndChild = null;// 查找过程中搜索到的下级结点
+					foreach (TreeListViewItem node in ndFound.Items)
+					{
+						if (node.Text.Equals(lstPaths[i], StringComparison.OrdinalIgnoreCase))
+						{
+							ndChild = node;
+
+							if (i == countPath - 1)// 最后一级
+							{
+								IsFound = true;
+							}
+						}
+					}
+
+					if (ndChild == null)
+					{
+						break;
+					}
+					ndFound = ndChild;
+				}
+			}
+
+			if (IsFound && ndFound != null)
+			{
+				return ndFound;
+			}
+			return null;
+		}
+		#endregion
 		#region FindNodeByKey
 		/// <summary>
 		/// 查找指定主键值的节点(假定主键为第一个隐藏列)

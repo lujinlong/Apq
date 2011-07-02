@@ -243,6 +243,7 @@
     <Compile Include="HtmlEncode.cs" />
     <Compile Include="Interfaces\IDataShow.cs" />
     <Compile Include="IO\FileSystem.cs" />
+    <Compile Include="IO\FsWatcher.cs" />
     <Compile Include="Net\FtpClient.cs" />
     <Compile Include="Net\HttpWebRequest.cs" />
     <Compile Include="Net\ServicePointManager.cs" />
@@ -273,6 +274,7 @@
     </Compile>
     <Compile Include="Data\Dev\DataSet.cs" />
     <Compile Include="Data\SqlClient\Common.cs" />
+    <None Include="ClassDiagram1.cd" />
     <None Include="Data\SqlType.cs" />
     <Compile Include="Apq\String.cs" />
     <None Include="DllImports\Imm32.cs" />
