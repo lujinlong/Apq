@@ -274,7 +274,6 @@
     </Compile>
     <Compile Include="Data\Dev\DataSet.cs" />
     <Compile Include="Data\SqlClient\Common.cs" />
-    <None Include="ClassDiagram1.cd" />
     <None Include="Data\SqlType.cs" />
     <Compile Include="Apq\String.cs" />
     <None Include="DllImports\Imm32.cs" />
