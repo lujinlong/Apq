@@ -26,6 +26,8 @@ namespace Apq_LocalTools
 			tsmiTool.Text = Apq.GlobalObject.UILang["工具(&T)"];
 			tsmiOption.Text = Apq.GlobalObject.UILang["选项(&O)"];
 			tsmiUILang.Text = Apq.GlobalObject.UILang["语言(&L)"];
+			tsmiTxtEncoding.Text = Apq.GlobalObject.UILang["文本文件编码转换(&T)"];
+			tsmiFSRename.Text = Apq.GlobalObject.UILang["批量重命名(&H)"];
 
 			tsmiWindow.Text = Apq.GlobalObject.UILang["窗口(&W)"];
 			tsmiCloseAll.Text = Apq.GlobalObject.UILang["全部关闭(&L)"];
@@ -73,6 +75,12 @@ namespace Apq_LocalTools
 		private void tsmiTxtEncoding_Click(object sender, EventArgs e)
 		{
 			TxtEncoding win = new TxtEncoding();
+			win.Show(dockPanel1);
+		}
+
+		private void tsmiFSRename_Click(object sender, EventArgs e)
+		{
+			FSRename win = new FSRename();
 			win.Show(dockPanel1);
 		}
 		#endregion
