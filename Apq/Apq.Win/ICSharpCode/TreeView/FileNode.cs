@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.IO;
 using System.Windows;
+using Apq.DllImports;
 
 namespace Apq.ICSharpCode.TreeView
 {
@@ -30,7 +31,8 @@ namespace Apq.ICSharpCode.TreeView
 		{
 			get
 			{
-				return Apq.Windows.Forms.IconChache.GetFileSystemIcon(FullPath);
+				Shell32.SHFILEINFO shFileInfo = new Shell32.SHFILEINFO();
+				return Apq.Windows.Forms.IconChache.GetFileSystemIcon(FullPath, ref shFileInfo);
 			}
 		}
 

@@ -5,6 +5,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Drawing;
 using System.IO;
+using Apq.DllImports;
 
 namespace Apq.TreeListView
 {
@@ -15,7 +16,10 @@ namespace Apq.TreeListView
 	{
 		private TreeListViewHelper tlvHelper;
 		private System.Windows.Forms.TreeListViewItemCollection.TreeListViewItemCollectionComparer _Comparer1 = new System.Windows.Forms.TreeListViewItemCollection.TreeListViewItemCollectionComparer();
-		private ImageList _imgList = new ImageList();
+		private ImageList _imgList
+		{
+			get { return Apq.Windows.Forms.IconChache.ImgList; }
+		}
 		private List<Apq.IO.FsWatcher> lstFsws = new List<Apq.IO.FsWatcher>();
 		/// <summary>
 		/// 基于TreeListView的资源浏览器
@@ -184,6 +188,8 @@ namespace Apq.TreeListView
 			{
 				if (e.Item.ImageKey == "文件夹收起")
 				{
+					Apq.DllImports.Shell32.SHFILEINFO shFolderInfo = new DllImports.Shell32.SHFILEINFO();
+					Apq.Windows.Forms.IconChache.GetFileSystemIcon(e.Item.FullPath, ref shFolderInfo, true);
 					e.Item.ImageKey = "文件夹展开";
 				}
 			}
@@ -229,16 +235,11 @@ namespace Apq.TreeListView
 				foreach (DriveInfo fsDrive in fsDrives)
 				{
 					string strExt = fsDrive.Name;
-					Icon SmallIcon = null;
-					Apq.DllImports.Shell32.SHFILEINFO shFileInfo = Apq.DllImports.Shell32.GetFileInfo(strExt, false, ref SmallIcon);
-
-					if (!_imgList.Images.ContainsKey(fsDrive.DriveType.ToString()))
-					{
-						_imgList.Images.Add(fsDrive.DriveType.ToString(), SmallIcon);
-					}
 
 					TreeListViewItem ndRoot = new TreeListViewItem(fsDrive.Name.Substring(0, 2));
 					Items.Add(ndRoot);
+					Apq.DllImports.Shell32.SHFILEINFO shFileInfo = new DllImports.Shell32.SHFILEINFO();
+					Icon SmallIcon = Apq.Windows.Forms.IconChache.GetFileSystemIcon(strExt, ref shFileInfo);
 					ndRoot.ImageIndex = _imgList.Images.IndexOfKey(fsDrive.DriveType.ToString());
 					if (fsDrive.IsReady)
 					{
@@ -286,16 +287,8 @@ namespace Apq.TreeListView
 		{
 			try
 			{
-				if (!_imgList.Images.ContainsKey("文件夹收起"))
-				{
-					Icon SmallIcon = Apq.DllImports.Shell32.GetFolderIcon(false, false);
-					_imgList.Images.Add("文件夹收起", SmallIcon);
-				}
-				if (!_imgList.Images.ContainsKey("文件夹展开"))
-				{
-					Icon SmallIcon = Apq.DllImports.Shell32.GetFolderIcon(false, true);
-					_imgList.Images.Add("文件夹展开", SmallIcon);
-				}
+				Shell32.SHFILEINFO shfi = new Shell32.SHFILEINFO();
+				Icon SmallIcon = Apq.Windows.Forms.IconChache.GetFileSystemIcon(fsFullPath, ref shfi);
 
 				string[] strChildren = Directory.GetDirectories(fsFullPath + "\\");
 				node.SubItems[Columns.Count + 1].Text = strChildren.LongLength > 0 ? "1" : "-1";
@@ -324,6 +317,8 @@ namespace Apq.TreeListView
 			TreeListViewItem ndChild = new TreeListViewItem(diChild.Name);
 			node.Items.Add(ndChild);
 			ndChild.Checked = node.Checked;
+			Apq.DllImports.Shell32.SHFILEINFO shFolderInfo = new DllImports.Shell32.SHFILEINFO();
+			Apq.Windows.Forms.IconChache.GetFileSystemIcon(fsFullPath, ref shFolderInfo);
 			ndChild.ImageKey = "文件夹收起";
 			ndChild.SubItems.Add("0");
 			ndChild.SubItems.Add(Apq.GlobalObject.UILang["文件夹"]);
@@ -360,8 +355,8 @@ namespace Apq.TreeListView
 				strExt = diChild.FullName.ToLower();
 			}
 
-			Icon SmallIcon = null;
-			Apq.DllImports.Shell32.SHFILEINFO shFileInfo = Apq.DllImports.Shell32.GetFileInfo(strExt, false, ref SmallIcon);
+			Shell32.SHFILEINFO shFileInfo = new Shell32.SHFILEINFO();
+			Icon SmallIcon = Apq.Windows.Forms.IconChache.GetFileSystemIcon(strExt, ref shFileInfo);
 
 			if (!_imgList.Images.ContainsKey(strExt))
 			{

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Drawing;
 using System.IO;
+using Apq.DllImports;
 
 namespace Apq.Windows.Forms
 {
@@ -25,9 +26,10 @@ namespace Apq.Windows.Forms
 		/// 获取系统图标并缓存
 		/// </summary>
 		/// <param name="fsFullPath">完整路径</param>
+		/// <param name="shFileInfo">同时传出文件系统信息</param>
 		/// <param name="Expanded">是否获取展开图标</param>
 		/// <returns></returns>
-		public static Icon GetFileSystemIcon(string fsFullPath, bool Expanded = false)
+		public static Icon GetFileSystemIcon(string fsFullPath, ref Shell32.SHFILEINFO shFileInfo, bool Expanded = false)
 		{
 			if (!Path.IsPathRooted(fsFullPath))
 			{
@@ -45,7 +47,7 @@ namespace Apq.Windows.Forms
 					strExt = diChild.FullName.ToLower();
 				}
 
-				Apq.DllImports.Shell32.SHFILEINFO shFileInfo = Apq.DllImports.Shell32.GetFileInfo(strExt, false, ref SmallIcon);
+				SmallIcon = Shell32.GetFileInfo(strExt, ref shFileInfo);
 
 				if (!ImgList.Images.ContainsKey(strExt))
 				{
@@ -58,17 +60,17 @@ namespace Apq.Windows.Forms
 				{
 					if (!ImgList.Images.ContainsKey("文件夹展开"))
 					{
-						SmallIcon = Apq.DllImports.Shell32.GetFolderIcon(false, true);
+						SmallIcon = Shell32.GetFolderIcon(ref shFileInfo, false, true);
 						ImgList.Images.Add("文件夹展开", SmallIcon);
 					}
-					Bitmap bmp=new Bitmap(ImgList.Images["文件夹展开"]);
-					SmallIcon=Icon.FromHandle(bmp.GetHicon());
+					Bitmap bmp = new Bitmap(ImgList.Images["文件夹展开"]);
+					SmallIcon = Icon.FromHandle(bmp.GetHicon());
 				}
 				else
 				{
 					if (!ImgList.Images.ContainsKey("文件夹收起"))
 					{
-						SmallIcon = Apq.DllImports.Shell32.GetFolderIcon(false, false);
+						SmallIcon = Apq.DllImports.Shell32.GetFolderIcon(ref shFileInfo);
 						ImgList.Images.Add("文件夹收起", SmallIcon);
 					}
 					Bitmap bmp = new Bitmap(ImgList.Images["文件夹收起"]);

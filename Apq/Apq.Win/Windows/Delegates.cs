@@ -46,8 +46,8 @@ namespace Apq.Windows
 		/// <summary>
 		/// [UI线程]必要时在指定控件的创建线程调用代理
 		/// </summary>
-		/// <typeparam name="T">控件</typeparam>
-		/// <param name="ctrl"></param>
+		/// <typeparam name="T">控件基类</typeparam>
+		/// <param name="ctrl">控件</param>
 		/// <param name="obj"></param>
 		/// <param name="a"></param>
 		public static void Action_UI<T>(ISynchronizeInvoke ctrl, T obj, System.Action<T> a)
@@ -67,8 +67,8 @@ namespace Apq.Windows
 		/// <summary>
 		/// [UI线程]必要时在指定控件的创建线程调用代理
 		/// </summary>
-		/// <typeparam name="T">控件</typeparam>
-		/// <param name="ctrl"></param>
+		/// <typeparam name="T">控件基类</typeparam>
+		/// <param name="ctrl">控件</param>
 		/// <param name="obj"></param>
 		/// <param name="a"></param>
 		public static void Action_UI<T>(DispatcherObject ctrl, T obj, System.Action<T> a)
