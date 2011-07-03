@@ -48,6 +48,7 @@ namespace Apq_LocalTools
 			this.cbContainsFileExt = new System.Windows.Forms.CheckBox();
 			this.cbContainsFolder = new System.Windows.Forms.CheckBox();
 			this.cbRecursive = new System.Windows.Forms.CheckBox();
+			this.elementHost1 = new System.Windows.Forms.Integration.ElementHost();
 			this.fsExplorer1 = new Apq.TreeListView.FSExplorer();
 			this.statusStrip1.SuspendLayout();
 			this.groupBox1.SuspendLayout();
@@ -120,7 +121,7 @@ namespace Apq_LocalTools
 			this.groupBox1.Controls.Add(this.cbContainsFileExt);
 			this.groupBox1.Controls.Add(this.cbContainsFolder);
 			this.groupBox1.Controls.Add(this.cbRecursive);
-			this.groupBox1.Location = new System.Drawing.Point(12, 188);
+			this.groupBox1.Location = new System.Drawing.Point(12, 191);
 			this.groupBox1.Name = "groupBox1";
 			this.groupBox1.Size = new System.Drawing.Size(601, 212);
 			this.groupBox1.TabIndex = 9;
@@ -212,17 +213,27 @@ namespace Apq_LocalTools
 			this.cbContainsFolder.Text = "包含文件夹";
 			this.cbContainsFolder.UseVisualStyleBackColor = true;
 			// 
-			// cbContainsChildren
+			// cbRecursive
 			// 
 			this.cbRecursive.AutoSize = true;
 			this.cbRecursive.Checked = true;
 			this.cbRecursive.CheckState = System.Windows.Forms.CheckState.Checked;
 			this.cbRecursive.Location = new System.Drawing.Point(401, 64);
-			this.cbRecursive.Name = "cbContainsChildren";
+			this.cbRecursive.Name = "cbRecursive";
 			this.cbRecursive.Size = new System.Drawing.Size(84, 16);
 			this.cbRecursive.TabIndex = 9;
 			this.cbRecursive.Text = "包含子目录";
 			this.cbRecursive.UseVisualStyleBackColor = true;
+			// 
+			// elementHost1
+			// 
+			this.elementHost1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.elementHost1.Location = new System.Drawing.Point(630, 196);
+			this.elementHost1.Name = "elementHost1";
+			this.elementHost1.Size = new System.Drawing.Size(373, 207);
+			this.elementHost1.TabIndex = 11;
+			this.elementHost1.Text = "elementHost1";
+			this.elementHost1.Child = null;
 			// 
 			// fsExplorer1
 			// 
@@ -238,7 +249,7 @@ namespace Apq_LocalTools
 			this.fsExplorer1.Size = new System.Drawing.Size(760, 182);
 			this.fsExplorer1.TabIndex = 10;
 			this.fsExplorer1.UseCompatibleStateImageBehavior = false;
-			this.fsExplorer1.ItemActivate += new System.EventHandler(this.fsExplorer1_SelectedIndexChanged);
+			this.fsExplorer1.SelectedIndexChanged += new System.EventHandler(this.fsExplorer1_SelectedIndexChanged);
 			// 
 			// FSRename
 			// 
@@ -246,6 +257,7 @@ namespace Apq_LocalTools
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.AutoScroll = true;
 			this.ClientSize = new System.Drawing.Size(760, 428);
+			this.Controls.Add(this.elementHost1);
 			this.Controls.Add(this.fsExplorer1);
 			this.Controls.Add(this.groupBox1);
 			this.Controls.Add(this.statusStrip1);
@@ -287,6 +299,7 @@ namespace Apq_LocalTools
 		private System.Windows.Forms.Label label4;
 		private System.Windows.Forms.CheckBox cbContainsFileExt;
 		private System.Windows.Forms.CheckBox cbContainsFolder;
+		private System.Windows.Forms.Integration.ElementHost elementHost1;
 		private Apq.TreeListView.FSExplorer fsExplorer1;
 	}
 }

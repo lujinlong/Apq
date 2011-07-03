@@ -134,6 +134,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Dlls\Apq.WorkFlow.dll</HintPath>
     </Reference>
+    <Reference Include="ICSharpCode.TreeView">
+      <HintPath>Dlls\ICSharpCode.TreeView.dll</HintPath>
+    </Reference>
     <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Dlls\log4net.dll</HintPath>
@@ -438,6 +441,8 @@ xcopy "$(ProjectDir)..\..\Reference\log4net-1.2.10\log4net.xml" "$(ProjectDir)Dl
 
 xcopy "$(ProjectDir)..\..\Reference\ICSharpCode\AvalonEdit\ICSharpCode.AvalonEdit.dll" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
 xcopy "$(ProjectDir)..\..\Reference\ICSharpCode\AvalonEdit\ICSharpCode.AvalonEdit.xml" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+xcopy "$(ProjectDir)..\..\Reference\ICSharpCode\TreeView\ICSharpCode.TreeView.dll" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+xcopy "$(ProjectDir)..\..\Reference\ICSharpCode\TreeView\ICSharpCode.TreeView.xml" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
 
 xcopy "$(ProjectDir)..\..\Reference\DockPanel\WeifenLuo.WinFormsUI.Docking.dll" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
 

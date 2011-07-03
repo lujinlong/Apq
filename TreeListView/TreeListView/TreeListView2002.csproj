@@ -65,6 +65,7 @@
     <DebugType>full</DebugType>
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <NoWarn>1591;</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <OutputPath>bin\Release\</OutputPath>
@@ -85,6 +86,7 @@
     <DebugType>none</DebugType>
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <NoWarn>1591;</NoWarn>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System">
@@ -186,8 +188,7 @@ xcopy "$(ProjectDir)..\..\Reference\TreeListView\System.Runtime.InteropServices.
 
 :End
 </PreBuildEvent>
-    <PostBuildEvent>if "%25Reference%25" == "" goto End
-:xcopy "%25Reference%25\Res\$(ProjectName)" "$(TargetDir)Res\" /c /q /g /h /r /k /y /e
+    <PostBuildEvent>:xcopy "%25Reference%25\Res\$(ProjectName)" "$(TargetDir)Res\" /c /q /g /h /r /k /y /e
 
 xcopy "$(TargetPath)" "%25Reference%25\TreeListView\" /c /q /g /h /r /k /y
 xcopy "$(TargetDir)$(TargetName).xml" "%25Reference%25\TreeListView\" /c /q /g /h /r /k /y

@@ -35,12 +35,6 @@ namespace Apq_LocalTools
 			this.tsslStatus = new System.Windows.Forms.ToolStripStatusLabel();
 			this.tspb = new System.Windows.Forms.ToolStripProgressBar();
 			this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-			this.treeListView1 = new System.Windows.Forms.TreeListView();
-			this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-			this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-			this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-			this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-			this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.imgList = new System.Windows.Forms.ImageList(this.components);
 			this.label2 = new System.Windows.Forms.Label();
 			this.cbSrcEncoding = new System.Windows.Forms.ComboBox();
@@ -50,7 +44,7 @@ namespace Apq_LocalTools
 			this.txtExt = new System.Windows.Forms.TextBox();
 			this.label5 = new System.Windows.Forms.Label();
 			this.label4 = new System.Windows.Forms.Label();
-			this.cbContainsChildren = new System.Windows.Forms.CheckBox();
+			this.cbRecursive = new System.Windows.Forms.CheckBox();
 			this.groupBox2 = new System.Windows.Forms.GroupBox();
 			this.txtCustomer = new System.Windows.Forms.TextBox();
 			this.rbCustomer = new System.Windows.Forms.RadioButton();
@@ -60,6 +54,7 @@ namespace Apq_LocalTools
 			this.label6 = new System.Windows.Forms.Label();
 			this.cbDstEncoding = new System.Windows.Forms.ComboBox();
 			this.btnTrans = new System.Windows.Forms.Button();
+			this.fsExplorer1 = new Apq.TreeListView.FSExplorer();
 			this.statusStrip1.SuspendLayout();
 			this.groupBox1.SuspendLayout();
 			this.groupBox2.SuspendLayout();
@@ -85,57 +80,6 @@ namespace Apq_LocalTools
 			this.statusStrip1.Name = "statusStrip1";
 			this.statusStrip1.Size = new System.Drawing.Size(760, 22);
 			this.statusStrip1.TabIndex = 1;
-			// 
-			// treeListView1
-			// 
-			this.treeListView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-						| System.Windows.Forms.AnchorStyles.Left)
-						| System.Windows.Forms.AnchorStyles.Right)));
-			this.treeListView1.CheckBoxes = System.Windows.Forms.CheckBoxesTypes.Recursive;
-			this.treeListView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader1,
-            this.columnHeader2,
-            this.columnHeader3,
-            this.columnHeader5,
-            this.columnHeader4});
-			treeListViewItemCollectionComparer1.Column = 0;
-			treeListViewItemCollectionComparer1.SortOrder = System.Windows.Forms.SortOrder.Ascending;
-			this.treeListView1.Comparer = treeListViewItemCollectionComparer1;
-			this.treeListView1.Location = new System.Drawing.Point(0, 0);
-			this.treeListView1.Name = "treeListView1";
-			this.treeListView1.Size = new System.Drawing.Size(760, 203);
-			this.treeListView1.SmallImageList = this.imgList;
-			this.treeListView1.TabIndex = 2;
-			this.treeListView1.UseCompatibleStateImageBehavior = false;
-			this.treeListView1.BeforeExpand += new System.Windows.Forms.TreeListViewCancelEventHandler(this.treeListView1_BeforeExpand);
-			this.treeListView1.BeforeCollapse += new System.Windows.Forms.TreeListViewCancelEventHandler(this.treeListView1_BeforeCollapse);
-			this.treeListView1.SelectedIndexChanged += new System.EventHandler(this.treeListView1_SelectedIndexChanged);
-			// 
-			// columnHeader1
-			// 
-			this.columnHeader1.Text = "名称";
-			this.columnHeader1.Width = 400;
-			// 
-			// columnHeader2
-			// 
-			this.columnHeader2.Text = "大小(B)";
-			this.columnHeader2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-			this.columnHeader2.Width = 150;
-			// 
-			// columnHeader3
-			// 
-			this.columnHeader3.Text = "类型";
-			this.columnHeader3.Width = 100;
-			// 
-			// columnHeader5
-			// 
-			this.columnHeader5.Text = "创建日期";
-			this.columnHeader5.Width = 140;
-			// 
-			// columnHeader4
-			// 
-			this.columnHeader4.Text = "修改日期";
-			this.columnHeader4.Width = 140;
 			// 
 			// imgList
 			// 
@@ -198,7 +142,7 @@ namespace Apq_LocalTools
 			this.groupBox1.Controls.Add(this.label3);
 			this.groupBox1.Controls.Add(this.cbSrcEncoding);
 			this.groupBox1.Controls.Add(this.label2);
-			this.groupBox1.Controls.Add(this.cbContainsChildren);
+			this.groupBox1.Controls.Add(this.cbRecursive);
 			this.groupBox1.Location = new System.Drawing.Point(12, 209);
 			this.groupBox1.Name = "groupBox1";
 			this.groupBox1.Size = new System.Drawing.Size(365, 191);
@@ -233,17 +177,17 @@ namespace Apq_LocalTools
 			this.label4.TabIndex = 9;
 			this.label4.Text = "自动检测无法确定编码时使用默认编码读取原始文件";
 			// 
-			// cbContainsChildren
+			// cbRecursive
 			// 
-			this.cbContainsChildren.AutoSize = true;
-			this.cbContainsChildren.Checked = true;
-			this.cbContainsChildren.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.cbContainsChildren.Location = new System.Drawing.Point(77, 162);
-			this.cbContainsChildren.Name = "cbContainsChildren";
-			this.cbContainsChildren.Size = new System.Drawing.Size(84, 16);
-			this.cbContainsChildren.TabIndex = 9;
-			this.cbContainsChildren.Text = "包含子目录";
-			this.cbContainsChildren.UseVisualStyleBackColor = true;
+			this.cbRecursive.AutoSize = true;
+			this.cbRecursive.Checked = true;
+			this.cbRecursive.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.cbRecursive.Location = new System.Drawing.Point(77, 162);
+			this.cbRecursive.Name = "cbRecursive";
+			this.cbRecursive.Size = new System.Drawing.Size(84, 16);
+			this.cbRecursive.TabIndex = 9;
+			this.cbRecursive.Text = "包含子目录";
+			this.cbRecursive.UseVisualStyleBackColor = true;
 			// 
 			// groupBox2
 			// 
@@ -344,16 +288,31 @@ namespace Apq_LocalTools
 			this.btnTrans.UseVisualStyleBackColor = true;
 			this.btnTrans.Click += new System.EventHandler(this.btnTrans_Click);
 			// 
+			// fsExplorer1
+			// 
+			this.fsExplorer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+						| System.Windows.Forms.AnchorStyles.Left)
+						| System.Windows.Forms.AnchorStyles.Right)));
+			this.fsExplorer1.CheckBoxes = System.Windows.Forms.CheckBoxesTypes.Recursive;
+			treeListViewItemCollectionComparer1.Column = 2;
+			treeListViewItemCollectionComparer1.SortOrder = System.Windows.Forms.SortOrder.Ascending;
+			this.fsExplorer1.Comparer = treeListViewItemCollectionComparer1;
+			this.fsExplorer1.Location = new System.Drawing.Point(0, -1);
+			this.fsExplorer1.Name = "fsExplorer1";
+			this.fsExplorer1.Size = new System.Drawing.Size(760, 204);
+			this.fsExplorer1.TabIndex = 12;
+			this.fsExplorer1.UseCompatibleStateImageBehavior = false;
+			// 
 			// TxtEncoding
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.AutoScroll = true;
 			this.ClientSize = new System.Drawing.Size(760, 428);
+			this.Controls.Add(this.fsExplorer1);
 			this.Controls.Add(this.btnTrans);
 			this.Controls.Add(this.groupBox2);
 			this.Controls.Add(this.groupBox1);
-			this.Controls.Add(this.treeListView1);
 			this.Controls.Add(this.statusStrip1);
 			this.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -379,12 +338,6 @@ namespace Apq_LocalTools
 		#endregion
 
 		private System.Windows.Forms.StatusStrip statusStrip1;
-		private System.Windows.Forms.TreeListView treeListView1;
-		private System.Windows.Forms.ColumnHeader columnHeader1;
-		private System.Windows.Forms.ColumnHeader columnHeader2;
-		private System.Windows.Forms.ColumnHeader columnHeader3;
-		private System.Windows.Forms.ColumnHeader columnHeader5;
-		private System.Windows.Forms.ColumnHeader columnHeader4;
 		private System.Windows.Forms.Label label2;
 		private System.Windows.Forms.ComboBox cbSrcEncoding;
 		private System.Windows.Forms.Label label3;
@@ -401,10 +354,11 @@ namespace Apq_LocalTools
 		private System.Windows.Forms.RadioButton rbCustomer;
 		private System.Windows.Forms.RadioButton rbEncodeName;
 		private System.Windows.Forms.Label label1;
-		private System.Windows.Forms.CheckBox cbContainsChildren;
+		private System.Windows.Forms.CheckBox cbRecursive;
 		private System.Windows.Forms.RadioButton rbKeep;
 		private System.Windows.Forms.TextBox txtExt;
 		private System.Windows.Forms.Label label5;
 		private System.Windows.Forms.ImageList imgList;
+		private Apq.TreeListView.FSExplorer fsExplorer1;
 	}
 }

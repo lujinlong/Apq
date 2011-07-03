@@ -12,7 +12,6 @@ using System.Data.Common;
 using Apq_LocalTools.Forms;
 using Apq.TreeListView;
 using System.IO;
-using org.mozilla.intl.chardet;
 
 namespace Apq_LocalTools
 {
@@ -20,12 +19,11 @@ namespace Apq_LocalTools
 	{
 		private static int FormCount = 0;
 
+		private Apq.ICSharpCode.TreeView.FSExplorer tv = new Apq.ICSharpCode.TreeView.FSExplorer();
 		public FSRename()
 		{
 			InitializeComponent();
 		}
-
-		private List<Apq.IO.FsWatcher> lstFsws = new List<Apq.IO.FsWatcher>();
 
 		public override void SetUILang(Apq.UILang.UILang UILang)
 		{
@@ -59,7 +57,8 @@ namespace Apq_LocalTools
 		/// </summary>
 		public override void InitDataBefore()
 		{
-			#region 数据库连接
+			#region TreeListView
+			elementHost1.Child = tv;
 			#endregion
 		}
 		/// <summary>
@@ -84,6 +83,7 @@ namespace Apq_LocalTools
 			{
 				// 为TreeListView添加根结点
 				fsExplorer1.LoadDrives();
+				//tv.LoadDrives();
 			}
 			catch { }
 		}
@@ -187,10 +187,7 @@ namespace Apq_LocalTools
 				tspb.Maximum = 0;
 
 				// 补全资源管理器
-				foreach (Apq.IO.FsWatcher fsw in lstFsws)
-				{
-					fsw.Stop();
-				}
+				fsExplorer1.FSWatcherStop();
 				fsExplorer1.BeginUpdate();
 				for (long i = fsExplorer1.CheckedItems.LongLength - 1; i >= 0; i--)
 				{
@@ -203,10 +200,7 @@ namespace Apq_LocalTools
 					}
 				}
 				fsExplorer1.EndUpdate();
-				foreach (Apq.IO.FsWatcher fsw in lstFsws)
-				{
-					fsw.Start();
-				}
+				fsExplorer1.FSWatcherStart();
 
 				foreach (TreeListViewItem node in fsExplorer1.CheckedItems)
 				{

@@ -4,14 +4,14 @@
         <name>System.Runtime.InteropServices.APIs</name>
     </assembly>
     <members>
-        <member name="T:System.Runtime.InteropServices.APIs.APIsClipboard">
-            <summary>
-            Summary description for Clipboard.
-            </summary>
-        </member>
         <member name="T:System.Runtime.InteropServices.APIs.TextUtil">
             <summary>
             Summary description for TextUtil.
+            </summary>
+        </member>
+        <member name="T:System.Runtime.InteropServices.APIs.APIsClipboard">
+            <summary>
+            Summary description for Clipboard.
             </summary>
         </member>
         <member name="T:System.Runtime.InteropServices.APIs.ColorUtil">

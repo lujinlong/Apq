@@ -528,12 +528,14 @@ namespace System.Windows.Forms
 		{
 			InitializeComponent();
 
+			/*
 			// ListView π”√À´ª∫≥Â ------------------------------
 			SetStyle(ControlStyles.DoubleBuffer |
 			   ControlStyles.OptimizedDoubleBuffer |
 			   ControlStyles.AllPaintingInWmPaint, true);
 			UpdateStyles();
 			// =================================================
+			*/
 
 			if(!IsHandleCreated) CreateHandle();
 			_items = new TreeListViewItemCollection(this);
