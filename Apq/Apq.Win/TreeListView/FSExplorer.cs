@@ -93,7 +93,6 @@ namespace Apq.TreeListView
 						int HasChildren = Apq.Convert.ChangeType<int>(ndFolder.SubItems[Columns.Count + 1].Text);
 						if (HasChildren == 0)
 						{
-							// 移除子结点，重新添加
 							LoadChildren(ndFolder, strFolder, false);
 						}
 						else

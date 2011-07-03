@@ -173,10 +173,15 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Dlls\Apq.WorkFlow.dll</HintPath>
     </Reference>
+    <Reference Include="ICSharpCode.TreeView">
+      <HintPath>Dlls\ICSharpCode.TreeView.dll</HintPath>
+    </Reference>
     <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Dlls\log4net.dll</HintPath>
     </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core">
@@ -196,15 +201,22 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Dlls\System.Windows.Forms.TreeListView.dll</HintPath>
     </Reference>
+    <Reference Include="System.Xaml" />
     <Reference Include="System.Xml" />
     <Reference Include="WeifenLuo.WinFormsUI.Docking, Version=2.2.2864.18696, Culture=neutral, PublicKeyToken=d481317c817cec47, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Dlls\WeifenLuo.WinFormsUI.Docking.dll</HintPath>
     </Reference>
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Apq.Win\GlobalObject.cs" />
     <Compile Include="Diagnostics\Process.cs" />
+    <Compile Include="ICSharpCode\TreeView\FileNode.cs" />
+    <Compile Include="ICSharpCode\TreeView\FileSystemNode.cs" />
+    <Compile Include="ICSharpCode\TreeView\FolderNode.cs" />
+    <Compile Include="ICSharpCode\TreeView\FSExplorer.cs" />
+    <Compile Include="ICSharpCode\TreeView\TreeViewHelper.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -267,6 +279,7 @@
     <Compile Include="Windows\Forms\DelayConfirmBox.Designer.cs">
       <DependentUpon>DelayConfirmBox.cs</DependentUpon>
     </Compile>
+    <Compile Include="Windows\Forms\IconChache.cs" />
     <Compile Include="Windows\Forms\ListViewHelper.cs" />
     <Compile Include="Windows\Forms\NotifyIconForm.cs">
       <SubType>Form</SubType>
@@ -382,6 +395,8 @@ xcopy "$(ProjectDir)..\..\Reference\log4net-1.2.10\log4net.xml" "$(ProjectDir)Dl
 
 xcopy "$(ProjectDir)..\..\Reference\ICSharpCode\TextEditor_2.2\ICSharpCode.TextEditor.dll" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
 xcopy "$(ProjectDir)..\..\Reference\ICSharpCode\TextEditor_2.2\ICSharpCode.TextEditor.xml" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+xcopy "$(ProjectDir)..\..\Reference\ICSharpCode\TreeView\ICSharpCode.TreeView.dll" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+xcopy "$(ProjectDir)..\..\Reference\ICSharpCode\TreeView\ICSharpCode.TreeView.xml" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
 
 xcopy "$(ProjectDir)..\..\Reference\DockPanel\WeifenLuo.WinFormsUI.Docking.dll" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
 

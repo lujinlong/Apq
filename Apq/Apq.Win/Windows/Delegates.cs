@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Reflection;
 using System.ComponentModel;
+using System.Windows.Threading;
 
 namespace Apq.Windows
 {
@@ -59,6 +60,27 @@ namespace Apq.Windows
 			else
 			{
 				a(obj);
+			}
+
+			System.Windows.Forms.Application.DoEvents();
+		}
+		/// <summary>
+		/// [UI线程]必要时在指定控件的创建线程调用代理
+		/// </summary>
+		/// <typeparam name="T">控件</typeparam>
+		/// <param name="ctrl"></param>
+		/// <param name="obj"></param>
+		/// <param name="a"></param>
+		public static void Action_UI<T>(DispatcherObject ctrl, T obj, System.Action<T> a)
+		{
+			if (ctrl.CheckAccess())
+			{
+				a(obj);
+			}
+			else
+			{
+				object[] Params = { obj };
+				ctrl.Dispatcher.Invoke(a, Params);
 			}
 
 			System.Windows.Forms.Application.DoEvents();
