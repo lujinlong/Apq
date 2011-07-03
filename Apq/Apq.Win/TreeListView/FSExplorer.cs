@@ -394,6 +394,27 @@ namespace Apq.TreeListView
 		#endregion
 
 		#region 公开方法
+		/// <summary>
+		/// 文件系统监视开始
+		/// </summary>
+		public void FSWatcherStart()
+		{
+			foreach (Apq.IO.FsWatcher fsw in lstFsws)
+			{
+				fsw.Start();
+			}
+		}
+
+		/// <summary>
+		/// 文件系统监视停止
+		/// </summary>
+		public void FSWatcherStop()
+		{
+			foreach (Apq.IO.FsWatcher fsw in lstFsws)
+			{
+				fsw.Stop();
+			}
+		}
 		#endregion
 	}
 }
