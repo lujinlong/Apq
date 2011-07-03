@@ -78,7 +78,6 @@ namespace Apq.TreeListView
 		}
 
 		#region 内置事件处理
-
 		void fsw_Created(object sender, FileSystemEventArgs e)
 		{
 			Apq.Windows.Delegates.Action_UI<FSExplorer>(this, this, delegate(FSExplorer ctrl)
@@ -188,7 +187,7 @@ namespace Apq.TreeListView
 			{
 				if (e.Item.ImageKey == "文件夹收起")
 				{
-					Apq.DllImports.Shell32.SHFILEINFO shFolderInfo = new DllImports.Shell32.SHFILEINFO();
+					Shell32.SHFILEINFO shFolderInfo = new Shell32.SHFILEINFO();
 					Apq.Windows.Forms.IconChache.GetFileSystemIcon(e.Item.FullPath, ref shFolderInfo, true);
 					e.Item.ImageKey = "文件夹展开";
 				}
