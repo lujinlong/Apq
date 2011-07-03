@@ -4,6 +4,75 @@
         <name>System.Windows.Forms.TreeListView</name>
     </assembly>
     <members>
+        <member name="T:System.Windows.Forms.TreeListViewItemsEditorForm">
+            <summary>
+            Editor for the TreeListView.Items property
+            </summary>
+        </member>
+        <member name="M:System.Windows.Forms.TreeListViewItemsEditorForm.#ctor(System.Windows.Forms.TreeListViewItemCollection)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="collection"></param>
+        </member>
+        <member name="M:System.Windows.Forms.TreeListViewItemsEditorForm.Dispose(System.Boolean)">
+            <summary>
+            Nettoyage des ressources utilis閑s.
+            </summary>
+        </member>
+        <member name="M:System.Windows.Forms.TreeListViewItemsEditorForm.InitializeComponent">
+            <summary>
+            M閠hode requise pour la prise en charge du concepteur - ne modifiez pas
+            le contenu de cette m閠hode avec l'閐iteur de code.
+            </summary>
+        </member>
+        <member name="P:System.Windows.Forms.TreeListViewItemsEditorForm.Items">
+            <summary>
+            Get the items that are edited in this form
+            </summary>
+        </member>
+        <member name="T:System.Windows.Forms.TreeListViewItemsEditor">
+            <summary>
+            UITypeEditor for the TreeListView.Items property
+            </summary>
+        </member>
+        <member name="M:System.Windows.Forms.TreeListViewItemsEditor.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:System.Windows.Forms.TreeListViewItemsEditor.GetEditStyle(System.ComponentModel.ITypeDescriptorContext)">
+            <summary>
+            Shows a dropdown icon in the property editor
+            </summary>
+            <param name="context">The context of the editing control</param>
+            <returns>Returns <c>UITypeEditorEditStyle.DropDown</c></returns>
+        </member>
+        <member name="M:System.Windows.Forms.TreeListViewItemsEditor.EditValue(System.ComponentModel.ITypeDescriptorContext,System.IServiceProvider,System.Object)">
+            <summary>
+            Overrides the method used to provide basic behaviour for selecting editor.
+            Shows our custom control for editing the value.
+            </summary>
+            <param name="context">The context of the editing control</param>
+            <param name="provider">A valid service provider</param>
+            <param name="value">The current value of the object to edit</param>
+            <returns>The new value of the object</returns>
+        </member>
+        <member name="T:System.Windows.Forms.ITreeListViewItemComparer">
+            <summary>
+            Interface ITreeListViewItemComparer
+            </summary>
+        </member>
+        <member name="P:System.Windows.Forms.ITreeListViewItemComparer.SortOrder">
+            <summary>
+            Sort order
+            </summary>
+        </member>
+        <member name="P:System.Windows.Forms.ITreeListViewItemComparer.Column">
+            <summary>
+            Column for the comparison
+            </summary>
+        </member>
         <member name="T:System.Windows.Forms.TreeListView">
             <summary>
             TreeListView control (simulates a TreeView in a ListView)
@@ -637,6 +706,36 @@
             Check children recursively and set indeterminate state for the parents
             </summary>
         </member>
+        <member name="T:System.Windows.Forms.SelectedTreeListViewItemCollection">
+            <summary>
+            Collection of selected items in a TreeListView
+            </summary>
+        </member>
+        <member name="M:System.Windows.Forms.SelectedTreeListViewItemCollection.#ctor(System.Windows.Forms.TreeListView)">
+            <summary>
+            Create a new instance of a SelectedTreeListViewItemCollection
+            </summary>
+            <param name="TreeListView"></param>
+        </member>
+        <member name="M:System.Windows.Forms.SelectedTreeListViewItemCollection.Contains(System.Windows.Forms.TreeListViewItem)">
+            <summary>
+            Returns true if the specified item is in the collection
+            </summary>
+            <param name="item"></param>
+            <returns></returns>
+        </member>
+        <member name="M:System.Windows.Forms.SelectedTreeListViewItemCollection.IndexOf(System.Windows.Forms.TreeListViewItem)">
+            <summary>
+            Index of an item
+            </summary>
+            <param name="item"></param>
+            <returns></returns>
+        </member>
+        <member name="P:System.Windows.Forms.SelectedTreeListViewItemCollection.Item(System.Int32)">
+            <summary>
+            Gets a TreeListViewItem at the specified index
+            </summary>
+        </member>
         <member name="T:System.Windows.Forms.TreeListViewItemBoundsPortion">
             <summary>
             Specifies a portion of the tree list view item from which to retrieve the bounding rectangle
@@ -1033,21 +1132,6 @@
             Comparer for TreeListViewItem
             </summary>
         </member>
-        <member name="T:System.Windows.Forms.ITreeListViewItemComparer">
-            <summary>
-            Interface ITreeListViewItemComparer
-            </summary>
-        </member>
-        <member name="P:System.Windows.Forms.ITreeListViewItemComparer.SortOrder">
-            <summary>
-            Sort order
-            </summary>
-        </member>
-        <member name="P:System.Windows.Forms.ITreeListViewItemComparer.Column">
-            <summary>
-            Column for the comparison
-            </summary>
-        </member>
         <member name="M:System.Windows.Forms.TreeListViewItemCollection.TreeListViewItemCollectionComparer.#ctor">
             <summary>
             Create a new instance of  Comparer
@@ -1083,90 +1167,6 @@
             <summary>
             Column for the comparison
             </summary>
-        </member>
-        <member name="T:System.Windows.Forms.SelectedTreeListViewItemCollection">
-            <summary>
-            Collection of selected items in a TreeListView
-            </summary>
-        </member>
-        <member name="M:System.Windows.Forms.SelectedTreeListViewItemCollection.#ctor(System.Windows.Forms.TreeListView)">
-            <summary>
-            Create a new instance of a SelectedTreeListViewItemCollection
-            </summary>
-            <param name="TreeListView"></param>
-        </member>
-        <member name="M:System.Windows.Forms.SelectedTreeListViewItemCollection.Contains(System.Windows.Forms.TreeListViewItem)">
-            <summary>
-            Returns true if the specified item is in the collection
-            </summary>
-            <param name="item"></param>
-            <returns></returns>
-        </member>
-        <member name="M:System.Windows.Forms.SelectedTreeListViewItemCollection.IndexOf(System.Windows.Forms.TreeListViewItem)">
-            <summary>
-            Index of an item
-            </summary>
-            <param name="item"></param>
-            <returns></returns>
-        </member>
-        <member name="P:System.Windows.Forms.SelectedTreeListViewItemCollection.Item(System.Int32)">
-            <summary>
-            Gets a TreeListViewItem at the specified index
-            </summary>
-        </member>
-        <member name="T:System.Windows.Forms.TreeListViewItemsEditorForm">
-            <summary>
-            Editor for the TreeListView.Items property
-            </summary>
-        </member>
-        <member name="M:System.Windows.Forms.TreeListViewItemsEditorForm.#ctor(System.Windows.Forms.TreeListViewItemCollection)">
-            <summary>
-            Constructor
-            </summary>
-            <param name="collection"></param>
-        </member>
-        <member name="M:System.Windows.Forms.TreeListViewItemsEditorForm.Dispose(System.Boolean)">
-            <summary>
-            Nettoyage des ressources utilis閑s.
-            </summary>
-        </member>
-        <member name="M:System.Windows.Forms.TreeListViewItemsEditorForm.InitializeComponent">
-            <summary>
-            M閠hode requise pour la prise en charge du concepteur - ne modifiez pas
-            le contenu de cette m閠hode avec l'閐iteur de code.
-            </summary>
-        </member>
-        <member name="P:System.Windows.Forms.TreeListViewItemsEditorForm.Items">
-            <summary>
-            Get the items that are edited in this form
-            </summary>
-        </member>
-        <member name="T:System.Windows.Forms.TreeListViewItemsEditor">
-            <summary>
-            UITypeEditor for the TreeListView.Items property
-            </summary>
-        </member>
-        <member name="M:System.Windows.Forms.TreeListViewItemsEditor.#ctor">
-            <summary>
-            Constructor
-            </summary>
-        </member>
-        <member name="M:System.Windows.Forms.TreeListViewItemsEditor.GetEditStyle(System.ComponentModel.ITypeDescriptorContext)">
-            <summary>
-            Shows a dropdown icon in the property editor
-            </summary>
-            <param name="context">The context of the editing control</param>
-            <returns>Returns <c>UITypeEditorEditStyle.DropDown</c></returns>
-        </member>
-        <member name="M:System.Windows.Forms.TreeListViewItemsEditor.EditValue(System.ComponentModel.ITypeDescriptorContext,System.IServiceProvider,System.Object)">
-            <summary>
-            Overrides the method used to provide basic behaviour for selecting editor.
-            Shows our custom control for editing the value.
-            </summary>
-            <param name="context">The context of the editing control</param>
-            <param name="provider">A valid service provider</param>
-            <param name="value">The current value of the object to edit</param>
-            <returns>The new value of the object</returns>
         </member>
     </members>
 </doc>

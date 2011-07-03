@@ -215,6 +215,9 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="TreeListView\FSExplorer.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="TreeListView\TreeListViewHelper.cs" />
     <Compile Include="Windows\Controls\ControlExtension.cs" />
     <Compile Include="Windows\Forms\DataGridViewHelper.cs" />
