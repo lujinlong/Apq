@@ -62,7 +62,7 @@ namespace Apq.TreeListView
 			Columns[4].Width = 140;
 
 			_Comparer1.Column = 2;
-			_Comparer1.SortOrder = System.Windows.Forms.SortOrder.Ascending;
+			_Comparer1.SortOrder = System.Windows.Forms.SortOrder.None;
 
 			Comparer = _Comparer1;
 			SmallImageList = _imgList;
@@ -222,7 +222,7 @@ namespace Apq.TreeListView
 			{
 				// 为TreeListView添加根结点
 				Items.Clear();
-				Items.SortOrder = SortOrder.None;
+				//Items.SortOrder = SortOrder.None;
 
 				DriveInfo[] fsDrives = DriveInfo.GetDrives();
 
@@ -257,8 +257,8 @@ namespace Apq.TreeListView
 					ndRoot.SubItems.Add("1");//类型{1:Drive,2:Folder,3:File}
 
 					// 排序
-					try { Items.Sort(false); }
-					catch { }
+					//try { Items.Sort(false); }
+					//catch { }
 
 					// 添加监视器
 					if (fsDrive.IsReady)
@@ -312,8 +312,8 @@ namespace Apq.TreeListView
 				}
 
 				// 排序
-				try { node.Items.Sort(Recursive); }
-				catch { }
+				//try { node.Items.Sort(Recursive); }
+				//catch { }
 			}
 			catch { }
 		}
