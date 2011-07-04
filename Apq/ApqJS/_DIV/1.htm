@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title></title>
+	<!-- 多列(中间列分为多行) -->
+</head>
+<body style="margin: 0">
+	<div id="divPage">
+		<!--宽度可设为固定数值-->
+		<div id="divLeft" style="float: left; width: 15%">
+			Left
+		</div>
+		<!--宽度可设为固定数值-->
+		<div id="divRight" style="float: right; width: 15%">
+			Right
+		</div>
+		<!--divMid放在最后-->
+		<div id="divMid" style='width: expression(this.StyleCompute_posWidth())'>
+			<!--行依次排列-->
+			<div id="divTop" style="width: 100%">
+				Top
+			</div>
+			<div id="divCenter" style="width: 100%">
+				Center
+			</div>
+			<div id="divFooter" align="center" style="width: 100%">
+				Footer
+			</div>
+		</div>
+
+		<script>
+			document.getElementById("divMid").StyleCompute_posWidth = function() {
+				return document.getElementById("divPage").offsetWidth
+					- document.getElementById("divRight").offsetWidth
+					- document.getElementById("divLeft").offsetWidth;
+			};
+		</script>
+
+	</div>
+</body>
+</html>
