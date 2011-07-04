@@ -108,7 +108,7 @@ namespace Apq_LocalTools
 			this.cbSrcEncoding.Location = new System.Drawing.Point(77, 35);
 			this.cbSrcEncoding.Name = "cbSrcEncoding";
 			this.cbSrcEncoding.Size = new System.Drawing.Size(282, 20);
-			this.cbSrcEncoding.TabIndex = 5;
+			this.cbSrcEncoding.TabIndex = 0;
 			// 
 			// label3
 			// 
@@ -130,7 +130,7 @@ namespace Apq_LocalTools
 			this.cbDefaultEncoding.Location = new System.Drawing.Point(77, 67);
 			this.cbDefaultEncoding.Name = "cbDefaultEncoding";
 			this.cbDefaultEncoding.Size = new System.Drawing.Size(282, 20);
-			this.cbDefaultEncoding.TabIndex = 7;
+			this.cbDefaultEncoding.TabIndex = 1;
 			// 
 			// groupBox1
 			// 
@@ -146,7 +146,7 @@ namespace Apq_LocalTools
 			this.groupBox1.Location = new System.Drawing.Point(12, 209);
 			this.groupBox1.Name = "groupBox1";
 			this.groupBox1.Size = new System.Drawing.Size(365, 191);
-			this.groupBox1.TabIndex = 9;
+			this.groupBox1.TabIndex = 1;
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "读取参数";
 			// 
@@ -155,7 +155,7 @@ namespace Apq_LocalTools
 			this.txtExt.Location = new System.Drawing.Point(77, 135);
 			this.txtExt.Name = "txtExt";
 			this.txtExt.Size = new System.Drawing.Size(279, 21);
-			this.txtExt.TabIndex = 17;
+			this.txtExt.TabIndex = 2;
 			this.txtExt.Text = "*.txt;*.sql;*.xml;*.ini;";
 			// 
 			// label5
@@ -185,7 +185,7 @@ namespace Apq_LocalTools
 			this.cbRecursive.Location = new System.Drawing.Point(77, 162);
 			this.cbRecursive.Name = "cbRecursive";
 			this.cbRecursive.Size = new System.Drawing.Size(84, 16);
-			this.cbRecursive.TabIndex = 9;
+			this.cbRecursive.TabIndex = 3;
 			this.cbRecursive.Text = "包含子目录";
 			this.cbRecursive.UseVisualStyleBackColor = true;
 			// 
@@ -202,7 +202,7 @@ namespace Apq_LocalTools
 			this.groupBox2.Location = new System.Drawing.Point(383, 209);
 			this.groupBox2.Name = "groupBox2";
 			this.groupBox2.Size = new System.Drawing.Size(365, 156);
-			this.groupBox2.TabIndex = 10;
+			this.groupBox2.TabIndex = 2;
 			this.groupBox2.TabStop = false;
 			this.groupBox2.Text = "转换参数";
 			// 
@@ -211,7 +211,7 @@ namespace Apq_LocalTools
 			this.txtCustomer.Location = new System.Drawing.Point(94, 112);
 			this.txtCustomer.Name = "txtCustomer";
 			this.txtCustomer.Size = new System.Drawing.Size(133, 21);
-			this.txtCustomer.TabIndex = 15;
+			this.txtCustomer.TabIndex = 4;
 			this.txtCustomer.Text = "out";
 			// 
 			// rbCustomer
@@ -220,7 +220,7 @@ namespace Apq_LocalTools
 			this.rbCustomer.Location = new System.Drawing.Point(77, 90);
 			this.rbCustomer.Name = "rbCustomer";
 			this.rbCustomer.Size = new System.Drawing.Size(89, 16);
-			this.rbCustomer.TabIndex = 14;
+			this.rbCustomer.TabIndex = 3;
 			this.rbCustomer.Text = "原名_自定义";
 			this.rbCustomer.UseVisualStyleBackColor = true;
 			// 
@@ -230,7 +230,7 @@ namespace Apq_LocalTools
 			this.rbEncodeName.Location = new System.Drawing.Point(77, 68);
 			this.rbEncodeName.Name = "rbEncodeName";
 			this.rbEncodeName.Size = new System.Drawing.Size(77, 16);
-			this.rbEncodeName.TabIndex = 13;
+			this.rbEncodeName.TabIndex = 2;
 			this.rbEncodeName.Text = "原名_编码";
 			this.rbEncodeName.UseVisualStyleBackColor = true;
 			// 
@@ -241,7 +241,7 @@ namespace Apq_LocalTools
 			this.rbKeep.Location = new System.Drawing.Point(77, 46);
 			this.rbKeep.Name = "rbKeep";
 			this.rbKeep.Size = new System.Drawing.Size(47, 16);
-			this.rbKeep.TabIndex = 12;
+			this.rbKeep.TabIndex = 1;
 			this.rbKeep.TabStop = true;
 			this.rbKeep.Text = "原名";
 			this.rbKeep.UseVisualStyleBackColor = true;
@@ -275,7 +275,7 @@ namespace Apq_LocalTools
 			this.cbDstEncoding.Location = new System.Drawing.Point(77, 20);
 			this.cbDstEncoding.Name = "cbDstEncoding";
 			this.cbDstEncoding.Size = new System.Drawing.Size(150, 20);
-			this.cbDstEncoding.TabIndex = 5;
+			this.cbDstEncoding.TabIndex = 0;
 			// 
 			// btnTrans
 			// 
@@ -283,7 +283,7 @@ namespace Apq_LocalTools
 			this.btnTrans.Location = new System.Drawing.Point(383, 371);
 			this.btnTrans.Name = "btnTrans";
 			this.btnTrans.Size = new System.Drawing.Size(109, 23);
-			this.btnTrans.TabIndex = 11;
+			this.btnTrans.TabIndex = 3;
 			this.btnTrans.Text = "开始转换(&T)";
 			this.btnTrans.UseVisualStyleBackColor = true;
 			this.btnTrans.Click += new System.EventHandler(this.btnTrans_Click);
@@ -300,7 +300,7 @@ namespace Apq_LocalTools
 			this.fsExplorer1.Location = new System.Drawing.Point(0, -1);
 			this.fsExplorer1.Name = "fsExplorer1";
 			this.fsExplorer1.Size = new System.Drawing.Size(760, 204);
-			this.fsExplorer1.TabIndex = 12;
+			this.fsExplorer1.TabIndex = 0;
 			this.fsExplorer1.UseCompatibleStateImageBehavior = false;
 			// 
 			// TxtEncoding
