@@ -209,9 +209,6 @@
     <None Include="Apq.Reg.Server.dll.apq">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <Content Include="_Doc\Apq.DB.dll.apq.txt" />
-    <Content Include="_Doc\Apq.DB.dll.config.txt" />
-    <Content Include="_Doc\权限管理.txt" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -256,6 +253,9 @@
       <ProductName>Windows Installer 3.1</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="_Doc\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

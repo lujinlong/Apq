@@ -204,7 +204,7 @@
     </None>
     <Content Include="_Doc\Apq.DB.dll.apq.txt" />
     <Content Include="_Doc\Apq.DB.dll.config.txt" />
-    <Content Include="_Doc\权限管理.txt" />
+    <Content Include="_Doc\PrivilegeManage.txt" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

@@ -1,3 +1,5 @@
+说明:
+
 \Apq	Apq 命名空间
 	Global	常用全局对象
 \PreDefine	预定义的类/对象

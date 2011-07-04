@@ -169,8 +169,8 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="_DOC\DESKey_UM.txt" />
-    <Content Include="_DOC\DESKey_雪羽.txt" />
-    <Content Include="_DOC\_使用说明.txt">
+    <Content Include="_DOC\DESKey_XueYu.txt" />
+    <Content Include="_DOC\_ShuoMing.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

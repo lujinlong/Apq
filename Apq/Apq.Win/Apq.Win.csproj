@@ -341,7 +341,7 @@
     </None>
     <Content Include="_Doc\Apq.Win.dll.apq.txt" />
     <Content Include="_Doc\Apq.Win.dll.config.txt" />
-    <Content Include="_Doc\功能需求.txt" />
+    <Content Include="_Doc\XuQiu.txt" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Win.XSD\" />

@@ -220,9 +220,6 @@
     <None Include="Apq.Reg.Client.dll.apq">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <Content Include="_Doc\Apq.DB.dll.apq.txt" />
-    <Content Include="_Doc\Apq.DB.dll.config.txt" />
-    <Content Include="_Doc\权限管理.txt" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

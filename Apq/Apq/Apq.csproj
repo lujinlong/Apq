@@ -306,8 +306,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>UILang.xsd</DependentUpon>
     </Compile>
-    <None Include="_参考\XChange.cs" />
-    <None Include="_参考\断点续传多线程下载.cs" />
+    <None Include="_CanKao\XChange.cs" />
+    <None Include="_CanKao\DuanDianXuChuan.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
@@ -350,8 +350,7 @@
     <Content Include="_Doc\Apq.dll.apq.txt" />
     <Content Include="_Doc\Apq.Shell.txt" />
     <Content Include="_Doc\BigIntegerDoc.html" />
-    <Content Include="_Doc\_说明.txt" />
-    <Content Include="_Doc\功能需求.txt" />
+    <Content Include="_Doc\_ShuoMing.txt" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
