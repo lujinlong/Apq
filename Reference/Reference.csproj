@@ -1,4 +1,5 @@
-﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -19,9 +20,11 @@
     </SccProvider>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
-    <OldToolsVersion>2.0</OldToolsVersion>
+    <OldToolsVersion>3.5</OldToolsVersion>
     <UpgradeBackupLocation>
     </UpgradeBackupLocation>
+    <IsWebBootstrapper>true</IsWebBootstrapper>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
     <PublishUrl>http://localhost/Reference/</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Web</InstallFrom>
@@ -34,7 +37,6 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>true</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -46,6 +48,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -54,6 +57,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -64,9 +68,16 @@
     <Content Include="CuteEditor\CuteEditor.dll" />
     <Content Include="CuteEditor\CuteEditor.ImageEditor.dll" />
     <Content Include="CuteEditor\NetSpell.SpellChecker.dll" />
+    <Content Include="ExtendedListViews\Lyquidity.Controls.ExtendedListViews.dll" />
+    <Content Include="ExtendedListViews\Lyquidity.Controls.ExtendedListViews.XML" />
     <Content Include="FCKEditor\FredCK.FCKeditorV2.dll" />
+    <Content Include="ICSharpCode\AvalonEdit\ICSharpCode.AvalonEdit.dll" />
+    <Content Include="ICSharpCode\AvalonEdit\ICSharpCode.AvalonEdit.pdb" />
+    <Content Include="ICSharpCode\AvalonEdit\ICSharpCode.AvalonEdit.xml" />
     <Content Include="ICSharpCode\SharpZLib\ICSharpCode.SharpZipLib.dll" />
     <Content Include="ICSharpCode\SharpZLib\ICSharpCode.SharpZipLib.xml" />
+    <Content Include="ICSharpCode\TreeView\ICSharpCode.TreeView.dll" />
+    <Content Include="ICSharpCode\TreeView\ICSharpCode.TreeView.XML" />
     <Content Include="log4net-1.2.10\log4net.dll" />
     <Content Include="log4net-1.2.10\log4net.Ext.EventID.dll" />
     <Content Include="log4net-1.2.10\log4net.Ext.EventID.XML" />
@@ -76,6 +87,8 @@
     <Content Include="log4net-1.2.10\log4net.Ext.Trace.XML" />
     <Content Include="log4net-1.2.10\log4net.xml" />
     <Content Include="DockPanel\WeifenLuo.WinFormsUI.Docking.dll" />
+    <Content Include="NCharDet-2.0\NCharDet.dll" />
+    <Content Include="NCharDet-2.0\NCharDet.XML" />
     <Content Include="Res\Apq.Win\ico\clarity.ico" />
     <Content Include="Res\Apq.Win\Pic\Logo.png" />
     <Content Include="Res\Apq\Pic\Logo.png" />
@@ -86,7 +99,17 @@
     <Content Include="Res\szDomain_TestWin\ico\Notify\mycomp01.ico" />
     <Content Include="Res\szDomain_TestWin\ico\Notify\mycomp03.ico" />
     <Content Include="Res\szDomain_TestWin\ico\Notify\WAPPER.ICO" />
-    <Content Include="_Doc\说明.txt" />
+    <Content Include="TreeListView\System.Runtime.InteropServices.APIs.dll" />
+    <Content Include="TreeListView\System.Runtime.InteropServices.APIs.XML" />
+    <Content Include="TreeListView\System.Windows.Forms.TreeListView.dll" />
+    <Content Include="TreeListView\System.Windows.Forms.TreeListView.XML" />
+    <Content Include="WPF.MDI\WPF.MDI.dll" />
+    <Content Include="WPF.MDI\WPF.MDI.XML" />
+    <Content Include="Yogesh.ExcelXml\Yogesh.ExcelXml.dll" />
+    <Content Include="Yogesh.ExcelXml\Yogesh.ExcelXml.pdb" />
+    <Content Include="Yogesh.ExcelXml\Yogesh.Extensions.dll" />
+    <Content Include="Yogesh.ExcelXml\Yogesh.Extensions.pdb" />
+    <Content Include="_Doc\ShuoMing.txt" />
   </ItemGroup>
   <ItemGroup>
     <None Include="CuteEditor\Bin\cuteeditor.lic" />
@@ -103,8 +126,6 @@
     <None Include="CuteEditor\Bin\it-IT.dic" />
     <Content Include="bccrypto-net-1.6.1\BouncyCastle.Crypto.dll" />
     <Content Include="DockPanel\V2.2.txt" />
-    <Content Include="ICSharpCode\TextEditor_2.2\ICSharpCode.TextEditor.dll" />
-    <Content Include="ICSharpCode\TextEditor_2.2\ICSharpCode.TextEditor.XML" />
     <Content Include="My97DatePicker4.2\My97DatePicker\calendar.js" />
     <Content Include="My97DatePicker4.2\My97DatePicker\config.js" />
     <Content Include="My97DatePicker4.2\My97DatePicker\lang\en.js" />
@@ -143,6 +164,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
     <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
       <Visible>False</Visible>
       <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
@@ -156,6 +182,11 @@
     <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
       <Visible>False</Visible>
       <ProductName>.NET Framework 3.5</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
