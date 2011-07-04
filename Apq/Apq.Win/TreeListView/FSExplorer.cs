@@ -239,7 +239,7 @@ namespace Apq.TreeListView
 					Items.Add(ndRoot);
 					Apq.DllImports.Shell32.SHFILEINFO shFileInfo = new DllImports.Shell32.SHFILEINFO();
 					Icon SmallIcon = Apq.Windows.Forms.IconChache.GetFileSystemIcon(strExt, ref shFileInfo);
-					ndRoot.ImageIndex = _imgList.Images.IndexOfKey(fsDrive.DriveType.ToString());
+					ndRoot.ImageIndex = _imgList.Images.IndexOfKey(shFileInfo.szTypeName);
 					if (fsDrive.IsReady)
 					{
 						ndRoot.SubItems.Add(fsDrive.TotalSize.ToString("n0"));

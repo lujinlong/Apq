@@ -77,6 +77,15 @@ namespace Apq.Windows.Forms
 					SmallIcon = Icon.FromHandle(bmp.GetHicon());
 				}
 			}
+			else
+			{//盘符
+				SmallIcon = Shell32.GetFileInfo(fsFullPath, ref shFileInfo);
+
+				if (!ImgList.Images.ContainsKey(shFileInfo.szTypeName))
+				{
+					ImgList.Images.Add(shFileInfo.szTypeName, SmallIcon);
+				}
+			}
 
 			return SmallIcon;
 		}
