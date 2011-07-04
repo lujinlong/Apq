@@ -26,7 +26,7 @@ namespace Apq_LocalTools
 			InitializeComponent();
 		}
 
-		private TreeListViewHelper tlvHelper;
+		//private TreeListViewHelper tlvHelper;
 
 		public override void SetUILang(Apq.UILang.UILang UILang)
 		{
@@ -65,7 +65,7 @@ namespace Apq_LocalTools
 		/// </summary>
 		public override void InitDataBefore()
 		{
-			tlvHelper = new TreeListViewHelper(fsExplorer1);
+			//tlvHelper = new TreeListViewHelper(fsExplorer1);
 
 			#region 数据库连接
 			#endregion
@@ -147,8 +147,12 @@ namespace Apq_LocalTools
 
 				if (tspb.Maximum > 0 && tspb.Value >= tspb.Maximum)
 				{
-					TransFinished.Invoke(tspb, new EventArgs());
+					if (TransFinished != null)
+					{
+						TransFinished(tspb, new EventArgs());
+					}
 				}
+				Application.DoEvents();
 			});
 		}
 
@@ -205,7 +209,7 @@ namespace Apq_LocalTools
 					TreeListViewItem node = fsExplorer1.CheckedItems[i];
 					int HasChildren = Apq.Convert.ChangeType<int>(node.SubItems[fsExplorer1.Columns.Count + 1].Text);
 					int Type = Apq.Convert.ChangeType<int>(node.SubItems[fsExplorer1.Columns.Count + 2].Text);
-					if (HasChildren == 0 && Type == 2)
+					if (HasChildren == 0 && Type <= 2)
 					{
 						fsExplorer1.LoadChildren(node, node.FullPath, cbRecursive.Checked);
 					}
@@ -268,14 +272,14 @@ namespace Apq_LocalTools
 						}
 
 						tspb_SetValue(++pbFileCount);
-						Application.DoEvents();
 					}
 				}
 
-				// 处理完成,进度条回0
-				tspb_SetValue(0);
 				tsslStatus.Text = Apq.GlobalObject.UILang["转换完成！"];
 				MessageBox.Show(Apq.GlobalObject.UILang["转换完成！"]);
+
+				// 处理完成,进度条回0
+				tspb_SetValue(0);
 			});
 		}
 		#endregion
