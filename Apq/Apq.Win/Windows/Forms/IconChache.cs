@@ -79,7 +79,10 @@ namespace Apq.Windows.Forms
 			}
 			else
 			{//盘符
+				string cDrive = fsFullPath.Substring(0, 1);
+				DriveInfo di = new DriveInfo(cDrive);
 				SmallIcon = Shell32.GetFileInfo(fsFullPath, ref shFileInfo);
+				shFileInfo.szTypeName = di.DriveType.ToString();
 
 				if (!ImgList.Images.ContainsKey(shFileInfo.szTypeName))
 				{
