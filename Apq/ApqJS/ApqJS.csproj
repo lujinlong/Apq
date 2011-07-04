@@ -110,15 +110,15 @@
     <Content Include="A_AD\1diaocha.js" />
     <Content Include="Barrett.js" />
     <Content Include="BigInt.js" />
-    <Content Include="DIV布局\三行%28中间行分为多列%29.htm" />
-    <Content Include="DIV布局\多列%28中间列分为多行%29.htm" />
-    <Content Include="Doc\任务.txt" />
-    <Content Include="Doc\使用说明.txt" />
-    <Content Include="Doc\名称使用情况.txt" />
-    <Content Include="Doc\注释符号.txt" />
+    <Content Include="_DIV\2.htm" />
+    <Content Include="_DIV\1.htm" />
+    <Content Include="Doc\RenWu.txt" />
+    <Content Include="Doc\ShuoMing.txt" />
+    <Content Include="Doc\Names.txt" />
+    <Content Include="Doc\Comment.txt" />
     <Content Include="JScript.Encode.js" />
-    <Content Include="JS细节\Script解析顺序.js" />
-    <Content Include="JS细节\事件处理顺序.js" />
+    <Content Include="_JS\Script_JiaXi.js" />
+    <Content Include="_JS\Event_ShunXu.js" />
     <Content Include="Menu.xml" />
     <Content Include="RSA.js" />
     <Content Include="RSA\rsa.html" />
@@ -131,17 +131,17 @@
     <Content Include="websites\Apq_Web_Demo1\Apq.js" />
     <Content Include="websites\Apq_Web_Demo\Apq.js" />
     <Content Include="websites\dtxc\Apq.js" />
-    <Content Include="_参考\MicrosoftAjax.js" />
-    <Content Include="_参考\minmax%28for CSS%29.js" />
-    <Content Include="_参考\rsa.html" />
-    <Content Include="_参考\获取位置.js" />
+    <Content Include="_CanKao\MicrosoftAjax.js" />
+    <Content Include="_CanKao\minmax%28for CSS%29.js" />
+    <Content Include="_CanKao\rsa.html" />
+    <Content Include="_CanKao\Position.js" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Help\ApqJS.doc" />
     <None Include="Help\ApqJS.Text.doc" />
     <None Include="Help\ApqJS.Threading.doc" />
     <None Include="Help\ApqJS.Xml.doc" />
-    <Content Include="Doc\开发进度.txt" />
+    <Content Include="Doc\JinDu.txt" />
     <Content Include="vswd-ext_2.2.js" />
     <Content Include="web.config" />
     <Content Include="ApqJS.js" />
