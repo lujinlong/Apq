@@ -117,7 +117,7 @@
     <Content Include="Doc\Names.txt" />
     <Content Include="Doc\Comment.txt" />
     <Content Include="JScript.Encode.js" />
-    <Content Include="_JS\Script_JiaXi.js" />
+    <Content Include="_JS\Script_JiaiXi.js" />
     <Content Include="_JS\Event_ShunXu.js" />
     <Content Include="Menu.xml" />
     <Content Include="RSA.js" />
