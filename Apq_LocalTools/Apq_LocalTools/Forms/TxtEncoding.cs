@@ -91,35 +91,7 @@ namespace Apq_LocalTools
 			try
 			{
 				// 为TreeListView添加根结点
-				fsExplorer1.Items.Clear();
-
-				DriveInfo[] fsDrives = DriveInfo.GetDrives();
-
-				foreach (DriveInfo fsDrive in fsDrives)
-				{
-					string strExt = fsDrive.Name;
-					Shell32.SHFILEINFO shFileInfo = new Shell32.SHFILEINFO();
-					Icon SmallIcon= Apq.Windows.Forms.IconChache.GetFileSystemIcon(strExt, ref shFileInfo);
-
-					TreeListViewItem ndRoot = new TreeListViewItem(fsDrive.Name.Substring(0, 2));
-					fsExplorer1.Items.Add(ndRoot);
-					ndRoot.ImageIndex = imgList.Images.IndexOfKey(fsDrive.DriveType.ToString());
-					if (fsDrive.IsReady)
-					{
-						ndRoot.SubItems.Add(fsDrive.TotalSize.ToString("n0"));
-					}
-					else
-					{
-						ndRoot.SubItems.Add("0");
-					}
-					ndRoot.SubItems.Add(shFileInfo.szTypeName);
-					ndRoot.SubItems.Add(fsDrive.RootDirectory.CreationTime.ToString("yyyy-MM-dd HH:mm:ss"));
-					ndRoot.SubItems.Add(fsDrive.RootDirectory.LastWriteTime.ToString("yyyy-MM-dd HH:mm:ss"));
-
-					ndRoot.SubItems.Add(fsDrive.Name);
-					ndRoot.SubItems.Add(fsDrive.IsReady ? "0" : "-1");
-					ndRoot.SubItems.Add("1");//类型{1:Drive,2:Folder,3:File}
-				}
+				fsExplorer1.LoadDrives();
 			}
 			catch { }
 		}
