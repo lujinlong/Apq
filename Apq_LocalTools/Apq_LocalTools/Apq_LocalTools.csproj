@@ -339,13 +339,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Res\ico\Text.ico" />
-    <Content Include="_Doc\安装说明.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="_Doc\计划.txt" />
-    <Content Include="_Doc\说明.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <None Include="Apq.DBC.dll.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -369,6 +362,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controls\MainOption\" />
+    <Folder Include="_Doc\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
