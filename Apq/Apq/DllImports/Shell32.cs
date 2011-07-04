@@ -96,16 +96,15 @@ namespace Apq.DllImports
 		public static Icon GetFileInfo(string fileName, ref SHFILEINFO shFileInfo, bool isLargeIcon = false)
 		{
 			GetFileInfoFlags uIconFlags = isLargeIcon ? GetFileInfoFlags.SHGFI_LARGEICON : GetFileInfoFlags.SHGFI_SMALLICON;
-			SHFILEINFO shfi = new SHFILEINFO();
-			SHGetFileInfo(fileName, (uint)FileAttributeFlags.FILE_ATTRIBUTE_NORMAL, ref shfi, (uint)Marshal.SizeOf(shfi),
+			SHGetFileInfo(fileName, (uint)FileAttributeFlags.FILE_ATTRIBUTE_NORMAL, ref shFileInfo, (uint)Marshal.SizeOf(shFileInfo),
 				(uint)(GetFileInfoFlags.SHGFI_USEFILEATTRIBUTES |
 					GetFileInfoFlags.SHGFI_ICON | uIconFlags |
 					GetFileInfoFlags.SHGFI_TYPENAME | GetFileInfoFlags.SHGFI_DISPLAYNAME
 				)
 			);
 
-			Icon icon = Icon.FromHandle(shfi.hIcon).Clone() as Icon;
-			User32.DestroyIcon(shfi.hIcon); //释放资源
+			Icon icon = Icon.FromHandle(shFileInfo.hIcon).Clone() as Icon;
+			User32.DestroyIcon(shFileInfo.hIcon); //释放资源
 			return icon;
 		}
 		/// <summary>

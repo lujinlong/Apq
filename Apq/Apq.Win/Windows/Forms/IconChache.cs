@@ -55,9 +55,20 @@ namespace Apq.Windows.Forms
 				}
 			}
 			else if (Directory.Exists(fsFullPath))
-			{//目录
-				if (Expanded)
-				{
+			{//文件夹或盘符
+				if (fsFullPath.Length == 3)
+				{//盘符
+					string cDrive = fsFullPath.Substring(0, 1);
+					DriveInfo di = new DriveInfo(cDrive);
+					SmallIcon = Shell32.GetFileInfo(fsFullPath, ref shFileInfo);
+
+					if (!ImgList.Images.ContainsKey(shFileInfo.szTypeName))
+					{
+						ImgList.Images.Add(shFileInfo.szTypeName, SmallIcon);
+					}
+				}
+				else if (Expanded)
+				{//文件夹展开
 					if (!ImgList.Images.ContainsKey("文件夹展开"))
 					{
 						SmallIcon = Shell32.GetFolderIcon(ref shFileInfo, false, true);
@@ -67,7 +78,7 @@ namespace Apq.Windows.Forms
 					SmallIcon = Icon.FromHandle(bmp.GetHicon());
 				}
 				else
-				{
+				{//文件夹收起
 					if (!ImgList.Images.ContainsKey("文件夹收起"))
 					{
 						SmallIcon = Apq.DllImports.Shell32.GetFolderIcon(ref shFileInfo);
@@ -82,7 +93,6 @@ namespace Apq.Windows.Forms
 				string cDrive = fsFullPath.Substring(0, 1);
 				DriveInfo di = new DriveInfo(cDrive);
 				SmallIcon = Shell32.GetFileInfo(fsFullPath, ref shFileInfo);
-				shFileInfo.szTypeName = di.DriveType.ToString();
 
 				if (!ImgList.Images.ContainsKey(shFileInfo.szTypeName))
 				{
