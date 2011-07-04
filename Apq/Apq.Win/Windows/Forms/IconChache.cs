@@ -40,7 +40,6 @@ namespace Apq.Windows.Forms
 			if (File.Exists(fsFullPath))
 			{//文件
 				FileInfo diChild = new FileInfo(fsFullPath);
-				//string strExt = fsDrive.DriveType.ToString();
 				string strExt = diChild.Extension.ToLower();
 				if (strExt == ".exe")
 				{

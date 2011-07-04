@@ -91,7 +91,6 @@ namespace Apq.TreeListView
 					ndFolder = tlvHelper.FindNodeByFullPath(strFolder);
 					if (ndFolder != null)
 					{
-						BeginUpdate();
 						// 首次加载时Load,否则Add
 						int HasChildren = Apq.Convert.ChangeType<int>(ndFolder.SubItems[Columns.Count + 1].Text);
 						if (HasChildren == 0)
@@ -109,7 +108,6 @@ namespace Apq.TreeListView
 								AddFolder(ndFolder, e.FullPath, false);
 							}
 						}
-						EndUpdate();
 					}
 				}
 				catch { }
@@ -208,14 +206,9 @@ namespace Apq.TreeListView
 		void FSExplorer_SelectedIndexChanged(object sender, EventArgs e)
 		{
 			TreeListViewItem node = FocusedItem;
-			if (node != null)
+			if (node != null && node.SubItems[Columns.Count + 1].Text == "0")
 			{
-				if (node.SubItems[Columns.Count + 1].Text == "0")
-				{
-					BeginUpdate();
-					LoadChildren(node, node.FullPath);
-					EndUpdate();
-				}
+				LoadChildren(node, node.FullPath);
 			}
 		}
 		#endregion
@@ -284,54 +277,51 @@ namespace Apq.TreeListView
 
 		public void LoadChildren(TreeListViewItem node, string fsFullPath, bool Recursive = false)
 		{
-			try
+			string[] strChildren = Directory.GetDirectories(fsFullPath + "\\");
+			node.SubItems[Columns.Count + 1].Text = strChildren.LongLength > 0 ? "1" : "0";
+			foreach (string strChild in strChildren)
 			{
-				Shell32.SHFILEINFO shfi = new Shell32.SHFILEINFO();
-				Icon SmallIcon = Apq.Windows.Forms.IconChache.GetFileSystemIcon(fsFullPath, ref shfi);
-
-				string[] strChildren = Directory.GetDirectories(fsFullPath + "\\");
-				node.SubItems[Columns.Count + 1].Text = strChildren.LongLength > 0 ? "1" : "-1";
-				foreach (string strChild in strChildren)
-				{
-					AddFolder(node, strChild, Recursive);
-				}
-
-				strChildren = Directory.GetFiles(fsFullPath + "\\");
-				node.SubItems[Columns.Count + 1].Text = strChildren.LongLength > 0 ? "1" : "-1";
-				foreach (string strChild in strChildren)
-				{
-					AddFile(node, strChild);
-				}
-
-				// 排序
-				//try { node.Items.Sort(Recursive); }
-				//catch { }
+				AddFolder(node, strChild, Recursive);
 			}
-			catch { }
+
+			strChildren = Directory.GetFiles(fsFullPath + "\\");
+			node.SubItems[Columns.Count + 1].Text = strChildren.LongLength > 0 ? "1" : "-1";
+			foreach (string strChild in strChildren)
+			{
+				AddFile(node, strChild);
+			}
+
+			// 排序
+			//try { node.Items.Sort(Recursive); }
+			//catch { }
 		}
 
 		public void AddFolder(TreeListViewItem node, string fsFullPath, bool ContainsChildren = false)
 		{
-			DirectoryInfo diChild = new DirectoryInfo(fsFullPath);
-			TreeListViewItem ndChild = new TreeListViewItem(diChild.Name);
-			node.Items.Add(ndChild);
-			ndChild.Checked = node.Checked;
-			Apq.DllImports.Shell32.SHFILEINFO shFolderInfo = new DllImports.Shell32.SHFILEINFO();
-			Apq.Windows.Forms.IconChache.GetFileSystemIcon(fsFullPath, ref shFolderInfo);
-			ndChild.ImageKey = "文件夹收起";
-			ndChild.SubItems.Add("0");
-			ndChild.SubItems.Add(Apq.GlobalObject.UILang["文件夹"]);
-			ndChild.SubItems.Add(diChild.CreationTime.ToString("yyyy-MM-dd HH:mm:ss"));
-			ndChild.SubItems.Add(diChild.LastWriteTime.ToString("yyyy-MM-dd HH:mm:ss"));
-
-			ndChild.SubItems.Add(diChild.FullName);
-			ndChild.SubItems.Add("0");
-			ndChild.SubItems.Add("2");//类型{1:Drive,2:Folder,3:File}
-
-			if (ContainsChildren)
+			try
 			{
-				LoadChildren(ndChild, ndChild.FullPath, ContainsChildren);
+				DirectoryInfo diChild = new DirectoryInfo(fsFullPath);
+				TreeListViewItem ndChild = new TreeListViewItem(diChild.Name);
+				node.Items.Add(ndChild);
+				ndChild.Checked = node.Checked;
+				Apq.DllImports.Shell32.SHFILEINFO shFolderInfo = new DllImports.Shell32.SHFILEINFO();
+				Apq.Windows.Forms.IconChache.GetFileSystemIcon(fsFullPath, ref shFolderInfo);
+				ndChild.ImageKey = "文件夹收起";
+				ndChild.SubItems.Add("0");
+				ndChild.SubItems.Add(Apq.GlobalObject.UILang["文件夹"]);
+				ndChild.SubItems.Add(diChild.CreationTime.ToString("yyyy-MM-dd HH:mm:ss"));
+				ndChild.SubItems.Add(diChild.LastWriteTime.ToString("yyyy-MM-dd HH:mm:ss"));
+
+				ndChild.SubItems.Add(diChild.FullName);
+				ndChild.SubItems.Add("0");
+				ndChild.SubItems.Add("2");//类型{1:Drive,2:Folder,3:File}
+
+				if (ContainsChildren)
+				{
+					LoadChildren(ndChild, ndChild.FullPath, ContainsChildren);
+				}
 			}
+			catch { }
 		}
 
 		public void ChangeFolder(TreeListViewItem node, string fsFullPath)
@@ -346,39 +336,36 @@ namespace Apq.TreeListView
 
 		public void AddFile(TreeListViewItem node, string fsFullPath)
 		{
-			FileInfo diChild = new FileInfo(fsFullPath);
-			//string strExt = fsDrive.DriveType.ToString();
-			string strExt = diChild.Extension.ToLower();
-			if (strExt == ".exe")
+			try
 			{
-				strExt = diChild.FullName.ToLower();
+				FileInfo diChild = new FileInfo(fsFullPath);
+				string strExt = diChild.Extension.ToLower();
+				if (strExt == ".exe")
+				{
+					strExt = diChild.FullName.ToLower();
+				}
+
+				Shell32.SHFILEINFO shFileInfo = new Shell32.SHFILEINFO();
+				Icon SmallIcon = Apq.Windows.Forms.IconChache.GetFileSystemIcon(diChild.FullName, ref shFileInfo);
+
+				TreeListViewItem ndChild = new TreeListViewItem(diChild.Name);
+				node.Items.Add(ndChild);
+				ndChild.Checked = node.Checked;
+				ndChild.ImageIndex = _imgList.Images.IndexOfKey(strExt);
+				ndChild.SubItems.Add(diChild.Length.ToString("n0"));
+				if (strExt.Contains("\\"))
+				{
+					strExt = "应用程序";
+				}
+				ndChild.SubItems.Add(shFileInfo.szTypeName);
+				ndChild.SubItems.Add(diChild.CreationTime.ToString("yyyy-MM-dd HH:mm:ss"));
+				ndChild.SubItems.Add(diChild.LastWriteTime.ToString("yyyy-MM-dd HH:mm:ss"));
+
+				ndChild.SubItems.Add(diChild.Name);
+				ndChild.SubItems.Add("-1");
+				ndChild.SubItems.Add("3");//类型{1:Drive,2:Folder,3:File}
 			}
-
-			Shell32.SHFILEINFO shFileInfo = new Shell32.SHFILEINFO();
-			Icon SmallIcon = Apq.Windows.Forms.IconChache.GetFileSystemIcon(strExt, ref shFileInfo);
-
-			if (!_imgList.Images.ContainsKey(strExt))
-			{
-				_imgList.Images.Add(strExt, SmallIcon);
-			}
-
-			TreeListViewItem ndChild = new TreeListViewItem(diChild.Name);
-			node.Items.Add(ndChild);
-			ndChild.Checked = node.Checked;
-			ndChild.ImageIndex = _imgList.Images.IndexOfKey(strExt);
-			ndChild.SubItems.Add(diChild.Length.ToString("n0"));
-			if (strExt.Contains("\\"))
-			{
-				strExt = "应用程序";
-			}
-			//ndChild.SubItems.Add(Apq.GlobalObject.UILang[strExt]);
-			ndChild.SubItems.Add(shFileInfo.szTypeName);
-			ndChild.SubItems.Add(diChild.CreationTime.ToString("yyyy-MM-dd HH:mm:ss"));
-			ndChild.SubItems.Add(diChild.LastWriteTime.ToString("yyyy-MM-dd HH:mm:ss"));
-
-			ndChild.SubItems.Add(diChild.Name);
-			ndChild.SubItems.Add("-1");
-			ndChild.SubItems.Add("3");//类型{1:Drive,2:Folder,3:File}
+			catch { }
 		}
 
 		public void ChangeFile(TreeListViewItem node, string fsFullPath)
