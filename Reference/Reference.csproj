@@ -158,7 +158,6 @@
     <Content Include="Res\Common\png\File\Save.png" />
     <Content Include="Res\Common\png\Search.png" />
     <Content Include="Res\Common\png\Editor\Undo.png" />
-    <Content Include="环境变量.txt" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
