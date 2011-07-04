@@ -1,1 +1,0 @@
-wsdl /edb /n:WS.QQUnbindTXZ /o:P:\VS2005\Projects\QQUnbindTXZ\WS\ws.cs.txt /urlkey:Url http://lwservice.passport.21mmo.com:1019/userinfo.asmx?wsdl

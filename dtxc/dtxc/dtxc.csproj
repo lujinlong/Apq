@@ -1,0 +1,862 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{AFE9628A-6D2D-45FE-AAC9-9DCD94AD460F}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>dtxc</RootNamespace>
+    <AssemblyName>dtxc</AssemblyName>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>2.0</OldToolsVersion>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Apq, Version=0.1.3283.3842, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Dlls\Apq.dll</HintPath>
+    </Reference>
+    <Reference Include="Apq.Com, Version=0.1.3283.3849, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Dlls\Apq.Com.dll</HintPath>
+    </Reference>
+    <Reference Include="Apq.DB, Version=0.1.3368.24231, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Dlls\Apq.DB.dll</HintPath>
+    </Reference>
+    <Reference Include="Apq.Web, Version=0.1.3283.3844, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Dlls\Apq.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="Apq.WorkFlow, Version=0.1.3283.3843, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Dlls\Apq.WorkFlow.dll</HintPath>
+    </Reference>
+    <Reference Include="Ext.Direct, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\ext-direct-pack\DotNet\Ext.Direct\Ext.Direct\bin\Release\Ext.Direct.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Reference\log4net-1.2.10\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Preview, Version=1.0.61025.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Microsoft ASP.NET\ASP.NET 2.0 AJAX Futures January CTP\v1.0.61025\Microsoft.Web.Preview.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=3.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\ext-direct-pack\DotNet\Ext.Direct\Ext.Direct\bin\Release\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core, Version=3.5.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions, Version=3.5.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Web.Extensions.Design, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Web.Mobile" />
+    <Reference Include="System.Xml.Linq, Version=3.5.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Temp\Login.htm" />
+    <Content Include="WS\Admin\WS1.asmx" />
+    <Content Include="WS\User\WS1.asmx" />
+    <Content Include="Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Admin\fuAddin.aspx.cs">
+      <DependentUpon>fuAddin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\fuAddin.aspx.designer.cs">
+      <DependentUpon>fuAddin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\ifDefault.aspx.cs">
+      <DependentUpon>ifDefault.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\ifDefault.aspx.designer.cs">
+      <DependentUpon>ifDefault.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\ifLog_PayoutList.aspx.cs">
+      <DependentUpon>ifLog_PayoutList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\ifLog_PayoutList.aspx.designer.cs">
+      <DependentUpon>ifLog_PayoutList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\ifPayoutList.aspx.cs">
+      <DependentUpon>ifPayoutList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\ifPayoutList.aspx.designer.cs">
+      <DependentUpon>ifPayoutList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\ifTop.aspx.cs">
+      <DependentUpon>ifTop.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\ifTop.aspx.designer.cs">
+      <DependentUpon>ifTop.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\ifAddinList.aspx.cs">
+      <DependentUpon>ifAddinList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\ifAddinList.aspx.designer.cs">
+      <DependentUpon>ifAddinList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\ifMenu.aspx.cs">
+      <DependentUpon>ifMenu.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\ifMenu.aspx.designer.cs">
+      <DependentUpon>ifMenu.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\ifUserList.aspx.cs">
+      <DependentUpon>ifUserList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\ifUserList.aspx.designer.cs">
+      <DependentUpon>ifUserList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Main.aspx.cs">
+      <DependentUpon>Main.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Main.aspx.designer.cs">
+      <DependentUpon>Main.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\mdUserEdit.aspx.cs">
+      <DependentUpon>mdUserEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\mdUserEdit.aspx.designer.cs">
+      <DependentUpon>mdUserEdit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\tpAddinList.aspx.cs">
+      <DependentUpon>tpAddinList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\tpAddinList.aspx.designer.cs">
+      <DependentUpon>tpAddinList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\tpDefault.aspx.cs">
+      <DependentUpon>tpDefault.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\tpDefault.aspx.designer.cs">
+      <DependentUpon>tpDefault.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Users.cs" />
+    <Compile Include="Admin\ifUserTaskList.aspx.cs">
+      <DependentUpon>ifUserTaskList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\ifUserTaskList.aspx.designer.cs">
+      <DependentUpon>ifUserTaskList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\ifTaskList.aspx.cs">
+      <DependentUpon>ifTaskList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\ifTaskList.aspx.designer.cs">
+      <DependentUpon>ifTaskList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\mdTaskEdit.aspx.cs">
+      <DependentUpon>mdTaskEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\mdTaskEdit.aspx.designer.cs">
+      <DependentUpon>mdTaskEdit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\mdAddinEdit.aspx.cs">
+      <DependentUpon>mdAddinEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\mdAddinEdit.aspx.designer.cs">
+      <DependentUpon>mdAddinEdit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\CheckAdminPage.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\UserTaskList.aspx.cs">
+      <DependentUpon>UserTaskList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\UserTaskList.aspx.designer.cs">
+      <DependentUpon>UserTaskList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\tpAddinUp.aspx.cs">
+      <DependentUpon>tpAddinUp.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\tpAddinUp.aspx.designer.cs">
+      <DependentUpon>tpAddinUp.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CheckLoginPage.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CheckPwdExpirePage.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Ext1\Main.aspx.cs">
+      <DependentUpon>Main.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Ext1\Main.aspx.designer.cs">
+      <DependentUpon>Main.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Logout.aspx.cs">
+      <DependentUpon>Logout.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Logout.aspx.designer.cs">
+      <DependentUpon>Logout.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="NewsList.aspx.cs">
+      <DependentUpon>NewsList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="NewsList.aspx.designer.cs">
+      <DependentUpon>NewsList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="NewsView.aspx.cs">
+      <DependentUpon>NewsView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="NewsView.aspx.designer.cs">
+      <DependentUpon>NewsView.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reg.aspx.cs">
+      <DependentUpon>Reg.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reg.aspx.designer.cs">
+      <DependentUpon>Reg.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ChgPwd.aspx.cs">
+      <DependentUpon>ChgPwd.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ChgPwd.aspx.designer.cs">
+      <DependentUpon>ChgPwd.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="User\ifPayoutReg.aspx.cs">
+      <DependentUpon>ifPayoutReg.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="User\ifPayoutReg.aspx.designer.cs">
+      <DependentUpon>ifPayoutReg.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ifTaskListCanTake.aspx.cs">
+      <DependentUpon>ifTaskListCanTake.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ifTaskListCanTake.aspx.designer.cs">
+      <DependentUpon>ifTaskListCanTake.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="User\ifUserInfo.aspx.cs">
+      <DependentUpon>ifUserInfo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="User\ifUserInfo.aspx.designer.cs">
+      <DependentUpon>ifUserInfo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LoginFromCookiePage.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="User\Main.aspx.cs">
+      <DependentUpon>Main.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="User\Main.aspx.designer.cs">
+      <DependentUpon>Main.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="User\Privilege.cs" />
+    <Compile Include="User\tpDefault.aspx.cs">
+      <DependentUpon>tpDefault.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="User\tpDefault.aspx.designer.cs">
+      <DependentUpon>tpDefault.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="User\Users.cs" />
+    <Compile Include="User\UserTaskList.aspx.cs">
+      <DependentUpon>UserTaskList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="User\UserTaskList.aspx.designer.cs">
+      <DependentUpon>UserTaskList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="VoteLog.aspx.cs">
+      <DependentUpon>VoteLog.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VoteLog.aspx.designer.cs">
+      <DependentUpon>VoteLog.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebForm1.aspx.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForm1.aspx.designer.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WS\Admin\WS1.asmx.cs">
+      <DependentUpon>WS1.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="WS\Admin\WS2.asmx.cs">
+      <DependentUpon>WS2.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="WS\User\WS1.asmx.cs">
+      <DependentUpon>WS1.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WS\User\WS2.asmx.cs">
+      <DependentUpon>WS2.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="WS\WS1.asmx.cs">
+      <DependentUpon>WS1.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="WS\WS2.asmx.cs">
+      <DependentUpon>WS2.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="XSD\Apq.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Apq.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="XSD\dtxc.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dtxc.xsd</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Configs\Apq.Com.dll.apq">
+    </None>
+    <Content Include="Admin\fuAddin.aspx" />
+    <Content Include="Admin\ifDefault.aspx" />
+    <Content Include="Admin\Default.htm" />
+    <Content Include="Admin\ifLog_PayoutList.aspx" />
+    <Content Include="Admin\ifPayoutList.aspx" />
+    <Content Include="Admin\ifTop.aspx" />
+    <Content Include="Admin\ifAddinList.aspx" />
+    <Content Include="Admin\ifMenu.aspx" />
+    <Content Include="Admin\ifUserList.aspx" />
+    <Content Include="Admin\ifUserTaskList.aspx" />
+    <Content Include="Admin\ifTaskList.aspx" />
+    <Content Include="Admin\Main.aspx" />
+    <Content Include="Admin\mdUserEdit.aspx" />
+    <Content Include="Admin\tpAddinList.aspx" />
+    <Content Include="Admin\tpDefault.aspx" />
+    <Content Include="Admin\UserTaskList.aspx" />
+    <Content Include="Admin\tpAddinUp.aspx" />
+    <Content Include="CSS\Extmain.css" />
+    <Content Include="CSS\Style.css" />
+    <Content Include="Default.htm" />
+    <Content Include="Ext1\js\extMain_bak.js" />
+    <Content Include="Ext1\Main.aspx" />
+    <Content Include="Login.aspx" />
+    <Content Include="Script\ExtMain.js" />
+    <Content Include="Ext1\css\Extmain.css" />
+    <Content Include="Ext1\images\public\loader.gif" />
+    <Content Include="Ext1\images\public\s.gif" />
+    <Content Include="Ext1\Default.htm" />
+    <Content Include="Ext1\info.html" />
+    <Content Include="Ext1\js\ext-2.2\adapter\ext\ext-base.js" />
+    <Content Include="Ext1\js\ext-2.2\ext-all.js" />
+    <Content Include="Ext1\js\ext-2.2\resources\css\borders.css" />
+    <Content Include="Ext1\js\ext-2.2\resources\css\box.css" />
+    <Content Include="Ext1\js\ext-2.2\resources\css\button.css" />
+    <Content Include="Ext1\js\ext-2.2\resources\css\combo.css" />
+    <Content Include="Ext1\js\ext-2.2\resources\css\core.css" />
+    <Content Include="Ext1\js\ext-2.2\resources\css\date-picker.css" />
+    <Content Include="Ext1\js\ext-2.2\resources\css\dd.css" />
+    <Content Include="Ext1\js\ext-2.2\resources\css\debug.css" />
+    <Content Include="Ext1\js\ext-2.2\resources\css\dialog.css" />
+    <Content Include="Ext1\js\ext-2.2\resources\css\editor.css" />
+    <Content Include="Ext1\js\ext-2.2\resources\css\ext-all.css" />
+    <Content Include="Ext1\js\ext-2.2\resources\css\form.css" />
+    <Content Include="Ext1\js\ext-2.2\resources\css\grid.css" />
+    <Content Include="Ext1\js\ext-2.2\resources\css\layout.css" />
+    <Content Include="Ext1\js\ext-2.2\resources\css\menu.css" />
+    <Content Include="Ext1\js\ext-2.2\resources\css\panel.css" />
+    <Content Include="Ext1\js\ext-2.2\resources\css\progress.css" />
+    <Content Include="Ext1\js\ext-2.2\resources\css\qtips.css" />
+    <Content Include="Ext1\js\ext-2.2\resources\css\README.txt" />
+    <Content Include="Ext1\js\ext-2.2\resources\css\reset-min.css" />
+    <Content Include="Ext1\js\ext-2.2\resources\css\reset.css" />
+    <Content Include="Ext1\js\ext-2.2\resources\css\resizable.css" />
+    <Content Include="Ext1\js\ext-2.2\resources\css\slider.css" />
+    <Content Include="Ext1\js\ext-2.2\resources\css\tabs.css" />
+    <Content Include="Ext1\js\ext-2.2\resources\css\toolbar.css" />
+    <Content Include="Ext1\js\ext-2.2\resources\css\tree.css" />
+    <Content Include="Ext1\js\ext-2.2\resources\css\window.css" />
+    <Content Include="Ext1\js\ext-2.2\resources\css\xtheme-gray.css" />
+    <Content Include="Ext1\js\ext-2.2\resources\css\xtheme-slate.css" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\box\corners-blue.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\box\corners.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\box\l-blue.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\box\l.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\box\r-blue.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\box\r.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\box\tb-blue.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\box\tb.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\button\btn-arrow.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\button\btn-sprite.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\dd\drop-add.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\dd\drop-no.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\dd\drop-yes.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\editor\tb-sprite.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\form\checkbox.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\form\clear-trigger.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\form\date-trigger.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\form\error-tip-corners.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\form\exclamation.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\form\radio.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\form\search-trigger.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\form\text-bg.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\form\trigger-tpl.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\form\trigger.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\gradient-bg.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\grid\arrow-left-white.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\grid\arrow-right-white.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\grid\col-move-bottom.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\grid\col-move-top.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\grid\columns.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\grid\dirty.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\grid\done.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\grid\drop-no.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\grid\drop-yes.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\grid\footer-bg.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\grid\grid-blue-hd.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\grid\grid-blue-split.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\grid\grid-hrow.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\grid\grid-loading.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\grid\grid-split.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\grid\grid-vista-hd.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\grid\grid3-hd-btn.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\grid\grid3-hrow-over.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\grid\grid3-hrow.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\grid\grid3-special-col-bg.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\grid\grid3-special-col-sel-bg.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\grid\group-by.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\grid\group-expand-sprite.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\grid\hd-pop.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\grid\hmenu-asc.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\grid\hmenu-desc.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\grid\hmenu-lock.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\grid\hmenu-lock.png" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\grid\hmenu-unlock.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\grid\hmenu-unlock.png" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\grid\invalid_line.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\grid\loading.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\grid\mso-hd.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\grid\nowait.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\grid\page-first-disabled.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\grid\page-first.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\grid\page-last-disabled.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\grid\page-last.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\grid\page-next-disabled.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\grid\page-next.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\grid\page-prev-disabled.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\grid\page-prev.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\grid\pick-button.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\grid\refresh.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\grid\row-check-sprite.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\grid\row-expand-sprite.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\grid\row-over.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\grid\row-sel.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\grid\sort_asc.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\grid\sort_desc.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\grid\wait.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\layout\collapse.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\layout\expand.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\layout\gradient-bg.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\layout\mini-bottom.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\layout\mini-left.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\layout\mini-right.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\layout\mini-top.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\layout\ns-collapse.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\layout\ns-expand.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\layout\panel-close.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\layout\panel-title-bg.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\layout\panel-title-light-bg.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\layout\stick.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\layout\stuck.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\layout\tab-close-on.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\layout\tab-close.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\menu\checked.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\menu\group-checked.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\menu\item-over.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\menu\menu-parent.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\menu\menu.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\menu\unchecked.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\panel\corners-sprite.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\panel\left-right.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\panel\light-hd.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\panel\tool-sprite-tpl.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\panel\tool-sprites.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\panel\tools-sprites-trans.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\panel\top-bottom.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\panel\top-bottom.png" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\panel\white-corners-sprite.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\panel\white-left-right.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\panel\white-top-bottom.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\progress\progress-bg.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\qtip\bg.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\qtip\close.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\qtip\tip-sprite.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\s.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\shadow-c.png" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\shadow-lr.png" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\shadow.png" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\shared\blue-loading.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\shared\calendar.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\shared\glass-bg.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\shared\hd-sprite.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\shared\large-loading.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\shared\left-btn.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\shared\loading-balls.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\shared\right-btn.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\shared\warning.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\sizer\e-handle-dark.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\sizer\e-handle.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\sizer\ne-handle-dark.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\sizer\ne-handle.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\sizer\nw-handle-dark.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\sizer\nw-handle.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\sizer\s-handle-dark.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\sizer\s-handle.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\sizer\se-handle-dark.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\sizer\se-handle.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\sizer\square.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\sizer\sw-handle-dark.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\sizer\sw-handle.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\slider\slider-bg.png" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\slider\slider-thumb.png" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\slider\slider-v-bg.png" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\slider\slider-v-thumb.png" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\tabs\scroll-left.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\tabs\scroll-right.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\tabs\scroller-bg.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\tabs\tab-btm-inactive-left-bg.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\tabs\tab-btm-inactive-right-bg.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\tabs\tab-btm-left-bg.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\tabs\tab-btm-right-bg.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\tabs\tab-close.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\tabs\tab-strip-bg.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\tabs\tab-strip-bg.png" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\tabs\tab-strip-btm-bg.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\tabs\tabs-sprite.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\toolbar\bg.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\toolbar\btn-arrow-light.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\toolbar\btn-arrow.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\toolbar\btn-over-bg.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\toolbar\gray-bg.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\toolbar\tb-bg.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\toolbar\tb-btn-sprite.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\tree\arrows.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\tree\drop-add.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\tree\drop-between.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\tree\drop-no.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\tree\drop-over.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\tree\drop-under.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\tree\drop-yes.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\tree\elbow-end-minus-nl.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\tree\elbow-end-minus.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\tree\elbow-end-plus-nl.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\tree\elbow-end-plus.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\tree\elbow-end.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\tree\elbow-line.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\tree\elbow-minus-nl.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\tree\elbow-minus.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\tree\elbow-plus-nl.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\tree\elbow-plus.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\tree\elbow.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\tree\folder-open.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\tree\folder.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\tree\leaf.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\tree\loading.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\tree\s.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\window\icon-error.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\window\icon-info.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\window\icon-question.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\window\icon-warning.gif" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\window\left-corners.png" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\window\left-right.png" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\window\right-corners.png" />
+    <Content Include="Ext1\js\ext-2.2\resources\images\default\window\top-bottom.png" />
+    <Content Include="Ext1\js\ext-2.2\source\locale\ext-lang-zh_CN.js" />
+    <Content Include="Ext1\js\extMain.js" />
+    <Content Include="Ext1\js\localXHR.js" />
+    <Content Include="Ext1\js\prototype.js" />
+    <Content Include="Ext1\modules\dataView\images\selected.gif" />
+    <Content Include="Ext1\modules\dataView\images\thumbs\dance_fever.jpg" />
+    <Content Include="Ext1\modules\dataView\images\thumbs\gangster_zack.jpg" />
+    <Content Include="Ext1\modules\dataView\images\thumbs\kids_hug.jpg" />
+    <Content Include="Ext1\modules\dataView\images\thumbs\kids_hug2.jpg" />
+    <Content Include="Ext1\modules\dataView\images\thumbs\sara_pink.jpg" />
+    <Content Include="Ext1\modules\dataView\images\thumbs\sara_pumpkin.jpg" />
+    <Content Include="Ext1\modules\dataView\images\thumbs\sara_smile.jpg" />
+    <Content Include="Ext1\modules\dataView\images\thumbs\up_to_something.jpg" />
+    <Content Include="Ext1\modules\dataView\images\thumbs\zack.jpg" />
+    <Content Include="Ext1\modules\dataView\images\thumbs\zacks_grill.jpg" />
+    <Content Include="Ext1\modules\dataView\images\thumbs\zack_dress.jpg" />
+    <Content Include="Ext1\modules\dataView\images\thumbs\zack_hat.jpg" />
+    <Content Include="Ext1\modules\dataView\images\thumbs\zack_sink.jpg" />
+    <Content Include="Ext1\modules\dataView\simpleDataView.html" />
+    <Content Include="Ext1\modules\dataView\simpleDataView.js" />
+    <Content Include="Ext1\modules\layout\accordionLayout-tmp1.html" />
+    <Content Include="Ext1\modules\layout\accordionLayout.html" />
+    <Content Include="Ext1\modules\layout\accordionLayout.js" />
+    <Content Include="Ext1\modules\layout\borderLayout.html" />
+    <Content Include="Ext1\modules\layout\borderLayout.js" />
+    <Content Include="Ext1\modules\layout\cardLayout.html" />
+    <Content Include="Ext1\modules\layout\cardLayout.js" />
+    <Content Include="Ext1\modules\layout\portalLayout.html" />
+    <Content Include="Ext1\modules\layout\portalLayout.js" />
+    <Content Include="Ext1\modules\oop\simpleOOP-tree.js" />
+    <Content Include="Ext1\modules\oop\simpleOOP.html" />
+    <Content Include="Ext1\modules\oop\simpleOOP.js" />
+    <Content Include="Ext1\modules\tree\advancedTree01.html" />
+    <Content Include="Ext1\modules\tree\advancedTree01.js" />
+    <Content Include="Ext1\modules\tree\asynchronousTree.html" />
+    <Content Include="Ext1\modules\tree\asynchronousTree.js" />
+    <Content Include="Ext1\modules\tree\checkboxTree.html" />
+    <Content Include="Ext1\modules\tree\checkboxTree.js" />
+    <Content Include="Ext1\modules\tree\dragDoubleTree.html" />
+    <Content Include="Ext1\modules\tree\dragDoubleTree.js" />
+    <Content Include="Ext1\modules\tree\dragTree.html" />
+    <Content Include="Ext1\modules\tree\dragTree.js" />
+    <Content Include="Ext1\modules\tree\editNodeTree.html" />
+    <Content Include="Ext1\modules\tree\editNodeTree.js" />
+    <Content Include="Ext1\modules\tree\simpleTree.html" />
+    <Content Include="Ext1\modules\tree\simpleTree.js" />
+    <Content Include="Img\bg.gif" />
+    <Content Include="Img\loader.gif" />
+    <Content Include="Img\logo.jpg" />
+    <Content Include="Logout.aspx" />
+    <Content Include="Admin\mdTaskEdit.aspx" />
+    <Content Include="Admin\mdAddinEdit.aspx" />
+    <Content Include="Configs\Apq.Com.dll.config">
+    </Content>
+    <None Include="Configs\Apq.DB.dll.apq">
+    </None>
+    <Content Include="Configs\Apq.DB.dll.config">
+    </Content>
+    <None Include="Configs\Apq.dll.apq">
+    </None>
+    <Content Include="Configs\Apq.dll.config">
+    </Content>
+    <None Include="Configs\Apq.dll.log4net">
+    </None>
+    <None Include="Configs\Apq.Web.dll.apq">
+    </None>
+    <Content Include="Configs\Apq.Web.dll.config">
+    </Content>
+    <None Include="Configs\Apq.WorkFlow.dll.apq">
+    </None>
+    <None Include="Ext1\extmenutree.json" />
+    <None Include="Ext1\js\ext-2.2\resources\images\default\form\clear-trigger.psd" />
+    <None Include="Ext1\js\ext-2.2\resources\images\default\form\date-trigger.psd" />
+    <None Include="Ext1\js\ext-2.2\resources\images\default\form\search-trigger.psd" />
+    <None Include="Ext1\js\ext-2.2\resources\images\default\form\trigger.psd" />
+    <None Include="Ext1\js\ext-2.2\resources\images\default\shadow-c.psd" />
+    <None Include="Ext1\js\ext-2.2\resources\images\default\window\left-corners.psd" />
+    <None Include="Ext1\js\ext-2.2\resources\images\default\window\left-right.psd" />
+    <None Include="Ext1\js\ext-2.2\resources\images\default\window\right-corners.psd" />
+    <None Include="Ext1\js\ext-2.2\resources\images\default\window\top-bottom.psd" />
+    <None Include="Ext1\js\ext-2.2\resources\resources.jsb" />
+    <None Include="Ext1\modules\dataView\images\thumbs\Thumbs.db" />
+    <None Include="Ext1\modules\dataView\simpleDataView.json" />
+    <None Include="Ext1\modules\oop\simpleOOP.json" />
+    <None Include="Ext1\modules\tree\advancedTree01.json" />
+    <None Include="Ext1\modules\tree\asynchronousTree.php" />
+    <None Include="Ext1\modules\tree\checkboxTree.json" />
+    <None Include="Ext1\modules\tree\dragDoubleTree.php" />
+    <None Include="Ext1\modules\tree\dragDoubleTreeOne.json" />
+    <None Include="Ext1\modules\tree\dragDoubleTreeTwo.json" />
+    <None Include="Ext1\modules\tree\dragTree.php" />
+    <None Include="Ext1\modules\tree\editNodeTree.php" />
+    <None Include="Ext1\modules\tree\simpleTree.json" />
+    <None Include="XSD\Apq.xsc">
+      <DependentUpon>Apq.xsd</DependentUpon>
+    </None>
+    <None Include="XSD\Apq.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Apq.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="XSD\Apq.xss">
+      <DependentUpon>Apq.xsd</DependentUpon>
+    </None>
+    <None Include="XSD\dtxc.xsc">
+      <DependentUpon>dtxc.xsd</DependentUpon>
+    </None>
+    <None Include="XSD\dtxc.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dtxc.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="XSD\dtxc.xss">
+      <DependentUpon>dtxc.xsd</DependentUpon>
+    </None>
+    <Content Include="Global.asax" />
+    <Content Include="NewsList.aspx" />
+    <Content Include="NewsView.aspx" />
+    <Content Include="Reg.aspx" />
+    <Content Include="Script\vswd-ext_2.2.js" />
+    <Content Include="Script\ShowEx.js" />
+    <Content Include="ChgPwd.aspx" />
+    <Content Include="User\ifPayoutReg.aspx" />
+    <Content Include="ifTaskListCanTake.aspx" />
+    <Content Include="User\ifUserInfo.aspx" />
+    <Content Include="Configs\Apq.WorkFlow.dll.config">
+    </Content>
+    <Content Include="User\Default.htm" />
+    <Content Include="Script\Apq.js" />
+    <Content Include="User\Main.aspx" />
+    <Content Include="User\tpDefault.aspx" />
+    <Content Include="User\UserTaskList.aspx" />
+    <Content Include="VoteLog.aspx" />
+    <Content Include="Script\VoteLog.js" />
+    <Content Include="WebForm1.aspx" />
+    <Content Include="WS\Admin\WS2.asmx" />
+    <Content Include="WS\User\WS2.asmx" />
+    <Content Include="WS\WS1.asmx" />
+    <Content Include="WS\WS2.asmx" />
+    <Content Include="_Doc\UrlGet.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Down\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v9.0\WebApplications\Microsoft.WebApplication.targets" Condition="" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>49573</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost/dtxc/dtxc</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>True</UseCustomServer>
+          <CustomServerUrl>http://localhost./dtxc/dtxc</CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <PropertyGroup>
+    <PreBuildEvent>if "%25Reference%25" == "" goto End
+if "" == "" goto EndConfig
+xcopy "%25Reference%25\$(ConfigurationName)\Config\Apq.dll.config" "$(ProjectDir)Configs\" /c /q /g /h /r /k /y
+xcopy "%25Reference%25\$(ConfigurationName)\Config\Apq.dll.apq" "$(ProjectDir)Configs\" /c /q /g /h /r /k /y
+xcopy "%25Reference%25\$(ConfigurationName)\Config\Apq.dll.log4net" "$(ProjectDir)Configs\" /c /q /g /h /r /k /y
+
+xcopy "%25Reference%25\$(ConfigurationName)\Config\Apq.DB.dll.config" "$(ProjectDir)Configs\" /c /q /g /h /r /k /y
+xcopy "%25Reference%25\$(ConfigurationName)\Config\Apq.DB.dll.apq" "$(ProjectDir)Configs\" /c /q /g /h /r /k /y
+
+xcopy "%25Reference%25\$(ConfigurationName)\Config\Apq.WorkFlow.dll.config" "$(ProjectDir)Configs\" /c /q /g /h /r /k /y
+xcopy "%25Reference%25\$(ConfigurationName)\Config\Apq.WorkFlow.dll.apq" "$(ProjectDir)Configs\" /c /q /g /h /r /k /y
+
+:xcopy "%25Reference%25\Res\Common" "$(ProjectDir)Res\" /c /q /g /h /r /k /y /e
+:xcopy "%25Reference%25\Res\$(ProjectName)" "$(ProjectDir)Res\" /c /q /g /h /r /k /y /e
+
+xcopy "%25Reference%25\$(ConfigurationName)\Config\Apq.Com.dll.config" "$(ProjectDir)Configs\" /c /q /g /h /r /k /y
+xcopy "%25Reference%25\$(ConfigurationName)\Config\Apq.Com.dll.apq" "$(ProjectDir)Configs\" /c /q /g /h /r /k /y
+
+xcopy "%25Reference%25\$(ConfigurationName)\Config\Apq.Web.dll.config" "$(ProjectDir)Configs\" /c /q /g /h /r /k /y
+xcopy "%25Reference%25\$(ConfigurationName)\Config\Apq.Web.dll.apq" "$(ProjectDir)Configs\" /c /q /g /h /r /k /y
+:EndConfig
+
+xcopy "%25Reference%25\$(ConfigurationName)\Apq.dll" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+xcopy "%25Reference%25\$(ConfigurationName)\Apq.xml" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+xcopy "%25Reference%25\$(ConfigurationName)\Apq.pdb" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+
+xcopy "%25Reference%25\$(ConfigurationName)\Apq.DB.dll" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+xcopy "%25Reference%25\$(ConfigurationName)\Apq.DB.xml" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+xcopy "%25Reference%25\$(ConfigurationName)\Apq.DB.pdb" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+
+xcopy "%25Reference%25\$(ConfigurationName)\Apq.WorkFlow.dll" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+xcopy "%25Reference%25\$(ConfigurationName)\Apq.WorkFlow.xml" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+xcopy "%25Reference%25\$(ConfigurationName)\Apq.WorkFlow.pdb" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+
+xcopy "%25Reference%25\$(ConfigurationName)\Apq.Com.dll" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+xcopy "%25Reference%25\$(ConfigurationName)\Apq.Com.xml" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+xcopy "%25Reference%25\$(ConfigurationName)\Apq.Com.pdb" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+
+xcopy "%25Reference%25\$(ConfigurationName)\Apq.Web.dll" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+xcopy "%25Reference%25\$(ConfigurationName)\Apq.Web.xml" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+xcopy "%25Reference%25\$(ConfigurationName)\Apq.Web.pdb" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+:End
+</PreBuildEvent>
+  </PropertyGroup>
+</Project>
