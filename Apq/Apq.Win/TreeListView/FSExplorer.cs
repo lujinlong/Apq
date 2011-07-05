@@ -278,14 +278,20 @@ namespace Apq.TreeListView
 		public void LoadChildren(TreeListViewItem node, string fsFullPath, bool Recursive = false)
 		{
 			string[] strChildren = Directory.GetDirectories(fsFullPath + "\\");
-			node.SubItems[Columns.Count + 1].Text = strChildren.LongLength > 0 ? "1" : "0";
+			if (strChildren.LongLength > 0)
+			{
+				node.SubItems[Columns.Count + 1].Text = "1";
+			}
 			foreach (string strChild in strChildren)
 			{
 				AddFolder(node, strChild, Recursive);
 			}
 
 			strChildren = Directory.GetFiles(fsFullPath + "\\");
-			node.SubItems[Columns.Count + 1].Text = strChildren.LongLength > 0 ? "1" : "-1";
+			if (node.SubItems[Columns.Count + 1].Text == "0")
+			{
+				node.SubItems[Columns.Count + 1].Text = strChildren.LongLength > 0 ? "1" : "-1";
+			}
 			foreach (string strChild in strChildren)
 			{
 				AddFile(node, strChild);

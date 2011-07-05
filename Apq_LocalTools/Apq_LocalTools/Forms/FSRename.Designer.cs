@@ -48,7 +48,6 @@ namespace Apq_LocalTools
 			this.cbContainsFileExt = new System.Windows.Forms.CheckBox();
 			this.cbContainsFolder = new System.Windows.Forms.CheckBox();
 			this.cbRecursive = new System.Windows.Forms.CheckBox();
-			this.elementHost1 = new System.Windows.Forms.Integration.ElementHost();
 			this.fsExplorer1 = new Apq.TreeListView.FSExplorer();
 			this.statusStrip1.SuspendLayout();
 			this.groupBox1.SuspendLayout();
@@ -225,21 +224,11 @@ namespace Apq_LocalTools
 			this.cbRecursive.Text = "包含子目录";
 			this.cbRecursive.UseVisualStyleBackColor = true;
 			// 
-			// elementHost1
-			// 
-			this.elementHost1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.elementHost1.Location = new System.Drawing.Point(630, 196);
-			this.elementHost1.Name = "elementHost1";
-			this.elementHost1.Size = new System.Drawing.Size(373, 207);
-			this.elementHost1.TabIndex = 11;
-			this.elementHost1.Text = "elementHost1";
-			this.elementHost1.Child = null;
-			// 
 			// fsExplorer1
 			// 
-			this.fsExplorer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-						| System.Windows.Forms.AnchorStyles.Left)
-						| System.Windows.Forms.AnchorStyles.Right)));
+			this.fsExplorer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.fsExplorer1.CheckBoxes = System.Windows.Forms.CheckBoxesTypes.Recursive;
 			treeListViewItemCollectionComparer1.Column = 2;
 			treeListViewItemCollectionComparer1.SortOrder = System.Windows.Forms.SortOrder.Ascending;
@@ -257,7 +246,6 @@ namespace Apq_LocalTools
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.AutoScroll = true;
 			this.ClientSize = new System.Drawing.Size(760, 428);
-			this.Controls.Add(this.elementHost1);
 			this.Controls.Add(this.fsExplorer1);
 			this.Controls.Add(this.groupBox1);
 			this.Controls.Add(this.statusStrip1);
@@ -299,7 +287,6 @@ namespace Apq_LocalTools
 		private System.Windows.Forms.Label label4;
 		private System.Windows.Forms.CheckBox cbContainsFileExt;
 		private System.Windows.Forms.CheckBox cbContainsFolder;
-		private System.Windows.Forms.Integration.ElementHost elementHost1;
 		private Apq.TreeListView.FSExplorer fsExplorer1;
 	}
 }

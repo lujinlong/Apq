@@ -19,11 +19,12 @@ namespace Apq_LocalTools
 	{
 		private static int FormCount = 0;
 
-		private Apq.ICSharpCode.TreeView.FSExplorer tv = new Apq.ICSharpCode.TreeView.FSExplorer();
 		public FSRename()
 		{
 			InitializeComponent();
 		}
+
+		//private TreeListViewHelper tlvHelper;
 
 		public override void SetUILang(Apq.UILang.UILang UILang)
 		{
@@ -57,8 +58,9 @@ namespace Apq_LocalTools
 		/// </summary>
 		public override void InitDataBefore()
 		{
-			#region TreeListView
-			elementHost1.Child = tv;
+			//tlvHelper = new TreeListViewHelper(fsExplorer1);
+
+			#region 数据库连接
 			#endregion
 		}
 		/// <summary>
@@ -83,13 +85,11 @@ namespace Apq_LocalTools
 			{
 				// 为TreeListView添加根结点
 				fsExplorer1.LoadDrives();
-				//tv.LoadDrives();
 			}
 			catch { }
 		}
 		#endregion
 
-		#region treeListView1
 		private void fsExplorer1_SelectedIndexChanged(object sender, EventArgs e)
 		{
 			TreeListViewItem node = fsExplorer1.FocusedItem;
@@ -98,7 +98,6 @@ namespace Apq_LocalTools
 				tsslStatus.Text = node.FullPath;
 			}
 		}
-		#endregion
 
 		public void UIEnable(bool Enable)
 		{
