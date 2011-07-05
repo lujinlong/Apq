@@ -289,7 +289,7 @@
     </Compile>
     <Compile Include="Windows\Forms\SingletonForms.cs">
     </Compile>
-    <Compile Include="Windows\Forms\ToolStripProgressBar.cs" />
+    <Compile Include="Windows\Forms\TSProgressBarHelper.cs" />
     <Compile Include="Windows\Interfaces\IWizardStep.cs" />
   </ItemGroup>
   <ItemGroup>

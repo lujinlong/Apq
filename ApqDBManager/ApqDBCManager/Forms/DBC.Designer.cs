@@ -34,10 +34,21 @@
 			this.tsmiTestOpen = new System.Windows.Forms.ToolStripMenuItem();
 			this.sfd = new System.Windows.Forms.SaveFileDialog();
 			this.dataGridView1 = new System.Windows.Forms.DataGridView();
+			this.dBCIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.dBCNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.computerIDDataGridViewComBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
 			this.bsComputer = new System.Windows.Forms.BindingSource(this.components);
 			this.xsdDBC = new ApqDBCManager.Forms.DBS_XSD();
+			this.dBIIDDataGridViewComboBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
 			this.bsDBI = new System.Windows.Forms.BindingSource(this.components);
+			this.dBNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.dBCUseTypeDataGridViewComboBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
 			this.bsDBCUseType = new System.Windows.Forms.BindingSource(this.components);
+			this.userIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.pwdDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.useTrustedDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+			this.mirrorDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.optionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.bsDBC = new System.Windows.Forms.BindingSource(this.components);
 			this.toolStrip1 = new System.Windows.Forms.ToolStrip();
 			this.tsbOpenFile = new System.Windows.Forms.ToolStripButton();
@@ -55,19 +66,6 @@
 			this.tsslOutInfo = new System.Windows.Forms.ToolStripStatusLabel();
 			this.tsslTest = new System.Windows.Forms.ToolStripStatusLabel();
 			this.ofd = new System.Windows.Forms.OpenFileDialog();
-			this.actionList1 = new Crad.Windows.Forms.Actions.ActionList();
-			this.acOpenFile = new Crad.Windows.Forms.Actions.Action();
-			this.dBCIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.dBCNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.computerIDDataGridViewComBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
-			this.dBIIDDataGridViewComboBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
-			this.dBNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.dBCUseTypeDataGridViewComboBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
-			this.userIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.pwdDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.useTrustedDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-			this.mirrorDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.optionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.cmGridMenu.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.bsComputer)).BeginInit();
@@ -77,7 +75,6 @@
 			((System.ComponentModel.ISupportInitialize)(this.bsDBC)).BeginInit();
 			this.toolStrip1.SuspendLayout();
 			this.statusStrip1.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.actionList1)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// cmGridMenu
@@ -128,6 +125,36 @@
 			this.dataGridView1.Size = new System.Drawing.Size(692, 319);
 			this.dataGridView1.TabIndex = 6;
 			// 
+			// dBCIDDataGridViewTextBoxColumn
+			// 
+			this.dBCIDDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+			this.dBCIDDataGridViewTextBoxColumn.DataPropertyName = "DBCID";
+			this.dBCIDDataGridViewTextBoxColumn.HeaderText = "编号";
+			this.dBCIDDataGridViewTextBoxColumn.Name = "dBCIDDataGridViewTextBoxColumn";
+			this.dBCIDDataGridViewTextBoxColumn.ReadOnly = true;
+			this.dBCIDDataGridViewTextBoxColumn.Width = 60;
+			// 
+			// dBCNameDataGridViewTextBoxColumn
+			// 
+			this.dBCNameDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+			this.dBCNameDataGridViewTextBoxColumn.DataPropertyName = "DBCName";
+			this.dBCNameDataGridViewTextBoxColumn.HeaderText = "连接名";
+			this.dBCNameDataGridViewTextBoxColumn.MinimumWidth = 100;
+			this.dBCNameDataGridViewTextBoxColumn.Name = "dBCNameDataGridViewTextBoxColumn";
+			// 
+			// computerIDDataGridViewComBoxColumn
+			// 
+			this.computerIDDataGridViewComBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+			this.computerIDDataGridViewComBoxColumn.DataPropertyName = "ComputerID";
+			this.computerIDDataGridViewComBoxColumn.DataSource = this.bsComputer;
+			this.computerIDDataGridViewComBoxColumn.DisplayMember = "ComputerName";
+			this.computerIDDataGridViewComBoxColumn.HeaderText = "服务器";
+			this.computerIDDataGridViewComBoxColumn.Name = "computerIDDataGridViewComBoxColumn";
+			this.computerIDDataGridViewComBoxColumn.ReadOnly = true;
+			this.computerIDDataGridViewComBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+			this.computerIDDataGridViewComBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+			this.computerIDDataGridViewComBoxColumn.ValueMember = "ComputerID";
+			// 
 			// bsComputer
 			// 
 			this.bsComputer.DataMember = "Computer";
@@ -138,15 +165,81 @@
 			this.xsdDBC.DataSetName = "DBS_XSD";
 			this.xsdDBC.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
 			// 
+			// dBIIDDataGridViewComboBoxColumn
+			// 
+			this.dBIIDDataGridViewComboBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+			this.dBIIDDataGridViewComboBoxColumn.DataPropertyName = "DBIID";
+			this.dBIIDDataGridViewComboBoxColumn.DataSource = this.bsDBI;
+			this.dBIIDDataGridViewComboBoxColumn.DisplayMember = "DBIName";
+			this.dBIIDDataGridViewComboBoxColumn.HeaderText = "数据库实例";
+			this.dBIIDDataGridViewComboBoxColumn.Name = "dBIIDDataGridViewComboBoxColumn";
+			this.dBIIDDataGridViewComboBoxColumn.ValueMember = "DBIID";
+			// 
 			// bsDBI
 			// 
 			this.bsDBI.DataMember = "DBI";
 			this.bsDBI.DataSource = this.xsdDBC;
 			// 
+			// dBNameDataGridViewTextBoxColumn
+			// 
+			this.dBNameDataGridViewTextBoxColumn.DataPropertyName = "DBName";
+			this.dBNameDataGridViewTextBoxColumn.HeaderText = "数据库名";
+			this.dBNameDataGridViewTextBoxColumn.MinimumWidth = 100;
+			this.dBNameDataGridViewTextBoxColumn.Name = "dBNameDataGridViewTextBoxColumn";
+			// 
+			// dBCUseTypeDataGridViewComboBoxColumn
+			// 
+			this.dBCUseTypeDataGridViewComboBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+			this.dBCUseTypeDataGridViewComboBoxColumn.DataPropertyName = "DBCUseType";
+			this.dBCUseTypeDataGridViewComboBoxColumn.DataSource = this.bsDBCUseType;
+			this.dBCUseTypeDataGridViewComboBoxColumn.DisplayMember = "TypeCaption";
+			this.dBCUseTypeDataGridViewComboBoxColumn.HeaderText = "使用类型";
+			this.dBCUseTypeDataGridViewComboBoxColumn.Name = "dBCUseTypeDataGridViewComboBoxColumn";
+			this.dBCUseTypeDataGridViewComboBoxColumn.ValueMember = "DBCUseType";
+			// 
 			// bsDBCUseType
 			// 
 			this.bsDBCUseType.DataMember = "DBCUseType";
 			this.bsDBCUseType.DataSource = this.xsdDBC;
+			// 
+			// userIdDataGridViewTextBoxColumn
+			// 
+			this.userIdDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+			this.userIdDataGridViewTextBoxColumn.DataPropertyName = "UserId";
+			this.userIdDataGridViewTextBoxColumn.HeaderText = "登录名";
+			this.userIdDataGridViewTextBoxColumn.Name = "userIdDataGridViewTextBoxColumn";
+			this.userIdDataGridViewTextBoxColumn.Width = 90;
+			// 
+			// pwdDDataGridViewTextBoxColumn
+			// 
+			this.pwdDDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+			this.pwdDDataGridViewTextBoxColumn.DataPropertyName = "PwdD";
+			this.pwdDDataGridViewTextBoxColumn.HeaderText = "密码";
+			this.pwdDDataGridViewTextBoxColumn.Name = "pwdDDataGridViewTextBoxColumn";
+			// 
+			// useTrustedDataGridViewCheckBoxColumn
+			// 
+			this.useTrustedDataGridViewCheckBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+			this.useTrustedDataGridViewCheckBoxColumn.DataPropertyName = "UseTrusted";
+			this.useTrustedDataGridViewCheckBoxColumn.HeaderText = "使用信任连接";
+			this.useTrustedDataGridViewCheckBoxColumn.Name = "useTrustedDataGridViewCheckBoxColumn";
+			this.useTrustedDataGridViewCheckBoxColumn.Width = 90;
+			// 
+			// mirrorDataGridViewTextBoxColumn
+			// 
+			this.mirrorDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+			this.mirrorDataGridViewTextBoxColumn.DataPropertyName = "Mirror";
+			this.mirrorDataGridViewTextBoxColumn.HeaderText = "镜像";
+			this.mirrorDataGridViewTextBoxColumn.Name = "mirrorDataGridViewTextBoxColumn";
+			this.mirrorDataGridViewTextBoxColumn.Width = 110;
+			// 
+			// optionDataGridViewTextBoxColumn
+			// 
+			this.optionDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+			this.optionDataGridViewTextBoxColumn.DataPropertyName = "Option";
+			this.optionDataGridViewTextBoxColumn.HeaderText = "选项";
+			this.optionDataGridViewTextBoxColumn.Name = "optionDataGridViewTextBoxColumn";
+			this.optionDataGridViewTextBoxColumn.Width = 120;
 			// 
 			// bsDBC
 			// 
@@ -173,12 +266,12 @@
 			// 
 			// tsbOpenFile
 			// 
-			this.actionList1.SetAction(this.tsbOpenFile, this.acOpenFile);
 			this.tsbOpenFile.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
 			this.tsbOpenFile.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.tsbOpenFile.Name = "tsbOpenFile";
 			this.tsbOpenFile.Size = new System.Drawing.Size(23, 22);
 			this.tsbOpenFile.Text = "打开(&O)";
+			this.tsbOpenFile.Click += new System.EventHandler(this.tsbOpenFile_Click);
 			// 
 			// tsbSave
 			// 
@@ -283,112 +376,6 @@
 			this.ofd.DefaultExt = "res";
 			this.ofd.Filter = "DBC文件(*.res)|*.res|所有文件(*.*)|*.*";
 			// 
-			// actionList1
-			// 
-			this.actionList1.Actions.Add(this.acOpenFile);
-			this.actionList1.ContainerControl = this;
-			// 
-			// acOpenFile
-			// 
-			this.acOpenFile.Text = "打开(&O)";
-			this.acOpenFile.Execute += new System.EventHandler(this.acOpenFile_Execute);
-			// 
-			// dBCIDDataGridViewTextBoxColumn
-			// 
-			this.dBCIDDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-			this.dBCIDDataGridViewTextBoxColumn.DataPropertyName = "DBCID";
-			this.dBCIDDataGridViewTextBoxColumn.HeaderText = "编号";
-			this.dBCIDDataGridViewTextBoxColumn.Name = "dBCIDDataGridViewTextBoxColumn";
-			this.dBCIDDataGridViewTextBoxColumn.ReadOnly = true;
-			this.dBCIDDataGridViewTextBoxColumn.Width = 60;
-			// 
-			// dBCNameDataGridViewTextBoxColumn
-			// 
-			this.dBCNameDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-			this.dBCNameDataGridViewTextBoxColumn.DataPropertyName = "DBCName";
-			this.dBCNameDataGridViewTextBoxColumn.HeaderText = "连接名";
-			this.dBCNameDataGridViewTextBoxColumn.MinimumWidth = 100;
-			this.dBCNameDataGridViewTextBoxColumn.Name = "dBCNameDataGridViewTextBoxColumn";
-			// 
-			// computerIDDataGridViewComBoxColumn
-			// 
-			this.computerIDDataGridViewComBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-			this.computerIDDataGridViewComBoxColumn.DataPropertyName = "ComputerID";
-			this.computerIDDataGridViewComBoxColumn.DataSource = this.bsComputer;
-			this.computerIDDataGridViewComBoxColumn.DisplayMember = "ComputerName";
-			this.computerIDDataGridViewComBoxColumn.HeaderText = "服务器";
-			this.computerIDDataGridViewComBoxColumn.Name = "computerIDDataGridViewComBoxColumn";
-			this.computerIDDataGridViewComBoxColumn.ReadOnly = true;
-			this.computerIDDataGridViewComBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-			this.computerIDDataGridViewComBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-			this.computerIDDataGridViewComBoxColumn.ValueMember = "ComputerID";
-			// 
-			// dBIIDDataGridViewComboBoxColumn
-			// 
-			this.dBIIDDataGridViewComboBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-			this.dBIIDDataGridViewComboBoxColumn.DataPropertyName = "DBIID";
-			this.dBIIDDataGridViewComboBoxColumn.DataSource = this.bsDBI;
-			this.dBIIDDataGridViewComboBoxColumn.DisplayMember = "DBIName";
-			this.dBIIDDataGridViewComboBoxColumn.HeaderText = "数据库实例";
-			this.dBIIDDataGridViewComboBoxColumn.Name = "dBIIDDataGridViewComboBoxColumn";
-			this.dBIIDDataGridViewComboBoxColumn.ValueMember = "DBIID";
-			// 
-			// dBNameDataGridViewTextBoxColumn
-			// 
-			this.dBNameDataGridViewTextBoxColumn.DataPropertyName = "DBName";
-			this.dBNameDataGridViewTextBoxColumn.HeaderText = "数据库名";
-			this.dBNameDataGridViewTextBoxColumn.MinimumWidth = 100;
-			this.dBNameDataGridViewTextBoxColumn.Name = "dBNameDataGridViewTextBoxColumn";
-			// 
-			// dBCUseTypeDataGridViewComboBoxColumn
-			// 
-			this.dBCUseTypeDataGridViewComboBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-			this.dBCUseTypeDataGridViewComboBoxColumn.DataPropertyName = "DBCUseType";
-			this.dBCUseTypeDataGridViewComboBoxColumn.DataSource = this.bsDBCUseType;
-			this.dBCUseTypeDataGridViewComboBoxColumn.DisplayMember = "TypeCaption";
-			this.dBCUseTypeDataGridViewComboBoxColumn.HeaderText = "使用类型";
-			this.dBCUseTypeDataGridViewComboBoxColumn.Name = "dBCUseTypeDataGridViewComboBoxColumn";
-			this.dBCUseTypeDataGridViewComboBoxColumn.ValueMember = "DBCUseType";
-			// 
-			// userIdDataGridViewTextBoxColumn
-			// 
-			this.userIdDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-			this.userIdDataGridViewTextBoxColumn.DataPropertyName = "UserId";
-			this.userIdDataGridViewTextBoxColumn.HeaderText = "登录名";
-			this.userIdDataGridViewTextBoxColumn.Name = "userIdDataGridViewTextBoxColumn";
-			this.userIdDataGridViewTextBoxColumn.Width = 90;
-			// 
-			// pwdDDataGridViewTextBoxColumn
-			// 
-			this.pwdDDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-			this.pwdDDataGridViewTextBoxColumn.DataPropertyName = "PwdD";
-			this.pwdDDataGridViewTextBoxColumn.HeaderText = "密码";
-			this.pwdDDataGridViewTextBoxColumn.Name = "pwdDDataGridViewTextBoxColumn";
-			// 
-			// useTrustedDataGridViewCheckBoxColumn
-			// 
-			this.useTrustedDataGridViewCheckBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-			this.useTrustedDataGridViewCheckBoxColumn.DataPropertyName = "UseTrusted";
-			this.useTrustedDataGridViewCheckBoxColumn.HeaderText = "使用信任连接";
-			this.useTrustedDataGridViewCheckBoxColumn.Name = "useTrustedDataGridViewCheckBoxColumn";
-			this.useTrustedDataGridViewCheckBoxColumn.Width = 90;
-			// 
-			// mirrorDataGridViewTextBoxColumn
-			// 
-			this.mirrorDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-			this.mirrorDataGridViewTextBoxColumn.DataPropertyName = "Mirror";
-			this.mirrorDataGridViewTextBoxColumn.HeaderText = "镜像";
-			this.mirrorDataGridViewTextBoxColumn.Name = "mirrorDataGridViewTextBoxColumn";
-			this.mirrorDataGridViewTextBoxColumn.Width = 110;
-			// 
-			// optionDataGridViewTextBoxColumn
-			// 
-			this.optionDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-			this.optionDataGridViewTextBoxColumn.DataPropertyName = "Option";
-			this.optionDataGridViewTextBoxColumn.HeaderText = "选项";
-			this.optionDataGridViewTextBoxColumn.Name = "optionDataGridViewTextBoxColumn";
-			this.optionDataGridViewTextBoxColumn.Width = 120;
-			// 
 			// DBC
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
@@ -414,7 +401,6 @@
 			this.toolStrip1.PerformLayout();
 			this.statusStrip1.ResumeLayout(false);
 			this.statusStrip1.PerformLayout();
-			((System.ComponentModel.ISupportInitialize)(this.actionList1)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -447,8 +433,6 @@
 		private System.Windows.Forms.BindingSource bsDBI;
 		private System.Windows.Forms.BindingSource bsDBC;
 		private System.Windows.Forms.BindingSource bsDBCUseType;
-		private Crad.Windows.Forms.Actions.ActionList actionList1;
-		private Crad.Windows.Forms.Actions.Action acOpenFile;
 		private System.Windows.Forms.DataGridViewTextBoxColumn dBCIDDataGridViewTextBoxColumn;
 		private System.Windows.Forms.DataGridViewTextBoxColumn dBCNameDataGridViewTextBoxColumn;
 		private System.Windows.Forms.DataGridViewComboBoxColumn computerIDDataGridViewComBoxColumn;

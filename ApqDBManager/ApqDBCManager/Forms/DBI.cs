@@ -27,19 +27,15 @@ namespace ApqDBCManager.Forms
 			this.Text = Apq.GlobalObject.UILang["数据库列表"];
 			this.TabText = this.Text;
 
-			acSave.Text = Apq.GlobalObject.UILang["保存(&S)"];
-			//acSave.ToolTipText = Apq.GlobalObject.UILang["保存"];
-			acSelectAll.Text = Apq.GlobalObject.UILang["全选(&A)"];
-			//acSelectAll.ToolTipText = Apq.GlobalObject.UILang["全选"];
-			acReverse.Text = Apq.GlobalObject.UILang["反选(&V)"];
-			//acReverse.ToolTipText = Apq.GlobalObject.UILang["反选"];
-			acExpandAll.Text = Apq.GlobalObject.UILang["全部收起(&D)"];
-			//acExpandAll.ToolTipText = Apq.GlobalObject.UILang["全部收起"];
+			tsbSave.Text = Apq.GlobalObject.UILang["保存(&S)"];
+			tsbSelectAll.Text = Apq.GlobalObject.UILang["全选(&A)"];
+			tsbReverse.Text = Apq.GlobalObject.UILang["反选(&V)"];
+			tsbExpandAll.Text = Apq.GlobalObject.UILang["全部收起(&D)"];
 			tssbSlts.Text = Apq.GlobalObject.UILang["批量设置(&E)"];
 			tsmiSltsUserId.Text = Apq.GlobalObject.UILang["登录名"];
 			tsmiSltsPwdD.Text = Apq.GlobalObject.UILang["密码"];
 			tsmiSltsPort.Text = Apq.GlobalObject.UILang["端口"];
-			acCreateFile.Text = Apq.GlobalObject.UILang["生成文件(&G)"];
+			tsbCreateFile.Text = Apq.GlobalObject.UILang["生成文件(&G)"];
 
 			tsmiTestOpen.Text = Apq.GlobalObject.UILang["测试(&T)"];
 			tsmiAdd.Text = Apq.GlobalObject.UILang["添加(&A)"];
@@ -311,14 +307,14 @@ namespace ApqDBCManager.Forms
 			}
 		}
 
-		private void acSave_Execute(object sender, EventArgs e)
+		private void tsbSave_Click(object sender, EventArgs e)
 		{
 			treeListView1.EndUpdate();
 			GlobalObject.Lookup_Save();
 			tsslOutInfo.Text = Apq.GlobalObject.UILang["保存成功"];
 		}
 
-		private void acSelectAll_Execute(object sender, EventArgs e)
+		private void tsbSelectAll_Click(object sender, EventArgs e)
 		{
 			foreach (TreeListViewItem root in treeListView1.Items)
 			{
@@ -326,7 +322,7 @@ namespace ApqDBCManager.Forms
 			}
 		}
 
-		private void acReverse_Execute(object sender, EventArgs e)
+		private void tsbReverse_Click(object sender, EventArgs e)
 		{
 			foreach (TreeListViewItem root in treeListView1.Items)
 			{
@@ -334,25 +330,25 @@ namespace ApqDBCManager.Forms
 			}
 		}
 
-		private void acExpandAll_Execute(object sender, EventArgs e)
+		private void tsbExpandAll_Click(object sender, EventArgs e)
 		{
-			if (acExpandAll.Text == Apq.GlobalObject.UILang["全部展开(&D)"])
+			if (tsbExpandAll.Text == Apq.GlobalObject.UILang["全部展开(&D)"])
 			{
 				treeListView1.ExpandAll();
-				acExpandAll.Text = Apq.GlobalObject.UILang["全部收起(&D)"];
-				acExpandAll.ToolTipText = Apq.GlobalObject.UILang["全部收起"];
+				tsbExpandAll.Text = Apq.GlobalObject.UILang["全部收起(&D)"];
+				tsbExpandAll.ToolTipText = Apq.GlobalObject.UILang["全部收起"];
 				return;
 			}
-			if (acExpandAll.Text == Apq.GlobalObject.UILang["全部收起(&D)"])
+			if (tsbExpandAll.Text == Apq.GlobalObject.UILang["全部收起(&D)"])
 			{
 				treeListView1.CollapseAll();
-				acExpandAll.Text = Apq.GlobalObject.UILang["全部展开(&D)"];
-				acExpandAll.ToolTipText = Apq.GlobalObject.UILang["全部展开"];
+				tsbExpandAll.Text = Apq.GlobalObject.UILang["全部展开(&D)"];
+				tsbExpandAll.ToolTipText = Apq.GlobalObject.UILang["全部展开"];
 				return;
 			}
 		}
 
-		private void acCreateFile_Execute(object sender, EventArgs e)
+		private void tsbCreateFile_Click(object sender, EventArgs e)
 		{
 			treeListView1.EndUpdate();
 			sfd.InitialDirectory = GlobalObject.XmlConfigChain[this.GetType(), "sfd_InitialDirectory"];

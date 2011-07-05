@@ -29,7 +29,7 @@
 		private void InitializeComponent()
 		{
 			this.components = new System.ComponentModel.Container();
-			System.Windows.Forms.TreeListViewItemCollection.TreeListViewItemCollectionComparer treeListViewItemCollectionComparer1 = new System.Windows.Forms.TreeListViewItemCollection.TreeListViewItemCollectionComparer();
+			System.Windows.Forms.TreeListViewItemCollection.TreeListViewItemCollectionComparer treeListViewItemCollectionComparer2 = new System.Windows.Forms.TreeListViewItemCollection.TreeListViewItemCollectionComparer();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DBI));
 			this.cmTreeMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.tsmiTestOpen = new System.Windows.Forms.ToolStripMenuItem();
@@ -37,6 +37,7 @@
 			this.tsmiDel = new System.Windows.Forms.ToolStripMenuItem();
 			this.treeListView1 = new System.Windows.Forms.TreeListView();
 			this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -57,22 +58,14 @@
 			this.tsmiSltsPwdD = new System.Windows.Forms.ToolStripMenuItem();
 			this.tsmiSltsPort = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
-			this.tsbSaveFile = new System.Windows.Forms.ToolStripButton();
+			this.tsbCreateFile = new System.Windows.Forms.ToolStripButton();
 			this.statusStrip1 = new System.Windows.Forms.StatusStrip();
 			this.tsslOutInfo = new System.Windows.Forms.ToolStripStatusLabel();
 			this.tsslTest = new System.Windows.Forms.ToolStripStatusLabel();
 			this.sfd = new System.Windows.Forms.SaveFileDialog();
-			this.actionList1 = new Crad.Windows.Forms.Actions.ActionList();
-			this.acSave = new Crad.Windows.Forms.Actions.Action();
-			this.acSelectAll = new Crad.Windows.Forms.Actions.Action();
-			this.acReverse = new Crad.Windows.Forms.Actions.Action();
-			this.acExpandAll = new Crad.Windows.Forms.Actions.Action();
-			this.acCreateFile = new Crad.Windows.Forms.Actions.Action();
-			this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.cmTreeMenu.SuspendLayout();
 			this.toolStrip1.SuspendLayout();
 			this.statusStrip1.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.actionList1)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// cmTreeMenu
@@ -117,9 +110,9 @@
             this.columnHeader4,
             this.columnHeader5,
             this.columnHeader6});
-			treeListViewItemCollectionComparer1.Column = 0;
-			treeListViewItemCollectionComparer1.SortOrder = System.Windows.Forms.SortOrder.Ascending;
-			this.treeListView1.Comparer = treeListViewItemCollectionComparer1;
+			treeListViewItemCollectionComparer2.Column = 0;
+			treeListViewItemCollectionComparer2.SortOrder = System.Windows.Forms.SortOrder.Ascending;
+			this.treeListView1.Comparer = treeListViewItemCollectionComparer2;
 			this.treeListView1.ContextMenuStrip = this.cmTreeMenu;
 			this.treeListView1.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.treeListView1.LabelEdit = true;
@@ -137,6 +130,11 @@
 			// 
 			this.columnHeader1.Text = "名称";
 			this.columnHeader1.Width = 189;
+			// 
+			// columnHeader8
+			// 
+			this.columnHeader8.Text = "类型";
+			this.columnHeader8.Width = 100;
 			// 
 			// columnHeader2
 			// 
@@ -189,7 +187,7 @@
             this.tstbStr,
             this.tssbSlts,
             this.toolStripSeparator3,
-            this.tsbSaveFile});
+            this.tsbCreateFile});
 			this.toolStrip1.Location = new System.Drawing.Point(0, 0);
 			this.toolStrip1.Name = "toolStrip1";
 			this.toolStrip1.Size = new System.Drawing.Size(780, 25);
@@ -198,12 +196,12 @@
 			// 
 			// tsbSave
 			// 
-			this.actionList1.SetAction(this.tsbSave, this.acSave);
 			this.tsbSave.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
 			this.tsbSave.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.tsbSave.Name = "tsbSave";
 			this.tsbSave.Size = new System.Drawing.Size(23, 22);
 			this.tsbSave.Text = "保存(&S)";
+			this.tsbSave.Click += new System.EventHandler(this.tsbSave_Click);
 			// 
 			// toolStripSeparator1
 			// 
@@ -212,30 +210,30 @@
 			// 
 			// tsbSelectAll
 			// 
-			this.actionList1.SetAction(this.tsbSelectAll, this.acSelectAll);
 			this.tsbSelectAll.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
 			this.tsbSelectAll.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.tsbSelectAll.Name = "tsbSelectAll";
 			this.tsbSelectAll.Size = new System.Drawing.Size(51, 22);
 			this.tsbSelectAll.Text = "全选(&A)";
+			this.tsbSelectAll.Click += new System.EventHandler(this.tsbSelectAll_Click);
 			// 
 			// tsbReverse
 			// 
-			this.actionList1.SetAction(this.tsbReverse, this.acReverse);
 			this.tsbReverse.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
 			this.tsbReverse.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.tsbReverse.Name = "tsbReverse";
 			this.tsbReverse.Size = new System.Drawing.Size(51, 22);
 			this.tsbReverse.Text = "反选(&V)";
+			this.tsbReverse.Click += new System.EventHandler(this.tsbReverse_Click);
 			// 
 			// tsbExpandAll
 			// 
-			this.actionList1.SetAction(this.tsbExpandAll, this.acExpandAll);
 			this.tsbExpandAll.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
 			this.tsbExpandAll.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.tsbExpandAll.Name = "tsbExpandAll";
 			this.tsbExpandAll.Size = new System.Drawing.Size(75, 22);
 			this.tsbExpandAll.Text = "全部收起(&D)";
+			this.tsbExpandAll.Click += new System.EventHandler(this.tsbExpandAll_Click);
 			// 
 			// toolStripSeparator2
 			// 
@@ -263,21 +261,21 @@
 			// tsmiSltsUserId
 			// 
 			this.tsmiSltsUserId.Name = "tsmiSltsUserId";
-			this.tsmiSltsUserId.Size = new System.Drawing.Size(106, 22);
+			this.tsmiSltsUserId.Size = new System.Drawing.Size(152, 22);
 			this.tsmiSltsUserId.Text = "登录名";
 			this.tsmiSltsUserId.Click += new System.EventHandler(this.tsmiSltsUserId_Click);
 			// 
 			// tsmiSltsPwdD
 			// 
 			this.tsmiSltsPwdD.Name = "tsmiSltsPwdD";
-			this.tsmiSltsPwdD.Size = new System.Drawing.Size(106, 22);
+			this.tsmiSltsPwdD.Size = new System.Drawing.Size(152, 22);
 			this.tsmiSltsPwdD.Text = "密码";
 			this.tsmiSltsPwdD.Click += new System.EventHandler(this.tsmiSltsPwdD_Click);
 			// 
 			// tsmiSltsPort
 			// 
 			this.tsmiSltsPort.Name = "tsmiSltsPort";
-			this.tsmiSltsPort.Size = new System.Drawing.Size(106, 22);
+			this.tsmiSltsPort.Size = new System.Drawing.Size(152, 22);
 			this.tsmiSltsPort.Text = "端口";
 			this.tsmiSltsPort.Click += new System.EventHandler(this.tsmiSltsPort_Click);
 			// 
@@ -286,14 +284,14 @@
 			this.toolStripSeparator3.Name = "toolStripSeparator3";
 			this.toolStripSeparator3.Size = new System.Drawing.Size(6, 25);
 			// 
-			// tsbSaveFile
+			// tsbCreateFile
 			// 
-			this.actionList1.SetAction(this.tsbSaveFile, this.acCreateFile);
-			this.tsbSaveFile.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-			this.tsbSaveFile.ImageTransparentColor = System.Drawing.Color.Magenta;
-			this.tsbSaveFile.Name = "tsbSaveFile";
-			this.tsbSaveFile.Size = new System.Drawing.Size(75, 22);
-			this.tsbSaveFile.Text = "生成文件(&G)";
+			this.tsbCreateFile.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+			this.tsbCreateFile.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.tsbCreateFile.Name = "tsbCreateFile";
+			this.tsbCreateFile.Size = new System.Drawing.Size(75, 22);
+			this.tsbCreateFile.Text = "生成文件(&G)";
+			this.tsbCreateFile.Click += new System.EventHandler(this.tsbCreateFile_Click);
 			// 
 			// statusStrip1
 			// 
@@ -324,52 +322,6 @@
 			this.sfd.Filter = "DBC文件|*.res";
 			this.sfd.RestoreDirectory = true;
 			// 
-			// actionList1
-			// 
-			this.actionList1.Actions.Add(this.acSave);
-			this.actionList1.Actions.Add(this.acReverse);
-			this.actionList1.Actions.Add(this.acExpandAll);
-			this.actionList1.Actions.Add(this.acSelectAll);
-			this.actionList1.Actions.Add(this.acCreateFile);
-			this.actionList1.ContainerControl = this;
-			// 
-			// acSave
-			// 
-			this.acSave.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-			this.acSave.Text = "保存(&S)";
-			this.acSave.ToolTipText = "保存";
-			this.acSave.Execute += new System.EventHandler(this.acSave_Execute);
-			// 
-			// acSelectAll
-			// 
-			this.acSelectAll.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.A)));
-			this.acSelectAll.Text = "全选(&A)";
-			this.acSelectAll.ToolTipText = "全选";
-			this.acSelectAll.Execute += new System.EventHandler(this.acSelectAll_Execute);
-			// 
-			// acReverse
-			// 
-			this.acReverse.Text = "反选(&V)";
-			this.acReverse.ToolTipText = "反选";
-			this.acReverse.Execute += new System.EventHandler(this.acReverse_Execute);
-			// 
-			// acExpandAll
-			// 
-			this.acExpandAll.Text = "全部收起(&D)";
-			this.acExpandAll.ToolTipText = "全部收起";
-			this.acExpandAll.Execute += new System.EventHandler(this.acExpandAll_Execute);
-			// 
-			// acCreateFile
-			// 
-			this.acCreateFile.Text = "生成文件(&G)";
-			this.acCreateFile.ToolTipText = "生成文件";
-			this.acCreateFile.Execute += new System.EventHandler(this.acCreateFile_Execute);
-			// 
-			// columnHeader8
-			// 
-			this.columnHeader8.Text = "类型";
-			this.columnHeader8.Width = 100;
-			// 
 			// DBI
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
@@ -390,7 +342,6 @@
 			this.toolStrip1.PerformLayout();
 			this.statusStrip1.ResumeLayout(false);
 			this.statusStrip1.PerformLayout();
-			((System.ComponentModel.ISupportInitialize)(this.actionList1)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -415,7 +366,7 @@
 		private System.Windows.Forms.ToolStripStatusLabel tsslOutInfo;
 		private System.Windows.Forms.ToolStripStatusLabel tsslTest;
 		private System.Windows.Forms.ToolStripButton tsbExpandAll;
-		private System.Windows.Forms.ToolStripButton tsbSaveFile;
+		private System.Windows.Forms.ToolStripButton tsbCreateFile;
 		private System.Windows.Forms.ToolStripButton tsbSelectAll;
 		private System.Windows.Forms.ToolStripButton tsbReverse;
 		private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
@@ -429,12 +380,6 @@
 		private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
 		private System.Windows.Forms.SaveFileDialog sfd;
 		private System.Windows.Forms.ColumnHeader columnHeader7;
-		private Crad.Windows.Forms.Actions.ActionList actionList1;
-		private Crad.Windows.Forms.Actions.Action acSave;
-		private Crad.Windows.Forms.Actions.Action acReverse;
-		private Crad.Windows.Forms.Actions.Action acExpandAll;
-		private Crad.Windows.Forms.Actions.Action acSelectAll;
-		private Crad.Windows.Forms.Actions.Action acCreateFile;
 		private System.Windows.Forms.ColumnHeader columnHeader8;
 
 	}

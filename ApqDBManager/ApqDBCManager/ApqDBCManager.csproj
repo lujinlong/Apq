@@ -135,9 +135,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Dlls\Apq.WorkFlow.dll</HintPath>
     </Reference>
-    <Reference Include="Crad.Windows.Forms.Actions">
-      <HintPath>Dlls\Crad.Windows.Forms.Actions.dll</HintPath>
-    </Reference>
     <Reference Include="ICSharpCode.AvalonEdit">
       <HintPath>Dlls\ICSharpCode.AvalonEdit.dll</HintPath>
     </Reference>

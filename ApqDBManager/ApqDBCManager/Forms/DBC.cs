@@ -27,8 +27,8 @@ namespace ApqDBCManager.Forms
 			this.Text = Apq.GlobalObject.UILang["DB连接管理"];
 			this.TabText = this.Text;
 
-			acOpenFile.Text = Apq.GlobalObject.UILang["打开(&O)"];
-			acOpenFile.Image = System.Drawing.Image.FromFile(Application.StartupPath + @"\Res\png\File\Open.png");
+			tsbOpenFile.Text = Apq.GlobalObject.UILang["打开(&O)"];
+			tsbOpenFile.Image = System.Drawing.Image.FromFile(Application.StartupPath + @"\Res\png\File\Open.png");
 			tsbSave.Text = Apq.GlobalObject.UILang["保存(&S)"];
 			tsbSelectAll.Text = Apq.GlobalObject.UILang["全选(&A)"];
 			tssbSlts.Text = Apq.GlobalObject.UILang["批量设置(&E)"];
@@ -107,18 +107,6 @@ namespace ApqDBCManager.Forms
 				xsd.WriteXml(sw, XmlWriteMode.IgnoreSchema);
 				Common.SaveCSFile(sfd.FileName, sw.ToString());
 				tsslOutInfo.Text = Apq.GlobalObject.UILang["保存文件成功"];
-			}
-		}
-
-		private void tsbOpenFile_Click(object sender, EventArgs e)
-		{
-			ofd.InitialDirectory = GlobalObject.XmlConfigChain[this.GetType(), "ofd_InitialDirectory"];
-			if (ofd.ShowDialog(this) == DialogResult.OK)
-			{
-				GlobalObject.XmlConfigChain[this.GetType(), "ofd_InitialDirectory"] = System.IO.Path.GetDirectoryName(ofd.FileName);
-
-				LoadData(FormDataSet);
-				tsslOutInfo.Text = Apq.GlobalObject.UILang["加载成功"];
 			}
 		}
 
@@ -203,7 +191,7 @@ namespace ApqDBCManager.Forms
 		#endregion
 
 		//打开
-		private void acOpenFile_Execute(object sender, EventArgs e)
+		private void tsbOpenFile_Click(object sender, EventArgs e)
 		{
 			dataGridView1.EndEdit();
 			Open();
