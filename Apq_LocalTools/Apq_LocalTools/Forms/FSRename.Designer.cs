@@ -49,6 +49,7 @@ namespace Apq_LocalTools
 			this.cbContainsFolder = new System.Windows.Forms.CheckBox();
 			this.cbRecursive = new System.Windows.Forms.CheckBox();
 			this.fsExplorer1 = new Apq.TreeListView.FSExplorer();
+			this.btnFind = new System.Windows.Forms.Button();
 			this.statusStrip1.SuspendLayout();
 			this.groupBox1.SuspendLayout();
 			this.SuspendLayout();
@@ -88,9 +89,9 @@ namespace Apq_LocalTools
 			this.label3.AutoSize = true;
 			this.label3.Location = new System.Drawing.Point(6, 33);
 			this.label3.Name = "label3";
-			this.label3.Size = new System.Drawing.Size(65, 12);
+			this.label3.Size = new System.Drawing.Size(53, 12);
 			this.label3.TabIndex = 8;
-			this.label3.Text = "查找内容：";
+			this.label3.Text = "查找串：";
 			// 
 			// cbMatchType
 			// 
@@ -102,11 +103,12 @@ namespace Apq_LocalTools
 			this.cbMatchType.Location = new System.Drawing.Point(77, 155);
 			this.cbMatchType.Name = "cbMatchType";
 			this.cbMatchType.Size = new System.Drawing.Size(168, 20);
-			this.cbMatchType.TabIndex = 7;
+			this.cbMatchType.TabIndex = 2;
 			// 
 			// groupBox1
 			// 
 			this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.groupBox1.Controls.Add(this.btnFind);
 			this.groupBox1.Controls.Add(this.btnTrans);
 			this.groupBox1.Controls.Add(this.txtReplace);
 			this.groupBox1.Controls.Add(this.txtLook);
@@ -122,8 +124,8 @@ namespace Apq_LocalTools
 			this.groupBox1.Controls.Add(this.cbRecursive);
 			this.groupBox1.Location = new System.Drawing.Point(12, 191);
 			this.groupBox1.Name = "groupBox1";
-			this.groupBox1.Size = new System.Drawing.Size(601, 212);
-			this.groupBox1.TabIndex = 9;
+			this.groupBox1.Size = new System.Drawing.Size(736, 212);
+			this.groupBox1.TabIndex = 1;
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "查找和替换";
 			// 
@@ -133,7 +135,7 @@ namespace Apq_LocalTools
 			this.btnTrans.Location = new System.Drawing.Point(454, 167);
 			this.btnTrans.Name = "btnTrans";
 			this.btnTrans.Size = new System.Drawing.Size(109, 23);
-			this.btnTrans.TabIndex = 11;
+			this.btnTrans.TabIndex = 8;
 			this.btnTrans.Text = "开始替换(&H)";
 			this.btnTrans.UseVisualStyleBackColor = true;
 			this.btnTrans.Click += new System.EventHandler(this.btnTrans_Click);
@@ -143,14 +145,14 @@ namespace Apq_LocalTools
 			this.txtReplace.Location = new System.Drawing.Point(77, 62);
 			this.txtReplace.Name = "txtReplace";
 			this.txtReplace.Size = new System.Drawing.Size(201, 21);
-			this.txtReplace.TabIndex = 21;
+			this.txtReplace.TabIndex = 1;
 			// 
 			// txtLook
 			// 
 			this.txtLook.Location = new System.Drawing.Point(77, 30);
 			this.txtLook.Name = "txtLook";
 			this.txtLook.Size = new System.Drawing.Size(201, 21);
-			this.txtLook.TabIndex = 20;
+			this.txtLook.TabIndex = 0;
 			// 
 			// label6
 			// 
@@ -163,16 +165,16 @@ namespace Apq_LocalTools
 			// 
 			// txtExt
 			// 
-			this.txtExt.Location = new System.Drawing.Point(401, 30);
+			this.txtExt.Location = new System.Drawing.Point(525, 30);
 			this.txtExt.Name = "txtExt";
 			this.txtExt.Size = new System.Drawing.Size(180, 21);
-			this.txtExt.TabIndex = 17;
+			this.txtExt.TabIndex = 3;
 			this.txtExt.Text = "*.txt;*.sql;*.xml;*.ini;";
 			// 
 			// label5
 			// 
 			this.label5.AutoSize = true;
-			this.label5.Location = new System.Drawing.Point(330, 33);
+			this.label5.Location = new System.Drawing.Point(454, 33);
 			this.label5.Name = "label5";
 			this.label5.Size = new System.Drawing.Size(65, 12);
 			this.label5.TabIndex = 16;
@@ -184,19 +186,19 @@ namespace Apq_LocalTools
 			this.label4.ForeColor = System.Drawing.Color.DarkGreen;
 			this.label4.Location = new System.Drawing.Point(75, 188);
 			this.label4.Name = "label4";
-			this.label4.Size = new System.Drawing.Size(125, 12);
+			this.label4.Size = new System.Drawing.Size(161, 12);
 			this.label4.TabIndex = 9;
-			this.label4.Text = "两种方式均为匹配整串";
+			this.label4.Text = "两种方式均为匹配整个查找串";
 			// 
 			// cbContainsFileExt
 			// 
 			this.cbContainsFileExt.AutoSize = true;
 			this.cbContainsFileExt.Checked = true;
 			this.cbContainsFileExt.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.cbContainsFileExt.Location = new System.Drawing.Point(401, 108);
+			this.cbContainsFileExt.Location = new System.Drawing.Point(525, 108);
 			this.cbContainsFileExt.Name = "cbContainsFileExt";
 			this.cbContainsFileExt.Size = new System.Drawing.Size(108, 16);
-			this.cbContainsFileExt.TabIndex = 9;
+			this.cbContainsFileExt.TabIndex = 6;
 			this.cbContainsFileExt.Text = "包含文件扩展名";
 			this.cbContainsFileExt.UseVisualStyleBackColor = true;
 			// 
@@ -205,10 +207,10 @@ namespace Apq_LocalTools
 			this.cbContainsFolder.AutoSize = true;
 			this.cbContainsFolder.Checked = true;
 			this.cbContainsFolder.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.cbContainsFolder.Location = new System.Drawing.Point(401, 86);
+			this.cbContainsFolder.Location = new System.Drawing.Point(525, 86);
 			this.cbContainsFolder.Name = "cbContainsFolder";
 			this.cbContainsFolder.Size = new System.Drawing.Size(84, 16);
-			this.cbContainsFolder.TabIndex = 9;
+			this.cbContainsFolder.TabIndex = 5;
 			this.cbContainsFolder.Text = "包含文件夹";
 			this.cbContainsFolder.UseVisualStyleBackColor = true;
 			// 
@@ -217,10 +219,10 @@ namespace Apq_LocalTools
 			this.cbRecursive.AutoSize = true;
 			this.cbRecursive.Checked = true;
 			this.cbRecursive.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.cbRecursive.Location = new System.Drawing.Point(401, 64);
+			this.cbRecursive.Location = new System.Drawing.Point(525, 64);
 			this.cbRecursive.Name = "cbRecursive";
 			this.cbRecursive.Size = new System.Drawing.Size(84, 16);
-			this.cbRecursive.TabIndex = 9;
+			this.cbRecursive.TabIndex = 4;
 			this.cbRecursive.Text = "包含子目录";
 			this.cbRecursive.UseVisualStyleBackColor = true;
 			// 
@@ -236,9 +238,18 @@ namespace Apq_LocalTools
 			this.fsExplorer1.Location = new System.Drawing.Point(0, 0);
 			this.fsExplorer1.Name = "fsExplorer1";
 			this.fsExplorer1.Size = new System.Drawing.Size(760, 182);
-			this.fsExplorer1.TabIndex = 10;
+			this.fsExplorer1.TabIndex = 0;
 			this.fsExplorer1.UseCompatibleStateImageBehavior = false;
 			this.fsExplorer1.SelectedIndexChanged += new System.EventHandler(this.fsExplorer1_SelectedIndexChanged);
+			// 
+			// btnFind
+			// 
+			this.btnFind.Location = new System.Drawing.Point(284, 28);
+			this.btnFind.Name = "btnFind";
+			this.btnFind.Size = new System.Drawing.Size(75, 23);
+			this.btnFind.TabIndex = 7;
+			this.btnFind.Text = "查找(&F)";
+			this.btnFind.UseVisualStyleBackColor = true;
 			// 
 			// FSRename
 			// 
@@ -288,5 +299,6 @@ namespace Apq_LocalTools
 		private System.Windows.Forms.CheckBox cbContainsFileExt;
 		private System.Windows.Forms.CheckBox cbContainsFolder;
 		private Apq.TreeListView.FSExplorer fsExplorer1;
+		private System.Windows.Forms.Button btnFind;
 	}
 }

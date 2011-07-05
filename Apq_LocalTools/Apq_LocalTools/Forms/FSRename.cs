@@ -24,7 +24,8 @@ namespace Apq_LocalTools
 			InitializeComponent();
 		}
 
-		//private TreeListViewHelper tlvHelper;
+		private TreeListViewHelper tlvHelper;
+		private Apq.Windows.Forms.TSProgressBarHelper pbHelper;
 
 		public override void SetUILang(Apq.UILang.UILang UILang)
 		{
@@ -32,24 +33,25 @@ namespace Apq_LocalTools
 			TabText = Text;
 
 			groupBox1.Text = Apq.GlobalObject.UILang["查找和替换"];
-			label3.Text = Apq.GlobalObject.UILang["查找内容："];
+			label3.Text = Apq.GlobalObject.UILang["查找串："];
 			label6.Text = Apq.GlobalObject.UILang["替换为："];
 			label2.Text = Apq.GlobalObject.UILang["匹配方式："];
 			label5.Text = Apq.GlobalObject.UILang["文件类型："];
-			label4.Text = Apq.GlobalObject.UILang["两种方式均为匹配整串"];
+			label4.Text = Apq.GlobalObject.UILang["两种方式均为匹配整个查找串"];
 
 			cbContainsFolder.Text = Apq.GlobalObject.UILang["包含文件夹"];
 			cbRecursive.Text = Apq.GlobalObject.UILang["包含子目录"];
 			cbContainsFileExt.Text = Apq.GlobalObject.UILang["包含文件扩展名"];
 
+			btnFind.Text = Apq.GlobalObject.UILang["查找(&F)"];
 			btnTrans.Text = Apq.GlobalObject.UILang["开始替换(&H)"];
+
+			cbMatchType.Items[0] = Apq.GlobalObject.UILang["普通"];
+			cbMatchType.Items[1] = Apq.GlobalObject.UILang["正则表达式"];
 		}
 
 		private void TxtEncoding_Load(object sender, EventArgs e)
 		{
-			cbMatchType.SelectedIndex = 0;
-
-			TransFinished += new EventHandler(FSRename_TransFinished);
 		}
 
 		#region IDataShow 成员
@@ -58,7 +60,9 @@ namespace Apq_LocalTools
 		/// </summary>
 		public override void InitDataBefore()
 		{
-			//tlvHelper = new TreeListViewHelper(fsExplorer1);
+			tlvHelper = new TreeListViewHelper(fsExplorer1);
+			pbHelper = new Apq.Windows.Forms.TSProgressBarHelper(tspb);
+			pbHelper.Completed += new Action<ToolStripProgressBar>(pbHelper_Completed);
 
 			#region 数据库连接
 			#endregion
@@ -74,6 +78,8 @@ namespace Apq_LocalTools
 
 			#region 加载所有字典表
 			#endregion
+
+			cbMatchType.SelectedIndex = 0;
 		}
 		/// <summary>
 		/// 加载数据
@@ -113,30 +119,12 @@ namespace Apq_LocalTools
 			Cursor = Enable ? Cursors.Default : Cursors.WaitCursor;
 		}
 
-		void FSRename_TransFinished(object sender, EventArgs e)
+		void pbHelper_Completed(ToolStripProgressBar obj)
 		{
 			Apq.Windows.Delegates.Action_UI<ToolStripStatusLabel>(this, tsslStatus, delegate(ToolStripStatusLabel ctrl)
 			{
 				UIEnable(true);
 				btnTrans.Text = Apq.GlobalObject.UILang["开始替换(&H)"];
-			});
-		}
-
-		public event EventHandler TransFinished;
-		/// <summary>
-		/// 设置进度条的当前值，完成后引发“TransFinished”事件
-		/// </summary>
-		/// <param name="Value"></param>
-		public void tspb_SetValue(int Value)
-		{
-			Apq.Windows.Delegates.Action_UI<ToolStripStatusLabel>(this, tsslStatus, delegate(ToolStripStatusLabel ctrl)
-			{
-				tspb.Value = Value;
-
-				if (tspb.Maximum > 0 && tspb.Value >= tspb.Maximum)
-				{
-					TransFinished.Invoke(tspb, new EventArgs());
-				}
 			});
 		}
 
@@ -182,95 +170,120 @@ namespace Apq_LocalTools
 			Apq.Windows.Delegates.Action_UI<ToolStripStatusLabel>(this, tsslStatus, delegate(ToolStripStatusLabel ctrl)
 			{
 				tsslStatus.Text = Apq.GlobalObject.UILang["开始处理..."];
-				tspb_SetValue(0);
+				pbHelper.SetValue(0);
 				tspb.Maximum = 0;
 
-				// 补全资源管理器
-				fsExplorer1.FSWatcherStop();
-				fsExplorer1.BeginUpdate();
+				//将需要转换的文件记录到列表
+				Dictionary<string, string> lstFiles = new Dictionary<string, string>();
 				for (long i = fsExplorer1.CheckedItems.LongLength - 1; i >= 0; i--)
 				{
 					TreeListViewItem node = fsExplorer1.CheckedItems[i];
-					int HasChildren = Apq.Convert.ChangeType<int>(node.SubItems[fsExplorer1.Columns.Count + 1].Text);
 					int Type = Apq.Convert.ChangeType<int>(node.SubItems[fsExplorer1.Columns.Count + 2].Text);
-					if (HasChildren == 0 && Type == 2)
+					if (Type == 3)
 					{
-						fsExplorer1.LoadChildren(node, node.FullPath, cbRecursive.Checked);
+						AddFile2FileList(lstFiles, node.FullPath);
+					}
+					else
+					{
+						AddFolder2FileList(lstFiles, node.FullPath, cbRecursive.Checked);
 					}
 				}
-				fsExplorer1.EndUpdate();
-				fsExplorer1.FSWatcherStart();
 
-				foreach (TreeListViewItem node in fsExplorer1.CheckedItems)
-				{
-					int Type = Apq.Convert.ChangeType<int>(node.SubItems[fsExplorer1.Columns.Count + 2].Text);
-					if (Type == 3) tspb.Maximum++;
-				}
+				tspb.Maximum = lstFiles.Count;
 
 				int pbFileCount = 0;
-				//+开始处理:深度搜索,从最深文件开始
-				foreach (TreeListViewItem node in fsExplorer1.CheckedItems)
+				// 开始处理
+				foreach (KeyValuePair<string, string> de in lstFiles)
 				{
-					int Type = Apq.Convert.ChangeType<int>(node.SubItems[fsExplorer1.Columns.Count + 2].Text);
-					if (Type == 3 || Type == 2)
-					{
-						// 匹配文件类型
-						bool isMatchExt = false;
-						string[] strExts = txtExt.Text.Split(new string[] { ";" }, StringSplitOptions.RemoveEmptyEntries);
-						foreach (string strExt in strExts)
-						{
-							if (strExt == "*.*")
-							{
-								isMatchExt = true;
-								break;
-							}
-							if (Type == 2)
-							{
-								isMatchExt = cbContainsFolder.Checked;
-								break;
-							}
-							if (Path.GetExtension(node.Text).Equals(Path.GetExtension(strExt), StringComparison.OrdinalIgnoreCase))
-							{
-								isMatchExt = true;
-								break;
-							}
-						}
+					TransEncoding(de.Key, de.Value, strDstEncodingName,
+						cbSrcEncoding.SelectedIndex == 0, cbDefaultEncoding.SelectedItem.ToString());
 
-						if (isMatchExt)
-						{
-							if (cbMatchType.SelectedIndex == 0)
-							{// 普通替换
-								string strOldName = cbContainsFileExt.Checked ?
-									Path.GetFileName(node.FullPath) :
-									Path.GetFileNameWithoutExtension(node.FullPath);
-								string strNewName = strOldName.ToLower().Replace(
-									txtLook.Text.Trim().ToLower(),
-									txtReplace.Text.Trim());
-
-								string strFullPath = Path.Combine(
-									Path.GetDirectoryName(node.FullPath),
-									strNewName);
-								if (!cbContainsFileExt.Checked)
-								{
-									strFullPath += Path.GetExtension(node.FullPath);
-								}
-							}
-							if (cbMatchType.SelectedIndex == 1)
-							{// 正则替换
-							}
-						}
-
-						tspb_SetValue(++pbFileCount);
-						Application.DoEvents();
-					}
+					pbHelper.SetValue(++pbFileCount);
 				}
 
+				tsslStatus.Text = Apq.GlobalObject.UILang["转换完成！"];
+				MessageBox.Show(Apq.GlobalObject.UILang["转换完成！"]);
+
 				// 处理完成,进度条回0
-				tspb_SetValue(0);
-				tsslStatus.Text = Apq.GlobalObject.UILang["替换完成！"];
-				MessageBox.Show(Apq.GlobalObject.UILang["替换完成！"]);
+				pbHelper.SetValue(0);
 			});
 		}
 		#endregion
+
+		public void AddFile2FileList(Dictionary<string, string> lstFiles, string strFile)
+		{
+			// 匹配过滤
+			bool bMatch = false;
+			string[] strExts = txtExt.Text.Split(new string[] { ";" }, StringSplitOptions.RemoveEmptyEntries);
+			foreach (string strExt in strExts)
+			{
+				if (strExt == "*.*")
+				{
+					bMatch = true;
+					break;
+				}
+				if (Path.GetExtension(strFile).Equals(Path.GetExtension(strExt), StringComparison.OrdinalIgnoreCase))
+				{
+					bMatch = true;
+					break;
+				}
+			}
+
+			if (bMatch)
+			{
+				// 结果文件
+				string strDstFullName = strFile;
+				string strDstEncodingName = cbDstEncoding.SelectedItem.ToString();
+				if (rbEncodeName.Checked)
+				{
+					strDstFullName = Path.GetDirectoryName(strFile) + "\\";
+					strDstFullName += Path.GetFileNameWithoutExtension(strFile) + "_" + strDstEncodingName;
+					strDstFullName += Path.GetExtension(strFile);
+				}
+				if (rbCustomer.Checked)
+				{
+					strDstFullName = Path.GetDirectoryName(strFile) + "\\";
+					strDstFullName += Path.GetFileNameWithoutExtension(strFile) + "_" + txtCustomer.Text;
+					strDstFullName += Path.GetExtension(strFile);
+				}
+
+				if (!lstFiles.ContainsKey(strFile))
+				{
+					lstFiles.Add(strFile, strDstFullName);
+				}
+			}
+		}
+
+		public void AddFolder2FileList(Dictionary<string, string> lstFiles, string strFolder, bool Recursive)
+		{
+			TreeListViewItem node = tlvHelper.FindNodeByFullPath(strFolder);
+			int HasChildren = 0;
+			if (node != null)
+			{
+				HasChildren = Apq.Convert.ChangeType<int>(node.SubItems[fsExplorer1.Columns.Count + 1].Text);
+			}
+
+			if (HasChildren == 0)
+			{
+				string[] aryFiles = Directory.GetFiles(strFolder);
+				foreach (string strFile in aryFiles)
+				{
+					TreeListViewItem nodeFile = tlvHelper.FindNodeByFullPath(strFile);
+					if (nodeFile == null || nodeFile.Checked)
+					{
+						AddFile2FileList(lstFiles, strFile);
+					}
+				}
+
+				if (Recursive)
+				{
+					string[] aryFolders = Directory.GetDirectories(strFolder);
+					foreach (string str in aryFolders)
+					{
+						AddFolder2FileList(lstFiles, str, Recursive);
+					}
+				}
+			}
+		}
 	}
 }

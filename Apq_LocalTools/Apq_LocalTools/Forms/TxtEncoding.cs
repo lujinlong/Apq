@@ -54,12 +54,6 @@ namespace Apq_LocalTools
 
 		private void TxtEncoding_Load(object sender, EventArgs e)
 		{
-			cbSrcEncoding.SelectedIndex = 0;
-			cbDefaultEncoding.SelectedIndex = 1;
-			cbDstEncoding.SelectedIndex = 0;
-
-			pbHelper = new Apq.Windows.Forms.TSProgressBarHelper(tspb);
-			pbHelper.Completed += new Action<ToolStripProgressBar>(pbHelper_Completed);
 		}
 
 		#region IDataShow 成员
@@ -69,6 +63,8 @@ namespace Apq_LocalTools
 		public override void InitDataBefore()
 		{
 			tlvHelper = new TreeListViewHelper(fsExplorer1);
+			pbHelper = new Apq.Windows.Forms.TSProgressBarHelper(tspb);
+			pbHelper.Completed += new Action<ToolStripProgressBar>(pbHelper_Completed);
 
 			#region 数据库连接
 			#endregion
@@ -84,6 +80,10 @@ namespace Apq_LocalTools
 
 			#region 加载所有字典表
 			#endregion
+
+			cbSrcEncoding.SelectedIndex = 0;
+			cbDefaultEncoding.SelectedIndex = 1;
+			cbDstEncoding.SelectedIndex = 0;
 		}
 		/// <summary>
 		/// 加载数据
