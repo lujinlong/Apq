@@ -390,5 +390,40 @@ namespace Apq.TreeListView
 		}
 		#endregion
 		#endregion
+
+		/// <summary>
+		/// 获取子结点总数(递归)
+		/// </summary>
+		public int ItemsCount
+		{
+			get
+			{
+				int n = TreeListView.Items.Count;
+
+				foreach (TreeListViewItem c in TreeListView.Items)
+				{
+					n += GetItemsCount(c);
+				}
+
+				return n;
+			}
+		}
+
+		/// <summary>
+		/// 获取结点的子结点总数(递归)
+		/// </summary>
+		/// <param name="node"></param>
+		/// <returns></returns>
+		public static int GetItemsCount(TreeListViewItem node)
+		{
+			int n = node.Items.Count;
+
+			foreach (TreeListViewItem c in node.Items)
+			{
+				n += GetItemsCount(c);
+			}
+
+			return n;
+		}
 	}
 }

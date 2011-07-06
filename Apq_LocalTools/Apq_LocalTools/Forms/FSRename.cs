@@ -12,6 +12,8 @@ using System.Data.Common;
 using Apq_LocalTools.Forms;
 using Apq.TreeListView;
 using System.IO;
+using System.Text.RegularExpressions;
+using Microsoft.VisualBasic;
 
 namespace Apq_LocalTools
 {
@@ -26,6 +28,7 @@ namespace Apq_LocalTools
 
 		private TreeListViewHelper tlvHelper;
 		private Apq.Windows.Forms.TSProgressBarHelper pbHelper;
+		private Regex _regex = null;
 
 		public override void SetUILang(Apq.UILang.UILang UILang)
 		{
@@ -43,6 +46,7 @@ namespace Apq_LocalTools
 			cbRecursive.Text = Apq.GlobalObject.UILang["包含子目录"];
 			cbContainsFileExt.Text = Apq.GlobalObject.UILang["包含文件扩展名"];
 
+			tsbRefresh.Text = Apq.GlobalObject.UILang["刷新(&F)"];
 			btnFind.Text = Apq.GlobalObject.UILang["查找(&F)"];
 			btnTrans.Text = Apq.GlobalObject.UILang["开始替换(&H)"];
 
@@ -155,6 +159,11 @@ namespace Apq_LocalTools
 				UIEnable(false);
 				btnTrans.Text = Apq.GlobalObject.UILang["取消(&C)"];
 
+				if (cbMatchType.SelectedIndex == 1)
+				{
+					_regex = new Regex(txtLook.Text, RegexOptions.IgnoreCase);
+				}
+
 				MainBackThread = Apq.Threading.Thread.StartNewThread(new ThreadStart(Work));
 			}
 			else
@@ -173,19 +182,30 @@ namespace Apq_LocalTools
 				pbHelper.SetValue(0);
 				tspb.Maximum = 0;
 
-				//将需要转换的文件记录到列表
+				//将需要移动的文件或文件夹记录到列表(注意:须从最底层开始)
 				Dictionary<string, string> lstFiles = new Dictionary<string, string>();
-				for (long i = fsExplorer1.CheckedItems.LongLength - 1; i >= 0; i--)
-				{
-					TreeListViewItem node = fsExplorer1.CheckedItems[i];
-					int Type = Apq.Convert.ChangeType<int>(node.SubItems[fsExplorer1.Columns.Count + 2].Text);
-					if (Type == 3)
+				for (int i = fsExplorer1.Items.Count - 1; i >= 0; i--)
+				{//文件夹处理
+					TreeListViewItem node = fsExplorer1.Items[i];
+					if (node.Checked)
 					{
-						AddFile2FileList(lstFiles, node.FullPath);
+						int Type = Apq.Convert.ChangeType<int>(node.SubItems[fsExplorer1.Columns.Count + 2].Text);
+						if (Type == 2)
+						{//文件夹
+							AddChildren(lstFiles, node.FullPath, cbRecursive.Checked);
+						}
 					}
-					else
+				}
+				for (int i = fsExplorer1.Items.Count - 1; i >= 0; i--)
+				{//文件处理
+					TreeListViewItem node = fsExplorer1.Items[i];
+					if (node.Checked)
 					{
-						AddFolder2FileList(lstFiles, node.FullPath, cbRecursive.Checked);
+						int Type = Apq.Convert.ChangeType<int>(node.SubItems[fsExplorer1.Columns.Count + 2].Text);
+						if (Type == 3)
+						{//文件
+							AddFile(lstFiles, node.FullPath);
+						}
 					}
 				}
 
@@ -195,8 +215,14 @@ namespace Apq_LocalTools
 				// 开始处理
 				foreach (KeyValuePair<string, string> de in lstFiles)
 				{
-					TransEncoding(de.Key, de.Value, strDstEncodingName,
-						cbSrcEncoding.SelectedIndex == 0, cbDefaultEncoding.SelectedItem.ToString());
+					if (File.Exists(de.Key))
+					{
+						File.Move(de.Key, de.Value);
+					}
+					else
+					{
+						Directory.Move(de.Key, de.Value);
+					}
 
 					pbHelper.SetValue(++pbFileCount);
 				}
@@ -210,51 +236,20 @@ namespace Apq_LocalTools
 		}
 		#endregion
 
-		public void AddFile2FileList(Dictionary<string, string> lstFiles, string strFile)
+		public void AddFile(Dictionary<string, string> lstFiles, string strFile)
 		{
-			// 匹配过滤
-			bool bMatch = false;
-			string[] strExts = txtExt.Text.Split(new string[] { ";" }, StringSplitOptions.RemoveEmptyEntries);
-			foreach (string strExt in strExts)
+			string strOut = strFile;
+			if (Apq.IO.PathHelper.MatchFileExt(strFile, txtExt.Text))
 			{
-				if (strExt == "*.*")
+				// 记录移动
+				if (!lstFiles.ContainsKey(strFile) && FileReplace(strFile, ref strOut))
 				{
-					bMatch = true;
-					break;
-				}
-				if (Path.GetExtension(strFile).Equals(Path.GetExtension(strExt), StringComparison.OrdinalIgnoreCase))
-				{
-					bMatch = true;
-					break;
-				}
-			}
-
-			if (bMatch)
-			{
-				// 结果文件
-				string strDstFullName = strFile;
-				string strDstEncodingName = cbDstEncoding.SelectedItem.ToString();
-				if (rbEncodeName.Checked)
-				{
-					strDstFullName = Path.GetDirectoryName(strFile) + "\\";
-					strDstFullName += Path.GetFileNameWithoutExtension(strFile) + "_" + strDstEncodingName;
-					strDstFullName += Path.GetExtension(strFile);
-				}
-				if (rbCustomer.Checked)
-				{
-					strDstFullName = Path.GetDirectoryName(strFile) + "\\";
-					strDstFullName += Path.GetFileNameWithoutExtension(strFile) + "_" + txtCustomer.Text;
-					strDstFullName += Path.GetExtension(strFile);
-				}
-
-				if (!lstFiles.ContainsKey(strFile))
-				{
-					lstFiles.Add(strFile, strDstFullName);
+					lstFiles.Add(strFile, strOut);
 				}
 			}
 		}
 
-		public void AddFolder2FileList(Dictionary<string, string> lstFiles, string strFolder, bool Recursive)
+		public void AddChildren(Dictionary<string, string> lstFiles, string strFolder, bool Recursive)
 		{
 			TreeListViewItem node = tlvHelper.FindNodeByFullPath(strFolder);
 			int HasChildren = 0;
@@ -265,22 +260,158 @@ namespace Apq_LocalTools
 
 			if (HasChildren == 0)
 			{
+				if (Recursive)
+				{
+					string[] aryFolders = Directory.GetDirectories(strFolder);
+					foreach (string str in aryFolders)
+					{
+						AddChildren(lstFiles, str, Recursive);
+					}
+				}
+
 				string[] aryFiles = Directory.GetFiles(strFolder);
 				foreach (string strFile in aryFiles)
 				{
 					TreeListViewItem nodeFile = tlvHelper.FindNodeByFullPath(strFile);
 					if (nodeFile == null || nodeFile.Checked)
 					{
-						AddFile2FileList(lstFiles, strFile);
+						AddFile(lstFiles, strFile);
 					}
 				}
+			}
+		}
 
-				if (Recursive)
-				{
-					string[] aryFolders = Directory.GetDirectories(strFolder);
-					foreach (string str in aryFolders)
+		/// <summary>
+		/// 查找并替换文件名(返回值：是否查找到匹配项)
+		/// </summary>
+		public bool FileReplace(string strIn, ref string strOut)
+		{
+			strOut = strIn ?? string.Empty;//默认无替换
+
+			string strSrcFullName = Path.GetFileNameWithoutExtension(strIn);//先取得文件名
+
+			if (cbContainsFileExt.Checked)
+			{//按需添加后缀
+				strSrcFullName += Path.GetExtension(strIn);
+			}
+			if (cbContainsFolder.Checked)
+			{//按需添加文件夹路径
+				strSrcFullName = Path.GetDirectoryName(strIn) + Path.DirectorySeparatorChar + strSrcFullName;
+			}
+
+			//替换
+			switch (cbMatchType.SelectedIndex)
+			{
+				case 0:
+					if (!strSrcFullName.ToLower().Contains(txtLook.Text.ToLower()))
 					{
-						AddFolder2FileList(lstFiles, str, Recursive);
+						return false;//无需替换时直接返回
+					}
+					strOut = Strings.Replace(strSrcFullName, txtLook.Text, txtReplace.Text, 1, -1, CompareMethod.Text);
+					break;
+				case 1:
+					if (!_regex.IsMatch(strSrcFullName))
+					{
+						return false;//无需替换时直接返回
+					}
+					strOut = _regex.Replace(strSrcFullName, txtReplace.Text);
+					break;
+				default:
+					return false;
+			}
+			if (!cbContainsFileExt.Checked)
+			{//按需补充后缀
+				strOut += Path.GetExtension(strIn);
+			}
+			if (!cbContainsFolder.Checked)
+			{//按需补充文件夹路径
+				strOut = Path.GetDirectoryName(strIn) + Path.DirectorySeparatorChar + strOut;
+			}
+			return true;
+		}
+
+		/// <summary>
+		/// 查找并替换文件夹名(返回值：是否查找到匹配项)
+		/// </summary>
+		public bool FolderReplace(string strIn, ref string strOut)
+		{
+			strOut = strIn ?? string.Empty;//默认无替换
+
+			//替换
+			switch (cbMatchType.SelectedIndex)
+			{
+				case 0:
+					if (!strIn.ToLower().Contains(txtLook.Text.ToLower()))
+					{
+						return false;//无需替换时直接返回
+					}
+					strOut = Strings.Replace(strIn, txtLook.Text, txtReplace.Text, 1, -1, CompareMethod.Text);
+					break;
+				case 1:
+					if (!_regex.IsMatch(strIn))
+					{
+						return false;//无需替换时直接返回
+					}
+					strOut = _regex.Replace(strIn, txtReplace.Text);
+					break;
+				default:
+					return false;
+			}
+
+			return true;
+		}
+
+		private void tsbRefresh_Click(object sender, EventArgs e)
+		{
+			LoadData(FormDataSet);
+		}
+
+		private void btnFind_Click(object sender, EventArgs e)
+		{
+			// 找到符合条件的下一个结点并高亮显示
+			int nIdx = 1 + (fsExplorer1.FocusedItem == null ? -1 : fsExplorer1.FocusedItem.Index);
+
+			if (nIdx >= tlvHelper.ItemsCount - 1)
+			{
+				DialogResult rDiag = MessageBox.Show(this,
+					Apq.GlobalObject.UILang["搜索已到达末结点，是否再从头开始？"],
+					Apq.GlobalObject.UILang["查找确认"],
+					MessageBoxButtons.YesNo);
+				if (rDiag == DialogResult.Yes)
+				{
+					nIdx = 0;
+				}
+				else
+				{
+					return;
+				}
+			}
+
+			for (int i = nIdx; i < tlvHelper.ItemsCount; i++)
+			{
+				TreeListViewItem node = fsExplorer1.GetTreeListViewItemFromIndex(i);
+				int Type = Apq.Convert.ChangeType<int>(node.SubItems[fsExplorer1.Columns.Count + 2].Text);
+				if (Type == 3)
+				{//文件
+					if (Apq.IO.PathHelper.MatchFileExt(node.FullPath, txtExt.Text))
+					{
+						string strOut = string.Empty;
+						if (FileReplace(node.FullPath, ref strOut))
+						{
+							node.Selected = true;
+							node.Expand();
+							return;
+						}
+					}
+				}
+				else if (cbContainsFolder.Checked)
+				{//文件夹
+					string strOut = string.Empty;
+					if (FolderReplace(node.FullPath, ref strOut))
+					{
+						node.Selected = true;
+						node.Expand();
+						return;
 					}
 				}
 			}

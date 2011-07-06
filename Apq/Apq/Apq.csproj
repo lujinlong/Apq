@@ -244,6 +244,7 @@
     <Compile Include="Interfaces\IDataShow.cs" />
     <Compile Include="IO\FileSystem.cs" />
     <Compile Include="IO\FsWatcher.cs" />
+    <Compile Include="IO\PathHelper.cs" />
     <Compile Include="Net\FtpClient.cs" />
     <Compile Include="Net\HttpWebRequest.cs" />
     <Compile Include="Net\ServicePointManager.cs" />

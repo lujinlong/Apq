@@ -141,6 +141,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Dlls\log4net.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="NCharDet">
       <HintPath>Dlls\NCharDet.dll</HintPath>
     </Reference>

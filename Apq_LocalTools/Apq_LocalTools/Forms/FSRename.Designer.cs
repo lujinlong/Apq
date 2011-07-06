@@ -38,6 +38,7 @@ namespace Apq_LocalTools
 			this.label3 = new System.Windows.Forms.Label();
 			this.cbMatchType = new System.Windows.Forms.ComboBox();
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
+			this.btnFind = new System.Windows.Forms.Button();
 			this.btnTrans = new System.Windows.Forms.Button();
 			this.txtReplace = new System.Windows.Forms.TextBox();
 			this.txtLook = new System.Windows.Forms.TextBox();
@@ -49,9 +50,11 @@ namespace Apq_LocalTools
 			this.cbContainsFolder = new System.Windows.Forms.CheckBox();
 			this.cbRecursive = new System.Windows.Forms.CheckBox();
 			this.fsExplorer1 = new Apq.TreeListView.FSExplorer();
-			this.btnFind = new System.Windows.Forms.Button();
+			this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+			this.tsbRefresh = new System.Windows.Forms.ToolStripButton();
 			this.statusStrip1.SuspendLayout();
 			this.groupBox1.SuspendLayout();
+			this.toolStrip1.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// tsslStatus
@@ -107,7 +110,8 @@ namespace Apq_LocalTools
 			// 
 			// groupBox1
 			// 
-			this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.groupBox1.Controls.Add(this.btnFind);
 			this.groupBox1.Controls.Add(this.btnTrans);
 			this.groupBox1.Controls.Add(this.txtReplace);
@@ -128,6 +132,16 @@ namespace Apq_LocalTools
 			this.groupBox1.TabIndex = 1;
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "查找和替换";
+			// 
+			// btnFind
+			// 
+			this.btnFind.Location = new System.Drawing.Point(284, 28);
+			this.btnFind.Name = "btnFind";
+			this.btnFind.Size = new System.Drawing.Size(75, 23);
+			this.btnFind.TabIndex = 7;
+			this.btnFind.Text = "查找(&F)";
+			this.btnFind.UseVisualStyleBackColor = true;
+			this.btnFind.Click += new System.EventHandler(this.btnFind_Click);
 			// 
 			// btnTrans
 			// 
@@ -195,7 +209,7 @@ namespace Apq_LocalTools
 			this.cbContainsFileExt.AutoSize = true;
 			this.cbContainsFileExt.Checked = true;
 			this.cbContainsFileExt.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.cbContainsFileExt.Location = new System.Drawing.Point(525, 108);
+			this.cbContainsFileExt.Location = new System.Drawing.Point(525, 86);
 			this.cbContainsFileExt.Name = "cbContainsFileExt";
 			this.cbContainsFileExt.Size = new System.Drawing.Size(108, 16);
 			this.cbContainsFileExt.TabIndex = 6;
@@ -205,14 +219,13 @@ namespace Apq_LocalTools
 			// cbContainsFolder
 			// 
 			this.cbContainsFolder.AutoSize = true;
-			this.cbContainsFolder.Checked = true;
-			this.cbContainsFolder.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.cbContainsFolder.Location = new System.Drawing.Point(525, 86);
+			this.cbContainsFolder.Location = new System.Drawing.Point(525, 108);
 			this.cbContainsFolder.Name = "cbContainsFolder";
 			this.cbContainsFolder.Size = new System.Drawing.Size(84, 16);
 			this.cbContainsFolder.TabIndex = 5;
 			this.cbContainsFolder.Text = "包含文件夹";
 			this.cbContainsFolder.UseVisualStyleBackColor = true;
+			this.cbContainsFolder.Visible = false;
 			// 
 			// cbRecursive
 			// 
@@ -235,21 +248,32 @@ namespace Apq_LocalTools
 			treeListViewItemCollectionComparer1.Column = 2;
 			treeListViewItemCollectionComparer1.SortOrder = System.Windows.Forms.SortOrder.Ascending;
 			this.fsExplorer1.Comparer = treeListViewItemCollectionComparer1;
-			this.fsExplorer1.Location = new System.Drawing.Point(0, 0);
+			this.fsExplorer1.Location = new System.Drawing.Point(0, 28);
 			this.fsExplorer1.Name = "fsExplorer1";
-			this.fsExplorer1.Size = new System.Drawing.Size(760, 182);
+			this.fsExplorer1.Size = new System.Drawing.Size(760, 154);
 			this.fsExplorer1.TabIndex = 0;
 			this.fsExplorer1.UseCompatibleStateImageBehavior = false;
 			this.fsExplorer1.SelectedIndexChanged += new System.EventHandler(this.fsExplorer1_SelectedIndexChanged);
 			// 
-			// btnFind
+			// toolStrip1
 			// 
-			this.btnFind.Location = new System.Drawing.Point(284, 28);
-			this.btnFind.Name = "btnFind";
-			this.btnFind.Size = new System.Drawing.Size(75, 23);
-			this.btnFind.TabIndex = 7;
-			this.btnFind.Text = "查找(&F)";
-			this.btnFind.UseVisualStyleBackColor = true;
+			this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsbRefresh});
+			this.toolStrip1.Location = new System.Drawing.Point(0, 0);
+			this.toolStrip1.Name = "toolStrip1";
+			this.toolStrip1.Size = new System.Drawing.Size(760, 25);
+			this.toolStrip1.TabIndex = 5;
+			this.toolStrip1.Text = "toolStrip1";
+			// 
+			// tsbRefresh
+			// 
+			this.tsbRefresh.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+			this.tsbRefresh.Image = ((System.Drawing.Image)(resources.GetObject("tsbRefresh.Image")));
+			this.tsbRefresh.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.tsbRefresh.Name = "tsbRefresh";
+			this.tsbRefresh.Size = new System.Drawing.Size(51, 22);
+			this.tsbRefresh.Text = "刷新(&F)";
+			this.tsbRefresh.Click += new System.EventHandler(this.tsbRefresh_Click);
 			// 
 			// FSRename
 			// 
@@ -260,6 +284,7 @@ namespace Apq_LocalTools
 			this.Controls.Add(this.fsExplorer1);
 			this.Controls.Add(this.groupBox1);
 			this.Controls.Add(this.statusStrip1);
+			this.Controls.Add(this.toolStrip1);
 			this.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.MinimumSize = new System.Drawing.Size(768, 462);
@@ -274,6 +299,8 @@ namespace Apq_LocalTools
 			this.statusStrip1.PerformLayout();
 			this.groupBox1.ResumeLayout(false);
 			this.groupBox1.PerformLayout();
+			this.toolStrip1.ResumeLayout(false);
+			this.toolStrip1.PerformLayout();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -300,5 +327,7 @@ namespace Apq_LocalTools
 		private System.Windows.Forms.CheckBox cbContainsFolder;
 		private Apq.TreeListView.FSExplorer fsExplorer1;
 		private System.Windows.Forms.Button btnFind;
+		private System.Windows.Forms.ToolStrip toolStrip1;
+		private System.Windows.Forms.ToolStripButton tsbRefresh;
 	}
 }

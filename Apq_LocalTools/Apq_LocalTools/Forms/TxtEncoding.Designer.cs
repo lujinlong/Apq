@@ -55,9 +55,12 @@ namespace Apq_LocalTools
 			this.cbDstEncoding = new System.Windows.Forms.ComboBox();
 			this.btnTrans = new System.Windows.Forms.Button();
 			this.fsExplorer1 = new Apq.TreeListView.FSExplorer();
+			this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+			this.tsbRefresh = new System.Windows.Forms.ToolStripButton();
 			this.statusStrip1.SuspendLayout();
 			this.groupBox1.SuspendLayout();
 			this.groupBox2.SuspendLayout();
+			this.toolStrip1.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// tsslStatus
@@ -290,18 +293,38 @@ namespace Apq_LocalTools
 			// 
 			// fsExplorer1
 			// 
-			this.fsExplorer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-						| System.Windows.Forms.AnchorStyles.Left)
-						| System.Windows.Forms.AnchorStyles.Right)));
+			this.fsExplorer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.fsExplorer1.CheckBoxes = System.Windows.Forms.CheckBoxesTypes.Recursive;
 			treeListViewItemCollectionComparer1.Column = 2;
 			treeListViewItemCollectionComparer1.SortOrder = System.Windows.Forms.SortOrder.Ascending;
 			this.fsExplorer1.Comparer = treeListViewItemCollectionComparer1;
-			this.fsExplorer1.Location = new System.Drawing.Point(0, -1);
+			this.fsExplorer1.Location = new System.Drawing.Point(0, 28);
 			this.fsExplorer1.Name = "fsExplorer1";
-			this.fsExplorer1.Size = new System.Drawing.Size(760, 204);
+			this.fsExplorer1.Size = new System.Drawing.Size(760, 175);
 			this.fsExplorer1.TabIndex = 0;
 			this.fsExplorer1.UseCompatibleStateImageBehavior = false;
+			// 
+			// toolStrip1
+			// 
+			this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsbRefresh});
+			this.toolStrip1.Location = new System.Drawing.Point(0, 0);
+			this.toolStrip1.Name = "toolStrip1";
+			this.toolStrip1.Size = new System.Drawing.Size(760, 25);
+			this.toolStrip1.TabIndex = 4;
+			this.toolStrip1.Text = "toolStrip1";
+			// 
+			// tsbRefresh
+			// 
+			this.tsbRefresh.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+			this.tsbRefresh.Image = ((System.Drawing.Image)(resources.GetObject("tsbRefresh.Image")));
+			this.tsbRefresh.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.tsbRefresh.Name = "tsbRefresh";
+			this.tsbRefresh.Size = new System.Drawing.Size(51, 22);
+			this.tsbRefresh.Text = "刷新(&F)";
+			this.tsbRefresh.Click += new System.EventHandler(this.tsbRefresh_Click);
 			// 
 			// TxtEncoding
 			// 
@@ -309,11 +332,12 @@ namespace Apq_LocalTools
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.AutoScroll = true;
 			this.ClientSize = new System.Drawing.Size(760, 428);
-			this.Controls.Add(this.fsExplorer1);
 			this.Controls.Add(this.btnTrans);
 			this.Controls.Add(this.groupBox2);
 			this.Controls.Add(this.groupBox1);
 			this.Controls.Add(this.statusStrip1);
+			this.Controls.Add(this.toolStrip1);
+			this.Controls.Add(this.fsExplorer1);
 			this.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.MinimumSize = new System.Drawing.Size(768, 462);
@@ -330,6 +354,8 @@ namespace Apq_LocalTools
 			this.groupBox1.PerformLayout();
 			this.groupBox2.ResumeLayout(false);
 			this.groupBox2.PerformLayout();
+			this.toolStrip1.ResumeLayout(false);
+			this.toolStrip1.PerformLayout();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -360,5 +386,7 @@ namespace Apq_LocalTools
 		private System.Windows.Forms.Label label5;
 		private System.Windows.Forms.ImageList imgList;
 		private Apq.TreeListView.FSExplorer fsExplorer1;
+		private System.Windows.Forms.ToolStrip toolStrip1;
+		private System.Windows.Forms.ToolStripButton tsbRefresh;
 	}
 }

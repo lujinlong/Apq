@@ -49,6 +49,7 @@ namespace Apq_LocalTools
 			rbEncodeName.Text = Apq.GlobalObject.UILang["原名_编码"];
 			rbCustomer.Text = Apq.GlobalObject.UILang["原名_自定义"];
 
+			tsbRefresh.Text = Apq.GlobalObject.UILang["刷新(&F)"];
 			btnTrans.Text = Apq.GlobalObject.UILang["开始转换(&T)"];
 		}
 
@@ -188,11 +189,11 @@ namespace Apq_LocalTools
 					int Type = Apq.Convert.ChangeType<int>(node.SubItems[fsExplorer1.Columns.Count + 2].Text);
 					if (Type == 3)
 					{
-						AddFile2FileList(lstFiles, node.FullPath);
+						AddFile(lstFiles, node.FullPath);
 					}
 					else
 					{
-						AddFolder2FileList(lstFiles, node.FullPath, cbRecursive.Checked);
+						AddChildren(lstFiles, node.FullPath, cbRecursive.Checked);
 					}
 				}
 
@@ -218,39 +219,22 @@ namespace Apq_LocalTools
 		}
 		#endregion
 
-		public void AddFile2FileList(Dictionary<string, string> lstFiles, string strFile)
+		public void AddFile(Dictionary<string, string> lstFiles, string strFile)
 		{
-			// 匹配过滤
-			bool bMatch = false;
-			string[] strExts = txtExt.Text.Split(new string[] { ";" }, StringSplitOptions.RemoveEmptyEntries);
-			foreach (string strExt in strExts)
-			{
-				if (strExt == "*.*")
-				{
-					bMatch = true;
-					break;
-				}
-				if (Path.GetExtension(strFile).Equals(Path.GetExtension(strExt), StringComparison.OrdinalIgnoreCase))
-				{
-					bMatch = true;
-					break;
-				}
-			}
-
-			if (bMatch)
+			if (Apq.IO.PathHelper.MatchFileExt(strFile, txtExt.Text))
 			{
 				// 结果文件
 				string strDstFullName = strFile;
 				string strDstEncodingName = cbDstEncoding.SelectedItem.ToString();
 				if (rbEncodeName.Checked)
 				{
-					strDstFullName = Path.GetDirectoryName(strFile) + "\\";
+					strDstFullName = Path.GetDirectoryName(strFile) + Path.DirectorySeparatorChar;
 					strDstFullName += Path.GetFileNameWithoutExtension(strFile) + "_" + strDstEncodingName;
 					strDstFullName += Path.GetExtension(strFile);
 				}
 				if (rbCustomer.Checked)
 				{
-					strDstFullName = Path.GetDirectoryName(strFile) + "\\";
+					strDstFullName = Path.GetDirectoryName(strFile) + Path.DirectorySeparatorChar;
 					strDstFullName += Path.GetFileNameWithoutExtension(strFile) + "_" + txtCustomer.Text;
 					strDstFullName += Path.GetExtension(strFile);
 				}
@@ -262,7 +246,7 @@ namespace Apq_LocalTools
 			}
 		}
 
-		public void AddFolder2FileList(Dictionary<string, string> lstFiles, string strFolder, bool Recursive)
+		public void AddChildren(Dictionary<string, string> lstFiles, string strFolder, bool Recursive)
 		{
 			TreeListViewItem node = tlvHelper.FindNodeByFullPath(strFolder);
 			int HasChildren = 0;
@@ -271,24 +255,24 @@ namespace Apq_LocalTools
 				HasChildren = Apq.Convert.ChangeType<int>(node.SubItems[fsExplorer1.Columns.Count + 1].Text);
 			}
 
-			if (HasChildren == 0)
+			if (HasChildren >= 0)
 			{
+				if (Recursive)
+				{
+					string[] aryFolders = Directory.GetDirectories(strFolder);
+					foreach (string str in aryFolders)
+					{
+						AddChildren(lstFiles, str, Recursive);
+					}
+				}
+
 				string[] aryFiles = Directory.GetFiles(strFolder);
 				foreach (string strFile in aryFiles)
 				{
 					TreeListViewItem nodeFile = tlvHelper.FindNodeByFullPath(strFile);
 					if (nodeFile == null || nodeFile.Checked)
 					{
-						AddFile2FileList(lstFiles, strFile);
-					}
-				}
-
-				if (Recursive)
-				{
-					string[] aryFolders = Directory.GetDirectories(strFolder);
-					foreach (string str in aryFolders)
-					{
-						AddFolder2FileList(lstFiles, str, Recursive);
+						AddFile(lstFiles, strFile);
 					}
 				}
 			}
@@ -359,6 +343,11 @@ namespace Apq_LocalTools
 			string strAll = File.ReadAllText(srcFullName, Esrc);
 			File.WriteAllText(dstFullName, strAll, Edst);
 			#endregion
+		}
+
+		private void tsbRefresh_Click(object sender, EventArgs e)
+		{
+			LoadData(FormDataSet);
 		}
 	}
 
