@@ -27,7 +27,6 @@ namespace Apq_LocalTools
 			InitializeComponent();
 		}
 
-		private TreeListViewHelper tlvHelper;
 		private Apq.Windows.Forms.TSProgressBarHelper pbHelper;
 
 		public override void SetUILang(Apq.UILang.UILang UILang)
@@ -63,7 +62,6 @@ namespace Apq_LocalTools
 		/// </summary>
 		public override void InitDataBefore()
 		{
-			tlvHelper = new TreeListViewHelper(fsExplorer1);
 			pbHelper = new Apq.Windows.Forms.TSProgressBarHelper(tspb);
 			pbHelper.Completed += new Action<ToolStripProgressBar>(pbHelper_Completed);
 
@@ -248,7 +246,7 @@ namespace Apq_LocalTools
 
 		public void AddChildren(Dictionary<string, string> lstFiles, string strFolder, bool Recursive)
 		{
-			TreeListViewItem node = tlvHelper.FindNodeByFullPath(strFolder);
+			TreeListViewItem node = fsExplorer1.tlvHelper.FindNodeByFullPath(strFolder);
 			int HasChildren = 0;
 			if (node != null)
 			{
@@ -269,7 +267,7 @@ namespace Apq_LocalTools
 				string[] aryFiles = Directory.GetFiles(strFolder);
 				foreach (string strFile in aryFiles)
 				{
-					TreeListViewItem nodeFile = tlvHelper.FindNodeByFullPath(strFile);
+					TreeListViewItem nodeFile = fsExplorer1.tlvHelper.FindNodeByFullPath(strFile);
 					if (nodeFile == null || nodeFile.Checked)
 					{
 						AddFile(lstFiles, strFile);

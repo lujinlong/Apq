@@ -392,7 +392,7 @@ namespace Apq.TreeListView
 		#endregion
 
 		/// <summary>
-		/// 获取子结点总数(递归)
+		/// 获取展开的子结点总数(递归)
 		/// </summary>
 		public int ItemsCount
 		{
@@ -402,7 +402,10 @@ namespace Apq.TreeListView
 
 				foreach (TreeListViewItem c in TreeListView.Items)
 				{
-					n += GetItemsCount(c);
+					if (c.IsExpanded)
+					{
+						n += GetItemsCount(c);
+					}
 				}
 
 				return n;

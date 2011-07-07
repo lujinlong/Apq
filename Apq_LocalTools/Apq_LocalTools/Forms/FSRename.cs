@@ -26,7 +26,6 @@ namespace Apq_LocalTools
 			InitializeComponent();
 		}
 
-		private TreeListViewHelper tlvHelper;
 		private Apq.Windows.Forms.TSProgressBarHelper pbHelper;
 		private Regex _regex = null;
 
@@ -64,7 +63,6 @@ namespace Apq_LocalTools
 		/// </summary>
 		public override void InitDataBefore()
 		{
-			tlvHelper = new TreeListViewHelper(fsExplorer1);
 			pbHelper = new Apq.Windows.Forms.TSProgressBarHelper(tspb);
 			pbHelper.Completed += new Action<ToolStripProgressBar>(pbHelper_Completed);
 
@@ -190,8 +188,8 @@ namespace Apq_LocalTools
 					if (node.Checked)
 					{
 						int Type = Apq.Convert.ChangeType<int>(node.SubItems[fsExplorer1.Columns.Count + 2].Text);
-						if (Type == 2)
-						{//文件夹
+						if (Type < 3)
+						{//文件夹或盘符
 							AddChildren(lstFiles, node.FullPath, cbRecursive.Checked);
 						}
 					}
@@ -210,21 +208,32 @@ namespace Apq_LocalTools
 				}
 
 				tspb.Maximum = lstFiles.Count;
+				if (lstFiles.Count == 0)
+				{
+					UIEnable(true);
+					btnTrans.Text = Apq.GlobalObject.UILang["开始替换(&H)"];
+				}
 
 				int pbFileCount = 0;
 				// 开始处理
 				foreach (KeyValuePair<string, string> de in lstFiles)
 				{
-					if (File.Exists(de.Key))
+					try
 					{
-						File.Move(de.Key, de.Value);
+						if (File.Exists(de.Key))
+						{
+							File.Move(de.Key, de.Value);
+						}
+						else
+						{
+							Directory.Move(de.Key, de.Value);
+						}
 					}
-					else
+					catch { }
+					finally
 					{
-						Directory.Move(de.Key, de.Value);
+						pbHelper.SetValue(++pbFileCount);
 					}
-
-					pbHelper.SetValue(++pbFileCount);
 				}
 
 				tsslStatus.Text = Apq.GlobalObject.UILang["转换完成！"];
@@ -251,28 +260,30 @@ namespace Apq_LocalTools
 
 		public void AddChildren(Dictionary<string, string> lstFiles, string strFolder, bool Recursive)
 		{
-			TreeListViewItem node = tlvHelper.FindNodeByFullPath(strFolder);
+			TreeListViewItem node = fsExplorer1.tlvHelper.FindNodeByFullPath(strFolder);
 			int HasChildren = 0;
 			if (node != null)
 			{
 				HasChildren = Apq.Convert.ChangeType<int>(node.SubItems[fsExplorer1.Columns.Count + 1].Text);
 			}
 
-			if (HasChildren == 0)
+			if (node == null ||
+				(node.Checked && HasChildren >= 0)
+			)
 			{
 				if (Recursive)
 				{
-					string[] aryFolders = Directory.GetDirectories(strFolder);
+					string[] aryFolders = Directory.GetDirectories(strFolder + Path.DirectorySeparatorChar);
 					foreach (string str in aryFolders)
 					{
 						AddChildren(lstFiles, str, Recursive);
 					}
 				}
 
-				string[] aryFiles = Directory.GetFiles(strFolder);
+				string[] aryFiles = Directory.GetFiles(strFolder + Path.DirectorySeparatorChar);
 				foreach (string strFile in aryFiles)
 				{
-					TreeListViewItem nodeFile = tlvHelper.FindNodeByFullPath(strFile);
+					TreeListViewItem nodeFile = fsExplorer1.tlvHelper.FindNodeByFullPath(strFile);
 					if (nodeFile == null || nodeFile.Checked)
 					{
 						AddFile(lstFiles, strFile);
@@ -368,10 +379,18 @@ namespace Apq_LocalTools
 
 		private void btnFind_Click(object sender, EventArgs e)
 		{
+			if (!fsExplorer1.Focused)
+			{
+				fsExplorer1.Focus();
+
+				fsExplorer1.ExpandAll();
+				Application.DoEvents();
+			}
+
 			// 找到符合条件的下一个结点并高亮显示
 			int nIdx = 1 + (fsExplorer1.FocusedItem == null ? -1 : fsExplorer1.FocusedItem.Index);
 
-			if (nIdx >= tlvHelper.ItemsCount - 1)
+			if (nIdx >= fsExplorer1.ItemsCount - 1)
 			{
 				DialogResult rDiag = MessageBox.Show(this,
 					Apq.GlobalObject.UILang["搜索已到达末结点，是否再从头开始？"],
@@ -387,7 +406,7 @@ namespace Apq_LocalTools
 				}
 			}
 
-			for (int i = nIdx; i < tlvHelper.ItemsCount; i++)
+			for (int i = nIdx; i < fsExplorer1.ItemsCount; i++)
 			{
 				TreeListViewItem node = fsExplorer1.GetTreeListViewItemFromIndex(i);
 				int Type = Apq.Convert.ChangeType<int>(node.SubItems[fsExplorer1.Columns.Count + 2].Text);
@@ -398,8 +417,7 @@ namespace Apq_LocalTools
 						string strOut = string.Empty;
 						if (FileReplace(node.FullPath, ref strOut))
 						{
-							node.Selected = true;
-							node.Expand();
+							node.Focused = true;
 							return;
 						}
 					}
@@ -409,11 +427,24 @@ namespace Apq_LocalTools
 					string strOut = string.Empty;
 					if (FolderReplace(node.FullPath, ref strOut))
 					{
-						node.Selected = true;
-						node.Expand();
+						node.Focused = true;
 						return;
 					}
 				}
+			}
+
+			DialogResult eDiag = MessageBox.Show(this,
+					Apq.GlobalObject.UILang["搜索已到达末结点，是否再从头开始？"],
+					Apq.GlobalObject.UILang["查找确认"],
+					MessageBoxButtons.YesNo);
+			if (eDiag == DialogResult.Yes)
+			{
+				if (fsExplorer1.FocusedItem != null)
+				{
+					fsExplorer1.FocusedItem.Focused = false;
+				}
+
+				btnFind_Click(sender, e);
 			}
 		}
 	}

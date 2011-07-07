@@ -14,7 +14,22 @@ namespace Apq.TreeListView
 	/// </summary>
 	public class FSExplorer : System.Windows.Forms.TreeListView
 	{
-		private TreeListViewHelper tlvHelper;
+		private TreeListViewHelper _tlvHelper;
+		/// <summary>
+		/// 获取关联的TreeListView助手
+		/// </summary>
+		public TreeListViewHelper tlvHelper
+		{
+			get
+			{
+				if (_tlvHelper == null)
+				{
+					_tlvHelper = new TreeListViewHelper(this);
+				}
+				return _tlvHelper;
+			}
+		}
+
 		private System.Windows.Forms.TreeListViewItemCollection.TreeListViewItemCollectionComparer _Comparer1 = new System.Windows.Forms.TreeListViewItemCollection.TreeListViewItemCollectionComparer();
 		private ImageList _imgList
 		{
@@ -30,8 +45,6 @@ namespace Apq.TreeListView
 		/// </summary>
 		public FSExplorer()
 		{
-			tlvHelper = new TreeListViewHelper(this);
-
 			_imgList.ColorDepth = ColorDepth.Depth32Bit;
 			_imgList.ImageSize = new Size(16, 16);
 			_imgList.TransparentColor = Color.Transparent;
