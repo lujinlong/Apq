@@ -271,10 +271,18 @@ namespace Apq_LocalTools
 				(node.Checked && HasChildren >= 0)
 			)
 			{
-				if (Recursive)
+				string[] aryFolders = Directory.GetDirectories(strFolder + Path.DirectorySeparatorChar);
+				foreach (string str in aryFolders)
 				{
-					string[] aryFolders = Directory.GetDirectories(strFolder + Path.DirectorySeparatorChar);
-					foreach (string str in aryFolders)
+					TreeListViewItem node1 = fsExplorer1.tlvHelper.FindNodeByFullPath(str);
+					if (node1 == null)
+					{
+						if (Recursive)
+						{
+							AddChildren(lstFiles, str, Recursive);
+						}
+					}
+					else if (node1.Checked)
 					{
 						AddChildren(lstFiles, str, Recursive);
 					}

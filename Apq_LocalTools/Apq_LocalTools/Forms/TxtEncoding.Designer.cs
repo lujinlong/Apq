@@ -273,8 +273,7 @@ namespace Apq_LocalTools
 			this.cbDstEncoding.FormattingEnabled = true;
 			this.cbDstEncoding.Items.AddRange(new object[] {
             "UTF-8",
-            "GB2312",
-            "ASCII"});
+            "GB2312"});
 			this.cbDstEncoding.Location = new System.Drawing.Point(77, 20);
 			this.cbDstEncoding.Name = "cbDstEncoding";
 			this.cbDstEncoding.Size = new System.Drawing.Size(150, 20);

@@ -154,14 +154,7 @@ namespace Apq.TreeListView
 
 					if (ndFound != null)
 					{
-						if (File.Exists(e.FullPath))
-						{
-							ndFound.Text = e.Name;
-						}
-						else if (Directory.Exists(e.FullPath))
-						{
-							ndFound.Text = Path.GetFileName(e.FullPath);
-						}
+						ndFound.Text = Path.GetFileName(e.FullPath);
 					}
 				}
 				catch { }

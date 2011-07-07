@@ -181,21 +181,29 @@ namespace Apq_LocalTools
 
 				//将需要转换的文件记录到列表
 				Dictionary<string, string> lstFiles = new Dictionary<string, string>();
-				for (long i = fsExplorer1.CheckedItems.LongLength - 1; i >= 0; i--)
+				for (int i = fsExplorer1.Items.Count - 1; i >= 0; i--)
 				{
-					TreeListViewItem node = fsExplorer1.CheckedItems[i];
-					int Type = Apq.Convert.ChangeType<int>(node.SubItems[fsExplorer1.Columns.Count + 2].Text);
-					if (Type == 3)
+					TreeListViewItem node = fsExplorer1.Items[i];
+					if (node.Checked)
 					{
-						AddFile(lstFiles, node.FullPath);
-					}
-					else
-					{
-						AddChildren(lstFiles, node.FullPath, cbRecursive.Checked);
+						int Type = Apq.Convert.ChangeType<int>(node.SubItems[fsExplorer1.Columns.Count + 2].Text);
+						if (Type == 3)
+						{//文件
+							AddFile(lstFiles, node.FullPath);
+						}
+						else
+						{//文件夹或盘符
+							AddChildren(lstFiles, node.FullPath, cbRecursive.Checked);
+						}
 					}
 				}
 
 				tspb.Maximum = lstFiles.Count;
+				if (lstFiles.Count == 0)
+				{
+					UIEnable(true);
+					btnTrans.Text = Apq.GlobalObject.UILang["开始转换(&T)"];
+				}
 
 				int pbFileCount = 0;
 				// 开始处理
@@ -244,6 +252,9 @@ namespace Apq_LocalTools
 			}
 		}
 
+		/// <summary>
+		/// 递归添加所有 已勾选或未加载 的 子级
+		/// </summary>
 		public void AddChildren(Dictionary<string, string> lstFiles, string strFolder, bool Recursive)
 		{
 			TreeListViewItem node = fsExplorer1.tlvHelper.FindNodeByFullPath(strFolder);
@@ -253,18 +264,28 @@ namespace Apq_LocalTools
 				HasChildren = Apq.Convert.ChangeType<int>(node.SubItems[fsExplorer1.Columns.Count + 1].Text);
 			}
 
-			if (HasChildren >= 0)
+			if (node == null ||
+				(node.Checked && HasChildren >= 0)
+			)
 			{
-				if (Recursive)
+				string[] aryFolders = Directory.GetDirectories(strFolder + Path.DirectorySeparatorChar);
+				foreach (string str in aryFolders)
 				{
-					string[] aryFolders = Directory.GetDirectories(strFolder);
-					foreach (string str in aryFolders)
+					TreeListViewItem node1 = fsExplorer1.tlvHelper.FindNodeByFullPath(str);
+					if (node1 == null)
+					{
+						if (Recursive)
+						{
+							AddChildren(lstFiles, str, Recursive);
+						}
+					}
+					else if (node1.Checked)
 					{
 						AddChildren(lstFiles, str, Recursive);
 					}
 				}
 
-				string[] aryFiles = Directory.GetFiles(strFolder);
+				string[] aryFiles = Directory.GetFiles(strFolder + Path.DirectorySeparatorChar);
 				foreach (string strFile in aryFiles)
 				{
 					TreeListViewItem nodeFile = fsExplorer1.tlvHelper.FindNodeByFullPath(strFile);
