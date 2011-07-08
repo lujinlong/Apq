@@ -69,333 +69,489 @@ namespace System.Windows.Forms
 		public event TreeListViewItemHanlder AfterExpand;
 		#endregion
 		#region Properties
-			#region NextVisibleItem
-			/// <summary>
-			/// Gets the next visible item in the TreeListView
-			/// </summary>
-			public TreeListViewItem NextVisibleItem
+		#region NextVisibleItem
+		/// <summary>
+		/// Gets the next visible item in the TreeListView
+		/// </summary>
+		public TreeListViewItem NextVisibleItem
+		{
+			get
 			{
-				get
-				{
-					if(!IsInATreeListView || !Visible) return null;
-					ListView listview = (ListView) TreeListView;
-					if(Index >= listview.Items.Count-1) return null;
-					return (TreeListViewItem)listview.Items[Index+1];
-				}
+				if (!IsInATreeListView || !Visible) return null;
+				ListView listview = (ListView)TreeListView;
+				if (Index >= listview.Items.Count - 1) return null;
+				return (TreeListViewItem)listview.Items[Index + 1];
 			}
-			#endregion
-			#region PrevVisibleItem
-			/// <summary>
-			/// Gets the previous visible item in the TreeListView
-			/// </summary>
-			public TreeListViewItem PrevVisibleItem
-			{
-				get
-				{
-					if(!IsInATreeListView || !Visible) return null;
-					ListView listview = (ListView) TreeListView;
-					if(Index < 1) return null;
-					return (TreeListViewItem)listview.Items[Index-1];
-				}
-			}
-			#endregion
+		}
 
-			#region Checked properties
-			/// <summary>
-			/// Gets or sets a value indicating whether the item is checked.
-			/// </summary>
-			public new bool Checked 
+		// 2011-07-08 增加 -------------------------------------------------------------------------
+		/// <summary>
+		/// 获取下一个同级结点(该结点为最后一个时返回null)
+		/// </summary>
+		public TreeListViewItem NextSibling
+		{
+			get
 			{
-				get
+				int idx = -1;
+				if (Parent == null)
 				{
-					try
+					if (TreeListView != null)
 					{
-						return (base.Checked);
-					}
-					catch
-					{
-						return false;
-					}
-				}
-				set 
-				{
-					if(IsInATreeListView)
-						if(TreeListView.InvokeRequired)
-							throw(new Exception("Invoke required"));
-					try
-					{
-						// Check downwards recursively
-						if(ListView != null &&
-							ListView._checkDirection == CheckDirection.Downwards &&
-							_items.Count > 0)
+						idx = TreeListView.Items.GetIndexOf(this);
+						if (idx > -1 && idx < TreeListView.Items.Count - 1)
 						{
-							foreach(TreeListViewItem childItem in _items)
-								childItem.Checked = value;
+							return TreeListView.Items[idx + 1];
 						}
-						if(base.Checked == value) return;
-						base.Checked = value;
 					}
-					catch{} 
+
+					return null;
+				}
+
+				idx = Parent.Items.GetIndexOf(this);
+				if (idx > -1 && idx < Parent.Items.Count - 1)
+				{
+					return Parent.Items[idx + 1];
+				}
+
+				return null;
+			}
+		}
+		/// <summary>
+		/// 获取上一个同级结点(该结点为第一个时返回null)
+		/// </summary>
+		public TreeListViewItem PrevSibling
+		{
+			get
+			{
+				int idx = -1;
+				if (Parent == null)
+				{
+					if (TreeListView != null)
+					{
+						idx = TreeListView.Items.GetIndexOf(this);
+						if (idx > 0 && idx < TreeListView.Items.Count)
+						{
+							return TreeListView.Items[idx - 1];
+						}
+					}
+
+					return null;
+				}
+
+				idx = Parent.Items.GetIndexOf(this);
+				if (idx > 0 && idx < Parent.Items.Count)
+				{
+					return Parent.Items[idx - 1];
+				}
+
+				return null;
+			}
+		}
+		/// <summary>
+		/// 获取 所有子孙的最后一行 结点(递归,含该结点)[不会为null]
+		/// </summary>
+		public TreeListViewItem LastRowItem
+		{
+			get
+			{
+				if (Items.Count > 0)
+				{
+					return Items[Items.Count - 1].LastRowItem;
+				}
+				return this;
+			}
+		}
+		/// <summary>
+		/// 获取 所有子孙的第一行 结点(没有子孙时返回该结点)[不会为null]
+		/// </summary>
+		public TreeListViewItem FirstRowItem
+		{
+			get
+			{
+				return Items.Count > 0 ? Items[0] : this;
+			}
+		}
+		/// <summary>
+		/// 获取下一行结点(假设树全展开状态下的下一行)
+		/// </summary>
+		public TreeListViewItem NextRowItem
+		{
+			get
+			{
+				TreeListViewItem node = FirstRowItem;
+				if (node != this)
+				{
+					return node;
+				}
+
+				node = NextSibling;
+				if (node != null)
+				{
+					return node;
+				}
+
+				/*
+				 * 无子级,无“下一个兄弟”
+				 * 向上搜索Parents中的第一个“下一个兄弟”结点
+				*/
+				node = getParentHasNextSibling();
+				if (node != null)
+				{
+					return node.NextSibling;
+				}
+
+				return null;
+			}
+		}
+		/// <summary>
+		/// [递归]按树向上搜索第一个具有“下一个兄弟结点”的父级结点
+		/// </summary>
+		private TreeListViewItem getParentHasNextSibling()
+		{
+			TreeListViewItem node = null;
+			if (Parent != null)
+			{
+				node = Parent.NextSibling;
+				if (node != null)
+				{
+					return Parent;
+				}
+
+				return Parent.getParentHasNextSibling();
+			}
+			return null;
+		}
+		/// <summary>
+		/// 获取上一行结点(假设树全展开状态下的上一行)
+		/// </summary>
+		public TreeListViewItem PrevRowItem
+		{
+			get
+			{
+				TreeListViewItem node = PrevSibling;
+				if (node == null)
+				{
+					return Parent;
+				}
+
+				return node.LastRowItem;
+			}
+		}
+		// =========================================================================================
+		#endregion
+		#region PrevVisibleItem
+		/// <summary>
+		/// Gets the previous visible item in the TreeListView
+		/// </summary>
+		public TreeListViewItem PrevVisibleItem
+		{
+			get
+			{
+				if (!IsInATreeListView || !Visible) return null;
+				ListView listview = (ListView)TreeListView;
+				if (Index < 1) return null;
+				return (TreeListViewItem)listview.Items[Index - 1];
+			}
+		}
+		#endregion
+
+		#region Checked properties
+		/// <summary>
+		/// Gets or sets a value indicating whether the item is checked.
+		/// </summary>
+		public new bool Checked
+		{
+			get
+			{
+				try
+				{
+					return (base.Checked);
+				}
+				catch
+				{
+					return false;
 				}
 			}
-			#endregion
-			#region CheckStatus
-			/// <summary>
-			/// Gets the check state of this item
-			/// </summary>
-			public CheckState CheckStatus
+			set
 			{
-				get
+				if (IsInATreeListView)
+					if (TreeListView.InvokeRequired)
+						throw (new Exception("Invoke required"));
+				try
 				{
-					if(_items.Count <= 0)
+					// Check downwards recursively
+					if (ListView != null &&
+						ListView._checkDirection == CheckDirection.Downwards &&
+						_items.Count > 0)
 					{
-						if(this.Checked)
-							return CheckState.Checked;
+						foreach (TreeListViewItem childItem in _items)
+							childItem.Checked = value;
+					}
+					if (base.Checked == value) return;
+					base.Checked = value;
+				}
+				catch { }
+			}
+		}
+		#endregion
+		#region CheckStatus
+		/// <summary>
+		/// Gets the check state of this item
+		/// </summary>
+		public CheckState CheckStatus
+		{
+			get
+			{
+				if (_items.Count <= 0)
+				{
+					if (this.Checked)
+						return CheckState.Checked;
+					else
+						return CheckState.Unchecked;
+				}
+				else
+				{
+					bool allChecked = true;
+					bool allUnChecked = true;
+
+					TreeListViewItem[] items = Items.ToArray();
+					foreach (TreeListViewItem item in items)
+					{
+						if (item.CheckStatus == CheckState.Indeterminate)
+							return CheckState.Indeterminate;
+						else if (item.CheckStatus == CheckState.Checked)
+							allUnChecked = false;
 						else
-							return CheckState.Unchecked;
+							allChecked = false;
 					}
+
+					Debug.Assert(!(allChecked && allUnChecked));
+					if (allChecked)
+						return CheckState.Checked;
+					else if (allUnChecked)
+						return CheckState.Unchecked;
 					else
+						return CheckState.Indeterminate;
+				}
+			}
+		}
+		#endregion
+
+		#region ParentsInHierarch
+		/// <summary>
+		/// Gets a collection of the parent of this item
+		/// </summary>
+		[Browsable(false)]
+		public TreeListViewItem[] ParentsInHierarch
+		{
+			get
+			{
+				TreeListViewItemCollection items = GetParentsInHierarch();
+				return (items.ToArray());
+			}
+		}
+		private TreeListViewItemCollection GetParentsInHierarch()
+		{
+			TreeListViewItemCollection temp = Parent != null ?
+				Parent.GetParentsInHierarch() : new TreeListViewItemCollection();
+			if (Parent != null) temp.Add(Parent);
+			return temp;
+		}
+		#endregion
+		#region FullPath
+		/// <summary>
+		/// Gets the fullpath of an item (Parents.Text + \ + this.Text)
+		/// </summary>
+		[Browsable(false)]
+		public string FullPath
+		{
+			get
+			{
+				if (Parent != null)
+				{
+					string pathSeparator = IsInATreeListView ? TreeListView.PathSeparator : "\\";
+					string strPath = Parent.FullPath + pathSeparator + Text;
+					return (strPath.Replace(pathSeparator + pathSeparator, pathSeparator));
+				}
+				else
+					return (Text);
+			}
+		}
+		#endregion
+		#region Text
+		/// <summary>
+		/// Get or Set the Text property
+		/// </summary>
+		new public string Text
+		{
+			get
+			{
+				return (base.Text);
+			}
+			set
+			{
+				base.Text = value;
+				TreeListViewItemCollection collection = Container;
+				if (collection != null) collection.Sort(false);
+			}
+		}
+		#endregion
+		#region Container
+		/// <summary>
+		/// Get the collection that contains this item
+		/// </summary>
+		public TreeListViewItemCollection Container
+		{
+			get
+			{
+				if (Parent != null) return (Parent.Items);
+				if (IsInATreeListView) return (TreeListView.Items);
+				return (null);
+			}
+		}
+		#endregion
+		#region IsInATreeListView
+		internal bool IsInATreeListView
+		{
+			get
+			{
+				return (TreeListView != null);
+			}
+		}
+		#endregion
+		#region LastChildIndexInListView
+		/// <summary>
+		/// Get the biggest index in the listview of the visible childs of this item
+		/// including this item
+		/// </summary>
+		[Browsable(false)]
+		public int LastChildIndexInListView
+		{
+			get
+			{
+				if (!IsInATreeListView)
+					throw (new Exception("No ListView control"));
+				int index = this.Index, temp;
+				foreach (TreeListViewItem item in Items)
+					if (item.Visible)
 					{
-						bool allChecked = true; 
-						bool allUnChecked = true; 
-
-						TreeListViewItem[] items = Items.ToArray(); 
-						foreach(TreeListViewItem item in items) 
-						{ 
-							if (item.CheckStatus == CheckState.Indeterminate) 
-								return CheckState.Indeterminate; 
-							else if (item.CheckStatus == CheckState.Checked) 
-								allUnChecked = false; 
-							else 
-								allChecked = false; 
-						} 
-
-						Debug.Assert(!(allChecked && allUnChecked)); 
-						if (allChecked) 
-							return CheckState.Checked; 
-						else if (allUnChecked) 
-							return CheckState.Unchecked; 
-						else 
-							return CheckState.Indeterminate; 
+						temp = item.LastChildIndexInListView;
+						if (temp > index) index = temp;
 					}
-				}
+				return (index);
 			}
-			#endregion
-
-			#region ParentsInHierarch
-			/// <summary>
-			/// Gets a collection of the parent of this item
-			/// </summary>
-			[Browsable(false)]
-			public TreeListViewItem[] ParentsInHierarch
+		}
+		#endregion
+		#region ChildrenCount
+		/// <summary>
+		/// Get the children count recursively
+		/// </summary>
+		[Browsable(false)]
+		public int ChildrenCount
+		{
+			get
 			{
-				get
-				{
-					TreeListViewItemCollection items = GetParentsInHierarch();
-					return(items.ToArray());
-				}
+				TreeListViewItem[] items = _items.ToArray();
+				int count = items.Length;
+				foreach (TreeListViewItem item in items) count += item.ChildrenCount;
+				return (count);
 			}
-			private TreeListViewItemCollection GetParentsInHierarch()
+		}
+		#endregion
+		#region IsExpanded
+		private bool _isexpanded;
+		/// <summary>
+		/// Returns true if this item is expanded
+		/// </summary>
+		public bool IsExpanded
+		{
+			get
 			{
-				TreeListViewItemCollection temp = Parent != null ?
-					Parent.GetParentsInHierarch() : new TreeListViewItemCollection();
-				if(Parent != null) temp.Add(Parent);
-				return temp;
+				return (_isexpanded);
 			}
-			#endregion
-			#region FullPath
-			/// <summary>
-			/// Gets the fullpath of an item (Parents.Text + \ + this.Text)
-			/// </summary>
-			[Browsable(false)]
-			public string FullPath
+			set
 			{
-				get
-				{
-					if(Parent != null)
-					{
-						string pathSeparator = IsInATreeListView ? TreeListView.PathSeparator : "\\";
-						string strPath = Parent.FullPath + pathSeparator + Text;
-						return(strPath.Replace(pathSeparator + pathSeparator, pathSeparator));
-					}
-					else
-						return(Text);
-				}
+				if (_isexpanded == value) return;
+				if (value) Expand();
+				else Collapse();
 			}
-			#endregion
-			#region Text
-			/// <summary>
-			/// Get or Set the Text property
-			/// </summary>
-			new public string Text
+		}
+		#endregion
+		#region Level
+		/// <summary>
+		/// Get the level of the item in the treelistview
+		/// </summary>
+		[Browsable(false)]
+		public int Level
+		{
+			get
 			{
-				get
-				{
-					return(base.Text);
-				}
-				set
-				{
-					base.Text = value;
-					TreeListViewItemCollection collection = Container;
-					if(collection != null) collection.Sort(false);}
+				return (Parent == null ? 0 : Parent.Level + 1);
 			}
-			#endregion
-			#region Container
-			/// <summary>
-			/// Get the collection that contains this item
-			/// </summary>
-			public TreeListViewItemCollection Container
+		}
+		#endregion
+		#region Items
+		private TreeListViewItemCollection _items;
+		/// <summary>
+		/// Get the items contained in this item
+		/// </summary>
+		public TreeListViewItemCollection Items
+		{
+			get
 			{
-				get
-				{
-					if(Parent != null) return(Parent.Items);
-					if(IsInATreeListView) return(TreeListView.Items);
-					return(null);
-				}
+				return (_items);
 			}
-			#endregion
-			#region IsInATreeListView
-			internal bool IsInATreeListView
+		}
+		#endregion
+		#region Parent
+		private TreeListViewItem _parent;
+		/// <summary>
+		/// Get the parent of this item
+		/// </summary>
+		public TreeListViewItem Parent
+		{
+			get
 			{
-				get
-				{
-					return(TreeListView != null);
-				}
+				return (_parent);
 			}
-			#endregion
-			#region LastChildIndexInListView
-			/// <summary>
-			/// Get the biggest index in the listview of the visible childs of this item
-			/// including this item
-			/// </summary>
-			[Browsable(false)]
-			public int LastChildIndexInListView
+		}
+		#endregion
+		#region TreeListView
+		/// <summary>
+		/// Gets the TreeListView containing this item
+		/// </summary>
+		public new TreeListView ListView
+		{
+			get
 			{
-				get
-				{
-					if(!IsInATreeListView)
-						throw(new Exception("No ListView control"));
-					int index = this.Index, temp;
-					foreach(TreeListViewItem item in Items)
-						if(item.Visible)
-						{
-							temp = item.LastChildIndexInListView;
-							if(temp > index) index = temp;
-						}
-					return(index);
-				}
+				if (base.ListView != null) return ((TreeListView)base.ListView);
+				if (Parent != null) return (Parent.ListView);
+				return (null);
 			}
-			#endregion
-			#region ChildrenCount
-			/// <summary>
-			/// Get the children count recursively
-			/// </summary>
-			[Browsable(false)]
-			public int ChildrenCount
+		}
+		/// <summary>
+		/// Gets the TreeListView containing this item
+		/// </summary>
+		public TreeListView TreeListView
+		{
+			get
 			{
-				get
-				{
-					TreeListViewItem[] items = _items.ToArray();
-					int count = items.Length;
-					foreach(TreeListViewItem item in items) count += item.ChildrenCount;
-					return(count);
-				}
+				return (TreeListView)ListView;
 			}
-			#endregion
-			#region IsExpanded
-			private bool _isexpanded;
-			/// <summary>
-			/// Returns true if this item is expanded
-			/// </summary>
-			public bool IsExpanded
+		}
+		#endregion
+		#region Visible
+		/// <summary>
+		/// Returns true if this item is visible in the TreeListView
+		/// </summary>
+		public bool Visible
+		{
+			get
 			{
-				get
-				{
-					return(_isexpanded);
-				}
-				set
-				{
-					if(_isexpanded == value) return;
-					if(value) Expand();
-					else Collapse();
-				}
+				return (base.Index > -1);
 			}
-			#endregion
-			#region Level
-			/// <summary>
-			/// Get the level of the item in the treelistview
-			/// </summary>
-			[Browsable(false)]
-			public int Level
-			{
-				get
-				{
-					return(Parent == null ? 0 : Parent.Level + 1);
-				}
-			}
-			#endregion
-			#region Items
-			private TreeListViewItemCollection _items;
-			/// <summary>
-			/// Get the items contained in this item
-			/// </summary>
-			public TreeListViewItemCollection Items
-			{
-				get
-				{
-					return(_items);
-				}
-			}
-			#endregion
-			#region Parent
-			private TreeListViewItem _parent;
-			/// <summary>
-			/// Get the parent of this item
-			/// </summary>
-			public TreeListViewItem Parent
-			{
-				get
-				{
-					return(_parent);
-				}
-			}
-			#endregion
-			#region TreeListView
-			/// <summary>
-			/// Gets the TreeListView containing this item
-			/// </summary>
-			public new TreeListView ListView
-			{
-				get
-				{
-					if(base.ListView != null) return((TreeListView) base.ListView);
-					if(Parent != null) return(Parent.ListView);
-					return(null);
-				}
-			}
-			/// <summary>
-			/// Gets the TreeListView containing this item
-			/// </summary>
-			public TreeListView TreeListView
-			{
-				get
-				{
-					return (TreeListView) ListView;
-				}
-			}
-			#endregion
-			#region Visible
-			/// <summary>
-			/// Returns true if this item is visible in the TreeListView
-			/// </summary>
-			public bool Visible
-			{
-				get
-				{
-					return(base.Index > -1);
-				}
-			}
-			#endregion
+		}
+		#endregion
 		#endregion
 
 		#region Constructors
@@ -409,24 +565,26 @@ namespace System.Windows.Forms
 		/// <summary>
 		/// Create a new instance of a TreeListViewItem
 		/// </summary>
-		public TreeListViewItem(string value) : this()
+		public TreeListViewItem(string value)
+			: this()
 		{
 			this.Text = value;
 		}
 		/// <summary>
 		/// Create a new instance of a TreeListViewItem
 		/// </summary>
-		public TreeListViewItem(string value, int imageindex) : this(value)
+		public TreeListViewItem(string value, int imageindex)
+			: this(value)
 		{
 			this.ImageIndex = imageindex;
 		}
 		#endregion
-		
+
 		#region Functions
 		internal void GetCheckedItems(ref TreeListViewItemCollection items)
 		{
-			if(Checked) items.Add(this);
-			foreach(TreeListViewItem item in Items)
+			if (Checked) items.Add(this);
+			foreach (TreeListViewItem item in Items)
 				item.GetCheckedItems(ref items);
 		}
 		/// <summary>
@@ -435,12 +593,12 @@ namespace System.Windows.Forms
 		/// <param name="column">Number of the subitem to edit</param>
 		public void BeginEdit(int column)
 		{
-			if(TreeListView == null)
-				throw(new Exception("The item is not associated with a TreeListView"));
-			if(!TreeListView.Visible)
-				throw(new Exception("The item is not visible"));
-			if(column + 1 > TreeListView.Columns.Count)
-				throw(new Exception("The column is greater the number of columns in the TreeListView"));
+			if (TreeListView == null)
+				throw (new Exception("The item is not associated with a TreeListView"));
+			if (!TreeListView.Visible)
+				throw (new Exception("The item is not visible"));
+			if (column + 1 > TreeListView.Columns.Count)
+				throw (new Exception("The column is greater the number of columns in the TreeListView"));
 			TreeListView.Focus();
 			Focused = true;
 			TreeListView._lastitemclicked = new EditItemInformations(this, column, this.SubItems[column].Text);
@@ -458,14 +616,15 @@ namespace System.Windows.Forms
 		/// </summary>
 		public void Redraw()
 		{
-			if(ListView == null || !Visible) return;
+			if (ListView == null || !Visible) return;
 			try
 			{
 				APIsUser32.SendMessage(
 					ListView.Handle,
 					(int)APIsEnums.ListViewMessages.REDRAWITEMS,
-					Index, Index);}
-			catch{}
+					Index, Index);
+			}
+			catch { }
 		}
 		/// <summary>
 		/// Retrieves the specified portion of the bounding rectangle for the item
@@ -474,18 +633,18 @@ namespace System.Windows.Forms
 		/// <returns>A Rectangle that represents the bounding rectangle for the specified portion of the item</returns>
 		public Rectangle GetBounds(TreeListViewItemBoundsPortion portion)
 		{
-			switch((int)portion)
+			switch ((int)portion)
 			{
-				case (int) TreeListViewItemBoundsPortion.PlusMinus:
-					if(TreeListView == null)
-						throw(new Exception("This item is not associated with a TreeListView control"));
+				case (int)TreeListViewItemBoundsPortion.PlusMinus:
+					if (TreeListView == null)
+						throw (new Exception("This item is not associated with a TreeListView control"));
 					Point pos = base.GetBounds(ItemBoundsPortion.Entire).Location;
 					Point position = new Point(
-						Level*SystemInformation.SmallIconSize.Width + 1 + pos.X,
+						Level * SystemInformation.SmallIconSize.Width + 1 + pos.X,
 						TreeListView.GetItemRect(Index, ItemBoundsPortion.Entire).Top + 1);
 					return new Rectangle(position, TreeListView.ShowPlusMinus ? SystemInformation.SmallIconSize : new Size(0, 0));
 				default:
-					ItemBoundsPortion lviPortion = (ItemBoundsPortion)(int) portion;
+					ItemBoundsPortion lviPortion = (ItemBoundsPortion)(int)portion;
 					return base.GetBounds(lviPortion);
 			}
 		}
@@ -498,11 +657,11 @@ namespace System.Windows.Forms
 		/// </summary>
 		public new void Remove()
 		{
-			if(ListView != null)
-				if(ListView.InvokeRequired)
-					throw(new Exception("Invoke required"));
+			if (ListView != null)
+				if (ListView.InvokeRequired)
+					throw (new Exception("Invoke required"));
 			TreeListViewItemCollection collection = this.Container;
-			if(collection != null) collection.Remove(this);
+			if (collection != null) collection.Remove(this);
 		}
 		/// <summary>
 		/// Check if this node is one of the parents of an item (recursively)
@@ -512,37 +671,39 @@ namespace System.Windows.Forms
 		public bool IsAParentOf(TreeListViewItem item)
 		{
 			TreeListViewItem[] parents = item.ParentsInHierarch;
-			foreach(TreeListViewItem parent in parents)
-				if(parent == this) return(true);
-			return(false);
+			foreach (TreeListViewItem parent in parents)
+				if (parent == this) return (true);
+			return (false);
 		}
 		/// <summary>
 		/// Ensure that the node is visible (expand parents and scroll listview so that the item is visible)
 		/// </summary>
 		new public void EnsureVisible()
 		{
-			if(!Visible)
+			if (!Visible)
 			{
-				if(IsInATreeListView)
+				if (IsInATreeListView)
 					TreeListView.BeginUpdate();
-				if(ListView != null)
+				if (ListView != null)
 					ListView.Invoke(new MethodInvoker(ExpandParents));
 				else ExpandParents();
-				if(TreeListView != null)
+				if (TreeListView != null)
 					TreeListView.EndUpdate();
 			}
 			base.EnsureVisible();
 		}
+		/* 2011-07-08 去掉 -------------------------------------------------------------------------
 		internal void ExpandParents()
 		{
-			if(IsInATreeListView)
+			if (IsInATreeListView)
 				Debug.Assert(!ListView.InvokeRequired);
-			if(Parent != null)
+			if (Parent != null)
 			{
-				if(!Parent.IsExpanded) Parent.ExpandInternal();
+				if (!Parent.IsExpanded) Parent.ExpandInternal();
 				Parent.ExpandParents();
 			}
 		}
+		*/
 		#endregion
 		#region Indentation
 		/// <summary>
@@ -551,12 +712,12 @@ namespace System.Windows.Forms
 		/// <returns>True if successfull, false otherwise</returns>
 		public bool SetIndentation()
 		{
-			if(!IsInATreeListView) return false;
+			if (!IsInATreeListView) return false;
 			bool res = true;
 			APIsStructs.LV_ITEM lvi = new APIsStructs.LV_ITEM();
 			lvi.iItem = Index;
 			lvi.iIndent = Level;
-			if(TreeListView.ShowPlusMinus) lvi.iIndent++;
+			if (TreeListView.ShowPlusMinus) lvi.iIndent++;
 			lvi.mask = APIsEnums.ListViewItemFlags.INDENT;
 			try
 			{
@@ -578,19 +739,19 @@ namespace System.Windows.Forms
 		/// <param name="recursively">Recursively</param>
 		public void RefreshIndentation(bool recursively)
 		{
-			if(ListView == null) return;
-			if(ListView.InvokeRequired)
-				throw(new Exception("Invoke Required"));
-			if(!this.Visible) return;
+			if (ListView == null) return;
+			if (ListView.InvokeRequired)
+				throw (new Exception("Invoke Required"));
+			if (!this.Visible) return;
 			SetIndentation();
-			if(recursively)
+			if (recursively)
 			{
 				try
 				{
-					foreach(TreeListViewItem item in this.Items)
+					foreach (TreeListViewItem item in this.Items)
 						item.RefreshIndentation(true);
 				}
-				catch{}
+				catch { }
 			}
 		}
 		#endregion
@@ -600,55 +761,55 @@ namespace System.Windows.Forms
 		/// </summary>
 		public void Expand()
 		{
-			if(IsInATreeListView)
+			if (IsInATreeListView)
 				if (ListView.InvokeRequired)
-					throw(new Exception("Invoke Required"));
-			if(TreeListView != null) TreeListView.BeginUpdate();
+					throw (new Exception("Invoke Required"));
+			if (TreeListView != null) TreeListView.BeginUpdate();
 			ExpandInternal();
-			if(TreeListView != null) TreeListView.EndUpdate();
+			if (TreeListView != null) TreeListView.EndUpdate();
 		}
 		internal void ExpandInternal()
 		{
-			if(IsInATreeListView)
+			if (IsInATreeListView)
 				if (ListView.InvokeRequired)
-					throw(new Exception("Invoke Required"));
+					throw (new Exception("Invoke Required"));
 
 			TreeListViewItem selItem = null;
-			if(TreeListView != null) selItem = TreeListView.FocusedItem;
+			if (TreeListView != null) selItem = TreeListView.FocusedItem;
 
 			// Must set ListView.checkDirection to CheckDirection.None.
 			// Forbid recursively checking.
 			CheckDirection oldDirection = CheckDirection.All;
-			if(ListView != null)
+			if (ListView != null)
 			{
 				oldDirection = ListView._checkDirection;
 				ListView._checkDirection = CheckDirection.None;
 			}
 
 			// The item wasn't expanded -> raise an event
-			if(Visible && !_isexpanded && ListView != null)
+			if (Visible && !_isexpanded && ListView != null)
 			{
 				TreeListViewCancelEventArgs e = new TreeListViewCancelEventArgs(
 					this, TreeListViewAction.Expand);
 				ListView.RaiseBeforeExpand(e);
-				if(e.Cancel) return;
+				if (e.Cancel) return;
 			}
 
-			if(Visible)
-				for(int i = Items.Count - 1 ; i >= 0 ;i--)
+			if (Visible)
+				for (int i = Items.Count - 1; i >= 0; i--)
 				{
 					TreeListViewItem item = this.Items[i];
-					if(!item.Visible)
+					if (!item.Visible)
 					{
 						ListView LView = this.ListView;
 						LView.Items.Insert(
 							this.Index + 1, item);
 						item.SetIndentation();
 					}
-					if(item.IsExpanded) item.Expand(); 
-				} 
+					if (item.IsExpanded) item.Expand();
+				}
 			// The item wasn't expanded -> raise an event
-			if(Visible && !_isexpanded && IsInATreeListView)
+			if (Visible && !_isexpanded && IsInATreeListView)
 			{
 				this._isexpanded = true;
 				TreeListViewEventArgs e = new TreeListViewEventArgs(
@@ -659,10 +820,10 @@ namespace System.Windows.Forms
 			this._isexpanded = true;
 
 			// Reset ListView.checkDirection
-			if(IsInATreeListView)
+			if (IsInATreeListView)
 				ListView._checkDirection = oldDirection;
-			if(TreeListView != null && selItem != null)
-				if(selItem.Visible)
+			if (TreeListView != null && selItem != null)
+				if (selItem.Visible)
 					selItem.Focused = true;
 		}
 		/// <summary>
@@ -670,24 +831,54 @@ namespace System.Windows.Forms
 		/// </summary>
 		public void ExpandAll()
 		{
-			if(IsInATreeListView)
-				if(ListView.InvokeRequired)
-					throw(new Exception("Invoke Required"));
-			if(TreeListView != null) TreeListView.BeginUpdate();
+			if (IsInATreeListView)
+				if (ListView.InvokeRequired)
+					throw (new Exception("Invoke Required"));
+			if (TreeListView != null) TreeListView.BeginUpdate();
 			ExpandAllInternal();
-			if(TreeListView != null) TreeListView.EndUpdate();
+			if (TreeListView != null) TreeListView.EndUpdate();
 		}
 		internal void ExpandAllInternal()
 		{
-			if(IsInATreeListView)
-				if(ListView.InvokeRequired)
-					throw(new Exception("Invoke Required"));
+			if (IsInATreeListView)
+				if (ListView.InvokeRequired)
+					throw (new Exception("Invoke Required"));
 			ExpandInternal();
 			// Expand canceled -> stop expandall for the children of this item
-			if(!IsExpanded) return;
-			for(int i = 0 ; i < Items.Count ; i++)
+			if (!IsExpanded) return;
+			for (int i = 0; i < Items.Count; i++)
 				Items[i].ExpandAllInternal();
 		}
+
+		// 2011-07-08 添加 -------------------------------------------------------------------------
+		/// <summary>
+		/// 从根结点展开到此结点可见
+		/// </summary>
+		public void ExpandParents()
+		{
+			if (IsInATreeListView)
+				if (ListView.InvokeRequired)
+					throw (new Exception("Invoke Required"));
+			if (TreeListView != null) TreeListView.BeginUpdate();
+			ExpandParentsInternal();
+			if (TreeListView != null) TreeListView.EndUpdate();
+		}
+		internal void ExpandParentsInternal()
+		{
+			if (IsInATreeListView)
+				if (ListView.InvokeRequired)
+					throw (new Exception("Invoke Required"));
+
+			TreeListViewItem[] Parents = ParentsInHierarch;
+			foreach (TreeListViewItem node in Parents)
+			{
+				if (!node.IsExpanded)
+				{
+					node.Expand();
+				}
+			}
+		}
+		// =========================================================================================
 		#endregion
 		#region Collapse
 		/// <summary>
@@ -695,55 +886,55 @@ namespace System.Windows.Forms
 		/// </summary>
 		public void Collapse()
 		{
-			if(IsInATreeListView)
-				if(ListView.InvokeRequired)
-					throw(new Exception("Invoke Required"));
-			if(TreeListView != null) TreeListView.BeginUpdate();
+			if (IsInATreeListView)
+				if (ListView.InvokeRequired)
+					throw (new Exception("Invoke Required"));
+			if (TreeListView != null) TreeListView.BeginUpdate();
 			CollapseInternal();
-			if(TreeListView != null) TreeListView.EndUpdate();
+			if (TreeListView != null) TreeListView.EndUpdate();
 		}
 		internal void CollapseInternal()
 		{
-			if(IsInATreeListView)
-				if(ListView.InvokeRequired)
-					throw(new Exception("Invoke Required"));
+			if (IsInATreeListView)
+				if (ListView.InvokeRequired)
+					throw (new Exception("Invoke Required"));
 			TreeListViewItem selItem = null;
-			if(TreeListView != null) selItem = TreeListView.FocusedItem;
+			if (TreeListView != null) selItem = TreeListView.FocusedItem;
 			// The item was expanded -> raise an event
-			if(Visible && _isexpanded && ListView != null)
+			if (Visible && _isexpanded && ListView != null)
 			{
 				TreeListViewCancelEventArgs e = new TreeListViewCancelEventArgs(
 					this, TreeListViewAction.Collapse);
 				ListView.RaiseBeforeCollapse(e);
-				if(e.Cancel) return;
+				if (e.Cancel) return;
 			}
 
 			// Collapse
-			if(this.Visible)
-				foreach(TreeListViewItem item in Items)
-						item.Hide();
-			
+			if (this.Visible)
+				foreach (TreeListViewItem item in Items)
+					item.Hide();
+
 			// The item was expanded -> raise an event
-			if(Visible && _isexpanded && IsInATreeListView)
+			if (Visible && _isexpanded && IsInATreeListView)
 			{
 				this._isexpanded = false;
 				TreeListViewEventArgs e = new TreeListViewEventArgs(
 					this, TreeListViewAction.Collapse);
 				ListView.RaiseAfterCollapse(e);
-				if(AfterCollapse != null) AfterCollapse(this);
+				if (AfterCollapse != null) AfterCollapse(this);
 			}
 			this._isexpanded = false;
-			if(IsInATreeListView && selItem != null)
+			if (IsInATreeListView && selItem != null)
 			{
-				if(selItem.Visible)
+				if (selItem.Visible)
 					selItem.Focused = true;
 				else
 				{
-					ListView listview = (ListView) TreeListView;
+					ListView listview = (ListView)TreeListView;
 					listview.SelectedItems.Clear();
 					TreeListViewItem[] items = selItem.ParentsInHierarch;
-					for(int i = items.Length - 1; i >= 0; i--)
-						if(items[i].Visible)
+					for (int i = items.Length - 1; i >= 0; i--)
+						if (items[i].Visible)
 						{
 							items[i].Focused = true;
 							break;
@@ -756,19 +947,19 @@ namespace System.Windows.Forms
 		/// </summary>
 		public void CollapseAll()
 		{
-			if(IsInATreeListView)
-				if(ListView.InvokeRequired)
-					throw(new Exception("Invoke Required"));
-			if(TreeListView != null) TreeListView.BeginUpdate();
+			if (IsInATreeListView)
+				if (ListView.InvokeRequired)
+					throw (new Exception("Invoke Required"));
+			if (TreeListView != null) TreeListView.BeginUpdate();
 			CollapseAllInternal();
-			if(TreeListView != null) TreeListView.EndUpdate();
+			if (TreeListView != null) TreeListView.EndUpdate();
 		}
 		internal void CollapseAllInternal()
 		{
-			if(IsInATreeListView)
-				if(ListView.InvokeRequired)
-					throw(new Exception("Invoke Required"));
-			foreach(TreeListViewItem item in this.Items)
+			if (IsInATreeListView)
+				if (ListView.InvokeRequired)
+					throw (new Exception("Invoke Required"));
+			foreach (TreeListViewItem item in this.Items)
 				item.CollapseAllInternal();
 			CollapseInternal();
 		}
@@ -778,11 +969,11 @@ namespace System.Windows.Forms
 		/// </summary>
 		internal void Hide()
 		{
-			if(IsInATreeListView)
-				if(ListView.InvokeRequired)
-					throw(new Exception("Invoke Required"));
-			foreach(TreeListViewItem item in Items) item.Hide();
-			if(Visible) base.Remove();
+			if (IsInATreeListView)
+				if (ListView.InvokeRequired)
+					throw (new Exception("Invoke Required"));
+			foreach (TreeListViewItem item in Items) item.Hide();
+			if (Visible) base.Remove();
 			Selected = false;
 		}
 		#endregion
@@ -790,21 +981,21 @@ namespace System.Windows.Forms
 		#region DrawPlusMinus
 		internal void DrawPlusMinus()
 		{
-			if(!IsInATreeListView) return;
-			if(TreeListView._updating) return;
+			if (!IsInATreeListView) return;
+			if (TreeListView._updating) return;
 			Graphics g = Graphics.FromHwnd(TreeListView.Handle);
 			DrawPlusMinus(g);
 			g.Dispose();
 		}
 		internal void DrawPlusMinus(Graphics g)
 		{
-			if(!IsInATreeListView) return;
-			if(TreeListView._updating) return;
+			if (!IsInATreeListView) return;
+			if (TreeListView._updating) return;
 			Debug.Assert(!TreeListView.InvokeRequired);
-			if(Items.Count == 0 || TreeListView.Columns.Count == 0) return;
+			if (Items.Count == 0 || TreeListView.Columns.Count == 0) return;
 			Drawing.Imaging.ImageAttributes attr = new Drawing.Imaging.ImageAttributes();
 			attr.SetColorKey(Color.Transparent, Color.Transparent);
-			if(TreeListView.Columns[0].Width > (Level + 1) * SystemInformation.SmallIconSize.Width)
+			if (TreeListView.Columns[0].Width > (Level + 1) * SystemInformation.SmallIconSize.Width)
 				g.DrawImage(
 					TreeListView.plusMinusImageList.Images[IsExpanded ? 1 : 0],
 					GetBounds(TreeListViewItemBoundsPortion.PlusMinus),
@@ -816,18 +1007,18 @@ namespace System.Windows.Forms
 		#region DrawPlusMinusLines
 		internal void DrawPlusMinusLines()
 		{
-			if(!IsInATreeListView) return;
-			if(TreeListView._updating) return;
+			if (!IsInATreeListView) return;
+			if (TreeListView._updating) return;
 			Graphics g = Graphics.FromHwnd(TreeListView.Handle);
 			DrawPlusMinusLines(g);
 			g.Dispose();
 		}
 		internal void DrawPlusMinusLines(Graphics g)
 		{
-			if(!IsInATreeListView) return;
-			if(TreeListView._updating) return;
+			if (!IsInATreeListView) return;
+			if (TreeListView._updating) return;
 			Debug.Assert(!TreeListView.InvokeRequired);
-			if(!TreeListView.ShowPlusMinus || TreeListView.Columns.Count == 0) return;
+			if (!TreeListView.ShowPlusMinus || TreeListView.Columns.Count == 0) return;
 			int itemLevel = Level;
 			Rectangle plusminusRect = GetBounds(TreeListViewItemBoundsPortion.PlusMinus);
 			Rectangle entireRect = GetBounds(TreeListViewItemBoundsPortion.Entire);
@@ -838,32 +1029,32 @@ namespace System.Windows.Forms
 			point1 = new Point(
 				plusminusRect.Right - SystemInformation.SmallIconSize.Width / 2 - 1,
 				entireRect.Top);
-			point2 = new Point( point1.X, entireRect.Bottom);
+			point2 = new Point(point1.X, entireRect.Bottom);
 			// If ListView has no items that have the same level before this item
-			if(!HasLevelBeforeItem(itemLevel)) point1.Y += SystemInformation.SmallIconSize.Height / 2;
+			if (!HasLevelBeforeItem(itemLevel)) point1.Y += SystemInformation.SmallIconSize.Height / 2;
 			// If ListView has no items that have the same level after this item
-			if(!HasLevelAfterItem(itemLevel)) point2.Y -= SystemInformation.SmallIconSize.Height / 2 + 1;
-			if(TreeListView.Columns[0].Width > (Level + 1) * SystemInformation.SmallIconSize.Width)
+			if (!HasLevelAfterItem(itemLevel)) point2.Y -= SystemInformation.SmallIconSize.Height / 2 + 1;
+			if (TreeListView.Columns[0].Width > (Level + 1) * SystemInformation.SmallIconSize.Width)
 				g.DrawLine(pen, point1, point2);
 			#endregion
 			#region Horizontal line
 			point1 = new Point(
 				plusminusRect.Right - SystemInformation.SmallIconSize.Width / 2 - 1,
-				GetBounds(TreeListViewItemBoundsPortion.Entire).Top + SystemInformation.SmallIconSize.Height /2);
+				GetBounds(TreeListViewItemBoundsPortion.Entire).Top + SystemInformation.SmallIconSize.Height / 2);
 			point2 = new Point(plusminusRect.Right + 1, point1.Y);
-			if(TreeListView.Columns[0].Width > (Level + 1) * SystemInformation.SmallIconSize.Width)
+			if (TreeListView.Columns[0].Width > (Level + 1) * SystemInformation.SmallIconSize.Width)
 				g.DrawLine(pen, point1, point2);
 			#endregion
 			#region Lower Level lines
-			for(int level = Level - 1; level > -1; level--)
-				if(HasLevelAfterItem(level))
+			for (int level = Level - 1; level > -1; level--)
+				if (HasLevelAfterItem(level))
 				{
 					point1 = new Point(
-						SystemInformation.SmallIconSize.Width * (2*level + 1) / 2 + entireRect.X,
+						SystemInformation.SmallIconSize.Width * (2 * level + 1) / 2 + entireRect.X,
 						entireRect.Top);
 					point2 = new Point(
 						point1.X, entireRect.Bottom);
-					if(TreeListView.Columns[0].Width > (level + 1) * SystemInformation.SmallIconSize.Width)
+					if (TreeListView.Columns[0].Width > (level + 1) * SystemInformation.SmallIconSize.Width)
 						g.DrawLine(pen, point1, point2);
 				}
 			#endregion
@@ -872,28 +1063,28 @@ namespace System.Windows.Forms
 		}
 		internal bool HasLevelAfterItem(int level)
 		{
-			if(TreeListView == null) return false;
+			if (TreeListView == null) return false;
 			Debug.Assert(!TreeListView.InvokeRequired);
 			int lev = Level, tempLevel;
-			ListView listview = (ListView) TreeListView;
-			for(int i = Index + 1; i < listview.Items.Count; i++)
+			ListView listview = (ListView)TreeListView;
+			for (int i = Index + 1; i < listview.Items.Count; i++)
 			{
 				tempLevel = ((TreeListViewItem)listview.Items[i]).Level;
-				if(tempLevel == level) return true;
-				if(tempLevel < level) return false;
+				if (tempLevel == level) return true;
+				if (tempLevel < level) return false;
 			}
 			return false;
 		}
 		internal bool HasLevelBeforeItem(int level)
 		{
-			if(TreeListView == null) return false;
+			if (TreeListView == null) return false;
 			Debug.Assert(!TreeListView.InvokeRequired);
 			int lev = Level, tempLevel;
-			ListView listview = (ListView) TreeListView;
-			for(int i = Index - 1; i > -1; i--)
+			ListView listview = (ListView)TreeListView;
+			for (int i = Index - 1; i > -1; i--)
 			{
 				tempLevel = ((TreeListViewItem)listview.Items[i]).Level;
-				if(tempLevel <= level) return true;
+				if (tempLevel <= level) return true;
 			}
 			return false;
 		}
@@ -901,14 +1092,14 @@ namespace System.Windows.Forms
 		#region DrawFocusCues
 		internal void DrawFocusCues()
 		{
-			if(!IsInATreeListView) return;
-			if(TreeListView._updating) return;
-			if(TreeListView.HideSelection && !TreeListView.Focused) return;
+			if (!IsInATreeListView) return;
+			if (TreeListView._updating) return;
+			if (TreeListView.HideSelection && !TreeListView.Focused) return;
 			Graphics g = Graphics.FromHwnd(TreeListView.Handle);
-			if(Visible)
+			if (Visible)
 			{
 				Rectangle entireitemrect = GetBounds(ItemBoundsPortion.Entire);
-				if(entireitemrect.Bottom > entireitemrect.Height * 1.5f)
+				if (entireitemrect.Bottom > entireitemrect.Height * 1.5f)
 				{
 					Rectangle labelitemrect = GetBounds(ItemBoundsPortion.Label);
 					Rectangle itemonlyrect = GetBounds(ItemBoundsPortion.ItemOnly);
@@ -918,47 +1109,47 @@ namespace System.Windows.Forms
 						TreeListView.FullRowSelect ? entireitemrect.Width - labelitemrect.Left - 1 : itemonlyrect.Width - SystemInformation.SmallIconSize.Width - 1,
 						labelitemrect.Height - 1);
 					Pen pen = new Pen(TreeListView.Focused && Selected ? Color.Blue : ColorUtil.CalculateColor(SystemColors.Highlight, SystemColors.Window, 130));
-					for(int i = 1; i < TreeListView.Columns.Count; i++)
+					for (int i = 1; i < TreeListView.Columns.Count; i++)
 					{
 						Rectangle rect = TreeListView.GetSubItemRect(Index, i);
-						if(rect.X < selecteditemrect.X)
+						if (rect.X < selecteditemrect.X)
 							selecteditemrect = new Rectangle(
 								rect.X, selecteditemrect.Y,
-								selecteditemrect.Width + (selecteditemrect.X-rect.X),
+								selecteditemrect.Width + (selecteditemrect.X - rect.X),
 								selecteditemrect.Height);
 					}
 					g.DrawRectangle(new Pen(ColorUtil.VSNetSelectionColor), selecteditemrect);
 					// Fill the item (in CommCtl V6, the selection area is not always the same :
 					// label only or first column). I decided to always draw the entire column...
-					if(!TreeListView.FullRowSelect)
+					if (!TreeListView.FullRowSelect)
 						g.FillRectangle(
 							new SolidBrush(BackColor),
-							itemonlyrect.Right-1, itemonlyrect.Top,
+							itemonlyrect.Right - 1, itemonlyrect.Top,
 							labelitemrect.Width - itemonlyrect.Width + SystemInformation.SmallIconSize.Width + 1, selecteditemrect.Height + 1);
 					bool draw = true;
-					if(PrevVisibleItem != null)
-						if(PrevVisibleItem.Selected) draw = false;
+					if (PrevVisibleItem != null)
+						if (PrevVisibleItem.Selected) draw = false;
 					// Draw upper line if previous item is not selected
-					if(draw) g.DrawLine(pen, selecteditemrect.Left, selecteditemrect.Top, selecteditemrect.Right, selecteditemrect.Top);
+					if (draw) g.DrawLine(pen, selecteditemrect.Left, selecteditemrect.Top, selecteditemrect.Right, selecteditemrect.Top);
 					g.DrawLine(pen, selecteditemrect.Left, selecteditemrect.Top, selecteditemrect.Left, selecteditemrect.Bottom);
 					draw = true;
-					if(NextVisibleItem != null)
-						if(NextVisibleItem.Selected) draw = false;
+					if (NextVisibleItem != null)
+						if (NextVisibleItem.Selected) draw = false;
 					// Draw lower line if net item is not selected
-					if(draw) g.DrawLine(pen, selecteditemrect.Left, selecteditemrect.Bottom, selecteditemrect.Right, selecteditemrect.Bottom);
+					if (draw) g.DrawLine(pen, selecteditemrect.Left, selecteditemrect.Bottom, selecteditemrect.Right, selecteditemrect.Bottom);
 					g.DrawLine(pen, selecteditemrect.Right, selecteditemrect.Top, selecteditemrect.Right, selecteditemrect.Bottom);
 					// If FullRowSelect is false and multiselect is enabled, the items don't have the same width
-					if(!TreeListView.FullRowSelect && NextVisibleItem != null)
-						if(NextVisibleItem.Selected)
+					if (!TreeListView.FullRowSelect && NextVisibleItem != null)
+						if (NextVisibleItem.Selected)
 						{
 							int nextItemWidth = NextVisibleItem.GetBounds(TreeListViewItemBoundsPortion.ItemOnly).Width;
-							if(nextItemWidth != itemonlyrect.Width)
+							if (nextItemWidth != itemonlyrect.Width)
 							{
 								g.DrawLine(
 									pen,
 									selecteditemrect.Right,
 									selecteditemrect.Bottom,
-									selecteditemrect.Right - (itemonlyrect.Width-nextItemWidth),
+									selecteditemrect.Right - (itemonlyrect.Width - nextItemWidth),
 									selecteditemrect.Bottom);
 							}
 						}
@@ -971,26 +1162,26 @@ namespace System.Windows.Forms
 		#region DrawIntermediateState
 		internal void DrawIntermediateState()
 		{
-			if(!IsInATreeListView) return;
-			if(TreeListView._updating) return;
+			if (!IsInATreeListView) return;
+			if (TreeListView._updating) return;
 			Graphics g = Graphics.FromHwnd(TreeListView.Handle);
 			DrawIntermediateState(g);
 			g.Dispose();
 		}
 		internal void DrawIntermediateState(Graphics g)
 		{
-			if(!IsInATreeListView) return;
-			if(TreeListView._updating) return;
+			if (!IsInATreeListView) return;
+			if (TreeListView._updating) return;
 			Debug.Assert(!TreeListView.InvokeRequired);
-			if(TreeListView.CheckBoxes != CheckBoxesTypes.Recursive || TreeListView.Columns.Count == 0) return;
-			if(CheckStatus == CheckState.Indeterminate)
+			if (TreeListView.CheckBoxes != CheckBoxesTypes.Recursive || TreeListView.Columns.Count == 0) return;
+			if (CheckStatus == CheckState.Indeterminate)
 			{
 				Rectangle rect = GetBounds(ItemBoundsPortion.Icon);
 				Rectangle r = TreeListView._comctl32Version >= 6 ?
-					new Rectangle(rect.Left - 14, rect.Top + 5, rect.Height-10, rect.Height-10) :
-					new Rectangle(rect.Left - 11, rect.Top + 5, rect.Height-10, rect.Height-10);
+					new Rectangle(rect.Left - 14, rect.Top + 5, rect.Height - 10, rect.Height - 10) :
+					new Rectangle(rect.Left - 11, rect.Top + 5, rect.Height - 10, rect.Height - 10);
 				Brush brush = new Drawing.Drawing2D.LinearGradientBrush(r, Color.Gray, Color.LightBlue, 45, false);
-				if(TreeListView.Columns[0].Width > (Level + (TreeListView.ShowPlusMinus?2:1)) * SystemInformation.SmallIconSize.Width)
+				if (TreeListView.Columns[0].Width > (Level + (TreeListView.ShowPlusMinus ? 2 : 1)) * SystemInformation.SmallIconSize.Width)
 					g.FillRectangle(brush, r);
 				brush.Dispose();
 			}

@@ -283,25 +283,33 @@ namespace Apq.TreeListView
 
 		public void LoadChildren(TreeListViewItem node, string fsFullPath, bool Recursive = false)
 		{
-			string[] strChildren = Directory.GetDirectories(fsFullPath + "\\");
-			if (strChildren.LongLength > 0)
+			try
 			{
-				node.SubItems[Columns.Count + 1].Text = "1";
+				string[] strChildren = Directory.GetDirectories(fsFullPath + "\\");
+				if (strChildren.LongLength > 0)
+				{
+					node.SubItems[Columns.Count + 1].Text = "1";
+				}
+				foreach (string strChild in strChildren)
+				{
+					AddFolder(node, strChild, Recursive);
+				}
 			}
-			foreach (string strChild in strChildren)
-			{
-				AddFolder(node, strChild, Recursive);
-			}
+			catch { }
 
-			strChildren = Directory.GetFiles(fsFullPath + "\\");
-			if (node.SubItems[Columns.Count + 1].Text == "0")
+			try
 			{
-				node.SubItems[Columns.Count + 1].Text = strChildren.LongLength > 0 ? "1" : "-1";
+				string[] strChildren = Directory.GetFiles(fsFullPath + "\\");
+				if (node.SubItems[Columns.Count + 1].Text == "0")
+				{
+					node.SubItems[Columns.Count + 1].Text = strChildren.LongLength > 0 ? "1" : "-1";
+				}
+				foreach (string strChild in strChildren)
+				{
+					AddFile(node, strChild);
+				}
 			}
-			foreach (string strChild in strChildren)
-			{
-				AddFile(node, strChild);
-			}
+			catch { }
 
 			// 排序
 			//try { node.Items.Sort(Recursive); }

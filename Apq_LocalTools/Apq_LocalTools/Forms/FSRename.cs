@@ -390,15 +390,24 @@ namespace Apq_LocalTools
 			if (!fsExplorer1.Focused)
 			{
 				fsExplorer1.Focus();
-
-				fsExplorer1.ExpandAll();
-				Application.DoEvents();
 			}
 
-			// 找到符合条件的下一个结点并高亮显示
-			int nIdx = 1 + (fsExplorer1.FocusedItem == null ? -1 : fsExplorer1.FocusedItem.Index);
+			// 找到搜索起始结点
+			TreeListViewItem node1 = fsExplorer1.FocusedItem;
+			TreeListViewItem node2 = null;//从该结点开始检测
+			if (node1 == null)
+			{
+				if (fsExplorer1.Items.Count > 0)
+				{
+					node2 = fsExplorer1.Items[0];
+				}
+			}
+			else
+			{
+				node2 = node1.NextRowItem;
+			}
 
-			if (nIdx >= fsExplorer1.ItemsCount - 1)
+			if (node2 == null)
 			{
 				DialogResult rDiag = MessageBox.Show(this,
 					Apq.GlobalObject.UILang["搜索已到达末结点，是否再从头开始？"],
@@ -406,26 +415,38 @@ namespace Apq_LocalTools
 					MessageBoxButtons.YesNo);
 				if (rDiag == DialogResult.Yes)
 				{
-					nIdx = 0;
+					if (fsExplorer1.FocusedItem != null)
+					{
+						fsExplorer1.FocusedItem.Focused = false;
+					}
+
+					btnFind_Click(sender, e);
 				}
-				else
-				{
-					return;
-				}
+				return;
 			}
 
-			for (int i = nIdx; i < fsExplorer1.ItemsCount; i++)
+			while (node2 != null)
 			{
-				TreeListViewItem node = fsExplorer1.GetTreeListViewItemFromIndex(i);
-				int Type = Apq.Convert.ChangeType<int>(node.SubItems[fsExplorer1.Columns.Count + 2].Text);
+				int Type = Apq.Convert.ChangeType<int>(node2.SubItems[fsExplorer1.Columns.Count + 2].Text);
+				// 加载子结点
+				if (Type == 2 && node2.Checked)//此文件夹已勾选
+				{
+					int HasChildren = Apq.Convert.ChangeType<int>(node2.SubItems[fsExplorer1.Columns.Count + 1].Text);
+					if (HasChildren == 0)
+					{
+						fsExplorer1.LoadChildren(node2, node2.FullPath, cbRecursive.Checked);
+					}
+				}
+
 				if (Type == 3)
 				{//文件
-					if (Apq.IO.PathHelper.MatchFileExt(node.FullPath, txtExt.Text))
+					if (Apq.IO.PathHelper.MatchFileExt(node2.FullPath, txtExt.Text))
 					{
 						string strOut = string.Empty;
-						if (FileReplace(node.FullPath, ref strOut))
+						if (FileReplace(node2.FullPath, ref strOut))
 						{
-							node.Focused = true;
+							node2.EnsureVisible();
+							node2.Focused = true;
 							return;
 						}
 					}
@@ -433,12 +454,15 @@ namespace Apq_LocalTools
 				else if (cbContainsFolder.Checked)
 				{//文件夹
 					string strOut = string.Empty;
-					if (FolderReplace(node.FullPath, ref strOut))
+					if (FolderReplace(node2.FullPath, ref strOut))
 					{
-						node.Focused = true;
+						node2.EnsureVisible();
+						node2.Focused = true;
 						return;
 					}
 				}
+
+				node2 = node2.NextRowItem;
 			}
 
 			DialogResult eDiag = MessageBox.Show(this,

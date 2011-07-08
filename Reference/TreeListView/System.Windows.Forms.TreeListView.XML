@@ -4,75 +4,6 @@
         <name>System.Windows.Forms.TreeListView</name>
     </assembly>
     <members>
-        <member name="T:System.Windows.Forms.TreeListViewItemsEditorForm">
-            <summary>
-            Editor for the TreeListView.Items property
-            </summary>
-        </member>
-        <member name="M:System.Windows.Forms.TreeListViewItemsEditorForm.#ctor(System.Windows.Forms.TreeListViewItemCollection)">
-            <summary>
-            Constructor
-            </summary>
-            <param name="collection"></param>
-        </member>
-        <member name="M:System.Windows.Forms.TreeListViewItemsEditorForm.Dispose(System.Boolean)">
-            <summary>
-            Nettoyage des ressources utilis閑s.
-            </summary>
-        </member>
-        <member name="M:System.Windows.Forms.TreeListViewItemsEditorForm.InitializeComponent">
-            <summary>
-            M閠hode requise pour la prise en charge du concepteur - ne modifiez pas
-            le contenu de cette m閠hode avec l'閐iteur de code.
-            </summary>
-        </member>
-        <member name="P:System.Windows.Forms.TreeListViewItemsEditorForm.Items">
-            <summary>
-            Get the items that are edited in this form
-            </summary>
-        </member>
-        <member name="T:System.Windows.Forms.TreeListViewItemsEditor">
-            <summary>
-            UITypeEditor for the TreeListView.Items property
-            </summary>
-        </member>
-        <member name="M:System.Windows.Forms.TreeListViewItemsEditor.#ctor">
-            <summary>
-            Constructor
-            </summary>
-        </member>
-        <member name="M:System.Windows.Forms.TreeListViewItemsEditor.GetEditStyle(System.ComponentModel.ITypeDescriptorContext)">
-            <summary>
-            Shows a dropdown icon in the property editor
-            </summary>
-            <param name="context">The context of the editing control</param>
-            <returns>Returns <c>UITypeEditorEditStyle.DropDown</c></returns>
-        </member>
-        <member name="M:System.Windows.Forms.TreeListViewItemsEditor.EditValue(System.ComponentModel.ITypeDescriptorContext,System.IServiceProvider,System.Object)">
-            <summary>
-            Overrides the method used to provide basic behaviour for selecting editor.
-            Shows our custom control for editing the value.
-            </summary>
-            <param name="context">The context of the editing control</param>
-            <param name="provider">A valid service provider</param>
-            <param name="value">The current value of the object to edit</param>
-            <returns>The new value of the object</returns>
-        </member>
-        <member name="T:System.Windows.Forms.ITreeListViewItemComparer">
-            <summary>
-            Interface ITreeListViewItemComparer
-            </summary>
-        </member>
-        <member name="P:System.Windows.Forms.ITreeListViewItemComparer.SortOrder">
-            <summary>
-            Sort order
-            </summary>
-        </member>
-        <member name="P:System.Windows.Forms.ITreeListViewItemComparer.Column">
-            <summary>
-            Column for the comparison
-            </summary>
-        </member>
         <member name="T:System.Windows.Forms.TreeListView">
             <summary>
             TreeListView control (simulates a TreeView in a ListView)
@@ -706,268 +637,19 @@
             Check children recursively and set indeterminate state for the parents
             </summary>
         </member>
-        <member name="T:System.Windows.Forms.SelectedTreeListViewItemCollection">
+        <member name="T:System.Windows.Forms.ITreeListViewItemComparer">
             <summary>
-            Collection of selected items in a TreeListView
+            Interface ITreeListViewItemComparer
             </summary>
         </member>
-        <member name="M:System.Windows.Forms.SelectedTreeListViewItemCollection.#ctor(System.Windows.Forms.TreeListView)">
+        <member name="P:System.Windows.Forms.ITreeListViewItemComparer.SortOrder">
             <summary>
-            Create a new instance of a SelectedTreeListViewItemCollection
-            </summary>
-            <param name="TreeListView"></param>
-        </member>
-        <member name="M:System.Windows.Forms.SelectedTreeListViewItemCollection.Contains(System.Windows.Forms.TreeListViewItem)">
-            <summary>
-            Returns true if the specified item is in the collection
-            </summary>
-            <param name="item"></param>
-            <returns></returns>
-        </member>
-        <member name="M:System.Windows.Forms.SelectedTreeListViewItemCollection.IndexOf(System.Windows.Forms.TreeListViewItem)">
-            <summary>
-            Index of an item
-            </summary>
-            <param name="item"></param>
-            <returns></returns>
-        </member>
-        <member name="P:System.Windows.Forms.SelectedTreeListViewItemCollection.Item(System.Int32)">
-            <summary>
-            Gets a TreeListViewItem at the specified index
+            Sort order
             </summary>
         </member>
-        <member name="T:System.Windows.Forms.TreeListViewItemBoundsPortion">
+        <member name="P:System.Windows.Forms.ITreeListViewItemComparer.Column">
             <summary>
-            Specifies a portion of the tree list view item from which to retrieve the bounding rectangle
-            </summary>
-        </member>
-        <member name="F:System.Windows.Forms.TreeListViewItemBoundsPortion.Entire">
-            <summary>
-            The bounding rectangle of the entire item, including the icon, the item text, and the subitem text (if displayed), should be retrieved
-            </summary>
-        </member>
-        <member name="F:System.Windows.Forms.TreeListViewItemBoundsPortion.Icon">
-            <summary>
-            The bounding rectangle of the icon or small icon should be retrieved
-            </summary>
-        </member>
-        <member name="F:System.Windows.Forms.TreeListViewItemBoundsPortion.ItemOnly">
-            <summary>
-            The bounding rectangle specified by the Entire value without the subitems
-            </summary>
-        </member>
-        <member name="F:System.Windows.Forms.TreeListViewItemBoundsPortion.Label">
-            <summary>
-            The bounding rectangle of the item text should be retrieved
-            </summary>
-        </member>
-        <member name="F:System.Windows.Forms.TreeListViewItemBoundsPortion.PlusMinus">
-            <summary>
-            The bounding rectangle of the item plus minus
-            </summary>
-        </member>
-        <member name="T:System.Windows.Forms.TreeListViewItem">
-            <summary>
-            Represents an item in a TreeListView control
-            </summary>
-        </member>
-        <member name="M:System.Windows.Forms.TreeListViewItem.#ctor">
-            <summary>
-            Create a new instance of a TreeListViewItem
-            </summary>
-        </member>
-        <member name="M:System.Windows.Forms.TreeListViewItem.#ctor(System.String)">
-            <summary>
-            Create a new instance of a TreeListViewItem
-            </summary>
-        </member>
-        <member name="M:System.Windows.Forms.TreeListViewItem.#ctor(System.String,System.Int32)">
-            <summary>
-            Create a new instance of a TreeListViewItem
-            </summary>
-        </member>
-        <member name="M:System.Windows.Forms.TreeListViewItem.BeginEdit(System.Int32)">
-            <summary>
-            Places the subitem into edit mode
-            </summary>
-            <param name="column">Number of the subitem to edit</param>
-        </member>
-        <member name="M:System.Windows.Forms.TreeListViewItem.BeginEdit">
-            <summary>
-            Places the item into edit mode
-            </summary>
-        </member>
-        <member name="M:System.Windows.Forms.TreeListViewItem.Redraw">
-            <summary>
-            Asks the associated TreeListView control to redraw this item
-            </summary>
-        </member>
-        <member name="M:System.Windows.Forms.TreeListViewItem.GetBounds(System.Windows.Forms.TreeListViewItemBoundsPortion)">
-            <summary>
-            Retrieves the specified portion of the bounding rectangle for the item
-            </summary>
-            <param name="portion">One of the TreeListViewItemBoundsPortion values that represents a portion of the item for which to retrieve the bounding rectangle</param>
-            <returns>A Rectangle that represents the bounding rectangle for the specified portion of the item</returns>
-        </member>
-        <member name="M:System.Windows.Forms.TreeListViewItem.Remove">
-            <summary>
-            Remove this item from its associated collection
-            </summary>
-        </member>
-        <member name="M:System.Windows.Forms.TreeListViewItem.IsAParentOf(System.Windows.Forms.TreeListViewItem)">
-            <summary>
-            Check if this node is one of the parents of an item (recursively)
-            </summary>
-            <param name="item"></param>
-            <returns></returns>
-        </member>
-        <member name="M:System.Windows.Forms.TreeListViewItem.EnsureVisible">
-            <summary>
-            Ensure that the node is visible (expand parents and scroll listview so that the item is visible)
-            </summary>
-        </member>
-        <member name="M:System.Windows.Forms.TreeListViewItem.SetIndentation">
-            <summary>
-            Set the indentation using the level of this item
-            </summary>
-            <returns>True if successfull, false otherwise</returns>
-        </member>
-        <member name="M:System.Windows.Forms.TreeListViewItem.RefreshIndentation(System.Boolean)">
-            <summary>
-            Refresh indentation of this item and of its children (recursively)
-            </summary>
-            <param name="recursively">Recursively</param>
-        </member>
-        <member name="M:System.Windows.Forms.TreeListViewItem.Expand">
-            <summary>
-            Expand
-            </summary>
-        </member>
-        <member name="M:System.Windows.Forms.TreeListViewItem.ExpandAll">
-            <summary>
-            Expand all sub nodes
-            </summary>
-        </member>
-        <member name="M:System.Windows.Forms.TreeListViewItem.Collapse">
-            <summary>
-            Collapse
-            </summary>
-        </member>
-        <member name="M:System.Windows.Forms.TreeListViewItem.CollapseAll">
-            <summary>
-            Collapse all sub nodes
-            </summary>
-        </member>
-        <member name="M:System.Windows.Forms.TreeListViewItem.Hide">
-            <summary>
-            Hide this node (remove from TreeListView but
-            not from associated Parent items)
-            </summary>
-        </member>
-        <member name="E:System.Windows.Forms.TreeListViewItem.AfterCollapse">
-            <summary>
-            Occurs after the tree node is collapsed
-            </summary>
-        </member>
-        <member name="E:System.Windows.Forms.TreeListViewItem.AfterExpand">
-            <summary>
-            Occurs after the tree node is expanded
-            </summary>
-        </member>
-        <member name="P:System.Windows.Forms.TreeListViewItem.NextVisibleItem">
-            <summary>
-            Gets the next visible item in the TreeListView
-            </summary>
-        </member>
-        <member name="P:System.Windows.Forms.TreeListViewItem.PrevVisibleItem">
-            <summary>
-            Gets the previous visible item in the TreeListView
-            </summary>
-        </member>
-        <member name="P:System.Windows.Forms.TreeListViewItem.Checked">
-            <summary>
-            Gets or sets a value indicating whether the item is checked.
-            </summary>
-        </member>
-        <member name="P:System.Windows.Forms.TreeListViewItem.CheckStatus">
-            <summary>
-            Gets the check state of this item
-            </summary>
-        </member>
-        <member name="P:System.Windows.Forms.TreeListViewItem.ParentsInHierarch">
-            <summary>
-            Gets a collection of the parent of this item
-            </summary>
-        </member>
-        <member name="P:System.Windows.Forms.TreeListViewItem.FullPath">
-            <summary>
-            Gets the fullpath of an item (Parents.Text + \ + this.Text)
-            </summary>
-        </member>
-        <member name="P:System.Windows.Forms.TreeListViewItem.Text">
-            <summary>
-            Get or Set the Text property
-            </summary>
-        </member>
-        <member name="P:System.Windows.Forms.TreeListViewItem.Container">
-            <summary>
-            Get the collection that contains this item
-            </summary>
-        </member>
-        <member name="P:System.Windows.Forms.TreeListViewItem.LastChildIndexInListView">
-            <summary>
-            Get the biggest index in the listview of the visible childs of this item
-            including this item
-            </summary>
-        </member>
-        <member name="P:System.Windows.Forms.TreeListViewItem.ChildrenCount">
-            <summary>
-            Get the children count recursively
-            </summary>
-        </member>
-        <member name="P:System.Windows.Forms.TreeListViewItem.IsExpanded">
-            <summary>
-            Returns true if this item is expanded
-            </summary>
-        </member>
-        <member name="P:System.Windows.Forms.TreeListViewItem.Level">
-            <summary>
-            Get the level of the item in the treelistview
-            </summary>
-        </member>
-        <member name="P:System.Windows.Forms.TreeListViewItem.Items">
-            <summary>
-            Get the items contained in this item
-            </summary>
-        </member>
-        <member name="P:System.Windows.Forms.TreeListViewItem.Parent">
-            <summary>
-            Get the parent of this item
-            </summary>
-        </member>
-        <member name="P:System.Windows.Forms.TreeListViewItem.ListView">
-            <summary>
-            Gets the TreeListView containing this item
-            </summary>
-        </member>
-        <member name="P:System.Windows.Forms.TreeListViewItem.TreeListView">
-            <summary>
-            Gets the TreeListView containing this item
-            </summary>
-        </member>
-        <member name="P:System.Windows.Forms.TreeListViewItem.Visible">
-            <summary>
-            Returns true if this item is visible in the TreeListView
-            </summary>
-        </member>
-        <member name="T:System.Windows.Forms.TreeListViewItem.TreeListViewItemHanlder">
-            <summary>
-            TreeListViewItemHandler delegate
-            </summary>
-        </member>
-        <member name="T:System.Windows.Forms.TreeListViewItem.TreeListViewItemCheckedHandler">
-            <summary>
-            TreeListViewItemCheckedHandler delegate
+            Column for the comparison
             </summary>
         </member>
         <member name="T:System.Windows.Forms.TreeListViewItemCollection">
@@ -1166,6 +848,364 @@
         <member name="P:System.Windows.Forms.TreeListViewItemCollection.TreeListViewItemCollectionComparer.Column">
             <summary>
             Column for the comparison
+            </summary>
+        </member>
+        <member name="T:System.Windows.Forms.SelectedTreeListViewItemCollection">
+            <summary>
+            Collection of selected items in a TreeListView
+            </summary>
+        </member>
+        <member name="M:System.Windows.Forms.SelectedTreeListViewItemCollection.#ctor(System.Windows.Forms.TreeListView)">
+            <summary>
+            Create a new instance of a SelectedTreeListViewItemCollection
+            </summary>
+            <param name="TreeListView"></param>
+        </member>
+        <member name="M:System.Windows.Forms.SelectedTreeListViewItemCollection.Contains(System.Windows.Forms.TreeListViewItem)">
+            <summary>
+            Returns true if the specified item is in the collection
+            </summary>
+            <param name="item"></param>
+            <returns></returns>
+        </member>
+        <member name="M:System.Windows.Forms.SelectedTreeListViewItemCollection.IndexOf(System.Windows.Forms.TreeListViewItem)">
+            <summary>
+            Index of an item
+            </summary>
+            <param name="item"></param>
+            <returns></returns>
+        </member>
+        <member name="P:System.Windows.Forms.SelectedTreeListViewItemCollection.Item(System.Int32)">
+            <summary>
+            Gets a TreeListViewItem at the specified index
+            </summary>
+        </member>
+        <member name="T:System.Windows.Forms.TreeListViewItemsEditorForm">
+            <summary>
+            Editor for the TreeListView.Items property
+            </summary>
+        </member>
+        <member name="M:System.Windows.Forms.TreeListViewItemsEditorForm.#ctor(System.Windows.Forms.TreeListViewItemCollection)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="collection"></param>
+        </member>
+        <member name="M:System.Windows.Forms.TreeListViewItemsEditorForm.Dispose(System.Boolean)">
+            <summary>
+            Nettoyage des ressources utilis閑s.
+            </summary>
+        </member>
+        <member name="M:System.Windows.Forms.TreeListViewItemsEditorForm.InitializeComponent">
+            <summary>
+            M閠hode requise pour la prise en charge du concepteur - ne modifiez pas
+            le contenu de cette m閠hode avec l'閐iteur de code.
+            </summary>
+        </member>
+        <member name="P:System.Windows.Forms.TreeListViewItemsEditorForm.Items">
+            <summary>
+            Get the items that are edited in this form
+            </summary>
+        </member>
+        <member name="T:System.Windows.Forms.TreeListViewItemsEditor">
+            <summary>
+            UITypeEditor for the TreeListView.Items property
+            </summary>
+        </member>
+        <member name="M:System.Windows.Forms.TreeListViewItemsEditor.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:System.Windows.Forms.TreeListViewItemsEditor.GetEditStyle(System.ComponentModel.ITypeDescriptorContext)">
+            <summary>
+            Shows a dropdown icon in the property editor
+            </summary>
+            <param name="context">The context of the editing control</param>
+            <returns>Returns <c>UITypeEditorEditStyle.DropDown</c></returns>
+        </member>
+        <member name="M:System.Windows.Forms.TreeListViewItemsEditor.EditValue(System.ComponentModel.ITypeDescriptorContext,System.IServiceProvider,System.Object)">
+            <summary>
+            Overrides the method used to provide basic behaviour for selecting editor.
+            Shows our custom control for editing the value.
+            </summary>
+            <param name="context">The context of the editing control</param>
+            <param name="provider">A valid service provider</param>
+            <param name="value">The current value of the object to edit</param>
+            <returns>The new value of the object</returns>
+        </member>
+        <member name="T:System.Windows.Forms.TreeListViewItemBoundsPortion">
+            <summary>
+            Specifies a portion of the tree list view item from which to retrieve the bounding rectangle
+            </summary>
+        </member>
+        <member name="F:System.Windows.Forms.TreeListViewItemBoundsPortion.Entire">
+            <summary>
+            The bounding rectangle of the entire item, including the icon, the item text, and the subitem text (if displayed), should be retrieved
+            </summary>
+        </member>
+        <member name="F:System.Windows.Forms.TreeListViewItemBoundsPortion.Icon">
+            <summary>
+            The bounding rectangle of the icon or small icon should be retrieved
+            </summary>
+        </member>
+        <member name="F:System.Windows.Forms.TreeListViewItemBoundsPortion.ItemOnly">
+            <summary>
+            The bounding rectangle specified by the Entire value without the subitems
+            </summary>
+        </member>
+        <member name="F:System.Windows.Forms.TreeListViewItemBoundsPortion.Label">
+            <summary>
+            The bounding rectangle of the item text should be retrieved
+            </summary>
+        </member>
+        <member name="F:System.Windows.Forms.TreeListViewItemBoundsPortion.PlusMinus">
+            <summary>
+            The bounding rectangle of the item plus minus
+            </summary>
+        </member>
+        <member name="T:System.Windows.Forms.TreeListViewItem">
+            <summary>
+            Represents an item in a TreeListView control
+            </summary>
+        </member>
+        <member name="M:System.Windows.Forms.TreeListViewItem.getParentHasNextSibling">
+            <summary>
+            [递归]按树向上搜索第一个具有“下一个兄弟结点”的父级结点
+            </summary>
+        </member>
+        <member name="M:System.Windows.Forms.TreeListViewItem.#ctor">
+            <summary>
+            Create a new instance of a TreeListViewItem
+            </summary>
+        </member>
+        <member name="M:System.Windows.Forms.TreeListViewItem.#ctor(System.String)">
+            <summary>
+            Create a new instance of a TreeListViewItem
+            </summary>
+        </member>
+        <member name="M:System.Windows.Forms.TreeListViewItem.#ctor(System.String,System.Int32)">
+            <summary>
+            Create a new instance of a TreeListViewItem
+            </summary>
+        </member>
+        <member name="M:System.Windows.Forms.TreeListViewItem.BeginEdit(System.Int32)">
+            <summary>
+            Places the subitem into edit mode
+            </summary>
+            <param name="column">Number of the subitem to edit</param>
+        </member>
+        <member name="M:System.Windows.Forms.TreeListViewItem.BeginEdit">
+            <summary>
+            Places the item into edit mode
+            </summary>
+        </member>
+        <member name="M:System.Windows.Forms.TreeListViewItem.Redraw">
+            <summary>
+            Asks the associated TreeListView control to redraw this item
+            </summary>
+        </member>
+        <member name="M:System.Windows.Forms.TreeListViewItem.GetBounds(System.Windows.Forms.TreeListViewItemBoundsPortion)">
+            <summary>
+            Retrieves the specified portion of the bounding rectangle for the item
+            </summary>
+            <param name="portion">One of the TreeListViewItemBoundsPortion values that represents a portion of the item for which to retrieve the bounding rectangle</param>
+            <returns>A Rectangle that represents the bounding rectangle for the specified portion of the item</returns>
+        </member>
+        <member name="M:System.Windows.Forms.TreeListViewItem.Remove">
+            <summary>
+            Remove this item from its associated collection
+            </summary>
+        </member>
+        <member name="M:System.Windows.Forms.TreeListViewItem.IsAParentOf(System.Windows.Forms.TreeListViewItem)">
+            <summary>
+            Check if this node is one of the parents of an item (recursively)
+            </summary>
+            <param name="item"></param>
+            <returns></returns>
+        </member>
+        <member name="M:System.Windows.Forms.TreeListViewItem.EnsureVisible">
+            <summary>
+            Ensure that the node is visible (expand parents and scroll listview so that the item is visible)
+            </summary>
+        </member>
+        <member name="M:System.Windows.Forms.TreeListViewItem.SetIndentation">
+            <summary>
+            Set the indentation using the level of this item
+            </summary>
+            <returns>True if successfull, false otherwise</returns>
+        </member>
+        <member name="M:System.Windows.Forms.TreeListViewItem.RefreshIndentation(System.Boolean)">
+            <summary>
+            Refresh indentation of this item and of its children (recursively)
+            </summary>
+            <param name="recursively">Recursively</param>
+        </member>
+        <member name="M:System.Windows.Forms.TreeListViewItem.Expand">
+            <summary>
+            Expand
+            </summary>
+        </member>
+        <member name="M:System.Windows.Forms.TreeListViewItem.ExpandAll">
+            <summary>
+            Expand all sub nodes
+            </summary>
+        </member>
+        <member name="M:System.Windows.Forms.TreeListViewItem.ExpandParents">
+            <summary>
+            从根结点展开到此结点可见
+            </summary>
+        </member>
+        <member name="M:System.Windows.Forms.TreeListViewItem.Collapse">
+            <summary>
+            Collapse
+            </summary>
+        </member>
+        <member name="M:System.Windows.Forms.TreeListViewItem.CollapseAll">
+            <summary>
+            Collapse all sub nodes
+            </summary>
+        </member>
+        <member name="M:System.Windows.Forms.TreeListViewItem.Hide">
+            <summary>
+            Hide this node (remove from TreeListView but
+            not from associated Parent items)
+            </summary>
+        </member>
+        <member name="E:System.Windows.Forms.TreeListViewItem.AfterCollapse">
+            <summary>
+            Occurs after the tree node is collapsed
+            </summary>
+        </member>
+        <member name="E:System.Windows.Forms.TreeListViewItem.AfterExpand">
+            <summary>
+            Occurs after the tree node is expanded
+            </summary>
+        </member>
+        <member name="P:System.Windows.Forms.TreeListViewItem.NextVisibleItem">
+            <summary>
+            Gets the next visible item in the TreeListView
+            </summary>
+        </member>
+        <member name="P:System.Windows.Forms.TreeListViewItem.NextSibling">
+            <summary>
+            获取下一个同级结点(该结点为最后一个时返回null)
+            </summary>
+        </member>
+        <member name="P:System.Windows.Forms.TreeListViewItem.PrevSibling">
+            <summary>
+            获取上一个同级结点(该结点为第一个时返回null)
+            </summary>
+        </member>
+        <member name="P:System.Windows.Forms.TreeListViewItem.LastRowItem">
+            <summary>
+            获取 所有子孙的最后一行 结点(递归,含该结点)[不会为null]
+            </summary>
+        </member>
+        <member name="P:System.Windows.Forms.TreeListViewItem.FirstRowItem">
+            <summary>
+            获取 所有子孙的第一行 结点(没有子孙时返回该结点)[不会为null]
+            </summary>
+        </member>
+        <member name="P:System.Windows.Forms.TreeListViewItem.NextRowItem">
+            <summary>
+            获取下一行结点(假设树全展开状态下的下一行)
+            </summary>
+        </member>
+        <member name="P:System.Windows.Forms.TreeListViewItem.PrevRowItem">
+            <summary>
+            获取上一行结点(假设树全展开状态下的上一行)
+            </summary>
+        </member>
+        <member name="P:System.Windows.Forms.TreeListViewItem.PrevVisibleItem">
+            <summary>
+            Gets the previous visible item in the TreeListView
+            </summary>
+        </member>
+        <member name="P:System.Windows.Forms.TreeListViewItem.Checked">
+            <summary>
+            Gets or sets a value indicating whether the item is checked.
+            </summary>
+        </member>
+        <member name="P:System.Windows.Forms.TreeListViewItem.CheckStatus">
+            <summary>
+            Gets the check state of this item
+            </summary>
+        </member>
+        <member name="P:System.Windows.Forms.TreeListViewItem.ParentsInHierarch">
+            <summary>
+            Gets a collection of the parent of this item
+            </summary>
+        </member>
+        <member name="P:System.Windows.Forms.TreeListViewItem.FullPath">
+            <summary>
+            Gets the fullpath of an item (Parents.Text + \ + this.Text)
+            </summary>
+        </member>
+        <member name="P:System.Windows.Forms.TreeListViewItem.Text">
+            <summary>
+            Get or Set the Text property
+            </summary>
+        </member>
+        <member name="P:System.Windows.Forms.TreeListViewItem.Container">
+            <summary>
+            Get the collection that contains this item
+            </summary>
+        </member>
+        <member name="P:System.Windows.Forms.TreeListViewItem.LastChildIndexInListView">
+            <summary>
+            Get the biggest index in the listview of the visible childs of this item
+            including this item
+            </summary>
+        </member>
+        <member name="P:System.Windows.Forms.TreeListViewItem.ChildrenCount">
+            <summary>
+            Get the children count recursively
+            </summary>
+        </member>
+        <member name="P:System.Windows.Forms.TreeListViewItem.IsExpanded">
+            <summary>
+            Returns true if this item is expanded
+            </summary>
+        </member>
+        <member name="P:System.Windows.Forms.TreeListViewItem.Level">
+            <summary>
+            Get the level of the item in the treelistview
+            </summary>
+        </member>
+        <member name="P:System.Windows.Forms.TreeListViewItem.Items">
+            <summary>
+            Get the items contained in this item
+            </summary>
+        </member>
+        <member name="P:System.Windows.Forms.TreeListViewItem.Parent">
+            <summary>
+            Get the parent of this item
+            </summary>
+        </member>
+        <member name="P:System.Windows.Forms.TreeListViewItem.ListView">
+            <summary>
+            Gets the TreeListView containing this item
+            </summary>
+        </member>
+        <member name="P:System.Windows.Forms.TreeListViewItem.TreeListView">
+            <summary>
+            Gets the TreeListView containing this item
+            </summary>
+        </member>
+        <member name="P:System.Windows.Forms.TreeListViewItem.Visible">
+            <summary>
+            Returns true if this item is visible in the TreeListView
+            </summary>
+        </member>
+        <member name="T:System.Windows.Forms.TreeListViewItem.TreeListViewItemHanlder">
+            <summary>
+            TreeListViewItemHandler delegate
+            </summary>
+        </member>
+        <member name="T:System.Windows.Forms.TreeListViewItem.TreeListViewItemCheckedHandler">
+            <summary>
+            TreeListViewItemCheckedHandler delegate
             </summary>
         </member>
     </members>
