@@ -388,16 +388,9 @@ xcopy "$(TargetPath).config" "$(ProjectDir)..\..\Reference\$(ConfigurationName)\
 xcopy "$(ProjectDir)$(TargetFileName).apq" "$(ProjectDir)..\..\Reference\$(ConfigurationName)\Config\" /c /q /g /h /r /k /y
 xcopy "$(TargetPath).log4net" "$(ProjectDir)..\..\Reference\$(ConfigurationName)\Config\" /c /q /g /h /r /k /y
 :End</PostBuildEvent>
-    <PreBuildEvent>if "" == "" goto EndConfig
-xcopy "$(ProjectDir)..\..\Reference\$(ConfigurationName)\Config\Apq.dll.config" "$(ProjectDir)" /c /q /g /h /r /k /y
-xcopy "$(ProjectDir)..\..\Reference\$(ConfigurationName)\Config\Apq.dll.apq" "$(ProjectDir)" /c /q /g /h /r /k /y
-xcopy "$(ProjectDir)..\..\Reference\$(ConfigurationName)\Config\Apq.dll.log4net" "$(ProjectDir)" /c /q /g /h /r /k /y
-:EndConfig
-
-if "$(ProjectDir)..\..\Reference" == "" goto End
-xcopy "$(ProjectDir)..\..\Reference\log4net-1.2.10\log4net.dll" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+    <PreBuildEvent>xcopy "$(ProjectDir)..\..\Reference\log4net-1.2.10\log4net.dll" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
 xcopy "$(ProjectDir)..\..\Reference\log4net-1.2.10\log4net.xml" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
-xcopy "$(ProjectDir)..\..\Reference\log4net-1.2.10\log4net.pdb" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
+:xcopy "$(ProjectDir)..\..\Reference\log4net-1.2.10\log4net.pdb" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
 :End</PreBuildEvent>
   </PropertyGroup>
 </Project>

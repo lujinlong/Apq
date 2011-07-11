@@ -394,8 +394,6 @@ xcopy "$(ProjectDir)..\..\Reference\$(ConfigurationName)\Apq.WorkFlow.pdb" "$(Pr
 xcopy "$(ProjectDir)..\..\Reference\log4net-1.2.10\log4net.dll" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
 xcopy "$(ProjectDir)..\..\Reference\log4net-1.2.10\log4net.xml" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
 
-xcopy "$(ProjectDir)..\..\Reference\ICSharpCode\TextEditor_2.2\ICSharpCode.TextEditor.dll" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
-xcopy "$(ProjectDir)..\..\Reference\ICSharpCode\TextEditor_2.2\ICSharpCode.TextEditor.xml" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
 xcopy "$(ProjectDir)..\..\Reference\ICSharpCode\TreeView\ICSharpCode.TreeView.dll" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
 xcopy "$(ProjectDir)..\..\Reference\ICSharpCode\TreeView\ICSharpCode.TreeView.xml" "$(ProjectDir)Dlls\" /c /q /g /h /r /k /y
 

@@ -323,7 +323,10 @@ namespace Apq.TreeListView
 				DirectoryInfo diChild = new DirectoryInfo(fsFullPath);
 				TreeListViewItem ndChild = new TreeListViewItem(diChild.Name);
 				node.Items.Add(ndChild);
-				ndChild.Checked = node.Checked;
+				if (node.CheckStatus != CheckState.Indeterminate)
+				{
+					ndChild.Checked = node.Checked;
+				}
 				Apq.DllImports.Shell32.SHFILEINFO shFolderInfo = new DllImports.Shell32.SHFILEINFO();
 				Apq.Windows.Forms.IconChache.GetFileSystemIcon(fsFullPath, ref shFolderInfo);
 				ndChild.ImageKey = "文件夹收起";
@@ -370,7 +373,10 @@ namespace Apq.TreeListView
 
 				TreeListViewItem ndChild = new TreeListViewItem(diChild.Name);
 				node.Items.Add(ndChild);
-				ndChild.Checked = node.Checked;
+				if (node.CheckStatus != CheckState.Indeterminate)
+				{
+					ndChild.Checked = node.Checked;
+				}
 				ndChild.ImageIndex = _imgList.Images.IndexOfKey(strExt);
 				ndChild.SubItems.Add(diChild.Length.ToString("n0"));
 				if (strExt.Contains("\\"))
