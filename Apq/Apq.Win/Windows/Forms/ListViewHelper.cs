@@ -40,7 +40,56 @@ namespace Apq.Windows.Forms
 					break;
 				}
 			}
-				return idx;
+			return idx;
 		}
+		#region Behaivor
+
+		/// <summary>
+		/// 常用扩展,添加常用功能
+		/// </summary>
+		/// <param name="lv"></param>
+		public static void AddBehaivor(System.Windows.Forms.ListView lv)
+		{
+			lv.KeyDown += new System.Windows.Forms.KeyEventHandler(lv_KeyDown);
+			lv.KeyUp += new System.Windows.Forms.KeyEventHandler(lv_KeyUp);
+		}
+
+		/// <summary>
+		/// 常用扩展,去除常用功能
+		/// </summary>
+		/// <param name="lv"></param>
+		public static void RemoveBehaivor(System.Windows.Forms.ListView lv)
+		{
+			lv.KeyDown -= new System.Windows.Forms.KeyEventHandler(lv_KeyDown);
+			lv.KeyUp -= new System.Windows.Forms.KeyEventHandler(lv_KeyUp);
+		}
+
+		#endregion
+
+		#region ListView 事件处理
+		private static void lv_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
+		{
+			System.Windows.Forms.ListView lv = sender as System.Windows.Forms.ListView;
+			if (lv != null && lv.Focused)
+			{
+				#region Ctrl C
+				if (e.Control && (e.KeyCode == System.Windows.Forms.Keys.C))
+				{
+					System.Collections.IList lst = lv.SelectedItems.Count > 0 ? (System.Collections.IList)lv.SelectedItems : (System.Collections.IList)lv.Items;
+					List<string> lstStrs = new List<string>();
+					foreach (System.Windows.Forms.ListViewItem lvi in lst)
+					{
+						lstStrs.Add(lvi.Text);
+					}
+					System.Windows.Forms.Clipboard.SetText(string.Join("\r\n", lstStrs.ToArray()));
+				}
+				#endregion
+			}
+		}
+
+		private static void lv_KeyUp(object sender, System.Windows.Forms.KeyEventArgs e)
+		{
+		}
+		#endregion
 	}
 }

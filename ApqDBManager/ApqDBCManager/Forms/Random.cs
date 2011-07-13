@@ -48,7 +48,7 @@ namespace ApqDBCManager
 			lstStrings.SetItemChecked(2, true);
 			lstStrings.SetItemChecked(6, true);
 
-			//Apq.Xtra.Grid.Common.AddBehaivor(gridView1);
+			Apq.Windows.Forms.ListViewHelper.AddBehaivor(listView1);
 		}
 
 		private void btnGo_Click(object sender, EventArgs e)
