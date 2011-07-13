@@ -1,7 +1,0 @@
-让VisualSVN Server支持匿名访问
-打开httpd.conf文件，将<Location /svn/>中的：
-Require valid-user 
-改为 
-<LimitExcept GET PROPFIND OPTIONS REPORT> 
-Require valid-user 
-</LimitExcept>
