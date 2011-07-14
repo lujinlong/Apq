@@ -35,7 +35,6 @@ namespace Apq.TreeListView
 		{
 			get { return Apq.Windows.Forms.IconChache.ImgList; }
 		}
-		private List<Apq.IO.FsWatcher> lstFsws = new List<Apq.IO.FsWatcher>();
 		/// <summary>
 		/// 基于TreeListView的资源浏览器
 		/// 隐藏列依次为:
@@ -173,11 +172,11 @@ namespace Apq.TreeListView
 					{
 						if (File.Exists(e.FullPath))
 						{
-							ChangeFile(ndFound, e.FullPath);
+							ChangeFile(ndFound);
 						}
 						else if (Directory.Exists(e.FullPath))
 						{
-							ChangeFolder(ndFound, e.FullPath);
+							ChangeFolder(ndFound);
 						}
 					}
 				}
@@ -220,10 +219,21 @@ namespace Apq.TreeListView
 		#endregion
 
 		#region 显示文件系统
+		private List<Apq.IO.FsWatcher> lstFsws = new List<Apq.IO.FsWatcher>();
 		public void LoadDrives()
 		{
 			Apq.Windows.Delegates.Action_UI<FSExplorer>(this, this, delegate(FSExplorer ctrl)
 			{
+				// 取消监视
+				foreach (Apq.IO.FsWatcher fsw in lstFsws)
+				{
+					fsw.Created -= new FileSystemEventHandler(fsw_Created);
+					fsw.Renamed -= new RenamedEventHandler(fsw_Renamed);
+					fsw.Deleted -= new FileSystemEventHandler(fsw_Deleted);
+					fsw.Changed -= new FileSystemEventHandler(fsw_Changed);
+				}
+				lstFsws.Clear();
+
 				// 为TreeListView添加根结点
 				Items.Clear();
 				//Items.SortOrder = SortOrder.None;
@@ -316,7 +326,7 @@ namespace Apq.TreeListView
 			//catch { }
 		}
 
-		public void AddFolder(TreeListViewItem node, string fsFullPath, bool ContainsChildren = false)
+		public void AddFolder(TreeListViewItem node, string fsFullPath, bool Recursive = false)
 		{
 			try
 			{
@@ -339,22 +349,20 @@ namespace Apq.TreeListView
 				ndChild.SubItems.Add("0");
 				ndChild.SubItems.Add("2");//类型{1:Drive,2:Folder,3:File}
 
-				if (ContainsChildren)
+				if (Recursive)
 				{
-					LoadChildren(ndChild, ndChild.FullPath, ContainsChildren);
+					LoadChildren(ndChild, ndChild.FullPath, Recursive);
 				}
 			}
 			catch { }
 		}
 
-		public void ChangeFolder(TreeListViewItem node, string fsFullPath)
+		public void ChangeFolder(TreeListViewItem node)
 		{
-			DirectoryInfo diChild = new DirectoryInfo(fsFullPath);
-			node.Text = diChild.Name;
-			node.SubItems[3].Text = diChild.CreationTime.ToString("yyyy-MM-dd HH:mm:ss");
-			node.SubItems[4].Text = diChild.LastWriteTime.ToString("yyyy-MM-dd HH:mm:ss");
-
-			node.SubItems[5].Text = (diChild.FullName);
+			DirectoryInfo diFolder = new DirectoryInfo(node.FullPath);
+			node.Text = diFolder.Name;
+			node.SubItems[3].Text = diFolder.CreationTime.ToString("yyyy-MM-dd HH:mm:ss");
+			node.SubItems[4].Text = diFolder.LastWriteTime.ToString("yyyy-MM-dd HH:mm:ss");
 		}
 
 		public void AddFile(TreeListViewItem node, string fsFullPath)
@@ -394,15 +402,13 @@ namespace Apq.TreeListView
 			catch { }
 		}
 
-		public void ChangeFile(TreeListViewItem node, string fsFullPath)
+		public void ChangeFile(TreeListViewItem node)
 		{
-			FileInfo diChild = new FileInfo(fsFullPath);
-			node.Text = diChild.Name;
-			node.SubItems[1].Text = diChild.Length.ToString("n0");
-			node.SubItems[3].Text = diChild.CreationTime.ToString("yyyy-MM-dd HH:mm:ss");
-			node.SubItems[4].Text = diChild.LastWriteTime.ToString("yyyy-MM-dd HH:mm:ss");
-
-			node.SubItems[5].Text = (diChild.FullName);
+			FileInfo fiFile = new FileInfo(node.FullPath);
+			node.Text = fiFile.Name;
+			node.SubItems[1].Text = fiFile.Length.ToString("n0");
+			node.SubItems[3].Text = fiFile.CreationTime.ToString("yyyy-MM-dd HH:mm:ss");
+			node.SubItems[4].Text = fiFile.LastWriteTime.ToString("yyyy-MM-dd HH:mm:ss");
 		}
 		#endregion
 
