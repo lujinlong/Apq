@@ -1,0 +1,38 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "pdbp", "pdbp\pdbp.csproj", "{1B977A16-728E-434F-B3CD-09D714CAD720}"
+	ProjectSection(ProjectDependencies) = postProject
+		{2F5D1BD5-4010-47F8-893B-98144922220F} = {2F5D1BD5-4010-47F8-893B-98144922220F}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "pdbp.WS", "pdbp.WS\pdbp.WS.csproj", "{2F5D1BD5-4010-47F8-893B-98144922220F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "pdbp.Admin", "pdbp.Admin\pdbp.Admin.csproj", "{F852D34F-8817-443F-98A1-C303B6B8915C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1B977A16-728E-434F-B3CD-09D714CAD720}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B977A16-728E-434F-B3CD-09D714CAD720}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B977A16-728E-434F-B3CD-09D714CAD720}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B977A16-728E-434F-B3CD-09D714CAD720}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2F5D1BD5-4010-47F8-893B-98144922220F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2F5D1BD5-4010-47F8-893B-98144922220F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2F5D1BD5-4010-47F8-893B-98144922220F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2F5D1BD5-4010-47F8-893B-98144922220F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F852D34F-8817-443F-98A1-C303B6B8915C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F852D34F-8817-443F-98A1-C303B6B8915C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F852D34F-8817-443F-98A1-C303B6B8915C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F852D34F-8817-443F-98A1-C303B6B8915C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		VisualSVNWorkingCopyRoot = .
+	EndGlobalSection
+EndGlobal
