@@ -18,11 +18,11 @@ using System.Collections;
 
 namespace Apq_DBTools
 {
-	public partial class TxtEncoding : Apq.Windows.Forms.DockForm
+	public partial class SqlGen : Apq.Windows.Forms.DockForm
 	{
 		private static int FormCount = 0;
 
-		public TxtEncoding()
+		public SqlGen()
 		{
 			InitializeComponent();
 		}
@@ -52,7 +52,7 @@ namespace Apq_DBTools
 			btnTrans.Text = Apq.GlobalObject.UILang["开始转换(&T)"];
 		}
 
-		private void TxtEncoding_Load(object sender, EventArgs e)
+		private void SqlGen_Load(object sender, EventArgs e)
 		{
 		}
 
@@ -134,15 +134,15 @@ namespace Apq_DBTools
 			});
 		}
 
-		private void TxtEncoding_FormClosing(object sender, FormClosingEventArgs e)
+		private void SqlGen_FormClosing(object sender, FormClosingEventArgs e)
 		{
 		}
 
-		private void TxtEncoding_Activated(object sender, EventArgs e)
+		private void SqlGen_Activated(object sender, EventArgs e)
 		{
 		}
 
-		private void TxtEncoding_Deactivate(object sender, EventArgs e)
+		private void SqlGen_Deactivate(object sender, EventArgs e)
 		{
 
 		}
@@ -366,8 +366,18 @@ namespace Apq_DBTools
 
 		private void tsbRefresh_Click(object sender, EventArgs e)
 		{
-			LoadData(FormDataSet);
-		}
+			//+从数据库获取列表：表，存储过程 [默认全选]
+        }
+
+        private void tsbConnectDB_ButtonClick(object sender, EventArgs e)
+        {
+            //+连接到数据库并执行刷新动作
+        }
+
+        private void tsmiMeta_Click(object sender, EventArgs e)
+        {
+            //+为列表中已选中的项生成语句，语句完成将这些项插入到dbv_table,dbv_column,dbv_proc中
+        }
 	}
 
 	// C# 1 doesn't support anonymous methods...
@@ -375,8 +385,8 @@ namespace Apq_DBTools
 	{
 		public void Notify(string charset)
 		{
-			TxtEncoding.found = true;
-			TxtEncoding.detEncoding = charset;
+			SqlGen.found = true;
+			SqlGen.detEncoding = charset;
 		}
 	}
 }

@@ -162,6 +162,7 @@
     <Reference Include="System.Data.DataSetExtensions">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
+    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Drawing">
       <Private>False</Private>
     </Reference>
@@ -169,6 +170,8 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Dlls\System.Runtime.InteropServices.APIs.dll</HintPath>
     </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.Services">
       <Private>False</Private>
     </Reference>
@@ -191,6 +194,11 @@
     <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EF\dbv.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dbv.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Forms\MainOption.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -212,11 +220,11 @@
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
-    <Compile Include="Forms\TxtEncoding.cs">
+    <Compile Include="Forms\SqlGen.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\TxtEncoding.Designer.cs">
-      <DependentUpon>TxtEncoding.cs</DependentUpon>
+    <Compile Include="Forms\SqlGen.Designer.cs">
+      <DependentUpon>SqlGen.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -225,6 +233,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EntityDeploy Include="EF\dbv.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>dbv.Designer.cs</LastGenOutput>
+    </EntityDeploy>
     <None Include="Images\ArrowDown.bmp" />
     <None Include="Images\ArrowUp.bmp" />
     <None Include="Images\Bitmap.ico" />
@@ -260,8 +272,8 @@
       <SubType>Designer</SubType>
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\TxtEncoding.resx">
-      <DependentUpon>TxtEncoding.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\SqlGen.resx">
+      <DependentUpon>SqlGen.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -292,7 +304,6 @@
     <None Include="Apq.WorkFlow.dll.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="license.txt" />
     <None Include="Apq_DBTools.exe.apq">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
