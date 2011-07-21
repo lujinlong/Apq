@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Root>
+	<!-- 类配置文档 -->
+	<Apq_DBTools.MainForm Text="Apq数据库工具"/>
+	<Apq_DBTools.Controls.MainOption.Favorites CFolder="Favorites" />
+</Root>
