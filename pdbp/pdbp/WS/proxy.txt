@@ -1,0 +1,4 @@
+﻿
+rem 从此处打开DOS窗口,执行语句:
+"C:\Program Files\Microsoft Visual Studio 9.0\VC\vcvarsall.bat"
+wsdl /sharetypes /edb /urlkey:WS_Login /n:pdbp.WS /out:Login.cs http://localhost/pdbp/pdbp.WS/Login.asmx?WSDL

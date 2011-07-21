@@ -1,0 +1,46 @@
+﻿/*表*/
+div.div_table
+{
+	border-collapse: collapse;
+}
+
+/*标题*/
+div.div_tcaption
+{
+	display: block;
+	width: 100%;
+	text-align: center;
+}
+
+/*表体*/
+div.div_tbody
+{
+	display: table;
+	width: 100%;
+	text-align: center;
+}
+
+/*列头*/
+div.div_theader
+{
+	display: table-header-group;
+}
+
+/*行*/
+div.div_tr
+{
+	display: table-row;
+	text-align: left;
+}
+
+/*格*/
+div.div_td
+{
+	display: table-cell;
+}
+
+/*列尾*/
+div.div_tfooter
+{
+	display: table-column-group;
+}
