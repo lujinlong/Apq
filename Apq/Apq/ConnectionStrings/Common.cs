@@ -24,7 +24,7 @@ namespace Apq.ConnectionStrings
 					str = MySql.MySqlConnection.GetConnectionString(Server, Port, Uid, Pwd, dbName);
 					break;
 
-				case DBProduct.MSSql:
+				case DBProduct.MsSql:
 				default:
 					str = SQLServer.SqlConnection.GetConnectionString(Server, Port, Uid, Pwd, dbName);
 					break;

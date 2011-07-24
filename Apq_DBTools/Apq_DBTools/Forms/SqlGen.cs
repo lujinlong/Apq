@@ -25,11 +25,17 @@ namespace Apq_DBTools
 		public SqlGen()
 		{
 			InitializeComponent();
+
+			Apq.Windows.Forms.DataGridViewHelper.SetDefaultStyle(dataGridView1);
+			Apq.Windows.Forms.DataGridViewHelper.AddBehaivor(dataGridView1);
 		}
+
+		private Apq.Data.Common.DBProduct _DBConnectionType = Apq.Data.Common.DBProduct.MySql;
+		private DbConnection _DBConnection;
 
 		public override void SetUILang(Apq.UILang.UILang UILang)
 		{
-			Text = Apq.GlobalObject.UILang["文本文件编码转换"] + " - " + ++FormCount;
+			Text = Apq.GlobalObject.UILang["脚本生成"] + " - " + ++FormCount;
 			TabText = Text;
 
 			tsbConnectDB.Text = Apq.GlobalObject.UILang["连接"];
@@ -37,6 +43,13 @@ namespace Apq_DBTools
 
 			tssbGenSql.Text = Apq.GlobalObject.UILang["生成"];
 			tsmiMeta.Text = Apq.GlobalObject.UILang["元数据脚本(&M)"];
+			tsmiData.Text = Apq.GlobalObject.UILang["初始化数据(&D)"];
+
+			// 列
+			checkStateDataGridViewTextBoxColumn.HeaderText = Apq.GlobalObject.UILang["选择"];
+			objectTypeDataGridViewTextBoxColumn.HeaderText = Apq.GlobalObject.UILang["类型"];
+			schemaNameDataGridViewTextBoxColumn.HeaderText = Apq.GlobalObject.UILang["架构"];
+			objectNameDataGridViewTextBoxColumn.HeaderText = Apq.GlobalObject.UILang["名称"];
 		}
 
 		private void SqlGen_Load(object sender, EventArgs e)
@@ -97,19 +110,55 @@ namespace Apq_DBTools
 
 		private void tsbRefresh_Click(object sender, EventArgs e)
 		{
-			//+从数据库获取列表：表，存储过程 [默认全选]
-        }
+			if (_DBConnection != null)
+			{
+				//+从数据库获取列表：表，存储过程 [默认全选]
+				try
+				{
+					/*
+// 表
+SELECT `TABLE_SCHEMA`,`Table_Name`,`ENGINE`,`CREATE_OPTIONS`,`TABLE_COMMENT`
+  FROM `information_schema`.`TABLES`
+ WHERE `TABLE_SCHEMA` = DATABASE();
+// 列
+SELECT dt.`TID`,`COLUMN_NAME`,`COLUMN_DEFAULT`,
+	CASE `IS_NULLABLE` WHEN 'NO' THEN 0 ELSE 1 END,
+	`DATA_TYPE`,`CHARACTER_MAXIMUM_LENGTH`,`CHARACTER_OCTET_LENGTH`,`NUMERIC_PRECISION`,`NUMERIC_SCALE`,`CHARACTER_SET_NAME`,`COLLATION_NAME`,
+	`COLUMN_TYPE`,`COLUMN_KEY`,
+	CASE WHEN INSTR(`EXTRA`,'auto_increment') > 0 THEN 1 ELSE 0 END,
+	`COLUMN_COMMENT`,c.`TABLE_SCHEMA`,c.`TABLE_NAME`
+  FROM `information_schema`.`COLUMNS` c 
+	INNER JOIN `information_schema`.`TABLES` t ON c.`TABLE_SCHEMA` = t.`TABLE_SCHEMA` AND c.`TABLE_NAME` = t.`TABLE_NAME` 
+	INNER JOIN `dbv_table` dt ON t.`TABLE_SCHEMA` = dt.`SchemaName` AND t.`TABLE_NAME` = dt.`TableName`
+ WHERE c.`TABLE_SCHEMA` = DATABASE();				
+// 存储过程
+SELECT `db`,`name`,`param_list`,`returns`,`body`,`comment` FROM `mysql`.`proc` WHERE `db` = DATABASE();
+*/
+				}
+				catch
+				{
+				}
+				finally
+				{
+				}
+			}
+		}
 
-        private void tsbConnectDB_ButtonClick(object sender, EventArgs e)
-        {
-            //+连接到数据库并执行刷新动作
+		private void tsbConnectDB_ButtonClick(object sender, EventArgs e)
+		{
+			// 连接到数据库并执行刷新动作
 			Apq.Windows.Forms.DBConnector DBConnector = new Apq.Windows.Forms.DBConnector();
-			DBConnector.ShowDialog(this);
-        }
-
-        private void tsmiMeta_Click(object sender, EventArgs e)
-        {
-            //+为列表中已选中的项生成语句，语句完成将这些项插入到dbv_table,dbv_column,dbv_proc中
-        }
+			if (DBConnector.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
+			{
+				_DBConnectionType = DBConnector.DBSelected;
+				_DBConnection = DBConnector.DBConnection;
+				tsbRefresh_Click(sender, e);
+			}
+		}
+		// 生成元数据语句并保存到文件
+		private void tsmiMeta_Click(object sender, EventArgs e)
+		{
+			//+为列表中已选中的项生成语句，语句完成将这些项插入到dbv_table,dbv_column,dbv_proc中
+		}
 	}
 }

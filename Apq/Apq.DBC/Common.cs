@@ -138,7 +138,7 @@ namespace Apq.DBC
 						DbConnection = new MySql.Data.MySqlClient.MySqlConnection();
 					}
 					break;
-				case (int)DBProduct.MSSql:
+				case (int)DBProduct.MsSql:
 				default:
 					if (!(DbConnection is System.Data.SqlClient.SqlConnection))
 					{
@@ -169,7 +169,7 @@ namespace Apq.DBC
 						DbConnection = new MySql.Data.MySqlClient.MySqlConnection();
 					}
 					break;
-				case (int)DBProduct.MSSql:
+				case (int)DBProduct.MsSql:
 				default:
 					if (!(DbConnection is System.Data.SqlClient.SqlConnection))
 					{

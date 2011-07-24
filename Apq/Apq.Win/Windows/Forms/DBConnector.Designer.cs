@@ -149,13 +149,13 @@
 			// 
 			// cbMySqlDBName
 			// 
-			this.cbMySqlDBName.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.cbMySqlDBName.FormattingEnabled = true;
 			this.cbMySqlDBName.Location = new System.Drawing.Point(128, 165);
 			this.cbMySqlDBName.Name = "cbMySqlDBName";
 			this.cbMySqlDBName.Size = new System.Drawing.Size(121, 20);
 			this.cbMySqlDBName.TabIndex = 7;
 			this.cbMySqlDBName.SelectedIndexChanged += new System.EventHandler(this.cbMySqlDBName_SelectedIndexChanged);
+			this.cbMySqlDBName.TextUpdate += new System.EventHandler(this.cbMySqlDBName_TextUpdate);
 			// 
 			// txtMySqlPort
 			// 
@@ -380,6 +380,7 @@
 			this.Name = "DBConnector";
 			this.ShowIcon = false;
 			this.ShowInTaskbar = false;
+			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.TabText = "语言设置";
 			this.Text = "连接到数据库";
 			this.Load += new System.EventHandler(this.DBConnector_Load);

@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 using System.Data.Common;
 using System.Xml;
+using System.IO;
 
 namespace Apq.Windows.Forms
 {
@@ -34,17 +35,26 @@ namespace Apq.Windows.Forms
 		}
 
 		// 点击TabPage时改变其值,用于返回数据库连接
-		private int _DBSelected = 0;
-		// 获取数据库连接
+		private Apq.Data.Common.DBProduct _DBSelected = Apq.Data.Common.DBProduct.MySql;
+		/// <summary>
+		/// 获取数据库连接类型
+		/// </summary>
+		public Apq.Data.Common.DBProduct DBSelected
+		{
+			get { return _DBSelected; }
+		}
+		/// <summary>
+		/// 获取数据库连接
+		/// </summary>
 		public DbConnection DBConnection
 		{
 			get
 			{
 				switch (_DBSelected)
 				{
-					case 0:
+					case Apq.Data.Common.DBProduct.MySql:
 						return _MySqlConnection;
-					case 1:
+					case Apq.Data.Common.DBProduct.MsSql:
 					default:
 						return _SqlConnection;
 				}
@@ -114,11 +124,11 @@ namespace Apq.Windows.Forms
 			#endregion
 
 			#region 加载所有查找表
-			// 读取连接文件列表
-			if (System.IO.Directory.Exists(ConnectionFolder))
+			// 读取MySql连接文件列表
+			if (System.IO.Directory.Exists(ConnectionFolder + @"\MySql"))
 			{
 				string strMySqlName = Apq.Win.GlobalObject.XmlConfigChain[this.GetType(), "MySqlName"];
-				string[] aryFiles = System.IO.Directory.GetFiles(ConnectionFolder, "*.xml");
+				string[] aryFiles = System.IO.Directory.GetFiles(ConnectionFolder + @"\MySql", "*.xml");
 				for (int i = 0; i < aryFiles.Length; i++)
 				{
 					string strFileName = System.IO.Path.GetFileNameWithoutExtension(aryFiles[i]);
@@ -143,7 +153,14 @@ namespace Apq.Windows.Forms
 
 		private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
 		{
-			_DBSelected = tabControl1.SelectedIndex;
+			if (tabControl1.SelectedIndex == 0)
+			{
+				_DBSelected = Apq.Data.Common.DBProduct.MySql;
+			}
+			if (tabControl1.SelectedIndex == 1)
+			{
+				_DBSelected = Apq.Data.Common.DBProduct.MsSql;
+			}
 		}
 
 		public void MySqlUIEnable(bool Enable)
@@ -158,7 +175,6 @@ namespace Apq.Windows.Forms
 			cbMySqlDBName.Enabled = Enable;
 			cbMySqlSavePwd.Enabled = Enable;
 
-			btnMySqlRefresh.Enabled = Enable;
 			btnMySqlConfirm.Enabled = Enable;
 			btnMySqlCancel.Enabled = Enable;
 			btnMySqlTest.Enabled = Enable;
@@ -216,6 +232,10 @@ namespace Apq.Windows.Forms
 			MySql_SaveName_Enable();
 		}
 		// 改变数据库
+		private void cbMySqlDBName_TextUpdate(object sender, EventArgs e)
+		{
+			MySql_SaveName_Enable();
+		}
 		private void cbMySqlDBName_SelectedIndexChanged(object sender, EventArgs e)
 		{
 			MySql_SaveName_Enable();
@@ -225,8 +245,6 @@ namespace Apq.Windows.Forms
 		{
 			try
 			{
-				MySqlUIEnable(false);
-
 				if (!cbMySqlName.Items.Contains(cbMySqlName.Text))
 				{
 					cbMySqlName.Items.Add(cbMySqlName.Text);
@@ -240,6 +258,10 @@ namespace Apq.Windows.Forms
 				dr["Port"] = txtMySqlPort.Text;
 				dr["Uid"] = txtMySqlUserId.Text;
 				dr["PwdD"] = txtMySqlPwd.Text;
+				if (!string.IsNullOrWhiteSpace(cbMySqlDBName.Text))
+				{
+					dr["DBName"] = cbMySqlDBName.Text;
+				}
 				if (cbMySqlSavePwd.Checked)
 				{
 					dr["PwdC"] = Apq.Security.Cryptography.DESHelper.EncryptString(txtMySqlPwd.Text,
@@ -248,23 +270,22 @@ namespace Apq.Windows.Forms
 					);
 				}
 
-				DataTable dtSave = xsd.MySql.Copy();
-				dtSave.Columns.Remove("PwdD");
+				xsd.MySql.Columns.Remove("PwdD");
 				if (!cbMySqlSavePwd.Checked)
 				{
-					dtSave.Columns.Remove("PwdC");
+					xsd.MySql.Columns.Remove("PwdC");
 				}
-				dtSave.WriteXml(ConnectionFolder + @"\MySql\" + cbMySqlName.Text + ".xml", XmlWriteMode.IgnoreSchema);
+				if (!Directory.Exists(ConnectionFolder + @"\MySql"))
+				{
+					Directory.CreateDirectory(ConnectionFolder + @"\MySql");
+				}
+				xsd.MySql.WriteXml(ConnectionFolder + @"\MySql\" + cbMySqlName.Text + ".xml", XmlWriteMode.IgnoreSchema);
 
 				btnMySqlSaveName.Enabled = false;
 			}
 			catch (System.Exception ex)
 			{
-				MessageBox.Show(ex.Message);
-			}
-			finally
-			{
-				MySqlUIEnable(true);
+				MessageBox.Show(this, ex.Message);
 			}
 		}
 		// 打开连接文件
@@ -272,8 +293,6 @@ namespace Apq.Windows.Forms
 		{
 			try
 			{
-				btnMySqlSaveName.Enabled = false;
-
 				//打开连接文件解密密码并对界面赋值
 				DBConnector_XSD xsd = new DBConnector_XSD();
 				xsd.MySql.ReadXml(ConnectionFolder + @"\MySql\" + cbMySqlName.Text + ".xml");
@@ -289,11 +308,17 @@ namespace Apq.Windows.Forms
 					txtMySqlUserId.Text = dr.Uid;
 					txtMySqlPwd.Text = dr.PwdD;
 					txtMySqlPort.Text = dr.Port;
+					if (!Apq.Convert.IsNull(dr["DBName"]))
+					{
+						cbMySqlDBName.Text = dr.DBName;
+					}
+
+					btnMySqlSaveName.Enabled = false;
 				}
 			}
 			catch (System.Exception ex)
 			{
-				MessageBox.Show(ex.Message);
+				MessageBox.Show(this, ex.Message);
 			}
 		}
 		// 刷新
@@ -301,6 +326,7 @@ namespace Apq.Windows.Forms
 		{
 			try
 			{
+				btnMySqlRefresh.Enabled = false;
 				MySqlUIEnable(false);
 				cbMySqlDBName.Items.Clear();
 
@@ -318,10 +344,11 @@ namespace Apq.Windows.Forms
 				{
 					cbMySqlDBName.Items.Add(dr[0]);
 				}
+				btnMySqlRefresh.Enabled = true;
 			}
 			catch (System.Exception ex)
 			{
-				MessageBox.Show(ex.Message);
+				MessageBox.Show(this, ex.Message);
 			}
 			finally
 			{
@@ -333,21 +360,20 @@ namespace Apq.Windows.Forms
 		{
 			try
 			{
-				MySqlUIEnable(false);
-
 				CreateMySqlConnection();
-				TestMySqlConnection();
-
-				DialogResult = System.Windows.Forms.DialogResult.OK;
-				Close();
+				if (TestMySqlConnection())
+				{
+					DialogResult = System.Windows.Forms.DialogResult.OK;
+					Close();
+				}
+				else
+				{
+					MessageBox.Show(this, Apq.GlobalObject.UILang["连接失败"]);
+				}
 			}
 			catch (System.Exception ex)
 			{
-				MessageBox.Show(ex.Message);
-			}
-			finally
-			{
-				MySqlUIEnable(true);
+				MessageBox.Show(this, ex.Message);
 			}
 		}
 		// 取消
@@ -364,11 +390,19 @@ namespace Apq.Windows.Forms
 				MySqlUIEnable(false);
 
 				CreateMySqlConnection();
-				TestMySqlConnection();
+				if (TestMySqlConnection())
+				{
+					MessageBox.Show(this, Apq.GlobalObject.UILang["连接成功"]);
+					btnMySqlRefresh.Enabled = true;
+				}
+				else
+				{
+					MessageBox.Show(this, Apq.GlobalObject.UILang["连接失败"]);
+				}
 			}
 			catch (System.Exception ex)
 			{
-				MessageBox.Show(ex.Message);
+				MessageBox.Show(this, ex.Message);
 			}
 			finally
 			{
@@ -378,11 +412,13 @@ namespace Apq.Windows.Forms
 		// 从界面创建MySql连接
 		private MySqlConnection CreateMySqlConnection()
 		{
+			Apq.Data.Common.DbConnectionHelper.Close(_MySqlConnection);
 			_MySqlConnection.ConnectionString = Apq.ConnectionStrings.Common.GetConnectionString(Data.Common.DBProduct.MySql,
 				txtMySqlServer.Text,
 				Apq.Convert.ChangeType<int>(txtMySqlPort.Text, 3306),
 				txtMySqlUserId.Text,
-				txtMySqlPwd.Text
+				txtMySqlPwd.Text,
+				string.IsNullOrWhiteSpace(cbMySqlDBName.Text) ? "mysql" : cbMySqlDBName.Text
 			);
 
 			return _MySqlConnection;
@@ -394,7 +430,6 @@ namespace Apq.Windows.Forms
 
 			try
 			{
-				Apq.Data.Common.DbConnectionHelper.Close(_MySqlConnection);
 				_MySqlConnection.Open();
 				Apq.Data.Common.DbConnectionHelper.Close(_MySqlConnection);
 				return true;

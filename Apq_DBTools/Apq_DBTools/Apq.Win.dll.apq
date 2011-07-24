@@ -1,5 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Root>
+	<Apq.Win.GlobalObject>
+		<DESKey>MGejHWF4</DESKey>
+		<DESIV>v95fNiJy</DESIV>
+	</Apq.Win.GlobalObject>
 	<Apq.Windows.Forms.NotifyIconForm>
 		<!-- 透明图标(闪动时切换使用) -->
 		<IconClarity>Res\ico\clarity.ico</IconClarity>

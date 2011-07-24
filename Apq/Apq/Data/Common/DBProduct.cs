@@ -11,9 +11,9 @@ namespace Apq.Data.Common
 	public enum DBProduct
 	{
 		/// <summary>
-		/// MSSql
+		/// MsSql
 		/// </summary>
-		MSSql = 1,
+		MsSql = 1,
 		/// <summary>
 		/// MySql
 		/// </summary>
