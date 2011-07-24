@@ -26,7 +26,7 @@ namespace Apq_DBTools
 			tsmiTool.Text = Apq.GlobalObject.UILang["工具(&T)"];
 			tsmiOption.Text = Apq.GlobalObject.UILang["选项(&O)"];
 			tsmiUILang.Text = Apq.GlobalObject.UILang["语言(&L)"];
-			tsmiSqlGen.Text = Apq.GlobalObject.UILang["文本文件编码转换(&T)"];
+			tsmiSqlGen.Text = Apq.GlobalObject.UILang["脚本生成(&G)"];
 			tsmiFSRename.Text = Apq.GlobalObject.UILang["批量重命名(&H)"];
 
 			tsmiWindow.Text = Apq.GlobalObject.UILang["窗口(&W)"];
@@ -72,7 +72,7 @@ namespace Apq_DBTools
 			dc.Show(dockPanel1);
 		}
 
-		private void tsmiTxtEncoding_Click(object sender, EventArgs e)
+		private void tsmiSqlGen_Click(object sender, EventArgs e)
 		{
             SqlGen win = new SqlGen();
 			win.Show(dockPanel1);

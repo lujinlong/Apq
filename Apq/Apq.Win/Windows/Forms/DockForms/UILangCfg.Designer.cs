@@ -76,7 +76,6 @@
 			this.tscbFile.Name = "tscbFile";
 			this.tscbFile.Size = new System.Drawing.Size(121, 25);
 			this.tscbFile.SelectedIndexChanged += new System.EventHandler(this.tscbFile_SelectedIndexChanged);
-			this.tscbFile.TextChanged += new System.EventHandler(this.tscbFile_TextChanged);
 			// 
 			// tsbCur
 			// 

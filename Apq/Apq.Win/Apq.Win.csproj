@@ -180,10 +180,12 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Dlls\log4net.dll</HintPath>
     </Reference>
+    <Reference Include="MySql.Data, Version=6.4.3.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.configuration" />
+    <Reference Include="System.Configuration.Install" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
@@ -196,6 +198,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Dlls\System.Runtime.InteropServices.APIs.dll</HintPath>
     </Reference>
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Windows.Forms.TreeListView, Version=1.0.4179.19656, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -233,6 +236,11 @@
     <Compile Include="TreeListView\TreeListViewHelper.cs" />
     <Compile Include="Windows\Controls\ControlExtension.cs" />
     <Compile Include="Windows\Forms\DataGridViewHelper.cs" />
+    <Compile Include="Windows\Forms\DBConnector_XSD.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DBConnector_XSD.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Windows\Forms\DockForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -290,7 +298,24 @@
     <Compile Include="Windows\Forms\SingletonForms.cs">
     </Compile>
     <Compile Include="Windows\Forms\TSProgressBarHelper.cs" />
+    <Compile Include="Windows\Forms\DBConnector.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows\Forms\DBConnector.Designer.cs">
+      <DependentUpon>DBConnector.cs</DependentUpon>
+    </Compile>
     <Compile Include="Windows\Interfaces\IWizardStep.cs" />
+    <None Include="Windows\Forms\DBConnector_XSD.xsc">
+      <DependentUpon>DBConnector_XSD.xsd</DependentUpon>
+    </None>
+    <None Include="Windows\Forms\DBConnector_XSD.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DBConnector_XSD.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Windows\Forms\DBConnector_XSD.xss">
+      <DependentUpon>DBConnector_XSD.xsd</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -327,6 +352,9 @@
     <EmbeddedResource Include="Windows\Forms\NotifyIconForm.resx">
       <SubType>Designer</SubType>
       <DependentUpon>NotifyIconForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Windows\Forms\DBConnector.resx">
+      <DependentUpon>DBConnector.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
