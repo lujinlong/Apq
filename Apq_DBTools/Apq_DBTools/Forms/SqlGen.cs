@@ -15,6 +15,7 @@ using System.IO;
 using org.mozilla.intl.chardet;
 using Apq.DllImports;
 using System.Collections;
+using MySql.Data.MySqlClient;
 
 namespace Apq_DBTools
 {
@@ -112,16 +113,25 @@ namespace Apq_DBTools
 		{
 			if (_DBConnection != null)
 			{
+				_xsd.Clear();
 				//+从数据库获取列表：表，存储过程 [默认全选]
 				try
 				{
-					/*
-// 表
+					Apq.Data.Common.DbConnectionHelper dch = new Apq.Data.Common.DbConnectionHelper(_DBConnection);
+					DbDataAdapter dda = dch.CreateAdapter();
+					if (_DBConnectionType == Apq.Data.Common.DBProduct.MySql)
+					{
+						// 表
+						dda.SelectCommand.CommandText = @"
 SELECT `TABLE_SCHEMA`,`Table_Name`,`ENGINE`,`CREATE_OPTIONS`,`TABLE_COMMENT`
   FROM `information_schema`.`TABLES`
  WHERE `TABLE_SCHEMA` = DATABASE();
-// 列
-SELECT dt.`TID`,`COLUMN_NAME`,`COLUMN_DEFAULT`,
+";
+						dda.Fill(_xsd.dbv_table);
+						// 列
+						dda.SelectCommand.CommandText = @"
+SELECT -- dt.`TID`,
+	0, `COLUMN_NAME`,`COLUMN_DEFAULT`,
 	CASE `IS_NULLABLE` WHEN 'NO' THEN 0 ELSE 1 END,
 	`DATA_TYPE`,`CHARACTER_MAXIMUM_LENGTH`,`CHARACTER_OCTET_LENGTH`,`NUMERIC_PRECISION`,`NUMERIC_SCALE`,`CHARACTER_SET_NAME`,`COLLATION_NAME`,
 	`COLUMN_TYPE`,`COLUMN_KEY`,
@@ -129,8 +139,36 @@ SELECT dt.`TID`,`COLUMN_NAME`,`COLUMN_DEFAULT`,
 	`COLUMN_COMMENT`,c.`TABLE_SCHEMA`,c.`TABLE_NAME`
   FROM `information_schema`.`COLUMNS` c 
 	INNER JOIN `information_schema`.`TABLES` t ON c.`TABLE_SCHEMA` = t.`TABLE_SCHEMA` AND c.`TABLE_NAME` = t.`TABLE_NAME` 
-	INNER JOIN `dbv_table` dt ON t.`TABLE_SCHEMA` = dt.`SchemaName` AND t.`TABLE_NAME` = dt.`TableName`
- WHERE c.`TABLE_SCHEMA` = DATABASE();				
+	-- INNER JOIN `dbv_table` dt ON t.`TABLE_SCHEMA` = dt.`SchemaName` AND t.`TABLE_NAME` = dt.`TableName`
+ WHERE c.`TABLE_SCHEMA` = DATABASE();
+";
+						dda.Fill(_xsd.dbv_column);
+						// 存储过程
+						dda.SelectCommand.CommandText = @"
+SELECT `db`,`name`,`param_list`,`returns`,`body`,`comment` FROM `mysql`.`proc` WHERE `db` = DATABASE();
+";
+						dda.Fill(_xsd.dbv_proc);
+
+						// 为列设置TID
+						_xsd.dbv_table.FindByTID(0);
+					}
+					/*
+// 表
+SELECT `TABLE_SCHEMA`,`Table_Name`,`ENGINE`,`CREATE_OPTIONS`,`TABLE_COMMENT`
+  FROM `information_schema`.`TABLES`
+ WHERE `TABLE_SCHEMA` = DATABASE();
+// 列
+SELECT -- dt.`TID`,
+	0, `COLUMN_NAME`,`COLUMN_DEFAULT`,
+	CASE `IS_NULLABLE` WHEN 'NO' THEN 0 ELSE 1 END,
+	`DATA_TYPE`,`CHARACTER_MAXIMUM_LENGTH`,`CHARACTER_OCTET_LENGTH`,`NUMERIC_PRECISION`,`NUMERIC_SCALE`,`CHARACTER_SET_NAME`,`COLLATION_NAME`,
+	`COLUMN_TYPE`,`COLUMN_KEY`,
+	CASE WHEN INSTR(`EXTRA`,'auto_increment') > 0 THEN 1 ELSE 0 END,
+	`COLUMN_COMMENT`,c.`TABLE_SCHEMA`,c.`TABLE_NAME`
+  FROM `information_schema`.`COLUMNS` c 
+	INNER JOIN `information_schema`.`TABLES` t ON c.`TABLE_SCHEMA` = t.`TABLE_SCHEMA` AND c.`TABLE_NAME` = t.`TABLE_NAME` 
+	-- INNER JOIN `dbv_table` dt ON t.`TABLE_SCHEMA` = dt.`SchemaName` AND t.`TABLE_NAME` = dt.`TableName`
+ WHERE c.`TABLE_SCHEMA` = DATABASE();
 // 存储过程
 SELECT `db`,`name`,`param_list`,`returns`,`body`,`comment` FROM `mysql`.`proc` WHERE `db` = DATABASE();
 */

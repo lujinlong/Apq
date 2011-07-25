@@ -1,0 +1,212 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="SqlGen_XSD" targetNamespace="http://tempuri.org/SqlGen_XSD.xsd" xmlns:mstns="http://tempuri.org/SqlGen_XSD.xsd" xmlns="http://tempuri.org/SqlGen_XSD.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection ConnectionStringObject="server=172.18.18.2;User Id=root;password=f;Persist Security Info=True;database=test" IsAppSettingsProperty="false" Modifier="Assembly" Name="172.18.18.2(test)" ParameterPrefix="@" Provider="MySql.Data.MySqlClient" />
+        </Connections>
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="SqlGen_XSD" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="SqlGen_XSD" msprop:Generator_UserDSName="SqlGen_XSD">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Meta" msprop:Generator_TableClassName="MetaDataTable" msprop:Generator_TableVarName="tableMeta" msprop:Generator_TablePropName="Meta" msprop:Generator_RowDeletingName="MetaRowDeleting" msprop:Generator_UserTableName="Meta" msprop:Generator_RowChangingName="MetaRowChanging" msprop:Generator_RowEvHandlerName="MetaRowChangeEventHandler" msprop:Generator_RowDeletedName="MetaRowDeleted" msprop:Generator_RowEvArgName="MetaRowChangeEvent" msprop:Generator_RowChangedName="MetaRowChanged" msprop:Generator_RowClassName="MetaRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="_CheckState" msdata:Caption="选择" msprop:Generator_ColumnVarNameInTable="column_CheckState" msprop:Generator_ColumnPropNameInRow="_CheckState" msprop:Generator_ColumnPropNameInTable="_CheckStateColumn" msprop:Generator_UserColumnName="_CheckState" type="xs:int" minOccurs="0" />
+              <xs:element name="ObjectType" msdata:Caption="类型" msprop:Generator_ColumnVarNameInTable="columnObjectType" msprop:Generator_ColumnPropNameInRow="ObjectType" msprop:Generator_ColumnPropNameInTable="ObjectTypeColumn" msprop:Generator_UserColumnName="ObjectType" type="xs:string" minOccurs="0" />
+              <xs:element name="SchemaName" msdata:Caption="架构" msprop:Generator_ColumnVarNameInTable="columnSchemaName" msprop:Generator_ColumnPropNameInRow="SchemaName" msprop:Generator_ColumnPropNameInTable="SchemaNameColumn" msprop:Generator_UserColumnName="SchemaName" type="xs:string" minOccurs="0" />
+              <xs:element name="ObjectName" msdata:Caption="名称" msprop:Generator_ColumnVarNameInTable="columnObjectName" msprop:Generator_ColumnPropNameInRow="ObjectName" msprop:Generator_ColumnPropNameInTable="ObjectNameColumn" msprop:Generator_UserColumnName="ObjectName" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="dbv_column" msprop:Generator_TableClassName="dbv_columnDataTable" msprop:Generator_TableVarName="tabledbv_column" msprop:Generator_TablePropName="dbv_column" msprop:Generator_RowDeletingName="dbv_columnRowDeleting" msprop:Generator_UserTableName="dbv_column" msprop:Generator_RowChangingName="dbv_columnRowChanging" msprop:Generator_RowEvHandlerName="dbv_columnRowChangeEventHandler" msprop:Generator_RowDeletedName="dbv_columnRowDeleted" msprop:Generator_RowEvArgName="dbv_columnRowChangeEvent" msprop:Generator_RowChangedName="dbv_columnRowChanged" msprop:Generator_RowClassName="dbv_columnRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="CID" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="1" msprop:Generator_ColumnVarNameInTable="columnCID" msprop:Generator_ColumnPropNameInRow="CID" msprop:Generator_ColumnPropNameInTable="CIDColumn" msprop:Generator_UserColumnName="CID" type="xs:int" />
+              <xs:element name="TID" msprop:Generator_ColumnVarNameInTable="columnTID" msprop:Generator_ColumnPropNameInRow="TID" msprop:Generator_ColumnPropNameInTable="TIDColumn" msprop:Generator_UserColumnName="TID" type="xs:int" minOccurs="0" />
+              <xs:element name="ColName" msprop:Generator_ColumnVarNameInTable="columnColName" msprop:Generator_ColumnPropNameInRow="ColName" msprop:Generator_ColumnPropNameInTable="ColNameColumn" msprop:Generator_UserColumnName="ColName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="192" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DefaultValue" msprop:Generator_ColumnVarNameInTable="columnDefaultValue" msprop:Generator_ColumnPropNameInRow="DefaultValue" msprop:Generator_ColumnPropNameInTable="DefaultValueColumn" msprop:Generator_UserColumnName="DefaultValue" type="xs:base64Binary" minOccurs="0" />
+              <xs:element name="NullAble" msprop:Generator_ColumnVarNameInTable="columnNullAble" msprop:Generator_ColumnPropNameInRow="NullAble" msprop:Generator_ColumnPropNameInTable="NullAbleColumn" msprop:Generator_UserColumnName="NullAble" type="xs:boolean" minOccurs="0" />
+              <xs:element name="DATA_TYPE" msprop:Generator_ColumnVarNameInTable="columnDATA_TYPE" msprop:Generator_ColumnPropNameInRow="DATA_TYPE" msprop:Generator_ColumnPropNameInTable="DATA_TYPEColumn" msprop:Generator_UserColumnName="DATA_TYPE" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="192" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="CHARACTER_MAXIMUM_LENGTH" msprop:Generator_ColumnVarNameInTable="columnCHARACTER_MAXIMUM_LENGTH" msprop:Generator_ColumnPropNameInRow="CHARACTER_MAXIMUM_LENGTH" msprop:Generator_ColumnPropNameInTable="CHARACTER_MAXIMUM_LENGTHColumn" msprop:Generator_UserColumnName="CHARACTER_MAXIMUM_LENGTH" type="xs:long" minOccurs="0" />
+              <xs:element name="CHARACTER_OCTET_LENGTH" msprop:Generator_ColumnVarNameInTable="columnCHARACTER_OCTET_LENGTH" msprop:Generator_ColumnPropNameInRow="CHARACTER_OCTET_LENGTH" msprop:Generator_ColumnPropNameInTable="CHARACTER_OCTET_LENGTHColumn" msprop:Generator_UserColumnName="CHARACTER_OCTET_LENGTH" type="xs:long" minOccurs="0" />
+              <xs:element name="NUMERIC_PRECISION" msprop:Generator_ColumnVarNameInTable="columnNUMERIC_PRECISION" msprop:Generator_ColumnPropNameInRow="NUMERIC_PRECISION" msprop:Generator_ColumnPropNameInTable="NUMERIC_PRECISIONColumn" msprop:Generator_UserColumnName="NUMERIC_PRECISION" type="xs:long" minOccurs="0" />
+              <xs:element name="NUMERIC_SCALE" msprop:Generator_ColumnVarNameInTable="columnNUMERIC_SCALE" msprop:Generator_ColumnPropNameInRow="NUMERIC_SCALE" msprop:Generator_ColumnPropNameInTable="NUMERIC_SCALEColumn" msprop:Generator_UserColumnName="NUMERIC_SCALE" type="xs:long" minOccurs="0" />
+              <xs:element name="CHARACTER_SET_NAME" msprop:Generator_ColumnVarNameInTable="columnCHARACTER_SET_NAME" msprop:Generator_ColumnPropNameInRow="CHARACTER_SET_NAME" msprop:Generator_ColumnPropNameInTable="CHARACTER_SET_NAMEColumn" msprop:Generator_UserColumnName="CHARACTER_SET_NAME" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="192" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="COLLATION_NAME" msprop:Generator_ColumnVarNameInTable="columnCOLLATION_NAME" msprop:Generator_ColumnPropNameInRow="COLLATION_NAME" msprop:Generator_ColumnPropNameInTable="COLLATION_NAMEColumn" msprop:Generator_UserColumnName="COLLATION_NAME" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="192" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="COLUMN_TYPE" msprop:Generator_ColumnVarNameInTable="columnCOLUMN_TYPE" msprop:Generator_ColumnPropNameInRow="COLUMN_TYPE" msprop:Generator_ColumnPropNameInTable="COLUMN_TYPEColumn" msprop:Generator_UserColumnName="COLUMN_TYPE" type="xs:base64Binary" minOccurs="0" />
+              <xs:element name="COLUMN_KEY" msprop:Generator_ColumnVarNameInTable="columnCOLUMN_KEY" msprop:Generator_ColumnPropNameInRow="COLUMN_KEY" msprop:Generator_ColumnPropNameInTable="COLUMN_KEYColumn" msprop:Generator_UserColumnName="COLUMN_KEY" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="3" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="is_auto_increment" msprop:Generator_ColumnVarNameInTable="columnis_auto_increment" msprop:Generator_ColumnPropNameInRow="is_auto_increment" msprop:Generator_ColumnPropNameInTable="is_auto_incrementColumn" msprop:Generator_UserColumnName="is_auto_increment" type="xs:boolean" minOccurs="0" />
+              <xs:element name="COLUMN_COMMENT" msprop:Generator_ColumnVarNameInTable="columnCOLUMN_COMMENT" msprop:Generator_ColumnPropNameInRow="COLUMN_COMMENT" msprop:Generator_ColumnPropNameInTable="COLUMN_COMMENTColumn" msprop:Generator_UserColumnName="COLUMN_COMMENT" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="765" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="SchemaName" msprop:Generator_ColumnVarNameInTable="columnSchemaName" msprop:Generator_ColumnPropNameInRow="SchemaName" msprop:Generator_ColumnPropNameInTable="SchemaNameColumn" msprop:Generator_UserColumnName="SchemaName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="192" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="TableName" msprop:Generator_ColumnVarNameInTable="columnTableName" msprop:Generator_ColumnPropNameInRow="TableName" msprop:Generator_ColumnPropNameInTable="TableNameColumn" msprop:Generator_UserColumnName="TableName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="192" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="dbv_proc" msprop:Generator_TableClassName="dbv_procDataTable" msprop:Generator_TableVarName="tabledbv_proc" msprop:Generator_TablePropName="dbv_proc" msprop:Generator_RowDeletingName="dbv_procRowDeleting" msprop:Generator_UserTableName="dbv_proc" msprop:Generator_RowChangingName="dbv_procRowChanging" msprop:Generator_RowEvHandlerName="dbv_procRowChangeEventHandler" msprop:Generator_RowDeletedName="dbv_procRowDeleted" msprop:Generator_RowEvArgName="dbv_procRowChangeEvent" msprop:Generator_RowChangedName="dbv_procRowChanged" msprop:Generator_RowClassName="dbv_procRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="PID" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="1" msprop:Generator_ColumnVarNameInTable="columnPID" msprop:Generator_ColumnPropNameInRow="PID" msprop:Generator_ColumnPropNameInTable="PIDColumn" msprop:Generator_UserColumnName="PID" type="xs:int" />
+              <xs:element name="SchemaName" msprop:Generator_ColumnVarNameInTable="columnSchemaName" msprop:Generator_ColumnPropNameInRow="SchemaName" msprop:Generator_ColumnPropNameInTable="SchemaNameColumn" msprop:Generator_UserColumnName="SchemaName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="192" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ProcName" msprop:Generator_ColumnVarNameInTable="columnProcName" msprop:Generator_ColumnPropNameInRow="ProcName" msprop:Generator_ColumnPropNameInTable="ProcNameColumn" msprop:Generator_UserColumnName="ProcName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="192" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="param_list" msprop:Generator_ColumnVarNameInTable="columnparam_list" msprop:Generator_ColumnPropNameInRow="param_list" msprop:Generator_ColumnPropNameInTable="param_listColumn" msprop:Generator_UserColumnName="param_list" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="21845" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="returns" msprop:Generator_ColumnVarNameInTable="columnreturns" msprop:Generator_ColumnPropNameInRow="returns" msprop:Generator_ColumnPropNameInTable="returnsColumn" msprop:Generator_UserColumnName="returns" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="192" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="body" msprop:Generator_ColumnVarNameInTable="columnbody" msprop:Generator_ColumnPropNameInRow="body" msprop:Generator_ColumnPropNameInTable="bodyColumn" msprop:Generator_UserColumnName="body" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="21845" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="comment" msprop:Generator_ColumnVarNameInTable="columncomment" msprop:Generator_ColumnPropNameInRow="comment" msprop:Generator_ColumnPropNameInTable="commentColumn" msprop:Generator_UserColumnName="comment" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="192" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="dbv_table" msprop:Generator_TableClassName="dbv_tableDataTable" msprop:Generator_TableVarName="tabledbv_table" msprop:Generator_TablePropName="dbv_table" msprop:Generator_RowDeletingName="dbv_tableRowDeleting" msprop:Generator_UserTableName="dbv_table" msprop:Generator_RowChangingName="dbv_tableRowChanging" msprop:Generator_RowEvHandlerName="dbv_tableRowChangeEventHandler" msprop:Generator_RowDeletedName="dbv_tableRowDeleted" msprop:Generator_RowEvArgName="dbv_tableRowChangeEvent" msprop:Generator_RowChangedName="dbv_tableRowChanged" msprop:Generator_RowClassName="dbv_tableRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="TID" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnTID" msprop:Generator_ColumnPropNameInRow="TID" msprop:Generator_ColumnPropNameInTable="TIDColumn" msprop:Generator_UserColumnName="TID" type="xs:int" />
+              <xs:element name="SchemaName" msprop:Generator_ColumnVarNameInTable="columnSchemaName" msprop:Generator_ColumnPropNameInRow="SchemaName" msprop:Generator_ColumnPropNameInTable="SchemaNameColumn" msprop:Generator_UserColumnName="SchemaName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="192" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="TableName" msprop:Generator_ColumnVarNameInTable="columnTableName" msprop:Generator_ColumnPropNameInRow="TableName" msprop:Generator_ColumnPropNameInTable="TableNameColumn" msprop:Generator_UserColumnName="TableName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="192" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ENGINE" msprop:Generator_ColumnVarNameInTable="columnENGINE" msprop:Generator_ColumnPropNameInRow="ENGINE" msprop:Generator_ColumnPropNameInTable="ENGINEColumn" msprop:Generator_UserColumnName="ENGINE" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="192" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="CREATE_OPTIONS" msprop:Generator_ColumnVarNameInTable="columnCREATE_OPTIONS" msprop:Generator_ColumnPropNameInRow="CREATE_OPTIONS" msprop:Generator_ColumnPropNameInTable="CREATE_OPTIONSColumn" msprop:Generator_UserColumnName="CREATE_OPTIONS" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="765" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="TABLE_COMMENT" msprop:Generator_ColumnVarNameInTable="columnTABLE_COMMENT" msprop:Generator_ColumnPropNameInRow="TABLE_COMMENT" msprop:Generator_ColumnPropNameInTable="TABLE_COMMENTColumn" msprop:Generator_UserColumnName="TABLE_COMMENT" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="240" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="PrimaryKeys" msprop:Generator_ColumnVarNameInTable="columnPrimaryKeys" msprop:Generator_ColumnPropNameInRow="PrimaryKeys" msprop:Generator_ColumnPropNameInTable="PrimaryKeysColumn" msprop:Generator_UserColumnName="PrimaryKeys" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="21845" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:dbv_column" />
+      <xs:field xpath="mstns:CID" />
+    </xs:unique>
+    <xs:unique name="dbv_proc_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:dbv_proc" />
+      <xs:field xpath="mstns:PID" />
+    </xs:unique>
+    <xs:unique name="dbv_table_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:dbv_table" />
+      <xs:field xpath="mstns:TID" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>
