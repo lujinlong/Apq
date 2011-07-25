@@ -342,7 +342,8 @@ namespace Apq.Data.SqlClient
 		public static string ConvertToSqlON(object obj)
 		{
 			SqlDbType sdt = GetSqlDbType(obj.GetType());
-			return ConvertToSqlON(sdt, obj);
+			string rtn = ConvertToSqlON(sdt, obj);
+			return rtn;
 		}
 		#endregion
 

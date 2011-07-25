@@ -37,21 +37,30 @@ namespace Apq_DBTools
 			this.toolStrip1 = new System.Windows.Forms.ToolStrip();
 			this.tsbConnectDB = new System.Windows.Forms.ToolStripSplitButton();
 			this.tsmiRefresh = new System.Windows.Forms.ToolStripMenuItem();
+			this.tssbSelect = new System.Windows.Forms.ToolStripSplitButton();
+			this.tsmiSelectAll = new System.Windows.Forms.ToolStripMenuItem();
+			this.tsmiSelectReverse = new System.Windows.Forms.ToolStripMenuItem();
+			this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+			this.tsmiSelectTable = new System.Windows.Forms.ToolStripMenuItem();
+			this.tsmiSelectProc = new System.Windows.Forms.ToolStripMenuItem();
 			this.tssbGenSql = new System.Windows.Forms.ToolStripSplitButton();
 			this.tsmiMeta = new System.Windows.Forms.ToolStripMenuItem();
+			this.tsmiData = new System.Windows.Forms.ToolStripMenuItem();
 			this.dataGridView1 = new System.Windows.Forms.DataGridView();
 			this.checkStateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-			this.objectTypeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.objectTypeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
+			this.bsObjectType = new System.Windows.Forms.BindingSource(this.components);
+			this._xsd = new Apq_DBTools.Forms.SqlGen_XSD();
 			this.schemaNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.objectNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.bsMeta = new System.Windows.Forms.BindingSource(this.components);
-			this._xsd = new Apq_DBTools.Forms.SqlGen_XSD();
-			this.tsmiData = new System.Windows.Forms.ToolStripMenuItem();
+			this.sfdMeta = new System.Windows.Forms.SaveFileDialog();
 			this.statusStrip1.SuspendLayout();
 			this.toolStrip1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.bsMeta)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.bsObjectType)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this._xsd)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.bsMeta)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// tsslStatus
@@ -79,6 +88,7 @@ namespace Apq_DBTools
 			// 
 			this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsbConnectDB,
+            this.tssbSelect,
             this.tssbGenSql});
 			this.toolStrip1.Location = new System.Drawing.Point(0, 0);
 			this.toolStrip1.Name = "toolStrip1";
@@ -105,6 +115,62 @@ namespace Apq_DBTools
 			this.tsmiRefresh.Text = "刷新(&F)";
 			this.tsmiRefresh.Click += new System.EventHandler(this.tsbRefresh_Click);
 			// 
+			// tssbSelect
+			// 
+			this.tssbSelect.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+			this.tssbSelect.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiSelectAll,
+            this.tsmiSelectReverse,
+            this.toolStripSeparator1,
+            this.tsmiSelectTable,
+            this.tsmiSelectProc});
+			this.tssbSelect.Image = ((System.Drawing.Image)(resources.GetObject("tssbSelect.Image")));
+			this.tssbSelect.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.tssbSelect.Name = "tssbSelect";
+			this.tssbSelect.Size = new System.Drawing.Size(45, 22);
+			this.tssbSelect.Text = "选择";
+			// 
+			// tsmiSelectAll
+			// 
+			this.tsmiSelectAll.Name = "tsmiSelectAll";
+			this.tsmiSelectAll.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.A)));
+			this.tsmiSelectAll.Size = new System.Drawing.Size(153, 22);
+			this.tsmiSelectAll.Text = "全选(&A)";
+			this.tsmiSelectAll.Click += new System.EventHandler(this.tsmiSelectAll_Click);
+			// 
+			// tsmiSelectReverse
+			// 
+			this.tsmiSelectReverse.Name = "tsmiSelectReverse";
+			this.tsmiSelectReverse.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.R)));
+			this.tsmiSelectReverse.Size = new System.Drawing.Size(153, 22);
+			this.tsmiSelectReverse.Text = "反选(&R)";
+			this.tsmiSelectReverse.Click += new System.EventHandler(this.tsmiSelectReverse_Click);
+			// 
+			// toolStripSeparator1
+			// 
+			this.toolStripSeparator1.Name = "toolStripSeparator1";
+			this.toolStripSeparator1.Size = new System.Drawing.Size(150, 6);
+			// 
+			// tsmiSelectTable
+			// 
+			this.tsmiSelectTable.Checked = true;
+			this.tsmiSelectTable.CheckOnClick = true;
+			this.tsmiSelectTable.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.tsmiSelectTable.Name = "tsmiSelectTable";
+			this.tsmiSelectTable.Size = new System.Drawing.Size(153, 22);
+			this.tsmiSelectTable.Text = "表(&T)";
+			this.tsmiSelectTable.CheckedChanged += new System.EventHandler(this.tsmiSelectTable_CheckedChanged);
+			// 
+			// tsmiSelectProc
+			// 
+			this.tsmiSelectProc.Checked = true;
+			this.tsmiSelectProc.CheckOnClick = true;
+			this.tsmiSelectProc.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.tsmiSelectProc.Name = "tsmiSelectProc";
+			this.tsmiSelectProc.Size = new System.Drawing.Size(153, 22);
+			this.tsmiSelectProc.Text = "存储过程(&P)";
+			this.tsmiSelectProc.CheckedChanged += new System.EventHandler(this.tsmiSelectProc_CheckedChanged);
+			// 
 			// tssbGenSql
 			// 
 			this.tssbGenSql.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
@@ -124,6 +190,13 @@ namespace Apq_DBTools
 			this.tsmiMeta.Text = "元数据脚本(&M)";
 			this.tsmiMeta.Click += new System.EventHandler(this.tsmiMeta_Click);
 			// 
+			// tsmiData
+			// 
+			this.tsmiData.Name = "tsmiData";
+			this.tsmiData.Size = new System.Drawing.Size(152, 22);
+			this.tsmiData.Text = "初始化数据(&D)";
+			this.tsmiData.Click += new System.EventHandler(this.tsmiData_Click);
+			// 
 			// dataGridView1
 			// 
 			this.dataGridView1.AllowUserToAddRows = false;
@@ -139,26 +212,46 @@ namespace Apq_DBTools
 			this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.dataGridView1.Location = new System.Drawing.Point(0, 25);
 			this.dataGridView1.Name = "dataGridView1";
-			this.dataGridView1.ReadOnly = true;
 			this.dataGridView1.RowTemplate.Height = 23;
 			this.dataGridView1.Size = new System.Drawing.Size(760, 388);
 			this.dataGridView1.TabIndex = 5;
 			// 
 			// checkStateDataGridViewTextBoxColumn
 			// 
+			this.checkStateDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
 			this.checkStateDataGridViewTextBoxColumn.DataPropertyName = "_CheckState";
+			this.checkStateDataGridViewTextBoxColumn.FalseValue = "0";
 			this.checkStateDataGridViewTextBoxColumn.HeaderText = "选择";
+			this.checkStateDataGridViewTextBoxColumn.IndeterminateValue = "2";
 			this.checkStateDataGridViewTextBoxColumn.Name = "checkStateDataGridViewTextBoxColumn";
-			this.checkStateDataGridViewTextBoxColumn.ReadOnly = true;
 			this.checkStateDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
 			this.checkStateDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+			this.checkStateDataGridViewTextBoxColumn.TrueValue = "1";
+			this.checkStateDataGridViewTextBoxColumn.Width = 54;
 			// 
 			// objectTypeDataGridViewTextBoxColumn
 			// 
 			this.objectTypeDataGridViewTextBoxColumn.DataPropertyName = "ObjectType";
+			this.objectTypeDataGridViewTextBoxColumn.DataSource = this.bsObjectType;
+			this.objectTypeDataGridViewTextBoxColumn.DisplayMember = "TypeCaption";
+			this.objectTypeDataGridViewTextBoxColumn.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.Nothing;
 			this.objectTypeDataGridViewTextBoxColumn.HeaderText = "类型";
 			this.objectTypeDataGridViewTextBoxColumn.Name = "objectTypeDataGridViewTextBoxColumn";
 			this.objectTypeDataGridViewTextBoxColumn.ReadOnly = true;
+			this.objectTypeDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+			this.objectTypeDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+			this.objectTypeDataGridViewTextBoxColumn.ValueMember = "ObjectType";
+			this.objectTypeDataGridViewTextBoxColumn.Width = 150;
+			// 
+			// bsObjectType
+			// 
+			this.bsObjectType.DataMember = "dic_ObjectType";
+			this.bsObjectType.DataSource = this._xsd;
+			// 
+			// _xsd
+			// 
+			this._xsd.DataSetName = "SqlGen_XSD";
+			this._xsd.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
 			// 
 			// schemaNameDataGridViewTextBoxColumn
 			// 
@@ -166,9 +259,11 @@ namespace Apq_DBTools
 			this.schemaNameDataGridViewTextBoxColumn.HeaderText = "架构";
 			this.schemaNameDataGridViewTextBoxColumn.Name = "schemaNameDataGridViewTextBoxColumn";
 			this.schemaNameDataGridViewTextBoxColumn.ReadOnly = true;
+			this.schemaNameDataGridViewTextBoxColumn.Width = 150;
 			// 
 			// objectNameDataGridViewTextBoxColumn
 			// 
+			this.objectNameDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
 			this.objectNameDataGridViewTextBoxColumn.DataPropertyName = "ObjectName";
 			this.objectNameDataGridViewTextBoxColumn.HeaderText = "名称";
 			this.objectNameDataGridViewTextBoxColumn.Name = "objectNameDataGridViewTextBoxColumn";
@@ -179,16 +274,9 @@ namespace Apq_DBTools
 			this.bsMeta.DataMember = "Meta";
 			this.bsMeta.DataSource = this._xsd;
 			// 
-			// _xsd
+			// sfdMeta
 			// 
-			this._xsd.DataSetName = "SqlGen_XSD";
-			this._xsd.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-			// 
-			// tsmiData
-			// 
-			this.tsmiData.Name = "tsmiData";
-			this.tsmiData.Size = new System.Drawing.Size(152, 22);
-			this.tsmiData.Text = "初始化数据(&D)";
+			this.sfdMeta.Filter = "SQL 文件|*.sql|所有文件|*.*";
 			// 
 			// SqlGen
 			// 
@@ -214,8 +302,9 @@ namespace Apq_DBTools
 			this.toolStrip1.ResumeLayout(false);
 			this.toolStrip1.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.bsMeta)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.bsObjectType)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this._xsd)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.bsMeta)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -234,10 +323,18 @@ namespace Apq_DBTools
         private System.Windows.Forms.ToolStripMenuItem tsmiMeta;
 		private System.Windows.Forms.BindingSource bsMeta;
 		private SqlGen_XSD _xsd;
+		private System.Windows.Forms.ToolStripMenuItem tsmiData;
+		private System.Windows.Forms.ToolStripSplitButton tssbSelect;
+		private System.Windows.Forms.ToolStripMenuItem tsmiSelectAll;
+		private System.Windows.Forms.ToolStripMenuItem tsmiSelectReverse;
+		private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+		private System.Windows.Forms.ToolStripMenuItem tsmiSelectTable;
+		private System.Windows.Forms.ToolStripMenuItem tsmiSelectProc;
+		private System.Windows.Forms.BindingSource bsObjectType;
 		private System.Windows.Forms.DataGridViewCheckBoxColumn checkStateDataGridViewTextBoxColumn;
-		private System.Windows.Forms.DataGridViewTextBoxColumn objectTypeDataGridViewTextBoxColumn;
+		private System.Windows.Forms.DataGridViewComboBoxColumn objectTypeDataGridViewTextBoxColumn;
 		private System.Windows.Forms.DataGridViewTextBoxColumn schemaNameDataGridViewTextBoxColumn;
 		private System.Windows.Forms.DataGridViewTextBoxColumn objectNameDataGridViewTextBoxColumn;
-		private System.Windows.Forms.ToolStripMenuItem tsmiData;
+		private System.Windows.Forms.SaveFileDialog sfdMeta;
 	}
 }

@@ -214,6 +214,10 @@
     <Compile Include="Forms\FSRename.Designer.cs">
       <DependentUpon>FSRename.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\SqlGen_XSD.cs">
+      <DependentUpon>SqlGen_XSD.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Forms\SqlGen_XSD.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
