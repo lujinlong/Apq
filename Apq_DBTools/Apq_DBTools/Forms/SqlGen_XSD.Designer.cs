@@ -1393,7 +1393,7 @@ namespace Apq_DBTools.Forms {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public dbv_procRow Adddbv_procRow(string SchemaName, string ProcName, byte[] param_list, byte[] returns, byte[] body, string comment) {
+            public dbv_procRow Adddbv_procRow(string SchemaName, string ProcName, string param_list, string returns, string body, string comment) {
                 dbv_procRow rowdbv_procRow = ((dbv_procRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -1450,11 +1450,11 @@ namespace Apq_DBTools.Forms {
                 base.Columns.Add(this.columnSchemaName);
                 this.columnProcName = new global::System.Data.DataColumn("ProcName", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnProcName);
-                this.columnparam_list = new global::System.Data.DataColumn("param_list", typeof(byte[]), null, global::System.Data.MappingType.Element);
+                this.columnparam_list = new global::System.Data.DataColumn("param_list", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnparam_list);
-                this.columnreturns = new global::System.Data.DataColumn("returns", typeof(byte[]), null, global::System.Data.MappingType.Element);
+                this.columnreturns = new global::System.Data.DataColumn("returns", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnreturns);
-                this.columnbody = new global::System.Data.DataColumn("body", typeof(byte[]), null, global::System.Data.MappingType.Element);
+                this.columnbody = new global::System.Data.DataColumn("body", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnbody);
                 this.columncomment = new global::System.Data.DataColumn("comment", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columncomment);
@@ -2914,10 +2914,10 @@ namespace Apq_DBTools.Forms {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public byte[] param_list {
+            public string param_list {
                 get {
                     try {
-                        return ((byte[])(this[this.tabledbv_proc.param_listColumn]));
+                        return ((string)(this[this.tabledbv_proc.param_listColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("表“dbv_proc”中列“param_list”的值为 DBNull。", e);
@@ -2930,10 +2930,10 @@ namespace Apq_DBTools.Forms {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public byte[] returns {
+            public string returns {
                 get {
                     try {
-                        return ((byte[])(this[this.tabledbv_proc.returnsColumn]));
+                        return ((string)(this[this.tabledbv_proc.returnsColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("表“dbv_proc”中列“returns”的值为 DBNull。", e);
@@ -2946,10 +2946,10 @@ namespace Apq_DBTools.Forms {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public byte[] body {
+            public string body {
                 get {
                     try {
-                        return ((byte[])(this[this.tabledbv_proc.bodyColumn]));
+                        return ((string)(this[this.tabledbv_proc.bodyColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("表“dbv_proc”中列“body”的值为 DBNull。", e);

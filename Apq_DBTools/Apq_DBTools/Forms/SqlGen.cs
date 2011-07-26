@@ -16,6 +16,7 @@ using org.mozilla.intl.chardet;
 using Apq.DllImports;
 using System.Collections;
 using MySql.Data.MySqlClient;
+using System.Text.RegularExpressions;
 
 namespace Apq_DBTools
 {
@@ -111,36 +112,50 @@ namespace Apq_DBTools
 		{
 
 		}
-
+		// 刷新
 		private void tsbRefresh_Click(object sender, EventArgs e)
 		{
-			if (_DBConnection != null)
+			try
 			{
-				_xsd.Meta.Rows.Clear();
-				_xsd.dbv_proc.Rows.Clear();
-				_xsd.dbv_column.Rows.Clear();
-				_xsd.dbv_table.Rows.Clear();
+				_DBConnection.Open();
+			}
+			catch
+			{
+				MessageBox.Show(this, Apq.GlobalObject.UILang["数据库未连接或已断开"]);
+				return;
+			}
+			finally
+			{
+				Apq.Data.Common.DbConnectionHelper.Close(_DBConnection);
+			}
 
-				//+从数据库获取列表：表，存储过程 [默认全选]
-				try
+			_xsd.Meta.Rows.Clear();
+			_xsd.dbv_proc.Rows.Clear();
+			_xsd.dbv_column.Rows.Clear();
+			_xsd.dbv_table.Rows.Clear();
+
+			//+从数据库获取列表：表，存储过程 [默认全选]
+			try
+			{
+				Apq.Data.Common.DbConnectionHelper dch = new Apq.Data.Common.DbConnectionHelper(_DBConnection);
+				DbDataAdapter dda = dch.CreateAdapter();
+				if (_DBConnectionType == Apq.Data.Common.DBProduct.MySql)
 				{
-					Apq.Data.Common.DbConnectionHelper dch = new Apq.Data.Common.DbConnectionHelper(_DBConnection);
-					DbDataAdapter dda = dch.CreateAdapter();
-					if (_DBConnectionType == Apq.Data.Common.DBProduct.MySql)
-					{
-						// 表
-						dda.SelectCommand.CommandText = @"
+					// 表
+					dda.SelectCommand.CommandText = @"
 SELECT `TABLE_SCHEMA` as SchemaName,`Table_Name` as TableName,`ENGINE`,`CREATE_OPTIONS`,`TABLE_COMMENT`,'' as PrimaryKeys
   FROM `information_schema`.`TABLES`
  WHERE `TABLE_SCHEMA` = DATABASE();
 ";
-						dda.Fill(_xsd.dbv_table);
-						// 列
-						dda.SelectCommand.CommandText = @"
-SELECT `COLUMN_NAME` as ColName,`COLUMN_DEFAULT` as DefaultValue,
+					dda.Fill(_xsd.dbv_table);
+					// 列
+					dda.SelectCommand.CommandText = @"
+SELECT `COLUMN_NAME` as ColName,
+	CONVERT(`COLUMN_DEFAULT` USING utf8) AS DefaultValue,
 	CASE `IS_NULLABLE` WHEN 'NO' THEN 0 ELSE 1 END as NullAble,
 	`DATA_TYPE`,`CHARACTER_MAXIMUM_LENGTH`,`CHARACTER_OCTET_LENGTH`,`NUMERIC_PRECISION`,`NUMERIC_SCALE`,`CHARACTER_SET_NAME`,`COLLATION_NAME`,
-	`COLUMN_TYPE`,`COLUMN_KEY`,
+	CONVERT(`COLUMN_TYPE` USING utf8) AS COLUMN_TYPE,
+	`COLUMN_KEY`,
 	CASE WHEN INSTR(`EXTRA`,'auto_increment') > 0 THEN 1 ELSE 0 END as is_auto_increment,
 	`COLUMN_COMMENT`,c.`TABLE_SCHEMA` as SchemaName,c.`TABLE_NAME` as TableName
   FROM `information_schema`.`COLUMNS` c 
@@ -148,66 +163,69 @@ SELECT `COLUMN_NAME` as ColName,`COLUMN_DEFAULT` as DefaultValue,
 	-- INNER JOIN `dbv_table` dt ON t.`TABLE_SCHEMA` = dt.`SchemaName` AND t.`TABLE_NAME` = dt.`TableName`
  WHERE c.`TABLE_SCHEMA` = DATABASE();
 ";
-						dda.Fill(_xsd.dbv_column);
-						// 存储过程
-						dda.SelectCommand.CommandText = @"
-SELECT `db` as SchemaName,`name` as ProcName,`param_list`,`returns`,`body`,`comment`
+					dda.Fill(_xsd.dbv_column);
+					// 存储过程
+					dda.SelectCommand.CommandText = @"
+SELECT `db` AS SchemaName,`name` AS ProcName,
+	CONVERT(`param_list` USING utf8) AS param_list,
+	CONVERT(`returns` USING utf8) AS RETURNS,
+	CONVERT(`body` USING utf8) AS body,
+	`comment`
   FROM `mysql`.`proc`
  WHERE `db` = DATABASE();
 ";
-						dda.Fill(_xsd.dbv_proc);
+					dda.Fill(_xsd.dbv_proc);
 
-						// 为列设置TID
-						foreach (SqlGen_XSD.dbv_columnRow dr in _xsd.dbv_column.Rows)
+					// 为列设置TID
+					foreach (SqlGen_XSD.dbv_columnRow dr in _xsd.dbv_column.Rows)
+					{
+						SqlGen_XSD.dbv_tableRow drT = _xsd.dbv_table.FindByTableName(dr.SchemaName, dr.TableName);
+						dr.TID = drT.TID;
+					}
+					// 为表查找主键列
+					foreach (SqlGen_XSD.dbv_tableRow dr in _xsd.dbv_table.Rows)
+					{
+						SqlGen_XSD.dbv_columnRow[] drCs = dr.GetChildRows("FK_dbv_table_dbv_column") as SqlGen_XSD.dbv_columnRow[];
+						string strCols = string.Empty;
+						foreach (SqlGen_XSD.dbv_columnRow drc in drCs)
 						{
-							SqlGen_XSD.dbv_tableRow drT = _xsd.dbv_table.FindByTableName(dr.SchemaName, dr.TableName);
-							dr.TID = drT.TID;
-						}
-						// 为表查找主键列
-						foreach (SqlGen_XSD.dbv_tableRow dr in _xsd.dbv_table.Rows)
-						{
-							SqlGen_XSD.dbv_columnRow[] drCs = dr.GetChildRows("FK_dbv_table_dbv_column") as SqlGen_XSD.dbv_columnRow[];
-							string strCols = string.Empty;
-							foreach (SqlGen_XSD.dbv_columnRow drc in drCs)
+							if ("PRI".Equals(drc.COLUMN_KEY, StringComparison.OrdinalIgnoreCase))
 							{
-								if ("PRI".Equals(drc.COLUMN_KEY, StringComparison.OrdinalIgnoreCase))
-								{
-									strCols += "," + drc.ColName;
-								}
-							}
-							if (strCols.Length > 0)
-							{
-								dr.PrimaryKeys = strCols.Substring(1);
+								strCols += "," + drc.ColName;
 							}
 						}
-						// 将表和存储过程名加到元数据表
-						foreach (SqlGen_XSD.dbv_tableRow drT in _xsd.dbv_table.Rows)
+						if (strCols.Length > 0)
 						{
-							SqlGen_XSD.MetaRow drMeta = _xsd.Meta.NewMetaRow();
-							drMeta.ObjectType = 1;
-							drMeta._CheckState = 1;
-							drMeta.SchemaName = drT.SchemaName;
-							drMeta.ObjectName = drT.TableName;
-							_xsd.Meta.Rows.Add(drMeta);
-						}
-						foreach (SqlGen_XSD.dbv_procRow drP in _xsd.dbv_proc.Rows)
-						{
-							SqlGen_XSD.MetaRow drMeta = _xsd.Meta.NewMetaRow();
-							drMeta.ObjectType = 2;
-							drMeta._CheckState = 1;
-							drMeta.SchemaName = drP.SchemaName;
-							drMeta.ObjectName = drP.ProcName;
-							_xsd.Meta.Rows.Add(drMeta);
+							dr.PrimaryKeys = strCols.Substring(1);
 						}
 					}
+					// 将表和存储过程名加到元数据表
+					foreach (SqlGen_XSD.dbv_tableRow drT in _xsd.dbv_table.Rows)
+					{
+						SqlGen_XSD.MetaRow drMeta = _xsd.Meta.NewMetaRow();
+						drMeta.ObjectType = 1;
+						drMeta._CheckState = 1;
+						drMeta.SchemaName = drT.SchemaName;
+						drMeta.ObjectName = drT.TableName;
+						_xsd.Meta.Rows.Add(drMeta);
+					}
+					foreach (SqlGen_XSD.dbv_procRow drP in _xsd.dbv_proc.Rows)
+					{
+						SqlGen_XSD.MetaRow drMeta = _xsd.Meta.NewMetaRow();
+						drMeta.ObjectType = 2;
+						drMeta._CheckState = 1;
+						drMeta.SchemaName = drP.SchemaName;
+						drMeta.ObjectName = drP.ProcName;
+						_xsd.Meta.Rows.Add(drMeta);
+					}
 				}
-				catch (Exception ex)
-				{
-					MessageBox.Show(this, ex.Message);
-				}
-				finally
-				{
-				}
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show(this, ex.Message);
+			}
+			finally
+			{
 			}
 		}
 
@@ -225,24 +243,93 @@ SELECT `db` as SchemaName,`name` as ProcName,`param_list`,`returns`,`body`,`comm
 		// 生成元数据语句并保存到文件
 		private void tsmiMeta_Click(object sender, EventArgs e)
 		{
+			try
+			{
+				_DBConnection.Open();
+			}
+			catch
+			{
+				MessageBox.Show(this, Apq.GlobalObject.UILang["数据库未连接或已断开"]);
+				return;
+			}
+			finally
+			{
+				Apq.Data.Common.DbConnectionHelper.Close(_DBConnection);
+			}
+
 			StringBuilder sb = new StringBuilder();
 			sfdMeta.InitialDirectory = GlobalObject.XmlConfigChain[this.GetType(), "sfdMeta_InitialDirectory"];
 			if (sfdMeta.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
 			{
 				GlobalObject.XmlConfigChain[this.GetType(), "sfdMeta_InitialDirectory"] = Path.GetDirectoryName(sfdMeta.FileName);
 
+				#region 创建元数据表
 				// 为列表中已选中的项生成语句，语句完成将这些项插入到dbv_table,dbv_column,dbv_proc中
 				sb.Append(string.Format(@"
-USE {0};
+CREATE DATABASE IF NOT EXISTS `{0}` DEFAULT CHARACTER SET utf8;
+USE `{0}`;
+SET FOREIGN_KEY_CHECKS=0;
 
--- 元数据
-DELETE FROM `dbv_proc`;
-DELETE FROM `dbv_column`;
-DELETE FROM `dbv_table`;
-",
+-- 元数据表 -----------------------------------------------------------------------------------------
+
+DROP TABLE IF EXISTS `dbv_table`;
+
+CREATE TABLE `dbv_table` (
+  `TID` int(11) NOT NULL AUTO_INCREMENT,
+  `SchemaName` varchar(192) DEFAULT NULL,
+  `TableName` varchar(192) DEFAULT NULL,
+  `ENGINE` varchar(192) DEFAULT NULL,
+  `CREATE_OPTIONS` varchar(765) DEFAULT NULL,
+  `TABLE_COMMENT` varchar(240) DEFAULT NULL,
+  `PrimaryKeys` text,
+  PRIMARY KEY (`TID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+DROP TABLE IF EXISTS `dbv_column`;
+
+CREATE TABLE `dbv_column` (
+  `CID` int(11) NOT NULL AUTO_INCREMENT,
+  `TID` int(11) DEFAULT NULL,
+  `ColName` varchar(192) DEFAULT NULL,
+  `DefaultValue` longtext,
+  `NullAble` tinyint(1) DEFAULT NULL,
+  `DATA_TYPE` varchar(192) DEFAULT NULL,
+  `CHARACTER_MAXIMUM_LENGTH` bigint(21) DEFAULT NULL,
+  `CHARACTER_OCTET_LENGTH` bigint(21) DEFAULT NULL,
+  `NUMERIC_PRECISION` bigint(21) DEFAULT NULL,
+  `NUMERIC_SCALE` bigint(21) DEFAULT NULL,
+  `CHARACTER_SET_NAME` varchar(192) DEFAULT NULL,
+  `COLLATION_NAME` varchar(192) DEFAULT NULL,
+  `COLUMN_TYPE` longtext,
+  `COLUMN_KEY` varchar(3) DEFAULT NULL,
+  `is_auto_increment` tinyint(1) DEFAULT NULL,
+  `COLUMN_COMMENT` varchar(1024) DEFAULT NULL,
+  `SchemaName` varchar(192) DEFAULT NULL,
+  `TableName` varchar(192) DEFAULT NULL,
+  PRIMARY KEY (`CID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+DROP TABLE IF EXISTS `dbv_proc`;
+
+CREATE TABLE `dbv_proc` (
+  `PID` int(11) NOT NULL AUTO_INCREMENT,
+  `SchemaName` varchar(192) DEFAULT NULL,
+  `ProcName` varchar(192) DEFAULT NULL,
+  `param_list` text,
+  `returns` text,
+  `body` longtext,
+  `comment` varchar(192) DEFAULT NULL,
+  PRIMARY KEY (`PID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+-- =================================================================================================
+
+-- 元数据 ------------------------------------------------------------------------------------------",
 						_DBConnection.Database
 					)
 				);
+				#endregion
+
+				#region 填充元数据
 				foreach (SqlGen_XSD.MetaRow dr in _xsd.Meta.Rows)
 				{
 					if (dr.ObjectType == 1)
@@ -308,8 +395,14 @@ INSERT INTO `dbv_proc`(`SchemaName`,`ProcName`,`param_list`,`returns`,`body`,`co
 				}
 
 				sb.Append(@"
+-- =================================================================================================
+
+COMMIT;
 ");
+				#endregion
+
 				File.WriteAllText(sfdMeta.FileName, sb.ToString());
+				MessageBox.Show(this, Apq.GlobalObject.UILang["保存成功！"]);
 			}
 		}
 		// 生成初始数据语句并保存到文件
@@ -317,7 +410,7 @@ INSERT INTO `dbv_proc`(`SchemaName`,`ProcName`,`param_list`,`returns`,`body`,`co
 		{
 			try
 			{
-				Apq.Data.Common.DbConnectionHelper.Open(_DBConnection);
+				_DBConnection.Open();
 			}
 			catch
 			{
@@ -338,30 +431,152 @@ INSERT INTO `dbv_proc`(`SchemaName`,`ProcName`,`param_list`,`returns`,`body`,`co
 
 				// 为列表中已选中的表生成初始化语句，语句功能：完成将数据库中的数据插入到对应的表中，按主键添加
 				sb.Append(string.Format(@"
-USE {0};
+USE `{0}`;
 
--- 初始数据
-",
-						_DBConnection.Database
-					)
+-- 为INSERT准备临时表
+DROP TABLE IF EXISTS `_Apq_Ins`;
+CREATE TEMPORARY TABLE `_Apq_Ins` (
+  `_ID` INT(11) DEFAULT NULL
+) ENGINE = HEAP;
+INSERT  INTO `_Apq_Ins`(`_ID`) VALUES (1);
+
+-- 初始数据", _DBConnection.Database)
 				);
 				foreach (SqlGen_XSD.MetaRow dr in _xsd.Meta.Rows)
 				{
-					if (dr.ObjectType == 1)
+					if (dr._CheckState == 0 || dr.ObjectType != 1)
 					{
-						SqlGen_XSD.dbv_tableRow drT = _xsd.dbv_table.FindByTableName(dr.SchemaName, dr.ObjectName);
+						continue;
+					}
 
-						//+将表读到内存，
-						DataSet ds = new DataSet();
-						DbDataAdapter dda = dch.CreateAdapter(string.Format(@"SELECT * FROM {0}", drT.TableName));
-						dda.Fill(ds);
+					SqlGen_XSD.dbv_tableRow drT = _xsd.dbv_table.FindByTableName(dr.SchemaName, dr.ObjectName);
+					SqlGen_XSD.dbv_columnRow[] drCs = drT.GetChildRows("FK_dbv_table_dbv_column") as SqlGen_XSD.dbv_columnRow[];
+
+					#region 计算WHERE语句(替换模式)
+					/* 
+					1.其它表中的存在同名主键列时，看作关联型数据
+					2.否则将主键作为对象型ID，加入到WHERE条件中
+					3.否则将自增列作为对象型ID，加入到WHERE条件中
+					*/
+					List<SqlGen_XSD.dbv_columnRow> colKeys = new List<SqlGen_XSD.dbv_columnRow>();
+					if (colKeys.Count == 0)
+					{
+						foreach (SqlGen_XSD.dbv_columnRow drC in drCs)
+						{
+							DataRow[] aryTemp = _xsd.dbv_column.Select(string.Format("TableName <> {0} AND ColName = {1} AND COLUMN_KEY = 'PRI'",
+								Apq.Data.MySqlClient.Common.ConvertToSqlON(drC.TableName),
+								Apq.Data.MySqlClient.Common.ConvertToSqlON(drC.ColName)));
+							if (aryTemp != null && aryTemp.Length > 0)
+							{
+								colKeys.Add(drC);
+							}
+						}
+					}
+					// 对上面的结果，2条以上引用列才视为关联数据
+					if (colKeys.Count < 2)
+					{
+						colKeys.Clear();
+						foreach (SqlGen_XSD.dbv_columnRow drC in drCs)
+						{
+							if ("PRI".Equals(drC.COLUMN_KEY, StringComparison.OrdinalIgnoreCase))
+							{
+								colKeys.Add(drC);
+							}
+						}
+					}
+					if (colKeys.Count == 0)
+					{
+						foreach (SqlGen_XSD.dbv_columnRow drC in drCs)
+						{
+							if (drC.is_auto_increment)
+							{
+								colKeys.Add(drC);
+							}
+						}
+					}
+
+					string strWhereTmp = string.Empty;// WHERE 条件
+
+					if (colKeys.Count > 0)
+					{
+						for (int i = 0; i < colKeys.Count; i++)
+						{
+							strWhereTmp += string.Format(" AND `{0}`", colKeys[i].ColName) + " = {" + i + "}";
+						}
+						if (strWhereTmp.Length > 1)
+						{
+							strWhereTmp = " WHERE" + strWhereTmp.Substring(4);
+						}
+					}
+					else
+					{
+
+						//+记录日志:未生成的表名
+						MessageBox.Show(string.Format("无法生成条件的表：{0}，请检查其主键和自增列。", drT.TableName));
+						continue;
+					}
+					#endregion
+
+					//+将表读到内存，并为每一行生成脚本
+					DataSet ds = new DataSet();
+					DbDataAdapter dda = dch.CreateAdapter(string.Format(@"SELECT * FROM {0}", drT.TableName));
+					dda.Fill(ds);
+
+					if (ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
+					{
+						string strCols = string.Empty;
+						List<SqlGen_XSD.dbv_columnRow> colInserts = new List<SqlGen_XSD.dbv_columnRow>();
+						foreach (SqlGen_XSD.dbv_columnRow drC in drCs)
+						{
+							if (drC.is_auto_increment && !colKeys.Contains(drC))
+							{
+								// 跳过无意义的自增列
+								continue;
+							}
+							colInserts.Add(drC);
+							strCols += ",`" + drC.ColName + "`";
+						}
+						if (strCols.Length > 1)
+						{
+							strCols = strCols.Substring(1);
+							sb.Append(string.Format(@"
+
+-- 表：`{0}`", drT.TableName));
+						}
+
+						foreach (DataRow drData in ds.Tables[0].Rows)
+						{
+							List<object> objWhere = new List<object>();
+							for (int i = 0; i < colKeys.Count; i++)
+							{
+								objWhere.Add(Apq.Data.MySqlClient.Common.ConvertToSqlON(drData[colKeys[i].ColName]));
+							}
+							List<string> aryValues = new List<string>();
+							for (int i = 0; i < colInserts.Count; i++)
+							{
+								aryValues.Add(Apq.Data.MySqlClient.Common.ConvertToSqlON(drData[colInserts[i].ColName]));
+							}
+							string strValues = string.Join(",", aryValues);
+							string strWhere = string.Format(strWhereTmp, objWhere.ToArray());
+
+							sb.Append(string.Format(@"
+INSERT INTO `{0}`({1}) SELECT {2} FROM `_Apq_Ins` WHERE NOT EXISTS(SELECT 1 FROM `{0}`
+{3});", drT.TableName, 
+									strCols, strValues, strWhere)
+							);
+						}
 					}
 				}
-
-				sb.Append(@"
-");
-				File.WriteAllText(sfdMeta.FileName, sb.ToString());
 			}
+			sb.Append(@"
+
+-- 删除临时表
+DROP TABLE IF EXISTS `_Apq_Ins`;
+
+COMMIT;
+");
+			File.WriteAllText(sfdMeta.FileName, sb.ToString());
+			MessageBox.Show(this, Apq.GlobalObject.UILang["保存成功！"]);
 		}
 
 		#region 选择
