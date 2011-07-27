@@ -240,7 +240,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Apq_DBTools.EF.Meta.datasource" />
     <None Include="Forms\SqlGen_XSD.xsc">
       <DependentUpon>SqlGen_XSD.xsd</DependentUpon>
     </None>

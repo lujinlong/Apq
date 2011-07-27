@@ -28,7 +28,7 @@ namespace Apq_DBTools
 		{
 			InitializeComponent();
 
-			Apq.Windows.Forms.DataGridViewHelper.SetDefaultStyle(dataGridView1);
+			//Apq.Windows.Forms.DataGridViewHelper.SetDefaultStyle(dataGridView1);
 			Apq.Windows.Forms.DataGridViewHelper.AddBehaivor(dataGridView1);
 			Apq.Windows.Forms.DataGridViewHelper.SetDefaultStyle(dgvTableKey);
 			Apq.Windows.Forms.DataGridViewHelper.AddBehaivor(dgvTableKey);
