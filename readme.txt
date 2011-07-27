@@ -6,5 +6,6 @@
 /TreeListView		从codeproject下载后,添加了功能增强的代码
 /Apq_LocalTools		Apq本地工具集
 /ApqDBManager		Apq多数据库管理工具
+/Apq_DBTools		Apq数据库工具集
 /Dinner			简单点餐系统
 /pdbp			权限管理系统
