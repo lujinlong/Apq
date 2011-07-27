@@ -43,6 +43,7 @@ namespace Apq_DBTools
 			this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
 			this.tsmiSelectTable = new System.Windows.Forms.ToolStripMenuItem();
 			this.tsmiSelectProc = new System.Windows.Forms.ToolStripMenuItem();
+			this.tsmiSelectTrigger = new System.Windows.Forms.ToolStripMenuItem();
 			this.tssbGenSql = new System.Windows.Forms.ToolStripSplitButton();
 			this.tsmiMeta = new System.Windows.Forms.ToolStripMenuItem();
 			this.tsmiData = new System.Windows.Forms.ToolStripMenuItem();
@@ -137,7 +138,8 @@ namespace Apq_DBTools
             this.tsmiSelectReverse,
             this.toolStripSeparator1,
             this.tsmiSelectTable,
-            this.tsmiSelectProc});
+            this.tsmiSelectProc,
+            this.tsmiSelectTrigger});
 			this.tssbSelect.Image = ((System.Drawing.Image)(resources.GetObject("tssbSelect.Image")));
 			this.tssbSelect.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.tssbSelect.Name = "tssbSelect";
@@ -184,6 +186,16 @@ namespace Apq_DBTools
 			this.tsmiSelectProc.Size = new System.Drawing.Size(153, 22);
 			this.tsmiSelectProc.Text = "存储过程(&P)";
 			this.tsmiSelectProc.Click += new System.EventHandler(this.tsmiSelectProc_Click);
+			// 
+			// tsmiSelectTrigger
+			// 
+			this.tsmiSelectTrigger.Checked = true;
+			this.tsmiSelectTrigger.CheckOnClick = true;
+			this.tsmiSelectTrigger.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.tsmiSelectTrigger.Name = "tsmiSelectTrigger";
+			this.tsmiSelectTrigger.Size = new System.Drawing.Size(153, 22);
+			this.tsmiSelectTrigger.Text = "触发器(&I)";
+			this.tsmiSelectTrigger.Click += new System.EventHandler(this.tsmiSelectTrigger_Click);
 			// 
 			// tssbGenSql
 			// 
@@ -435,5 +447,6 @@ namespace Apq_DBTools
 		private System.Windows.Forms.DataGridViewTextBoxColumn schemaNameDataGridViewTextBoxColumn1;
 		private System.Windows.Forms.DataGridViewTextBoxColumn tableNameDataGridViewTextBoxColumn;
 		private System.Windows.Forms.DataGridViewTextBoxColumn primaryKeysDataGridViewTextBoxColumn;
+		private System.Windows.Forms.ToolStripMenuItem tsmiSelectTrigger;
 	}
 }

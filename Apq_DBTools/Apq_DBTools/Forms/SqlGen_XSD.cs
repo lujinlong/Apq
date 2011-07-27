@@ -10,6 +10,11 @@ namespace Apq_DBTools.Forms
 			{
 				this.Rows.Add(1, Apq.GlobalObject.UILang["表"]);
 				this.Rows.Add(2, Apq.GlobalObject.UILang["存储过程"]);
+				this.Rows.Add(3, Apq.GlobalObject.UILang["触发器"]);
+				this.Rows.Add(4, Apq.GlobalObject.UILang["函数"]);
+				this.Rows.Add(5, Apq.GlobalObject.UILang["索引"]);
+				this.Rows.Add(6, Apq.GlobalObject.UILang["视图"]);
+				this.Rows.Add(7, Apq.GlobalObject.UILang["关联"]);
 			}
 		}
 
@@ -71,6 +76,25 @@ namespace Apq_DBTools.Forms
 				{
 					if (SchemaName.Equals(dr1.SchemaName, System.StringComparison.OrdinalIgnoreCase)
 						&& ProcName.Equals(dr1.ProcName, System.StringComparison.OrdinalIgnoreCase)
+					)
+					{
+						dr = dr1;
+						break;
+					}
+				}
+				return dr;
+			}
+		}
+
+		public partial class dbv_triggerDataTable
+		{
+			public dbv_triggerRow FindByTriName(string SchemaName, string TriName)
+			{
+				dbv_triggerRow dr = null;
+				foreach (dbv_triggerRow dr1 in Rows)
+				{
+					if (SchemaName.Equals(dr1.SchemaName, System.StringComparison.OrdinalIgnoreCase)
+						&& TriName.Equals(dr1.TriName, System.StringComparison.OrdinalIgnoreCase)
 					)
 					{
 						dr = dr1;

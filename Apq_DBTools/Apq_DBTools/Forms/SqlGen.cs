@@ -50,6 +50,7 @@ namespace Apq_DBTools
 			tsmiSelectReverse.Text = Apq.GlobalObject.UILang["反选(&R)"];
 			tsmiSelectTable.Text = Apq.GlobalObject.UILang["表(&T)"];
 			tsmiSelectProc.Text = Apq.GlobalObject.UILang["存储过程(&P)"];
+			tsmiSelectTrigger.Text = Apq.GlobalObject.UILang["触发器(&I)"];
 
 			tssbGenSql.Text = Apq.GlobalObject.UILang["生成"];
 			tsmiMeta.Text = Apq.GlobalObject.UILang["元数据脚本(&M)"];
@@ -146,6 +147,9 @@ namespace Apq_DBTools
 			bool hasSameCheckState_Proc = true;// 记录所有行是否为同一种选中状态
 			int iCheckState_Proc = -1;// 记录上一行选中状态
 
+			bool hasSameCheckState_Trigger = true;// 记录所有行是否为同一种选中状态
+			int iCheckState_Trigger = -1;// 记录上一行选中状态
+
 			foreach (SqlGen_XSD.MetaRow dr in _xsd.Meta.Rows)
 			{
 				if (dr.ObjectType == 1)
@@ -164,6 +168,14 @@ namespace Apq_DBTools
 					}
 					iCheckState_Proc = Apq.Convert.ChangeType<int>(dr._CheckState);
 				}
+				if (dr.ObjectType == 3)
+				{
+					if (iCheckState_Trigger >= 0 && iCheckState_Trigger != Apq.Convert.ChangeType<int>(dr._CheckState))
+					{
+						hasSameCheckState_Trigger = false;
+					}
+					iCheckState_Trigger = Apq.Convert.ChangeType<int>(dr._CheckState);
+				}
 			}
 
 			if (hasSameCheckState_Table && iCheckState_Table >= 0)
@@ -173,6 +185,10 @@ namespace Apq_DBTools
 			if (hasSameCheckState_Proc && iCheckState_Proc >= 0)
 			{
 				tsmiSelectProc.CheckState = Apq.Convert.ChangeType<CheckState>(iCheckState_Proc);
+			}
+			if (hasSameCheckState_Trigger && iCheckState_Trigger >= 0)
+			{
+				tsmiSelectTrigger.CheckState = Apq.Convert.ChangeType<CheckState>(iCheckState_Trigger);
 			}
 		}
 
@@ -194,6 +210,7 @@ namespace Apq_DBTools
 			}
 
 			_xsd.Meta.Rows.Clear();
+			_xsd.dbv_trigger.Rows.Clear();
 			_xsd.dbv_proc.Rows.Clear();
 			_xsd.dbv_column.Rows.Clear();
 			_xsd.dbv_table.Rows.Clear();
@@ -239,6 +256,13 @@ SELECT `db` AS SchemaName,`name` AS ProcName,
  WHERE `db` = DATABASE();
 ";
 					dda.Fill(_xsd.dbv_proc);
+					// 触发器
+					dda.SelectCommand.CommandText = @"
+SELECT `TRIGGER_SCHEMA` as SchemaName,`TRIGGER_NAME` as TriName,`EVENT_MANIPULATION`,`EVENT_OBJECT_TABLE` as TableName,`ACTION_ORDER`,`ACTION_CONDITION`,`ACTION_STATEMENT`,`ACTION_ORIENTATION`,`ACTION_TIMING`
+  FROM `information_schema`.`TRIGGERS` t
+ WHERE t.`TRIGGER_SCHEMA` = DATABASE();
+";
+					dda.Fill(_xsd.dbv_trigger);
 
 					// 为列设置TID
 					foreach (SqlGen_XSD.dbv_columnRow dr in _xsd.dbv_column.Rows)
@@ -263,23 +287,35 @@ SELECT `db` AS SchemaName,`name` AS ProcName,
 							dr.PrimaryKeys = strCols.Substring(1);
 						}
 					}
-					// 将表和存储过程名加到元数据表
+					// 将名称加到元数据表，用于界面显示
+					int nCheckState = Apq.Convert.ChangeType<int>(tsmiSelectTable.CheckState);
 					foreach (SqlGen_XSD.dbv_tableRow drT in _xsd.dbv_table.Rows)
 					{
 						SqlGen_XSD.MetaRow drMeta = _xsd.Meta.NewMetaRow();
 						drMeta.ObjectType = 1;
-						drMeta._CheckState = Apq.Convert.ChangeType<int>(tsmiSelectTable.CheckState);
+						drMeta._CheckState = nCheckState;
 						drMeta.SchemaName = drT.SchemaName;
 						drMeta.ObjectName = drT.TableName;
 						_xsd.Meta.Rows.Add(drMeta);
 					}
+					nCheckState = Apq.Convert.ChangeType<int>(tsmiSelectProc.CheckState);
 					foreach (SqlGen_XSD.dbv_procRow drP in _xsd.dbv_proc.Rows)
 					{
 						SqlGen_XSD.MetaRow drMeta = _xsd.Meta.NewMetaRow();
 						drMeta.ObjectType = 2;
-						drMeta._CheckState = Apq.Convert.ChangeType<int>(tsmiSelectProc.CheckState);
+						drMeta._CheckState = nCheckState;
 						drMeta.SchemaName = drP.SchemaName;
 						drMeta.ObjectName = drP.ProcName;
+						_xsd.Meta.Rows.Add(drMeta);
+					}
+					nCheckState = Apq.Convert.ChangeType<int>(tsmiSelectTrigger.CheckState);
+					foreach (SqlGen_XSD.dbv_triggerRow drTri in _xsd.dbv_trigger.Rows)
+					{
+						SqlGen_XSD.MetaRow drMeta = _xsd.Meta.NewMetaRow();
+						drMeta.ObjectType = 3;
+						drMeta._CheckState = nCheckState;
+						drMeta.SchemaName = drTri.SchemaName;
+						drMeta.ObjectName = drTri.TriName;
 						_xsd.Meta.Rows.Add(drMeta);
 					}
 				}
@@ -392,6 +428,22 @@ CREATE TABLE `dbv_proc` (
   `comment` varchar(192) DEFAULT NULL,
   PRIMARY KEY (`PID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+DROP TABLE IF EXISTS `dbv_trigger`;
+
+CREATE TABLE `dbv_trigger` (
+  `TriID` int(11) NOT NULL AUTO_INCREMENT,
+  `SchemaName` VARCHAR(64) NOT NULL DEFAULT '',
+  `TriName` VARCHAR(64) NOT NULL DEFAULT '',
+  `EVENT_MANIPULATION` VARCHAR(6) NOT NULL DEFAULT '',
+  `TableName` VARCHAR(64) NOT NULL DEFAULT '',
+  `ACTION_ORDER` BIGINT(4) NOT NULL DEFAULT '0',
+  `ACTION_CONDITION` LONGTEXT,
+  `ACTION_STATEMENT` LONGTEXT NOT NULL,
+  `ACTION_ORIENTATION` VARCHAR(9) NOT NULL DEFAULT '',
+  `ACTION_TIMING` VARCHAR(6) NOT NULL DEFAULT '',
+  PRIMARY KEY (`TriID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 -- =================================================================================================
 
 -- 元数据 ------------------------------------------------------------------------------------------",
@@ -460,6 +512,26 @@ INSERT INTO `dbv_proc`(`SchemaName`,`ProcName`,`param_list`,`returns`,`body`,`co
 									Apq.Data.MySqlClient.Common.ConvertToSqlON(drP.returns),
 									Apq.Data.MySqlClient.Common.ConvertToSqlON(drP.body),
 									Apq.Data.MySqlClient.Common.ConvertToSqlON(drP.comment)
+								)
+							);
+						}
+						if (dr.ObjectType == 3)
+						{
+							SqlGen_XSD.dbv_triggerRow drTri = _xsd.dbv_trigger.FindByTriName(dr.SchemaName, dr.ObjectName);
+							sb.Append(string.Format(@"
+
+-- 触发器:{0}
+INSERT INTO `dbv_trigger`(`SchemaName`,`TriName`,`EVENT_MANIPULATION`,`TableName`,`ACTION_ORDER`,`ACTION_CONDITION`,`ACTION_STATEMENT`,`ACTION_ORIENTATION`,`ACTION_TIMING`) VALUES({1},{2},{3},{4},{5},{6},{7},{8},{9});",
+									drTri.TriName,
+									Apq.Data.MySqlClient.Common.ConvertToSqlON(drTri.SchemaName),
+									Apq.Data.MySqlClient.Common.ConvertToSqlON(drTri.TriName),
+									Apq.Data.MySqlClient.Common.ConvertToSqlON(drTri.EVENT_MANIPULATION),
+									Apq.Data.MySqlClient.Common.ConvertToSqlON(drTri.TableName),
+									Apq.Data.MySqlClient.Common.ConvertToSqlON(drTri.ACTION_ORDER),
+									Apq.Data.MySqlClient.Common.ConvertToSqlON(drTri["ACTION_CONDITION"]),
+									Apq.Data.MySqlClient.Common.ConvertToSqlON(drTri.ACTION_STATEMENT),
+									Apq.Data.MySqlClient.Common.ConvertToSqlON(drTri.ACTION_ORIENTATION),
+									Apq.Data.MySqlClient.Common.ConvertToSqlON(drTri.ACTION_TIMING)
 								)
 							);
 						}
@@ -610,14 +682,15 @@ INSERT  INTO `_Apq_Ins`(`_ID`) VALUES (1);
 						}
 						else
 						{
+							string strExMsg = string.Format("无法生成条件的表：{0}，请检查其数据Key设置、关联列名、主键、自增列。", drT.TableName);
+							Apq.GlobalObject.ApqLog.Error(strExMsg);
 
-							//+记录日志:未生成的表名
-							MessageBox.Show(string.Format("无法生成条件的表：{0}，请检查其数据Key设置、关联列名、主键、自增列。", drT.TableName));
+							MessageBox.Show(strExMsg);
 							continue;
 						}
 						#endregion
 
-						//+将表读到内存，并为每一行生成脚本
+						//+[改为分页查询]将表读到内存，并为每一行生成脚本
 						DataSet ds = new DataSet();
 						DbDataAdapter dda = dch.CreateAdapter(string.Format(@"SELECT * FROM {0}", drT.TableName));
 						dda.Fill(ds);
@@ -770,9 +843,10 @@ USE [{0}];
 						}
 						else
 						{
+							string strExMsg = string.Format("无法生成条件的表：{0}，请检查其数据Key设置、关联列名、主键、自增列。", drT.TableName);
+							Apq.GlobalObject.ApqLog.Error(strExMsg);
 
-							//+记录日志:未生成的表名
-							MessageBox.Show(string.Format("无法生成条件的表：{0}，请检查其数据Key设置、关联列名、主键、自增列。", drT.TableName));
+							MessageBox.Show(strExMsg);
 							continue;
 						}
 						#endregion
@@ -861,6 +935,19 @@ IF(NOT EXISTS(SELECT TOP(1) 1 FROM [dbo].[{0}]{3})) INSERT INTO [dbo].[{0}]({1})
 			}
 		}
 
+		private void tsmiSelectTrigger_Click(object sender, EventArgs e)
+		{
+			dataGridView1.EndEdit();
+			int _CheckState = Apq.Convert.ChangeType<int>(tsmiSelectTrigger.Checked);
+			foreach (SqlGen_XSD.MetaRow dr in _xsd.Meta.Rows)
+			{
+				if (dr.ObjectType == 3)
+				{
+					dr._CheckState = _CheckState;
+				}
+			}
+		}
+
 		private void tsmiSelectAll_Click(object sender, EventArgs e)
 		{
 			dataGridView1.EndEdit();
@@ -889,6 +976,7 @@ IF(NOT EXISTS(SELECT TOP(1) 1 FROM [dbo].[{0}]{3})) INSERT INTO [dbo].[{0}]({1})
 			}
 			catch
 			{
+				Apq.GlobalObject.ApqLog.Error(Apq.GlobalObject.UILang["数据Key保存失败！"]);
 				MessageBox.Show(this, Apq.GlobalObject.UILang["数据Key保存失败！"]);
 			}
 		}
@@ -902,6 +990,7 @@ IF(NOT EXISTS(SELECT TOP(1) 1 FROM [dbo].[{0}]{3})) INSERT INTO [dbo].[{0}]({1})
 			}
 			catch
 			{
+				Apq.GlobalObject.ApqLog.Error(Apq.GlobalObject.UILang["数据Key保存失败！"]);
 				MessageBox.Show(this, Apq.GlobalObject.UILang["数据Key保存失败！"]);
 			}
 		}
