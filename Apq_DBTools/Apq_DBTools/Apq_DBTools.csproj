@@ -197,11 +197,6 @@
     <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EF\dbv.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>dbv.edmx</DependentUpon>
-    </Compile>
     <Compile Include="Forms\MainOption.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -245,10 +240,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EntityDeploy Include="EF\dbv.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>dbv.Designer.cs</LastGenOutput>
-    </EntityDeploy>
     <None Include="Apq_DBTools.EF.Meta.datasource" />
     <None Include="Forms\SqlGen_XSD.xsc">
       <DependentUpon>SqlGen_XSD.xsd</DependentUpon>
@@ -398,8 +389,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controls\MainOption\" />
-    <Folder Include="Sql\MsSql\" />
-    <Folder Include="Sql\MySql\" />
     <Folder Include="_Doc\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

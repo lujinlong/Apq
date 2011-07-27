@@ -184,6 +184,21 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
+        <xs:element name="dbv_table_key" msprop:Generator_TableClassName="dbv_table_keyDataTable" msprop:Generator_TableVarName="tabledbv_table_key" msprop:Generator_TablePropName="dbv_table_key" msprop:Generator_RowDeletingName="dbv_table_keyRowDeleting" msprop:Generator_UserTableName="dbv_table_key" msprop:Generator_RowChangingName="dbv_table_keyRowChanging" msprop:Generator_RowEvHandlerName="dbv_table_keyRowChangeEventHandler" msprop:Generator_RowDeletedName="dbv_table_keyRowDeleted" msprop:Generator_RowEvArgName="dbv_table_keyRowChangeEvent" msprop:Generator_RowChangedName="dbv_table_keyRowChanged" msprop:Generator_RowClassName="dbv_table_keyRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="SchemaName" msprop:Generator_ColumnVarNameInTable="columnSchemaName" msprop:Generator_ColumnPropNameInRow="SchemaName" msprop:Generator_ColumnPropNameInTable="SchemaNameColumn" msprop:Generator_UserColumnName="SchemaName" type="xs:string" />
+              <xs:element name="TableName" msprop:Generator_ColumnVarNameInTable="columnTableName" msprop:Generator_ColumnPropNameInRow="TableName" msprop:Generator_ColumnPropNameInTable="TableNameColumn" msprop:Generator_UserColumnName="TableName" type="xs:string" />
+              <xs:element name="PrimaryKeys" msprop:Generator_ColumnVarNameInTable="columnPrimaryKeys" msprop:Generator_ColumnPropNameInRow="PrimaryKeys" msprop:Generator_ColumnPropNameInTable="PrimaryKeysColumn" msprop:Generator_UserColumnName="PrimaryKeys" default="">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="21845" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
       </xs:choice>
     </xs:complexType>
     <xs:unique name="Constraint1" msdata:PrimaryKey="true">
@@ -202,7 +217,12 @@
       <xs:selector xpath=".//mstns:dic_ObjectType" />
       <xs:field xpath="mstns:ObjectType" />
     </xs:unique>
-    <xs:keyref name="FK_dbv_table_dbv_column" refer="dbv_table_Constraint1" msprop:rel_Generator_UserChildTable="dbv_column" msprop:rel_Generator_ChildPropName="Getdbv_columnRows" msprop:rel_Generator_UserParentTable="dbv_table" msprop:rel_Generator_UserRelationName="FK_dbv_table_dbv_column" msprop:rel_Generator_RelationVarName="relationFK_dbv_table_dbv_column" msprop:rel_Generator_ParentPropName="dbv_tableRow">
+    <xs:unique name="dbv_table_key_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:dbv_table_key" />
+      <xs:field xpath="mstns:SchemaName" />
+      <xs:field xpath="mstns:TableName" />
+    </xs:unique>
+    <xs:keyref name="FK_dbv_table_dbv_column" refer="dbv_table_Constraint1" msprop:rel_Generator_UserChildTable="dbv_column" msprop:rel_Generator_ChildPropName="Getdbv_columnRows" msprop:rel_Generator_ParentPropName="dbv_tableRow" msprop:rel_Generator_UserRelationName="FK_dbv_table_dbv_column" msprop:rel_Generator_RelationVarName="relationFK_dbv_table_dbv_column" msprop:rel_Generator_UserParentTable="dbv_table">
       <xs:selector xpath=".//mstns:dbv_column" />
       <xs:field xpath="mstns:TID" />
     </xs:keyref>

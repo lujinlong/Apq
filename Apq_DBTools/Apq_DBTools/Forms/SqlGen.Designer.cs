@@ -46,6 +46,7 @@ namespace Apq_DBTools
 			this.tssbGenSql = new System.Windows.Forms.ToolStripSplitButton();
 			this.tsmiMeta = new System.Windows.Forms.ToolStripMenuItem();
 			this.tsmiData = new System.Windows.Forms.ToolStripMenuItem();
+			this.tscbSqlProduct = new System.Windows.Forms.ToolStripComboBox();
 			this.dataGridView1 = new System.Windows.Forms.DataGridView();
 			this.checkStateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
 			this.objectTypeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
@@ -55,12 +56,24 @@ namespace Apq_DBTools
 			this.objectNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.bsMeta = new System.Windows.Forms.BindingSource(this.components);
 			this.sfdMeta = new System.Windows.Forms.SaveFileDialog();
+			this.dgvTableKey = new System.Windows.Forms.DataGridView();
+			this.schemaNameDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.tableNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.primaryKeysDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.bsdbv_table_key = new System.Windows.Forms.BindingSource(this.components);
+			this.splitContainer1 = new System.Windows.Forms.SplitContainer();
 			this.statusStrip1.SuspendLayout();
 			this.toolStrip1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.bsObjectType)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this._xsd)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.bsMeta)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.dgvTableKey)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.bsdbv_table_key)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
+			this.splitContainer1.Panel1.SuspendLayout();
+			this.splitContainer1.Panel2.SuspendLayout();
+			this.splitContainer1.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// tsslStatus
@@ -89,7 +102,8 @@ namespace Apq_DBTools
 			this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsbConnectDB,
             this.tssbSelect,
-            this.tssbGenSql});
+            this.tssbGenSql,
+            this.tscbSqlProduct});
 			this.toolStrip1.Location = new System.Drawing.Point(0, 0);
 			this.toolStrip1.Name = "toolStrip1";
 			this.toolStrip1.Size = new System.Drawing.Size(760, 25);
@@ -159,7 +173,7 @@ namespace Apq_DBTools
 			this.tsmiSelectTable.Name = "tsmiSelectTable";
 			this.tsmiSelectTable.Size = new System.Drawing.Size(153, 22);
 			this.tsmiSelectTable.Text = "表(&T)";
-			this.tsmiSelectTable.CheckedChanged += new System.EventHandler(this.tsmiSelectTable_CheckedChanged);
+			this.tsmiSelectTable.Click += new System.EventHandler(this.tsmiSelectTable_Click);
 			// 
 			// tsmiSelectProc
 			// 
@@ -169,7 +183,7 @@ namespace Apq_DBTools
 			this.tsmiSelectProc.Name = "tsmiSelectProc";
 			this.tsmiSelectProc.Size = new System.Drawing.Size(153, 22);
 			this.tsmiSelectProc.Text = "存储过程(&P)";
-			this.tsmiSelectProc.CheckedChanged += new System.EventHandler(this.tsmiSelectProc_CheckedChanged);
+			this.tsmiSelectProc.Click += new System.EventHandler(this.tsmiSelectProc_Click);
 			// 
 			// tssbGenSql
 			// 
@@ -186,22 +200,32 @@ namespace Apq_DBTools
 			// tsmiMeta
 			// 
 			this.tsmiMeta.Name = "tsmiMeta";
-			this.tsmiMeta.Size = new System.Drawing.Size(152, 22);
+			this.tsmiMeta.Size = new System.Drawing.Size(148, 22);
 			this.tsmiMeta.Text = "元数据脚本(&M)";
 			this.tsmiMeta.Click += new System.EventHandler(this.tsmiMeta_Click);
 			// 
 			// tsmiData
 			// 
 			this.tsmiData.Name = "tsmiData";
-			this.tsmiData.Size = new System.Drawing.Size(152, 22);
+			this.tsmiData.Size = new System.Drawing.Size(148, 22);
 			this.tsmiData.Text = "初始化数据(&D)";
 			this.tsmiData.Click += new System.EventHandler(this.tsmiData_Click);
+			// 
+			// tscbSqlProduct
+			// 
+			this.tscbSqlProduct.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.tscbSqlProduct.Items.AddRange(new object[] {
+            "MySql",
+            "MsSql"});
+			this.tscbSqlProduct.Name = "tscbSqlProduct";
+			this.tscbSqlProduct.Size = new System.Drawing.Size(75, 25);
 			// 
 			// dataGridView1
 			// 
 			this.dataGridView1.AllowUserToAddRows = false;
 			this.dataGridView1.AllowUserToDeleteRows = false;
 			this.dataGridView1.AutoGenerateColumns = false;
+			this.dataGridView1.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
 			this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.checkStateDataGridViewTextBoxColumn,
@@ -210,10 +234,10 @@ namespace Apq_DBTools
             this.objectNameDataGridViewTextBoxColumn});
 			this.dataGridView1.DataSource = this.bsMeta;
 			this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.dataGridView1.Location = new System.Drawing.Point(0, 25);
+			this.dataGridView1.Location = new System.Drawing.Point(0, 0);
 			this.dataGridView1.Name = "dataGridView1";
 			this.dataGridView1.RowTemplate.Height = 23;
-			this.dataGridView1.Size = new System.Drawing.Size(760, 388);
+			this.dataGridView1.Size = new System.Drawing.Size(292, 388);
 			this.dataGridView1.TabIndex = 5;
 			// 
 			// checkStateDataGridViewTextBoxColumn
@@ -278,13 +302,75 @@ namespace Apq_DBTools
 			// 
 			this.sfdMeta.Filter = "SQL 文件|*.sql|所有文件|*.*";
 			// 
+			// dgvTableKey
+			// 
+			this.dgvTableKey.AutoGenerateColumns = false;
+			this.dgvTableKey.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
+			this.dgvTableKey.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+			this.dgvTableKey.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.schemaNameDataGridViewTextBoxColumn1,
+            this.tableNameDataGridViewTextBoxColumn,
+            this.primaryKeysDataGridViewTextBoxColumn});
+			this.dgvTableKey.DataSource = this.bsdbv_table_key;
+			this.dgvTableKey.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.dgvTableKey.Location = new System.Drawing.Point(0, 0);
+			this.dgvTableKey.Name = "dgvTableKey";
+			this.dgvTableKey.RowTemplate.Height = 23;
+			this.dgvTableKey.Size = new System.Drawing.Size(464, 388);
+			this.dgvTableKey.TabIndex = 6;
+			this.dgvTableKey.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvTableKey_CellEndEdit);
+			this.dgvTableKey.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.dgvTableKey_UserDeletedRow);
+			// 
+			// schemaNameDataGridViewTextBoxColumn1
+			// 
+			this.schemaNameDataGridViewTextBoxColumn1.DataPropertyName = "SchemaName";
+			this.schemaNameDataGridViewTextBoxColumn1.HeaderText = "架构";
+			this.schemaNameDataGridViewTextBoxColumn1.Name = "schemaNameDataGridViewTextBoxColumn1";
+			// 
+			// tableNameDataGridViewTextBoxColumn
+			// 
+			this.tableNameDataGridViewTextBoxColumn.DataPropertyName = "TableName";
+			this.tableNameDataGridViewTextBoxColumn.HeaderText = "名称";
+			this.tableNameDataGridViewTextBoxColumn.Name = "tableNameDataGridViewTextBoxColumn";
+			// 
+			// primaryKeysDataGridViewTextBoxColumn
+			// 
+			this.primaryKeysDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+			this.primaryKeysDataGridViewTextBoxColumn.DataPropertyName = "PrimaryKeys";
+			this.primaryKeysDataGridViewTextBoxColumn.HeaderText = "数据Key";
+			this.primaryKeysDataGridViewTextBoxColumn.Name = "primaryKeysDataGridViewTextBoxColumn";
+			// 
+			// bsdbv_table_key
+			// 
+			this.bsdbv_table_key.DataMember = "dbv_table_key";
+			this.bsdbv_table_key.DataSource = this._xsd;
+			// 
+			// splitContainer1
+			// 
+			this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.splitContainer1.FixedPanel = System.Windows.Forms.FixedPanel.Panel2;
+			this.splitContainer1.IsSplitterFixed = true;
+			this.splitContainer1.Location = new System.Drawing.Point(0, 25);
+			this.splitContainer1.Name = "splitContainer1";
+			// 
+			// splitContainer1.Panel1
+			// 
+			this.splitContainer1.Panel1.Controls.Add(this.dataGridView1);
+			// 
+			// splitContainer1.Panel2
+			// 
+			this.splitContainer1.Panel2.Controls.Add(this.dgvTableKey);
+			this.splitContainer1.Size = new System.Drawing.Size(760, 388);
+			this.splitContainer1.SplitterDistance = 292;
+			this.splitContainer1.TabIndex = 7;
+			// 
 			// SqlGen
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.AutoScroll = true;
 			this.ClientSize = new System.Drawing.Size(760, 435);
-			this.Controls.Add(this.dataGridView1);
+			this.Controls.Add(this.splitContainer1);
 			this.Controls.Add(this.statusStrip1);
 			this.Controls.Add(this.toolStrip1);
 			this.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
@@ -305,6 +391,12 @@ namespace Apq_DBTools
 			((System.ComponentModel.ISupportInitialize)(this.bsObjectType)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this._xsd)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.bsMeta)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.dgvTableKey)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.bsdbv_table_key)).EndInit();
+			this.splitContainer1.Panel1.ResumeLayout(false);
+			this.splitContainer1.Panel2.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
+			this.splitContainer1.ResumeLayout(false);
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -336,5 +428,12 @@ namespace Apq_DBTools
 		private System.Windows.Forms.DataGridViewTextBoxColumn schemaNameDataGridViewTextBoxColumn;
 		private System.Windows.Forms.DataGridViewTextBoxColumn objectNameDataGridViewTextBoxColumn;
 		private System.Windows.Forms.SaveFileDialog sfdMeta;
+		private System.Windows.Forms.ToolStripComboBox tscbSqlProduct;
+		private System.Windows.Forms.DataGridView dgvTableKey;
+		private System.Windows.Forms.DataGridViewTextBoxColumn schemaNameDataGridViewTextBoxColumn1;
+		private System.Windows.Forms.DataGridViewTextBoxColumn tableNameDataGridViewTextBoxColumn;
+		private System.Windows.Forms.DataGridViewTextBoxColumn primaryKeysDataGridViewTextBoxColumn;
+		private System.Windows.Forms.BindingSource bsdbv_table_key;
+		private System.Windows.Forms.SplitContainer splitContainer1;
 	}
 }

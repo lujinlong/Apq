@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.IO;
 namespace Apq_DBTools.Forms
 {
 	public partial class SqlGen_XSD
@@ -9,6 +10,18 @@ namespace Apq_DBTools.Forms
 			{
 				this.Rows.Add(1, Apq.GlobalObject.UILang["表"]);
 				this.Rows.Add(2, Apq.GlobalObject.UILang["存储过程"]);
+			}
+		}
+
+		public partial class dbv_table_keyDataTable
+		{
+			public void InitData()
+			{
+				string strFile = Path.GetDirectoryName(Apq.GlobalObject.TheProcess.MainModule.FileName) + @"\dbv_table_key.xml";
+				if (File.Exists(strFile))
+				{
+					this.ReadXml(strFile);
+				}
 			}
 		}
 

@@ -67,7 +67,6 @@ namespace Apq.Windows.Forms
 			// DataError忽略
 			gv.DataError += new DataGridViewDataErrorEventHandler(gv_DataError);
 
-			gv.KeyDown += new KeyEventHandler(gv_KeyDown);
 			gv.KeyUp += new KeyEventHandler(gv_KeyUp);
 
 			gv.CellMouseDown += new DataGridViewCellMouseEventHandler(gv_CellMouseDown);
@@ -91,20 +90,20 @@ namespace Apq.Windows.Forms
 			e.ThrowException = false;
 		}
 
-		private static void gv_KeyDown(object sender, KeyEventArgs e)
+		private static void gv_KeyUp(object sender, KeyEventArgs e)
 		{
 			DataGridView gv = sender as DataGridView;
 			if (gv != null && gv.Focused)
 			{
 				#region Ctrl C
-				if (e.Control && (e.KeyCode == Keys.C))
+				if (e.Control && e.KeyCode == Keys.C)
 				{
 					Clipboard.SetDataObject(gv.GetClipboardContent());
 				}
 				#endregion
 
 				#region Ctrl V
-				if (e.Control && (e.KeyCode == Keys.V))
+				if (e.Control && e.KeyCode == Keys.V)
 				{
 					try
 					{
@@ -117,10 +116,6 @@ namespace Apq.Windows.Forms
 				}
 				#endregion
 			}
-		}
-
-		private static void gv_KeyUp(object sender, KeyEventArgs e)
-		{
 		}
 
 		private static void gv_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
