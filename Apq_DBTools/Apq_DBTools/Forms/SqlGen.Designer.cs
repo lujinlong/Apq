@@ -57,11 +57,11 @@ namespace Apq_DBTools
 			this.bsMeta = new System.Windows.Forms.BindingSource(this.components);
 			this.sfdMeta = new System.Windows.Forms.SaveFileDialog();
 			this.dgvTableKey = new System.Windows.Forms.DataGridView();
+			this.bsdbv_table_key = new System.Windows.Forms.BindingSource(this.components);
+			this.splitContainer1 = new System.Windows.Forms.SplitContainer();
 			this.schemaNameDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.tableNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.primaryKeysDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.bsdbv_table_key = new System.Windows.Forms.BindingSource(this.components);
-			this.splitContainer1 = new System.Windows.Forms.SplitContainer();
 			this.statusStrip1.SuspendLayout();
 			this.toolStrip1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -321,25 +321,6 @@ namespace Apq_DBTools
 			this.dgvTableKey.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvTableKey_CellEndEdit);
 			this.dgvTableKey.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.dgvTableKey_UserDeletedRow);
 			// 
-			// schemaNameDataGridViewTextBoxColumn1
-			// 
-			this.schemaNameDataGridViewTextBoxColumn1.DataPropertyName = "SchemaName";
-			this.schemaNameDataGridViewTextBoxColumn1.HeaderText = "架构";
-			this.schemaNameDataGridViewTextBoxColumn1.Name = "schemaNameDataGridViewTextBoxColumn1";
-			// 
-			// tableNameDataGridViewTextBoxColumn
-			// 
-			this.tableNameDataGridViewTextBoxColumn.DataPropertyName = "TableName";
-			this.tableNameDataGridViewTextBoxColumn.HeaderText = "名称";
-			this.tableNameDataGridViewTextBoxColumn.Name = "tableNameDataGridViewTextBoxColumn";
-			// 
-			// primaryKeysDataGridViewTextBoxColumn
-			// 
-			this.primaryKeysDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-			this.primaryKeysDataGridViewTextBoxColumn.DataPropertyName = "PrimaryKeys";
-			this.primaryKeysDataGridViewTextBoxColumn.HeaderText = "数据Key";
-			this.primaryKeysDataGridViewTextBoxColumn.Name = "primaryKeysDataGridViewTextBoxColumn";
-			// 
 			// bsdbv_table_key
 			// 
 			this.bsdbv_table_key.DataMember = "dbv_table_key";
@@ -363,6 +344,25 @@ namespace Apq_DBTools
 			this.splitContainer1.Size = new System.Drawing.Size(760, 388);
 			this.splitContainer1.SplitterDistance = 292;
 			this.splitContainer1.TabIndex = 7;
+			// 
+			// schemaNameDataGridViewTextBoxColumn1
+			// 
+			this.schemaNameDataGridViewTextBoxColumn1.DataPropertyName = "SchemaName";
+			this.schemaNameDataGridViewTextBoxColumn1.HeaderText = "架构";
+			this.schemaNameDataGridViewTextBoxColumn1.Name = "schemaNameDataGridViewTextBoxColumn1";
+			// 
+			// tableNameDataGridViewTextBoxColumn
+			// 
+			this.tableNameDataGridViewTextBoxColumn.DataPropertyName = "TableName";
+			this.tableNameDataGridViewTextBoxColumn.HeaderText = "表名";
+			this.tableNameDataGridViewTextBoxColumn.Name = "tableNameDataGridViewTextBoxColumn";
+			// 
+			// primaryKeysDataGridViewTextBoxColumn
+			// 
+			this.primaryKeysDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+			this.primaryKeysDataGridViewTextBoxColumn.DataPropertyName = "PrimaryKeys";
+			this.primaryKeysDataGridViewTextBoxColumn.HeaderText = "数据Key";
+			this.primaryKeysDataGridViewTextBoxColumn.Name = "primaryKeysDataGridViewTextBoxColumn";
 			// 
 			// SqlGen
 			// 
@@ -430,10 +430,10 @@ namespace Apq_DBTools
 		private System.Windows.Forms.SaveFileDialog sfdMeta;
 		private System.Windows.Forms.ToolStripComboBox tscbSqlProduct;
 		private System.Windows.Forms.DataGridView dgvTableKey;
+		private System.Windows.Forms.BindingSource bsdbv_table_key;
+		private System.Windows.Forms.SplitContainer splitContainer1;
 		private System.Windows.Forms.DataGridViewTextBoxColumn schemaNameDataGridViewTextBoxColumn1;
 		private System.Windows.Forms.DataGridViewTextBoxColumn tableNameDataGridViewTextBoxColumn;
 		private System.Windows.Forms.DataGridViewTextBoxColumn primaryKeysDataGridViewTextBoxColumn;
-		private System.Windows.Forms.BindingSource bsdbv_table_key;
-		private System.Windows.Forms.SplitContainer splitContainer1;
 	}
 }

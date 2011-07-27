@@ -28,7 +28,7 @@ namespace Apq_DBTools
 		{
 			InitializeComponent();
 
-			//Apq.Windows.Forms.DataGridViewHelper.SetDefaultStyle(dataGridView1);
+			Apq.Windows.Forms.DataGridViewHelper.SetDefaultStyle(dataGridView1);
 			Apq.Windows.Forms.DataGridViewHelper.AddBehaivor(dataGridView1);
 			Apq.Windows.Forms.DataGridViewHelper.SetDefaultStyle(dgvTableKey);
 			Apq.Windows.Forms.DataGridViewHelper.AddBehaivor(dgvTableKey);
@@ -45,6 +45,12 @@ namespace Apq_DBTools
 			tsbConnectDB.Text = Apq.GlobalObject.UILang["连接"];
 			tsmiRefresh.Text = Apq.GlobalObject.UILang["刷新(&F)"];
 
+			tssbSelect.Text = Apq.GlobalObject.UILang["选择"];
+			tsmiSelectAll.Text = Apq.GlobalObject.UILang["全选(&A)"];
+			tsmiSelectReverse.Text = Apq.GlobalObject.UILang["反选(&R)"];
+			tsmiSelectTable.Text = Apq.GlobalObject.UILang["表(&T)"];
+			tsmiSelectProc.Text = Apq.GlobalObject.UILang["存储过程(&P)"];
+
 			tssbGenSql.Text = Apq.GlobalObject.UILang["生成"];
 			tsmiMeta.Text = Apq.GlobalObject.UILang["元数据脚本(&M)"];
 			tsmiData.Text = Apq.GlobalObject.UILang["初始化数据(&D)"];
@@ -55,7 +61,11 @@ namespace Apq_DBTools
 			schemaNameDataGridViewTextBoxColumn.HeaderText = Apq.GlobalObject.UILang["架构"];
 			objectNameDataGridViewTextBoxColumn.HeaderText = Apq.GlobalObject.UILang["名称"];
 
-			sfdMeta.Filter = Apq.GlobalObject.UILang["SQL 文件|*.sql|所有文件|*.*"];
+			schemaNameDataGridViewTextBoxColumn1.HeaderText = Apq.GlobalObject.UILang["架构"];
+			tableNameDataGridViewTextBoxColumn.HeaderText = Apq.GlobalObject.UILang["表名"];
+			primaryKeysDataGridViewTextBoxColumn.HeaderText = Apq.GlobalObject.UILang["数据Key"];
+
+			sfdMeta.Filter = Apq.GlobalObject.UILang["SQL 文件(*.sql)|*.sql|所有文件(*.*)|*.*"];
 		}
 
 		private void SqlGen_Load(object sender, EventArgs e)
