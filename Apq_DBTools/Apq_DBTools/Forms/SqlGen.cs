@@ -377,7 +377,24 @@ CREATE DATABASE IF NOT EXISTS `{0}` DEFAULT CHARACTER SET utf8;
 USE `{0}`;
 SET FOREIGN_KEY_CHECKS=0;
 
+-- 基本存储过程 -------------------------------------------------------------------------------------
+", _DBConnection.Database)
+					);
+					//string strCreateTable_BuildLog = File.ReadAllText(Path.GetDirectoryName(Apq.GlobalObject.TheProcess.MainModule.FileName) + @"\Sql\MySql\Apq_CreateTable_BuildLog.sql");
+					//sb.Append(strCreateTable_BuildLog);
+					sb.Append(string.Format(@"
+-- =================================================================================================
+
 -- 元数据表 -----------------------------------------------------------------------------------------
+CREATE TABLE IF NOT EXISTS `dbv_BuildLog` (
+  `ID` bigint(20) NOT NULL AUTO_INCREMENT,
+  `_InTime` datetime NOT NULL,
+  `Type` int(11) DEFAULT NULL,
+  `Severity` int(11) DEFAULT NULL,
+  `Msg` longtext,
+  `Titile` varchar(100) DEFAULT NULL,
+  UNIQUE KEY `ID` (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS `dbv_table`;
 

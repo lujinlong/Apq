@@ -1,0 +1,11 @@
+﻿
+DROP PROCEDURE IF EXISTS `Apq_BuildColumn`;
+
+DELIMITER $$
+CREATE PROCEDURE `Apq_BuildColumn`(
+)
+BEGIN
+	
+END$$
+
+DELIMITER ;

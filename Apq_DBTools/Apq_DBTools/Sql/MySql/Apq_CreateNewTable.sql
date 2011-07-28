@@ -1,0 +1,10 @@
+﻿
+DROP PROCEDURE IF EXISTS `Apq_CreateNewTable`;
+
+DELIMITER $$
+CREATE PROCEDURE `Apq_CreateNewTable`()
+BEGIN
+	
+END$$
+
+DELIMITER ;
