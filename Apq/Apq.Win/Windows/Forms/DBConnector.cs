@@ -99,6 +99,8 @@ namespace Apq.Windows.Forms
 			btnMsSqlCancel.Text = Apq.GlobalObject.UILang["取消(&C)"];
 			btnMsSqlTest.Text = Apq.GlobalObject.UILang["测试连接(&T)"];
 			#endregion
+
+			base.SetUILang(UILang);
 		}
 
 		private void DBConnector_Load(object sender, EventArgs e)

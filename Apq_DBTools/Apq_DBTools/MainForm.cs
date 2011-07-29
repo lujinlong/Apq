@@ -74,7 +74,7 @@ namespace Apq_DBTools
 
 		private void tsmiSqlGen_Click(object sender, EventArgs e)
 		{
-            SqlGen win = new SqlGen();
+			SqlGenPanel win = new SqlGenPanel();
 			win.Show(dockPanel1);
 		}
 

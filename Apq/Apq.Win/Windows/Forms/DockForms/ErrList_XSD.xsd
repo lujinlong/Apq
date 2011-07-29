@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="ErrList_XSD" targetNamespace="http://tempuri.org/ErrList_XSD.xsd" xmlns:mstns="http://tempuri.org/ErrList_XSD.xsd" xmlns="http://tempuri.org/ErrList_XSD.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection ConnectionStringObject="Data Source=172.18.18.2;Initial Catalog=Apq_DBA;Persist Security Info=True;User ID=apq;Password=f" IsAppSettingsProperty="false" Modifier="Assembly" Name="v-apq-dev.Apq_DBA.dbo" ParameterPrefix="@" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="ErrList_XSD" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="ErrList_XSD" msprop:Generator_UserDSName="ErrList_XSD">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="ErrList" msprop:Generator_TableClassName="ErrListDataTable" msprop:Generator_TableVarName="tableErrList" msprop:Generator_TablePropName="ErrList" msprop:Generator_RowDeletingName="ErrListRowDeleting" msprop:Generator_UserTableName="ErrList" msprop:Generator_RowChangingName="ErrListRowChanging" msprop:Generator_RowEvHandlerName="ErrListRowChangeEventHandler" msprop:Generator_RowDeletedName="ErrListRowDeleted" msprop:Generator_RowEvArgName="ErrListRowChangeEvent" msprop:Generator_RowChangedName="ErrListRowChanged" msprop:Generator_RowClassName="ErrListRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Icon" msprop:Generator_ColumnVarNameInTable="columnIcon" msprop:Generator_ColumnPropNameInRow="Icon" msprop:Generator_ColumnPropNameInTable="IconColumn" msprop:Generator_UserColumnName="Icon" type="xs:base64Binary" minOccurs="0" />
+              <xs:element name="ID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:long" />
+              <xs:element name="_InTime" msprop:Generator_ColumnVarNameInTable="column_InTime" msprop:Generator_ColumnPropNameInRow="_InTime" msprop:Generator_ColumnPropNameInTable="_InTimeColumn" msprop:Generator_UserColumnName="_InTime" type="xs:dateTime" />
+              <xs:element name="Type" msprop:Generator_ColumnVarNameInTable="columnType" msprop:Generator_ColumnPropNameInRow="Type" msprop:Generator_ColumnPropNameInTable="TypeColumn" msprop:Generator_UserColumnName="Type" type="xs:int" default="0" />
+              <xs:element name="Severity" msprop:Generator_ColumnVarNameInTable="columnSeverity" msprop:Generator_ColumnPropNameInRow="Severity" msprop:Generator_ColumnPropNameInTable="SeverityColumn" msprop:Generator_UserColumnName="Severity" type="xs:int" default="16" />
+              <xs:element name="Title" msprop:Generator_ColumnVarNameInTable="columnTitle" msprop:Generator_ColumnPropNameInRow="Title" msprop:Generator_ColumnPropNameInTable="TitleColumn" msprop:Generator_UserColumnName="Title" default="">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Msg" msprop:Generator_ColumnVarNameInTable="columnMsg" msprop:Generator_ColumnPropNameInRow="Msg" msprop:Generator_ColumnPropNameInTable="MsgColumn" msprop:Generator_UserColumnName="Msg" default="">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="AlarmGroupID" msprop:Generator_ColumnVarNameInTable="columnAlarmGroupID" msprop:Generator_ColumnPropNameInRow="AlarmGroupID" msprop:Generator_ColumnPropNameInTable="AlarmGroupIDColumn" msprop:Generator_UserColumnName="AlarmGroupID" type="xs:int" default="0" />
+              <xs:element name="State" msprop:Generator_ColumnVarNameInTable="columnState" msprop:Generator_ColumnPropNameInRow="State" msprop:Generator_ColumnPropNameInTable="StateColumn" msprop:Generator_UserColumnName="State" type="xs:int" default="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="dic_Type" msprop:Generator_TableClassName="dic_TypeDataTable" msprop:Generator_TableVarName="tabledic_Type" msprop:Generator_TablePropName="dic_Type" msprop:Generator_RowDeletingName="dic_TypeRowDeleting" msprop:Generator_UserTableName="dic_Type" msprop:Generator_RowChangingName="dic_TypeRowChanging" msprop:Generator_RowEvHandlerName="dic_TypeRowChangeEventHandler" msprop:Generator_RowDeletedName="dic_TypeRowDeleted" msprop:Generator_RowEvArgName="dic_TypeRowChangeEvent" msprop:Generator_RowChangedName="dic_TypeRowChanged" msprop:Generator_RowClassName="dic_TypeRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Type" msprop:Generator_ColumnVarNameInTable="columnType" msprop:Generator_ColumnPropNameInRow="Type" msprop:Generator_ColumnPropNameInTable="TypeColumn" msprop:Generator_UserColumnName="Type" type="xs:int" />
+              <xs:element name="TypeCaption" msprop:Generator_ColumnVarNameInTable="columnTypeCaption" msprop:Generator_ColumnPropNameInRow="TypeCaption" msprop:Generator_ColumnPropNameInTable="TypeCaptionColumn" msprop:Generator_UserColumnName="TypeCaption" type="xs:string" default="" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:ErrList" />
+      <xs:field xpath="mstns:ID" />
+    </xs:unique>
+    <xs:unique name="dic_Type_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:dic_Type" />
+      <xs:field xpath="mstns:Type" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

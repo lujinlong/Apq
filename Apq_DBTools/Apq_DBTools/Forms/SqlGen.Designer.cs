@@ -31,9 +31,6 @@ namespace Apq_DBTools
 		{
 			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SqlGen));
-			this.tsslStatus = new System.Windows.Forms.ToolStripStatusLabel();
-			this.tspb = new System.Windows.Forms.ToolStripProgressBar();
-			this.statusStrip1 = new System.Windows.Forms.StatusStrip();
 			this.toolStrip1 = new System.Windows.Forms.ToolStrip();
 			this.tsbConnectDB = new System.Windows.Forms.ToolStripSplitButton();
 			this.tsmiRefresh = new System.Windows.Forms.ToolStripMenuItem();
@@ -48,6 +45,7 @@ namespace Apq_DBTools
 			this.tsmiMeta = new System.Windows.Forms.ToolStripMenuItem();
 			this.tsmiData = new System.Windows.Forms.ToolStripMenuItem();
 			this.tscbSqlProduct = new System.Windows.Forms.ToolStripComboBox();
+			this.tsbErrList = new System.Windows.Forms.ToolStripButton();
 			this.dataGridView1 = new System.Windows.Forms.DataGridView();
 			this.checkStateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
 			this.objectTypeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
@@ -63,7 +61,6 @@ namespace Apq_DBTools
 			this.primaryKeysDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.bsdbv_table_key = new System.Windows.Forms.BindingSource(this.components);
 			this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-			this.statusStrip1.SuspendLayout();
 			this.toolStrip1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.bsObjectType)).BeginInit();
@@ -77,34 +74,14 @@ namespace Apq_DBTools
 			this.splitContainer1.SuspendLayout();
 			this.SuspendLayout();
 			// 
-			// tsslStatus
-			// 
-			this.tsslStatus.Name = "tsslStatus";
-			this.tsslStatus.Size = new System.Drawing.Size(29, 17);
-			this.tsslStatus.Text = "状态";
-			// 
-			// tspb
-			// 
-			this.tspb.Name = "tspb";
-			this.tspb.Size = new System.Drawing.Size(300, 16);
-			// 
-			// statusStrip1
-			// 
-			this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsslStatus,
-            this.tspb});
-			this.statusStrip1.Location = new System.Drawing.Point(0, 413);
-			this.statusStrip1.Name = "statusStrip1";
-			this.statusStrip1.Size = new System.Drawing.Size(760, 22);
-			this.statusStrip1.TabIndex = 1;
-			// 
 			// toolStrip1
 			// 
 			this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsbConnectDB,
             this.tssbSelect,
             this.tssbGenSql,
-            this.tscbSqlProduct});
+            this.tscbSqlProduct,
+            this.tsbErrList});
 			this.toolStrip1.Location = new System.Drawing.Point(0, 0);
 			this.toolStrip1.Name = "toolStrip1";
 			this.toolStrip1.Size = new System.Drawing.Size(760, 25);
@@ -232,6 +209,17 @@ namespace Apq_DBTools
 			this.tscbSqlProduct.Name = "tscbSqlProduct";
 			this.tscbSqlProduct.Size = new System.Drawing.Size(75, 25);
 			// 
+			// tsbErrList
+			// 
+			this.tsbErrList.CheckOnClick = true;
+			this.tsbErrList.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+			this.tsbErrList.Image = ((System.Drawing.Image)(resources.GetObject("tsbErrList.Image")));
+			this.tsbErrList.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.tsbErrList.Name = "tsbErrList";
+			this.tsbErrList.Size = new System.Drawing.Size(57, 22);
+			this.tsbErrList.Text = "错误列表";
+			this.tsbErrList.Click += new System.EventHandler(this.tsbErrList_Click);
+			// 
 			// dataGridView1
 			// 
 			this.dataGridView1.AllowUserToAddRows = false;
@@ -249,7 +237,7 @@ namespace Apq_DBTools
 			this.dataGridView1.Location = new System.Drawing.Point(0, 0);
 			this.dataGridView1.Name = "dataGridView1";
 			this.dataGridView1.RowTemplate.Height = 23;
-			this.dataGridView1.Size = new System.Drawing.Size(292, 388);
+			this.dataGridView1.Size = new System.Drawing.Size(292, 410);
 			this.dataGridView1.TabIndex = 5;
 			// 
 			// checkStateDataGridViewTextBoxColumn
@@ -328,7 +316,7 @@ namespace Apq_DBTools
 			this.dgvTableKey.Location = new System.Drawing.Point(0, 0);
 			this.dgvTableKey.Name = "dgvTableKey";
 			this.dgvTableKey.RowTemplate.Height = 23;
-			this.dgvTableKey.Size = new System.Drawing.Size(464, 388);
+			this.dgvTableKey.Size = new System.Drawing.Size(464, 410);
 			this.dgvTableKey.TabIndex = 6;
 			this.dgvTableKey.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvTableKey_CellEndEdit);
 			this.dgvTableKey.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.dgvTableKey_UserDeletedRow);
@@ -372,7 +360,7 @@ namespace Apq_DBTools
 			// splitContainer1.Panel2
 			// 
 			this.splitContainer1.Panel2.Controls.Add(this.dgvTableKey);
-			this.splitContainer1.Size = new System.Drawing.Size(760, 388);
+			this.splitContainer1.Size = new System.Drawing.Size(760, 410);
 			this.splitContainer1.SplitterDistance = 292;
 			this.splitContainer1.TabIndex = 7;
 			// 
@@ -382,9 +370,10 @@ namespace Apq_DBTools
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.AutoScroll = true;
 			this.ClientSize = new System.Drawing.Size(760, 435);
+			this.CloseButtonVisible = false;
 			this.Controls.Add(this.splitContainer1);
-			this.Controls.Add(this.statusStrip1);
 			this.Controls.Add(this.toolStrip1);
+			this.DockAreas = WeifenLuo.WinFormsUI.Docking.DockAreas.Document;
 			this.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.MinimumSize = new System.Drawing.Size(768, 462);
@@ -395,8 +384,6 @@ namespace Apq_DBTools
 			this.Deactivate += new System.EventHandler(this.SqlGen_Deactivate);
 			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.SqlGen_FormClosing);
 			this.Load += new System.EventHandler(this.SqlGen_Load);
-			this.statusStrip1.ResumeLayout(false);
-			this.statusStrip1.PerformLayout();
 			this.toolStrip1.ResumeLayout(false);
 			this.toolStrip1.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
@@ -416,10 +403,7 @@ namespace Apq_DBTools
 
 		#endregion
 
-        private System.Windows.Forms.StatusStrip statusStrip1;
-		private System.Windows.Forms.ToolStripStatusLabel tsslStatus;
-		private System.Windows.Forms.ToolStripProgressBar tspb;
-        private System.Windows.Forms.ToolStrip toolStrip1;
+		private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripSplitButton tsbConnectDB;
         private System.Windows.Forms.ToolStripMenuItem tsmiRefresh;
         private System.Windows.Forms.DataGridView dataGridView1;
@@ -448,5 +432,6 @@ namespace Apq_DBTools
 		private System.Windows.Forms.DataGridViewTextBoxColumn tableNameDataGridViewTextBoxColumn;
 		private System.Windows.Forms.DataGridViewTextBoxColumn primaryKeysDataGridViewTextBoxColumn;
 		private System.Windows.Forms.ToolStripMenuItem tsmiSelectTrigger;
+		private System.Windows.Forms.ToolStripButton tsbErrList;
 	}
 }

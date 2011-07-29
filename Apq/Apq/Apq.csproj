@@ -212,6 +212,7 @@
     <Compile Include="Apq\Delegates.cs" />
     <Compile Include="Apq\GlobalObject.cs" />
     <Compile Include="Apq\SingletonInstances.cs" />
+    <Compile Include="Collections\IListT.cs" />
     <Compile Include="ComponentModel\BackgroundWorker.cs" />
     <Compile Include="Config\ConfigChain.cs" />
     <Compile Include="ConnectionStrings\Access\OleDbConnection.cs" />

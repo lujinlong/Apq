@@ -42,6 +42,13 @@ namespace Apq.Windows.Forms
 		/// </summary>
 		public virtual void SetUILang(Apq.UILang.UILang UILang)
 		{
+			foreach (DockForm win in MdiChildren)
+			{
+				if (win != null)
+				{
+					win.SetUILang(UILang);
+				}
+			}
 		}
 
 		#region MainBackThread

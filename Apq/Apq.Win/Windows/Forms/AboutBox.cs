@@ -27,6 +27,8 @@ namespace Apq.Windows.Forms
 		public override void SetUILang(Apq.UILang.UILang UILang)
 		{
 			okButton.Text = Apq.GlobalObject.UILang["确定(&O)"];
+
+			base.SetUILang(UILang);
 		}
 
 		/// <summary>

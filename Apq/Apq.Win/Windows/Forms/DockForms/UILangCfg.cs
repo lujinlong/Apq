@@ -59,7 +59,9 @@ namespace Apq.Windows.Forms.DockForms
             #region 列头
             col1.HeaderText = Apq.GlobalObject.UILang["原文"];
             col2.HeaderText = Apq.GlobalObject.UILang["中文"];
-            #endregion
+			#endregion
+
+			base.SetUILang(UILang);
         }
 
         private void UILangCfg_Load(object sender, EventArgs e)

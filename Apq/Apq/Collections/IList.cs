@@ -197,21 +197,29 @@ namespace Apq.Collections
 
 		#region 附加方法
 		/// <summary>
-		/// 
+		/// 返回列表中是否包含指定项(支持null)
 		/// </summary>
-		/// <param name="list"></param>
-		/// <param name="obj"></param>
-		/// <returns></returns>
 		public static bool Contains(System.Collections.IList list, object obj)
 		{
 			for (int i = 0; i < list.Count; i++)
 			{
-				if (list[i] == null && obj == null || list[i] != null && obj.Equals(list[i]))
+				if (list[i] == null && obj == null || obj != null && obj.Equals(list[i]))
 				{
 					return true;
 				}
 			}
 			return false;
+		}
+		/// <summary>
+		/// 将某项添加到 System.Collections.Generic.IList 中，该项唯一。
+		/// </summary>
+		/// <returns>新项的插入位置。</returns>
+		public void AddUnique(object value)
+		{
+			if (!this.Contains(value))
+			{
+				this.Add(value);
+			}
 		}
 		#endregion
 	}
