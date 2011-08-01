@@ -1,0 +1,13 @@
+﻿DROP TABLE IF EXISTS `dbv_proc`;
+
+CREATE TABLE `dbv_proc` (
+  `PID` INT NOT NULL AUTO_INCREMENT,
+  `SchemaName` VARCHAR(192) DEFAULT NULL,
+  `ProcName` VARCHAR(192) DEFAULT NULL,
+  `type` INT NOT NULL DEFAULT 2,
+  `param_list` TEXT,
+  `returns` TEXT,
+  `body` LONGTEXT,
+  `comment` VARCHAR(192) DEFAULT NULL,
+  PRIMARY KEY (`PID`)
+) ENGINE=INNODB DEFAULT CHARSET=utf8;
