@@ -67,6 +67,25 @@ namespace Apq_DBTools.Forms
 			}
 		}
 
+		partial class dbv_viewDataTable
+		{
+			public dbv_viewRow FindByTableName(string SchemaName, string TableName)
+			{
+				dbv_viewRow dr = null;
+				foreach (dbv_viewRow dr1 in Rows)
+				{
+					if (SchemaName.Equals(dr1.SchemaName, System.StringComparison.OrdinalIgnoreCase)
+						&& TableName.Equals(dr1.TableName, System.StringComparison.OrdinalIgnoreCase)
+					)
+					{
+						dr = dr1;
+						break;
+					}
+				}
+				return dr;
+			}
+		}
+	
 		public partial class dbv_procDataTable
 		{
 			public dbv_procRow FindByProcName(string SchemaName, string ProcName)

@@ -247,9 +247,17 @@ SELECT `COLUMN_NAME` as ColName,
  WHERE c.`TABLE_SCHEMA` = DATABASE();
 ";
 					dda.Fill(_xsd.dbv_column);
-					// 存储过程
+					// 视图
+					dda.SelectCommand.CommandText = @"
+SELECT `TABLE_SCHEMA` as SchemaName,`Table_Name` as TableName,`VIEW_DEFINITION`
+  FROM `information_schema`.`VIEWS`
+ WHERE `TABLE_SCHEMA` = DATABASE();
+";
+					dda.Fill(_xsd.dbv_view);
+					// 存储过程,函数
 					dda.SelectCommand.CommandText = @"
 SELECT `db` AS SchemaName,`name` AS ProcName,
+	CASE `type` WHEN 'FUNCTION' THEN 4 ELSE 2 END AS type,
 	CONVERT(`param_list` USING utf8) AS param_list,
 	CONVERT(`returns` USING utf8) AS RETURNS,
 	CONVERT(`body` USING utf8) AS body,
@@ -300,11 +308,20 @@ SELECT `TRIGGER_SCHEMA` as SchemaName,`TRIGGER_NAME` as TriName,`EVENT_MANIPULAT
 						drMeta.ObjectName = drT.TableName;
 						_xsd.Meta.Rows.Add(drMeta);
 					}
+					foreach (SqlGen_XSD.dbv_viewRow drV in _xsd.dbv_view.Rows)
+					{
+						SqlGen_XSD.MetaRow drMeta = _xsd.Meta.NewMetaRow();
+						drMeta.ObjectType = 6;
+						drMeta._CheckState = nCheckState;
+						drMeta.SchemaName = drV.SchemaName;
+						drMeta.ObjectName = drV.TableName;
+						_xsd.Meta.Rows.Add(drMeta);
+					}
 					nCheckState = Apq.Convert.ChangeType<int>(tsmiSelectProc.CheckState);
 					foreach (SqlGen_XSD.dbv_procRow drP in _xsd.dbv_proc.Rows)
 					{
 						SqlGen_XSD.MetaRow drMeta = _xsd.Meta.NewMetaRow();
-						drMeta.ObjectType = 2;
+						drMeta.ObjectType = drP.type;
 						drMeta._CheckState = nCheckState;
 						drMeta.SchemaName = drP.SchemaName;
 						drMeta.ObjectName = drP.ProcName;
@@ -381,99 +398,50 @@ SELECT `TRIGGER_SCHEMA` as SchemaName,`TRIGGER_NAME` as TriName,`EVENT_MANIPULAT
 					#region 创建元数据表
 					// 为列表中已选中的项生成语句，语句完成将这些项插入到dbv_table,dbv_column,dbv_proc中
 					sb.Append(string.Format(@"
+/* -------------------------------------------------------------------------------------------------
+该文件由Apq_DBTools自动生成
+
+数据库创建
+基本存储过程（根据元数据无损构建数据库）
+dbv表创建
+元数据导入
+
+====================================================================================================
+*/
 CREATE DATABASE IF NOT EXISTS `{0}` DEFAULT CHARACTER SET utf8;
 USE `{0}`;
 SET FOREIGN_KEY_CHECKS=0;
 
--- 基本存储过程 -------------------------------------------------------------------------------------
-", _DBConnection.Database)
-					);
-					//string strCreateTable_BuildLog = File.ReadAllText(Path.GetDirectoryName(Apq.GlobalObject.TheProcess.MainModule.FileName) + @"\Sql\MySql\Apq_CreateTable_BuildLog.sql");
-					//sb.Append(strCreateTable_BuildLog);
-					sb.Append(string.Format(@"
--- =================================================================================================
-
--- 元数据表 -----------------------------------------------------------------------------------------
-CREATE TABLE IF NOT EXISTS `dbv_BuildLog` (
-  `ID` bigint(20) NOT NULL AUTO_INCREMENT,
-  `_InTime` datetime NOT NULL,
-  `Type` int(11) DEFAULT NULL,
-  `Severity` int(11) DEFAULT NULL,
-  `Msg` longtext,
-  `Titile` varchar(100) DEFAULT NULL,
-  UNIQUE KEY `ID` (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-DROP TABLE IF EXISTS `dbv_table`;
-
-CREATE TABLE `dbv_table` (
-  `TID` int(11) NOT NULL AUTO_INCREMENT,
-  `SchemaName` varchar(192) DEFAULT NULL,
-  `TableName` varchar(192) DEFAULT NULL,
-  `ENGINE` varchar(192) DEFAULT NULL,
-  `CREATE_OPTIONS` varchar(765) DEFAULT NULL,
-  `TABLE_COMMENT` varchar(240) DEFAULT NULL,
-  `PrimaryKeys` text,
-  PRIMARY KEY (`TID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-DROP TABLE IF EXISTS `dbv_column`;
-
-CREATE TABLE `dbv_column` (
-  `CID` int(11) NOT NULL AUTO_INCREMENT,
-  `TID` int(11) DEFAULT NULL,
-  `ColName` varchar(192) DEFAULT NULL,
-  `DefaultValue` longtext,
-  `NullAble` tinyint(1) DEFAULT NULL,
-  `DATA_TYPE` varchar(192) DEFAULT NULL,
-  `CHARACTER_MAXIMUM_LENGTH` bigint(21) DEFAULT NULL,
-  `CHARACTER_OCTET_LENGTH` bigint(21) DEFAULT NULL,
-  `NUMERIC_PRECISION` bigint(21) DEFAULT NULL,
-  `NUMERIC_SCALE` bigint(21) DEFAULT NULL,
-  `CHARACTER_SET_NAME` varchar(192) DEFAULT NULL,
-  `COLLATION_NAME` varchar(192) DEFAULT NULL,
-  `COLUMN_TYPE` longtext,
-  `COLUMN_KEY` varchar(3) DEFAULT NULL,
-  `is_auto_increment` tinyint(1) DEFAULT NULL,
-  `COLUMN_COMMENT` varchar(1024) DEFAULT NULL,
-  `SchemaName` varchar(192) DEFAULT NULL,
-  `TableName` varchar(192) DEFAULT NULL,
-  PRIMARY KEY (`CID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-DROP TABLE IF EXISTS `dbv_proc`;
-
-CREATE TABLE `dbv_proc` (
-  `PID` int(11) NOT NULL AUTO_INCREMENT,
-  `SchemaName` varchar(192) DEFAULT NULL,
-  `ProcName` varchar(192) DEFAULT NULL,
-  `param_list` text,
-  `returns` text,
-  `body` longtext,
-  `comment` varchar(192) DEFAULT NULL,
-  PRIMARY KEY (`PID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-DROP TABLE IF EXISTS `dbv_trigger`;
-
-CREATE TABLE `dbv_trigger` (
-  `TriID` int(11) NOT NULL AUTO_INCREMENT,
-  `SchemaName` VARCHAR(64) NOT NULL DEFAULT '',
-  `TriName` VARCHAR(64) NOT NULL DEFAULT '',
-  `EVENT_MANIPULATION` VARCHAR(6) NOT NULL DEFAULT '',
-  `TableName` VARCHAR(64) NOT NULL DEFAULT '',
-  `ACTION_ORDER` BIGINT(4) NOT NULL DEFAULT '0',
-  `ACTION_CONDITION` LONGTEXT,
-  `ACTION_STATEMENT` LONGTEXT NOT NULL,
-  `ACTION_ORIENTATION` VARCHAR(9) NOT NULL DEFAULT '',
-  `ACTION_TIMING` VARCHAR(6) NOT NULL DEFAULT '',
-  PRIMARY KEY (`TriID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
--- =================================================================================================
-
--- 元数据 ------------------------------------------------------------------------------------------",
+-- 基本存储过程 -------------------------------------------------------------------------------------",
 							_DBConnection.Database
 						)
+					);
+					string strFilePath = Path.GetDirectoryName(Apq.GlobalObject.TheProcess.MainModule.FileName) + @"\Sql\MySql\Apq_CreateNewTable.sql";
+					string strFileContent = Environment.NewLine + File.ReadAllText(strFilePath) + Environment.NewLine;
+					sb.Append(strFileContent);
+					sb.Append(@"
+-- =================================================================================================
+
+-- 元数据表 -----------------------------------------------------------------------------------------");
+					strFilePath = Path.GetDirectoryName(Apq.GlobalObject.TheProcess.MainModule.FileName) + @"\Sql\MySql\dbv_table.sql";
+					strFileContent = Environment.NewLine + File.ReadAllText(strFilePath) + Environment.NewLine;
+					sb.Append(strFileContent);
+					strFilePath = Path.GetDirectoryName(Apq.GlobalObject.TheProcess.MainModule.FileName) + @"\Sql\MySql\dbv_column.sql";
+					strFileContent = Environment.NewLine + File.ReadAllText(strFilePath) + Environment.NewLine;
+					sb.Append(strFileContent);
+					strFilePath = Path.GetDirectoryName(Apq.GlobalObject.TheProcess.MainModule.FileName) + @"\Sql\MySql\dbv_view.sql";
+					strFileContent = Environment.NewLine + File.ReadAllText(strFilePath) + Environment.NewLine;
+					sb.Append(strFileContent);
+					strFilePath = Path.GetDirectoryName(Apq.GlobalObject.TheProcess.MainModule.FileName) + @"\Sql\MySql\dbv_trigger.sql";
+					strFileContent = Environment.NewLine + File.ReadAllText(strFilePath) + Environment.NewLine;
+					sb.Append(strFileContent);
+					strFilePath = Path.GetDirectoryName(Apq.GlobalObject.TheProcess.MainModule.FileName) + @"\Sql\MySql\dbv_proc.sql";
+					strFileContent = Environment.NewLine + File.ReadAllText(strFilePath) + Environment.NewLine;
+					sb.Append(strFileContent);
+					sb.Append(@"
+-- =================================================================================================
+
+-- 元数据 ------------------------------------------------------------------------------------------"
 					);
 					#endregion
 
@@ -523,16 +491,49 @@ INSERT INTO `dbv_column`(`TID`,`ColName`,`DefaultValue`,`NullAble`,`DATA_TYPE`,`
 								);
 							}
 						}
+						if (dr.ObjectType == 6)
+						{
+							SqlGen_XSD.dbv_viewRow drV = _xsd.dbv_view.FindByTableName(dr.SchemaName, dr.ObjectName);
+							sb.Append(string.Format(@"
+
+-- 视图:{0}
+INSERT INTO `dbv_view`(`SchemaName`,`TableName`,`VIEW_DEFINITION`) VALUES({1},{2},{3});",
+									drV.TableName,
+									Apq.Data.MySqlClient.Common.ConvertToSqlON(drV.SchemaName),
+									Apq.Data.MySqlClient.Common.ConvertToSqlON(drV.TableName),
+									Apq.Data.MySqlClient.Common.ConvertToSqlON(drV.VIEW_DEFINITION)
+								)
+							);
+						}
 						if (dr.ObjectType == 2)
 						{
 							SqlGen_XSD.dbv_procRow drP = _xsd.dbv_proc.FindByProcName(dr.SchemaName, dr.ObjectName);
 							sb.Append(string.Format(@"
 
 -- 存储过程:{0}
-INSERT INTO `dbv_proc`(`SchemaName`,`ProcName`,`param_list`,`returns`,`body`,`comment`) VALUES({1},{2},{3},{4},{5},{6});",
+INSERT INTO `dbv_proc`(`SchemaName`,`ProcName`,`type`,`param_list`,`returns`,`body`,`comment`) VALUES({1},{2},{3},{4},{5},{6},{7});",
 									drP.ProcName,
 									Apq.Data.MySqlClient.Common.ConvertToSqlON(drP.SchemaName),
 									Apq.Data.MySqlClient.Common.ConvertToSqlON(drP.ProcName),
+									drP.type,
+									Apq.Data.MySqlClient.Common.ConvertToSqlON(drP.param_list),
+									Apq.Data.MySqlClient.Common.ConvertToSqlON(drP.returns),
+									Apq.Data.MySqlClient.Common.ConvertToSqlON(drP.body),
+									Apq.Data.MySqlClient.Common.ConvertToSqlON(drP.comment)
+								)
+							);
+						}
+						if (dr.ObjectType == 4)
+						{
+							SqlGen_XSD.dbv_procRow drP = _xsd.dbv_proc.FindByProcName(dr.SchemaName, dr.ObjectName);
+							sb.Append(string.Format(@"
+
+-- 函数:{0}
+INSERT INTO `dbv_proc`(`SchemaName`,`ProcName`,`type`,`param_list`,`returns`,`body`,`comment`) VALUES({1},{2},{3},{4},{5},{6},{7});",
+									drP.ProcName,
+									Apq.Data.MySqlClient.Common.ConvertToSqlON(drP.SchemaName),
+									Apq.Data.MySqlClient.Common.ConvertToSqlON(drP.ProcName),
+									drP.type,
 									Apq.Data.MySqlClient.Common.ConvertToSqlON(drP.param_list),
 									Apq.Data.MySqlClient.Common.ConvertToSqlON(drP.returns),
 									Apq.Data.MySqlClient.Common.ConvertToSqlON(drP.body),

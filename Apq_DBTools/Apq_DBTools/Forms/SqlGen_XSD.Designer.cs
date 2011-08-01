@@ -38,6 +38,8 @@ namespace Apq_DBTools.Forms {
         
         private dbv_triggerDataTable tabledbv_trigger;
         
+        private dbv_viewDataTable tabledbv_view;
+        
         private global::System.Data.DataRelation relationFK_dbv_table_dbv_column;
         
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
@@ -88,6 +90,9 @@ namespace Apq_DBTools.Forms {
                 }
                 if ((ds.Tables["dbv_trigger"] != null)) {
                     base.Tables.Add(new dbv_triggerDataTable(ds.Tables["dbv_trigger"]));
+                }
+                if ((ds.Tables["dbv_view"] != null)) {
+                    base.Tables.Add(new dbv_viewDataTable(ds.Tables["dbv_view"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -179,6 +184,16 @@ namespace Apq_DBTools.Forms {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Browsable(false)]
+        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
+        public dbv_viewDataTable dbv_view {
+            get {
+                return this.tabledbv_view;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.BrowsableAttribute(true)]
         [global::System.ComponentModel.DesignerSerializationVisibilityAttribute(global::System.ComponentModel.DesignerSerializationVisibility.Visible)]
         public override global::System.Data.SchemaSerializationMode SchemaSerializationMode {
@@ -265,6 +280,9 @@ namespace Apq_DBTools.Forms {
                 if ((ds.Tables["dbv_trigger"] != null)) {
                     base.Tables.Add(new dbv_triggerDataTable(ds.Tables["dbv_trigger"]));
                 }
+                if ((ds.Tables["dbv_view"] != null)) {
+                    base.Tables.Add(new dbv_viewDataTable(ds.Tables["dbv_view"]));
+                }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
                 this.Namespace = ds.Namespace;
@@ -340,6 +358,12 @@ namespace Apq_DBTools.Forms {
                     this.tabledbv_trigger.InitVars();
                 }
             }
+            this.tabledbv_view = ((dbv_viewDataTable)(base.Tables["dbv_view"]));
+            if ((initTable == true)) {
+                if ((this.tabledbv_view != null)) {
+                    this.tabledbv_view.InitVars();
+                }
+            }
             this.relationFK_dbv_table_dbv_column = this.Relations["FK_dbv_table_dbv_column"];
         }
         
@@ -365,6 +389,8 @@ namespace Apq_DBTools.Forms {
             base.Tables.Add(this.tabledbv_table_key);
             this.tabledbv_trigger = new dbv_triggerDataTable();
             base.Tables.Add(this.tabledbv_trigger);
+            this.tabledbv_view = new dbv_viewDataTable();
+            base.Tables.Add(this.tabledbv_view);
             global::System.Data.ForeignKeyConstraint fkc;
             fkc = new global::System.Data.ForeignKeyConstraint("FK_dbv_table_dbv_column", new global::System.Data.DataColumn[] {
                         this.tabledbv_table.TIDColumn}, new global::System.Data.DataColumn[] {
@@ -418,6 +444,12 @@ namespace Apq_DBTools.Forms {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private bool ShouldSerializedbv_trigger() {
+            return false;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private bool ShouldSerializedbv_view() {
             return false;
         }
         
@@ -496,6 +528,9 @@ namespace Apq_DBTools.Forms {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         public delegate void dbv_triggerRowChangeEventHandler(object sender, dbv_triggerRowChangeEvent e);
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public delegate void dbv_viewRowChangeEventHandler(object sender, dbv_viewRowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
@@ -1329,6 +1364,8 @@ namespace Apq_DBTools.Forms {
             
             private global::System.Data.DataColumn columnProcName;
             
+            private global::System.Data.DataColumn columntype;
+            
             private global::System.Data.DataColumn columnparam_list;
             
             private global::System.Data.DataColumn columnreturns;
@@ -1391,6 +1428,14 @@ namespace Apq_DBTools.Forms {
             public global::System.Data.DataColumn ProcNameColumn {
                 get {
                     return this.columnProcName;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn typeColumn {
+                get {
+                    return this.columntype;
                 }
             }
             
@@ -1463,12 +1508,13 @@ namespace Apq_DBTools.Forms {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public dbv_procRow Adddbv_procRow(string SchemaName, string ProcName, string param_list, string returns, string body, string comment) {
+            public dbv_procRow Adddbv_procRow(string SchemaName, string ProcName, int type, string param_list, string returns, string body, string comment) {
                 dbv_procRow rowdbv_procRow = ((dbv_procRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
                         SchemaName,
                         ProcName,
+                        type,
                         param_list,
                         returns,
                         body,
@@ -1505,6 +1551,7 @@ namespace Apq_DBTools.Forms {
                 this.columnPID = base.Columns["PID"];
                 this.columnSchemaName = base.Columns["SchemaName"];
                 this.columnProcName = base.Columns["ProcName"];
+                this.columntype = base.Columns["type"];
                 this.columnparam_list = base.Columns["param_list"];
                 this.columnreturns = base.Columns["returns"];
                 this.columnbody = base.Columns["body"];
@@ -1520,6 +1567,8 @@ namespace Apq_DBTools.Forms {
                 base.Columns.Add(this.columnSchemaName);
                 this.columnProcName = new global::System.Data.DataColumn("ProcName", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnProcName);
+                this.columntype = new global::System.Data.DataColumn("type", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columntype);
                 this.columnparam_list = new global::System.Data.DataColumn("param_list", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnparam_list);
                 this.columnreturns = new global::System.Data.DataColumn("returns", typeof(string), null, global::System.Data.MappingType.Element);
@@ -1536,6 +1585,8 @@ namespace Apq_DBTools.Forms {
                 this.columnPID.Unique = true;
                 this.columnSchemaName.MaxLength = 192;
                 this.columnProcName.MaxLength = 192;
+                this.columntype.AllowDBNull = false;
+                this.columntype.DefaultValue = ((int)(2));
                 this.columncomment.MaxLength = 192;
             }
             
@@ -2978,6 +3029,311 @@ namespace Apq_DBTools.Forms {
         }
         
         /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class dbv_viewDataTable : global::System.Data.TypedTableBase<dbv_viewRow> {
+            
+            private global::System.Data.DataColumn columnVID;
+            
+            private global::System.Data.DataColumn columnSchemaName;
+            
+            private global::System.Data.DataColumn columnTableName;
+            
+            private global::System.Data.DataColumn columnVIEW_DEFINITION;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public dbv_viewDataTable() {
+                this.TableName = "dbv_view";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal dbv_viewDataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected dbv_viewDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn VIDColumn {
+                get {
+                    return this.columnVID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn SchemaNameColumn {
+                get {
+                    return this.columnSchemaName;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn TableNameColumn {
+                get {
+                    return this.columnTableName;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn VIEW_DEFINITIONColumn {
+                get {
+                    return this.columnVIEW_DEFINITION;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public dbv_viewRow this[int index] {
+                get {
+                    return ((dbv_viewRow)(this.Rows[index]));
+                }
+            }
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event dbv_viewRowChangeEventHandler dbv_viewRowChanging;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event dbv_viewRowChangeEventHandler dbv_viewRowChanged;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event dbv_viewRowChangeEventHandler dbv_viewRowDeleting;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event dbv_viewRowChangeEventHandler dbv_viewRowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void Adddbv_viewRow(dbv_viewRow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public dbv_viewRow Adddbv_viewRow(string SchemaName, string TableName, string VIEW_DEFINITION) {
+                dbv_viewRow rowdbv_viewRow = ((dbv_viewRow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        null,
+                        SchemaName,
+                        TableName,
+                        VIEW_DEFINITION};
+                rowdbv_viewRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowdbv_viewRow);
+                return rowdbv_viewRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public dbv_viewRow FindByVID(int VID) {
+                return ((dbv_viewRow)(this.Rows.Find(new object[] {
+                            VID})));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public override global::System.Data.DataTable Clone() {
+                dbv_viewDataTable cln = ((dbv_viewDataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new dbv_viewDataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal void InitVars() {
+                this.columnVID = base.Columns["VID"];
+                this.columnSchemaName = base.Columns["SchemaName"];
+                this.columnTableName = base.Columns["TableName"];
+                this.columnVIEW_DEFINITION = base.Columns["VIEW_DEFINITION"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            private void InitClass() {
+                this.columnVID = new global::System.Data.DataColumn("VID", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnVID);
+                this.columnSchemaName = new global::System.Data.DataColumn("SchemaName", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSchemaName);
+                this.columnTableName = new global::System.Data.DataColumn("TableName", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTableName);
+                this.columnVIEW_DEFINITION = new global::System.Data.DataColumn("VIEW_DEFINITION", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnVIEW_DEFINITION);
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
+                                this.columnVID}, true));
+                this.columnVID.AutoIncrement = true;
+                this.columnVID.AutoIncrementSeed = 1;
+                this.columnVID.AllowDBNull = false;
+                this.columnVID.Unique = true;
+                this.columnSchemaName.MaxLength = 64;
+                this.columnTableName.MaxLength = 64;
+                this.columnVIEW_DEFINITION.Caption = "body";
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public dbv_viewRow Newdbv_viewRow() {
+                return ((dbv_viewRow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new dbv_viewRow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Type GetRowType() {
+                return typeof(dbv_viewRow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.dbv_viewRowChanged != null)) {
+                    this.dbv_viewRowChanged(this, new dbv_viewRowChangeEvent(((dbv_viewRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.dbv_viewRowChanging != null)) {
+                    this.dbv_viewRowChanging(this, new dbv_viewRowChangeEvent(((dbv_viewRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.dbv_viewRowDeleted != null)) {
+                    this.dbv_viewRowDeleted(this, new dbv_viewRowChangeEvent(((dbv_viewRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.dbv_viewRowDeleting != null)) {
+                    this.dbv_viewRowDeleting(this, new dbv_viewRowChangeEvent(((dbv_viewRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void Removedbv_viewRow(dbv_viewRow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                SqlGen_XSD ds = new SqlGen_XSD();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "dbv_viewDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
         public partial class MetaRow : global::System.Data.DataRow {
@@ -3676,6 +4032,17 @@ namespace Apq_DBTools.Forms {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int type {
+                get {
+                    return ((int)(this[this.tabledbv_proc.typeColumn]));
+                }
+                set {
+                    this[this.tabledbv_proc.typeColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public string param_list {
                 get {
                     try {
@@ -4261,6 +4628,116 @@ namespace Apq_DBTools.Forms {
         }
         
         /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        public partial class dbv_viewRow : global::System.Data.DataRow {
+            
+            private dbv_viewDataTable tabledbv_view;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal dbv_viewRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tabledbv_view = ((dbv_viewDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int VID {
+                get {
+                    return ((int)(this[this.tabledbv_view.VIDColumn]));
+                }
+                set {
+                    this[this.tabledbv_view.VIDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string SchemaName {
+                get {
+                    try {
+                        return ((string)(this[this.tabledbv_view.SchemaNameColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("表“dbv_view”中列“SchemaName”的值为 DBNull。", e);
+                    }
+                }
+                set {
+                    this[this.tabledbv_view.SchemaNameColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string TableName {
+                get {
+                    try {
+                        return ((string)(this[this.tabledbv_view.TableNameColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("表“dbv_view”中列“TableName”的值为 DBNull。", e);
+                    }
+                }
+                set {
+                    this[this.tabledbv_view.TableNameColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string VIEW_DEFINITION {
+                get {
+                    try {
+                        return ((string)(this[this.tabledbv_view.VIEW_DEFINITIONColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("表“dbv_view”中列“VIEW_DEFINITION”的值为 DBNull。", e);
+                    }
+                }
+                set {
+                    this[this.tabledbv_view.VIEW_DEFINITIONColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsSchemaNameNull() {
+                return this.IsNull(this.tabledbv_view.SchemaNameColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetSchemaNameNull() {
+                this[this.tabledbv_view.SchemaNameColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsTableNameNull() {
+                return this.IsNull(this.tabledbv_view.TableNameColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetTableNameNull() {
+                this[this.tabledbv_view.TableNameColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsVIEW_DEFINITIONNull() {
+                return this.IsNull(this.tabledbv_view.VIEW_DEFINITIONColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetVIEW_DEFINITIONNull() {
+                this[this.tabledbv_view.VIEW_DEFINITIONColumn] = global::System.Convert.DBNull;
+            }
+        }
+        
+        /// <summary>
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
@@ -4484,6 +4961,40 @@ namespace Apq_DBTools.Forms {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public dbv_triggerRow Row {
+                get {
+                    return this.eventRow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataRowAction Action {
+                get {
+                    return this.eventAction;
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public class dbv_viewRowChangeEvent : global::System.EventArgs {
+            
+            private dbv_viewRow eventRow;
+            
+            private global::System.Data.DataRowAction eventAction;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public dbv_viewRowChangeEvent(dbv_viewRow row, global::System.Data.DataRowAction action) {
+                this.eventRow = row;
+                this.eventAction = action;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public dbv_viewRow Row {
                 get {
                     return this.eventRow;
                 }
