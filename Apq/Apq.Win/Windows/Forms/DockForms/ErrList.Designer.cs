@@ -41,18 +41,19 @@
 			this.tsmiSeverity20 = new System.Windows.Forms.ToolStripMenuItem();
 			this.tsmiSeverity21 = new System.Windows.Forms.ToolStripMenuItem();
 			this.dataGridView1 = new System.Windows.Forms.DataGridView();
+			this.bsType = new System.Windows.Forms.BindingSource(this.components);
+			this._xsd = new Apq.Windows.Forms.DockForms.ErrList_XSD();
+			this._dv = new System.Data.DataView();
+			this.imageList1 = new System.Windows.Forms.ImageList(this.components);
 			this.colIcon = new System.Windows.Forms.DataGridViewImageColumn();
 			this.colID = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.col_InTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.colType = new System.Windows.Forms.DataGridViewComboBoxColumn();
-			this.bsType = new System.Windows.Forms.BindingSource(this.components);
-			this._xsd = new Apq.Windows.Forms.DockForms.ErrList_XSD();
 			this.colSeverity = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.colTitle = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.colMsg = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.colAlarmGroupID = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.colState = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this._dv = new System.Data.DataView();
 			this.toolStrip1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.bsType)).BeginInit();
@@ -89,7 +90,7 @@
 			// 
 			this.tsmiTypeError.CheckOnClick = true;
 			this.tsmiTypeError.Name = "tsmiTypeError";
-			this.tsmiTypeError.Size = new System.Drawing.Size(152, 22);
+			this.tsmiTypeError.Size = new System.Drawing.Size(94, 22);
 			this.tsmiTypeError.Text = "错误";
 			this.tsmiTypeError.Click += new System.EventHandler(this.tsmiTypeError_Click);
 			// 
@@ -97,7 +98,7 @@
 			// 
 			this.tsmiTypeWarn.CheckOnClick = true;
 			this.tsmiTypeWarn.Name = "tsmiTypeWarn";
-			this.tsmiTypeWarn.Size = new System.Drawing.Size(152, 22);
+			this.tsmiTypeWarn.Size = new System.Drawing.Size(94, 22);
 			this.tsmiTypeWarn.Text = "警告";
 			this.tsmiTypeWarn.Click += new System.EventHandler(this.tsmiTypeWarn_Click);
 			// 
@@ -105,7 +106,7 @@
 			// 
 			this.tsmiTypeTrace.CheckOnClick = true;
 			this.tsmiTypeTrace.Name = "tsmiTypeTrace";
-			this.tsmiTypeTrace.Size = new System.Drawing.Size(152, 22);
+			this.tsmiTypeTrace.Size = new System.Drawing.Size(94, 22);
 			this.tsmiTypeTrace.Text = "跟踪";
 			this.tsmiTypeTrace.Click += new System.EventHandler(this.tsmiTypeTrace_Click);
 			// 
@@ -113,7 +114,7 @@
 			// 
 			this.tsmiTypeInfo.CheckOnClick = true;
 			this.tsmiTypeInfo.Name = "tsmiTypeInfo";
-			this.tsmiTypeInfo.Size = new System.Drawing.Size(152, 22);
+			this.tsmiTypeInfo.Size = new System.Drawing.Size(94, 22);
 			this.tsmiTypeInfo.Text = "信息";
 			this.tsmiTypeInfo.Click += new System.EventHandler(this.tsmiTypeInfo_Click);
 			// 
@@ -134,7 +135,7 @@
 			// 
 			this.tsmiSeverity15.CheckOnClick = true;
 			this.tsmiSeverity15.Name = "tsmiSeverity15";
-			this.tsmiSeverity15.Size = new System.Drawing.Size(152, 22);
+			this.tsmiSeverity15.Size = new System.Drawing.Size(106, 22);
 			this.tsmiSeverity15.Text = "--15";
 			this.tsmiSeverity15.Click += new System.EventHandler(this.tsmiSeverity15_Click);
 			// 
@@ -142,7 +143,7 @@
 			// 
 			this.tsmiSeverity20.CheckOnClick = true;
 			this.tsmiSeverity20.Name = "tsmiSeverity20";
-			this.tsmiSeverity20.Size = new System.Drawing.Size(152, 22);
+			this.tsmiSeverity20.Size = new System.Drawing.Size(106, 22);
 			this.tsmiSeverity20.Text = "16--20";
 			this.tsmiSeverity20.Click += new System.EventHandler(this.tsmiSeverity20_Click);
 			// 
@@ -150,7 +151,7 @@
 			// 
 			this.tsmiSeverity21.CheckOnClick = true;
 			this.tsmiSeverity21.Name = "tsmiSeverity21";
-			this.tsmiSeverity21.Size = new System.Drawing.Size(152, 22);
+			this.tsmiSeverity21.Size = new System.Drawing.Size(106, 22);
 			this.tsmiSeverity21.Text = "21--";
 			this.tsmiSeverity21.Click += new System.EventHandler(this.tsmiSeverity21_Click);
 			// 
@@ -179,6 +180,30 @@
 			this.dataGridView1.Size = new System.Drawing.Size(767, 382);
 			this.dataGridView1.TabIndex = 1;
 			// 
+			// bsType
+			// 
+			this.bsType.DataMember = "dic_Type";
+			this.bsType.DataSource = this._xsd;
+			// 
+			// _xsd
+			// 
+			this._xsd.DataSetName = "ErrList_XSD";
+			this._xsd.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+			// 
+			// _dv
+			// 
+			this._dv.Table = this._xsd.ErrList;
+			// 
+			// imageList1
+			// 
+			this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
+			this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+			this.imageList1.Images.SetKeyName(0, "none.ico");
+			this.imageList1.Images.SetKeyName(1, "info.ico");
+			this.imageList1.Images.SetKeyName(2, "009_HighPriority_16x16_72.png");
+			this.imageList1.Images.SetKeyName(3, "warning.ico");
+			this.imageList1.Images.SetKeyName(4, "error.ico");
+			// 
 			// colIcon
 			// 
 			this.colIcon.DataPropertyName = "Icon";
@@ -187,7 +212,7 @@
 			this.colIcon.ReadOnly = true;
 			this.colIcon.Resizable = System.Windows.Forms.DataGridViewTriState.True;
 			this.colIcon.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-			this.colIcon.Width = 30;
+			this.colIcon.Width = 16;
 			// 
 			// colID
 			// 
@@ -215,16 +240,6 @@
 			this.colType.Resizable = System.Windows.Forms.DataGridViewTriState.True;
 			this.colType.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
 			this.colType.ValueMember = "Type";
-			// 
-			// bsType
-			// 
-			this.bsType.DataMember = "dic_Type";
-			this.bsType.DataSource = this._xsd;
-			// 
-			// _xsd
-			// 
-			this._xsd.DataSetName = "ErrList_XSD";
-			this._xsd.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
 			// 
 			// colSeverity
 			// 
@@ -260,10 +275,6 @@
 			this.colState.HeaderText = "状态";
 			this.colState.Name = "colState";
 			this.colState.ReadOnly = true;
-			// 
-			// _dv
-			// 
-			this._dv.Table = this._xsd.ErrList;
 			// 
 			// ErrList
 			// 
@@ -308,6 +319,7 @@
 		private ErrList_XSD _xsd;
 		private System.Windows.Forms.BindingSource bsType;
 		private System.Data.DataView _dv;
+		private System.Windows.Forms.ImageList imageList1;
 		private System.Windows.Forms.DataGridViewImageColumn colIcon;
 		private System.Windows.Forms.DataGridViewTextBoxColumn colID;
 		private System.Windows.Forms.DataGridViewTextBoxColumn col_InTime;

@@ -474,7 +474,7 @@ namespace Apq.Windows.Forms.DockForms {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public ErrListRow AddErrListRow(byte[] Icon, System.DateTime _InTime, int Type, int Severity, string Title, string Msg, int AlarmGroupID, int State) {
+            public ErrListRow AddErrListRow(object Icon, System.DateTime _InTime, int Type, int Severity, string Title, string Msg, int AlarmGroupID, int State) {
                 ErrListRow rowErrListRow = ((ErrListRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         Icon,
@@ -529,7 +529,7 @@ namespace Apq.Windows.Forms.DockForms {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             private void InitClass() {
-                this.columnIcon = new global::System.Data.DataColumn("Icon", typeof(byte[]), null, global::System.Data.MappingType.Element);
+                this.columnIcon = new global::System.Data.DataColumn("Icon", typeof(object), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnIcon);
                 this.columnID = new global::System.Data.DataColumn("ID", typeof(long), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnID);
@@ -550,8 +550,7 @@ namespace Apq.Windows.Forms.DockForms {
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnID}, true));
                 this.columnID.AutoIncrement = true;
-                this.columnID.AutoIncrementSeed = -1;
-                this.columnID.AutoIncrementStep = -1;
+                this.columnID.AutoIncrementSeed = 1;
                 this.columnID.AllowDBNull = false;
                 this.columnID.ReadOnly = true;
                 this.columnID.Unique = true;
@@ -986,10 +985,10 @@ namespace Apq.Windows.Forms.DockForms {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public byte[] Icon {
+            public object Icon {
                 get {
                     try {
-                        return ((byte[])(this[this.tableErrList.IconColumn]));
+                        return ((object)(this[this.tableErrList.IconColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("表“ErrList”中列“Icon”的值为 DBNull。", e);

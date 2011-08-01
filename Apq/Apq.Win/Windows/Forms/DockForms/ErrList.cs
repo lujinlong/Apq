@@ -240,6 +240,7 @@ namespace Apq.Windows.Forms.DockForms
 			dr.Msg = Msg;
 			dr.AlarmGroupID = AlarmGroupID;
 			dr.State = State;
+			dr.Icon = imageList1.Images[dr.Type];
 
 			_xsd.ErrList.Rows.Add(dr);
 		}
