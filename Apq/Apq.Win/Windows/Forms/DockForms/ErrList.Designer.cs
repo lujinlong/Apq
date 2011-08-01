@@ -41,19 +41,19 @@
 			this.tsmiSeverity20 = new System.Windows.Forms.ToolStripMenuItem();
 			this.tsmiSeverity21 = new System.Windows.Forms.ToolStripMenuItem();
 			this.dataGridView1 = new System.Windows.Forms.DataGridView();
-			this.bsType = new System.Windows.Forms.BindingSource(this.components);
-			this._xsd = new Apq.Windows.Forms.DockForms.ErrList_XSD();
-			this._dv = new System.Data.DataView();
-			this.imageList1 = new System.Windows.Forms.ImageList(this.components);
 			this.colIcon = new System.Windows.Forms.DataGridViewImageColumn();
 			this.colID = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.col_InTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.colType = new System.Windows.Forms.DataGridViewComboBoxColumn();
+			this.bsType = new System.Windows.Forms.BindingSource(this.components);
+			this._xsd = new Apq.Windows.Forms.DockForms.ErrList_XSD();
 			this.colSeverity = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.colTitle = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.colMsg = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.colAlarmGroupID = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.colState = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this._dv = new System.Data.DataView();
+			this.imageList1 = new System.Windows.Forms.ImageList(this.components);
 			this.toolStrip1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.bsType)).BeginInit();
@@ -180,30 +180,6 @@
 			this.dataGridView1.Size = new System.Drawing.Size(767, 382);
 			this.dataGridView1.TabIndex = 1;
 			// 
-			// bsType
-			// 
-			this.bsType.DataMember = "dic_Type";
-			this.bsType.DataSource = this._xsd;
-			// 
-			// _xsd
-			// 
-			this._xsd.DataSetName = "ErrList_XSD";
-			this._xsd.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-			// 
-			// _dv
-			// 
-			this._dv.Table = this._xsd.ErrList;
-			// 
-			// imageList1
-			// 
-			this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
-			this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
-			this.imageList1.Images.SetKeyName(0, "none.ico");
-			this.imageList1.Images.SetKeyName(1, "info.ico");
-			this.imageList1.Images.SetKeyName(2, "009_HighPriority_16x16_72.png");
-			this.imageList1.Images.SetKeyName(3, "warning.ico");
-			this.imageList1.Images.SetKeyName(4, "error.ico");
-			// 
 			// colIcon
 			// 
 			this.colIcon.DataPropertyName = "Icon";
@@ -241,6 +217,16 @@
 			this.colType.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
 			this.colType.ValueMember = "Type";
 			// 
+			// bsType
+			// 
+			this.bsType.DataMember = "dic_Type";
+			this.bsType.DataSource = this._xsd;
+			// 
+			// _xsd
+			// 
+			this._xsd.DataSetName = "ErrList_XSD";
+			this._xsd.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+			// 
 			// colSeverity
 			// 
 			this.colSeverity.DataPropertyName = "Severity";
@@ -275,6 +261,23 @@
 			this.colState.HeaderText = "状态";
 			this.colState.Name = "colState";
 			this.colState.ReadOnly = true;
+			// 
+			// _dv
+			// 
+			this._dv.Table = this._xsd.ErrList;
+			// 
+			// imageList1
+			// 
+			this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
+			this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+			this.imageList1.Images.SetKeyName(0, "none.ico");
+			this.imageList1.Images.SetKeyName(1, "eventlogInfo.ico");
+			this.imageList1.Images.SetKeyName(2, "009_HighPriority_16x16_72.png");
+			this.imageList1.Images.SetKeyName(3, "eventlogWarn.ico");
+			this.imageList1.Images.SetKeyName(4, "eventlogError.ico");
+			this.imageList1.Images.SetKeyName(5, "error.ico");
+			this.imageList1.Images.SetKeyName(6, "info.ico");
+			this.imageList1.Images.SetKeyName(7, "warning.ico");
 			// 
 			// ErrList
 			// 

@@ -255,12 +255,6 @@
     <Compile Include="Windows\Controls\FolderBrowser.Designer.cs">
       <DependentUpon>FolderBrowser.cs</DependentUpon>
     </Compile>
-    <Compile Include="Windows\Controls\WizardStep.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Windows\Controls\WizardStep.Designer.cs">
-      <DependentUpon>WizardStep.cs</DependentUpon>
-    </Compile>
     <Compile Include="Windows\Delegates.cs" />
     <Compile Include="Windows\Forms\AboutBox.cs">
       <SubType>Form</SubType>
@@ -319,7 +313,6 @@
     <Compile Include="Windows\Forms\DBConnector.Designer.cs">
       <DependentUpon>DBConnector.cs</DependentUpon>
     </Compile>
-    <Compile Include="Windows\Interfaces\IWizardStep.cs" />
     <None Include="Windows\Forms\DBConnector_XSD.xsc">
       <DependentUpon>DBConnector_XSD.xsd</DependentUpon>
     </None>
@@ -352,10 +345,6 @@
     <EmbeddedResource Include="Windows\Controls\FolderBrowser.resx">
       <DependentUpon>FolderBrowser.cs</DependentUpon>
       <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Windows\Controls\WizardStep.resx">
-      <SubType>Designer</SubType>
-      <DependentUpon>WizardStep.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Windows\Forms\AboutBox.resx">
       <DependentUpon>AboutBox.cs</DependentUpon>
@@ -402,8 +391,8 @@
     <Content Include="_Doc\XuQiu.txt" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Win.XSD\" />
     <Folder Include="Windows\Controls\Grid\" />
+    <Folder Include="Windows\Interfaces\" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
