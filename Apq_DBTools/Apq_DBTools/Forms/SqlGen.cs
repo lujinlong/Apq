@@ -76,6 +76,8 @@ namespace Apq_DBTools
 			_xsd.Meta.RowChanged += new DataRowChangeEventHandler(Meta_RowChanged);
 
 			tscbSqlProduct.SelectedIndex = 0;
+
+			//tsbConnectDB_ButtonClick(sender, e);
 		}
 
 		void Meta_RowChanged(object sender, DataRowChangeEventArgs e)
@@ -228,7 +230,7 @@ namespace Apq_DBTools
 					dda.SelectCommand.CommandText = @"
 SELECT `TABLE_SCHEMA` as SchemaName,`Table_Name` as TableName,`ENGINE`,`CREATE_OPTIONS`,`TABLE_COMMENT`,'' as PrimaryKeys
   FROM `information_schema`.`TABLES`
- WHERE `TABLE_SCHEMA` = DATABASE();
+ WHERE `TABLE_SCHEMA` = DATABASE() AND `Table_Name` NOT IN ('dbv_BuildLog','dbv_table','dbv_column','dbv_trigger','dbv_view','dbv_proc');
 ";
 					dda.Fill(_xsd.dbv_table);
 					// 列
@@ -244,7 +246,7 @@ SELECT `COLUMN_NAME` as ColName,
   FROM `information_schema`.`COLUMNS` c 
 	INNER JOIN `information_schema`.`TABLES` t ON c.`TABLE_SCHEMA` = t.`TABLE_SCHEMA` AND c.`TABLE_NAME` = t.`TABLE_NAME` 
 	-- INNER JOIN `dbv_table` dt ON t.`TABLE_SCHEMA` = dt.`SchemaName` AND t.`TABLE_NAME` = dt.`TableName`
- WHERE c.`TABLE_SCHEMA` = DATABASE();
+ WHERE c.`TABLE_SCHEMA` = DATABASE() AND t.`Table_Name` NOT IN ('dbv_BuildLog','dbv_table','dbv_column','dbv_trigger','dbv_view','dbv_proc');
 ";
 					dda.Fill(_xsd.dbv_column);
 					// 视图
@@ -263,7 +265,7 @@ SELECT `db` AS SchemaName,`name` AS ProcName,
 	CONVERT(`body` USING utf8) AS body,
 	`comment`
   FROM `mysql`.`proc`
- WHERE `db` = DATABASE();
+ WHERE `db` = DATABASE() AND `name` NOT IN ('Apq_CreateNewTable');
 ";
 					dda.Fill(_xsd.dbv_proc);
 					// 触发器
@@ -289,7 +291,7 @@ SELECT `TRIGGER_SCHEMA` as SchemaName,`TRIGGER_NAME` as TriName,`EVENT_MANIPULAT
 						{
 							if ("PRI".Equals(drc.COLUMN_KEY, StringComparison.OrdinalIgnoreCase))
 							{
-								strCols += "," + drc.ColName;
+								strCols += ",`" + drc.ColName + "`";
 							}
 						}
 						if (strCols.Length > 0)
@@ -356,11 +358,13 @@ SELECT `TRIGGER_SCHEMA` as SchemaName,`TRIGGER_NAME` as TriName,`EVENT_MANIPULAT
 		{
 			// 连接到数据库并执行刷新动作
 			Apq.Windows.Forms.DBConnector DBConnector = new Apq.Windows.Forms.DBConnector();
-			if (DBConnector.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
+			if (DBConnector.ShowDialog(GlobalObject.MainForm) == System.Windows.Forms.DialogResult.OK)
 			{
 				_DBConnectionType = DBConnector.DBSelected;
 				_DBConnection = DBConnector.DBConnection;
 				tsbRefresh_Click(sender, e);
+
+				this.Show();
 			}
 		}
 		// 生成元数据语句并保存到文件
@@ -402,29 +406,19 @@ SELECT `TRIGGER_SCHEMA` as SchemaName,`TRIGGER_NAME` as TriName,`EVENT_MANIPULAT
 该文件由Apq_DBTools自动生成
 
 数据库创建
-基本存储过程（根据元数据无损构建数据库）
 dbv表创建
 元数据导入
+基本存储过程（根据元数据无损构建数据库）
 
 ====================================================================================================
 */
 CREATE DATABASE IF NOT EXISTS `{0}` DEFAULT CHARACTER SET utf8;
 USE `{0}`;
-SET FOREIGN_KEY_CHECKS=0;
-
--- 基本存储过程 -------------------------------------------------------------------------------------",
-							_DBConnection.Database
-						)
-					);
-					string strFilePath = Path.GetDirectoryName(Apq.GlobalObject.TheProcess.MainModule.FileName) + @"\Sql\MySql\Apq_CreateNewTable.sql";
-					string strFileContent = Environment.NewLine + File.ReadAllText(strFilePath) + Environment.NewLine;
-					sb.Append(strFileContent);
+SET FOREIGN_KEY_CHECKS=0;",_DBConnection.Database));
 					sb.Append(@"
--- =================================================================================================
-
 -- 元数据表 -----------------------------------------------------------------------------------------");
-					strFilePath = Path.GetDirectoryName(Apq.GlobalObject.TheProcess.MainModule.FileName) + @"\Sql\MySql\dbv_table.sql";
-					strFileContent = Environment.NewLine + File.ReadAllText(strFilePath) + Environment.NewLine;
+					string strFilePath = Path.GetDirectoryName(Apq.GlobalObject.TheProcess.MainModule.FileName) + @"\Sql\MySql\dbv_table.sql";
+					string strFileContent = Environment.NewLine + File.ReadAllText(strFilePath) + Environment.NewLine;
 					sb.Append(strFileContent);
 					strFilePath = Path.GetDirectoryName(Apq.GlobalObject.TheProcess.MainModule.FileName) + @"\Sql\MySql\dbv_column.sql";
 					strFileContent = Environment.NewLine + File.ReadAllText(strFilePath) + Environment.NewLine;
@@ -436,6 +430,13 @@ SET FOREIGN_KEY_CHECKS=0;
 					strFileContent = Environment.NewLine + File.ReadAllText(strFilePath) + Environment.NewLine;
 					sb.Append(strFileContent);
 					strFilePath = Path.GetDirectoryName(Apq.GlobalObject.TheProcess.MainModule.FileName) + @"\Sql\MySql\dbv_proc.sql";
+					strFileContent = Environment.NewLine + File.ReadAllText(strFilePath) + Environment.NewLine;
+					sb.Append(strFileContent);
+					sb.Append(@"
+-- =================================================================================================
+
+-- 基本存储过程 -------------------------------------------------------------------------------------");
+					strFilePath = Path.GetDirectoryName(Apq.GlobalObject.TheProcess.MainModule.FileName) + @"\Sql\MySql\Apq_CreateNewTable.sql";
 					strFileContent = Environment.NewLine + File.ReadAllText(strFilePath) + Environment.NewLine;
 					sb.Append(strFileContent);
 					sb.Append(@"
@@ -562,13 +563,13 @@ INSERT INTO `dbv_trigger`(`SchemaName`,`TriName`,`EVENT_MANIPULATION`,`TableName
 							);
 						}
 					}
+					#endregion
 
 					sb.Append(@"
 -- =================================================================================================
 
 COMMIT;
 ");
-					#endregion
 				}
 				if (tscbSqlProduct.SelectedIndex == 1)
 				{
